@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:padding="6dip"
+    android:orientation="vertical"
+    >	
+		<LinearLayout
+			android:id="@+id/device_info"
+		    android:layout_width="wrap_content"	
+			android:layout_height="wrap_content"
+			android:orientation="vertical">
+		    
+        <TextView
+            android:id="@+id/device_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+        />
+
+        <TextView
+            android:id="@+id/device_nickname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+		/>
+
+        <TextView
+            android:id="@+id/current_device"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+		/>
+
+        <TextView
+            android:id="@+id/last_sync"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+		/>
+
+        <TextView
+            android:id="@+id/last_modified"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+		/>
+		</LinearLayout>
+
+		
+		<LinearLayout
+			android:id="@+id/device_options"
+		    android:layout_width="match_parent"	
+			android:layout_height="wrap_content"
+			android:orientation="horizontal">
+        	
+			<!-- Change nickname -->
+			<Button
+				android:layout_height="wrap_content"
+				android:layout_width="fill_parent"
+				android:layout_weight="1"
+				android:id="@+id/btn_change_nickname"
+				android:text="@string/change_nickname"/>
+	        
+			<!--  Enable disable download -->
+			<Button
+				android:layout_height="wrap_content"
+				android:layout_width="fill_parent"
+				android:layout_weight="1"
+				android:id="@+id/btn_enable_disable"
+				android:text="@string/enable"/>
+		
+		</LinearLayout>
+</LinearLayout>

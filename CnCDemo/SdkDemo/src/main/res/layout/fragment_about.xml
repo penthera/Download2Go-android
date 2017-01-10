@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/padding_medium"
+    android:paddingRight="@dimen/padding_medium"
+    tools:ignore="Overdraw" >
+
+	<LinearLayout
+    	android:layout_width="match_parent"
+    	android:layout_height="0dip"
+		android:layout_weight="1"
+    	android:orientation="vertical">
+
+	    <ImageView
+		    android:layout_width="match_parent"
+    		android:layout_height="125dip"
+    		android:layout_marginTop="@dimen/padding_extra_large"
+    		android:layout_gravity="center_horizontal"
+    		android:gravity="center_horizontal"
+			android:src="@drawable/ic_launcher" android:contentDescription="@string/content_desc_app_icon"/>
+			
+	</LinearLayout>
+
+
+	    <TextView
+	    	android:id="@+id/txt_sdk_demo_verison"
+		    android:layout_width="match_parent"
+    		android:layout_height="wrap_content"
+    		android:layout_marginTop="@dimen/padding_medium"
+    		android:layout_gravity="center_horizontal"
+    		android:gravity="center_horizontal"
+    		android:textSize="24sp"
+    		android:textStyle="bold"
+			/>
+
+	    <TextView
+	    	android:id="@+id/txt_server_sdk_verison"
+		    android:layout_width="match_parent"
+    		android:layout_height="wrap_content"
+    		android:layout_marginTop="@dimen/padding_medium"
+    		android:layout_gravity="center_horizontal"
+    		android:gravity="center_horizontal"
+    		android:textSize="24sp"
+    		android:textStyle="bold"
+			/>
+
+	    <TextView
+	    	android:id="@+id/txt_android_sdk_verison"
+		    android:layout_width="match_parent"
+    		android:layout_height="wrap_content"
+    		android:layout_marginTop="@dimen/padding_medium"
+    		android:layout_gravity="center_horizontal"
+    		android:gravity="center_horizontal"
+    		android:textSize="24sp"
+    		android:textStyle="bold"
+			/>
+
+	    <TextView
+		    android:layout_width="match_parent"
+    		android:layout_height="wrap_content"
+    		android:layout_marginTop="@dimen/padding_medium"
+    		android:layout_gravity="center_horizontal"
+    		android:gravity="center_horizontal"
+    		android:textSize="17sp"
+			android:text="@string/copyright"
+			/>
+
+	    <TextView
+		    android:layout_width="match_parent"
+    		android:layout_height="wrap_content"
+    		android:layout_marginTop="@dimen/padding_medium"
+    	    android:layout_marginBottom="@dimen/padding_large"
+    		android:layout_gravity="center_horizontal"
+    		android:gravity="center_horizontal"
+    		android:textSize="15sp"
+			android:text="@string/hosted"
+			/>
+
+
+
+</LinearLayout>

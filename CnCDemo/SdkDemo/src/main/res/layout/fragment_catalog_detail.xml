@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/bg">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+	<TextView
+ 		android:id="@+id/txt_title"
+  		android:layout_width="match_parent"
+ 		android:layout_height="wrap_content"
+ 		android:layout_marginTop="@dimen/padding_extra_large"
+ 		android:layout_marginLeft="@dimen/padding_medium"
+ 		android:paddingLeft="@dimen/padding_medium"
+ 		android:singleLine="true"
+ 		android:ellipsize="end"
+ 		android:textSize="24sp"
+		android:textIsSelectable="false"
+		android:textColor="#FFFFFFFF"
+		/>
+
+	<LinearLayout 
+    	android:layout_width="match_parent"
+    	android:layout_height="wrap_content"
+    	android:layout_gravity="center_vertical"
+    	android:gravity="center_vertical"
+ 		android:layout_marginTop="@dimen/padding_medium"
+ 		android:layout_marginLeft="@dimen/padding_medium"
+ 		android:paddingLeft="@dimen/padding_medium"
+    	android:orientation="horizontal">
+
+		<!-- Rating: R, PG, PG-13 -->
+		<TextView
+ 			android:id="@+id/txt_parental_rating"
+  			android:layout_width="wrap_content"
+ 			android:layout_height="wrap_content"
+	    	android:layout_gravity="center_vertical"
+    		android:gravity="center_vertical"
+ 			android:singleLine="true"
+ 			android:ellipsize="end"
+		android:textColor="#FFFFFFFF"
+ 	 		android:textAppearance="?android:attr/textAppearanceSmall" android:textIsSelectable="false"/>
+
+		<!-- File: Size -->
+		<TextView
+ 			android:id="@+id/txt_size"
+  			android:layout_width="wrap_content"
+ 			android:layout_height="wrap_content"
+	    	android:layout_gravity="center_vertical"
+	    	android:layout_marginLeft="@dimen/padding_medium"
+    		android:gravity="center_vertical"
+ 			android:singleLine="true"
+ 			android:ellipsize="end"
+		android:textColor="#FFFFFFFF"
+ 	 		android:textAppearance="?android:attr/textAppearanceSmall" android:textIsSelectable="false"/>
+
+		<!-- Expiry Layout -->
+		<LinearLayout
+			android:id="@+id/lyt_expiry"
+    		android:layout_width="wrap_content"
+    		android:layout_height="match_parent"
+	    	android:layout_gravity="center_vertical"
+   		 	android:gravity="center_vertical"
+   		 	android:layout_marginLeft="@dimen/padding_small"
+    		android:orientation="horizontal">
+
+			<!-- Vertical divider -->
+			<LinearLayout
+    			android:layout_width="2dip"
+    			android:layout_height="match_parent"
+   		 		android:background="#60888888"/>
+    
+	
+			<!-- Expire Clock -->
+			<ImageView
+  				android:layout_width="wrap_content"
+ 				android:layout_height="wrap_content"
+	   		 	android:layout_marginLeft="@dimen/padding_small"
+ 				android:src="@drawable/clock" android:contentDescription="@string/clock"/>
+
+			<!-- Expire Text -->
+			<TextView
+	  			android:layout_width="wrap_content"
+ 				android:layout_height="wrap_content"
+	    		android:layout_gravity="center_vertical"
+	    		android:layout_marginLeft="@dimen/padding_small"
+    			android:gravity="center_vertical"
+ 				android:textSize="12sp"
+				android:textColor="#FFFFFFFF"
+				android:text="@string/expires"
+ 	 			android:textAppearance="?android:attr/textAppearanceSmall" android:textIsSelectable="false"/>
+	
+	
+			<!-- Expire Text -->
+			<TextView
+	 			android:id="@+id/txt_expiry"
+	  			android:layout_width="wrap_content"
+ 				android:layout_height="wrap_content"
+	    		android:layout_gravity="center_vertical"
+    			android:gravity="center_vertical"
+ 				android:singleLine="true"
+ 				android:ellipsize="end"
+ 				android:textSize="12sp"
+				android:textColor="#FFFFFFFF"
+ 	 			android:textAppearance="?android:attr/textAppearanceSmall" android:textIsSelectable="false"/>
+		</LinearLayout>   
+		
+	</LinearLayout>
+
+		<LinearLayout
+    		android:layout_width="wrap_content"
+    		android:layout_height="match_parent"
+	    	android:layout_gravity="center_vertical"
+   		 	android:gravity="center_vertical"
+   		 	android:layout_marginLeft="@dimen/padding_small"
+    		android:orientation="horizontal">
+
+	<!-- Duration -->
+	<TextView
+ 		android:id="@+id/txt_duration"
+  		android:layout_width="wrap_content"
+ 		android:layout_height="wrap_content"
+	  	android:layout_gravity="center_vertical"
+		android:paddingTop="@dimen/padding_small"
+		android:paddingLeft="@dimen/padding_large"
+  		android:gravity="center_vertical"
+ 		android:singleLine="true"
+ 		android:ellipsize="end"
+		android:textColor="#FFFFFFFF"
+ 		android:textAppearance="?android:attr/textAppearanceSmall" android:textIsSelectable="false"/>
+
+		<!-- Available Layout -->
+		<LinearLayout
+			android:id="@+id/lyt_available"
+    		android:layout_width="wrap_content"
+    		android:layout_height="match_parent"
+	    	android:layout_gravity="center_vertical"
+   		 	android:gravity="center_vertical"
+   		 	android:layout_marginLeft="@dimen/padding_small"
+    		android:orientation="horizontal">
+
+			<!-- Vertical divider -->
+			<LinearLayout
+    			android:layout_width="2dip"
+    			android:layout_height="match_parent"
+   		 		android:background="#60888888"/>
+    
+	
+			<!-- Expire Clock -->
+			<ImageView
+  				android:layout_width="wrap_content"
+ 				android:layout_height="wrap_content"
+	   		 	android:layout_marginLeft="@dimen/padding_small"
+ 				android:src="@drawable/clock" android:contentDescription="@string/clock"/>
+
+			<!-- Expire Text -->
+			<TextView
+	  			android:layout_width="wrap_content"
+ 				android:layout_height="wrap_content"
+	    		android:layout_gravity="center_vertical"
+	    		android:layout_marginLeft="@dimen/padding_small"
+    			android:gravity="center_vertical"
+ 				android:textSize="12sp"
+				android:textColor="#FFFFFFFF"
+				android:text="@string/available"
+ 	 			android:textAppearance="?android:attr/textAppearanceSmall" android:textIsSelectable="false"/>
+	
+	
+			<!-- Expire Text -->
+			<TextView
+	 			android:id="@+id/txt_available"
+	  			android:layout_width="wrap_content"
+ 				android:layout_height="wrap_content"
+	    		android:layout_gravity="center_vertical"
+    			android:gravity="center_vertical"
+ 				android:singleLine="true"
+ 				android:ellipsize="end"
+ 				android:textSize="12sp"
+				android:textColor="#FFFFFFFF"
+ 	 			android:textAppearance="?android:attr/textAppearanceSmall" android:textIsSelectable="false"/>
+		</LinearLayout>
+		</LinearLayout>
+
+
+	<ScrollView 
+    	android:layout_width="match_parent"
+    	android:layout_height="125dip"
+    	android:layout_marginTop="@dimen/padding_extra_large"
+ 		android:layout_marginLeft="@dimen/padding_medium">
+ 	
+		<TextView
+ 			android:id="@+id/txt_description"
+  			android:layout_width="match_parent"
+ 			android:layout_height="wrap_content"
+  			android:textAppearance="?android:attr/textAppearanceMedium"
+			android:textColor="#FFFFFFFF"
+  			android:textIsSelectable="false"/>
+	</ScrollView>
+	</LinearLayout>
+
+	<LinearLayout 
+		android:id="@+id/row_btn"
+    	android:layout_width="match_parent"
+    	android:layout_height="wrap_content"
+ 		android:layout_marginTop="@dimen/padding_extra_large"
+    	android:orientation="horizontal">
+  					
+  		<Button
+			android:id="@+id/btn_watch"
+  			android:layout_width="0dip"
+  			android:layout_weight="1"
+ 			android:layout_height="wrap_content"
+ 			android:text="@string/watch_now"/>
+ 				
+  		<Button
+			android:id="@+id/btn_download"
+  			android:layout_width="0dip"
+  			android:layout_weight="1"
+ 			android:layout_height="wrap_content"
+ 			android:text="@string/download"/>
+	</LinearLayout>
+		
+	<TextView
+		android:id="@+id/txt_assetstatus"
+ 		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+ 		android:textAppearance="?android:attr/textAppearanceMedium"
+		android:textColor="#FFFFFFFF"
+ 		android:textIsSelectable="false"
+ 		android:visibility="gone"
+		android:layout_marginTop="@dimen/padding_medium"
+		android:layout_marginLeft="@dimen/padding_medium"
+		android:layout_marginRight="@dimen/padding_medium"
+ 		/>
+	
+	<ProgressBar 
+		android:id="@+id/prg"
+ 		android:layout_width="match_parent"  
+		android:layout_height="12dip"  
+		
+		android:layout_marginTop="@dimen/padding_large"
+		android:layout_marginLeft="@dimen/padding_medium"
+		android:layout_marginRight="@dimen/padding_medium"
+		
+		android:progress="0"  
+		android:max="100"  
+		style="?android:attr/progressBarStyleHorizontal"
+   		android:visibility="gone"/>
+ 		
+</LinearLayout>

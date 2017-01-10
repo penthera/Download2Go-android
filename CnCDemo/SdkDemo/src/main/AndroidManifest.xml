@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.penthera.sdkdemo"
+    android:versionCode="15915"
+    android:versionName="3.12.1beta.15915" >
+
+	<uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="com.penthera.sdkdemo.permission.CATALOG"/>   
+	<uses-permission android:name="android.permission.VIBRATE" />
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" android:maxSdkVersion="18"/>
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+	<uses-permission android:name="android.permission.WAKE_LOCK"/>
+	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+ 	<uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
+	<uses-permission android:name="android.permission.QUICKBOOT_POWERON"/>
+	
+	<!-- GCM Client -->
+	<uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+	<permission android:name="com.penthera.sdkdemo.permission.C2D_MESSAGE" android:protectionLevel="signature"/>
+	<uses-permission android:name="com.penthera.sdkdemo.permission.C2D_MESSAGE" />
+	
+    <uses-sdk
+        android:minSdkVersion="11"
+        android:targetSdkVersion="23" />
+
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/Theme.Sherlock">
+        
+        <!-- Splash --> 
+        <activity
+            android:name="com.penthera.sdkdemo.activity.SplashActivity"
+        	android:noHistory="true"
+			android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Main --> 
+        <activity 
+        	android:name="com.penthera.sdkdemo.activity.MainActivity"
+			android:screenOrientation="portrait"/>
+ 
+        <!-- About --> 
+        <activity 
+        	android:name="com.penthera.sdkdemo.activity.AboutActivity"
+			android:screenOrientation="portrait"/>
+			
+        <!-- Catalog Details --> 
+		<activity 
+			android:name="com.penthera.sdkdemo.activity.CatalogDetailActivity"
+			android:screenOrientation="portrait"/>
+
+        <!-- Diagnostics --> 
+		<activity 
+			android:name="com.penthera.sdkdemo.activity.DiagnosticsActivity"
+			android:screenOrientation="portrait"/>	
+			
+        <!-- Devices --> 
+		<activity 
+			android:name="com.penthera.sdkdemo.activity.DevicesActivity"
+			android:screenOrientation="portrait"/>			
+
+        <!-- Settings --> 
+		<activity 
+			android:name="com.penthera.sdkdemo.activity.SettingsActivity"
+			android:screenOrientation="portrait"/>
+		
+        <!-- Subscriptions --> 
+		<activity 
+			android:name="com.penthera.sdkdemo.activity.SubscriptionsActivity"
+			android:screenOrientation="portrait"/>
+
+		<!-- Meta Data -->
+        <meta-data android:name="com.penthera.virtuososdk.client.pckg" android:value="@string/client_package" />
+   
+        <!-- Catalog Provider -->
+        <provider android:name="com.penthera.sdkdemo.catalog.CatalogContentProvider"
+ 			android:authorities="com.penthera.sdkdemo.catalog" 
+			android:permission="com.penthera.sdkdemo.permission.CATALOG"/>
+
+        <provider android:name="com.penthera.sdkdemo.provider.SdkDemoContentProvider"
+			android:authorities="@string/client_package"
+			android:process=":provider"/>
+        <!-- Service -->    
+ 		<service android:name="com.penthera.virtuososdk.service.VirtuosoService"
+			android:process=":service"
+			android:label="VirtuosoService">
+		</service>
+
+		<!-- HLS Proxy service -->
+		<service android:name="com.penthera.virtuososdk.service.VirtuosoClientHTTPService"
+					android:label="VirtuosoClientHTTPService"
+					android:enabled="true">
+		</service>
+        
+		<!-- Service Starter -->		
+        <receiver android:name="com.penthera.virtuososdk.service.VirtuosoServiceStarter" 
+	    	android:enabled="true" 
+			android:process=":starter"
+	    	android:label="VirtuosoServiceStarter">
+	    	<intent-filter>
+	    		<action android:name="android.intent.action.QUICKBOOT_POWERON"/>
+	    		<action android:name="com.htc.intent.action.QUICKBOOT_POWERON"/>	    	
+	    		<action android:name="android.intent.action.BOOT_COMPLETED"/>
+	    		<action android:name="virtuoso.intent.action.DOWNLOAD_UPDATE"/>
+	    		<action android:name="virtuoso.intent.action.CONFIGURE_VIRTUOSO_SERVICE_LOGGING"/>
+	    		<action android:name="android.intent.action.PACKAGE_REMOVED" />				
+	    		<data android:scheme="package"/>		
+	    	</intent-filter>
+	    	
+	    	<intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            
+	    </receiver>        
+
+		<!-- Notification Receiver -->	    
+        <receiver android:name="com.penthera.sdkdemo.notification.NotificationReceiver" 
+	    	android:enabled="true" 
+	    	android:process=":receiver"
+	    	android:label="NotificationReceiver">
+	    	<intent-filter>
+	    		<action android:name="com.penthera.virtuososdk.provider.sdkdemo.NOTIFICATION_DOWNLOAD_START"/>
+	    		<action android:name="com.penthera.virtuososdk.provider.sdkdemo.NOTIFICATION_DOWNLOAD_STOPPED"/>
+	    		<action android:name="com.penthera.virtuososdk.provider.sdkdemo.NOTIFICATION_DOWNLOAD_COMPLETE"/>
+	    		<action android:name="com.penthera.virtuososdk.provider.sdkdemo.NOTIFICATION_DOWNLOAD_UPDATE"/>
+	    		<action android:name="com.penthera.virtuososdk.provider.sdkdemo.NOTIFICATION_DOWNLOADS_PAUSED" />
+	    		
+	    		<action android:name="com.penthera.virtuososdk.provider.sdkdemo.EVENT_APP_LAUNCH" />
+	    		<action android:name="com.penthera.virtuososdk.provider.sdkdemo.EVENT_QUEUE_FOR_DOWNLOAD" />
+	    		<action android:name="com.penthera.virtuososdk.provider.sdkdemo.EVENT_ASSET_REMOVED_FROM_QUEUE" />
+	    		<action android:name="com.penthera.virtuososdk.provider.sdkdemo.EVENT_DOWNLOAD_START" />
+	    		<action android:name="com.penthera.virtuososdk.provider.sdkdemo.EVENT_DOWNLOAD_COMPLETE" />
+                <action android:name="com.penthera.virtuososdk.provider.sdkdemo.EVENT_DOWNLOAD_ERROR" />
+                <action android:name="com.penthera.virtuososdk.provider.sdkdemo.EVENT_MAX_ERRORS_RESET" />
+	    		<action android:name="com.penthera.virtuososdk.provider.sdkdemo.EVENT_ASSET_DELETED" />
+	    		<action android:name="com.penthera.virtuososdk.provider.sdkdemo.EVENT_ASSET_EXPIRE" />
+	    		<action android:name="com.penthera.virtuososdk.provider.sdkdemo.EVENT_SYNC_WITH_SERVER" />
+	    		<action android:name="com.penthera.virtuososdk.provider.sdkdemo.EVENT_PLAY_START" />
+	    		<action android:name="com.penthera.virtuososdk.provider.sdkdemo.EVENT_STREAM_PLAY_START" />
+	    		<action android:name="com.penthera.virtuososdk.provider.sdkdemo.EVENT_PLAY_STOP" />
+	    		<action android:name="com.penthera.virtuososdk.provider.sdkdemo.EVENT_STREAM_PLAY_STOP" />
+	    		<action android:name="com.penthera.virtuososdk.provider.sdkdemo.EVENT_RESET" />
+	    		<action android:name="com.penthera.virtuososdk.provider.sdkdemo.EVENT_SUBSCRIBE" />
+	    		<action android:name="com.penthera.virtuososdk.provider.sdkdemo.EVENT_UNSUBSCRIBE" />	    			    			    			    			    			    			    		
+	    	</intent-filter>
+	    </receiver>
+	    
+        <service android:name="com.penthera.sdkdemo.notification.NotificationService" 
+	    	android:enabled="true" 
+	    	android:process=":receiver"
+	    	android:label="NotificationService">
+	    </service>
+
+		<meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
+		
+		<receiver
+			android:name="com.penthera.virtuososdk.subscriptions.GcmReceiver"
+ 			android:permission="com.google.android.c2dm.permission.SEND" >
+			<intent-filter>
+ 				<action android:name="com.google.android.c2dm.intent.REGISTRATION" />				
+ 				<action android:name="com.google.android.c2dm.intent.RECEIVE" />
+				<category android:name="com.penthera.sdkdemo" />
+			</intent-filter>
+		</receiver>
+		<service 
+			android:name="com.penthera.sdkdemo.SdkDemoSubscriptionsService"
+			android:enabled="true">
+		</service>		
+	    
+    </application>
+    
+    
+</manifest>

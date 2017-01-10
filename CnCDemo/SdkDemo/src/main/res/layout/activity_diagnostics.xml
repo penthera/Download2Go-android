@@ -1,0 +1,593 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+    
+ <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+             
+	<TextView
+         android:id="@+id/textView_version"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:text="unknown" 
+         android:textStyle="bold" />
+	
+       <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            
+            <TableRow
+                android:id="@+id/tableRow1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/textView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Engine State:" 
+                    android:textStyle="bold" />
+                
+                <TextView
+                    android:id="@+id/eng_state"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="undefined" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Authentication State:" 
+                    android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/auth_state"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="undefined" />
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRowBackplaneGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/textViewBackplaneGroup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Backplane Group:" 
+                    android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/backplane_group"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="undefined" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRowBackplaneUser"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/textViewBackplaneUser"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Backplane User:" 
+                    android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/backplane_user"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="undefined" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRowBackplane"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/textViewBackplane"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Backplane Url:" 
+                    android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/backplane_url"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="undefined" />
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRowNickname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/textViewNickname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Device Name:" 
+                    android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/device_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="undefined" />
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tablelastAuth"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/textViewlastAuth"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Last Auth:" 
+                    android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/la_val"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="undefined" />
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Power Status:" 
+                    android:textStyle="bold"  />
+                <TextView
+                    android:id="@+id/power_val"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="undefined" />
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Network Status:" 
+                    android:textStyle="bold"  />
+                <TextView
+                    android:id="@+id/network_val"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="undefined" />
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Disk Status:" 
+                    android:textStyle="bold"  />
+                <TextView
+                    android:id="@+id/disk_val"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="undefined" />
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Cell quota Status:" 
+                    android:textStyle="bold"  />
+                <TextView
+                    android:id="@+id/cell_status_val"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="undefined" />
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/textView7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Max Offline:" 
+                    android:textStyle="bold"  />
+                <TextView
+                    android:id="@+id/moff_val"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="undefined" />
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/textView8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Expiry After Play:" 
+                    android:textStyle="bold"  />
+                <TextView
+                    android:id="@+id/eap_val"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="undefined" />
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/textView9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Expiry After Download:" 
+                    android:textStyle="bold"  />
+                <TextView
+                    android:id="@+id/ead_val"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="undefined" />
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRowMdd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/textViewMdd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Max Download Devices:" 
+                    android:textStyle="bold"  />
+                <TextView
+                    android:id="@+id/mdd_val"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="undefined" />
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRowDeq"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/textViewDeq"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Used mdd Quota:" 
+                    android:textStyle="bold"  />
+                <TextView
+                    android:id="@+id/deq_val"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="undefined" />
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRowIsdd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/textViewIsdd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Download Enabled:" 
+                    android:textStyle="bold"  />
+                <TextView
+                    android:id="@+id/isdd_val"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="undefined" />
+
+            </TableRow>
+
+           <TableRow
+                android:id="@+id/tableRow11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/textView11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="cell data quota start date: " 
+                    android:textStyle="bold"  />
+                <TextView
+                    android:id="@+id/quota_start_val"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="undefined" />
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/cell_quota_setting_row"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/cell_quota_setting_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="cell quota:" 
+                    android:textStyle="bold"  />
+                <TextView
+                    android:id="@+id/cell_quota_setting_val"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="undefined" />
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/textView12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="used cell data quota:" 
+                    android:textStyle="bold"  />
+                <TextView
+                    android:id="@+id/quota_val"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="undefined" />
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/textView13"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="used storage:" 
+                    android:textStyle="bold"  />
+                <TextView
+                    android:id="@+id/used_storage_val"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="undefined" />
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/textView15"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Available Storage:" 
+                    android:textStyle="bold"  />
+                <TextView
+                    android:id="@+id/available_val"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="undefined" />
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/textView16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Max Storage (Mb):" 
+                    android:textStyle="bold"  />
+                <TextView
+                    android:id="@+id/ms_val"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="undefined" />
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow17"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/textView17"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Headroom (Mb):" 
+                    android:textStyle="bold"  />
+                <TextView
+                    android:id="@+id/headroom_val"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="undefined" />
+
+            </TableRow>
+            
+            <TableRow
+                android:id="@+id/tableRow18"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/textView18"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Battery Threshold:" 
+                    android:textStyle="bold"  />
+                <TextView
+                    android:id="@+id/battery_val"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="undefined" />
+
+            </TableRow>
+            
+            <TableRow
+                android:id="@+id/tableRow19"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/textView19"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Battery Level:" 
+                    android:textStyle="bold"  />
+                <TextView
+                    android:id="@+id/level_val"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="undefined" />
+
+            </TableRow>
+            
+            <TableRow
+                android:id="@+id/tableRow20"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/textView20"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Is Charging:" 
+                    android:textStyle="bold"  />
+                <TextView
+                    android:id="@+id/charging_val"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="undefined" />
+
+            </TableRow>
+            
+            <TableRow
+                android:id="@+id/tableRow21"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/textView21"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Current throughput:" 
+                    android:textStyle="bold"  />
+                <TextView
+                    android:id="@+id/cthroughput"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="undefined" />
+
+            </TableRow>
+            
+            <TableRow
+                android:id="@+id/tableRow42"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/textView42"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="15s window throughput:" 
+                    android:textStyle="bold"  />
+                <TextView
+                    android:id="@+id/wthroughput"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="undefined" />
+
+            </TableRow>
+            
+            <TableRow
+                android:id="@+id/tableRow22"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/textView22"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Overall throughput:" 
+                    android:textStyle="bold"  />
+                <TextView
+                    android:id="@+id/othroughput"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="undefined" />
+
+            </TableRow>
+
+        </TableLayout>
+</LinearLayout>
+</ScrollView>
