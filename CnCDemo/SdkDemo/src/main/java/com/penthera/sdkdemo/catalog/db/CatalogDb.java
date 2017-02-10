@@ -44,7 +44,7 @@ public class CatalogDb {
 	/** The name of the DB on internal storage */
 	private static final String DATABASE_NAME = "catalog.db";
 	/** The version of the DB used for upgrades */
-	private static final int DATABASE_VERSION = 2;
+	private static final int DATABASE_VERSION = 3;
 
 	private static CatalogDb iInstance = null;
 	private DatabaseHelper iHelper = null;
@@ -211,10 +211,14 @@ public class CatalogDb {
 							break;
 						case 1:
 							db.execSQL("ALTER TABLE " + CATALOG_TABLE_NAME + " ADD " + CatalogColumns.SUBCRIPTION_ASSET + " BOOLEAN DEFAULT 0");	
+							upgradedVersion = 2;
+							break;
+						case 2:
+							db.execSQL("ALTER TABLE " + CATALOG_TABLE_NAME + " ADD " + CatalogColumns.DRM_SCHEME_UUID + " TEXT");
 							upgradedVersion = DATABASE_VERSION;
 							break;
-						}				
-						return performRecUpgrade(db, upgradedVersion, newVersion);
+						}
+					return performRecUpgrade(db, upgradedVersion, newVersion);
 					}
 					return oldVersion;			
 				}

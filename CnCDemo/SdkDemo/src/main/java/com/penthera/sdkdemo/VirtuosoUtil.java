@@ -36,6 +36,7 @@ import android.widget.Toast;
 import com.penthera.sdkdemo.catalog.Catalog.CatalogColumns;
 import com.penthera.sdkdemo.catalog.PermissionManager;
 import com.penthera.sdkdemo.catalog.PermissionManager.Permission;
+import com.penthera.sdkdemo.exoplayer.PlayerActivity;
 import com.penthera.virtuososdk.Common;
 import com.penthera.virtuososdk.client.IAssetManager;
 import com.penthera.virtuososdk.client.ISegment;
@@ -92,7 +93,7 @@ public class VirtuosoUtil {
 	 * Add catalog item to the download Q
 	 * 
 	 * @param context the context
-	 * @param mAssetManager the Virtuoso service
+	 * @param service the Virtuoso service
 	 * @param cv The content values from cursor row
 	 * 
 	 * @return true, item added
@@ -112,15 +113,19 @@ public class VirtuosoUtil {
 		final long expiryAfterPlay = cv.getAsLong(CatalogColumns.EXPIRY_AFTER_PLAY);
 		final long availabilityStart = cv.getAsLong(CatalogColumns.AVAILABILITY_START);
 		final String mimetype = cv.getAsString(CatalogColumns.MIME);
-		
-		if (!isHls(mediaType)) {
-			return downloadItem(context, service, downloadEnabledContent, remoteId, url, mimetype, catalogExpiry, downloadExpiry, expiryAfterPlay, availabilityStart, title, thumbnail);			
-		} else {
-			final int fragmentCount = cv.getAsInteger(CatalogColumns.FRAGMENT_COUNT);			
-			downloadHlsItem(context, mediaType, service, downloadEnabledContent, remoteId, url + cv.getAsString(CatalogColumns.FRAGMENT_PREFIX), fragmentCount, catalogExpiry, downloadExpiry, expiryAfterPlay,availabilityStart, title, thumbnail);			
+
+		if(isDash(mediaType)){
+			downloadDashItem(context,service,downloadEnabledContent,remoteId,url,catalogExpiry,
+					downloadExpiry,expiryAfterPlay,availabilityStart,title,thumbnail);
 		}
-		
-		// Assume true for HLS
+		else if(isHls(mediaType)){
+			final int fragmentCount = cv.getAsInteger(CatalogColumns.FRAGMENT_COUNT);
+			downloadHlsItem(context, mediaType, service, downloadEnabledContent, remoteId, url + cv.getAsString(CatalogColumns.FRAGMENT_PREFIX), fragmentCount, catalogExpiry, downloadExpiry, expiryAfterPlay,availabilityStart, title, thumbnail);
+		}
+		else  {
+			return downloadItem(context, service, downloadEnabledContent, remoteId, url, mimetype, catalogExpiry, downloadExpiry, expiryAfterPlay, availabilityStart, title, thumbnail);			
+		}
+		// Assume true for HLS and DASH
 		return true;
 	}
 
@@ -163,6 +168,72 @@ public class VirtuosoUtil {
 	static class HlsResult{
 		int error = 0;
 		boolean queued = false;
+	}
+
+	public static void downloadDashItem(final Context context,final Virtuoso service,
+										boolean downloadEnabledContent, final String remoteId,
+										String url, final long catalogExpiry,
+										final long downloadExpiry, final long expiryAfterPlay,
+										final long availabilityStart, String title,
+										String thumbnail){
+
+		PermissionManager pm = new PermissionManager();
+		Permission authorized = pm.canDownload(service.getBackplane().getSettings().getDownloadEnabled(),
+				downloadEnabledContent, catalogExpiry);
+		final long now = System.currentTimeMillis()/1000;
+		if (authorized == Permission.EAccessAllowed) {
+
+			// Create meta data for later display of download list
+			final String json = MetaData.toJson(title, thumbnail);
+			final IAssetManager manager = service.getAssetManager();
+
+			//note we would not be able to use the progress dialog if running from doBackground in an async task
+			final ProgressDialog pdlg = ProgressDialog.show(context, "Processing dash manifest","Adding fragments...");
+			final ISegmentedAssetFromParserObserver observer = new ISegmentedAssetFromParserObserver() {
+				@Override
+				public void complete(ISegmentedAsset aSegmentedAsset, int aError, boolean addedToQueue) {
+
+					try {
+						pdlg.dismiss();
+					} catch( Exception e) {}
+
+					if(aSegmentedAsset != null){
+						aSegmentedAsset.setStartWindow(availabilityStart <=0 ? now:availabilityStart);
+						aSegmentedAsset.setEndWindow(catalogExpiry <=0 ? Long.MAX_VALUE:catalogExpiry);
+						aSegmentedAsset.setEap(expiryAfterPlay);
+						aSegmentedAsset.setEad(downloadExpiry);
+						manager.update(aSegmentedAsset);
+					} else {
+						AlertDialog.Builder builder1 = new AlertDialog.Builder(context);
+						builder1.setTitle("Could Not Create Asset");
+						builder1.setMessage("Encountered error("+Integer.toString(aError)+") while creating asset.  This could happen if the device is currently offline, or if the asset manifest was not accessible.  Please try again later.");
+						builder1.setCancelable(false);
+						builder1.setPositiveButton("OK",
+								new DialogInterface.OnClickListener() {
+									public void onClick(DialogInterface dialog, int id) {
+										dialog.cancel();
+									}
+								});
+
+						AlertDialog alert11 = builder1.create();
+						alert11.show();
+					}
+					Log.i(TAG,"Finished procesing dash file addedToQueue:"+addedToQueue + " error:"+aError);
+				}
+
+				@Override
+				public String didParseSegment(ISegment segment) {
+					return segment.getRemotePath();
+				}
+			};
+
+			try {
+				manager.createMPDSegmentedAssetAsync(observer,new URL(url),0,0,remoteId,json,true);
+			} catch (MalformedURLException e) {
+				Log.e(TAG,"Problem with dash url.",e);
+			}
+		}
+
 	}
 	
 	/**
@@ -338,7 +409,11 @@ public class VirtuosoUtil {
 			}
 		}
 	}
-	
+
+	private static boolean isDash(int type){
+		return type == 6;
+	}
+
 	private static boolean isHls(int type) {
 		switch (type) {
 			case 3:
@@ -361,7 +436,7 @@ public class VirtuosoUtil {
 	 * Watch item
 	 * 
 	 * @param context the context
-	 * @param service the service 
+	 * @param manager the asset manager insterface
 	 * @param c the cursor
 	 */
 	public static void watchItem(Context context, IAssetManager manager, Cursor c) {
@@ -432,15 +507,23 @@ public class VirtuosoUtil {
 		String streamUrl = c.getString(c.getColumnIndex(CatalogColumns.STREAM_URL));
 		if (!TextUtils.isEmpty(streamUrl)) {
 			url = streamUrl;
-		}	
+		}
+        Uri uri = Uri.parse(url);
+
 		// register a play stream event
 		// this will modify the first play time on an asset if it exists in the Virtuoso db.
 		// we may or may not want that for streaming.
-		Common.Events.addPlayStartEvent(context, assetId);			
-		Intent intent = null;		
-		intent = new Intent(Intent.ACTION_VIEW);					
-		intent.setDataAndType(Uri.parse(url), "video/*");	
-		// Start watching the item
+        int assetType = Common.AssetIdentifierType.FILE_IDENTIFIER;
+        if(isDash(mediaType)){
+            assetType = ISegmentedAsset.SEG_FILE_TYPE_MPD;
+        }
+        else if(isHls(mediaType)){
+            assetType = ISegmentedAsset.SEG_FILE_TYPE_HLS;
+        }
+        Intent intent = buildPlayerIntent(context,
+                c.getString(c.getColumnIndex(CatalogColumns.DRM_SCHEME_UUID)),uri,assetType,assetId);
+
+		Common.Events.addPlayStartEvent(context, assetId);
 		context.startActivity(intent);
 	}
 	
@@ -487,48 +570,55 @@ public class VirtuosoUtil {
 			}
 		}
 		return path;		
-	}	
+	}
+
+    private static Intent buildPlayerIntent(Context context,IAsset a) throws MalformedURLException {
+        int type = Common.AssetIdentifierType.FILE_IDENTIFIER;
+        Uri path;
+        String drmuuid = null;
+        if(a.getType() == Common.AssetIdentifierType.SEGMENTED_ASSET_IDENTIFIER){
+            ISegmentedAsset sa = (ISegmentedAsset)a;
+            type = sa.segmentedFileType();
+            path = Uri.parse(sa.getPlaylist().toString());
+            drmuuid = sa.contentProtectionUuid();
+        }
+        else{
+            IFile f = (IFile)a;
+            path = Uri.parse(f.getFilePath());
+        }
+        return buildPlayerIntent(context,drmuuid,path,type,a.getAssetId())
+                .putExtra(PlayerActivity.VIRTUOSO_ASSET,a);
+    }
+
+    private static Intent buildPlayerIntent(Context context,String drmSchemUuid, Uri uri,
+                                            int assetType,String assetId){
+        Intent intent =  new Intent(context, PlayerActivity.class)
+                .setAction(PlayerActivity.ACTION_VIEW)
+                .setData(uri)
+                .putExtra(PlayerActivity.DRM_SCHEME_UUID_EXTRA,drmSchemUuid)
+                .putExtra(PlayerActivity.VIRTUOSO_CONTENT_TYPE,assetType)
+                .putExtra(PlayerActivity.VIRTUOSO_ASSET_ID,assetId);
+        return intent;
+    }
 
 	public static void watchVirtuosoItem(Context context, IAsset i) {
-		Intent openIntent = new Intent(android.content.Intent.ACTION_VIEW);
-		if(i.getType() == Common.AssetIdentifierType.FILE_IDENTIFIER){
-			IFile f = (IFile)i;
-			File file = new File(f.getFilePath());
-			String mimeType = f.getExpectedMimeType();
-			if (mimeType == null) {
-				String extension = android.webkit.MimeTypeMap.getFileExtensionFromUrl(Uri.fromFile(file).toString());
-				mimeType = android.webkit.MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension);
-			}
-			if (mimeType == null) {
-				throw new RuntimeException("Could not determine mime type");
-			}
-			openIntent.setDataAndType(Uri.fromFile(file), mimeType);
-		}
-		else if(i.getType() == Common.AssetIdentifierType.SEGMENTED_ASSET_IDENTIFIER){
-			ISegmentedAsset f = (ISegmentedAsset)i;
-			//this mimetype works in MX player but the native player will not pick it up
-			//String mimeType = "application/x-mpegURL";
-			String mimeType = "video/*";
-			URL pl;
-			try {
-				pl = f.getPlaylist();
-				openIntent.setDataAndType(Uri.parse(pl.toString()), mimeType);
-			} catch (MalformedURLException e) {
-				 throw new RuntimeException("Not a playable virtuoso file");
-			}
-		}
-		else
-		 throw new RuntimeException("Not a playable virtuoso file");
 
-		//register a play start event
-		Common.Events.addPlayStartEvent(context, i.getAssetId());
-		context.startActivity(openIntent);	
+        try{
+            Intent openIntent = buildPlayerIntent(context, i);
+
+            //register a play start event
+            Common.Events.addPlayStartEvent(context, i.getAssetId());
+            context.startActivity(openIntent);
+        }
+        catch(Exception e){
+            throw new RuntimeException("Not a playable virtuoso file",e);
+        }
 	}
 	
 	/**
 	 * Used by inbox to print expiration time
 	 * 
-	 * @param id
+	 * @param asset the asset
 	 * @return expiration in seconds, -1 never
 	 */
     public static long getExpiration(IAsset asset) {

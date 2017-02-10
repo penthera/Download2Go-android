@@ -412,6 +412,7 @@ public class CatalogDetailFragment extends SherlockFragment implements LoaderMan
 			break;
 		case 3: //shows how an HLS file is passed to Virtuoso for it to choose the best bit rate
 		case 5: // shows how an HLS manifest is parsed and a play list chosen
+		case 6: //dash
 			//for these cases we do not use an async task as the processing is async
 			VirtuosoUtil.downloadItem(getActivity(), mService, cv);
 			break;

@@ -40,4 +40,9 @@
         <item name="android:maxLines">5</item>        
  	</style>
 
+    <style name="PlayerTheme" parent="android:Theme.Holo">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/black</item>
+    </style>
+
 </resources>

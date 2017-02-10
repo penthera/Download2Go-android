@@ -153,8 +153,71 @@ public class CatalogRequest {
 					"\"networkUUID\":\"1\"," +
 					"\"airplayEnabled\":true," +
 					"\"catalogExpiry\":" + TWO_YEARS_FROM_NOW +
-				"},"	 + 									
-				"{" +
+				"},"	 +
+							"{" +
+					"\"genre\":\"Movies\"," +
+					"\"downloadURL\":\"https://storage.googleapis.com/wvmedia/clear/h264/tears/tears_sd.mpd\"," +
+					"\"desc\":\"DASH SD TEARS.\"," +
+					"\"featured\":false," +
+					"\"downloadExpiry\":" + FORTNIGHT + "," +
+					"\"availableFrom\":" + NOW + "," +
+					"\"expiryAfterPlay\":" + NEVER + "," +
+					"\"type\":4000," +
+					"\"remoteUUID\":\"DASH_TEARS\"," +
+					"\"mediaType\":6," +
+					"\"mime\":\"application/octet-stream\"," +
+					"\"title\":\"(DASH) Tears\"," +
+					"\"duration\":3882," +
+					"\"streamURL\":\"https://storage.googleapis.com/wvmedia/clear/h264/tears/tears_sd.mpd\"," +
+					"\"popular\":false," +
+					"\"downloadEnabled\":true," +
+					"\"contentRating\":\"PG\"," +
+					"\"imageAssets\":[" +
+					"{\"impKey\":\"gridCellImage\",\"url\":\"http://virtuoso-demo-content.s3.amazonaws.com/College.jpg\"}," +
+					"{\"impKey\":\"gridCellImage@2x\",\"url\":\"http://virtuoso-demo-content.s3.amazonaws.com/College.jpg\"}," +
+					"{\"impKey\":\"detailBackgroundImage\",\"url\":\"http://virtuoso-demo-content.s3.amazonaws.com/College.jpg\"}," +
+					"{\"impKey\":\"detailBackgroundImage@2x\",\"url\":\"http://virtuoso-demo-content.s3.amazonaws.com/College.jpg\"}" +
+					"]," +
+					"\"categories\":[" +
+					"{\"name\":\"movies\"}" +
+					"]," +
+					"\"networkUUID\":\"1\"," +
+					"\"airplayEnabled\":true," +
+					"\"catalogExpiry\":" + TWO_YEARS_FROM_NOW +
+					"},"	 +
+					"{" +
+					"\"genre\":\"Movies\"," +
+					"\"downloadURL\":\"https://storage.googleapis.com/wvmedia/cenc/h264/tears/tears_sd.mpd\"," +
+					"\"desc\":\"WIDEVINE SECURE DASH SD TEARS.\"," +
+					"\"featured\":false," +
+					"\"downloadExpiry\":" + FORTNIGHT + "," +
+					"\"availableFrom\":" + NOW + "," +
+					"\"expiryAfterPlay\":" + NEVER + "," +
+					"\"type\":4000," +
+					"\"remoteUUID\":\"DASH_TEARS_WV\"," +
+					"\"mediaType\":6," +
+					"\"mime\":\"application/octet-stream\"," +
+					"\"title\":\"(DASH) Widevine Secure Tears\"," +
+					"\"duration\":3882," +
+					"\"streamURL\":\"https://storage.googleapis.com/wvmedia/cenc/h264/tears/tears_sd.mpd\"," +
+					"\"popular\":false," +
+					"\"downloadEnabled\":true," +
+					"\"contentRating\":\"PG\"," +
+					"\"imageAssets\":[" +
+					"{\"impKey\":\"gridCellImage\",\"url\":\"http://virtuoso-demo-content.s3.amazonaws.com/College.jpg\"}," +
+					"{\"impKey\":\"gridCellImage@2x\",\"url\":\"http://virtuoso-demo-content.s3.amazonaws.com/College.jpg\"}," +
+					"{\"impKey\":\"detailBackgroundImage\",\"url\":\"http://virtuoso-demo-content.s3.amazonaws.com/College.jpg\"}," +
+					"{\"impKey\":\"detailBackgroundImage@2x\",\"url\":\"http://virtuoso-demo-content.s3.amazonaws.com/College.jpg\"}" +
+					"]," +
+					"\"categories\":[" +
+					"{\"name\":\"movies\"}" +
+					"]," +
+					"\"networkUUID\":\"1\"," +
+					"\"airplayEnabled\":true," +
+					"\"catalogExpiry\":" + TWO_YEARS_FROM_NOW +
+					"},"	 +
+
+					"{" +
 				"\"genre\":\"Speeches\"," +
 				"\"downloadURL\":\"http://virtuoso-demo-content.s3.amazonaws.com/Steve/steve.m3u8\"," +
 				"\"streamURL\":\"http://virtuoso-demo-content.s3.amazonaws.com/Steve/steve.m3u8\"," +

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.penthera.sdkdemo"
-    android:versionCode="15915"
-    android:versionName="3.12.1beta.15915" >
+	xmlns:tools="http://schemas.android.com/tools"
+	package="com.penthera.sdkdemo"
+	android:versionCode="15953"
+	android:versionName="3.12.1RC.15953">
 
 	<uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="com.penthera.sdkdemo.permission.CATALOG"/>   
@@ -42,6 +43,23 @@
             </intent-filter>
         </activity>
 
+		<!-- Player -->
+		<activity android:name="com.penthera.sdkdemo.exoplayer.PlayerActivity"
+			android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|smallestScreenSize|uiMode"
+			android:launchMode="singleTop"
+			android:label="Player"
+			android:theme="@style/PlayerTheme">
+			<intent-filter>
+				<action android:name="com.penthera.sdkdemo.exoplayer.action.VIEW"/>
+				<category android:name="android.intent.category.DEFAULT"/>
+				<data android:scheme="http"/>
+				<data android:scheme="https"/>
+				<data android:scheme="content"/>
+				<data android:scheme="asset"/>
+				<data android:scheme="file"/>
+			</intent-filter>
+		</activity>
+
         <!-- Main --> 
         <activity 
         	android:name="com.penthera.sdkdemo.activity.MainActivity"
@@ -79,7 +97,7 @@
 
 		<!-- Meta Data -->
         <meta-data android:name="com.penthera.virtuososdk.client.pckg" android:value="@string/client_package" />
-   
+		<meta-data tools:replace="android:value" android:name="com.penthera.virtuososdk.license.manager.impl" android:value="com.penthera.sdkdemo.drm.DemoLicenseManager"/>
         <!-- Catalog Provider -->
         <provider android:name="com.penthera.sdkdemo.catalog.CatalogContentProvider"
  			android:authorities="com.penthera.sdkdemo.catalog" 

@@ -26,10 +26,10 @@ public class Config {
 
 	//SdkDemo Keys
 	/** The backplane public key.  NOTE: YOU MUST REPLACE THIS VALUE WITH YOUR OWN PENTHERA-ASSIGNED KEYS */
-	public static final String BACKPLANE_PUBLIC_KEY = #INSERT_YOUR_PUBLIC_KEY_HERE#;
+	public static final String BACKPLANE_PUBLIC_KEY = ;
 	
 	/** The backplane private key.  NOTE: YOU MUST REPLACE THIS VALUE WITH YOUR OWN PENTHERA-ASSIGNED KEYS */
-	public static final String BACKPLANE_PRIVATE_KEY = #INSERT_YOUR_PRIVATE_KEY_HERE#;
+	public static final String BACKPLANE_PRIVATE_KEY = ;
 	
 	/** Test download */
 	public static final String  SMALL_DOWNLOAD = "http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4";

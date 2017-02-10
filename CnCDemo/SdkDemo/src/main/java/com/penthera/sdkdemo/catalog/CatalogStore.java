@@ -258,6 +258,7 @@ public class CatalogStore {
 		insertValue(item, cv, "mediaType", Catalog.CatalogColumns.MEDIA_TYPE, "");
 		insertValue(item, cv, "fragmentCount", Catalog.CatalogColumns.FRAGMENT_COUNT, "0");
 		insertValue(item, cv, "fragmentPrefix", Catalog.CatalogColumns.FRAGMENT_PREFIX, "");
+		insertValue(item, cv, CatalogColumns.DRM_SCHEME_UUID, CatalogColumns.DRM_SCHEME_UUID, null);
 		
 		// Images
 		JSONArray imageAssets = null;

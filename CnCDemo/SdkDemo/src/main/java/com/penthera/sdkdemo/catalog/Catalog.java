@@ -71,6 +71,8 @@ public final class Catalog {
 		public static final String GENRE = "genre";
 		/** The title of the item: Drive, Forest Gump, ... */
 		public static final String TITLE = "title";
+		/** The drm scheme uuid of the item. */
+		public static final String DRM_SCHEME_UUID = "drmSchemeUuid";
 		/** The type of item movies, tv-show */
 		public static final String TYPE = "type";
 		/** true, it is a popular item */
