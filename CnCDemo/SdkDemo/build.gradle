@@ -28,7 +28,7 @@ allprojects {
 }
 
 dependencies {
-    compile(name:'CnC_Android_3.12.1RC_15953_debug', ext:'aar')
+    compile(name:'CnC_Android_3.12.1RC_16038_debug', ext:'aar')
     compile 'com.google.android.exoplayer:exoplayer:r2.1.1'
     compile 'com.google.android.gms:play-services:4.3.23'
     compile 'com.actionbarsherlock:actionbarsherlock:4.4.0@aar'
