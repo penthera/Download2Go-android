@@ -21,8 +21,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.actionbarsherlock.app.SherlockFragment;
-import com.actionbarsherlock.view.MenuItem;
+import android.support.v4.app.Fragment;
+import android.view.MenuItem;
 import com.penthera.VirtuosoSDK;
 import com.penthera.sdkdemo.R;
 
@@ -30,7 +30,7 @@ import com.penthera.sdkdemo.R;
  * Displays version information
  * @author Glen
  */
-public class AboutFragment extends SherlockFragment { 
+public class AboutFragment extends Fragment {
 	/** The layout */
 	private View mLayout;
 	

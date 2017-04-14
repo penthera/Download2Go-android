@@ -23,11 +23,11 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.support.v7.app.ActionBar;
 import android.util.Log;
 
-import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.app.ActionBar.Tab;
-import com.actionbarsherlock.app.ActionBar.TabListener;
+import android.support.v7.app.ActionBar.Tab;
+import android.support.v7.app.ActionBar.TabListener;
 import com.penthera.sdkdemo.R;
 import com.penthera.sdkdemo.fragment.CatalogFragment;
 import com.penthera.sdkdemo.fragment.InboxFragment;
@@ -168,7 +168,7 @@ public class MainActivity extends SdkDemoBaseActivity {
 	/**
 	 * Tab listener
 	 */
-	public class MyTabListener<T extends Fragment> implements TabListener 
+	public class MyTabListener<T extends Fragment> implements TabListener
 	{
 		private final String mTag;
 		private ViewPager mPager;
@@ -176,9 +176,8 @@ public class MainActivity extends SdkDemoBaseActivity {
 		/**
 		 * Constructor
 		 * 
-		 * @param activity
 		 * @param tag
-		 * @param clz
+		 * @param viewPager
 		 */
 		public MyTabListener(String tag, ViewPager viewPager) 
 		{

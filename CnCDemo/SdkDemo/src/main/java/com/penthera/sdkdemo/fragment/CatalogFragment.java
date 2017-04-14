@@ -38,10 +38,10 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.actionbarsherlock.app.SherlockFragment;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuInflater;
-import com.actionbarsherlock.view.MenuItem;
+import android.support.v4.app.Fragment;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
@@ -59,7 +59,7 @@ import com.penthera.virtuososdk.client.Virtuoso;
 /**
  * Display the entire catalog
  */
-public class CatalogFragment extends SherlockFragment implements LoaderManager.LoaderCallbacks<Cursor> {
+public class CatalogFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
 
 	/** Log tag */
 	private static final String TAG = CatalogFragment.class.getName();

@@ -21,12 +21,13 @@ import java.net.URL;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.ContentResolver;
-import android.content.Context;
 import android.database.Cursor;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -35,9 +36,11 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.EditText;
 
-import com.actionbarsherlock.view.Menu;
+import android.view.Menu;
 import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GooglePlayServicesUtil;
+import com.google.android.gms.common.GoogleApiAvailability;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.penthera.sdkdemo.Config;
 import com.penthera.sdkdemo.R;
 import com.penthera.sdkdemo.Util;
@@ -132,10 +135,10 @@ public class SplashActivity extends SdkDemoBaseActivity {
 	// onCreate
 	@Override
     public void onCreate(Bundle savedInstanceState) {
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);		                
         Log.i(TAG, "onCreate splash");
- 
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
+
         setContentView(R.layout.activity_splash);        
     	mHandler = new MyHandler(this);
     	    	
@@ -237,67 +240,131 @@ public class SplashActivity extends SdkDemoBaseActivity {
     	}
     	super.onDestroy();
     }
-    
-    private static final int PLAY_SERVICES_RESOLUTION_REQUEST = 49152;
-    
-    public void onContinue(View v) {    	
+
+	private void configureDefaultSettings(){
+
+		try{
+			Class.forName( "com.amazon.device.messaging.ADM" );
+			/*
+			Fire OS 4 could not cope with the amount of progress notifications.
+			Change the progress update rate on percent value to 2 to minimise issues
+			with the cursor notifications.
+			 */
+			if(Build.VERSION.SDK_INT <= 20){
+				Log.d(TAG,"Amazon device based on kitkat or below.");
+				mService.getSettings().setProgressUpdateByPercent(4).save();
+			}
+			else{
+
+				Log.d(TAG,"Amazon device based on lollipop or better.");
+			}
+		} catch (ClassNotFoundException e) {
+			Log.d(TAG,"Not an amazon device");
+		}
+	}
+
+
+    public void onContinue(View v) {
+		configureDefaultSettings();
     	try {
     			final URL url = getUrl();
     			final String user = getUser();
-    			mService.startup(url, user, null, Config.BACKPLANE_PUBLIC_KEY, Config.BACKPLANE_PRIVATE_KEY, Config.SENDER_ID, new IPushRegistrationObserver() {
+    			mService.startup(url, user, null, Config.BACKPLANE_PUBLIC_KEY, Config.BACKPLANE_PRIVATE_KEY, new IPushRegistrationObserver() {
 					@Override
-					public void onRegisterSuccess(String registrationId) {
-						mGcmRegistered = true;
-						Log.i(TAG, "GCM registration succeeded: " + registrationId);
-						if (mRegistered) {
-							Util.startActivity(SplashActivity.this, MainActivity.class, null);							
+					public void onServiceAvailabilityResponse(int pushService, int errorCode) {
+						if(pushService == Common.PushService.FCM_PUSH && errorCode != ConnectionResult.SUCCESS)
+						{
+							final GoogleApiAvailability gApi = GoogleApiAvailability.getInstance();
+							if(gApi.isUserResolvableError(errorCode)){
+
+								runOnUiThread(new Runnable(){
+
+									@Override
+									public void run() {
+										gApi.makeGooglePlayServicesAvailable(SplashActivity.this)
+												.addOnCompleteListener(new OnCompleteListener<Void>() {
+													@Override
+													public void onComplete(@NonNull Task<Void> task) {
+														Log.d(TAG,"makeGooglePlayServicesAvailable complete");
+														mGcmRegistered = true;
+														if(task.isSuccessful()){
+															Log.d(TAG,"makeGooglePlayServicesAvailable completed successfully");
+														}
+														else{
+															Exception e = task.getException();
+															Log.e(TAG,"makeGooglePlayServicesAvailable completed with exception " + e.getMessage(),e );
+														}
+														if (mRegistered) {
+															Util.startActivity(SplashActivity.this, MainActivity.class, null);
+														}
+													}
+												});
+									}
+								});
+
+							}
+						}
+						else{
+							mGcmRegistered = true;
+							if (mRegistered) {
+								Util.startActivity(SplashActivity.this, MainActivity.class, null);
+							}
 						}
 					}
 
-					@Override
-					public void onRegisterFailed(int code, String reason) {
-						mGcmRegistered = true;
-						Log.i(TAG, "GCM registration failed: " + code);
-		    			try {
-		    				checkGooglePlayServices(SplashActivity.this, getApplicationContext(), Config.SENDER_ID);
-							if (mRegistered) {
-								Util.startActivity(SplashActivity.this, MainActivity.class, null);							
-							}
-		    			} catch (Exception e) {
-		    				e.printStackTrace();
-		    			}
-					}
+//					@Override
+//					public void onRegisterSuccess(String registrationId) {
+//						mGcmRegistered = true;
+//						Log.i(TAG, "GCM registration succeeded: " + registrationId);
+//						if (mRegistered) {
+//							Util.startActivity(SplashActivity.this, MainActivity.class, null);
+//						}
+//					}
+
+//					@Override
+//					public void onRegisterFailed(int code, String reason) {
+//						mGcmRegistered = true;
+//						Log.i(TAG, "GCM registration failed: " + code);
+//		    			try {
+//		    				checkGooglePlayServices(SplashActivity.this, getApplicationContext(), Config.SENDER_ID);
+//							if (mRegistered) {
+//								Util.startActivity(SplashActivity.this, MainActivity.class, null);
+//							}
+//		    			} catch (Exception e) {
+//		    				e.printStackTrace();
+//		    			}
+//					}
 
 					/**
 					 * This is how you prompt users to install GooglePlay services -- Note not all Android devices come with
 					 * GooglPlay services pre-installed
-					 * 
+					 *
 					 * @param a
 					 * @param c
 					 * @param senderId
 					 * @return
 					 * @throws ServiceException
 					 */
-					public int checkGooglePlayServices(Activity activity, Context context, String senderId) throws ServiceException {
-		    			if (TextUtils.isEmpty(senderId)) {
-		    				throw new ServiceException("to register pass the GCM Sender ID");
-		    			}
-		    			
-		    			int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(context);
-		    			if (resultCode != ConnectionResult.SUCCESS) {
-		    				if (GooglePlayServicesUtil.isUserRecoverableError(resultCode) && activity != null) {
-		    					Log.i(TAG, "Recoverable error: showing directions dialog");
-		    					GooglePlayServicesUtil.getErrorDialog(resultCode, activity, PLAY_SERVICES_RESOLUTION_REQUEST).show();
-		    				} else {
-		    		             Log.i(TAG, "This device is not supported.");
-		    		         }
-		    		     }
-		    			return resultCode;
-		    		 }
+//					public int checkGooglePlayServices(Activity activity, Context context, String senderId) throws ServiceException {
+//		    			if (TextUtils.isEmpty(senderId)) {
+//		    				throw new ServiceException("to register pass the GCM Sender ID");
+//		    			}
+//
+//		    			int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(context);
+//		    			if (resultCode != ConnectionResult.SUCCESS) {
+//		    				if (GooglePlayServicesUtil.isUserRecoverableError(resultCode) && activity != null) {
+//		    					Log.i(TAG, "Recoverable error: showing directions dialog");
+//		    					GooglePlayServicesUtil.getErrorDialog(resultCode, activity, PLAY_SERVICES_RESOLUTION_REQUEST).show();
+//		    				} else {
+//		    		             Log.i(TAG, "This device is not supported.");
+//		    		         }
+//		    		     }
+//		    			return resultCode;
+//		    		 }
 
-					@Override
-					public void onServiceAvailabilityResponse(int connectionResponse) {
-					}
+//					@Override
+//					public void onServiceAvailabilityResponse(int connectionResponse) {
+//					}
     				
     			});
 		} catch (MalformedURLException e1) {

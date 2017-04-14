@@ -1,3 +1,16 @@
+//Copyright (c) 2017 Penthera Partners, LLC. All rights reserved.
+//
+//PENTHERA CONFIDENTIAL
+//
+//(c) 2015 Penthera Partners Inc. All Rights Reserved.
+//
+//NOTICE: This file is the property of Penthera Partners Inc.
+//The concepts contained herein are proprietary to Penthera Partners Inc.
+//and may be covered by U.S. and/or foreign patents and/or patent
+//applications, and are protected by trade secret or copyright law.
+//Distributing and/or reproducing this information is forbidden
+//unless prior written permission is obtained from Penthera Partners Inc.
+//
 package com.penthera.sdkdemo.activity;
 
 import java.text.SimpleDateFormat;
@@ -51,7 +64,8 @@ public class DevicesActivity extends SdkDemoBaseActivity {
 
 		@Override
 		public void requestComplete(int callbackType, int result) {
-			if( callbackType == Common.BackplaneCallbackType.DOWNLOAD_ENABLEMENT_CHANGE || 
+			if( callbackType == Common.BackplaneCallbackType.DOWNLOAD_ENABLEMENT_CHANGE ||
+				callbackType == Common.BackplaneCallbackType.DEVICE_UNREGISTERED ||
 				callbackType == Common.BackplaneCallbackType.NAME_CHANGE){
 				
 				if(result == Common.BackplaneResult.SUCCESS){
@@ -174,6 +188,29 @@ public class DevicesActivity extends SdkDemoBaseActivity {
 									dismissProgressDialog();
 								}
 							}});
+
+					btn = (Button) v.findViewById(R.id.btn_deregister);
+
+					if(i.isCurrentDevice()){
+						btn.setEnabled(false);
+					}
+					else {
+						btn.setOnClickListener(new OnClickListener() {
+
+							@Override
+							public void onClick(View v) {
+								try {
+									mProgressDialog = ProgressDialog.show(DevicesActivity.this, "Unregister Device",
+											"Unregistering device " + i.id(),
+											true);
+									mService.getBackplane().unregisterDevice(i);
+								} catch (BackplaneException e) {
+									Log.e(LOG_TAG, "Caught exception unregistering device", e);
+									dismissProgressDialog();
+								}
+							}
+						});
+					}
                 }
                 return v;
         }

@@ -43,7 +43,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.actionbarsherlock.app.SherlockFragment;
+import android.support.v4.app.Fragment;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.FailReason;
@@ -66,7 +66,7 @@ import com.penthera.virtuososdk.client.database.AssetColumns;
 /**
  * The catalog detail fragment -- Show detailed information about catalog item
  */
-public class CatalogDetailFragment extends SherlockFragment implements LoaderManager.LoaderCallbacks<Cursor> { 
+public class CatalogDetailFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
 
 	// --- Constants
 	/** Log Tag */
@@ -595,7 +595,22 @@ public class CatalogDetailFragment extends SherlockFragment implements LoaderMan
 					assetStatus = getString(R.string.status_expired);
 					value = "expired";
 					break;
-					
+
+				case AssetStatus.DOWNLOAD_DENIED_ASSET:
+					assetStatus = "Queued";
+					value = "DENIED : MAD";
+					break;
+
+				case AssetStatus.DOWNLOAD_DENIED_ACCOUNT :
+					assetStatus = "Queued";
+					value = "DENIED : MDA";
+					break;
+
+				case AssetStatus.DOWNLOAD_DENIED_MAX_DEVICE_DOWNLOADS:
+					assetStatus = "Queued";
+					value = "DENIED :MPD";
+					break;
+
 				default:
 					assetStatus = getString(R.string.status_pending);
 					value = "pending";

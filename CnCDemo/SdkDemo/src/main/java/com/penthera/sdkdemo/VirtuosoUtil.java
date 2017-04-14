@@ -150,7 +150,7 @@ public class VirtuosoUtil {
 			long now = System.currentTimeMillis()/1000;
 			// Add file to the Q
 			IFile file = null;
-			file = manager.createFileAsset(url, remoteId, -1, mimetype, json);	
+			file = manager.createFileAsset(url, remoteId, mimetype, json);
 			file.setStartWindow(availabilityStart <=0 ? now:availabilityStart);
 			file.setEndWindow(catalogExpiry <=0 ? Long.MAX_VALUE:catalogExpiry);
 			file.setEap(expiryAfterPlay);

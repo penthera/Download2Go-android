@@ -19,10 +19,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
-import com.actionbarsherlock.app.SherlockFragmentActivity;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuInflater;
-import com.actionbarsherlock.view.MenuItem;
+import android.support.v7.app.ActionBarActivity;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import com.penthera.sdkdemo.R;
 import com.penthera.sdkdemo.Util;
 import com.penthera.sdkdemo.activity.SplashActivity;
@@ -35,7 +35,7 @@ import com.penthera.virtuososdk.client.Observers.IBackplaneObserver;
 /**
  * Base activity for the all activities connection to the Virtuoso service
  */
-public abstract class SdkDemoBaseActivity extends SherlockFragmentActivity {
+public abstract class SdkDemoBaseActivity extends ActionBarActivity {
 
 	/** Check whether intent extras contains this key to determine if a sync should be carried out on connection to Virtuoso */
 	public static final String SYNC_ON_CONNECT = "sync_on_connnect";
@@ -103,7 +103,7 @@ public abstract class SdkDemoBaseActivity extends SherlockFragmentActivity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu)  {		
 		if (inf == null) {
-			inf = this.getSupportMenuInflater();
+			inf = this.getMenuInflater();
 		}		
 		inf.inflate(R.menu.activity_base, menu);			
 		return true;
@@ -168,7 +168,8 @@ public abstract class SdkDemoBaseActivity extends SherlockFragmentActivity {
 			runOnUiThread(new Runnable() {
 				@Override
 				public void run() {
-					if (BackplaneCallbackType.UNREGISTER == request) {
+					if (BackplaneCallbackType.UNREGISTER == request || BackplaneCallbackType.REMOTE_WIPE == request)
+					{
 						handleLogoutComplete(result == BackplaneResult.SUCCESS);
 					}				
 				}

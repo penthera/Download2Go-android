@@ -52,7 +52,11 @@ public class SettingsActivity extends SdkDemoBaseActivity {
 	/** Change the current vlaue for cell quota */
 	private EditText mCellquota;
 	/** The time the cell quota started from */
-	private TextView mCellquotastart;	
+	private TextView mCellquotastart;
+	/** Change the current value for number of permitted segment errors */
+	private EditText mPermittedSegmentErrors;
+	/** Change the current value for the http code to be returned by proxy on an errored segment */
+	private EditText mProxySegmentErrorHttpCode;
 	/** Apply the settings */
 	private Button mApply; 
 	/** The battery level */
@@ -121,7 +125,8 @@ public class SettingsActivity extends SdkDemoBaseActivity {
 			mProgressPercent.setProgress(mSettings.getProgressUpdateByPercent());
 			mProgressPercentDetails.setText("Report Progress "+mSettings.getProgressUpdateByPercent()+"%");
 			mProgressTimed.setText(""+mSettings.getProgressUpdateByTime());
-
+			mPermittedSegmentErrors.setText(""+mSettings.getMaxPermittedSegmentErrors());
+			mProxySegmentErrorHttpCode.setText(""+mSettings.getSegmentErrorHttpCode());
 		}};
 			
 	@Override
@@ -144,6 +149,8 @@ public class SettingsActivity extends SdkDemoBaseActivity {
         mHlsFragmentProgressRate = (EditText) findViewById(R.id.edt_fragment_progress_rate);
         mConnectionTimeout = (EditText) findViewById(R.id.edt_connection_timeout);
         mSocketTimeout = (EditText) findViewById(R.id.edt_socket_timeout);
+		mPermittedSegmentErrors = (EditText) findViewById(R.id.edt_max_segment_errors);
+		mProxySegmentErrorHttpCode = (EditText) findViewById(R.id.edt_proxy_segment_error_code);
         
         mConnectionTimeout.setText("" + Common.DEFAULT_HTTP_CONNECTION_TIMEOUT);
         mSocketTimeout.setText("" + Common.DEFAULT_HTTP_SOCKET_TIMEOUT);
@@ -306,6 +313,9 @@ public class SettingsActivity extends SdkDemoBaseActivity {
 		@Override
 		public void settingChanged(int aFlags) {
 			iHandler.post(iUpdater);}
+		@Override
+		public void backplaneSettingChanged(int aFlags) {
+			iHandler.post(iUpdater);}
 
 		};
 	
@@ -321,6 +331,8 @@ public class SettingsActivity extends SdkDemoBaseActivity {
 					.setProgressUpdatesPerSegment(Integer.parseInt(mHlsFragmentProgressRate.getText().toString()))
 					.setHTTPConnectionTimeout(Integer.parseInt(mConnectionTimeout.getText().toString()))
 					.setHTTPSocketTimeout(Integer.parseInt(mSocketTimeout.getText().toString()))
+					.setSegmentErrorHttpCode(Integer.parseInt(mProxySegmentErrorHttpCode.getText().toString()))
+					.setMaxPermittedSegmentErrors(Integer.parseInt(mPermittedSegmentErrors.getText().toString()))
 					.save();
 		} catch (Exception e) {
 			e.printStackTrace();

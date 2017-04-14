@@ -342,6 +342,61 @@
             </TableRow>
 
            <TableRow
+               android:id="@+id/tableRowMpd"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content" >
+
+               <TextView
+                   android:id="@+id/textViewMpd"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="Max Downloads:"
+                   android:textStyle="bold"  />
+               <TextView
+                   android:id="@+id/mpd_val"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="undefined" />
+
+           </TableRow>
+           <TableRow
+               android:id="@+id/tableRowMda"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content" >
+
+               <TextView
+                   android:id="@+id/textViewMda"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="Max Downloads Account (MDA):"
+                   android:textStyle="bold"  />
+               <TextView
+                   android:id="@+id/mda_val"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="undefined" />
+
+           </TableRow>
+           <TableRow
+               android:id="@+id/tableRowMad"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content" >
+
+               <TextView
+                   android:id="@+id/textViewMad"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="Max Asset Downloads (MAD):"
+                   android:textStyle="bold"  />
+               <TextView
+                   android:id="@+id/mad_val"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="undefined" />
+
+           </TableRow>
+
+           <TableRow
                 android:id="@+id/tableRow11"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" >

@@ -15,7 +15,7 @@
 package com.penthera.sdkdemo.activity;
 
 import android.os.Bundle;
-import com.actionbarsherlock.app.ActionBar;
+import android.support.v7.app.ActionBar;
 import com.penthera.sdkdemo.R;
 import com.penthera.sdkdemo.fragment.SubscriptionsFragment;
 import com.penthera.sdkdemo.framework.SdkDemoBaseActivity;

@@ -90,6 +90,37 @@
 
     </LinearLayout>
 
+    <!-- Errored Segments -->
+    <TextView
+        android:id="@+id/max_segment_errors"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Max Permitted Segment Errors" />
+
+    <EditText
+        android:id="@+id/edt_max_segment_errors"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:ems="10"
+        android:inputType="number" />
+
+
+    <TextView
+        android:id="@+id/proxy_segment_error_code"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="HTTP code in proxy for errd Segment" />
+
+    <EditText
+        android:id="@+id/edt_proxy_segment_error_code"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:ems="10"
+        android:inputType="number" />
+
+
     <TextView
         android:id="@+id/battery"
         android:layout_width="wrap_content"

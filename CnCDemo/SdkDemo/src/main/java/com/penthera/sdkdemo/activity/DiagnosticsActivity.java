@@ -116,10 +116,16 @@ public class DiagnosticsActivity extends SdkDemoBaseActivity {
 	/** he Max Offline value or -1 if the client has not yet authenticated with the Backplane to retrieve the setting */
 	private long mMaxOffline;
 	
-	/** he Max Offline value or -1 if the client has not yet authenticated with the Backplane to retrieve the setting */
+	/** The Max Offline value or -1 if the client has not yet authenticated with the Backplane to retrieve the setting */
 	private long mLastAuth = 0;
 	/** true, device is enabled for download */
 	private boolean mIsDownloadEnabledDevice = false;
+	/** maximum number of downloaded items allowed on the device. */
+	long mMaxPermittedDownloads = 0;
+	/** maximum number of times an asset can be downloaded across user's devices. */
+	long mMaxPermittedAssetDownloads = 0;
+	/** maximum number of downloaded items allowed across user's devices. */
+	long mMaxPermittedAccountDownloads = 0;
 	
 	/** Backplane configuration settings */
 	private String mDeviceNickname, mUser, mBackplaneUrl = "";
@@ -181,6 +187,9 @@ public class DiagnosticsActivity extends SdkDemoBaseActivity {
 			mExpiryAfterPlay = mBackplaneSettings.getExpiryAfterPlay();
 			mMaxOffline = mBackplaneSettings.getMaxOffline();
 			mIsDownloadEnabledDevice = mBackplaneSettings.getDownloadEnabled();
+			mMaxPermittedDownloads = mBackplaneSettings.getMaxPermittedDownloads();
+			mMaxPermittedAssetDownloads = mBackplaneSettings.getMaxDownloadsPerAsset();
+			mMaxPermittedAccountDownloads = mBackplaneSettings.getMaxDownloadsPerAccount();
 			mDeviceNickname = mBackplaneSettings.getDeviceNickname();
 			mUser = mBackplaneSettings.getUserId();
 			URL url = mBackplaneSettings.getURL();
@@ -248,6 +257,12 @@ public class DiagnosticsActivity extends SdkDemoBaseActivity {
 					tv.setText("" + mUsedDownloadEnabledQuota);		
 					tv = (TextView)findViewById(R.id.isdd_val);
 					tv.setText("" + mIsDownloadEnabledDevice);
+					tv = (TextView)findViewById(R.id.mpd_val);
+					tv.setText("" + mMaxPermittedDownloads);
+					tv = (TextView)findViewById(R.id.mda_val);
+					tv.setText("" + mMaxPermittedAccountDownloads);
+					tv = (TextView)findViewById(R.id.mad_val);
+					tv.setText("" + mMaxPermittedAssetDownloads);
 
 					tv = (TextView)findViewById(R.id.backplane_user);
 					tv.setText(mUser);
@@ -390,6 +405,11 @@ public class DiagnosticsActivity extends SdkDemoBaseActivity {
 		public void settingChanged(int arg0) {
 			startDataRetriever();
 		}
+
+		@Override
+		public void backplaneSettingChanged(int arg0) {
+			startDataRetriever();
+		}
 	};
 
 	private void startDataRetriever(){
@@ -446,8 +466,7 @@ public class DiagnosticsActivity extends SdkDemoBaseActivity {
 
 	/**
 	 * Unregister receivers
-	 * 
-	 * @param context the context
+	 *
 	 */
 	private void unregisterApiReceiver() {
 		Log.d(TAG, "Unregistering for messages");

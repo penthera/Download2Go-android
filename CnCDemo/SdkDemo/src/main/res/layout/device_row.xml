@@ -53,22 +53,33 @@
 		    android:layout_width="match_parent"	
 			android:layout_height="wrap_content"
 			android:orientation="horizontal">
-        	
+
 			<!-- Change nickname -->
 			<Button
+				android:layout_gravity="center_vertical"
 				android:layout_height="wrap_content"
 				android:layout_width="fill_parent"
 				android:layout_weight="1"
 				android:id="@+id/btn_change_nickname"
-				android:text="@string/change_nickname"/>
-	        
+				android:text="Change Nickname"/>
+
 			<!--  Enable disable download -->
 			<Button
+				android:layout_gravity="center_vertical"
 				android:layout_height="wrap_content"
 				android:layout_width="fill_parent"
 				android:layout_weight="1"
 				android:id="@+id/btn_enable_disable"
-				android:text="@string/enable"/>
+				android:text="Enable"/>
+
+			<!--  Deregister -->
+			<Button
+				android:layout_gravity="center_vertical"
+				android:layout_height="wrap_content"
+				android:layout_width="fill_parent"
+				android:layout_weight="1"
+				android:id="@+id/btn_deregister"
+				android:text="Unregister"/>
 		
 		</LinearLayout>
 </LinearLayout>

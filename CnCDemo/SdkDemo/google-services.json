@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "877988993366",
+    "firebase_url": "https://penthera-sdkdemo.firebaseio.com",
+    "project_id": "penthera-sdkdemo",
+    "storage_bucket": "penthera-sdkdemo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:877988993366:android:cb9606ff6994ae52",
+        "android_client_info": {
+          "package_name": "com.penthera.sdkdemo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "877988993366-hfh25uugpsm994o8586shmp7ifuunh3t.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "877988993366-nr902actf96gkjo0qi2d1v7jpbnaphch.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA4lNu3wMtgQlz3l7foX5cKFOJCHgOLp0Q"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

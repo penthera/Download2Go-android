@@ -31,7 +31,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.actionbarsherlock.app.SherlockFragment;
+import android.support.v4.app.Fragment;
 import com.penthera.sdkdemo.Config;
 import com.penthera.sdkdemo.R;
 import com.penthera.virtuososdk.backplane.AddItemAndNotifyDeviceRequest;
@@ -44,7 +44,7 @@ import com.penthera.virtuososdk.client.Observers.ISubscriptionObserver;
  * Displays version information
  * @author Glen
  */
-public class SubscriptionsFragment extends SherlockFragment { 
+public class SubscriptionsFragment extends Fragment {
 	/** Log tag */
 	private static final String TAG = SubscriptionsFragment.class.getName();
     

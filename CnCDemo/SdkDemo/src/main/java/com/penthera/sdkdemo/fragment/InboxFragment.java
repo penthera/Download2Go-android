@@ -27,12 +27,15 @@ import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v4.widget.CursorAdapter;
+
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.ActionMode;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -45,11 +48,10 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.actionbarsherlock.app.SherlockListFragment;
-import com.actionbarsherlock.view.ActionMode;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuInflater;
-import com.actionbarsherlock.view.MenuItem;
+import android.support.v4.app.ListFragment;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import com.commonsware.cwac.merge.MergeAdapter;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -76,7 +78,7 @@ import com.penthera.virtuososdk.client.database.AssetColumns;
 /**
  * Display the inbox Q
  */
-public class InboxFragment extends SherlockListFragment implements LoaderManager.LoaderCallbacks<Cursor>{
+public class InboxFragment extends ListFragment implements LoaderManager.LoaderCallbacks<Cursor>{
 
 	/** Log tag */
 	private static final String TAG = InboxFragment.class.getName();
@@ -442,14 +444,17 @@ public class InboxFragment extends SherlockListFragment implements LoaderManager
 		Log.i(TAG, "onCreateLoader " + id);
 		CursorLoader cursorLoader = null;
 		if (id == LOADER_ID_QUEUED && mAssetManager != null) {
+			Log.d(TAG, "Creating Queued Loader");
 			Uri uri = mAssetManager.getQueue().CONTENT_URI();
 			cursorLoader = new CursorLoader(getActivity(),uri,PROJECTION,null,null,null);
 		}	
 		else if (id == LOADER_ID_DOWNLOADED && mAssetManager != null){
+			Log.d(TAG, "Creating Downloaded Loader");
 			Uri uri = mAssetManager.getDownloaded().CONTENT_URI();
 			cursorLoader = new CursorLoader(getActivity(),uri,PROJECTION,null,null,null);
 		}	
 		else if (id == LOADER_ID_EXPIRED && mAssetManager != null){
+			Log.d(TAG, "Creating Expired Loader");
 			Uri uri = mAssetManager.getExpired().CONTENT_URI();
 			cursorLoader = new CursorLoader(getActivity(),uri,PROJECTION,null,null,null);
 		}
@@ -463,14 +468,17 @@ public class InboxFragment extends SherlockListFragment implements LoaderManager
 		final int id = loader.getId();	
 		//do we need to notify the adapter notifyDataSetChanged?
 		if (id == LOADER_ID_QUEUED && mAssetManager != null) {
+			Log.d(TAG, "Finish Queued Loader");
 			cursor.setNotificationUri(getActivity().getContentResolver(), mAssetManager.getQueue().CONTENT_URI());
 			mQueueAdapter.swapCursor(cursor);
 		}	
 		else if (id == LOADER_ID_DOWNLOADED && mAssetManager != null){
+			Log.d(TAG, "Finish Downloaded Loader");
 			cursor.setNotificationUri(getActivity().getContentResolver(), mAssetManager.getDownloaded().CONTENT_URI());
 			mCompletedAdapter.swapCursor(cursor);
 		}	
 		else if (id == LOADER_ID_EXPIRED && mAssetManager != null){
+			Log.d(TAG, "Finish Expired Loader");
 			cursor.setNotificationUri(getActivity().getContentResolver(), mAssetManager.getExpired().CONTENT_URI());
 			mExpiredAdapter.swapCursor(cursor);
 		}
@@ -485,12 +493,15 @@ public class InboxFragment extends SherlockListFragment implements LoaderManager
 		if(loader != null){
 			final int id = loader.getId();	
 			if (id == LOADER_ID_QUEUED && mQueueAdapter != null) {
+				Log.d(TAG, "Resetting Queue Loader");
 				mQueueAdapter.swapCursor(null);
 			}	
 			else if (id == LOADER_ID_DOWNLOADED && mCompletedAdapter != null){
+				Log.d(TAG, "Resetting Downloaded Loader");
 				mCompletedAdapter.swapCursor(null);
 			}	
 			else if (id == LOADER_ID_EXPIRED && mExpiredAdapter != null){
+				Log.d(TAG, "Resetting Expired Loader");
 				mExpiredAdapter.swapCursor(null);
 			}
 		}
@@ -510,7 +521,7 @@ public class InboxFragment extends SherlockListFragment implements LoaderManager
 		}	
 	}
 	
-	public class ContentAdapter extends CursorAdapter{
+	public class ContentAdapter extends CursorAdapter {
 		// --- Image Loading	    
 		/** The image Loader */
 		private ImageLoader mImageLoader;
@@ -619,7 +630,7 @@ public class InboxFragment extends SherlockListFragment implements LoaderManager
 		        		toggleCheck(viewTag.mId);
 
 		        		if (mActionMode == null) {
-		        			mActionMode = getSherlockActivity().startActionMode(mCabCallback);			
+		        			mActionMode = getActivity().startActionMode(mCabCallback);
 		        		}
 
 		        		int numChecked = mCompletedAdapter.mChecked.keySet().size() + 
@@ -692,6 +703,17 @@ public class InboxFragment extends SherlockListFragment implements LoaderManager
 
 						case AssetStatus.DOWNLOAD_REACHABILITY_ERROR:
 							value = "unreachable";
+							break;
+
+						case AssetStatus.DOWNLOAD_DENIED_ASSET:
+							value = "DENIED : MAD";
+							break;
+
+						case AssetStatus.DOWNLOAD_DENIED_ACCOUNT :
+							value = "DENIED : MDA";
+							break;
+						case AssetStatus.DOWNLOAD_DENIED_MAX_DEVICE_DOWNLOADS:
+							value = "DENIED :MPD";
 							break;
 							
 						default:
