@@ -29,7 +29,7 @@ allprojects {
 }
 
 dependencies {
-    compile(name:'CnC_Android_3.13RC_16075_debug', ext:'aar')
+    compile(name:'CnC_Android_3.13.1RC_16109_debug', ext:'aar')
     compile 'com.google.android.exoplayer:exoplayer:r2.1.1'
     compile 'com.android.support:appcompat-v7:21.0.+'
 

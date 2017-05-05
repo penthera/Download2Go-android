@@ -9,6 +9,7 @@ var classSelectorHTML = '\
 		<option value="com.penthera.virtuososdk/Common.BackplaneCallbackType">Common.BackplaneCallbackType</option>\
 		<option value="com.penthera.virtuososdk/Common.BackplaneResult">Common.BackplaneResult</option>\
 		<option value="com.penthera.virtuososdk/Common.BackplaneSettingFlag">Common.BackplaneSettingFlag</option>\
+		<option value="com.penthera.virtuososdk/Common.Base64Serialization">Common.Base64Serialization</option>\
 		<option value="com.penthera.virtuososdk/Common.EngineStatus">Common.EngineStatus</option>\
 		<option value="com.penthera.virtuososdk/Common.Events">Common.Events</option>\
 		<option value="com.penthera.virtuososdk/Common.LicenseError">Common.LicenseError</option>\

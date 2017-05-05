@@ -23,7 +23,10 @@ import java.util.UUID;
 import org.json.JSONObject;
 import org.ocpsoft.pretty.time.PrettyTime;
 
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -69,7 +72,10 @@ import com.penthera.sdkdemo.customviews.InboxRow;
 import com.penthera.virtuososdk.Common.AssetStatus;
 import com.penthera.virtuososdk.Common.EngineStatus;
 import com.penthera.virtuososdk.client.EngineObserver;
+import com.penthera.virtuososdk.client.IAsset;
 import com.penthera.virtuososdk.client.IAssetManager;
+import com.penthera.virtuososdk.client.IAssetPermission;
+import com.penthera.virtuososdk.client.IQueue;
 import com.penthera.virtuososdk.client.IService;
 import com.penthera.virtuososdk.client.ServiceException;
 import com.penthera.virtuososdk.client.Virtuoso;
@@ -873,7 +879,53 @@ public class InboxFragment extends ListFragment implements LoaderManager.LoaderC
 	 */	
 	private static int mCount = 0;
 	private void handleAddTestItem() {
-		VirtuosoUtil.downloadItem(getActivity(),mService, true, "" + UUID.randomUUID().getMostSignificantBits(), Config.SMALL_DOWNLOAD, null, Long.MAX_VALUE,-1,-1,-1, "Test Download: " + mCount , "http://www.freegreatdesign.com/files/images/7/3193-assorted-cool-icon-png-2.jpg");
+		final IQueue.IQueuedAssetPermissionObserver permObserver = new IQueue.IQueuedAssetPermissionObserver() {
+			@Override
+			public void onQueuedWithAssetPermission(boolean queued, boolean aPermitted, final IAsset aAsset, final int aAssetPermissionError) {
+				String error_string;
+				final IAssetPermission permResponse = aAsset.getLastPermissionResponse();
+				final String assetPerm = IAssetPermission.PermissionCode.friendlyName(aAssetPermissionError);
+				String title;
+				if (!queued) {
+
+					title = "Queue Permission Denied";
+					error_string = "Not permitted to queue asset [" + assetPerm + "]  response: " + permResponse;
+					if (aAssetPermissionError == IAssetPermission.PermissionCode.PERMISSON_REQUEST_FAILED) {
+						error_string = "Not permitted to queue asset [" + assetPerm + "]  This could happen if the device is currently offline.";
+
+
+					}
+					Log.e(TAG, error_string);
+				} else {
+					title = "Queue Permission Granted";
+					error_string = "Asset "+ (aPermitted? "Granted":"Denied") +" Download Permission [" + assetPerm + "]  response: " + permResponse;
+					Log.d(TAG, error_string);
+				}
+				final String dlg_title = title;
+				final String message = error_string;
+
+				getActivity().runOnUiThread(new Runnable() {
+					public void run() {
+						AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());
+						builder1.setTitle(dlg_title);
+						builder1.setMessage(message);
+						builder1.setCancelable(false);
+						builder1.setPositiveButton("OK",
+								new DialogInterface.OnClickListener() {
+									public void onClick(DialogInterface dialog, int id) {
+										dialog.cancel();
+									}
+								});
+
+						AlertDialog alert11 = builder1.create();
+						alert11.show();
+					}
+				});
+
+
+			}
+		};
+		VirtuosoUtil.downloadItem(getActivity(),mService, true, "" + UUID.randomUUID().getMostSignificantBits(), Config.SMALL_DOWNLOAD, null, Long.MAX_VALUE,-1,-1,-1, "Test Download: " + mCount , "http://www.freegreatdesign.com/files/images/7/3193-assorted-cool-icon-png-2.jpg",permObserver);
 		++mCount;
 	}
 	

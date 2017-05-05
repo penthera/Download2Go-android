@@ -20,6 +20,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -39,6 +40,8 @@ import com.penthera.sdkdemo.catalog.PermissionManager.Permission;
 import com.penthera.sdkdemo.exoplayer.PlayerActivity;
 import com.penthera.virtuososdk.Common;
 import com.penthera.virtuososdk.client.IAssetManager;
+import com.penthera.virtuososdk.client.IAssetPermission;
+import com.penthera.virtuososdk.client.IQueue;
 import com.penthera.virtuososdk.client.ISegment;
 import com.penthera.virtuososdk.client.ISegmentedAssetFromParserObserver;
 import com.penthera.virtuososdk.client.IAsset;
@@ -98,10 +101,58 @@ public class VirtuosoUtil {
 	 * 
 	 * @return true, item added
 	 */
-	public static boolean downloadItem(Context context, Virtuoso service, ContentValues cv) {		
+	public static boolean downloadItem(final Context context, Virtuoso service, ContentValues cv) {
 		if (cv == null || cv.size() == 0) {
 			return false;
 		}
+
+		final IQueue.IQueuedAssetPermissionObserver permObserver = new IQueue.IQueuedAssetPermissionObserver() {
+			@Override
+			public void onQueuedWithAssetPermission(boolean queued,boolean aPermitted, final IAsset aAsset, final int aAssetPermissionError) {
+				String error_string;
+				final IAssetPermission permResponse = aAsset.getLastPermissionResponse();
+				final String assetPerm = IAssetPermission.PermissionCode.friendlyName(aAssetPermissionError);
+				String title;
+				if (!queued) {
+
+					title = "Queue Permission Denied";
+					error_string = "Not permitted to queue asset [" + assetPerm + "]  response: " + permResponse;
+					if (aAssetPermissionError == IAssetPermission.PermissionCode.PERMISSON_REQUEST_FAILED) {
+						error_string = "Not permitted to queue asset [" + assetPerm + "]  This could happen if the device is currently offline.";
+
+
+					}
+					Log.e(TAG, error_string);
+				} else {
+					title = "Queue Permission Granted";
+					error_string = "Asset "+ (aPermitted? "Granted":"Denied") +" Download Permission [" + assetPerm + "]  response: " + permResponse;
+					Log.d(TAG, error_string);
+				}
+				final String dlg_title = title;
+				final String message = error_string;
+
+				((Activity)context).runOnUiThread(new Runnable() {
+					public void run() {
+						AlertDialog.Builder builder1 = new AlertDialog.Builder(context);
+						builder1.setTitle(dlg_title);
+						builder1.setMessage(message);
+						builder1.setCancelable(false);
+						builder1.setPositiveButton("OK",
+								new DialogInterface.OnClickListener() {
+									public void onClick(DialogInterface dialog, int id) {
+										dialog.cancel();
+									}
+								});
+
+						AlertDialog alert11 = builder1.create();
+						alert11.show();
+					}
+				});
+
+
+			}
+		};
+
 		String remoteId = cv.getAsString(CatalogColumns._ID);
 		String url = cv.getAsString(CatalogColumns.CONTENT_URL);
 		long catalogExpiry = cv.getAsLong(CatalogColumns.CATALOG_EXPIRY);			
@@ -116,14 +167,15 @@ public class VirtuosoUtil {
 
 		if(isDash(mediaType)){
 			downloadDashItem(context,service,downloadEnabledContent,remoteId,url,catalogExpiry,
-					downloadExpiry,expiryAfterPlay,availabilityStart,title,thumbnail);
+					downloadExpiry,expiryAfterPlay,availabilityStart,title,thumbnail,permObserver);
 		}
 		else if(isHls(mediaType)){
 			final int fragmentCount = cv.getAsInteger(CatalogColumns.FRAGMENT_COUNT);
-			downloadHlsItem(context, mediaType, service, downloadEnabledContent, remoteId, url + cv.getAsString(CatalogColumns.FRAGMENT_PREFIX), fragmentCount, catalogExpiry, downloadExpiry, expiryAfterPlay,availabilityStart, title, thumbnail);
+			downloadHlsItem(context, mediaType, service, downloadEnabledContent, remoteId, url + cv.getAsString(CatalogColumns.FRAGMENT_PREFIX), fragmentCount, catalogExpiry, downloadExpiry, expiryAfterPlay,availabilityStart, title, thumbnail,permObserver);
 		}
 		else  {
-			return downloadItem(context, service, downloadEnabledContent, remoteId, url, mimetype, catalogExpiry, downloadExpiry, expiryAfterPlay, availabilityStart, title, thumbnail);			
+			return downloadItem(context, service, downloadEnabledContent, remoteId, url, mimetype, catalogExpiry, downloadExpiry, expiryAfterPlay, availabilityStart, title,
+					thumbnail,permObserver);
 		}
 		// Assume true for HLS and DASH
 		return true;
@@ -131,10 +183,14 @@ public class VirtuosoUtil {
 
 	/**
 	 * Download item checking permissions and informing user of problems
-	 * 
+	 *
 	 * @param context Activity Context
+	 * @param permObserver
 	 */
-	public static boolean downloadItem(Context context, Virtuoso service, boolean downloadEnabledContent, String remoteId, String url, String mimetype, long catalogExpiry, final long downloadExpiry, final long expiryAfterPlay, final long availabilityStart, String title, String thumbnail) {		
+	public static boolean downloadItem(Context context, Virtuoso service, boolean downloadEnabledContent, String remoteId, String url, String mimetype,
+									   long catalogExpiry, final long downloadExpiry, final long expiryAfterPlay,
+									   final long availabilityStart, String title, String thumbnail,
+									   final IQueue.IQueuedAssetPermissionObserver permObserver) {
 		Log.i(TAG, "Downloading item");
 		boolean success = false;
 		
@@ -155,7 +211,7 @@ public class VirtuosoUtil {
 			file.setEndWindow(catalogExpiry <=0 ? Long.MAX_VALUE:catalogExpiry);
 			file.setEap(expiryAfterPlay);
 			file.setEad(downloadExpiry);
-			manager.getQueue().add(file);
+			manager.getQueue().add(file,permObserver);
 
 			// Inform user
 			Util.showToast(context, "Added to Downloads", Toast.LENGTH_SHORT);
@@ -170,12 +226,12 @@ public class VirtuosoUtil {
 		boolean queued = false;
 	}
 
-	public static void downloadDashItem(final Context context,final Virtuoso service,
+	public static void downloadDashItem(final Context context, final Virtuoso service,
 										boolean downloadEnabledContent, final String remoteId,
 										String url, final long catalogExpiry,
 										final long downloadExpiry, final long expiryAfterPlay,
 										final long availabilityStart, String title,
-										String thumbnail){
+										String thumbnail, IQueue.IQueuedAssetPermissionObserver permObserver){
 
 		PermissionManager pm = new PermissionManager();
 		Permission authorized = pm.canDownload(service.getBackplane().getSettings().getDownloadEnabled(),
@@ -228,7 +284,7 @@ public class VirtuosoUtil {
 			};
 
 			try {
-				manager.createMPDSegmentedAssetAsync(observer,new URL(url),0,0,remoteId,json,true);
+				manager.createMPDSegmentedAssetAsync(observer,new URL(url),0,0,remoteId,json,true,permObserver);
 			} catch (MalformedURLException e) {
 				Log.e(TAG,"Problem with dash url.",e);
 			}
@@ -238,14 +294,14 @@ public class VirtuosoUtil {
 	
 	/**
 	 * Download item checking permissions and informing user of problems
-	 * 
-	 * @param context Activity Context
-	 * @param availabilityStart 
-	 * @param expiryAfterPlay 
-	 * @param downloadExpiry 
-	 * @param downloadEnabledContent 
+	 *  @param context Activity Context
+	 * @param downloadEnabledContent
+	 * @param downloadExpiry
+	 * @param expiryAfterPlay
+	 * @param availabilityStart
+	 * @param permObserver
 	 */
-	public static void downloadHlsItem(final Context context, int mediaType, final Virtuoso service, boolean downloadEnabledContent, final String remoteId, String url, int fragmentCount, final long catalogExpiry, final long downloadExpiry, final long expiryAfterPlay, final long availabilityStart, String title, String thumbnail) {		
+	public static void downloadHlsItem(final Context context, int mediaType, final Virtuoso service, boolean downloadEnabledContent, final String remoteId, String url, int fragmentCount, final long catalogExpiry, final long downloadExpiry, final long expiryAfterPlay, final long availabilityStart, String title, String thumbnail, IQueue.IQueuedAssetPermissionObserver permObserver) {
 		Log.i(TAG, "Downloading HLS item");
 		
 		final HlsResult result = new HlsResult();
@@ -322,7 +378,8 @@ public class VirtuosoUtil {
 																remoteId, 
 																json,
 																true,
-																true
+																true,
+																permObserver
 																);
 				} catch (MalformedURLException e) {
 					Log.e(TAG, "problem with hls URL",e);
@@ -398,7 +455,7 @@ public class VirtuosoUtil {
 				URL u;
 				try {
 					u = new URL(url);					
-					manager.createHLSSegmentedAssetAsync(observer, u, 0, remoteId, json,true,true);
+					manager.createHLSSegmentedAssetAsync(observer, u, 0, remoteId, json,true,true,permObserver);
 				} catch (MalformedURLException e) {
 					e.printStackTrace();
 				} 
