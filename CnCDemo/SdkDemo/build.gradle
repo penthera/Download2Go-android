@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 21
-    buildToolsVersion "24.0.2"
+    buildToolsVersion '26.0.2'
 
     defaultConfig {
         applicationId "com.penthera.sdkdemo"
@@ -25,11 +25,12 @@ allprojects {
         flatDir {
             dirs 'libs'
         }
+        google()
     }
 }
 
 dependencies {
-    compile(name:'CnC_Android_3.13.1RC_16112_debug', ext:'aar')
+    compile(name:'CnC_Android_3.13.6RC_16285_debug', ext:'aar')
     compile 'com.google.android.exoplayer:exoplayer:r2.1.1'
     compile 'com.android.support:appcompat-v7:21.0.+'
 

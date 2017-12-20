@@ -247,19 +247,24 @@ public class VirtuosoUtil {
 			final ProgressDialog pdlg = ProgressDialog.show(context, "Processing dash manifest","Adding fragments...");
 			final ISegmentedAssetFromParserObserver observer = new ISegmentedAssetFromParserObserver() {
 				@Override
+				public void willAddToQueue(ISegmentedAsset aSegmentedAsset) {
+					if (aSegmentedAsset != null) {
+						aSegmentedAsset.setStartWindow(availabilityStart <= 0 ? now : availabilityStart);
+						aSegmentedAsset.setEndWindow(catalogExpiry <= 0 ? Long.MAX_VALUE : catalogExpiry);
+						aSegmentedAsset.setEap(expiryAfterPlay);
+						aSegmentedAsset.setEad(downloadExpiry);
+						manager.update(aSegmentedAsset);
+					}
+				}
+
+				@Override
 				public void complete(ISegmentedAsset aSegmentedAsset, int aError, boolean addedToQueue) {
 
 					try {
 						pdlg.dismiss();
 					} catch( Exception e) {}
 
-					if(aSegmentedAsset != null){
-						aSegmentedAsset.setStartWindow(availabilityStart <=0 ? now:availabilityStart);
-						aSegmentedAsset.setEndWindow(catalogExpiry <=0 ? Long.MAX_VALUE:catalogExpiry);
-						aSegmentedAsset.setEap(expiryAfterPlay);
-						aSegmentedAsset.setEad(downloadExpiry);
-						manager.update(aSegmentedAsset);
-					} else {
+					if( aSegmentedAsset == null ) {
 						AlertDialog.Builder builder1 = new AlertDialog.Builder(context);
 						builder1.setTitle("Could Not Create Asset");
 						builder1.setMessage("Encountered error("+Integer.toString(aError)+") while creating asset.  This could happen if the device is currently offline, or if the asset manifest was not accessible.  Please try again later.");
@@ -326,6 +331,17 @@ public class VirtuosoUtil {
 				//an observer to receive notification of when the file has been generated
 				final ISegmentedAssetFromParserObserver observer = 
 				new ISegmentedAssetFromParserObserver(){
+					        @Override
+					        public void willAddToQueue(ISegmentedAsset aHlsFile) {
+								if (aHlsFile != null) {
+									aHlsFile.setStartWindow(availabilityStart <= 0 ? now : availabilityStart);
+									aHlsFile.setEndWindow(catalogExpiry <= 0 ? Long.MAX_VALUE : catalogExpiry);
+									aHlsFile.setEap(expiryAfterPlay);
+									aHlsFile.setEad(downloadExpiry);
+									manager.update(aHlsFile);
+								}
+							}
+
 							@Override
 							public void complete(ISegmentedAsset aHlsFile, int aError, boolean addedToQueue) {
 									//store the result
@@ -336,13 +352,7 @@ public class VirtuosoUtil {
 										pdlg.dismiss();
 									} catch( Exception e){}
 									
-									if(aHlsFile != null){
-										aHlsFile.setStartWindow(availabilityStart <=0 ? now:availabilityStart);
-										aHlsFile.setEndWindow(catalogExpiry <=0 ? Long.MAX_VALUE:catalogExpiry);
-										aHlsFile.setEap(expiryAfterPlay);
-										aHlsFile.setEad(downloadExpiry);
-										manager.update(aHlsFile);
-									} else {
+									if( aHlsFile == null ) {
 										AlertDialog.Builder builder1 = new AlertDialog.Builder(context);
 										builder1.setTitle("Could Not Create Asset");
 							            builder1.setMessage("Encountered error("+Integer.toString(aError)+") while creating asset.  This could happen if the device is currently offline, or if the asset manifest was not accessible.  Please try again later.");
@@ -407,6 +417,16 @@ public class VirtuosoUtil {
 				//This case shows how to parse a play list and choose one for adding to the queue
 				//an observer to receive notification of when the file has been generated
 				final ISegmentedAssetFromParserObserver observer = new ISegmentedAssetFromParserObserver() {
+					@Override
+					public void willAddToQueue(ISegmentedAsset aHlsFile) {
+						if (aHlsFile != null) {
+							aHlsFile.setStartWindow(availabilityStart <= 0 ? now : availabilityStart);
+							aHlsFile.setEndWindow(catalogExpiry <= 0 ? Long.MAX_VALUE : catalogExpiry);
+							aHlsFile.setEap(expiryAfterPlay);
+							aHlsFile.setEad(downloadExpiry);
+							manager.update(aHlsFile);
+						}
+					}
 
 					@Override
 					public void complete(ISegmentedAsset aHlsFile, int aError,
@@ -418,13 +438,7 @@ public class VirtuosoUtil {
 							pdlg.dismiss();
 						} catch( Exception e) {}
 						
-						if(aHlsFile != null){
-							aHlsFile.setStartWindow(availabilityStart <=0 ? now:availabilityStart);
-							aHlsFile.setEndWindow(catalogExpiry <=0 ? Long.MAX_VALUE:catalogExpiry);
-							aHlsFile.setEap(expiryAfterPlay);
-							aHlsFile.setEad(downloadExpiry);
-							manager.update(aHlsFile);
-						} else {
+						if( aHlsFile == null ) {
 							AlertDialog.Builder builder1 = new AlertDialog.Builder(context);
 							builder1.setTitle("Could Not Create Asset");
 				            builder1.setMessage("Encountered error("+Integer.toString(aError)+") while creating asset.  This could happen if the device is currently offline, or if the asset manifest was not accessible.  Please try again later.");
