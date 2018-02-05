@@ -329,10 +329,10 @@ public class VirtuosoUtil {
 				final ProgressDialog pdlg = ProgressDialog.show(context, "Processing manifest","Adding fragments...");
 				//this case shows how to hand over an HLS file to the SDK for processing and let it choose the best bit rate.
 				//an observer to receive notification of when the file has been generated
-				final ISegmentedAssetFromParserObserver observer = 
-				new ISegmentedAssetFromParserObserver(){
-					        @Override
-					        public void willAddToQueue(ISegmentedAsset aHlsFile) {
+				final ISegmentedAssetFromParserObserver observer =
+						new ISegmentedAssetFromParserObserver(){
+							@Override
+							public void willAddToQueue(ISegmentedAsset aHlsFile) {
 								if (aHlsFile != null) {
 									aHlsFile.setStartWindow(availabilityStart <= 0 ? now : availabilityStart);
 									aHlsFile.setEndWindow(catalogExpiry <= 0 ? Long.MAX_VALUE : catalogExpiry);
@@ -344,40 +344,40 @@ public class VirtuosoUtil {
 
 							@Override
 							public void complete(ISegmentedAsset aHlsFile, int aError, boolean addedToQueue) {
-									//store the result
-									result.error = aError;
-									result.queued = addedToQueue;
-									
-									try {
-										pdlg.dismiss();
-									} catch( Exception e){}
-									
-									if( aHlsFile == null ) {
-										AlertDialog.Builder builder1 = new AlertDialog.Builder(context);
-										builder1.setTitle("Could Not Create Asset");
-							            builder1.setMessage("Encountered error("+Integer.toString(aError)+") while creating asset.  This could happen if the device is currently offline, or if the asset manifest was not accessible.  Please try again later.");
-							            builder1.setCancelable(false);
-							            builder1.setPositiveButton("OK",
-							                    new DialogInterface.OnClickListener() {
-							                public void onClick(DialogInterface dialog, int id) {
-							                    dialog.cancel();
-							                }
-							            });
+								//store the result
+								result.error = aError;
+								result.queued = addedToQueue;
 
-							            AlertDialog alert11 = builder1.create();
-							            alert11.show();
-									}
+								try {
+									pdlg.dismiss();
+								} catch( Exception e){}
+
+								if( aHlsFile == null ) {
+									AlertDialog.Builder builder1 = new AlertDialog.Builder(context);
+									builder1.setTitle("Could Not Create Asset");
+									builder1.setMessage("Encountered error("+Integer.toString(aError)+") while creating asset.  This could happen if the device is currently offline, or if the asset manifest was not accessible.  Please try again later.");
+									builder1.setCancelable(false);
+									builder1.setPositiveButton("OK",
+											new DialogInterface.OnClickListener() {
+												public void onClick(DialogInterface dialog, int id) {
+													dialog.cancel();
+												}
+											});
+
+									AlertDialog alert11 = builder1.create();
+									alert11.show();
+								}
 							}
-							
+
 							@Override
 							public String didParseSegment(ISegment segment)
 							{
 								// This demo does not include assets that require URL manipulation.  If your assets require
-								// that you add or change the download URL from the manifest prior to downloading it, then 
-								// you would use this method to return the modified URL.  
+								// that you add or change the download URL from the manifest prior to downloading it, then
+								// you would use this method to return the modified URL.
 								return segment.getRemotePath();
 							}
-					};
+						};
 
 				try {
 					// Note, the value of the third parameter (aDesiredBitRate) should be between 1 and Integer.MAX_VALUE.  Sending
@@ -430,7 +430,7 @@ public class VirtuosoUtil {
 
 					@Override
 					public void complete(ISegmentedAsset aHlsFile, int aError,
-							boolean addedToQueue) {
+						boolean addedToQueue) {
 						//store the result
 						result.error = aError;
 						result.queued = addedToQueue;
@@ -441,19 +441,19 @@ public class VirtuosoUtil {
 						if( aHlsFile == null ) {
 							AlertDialog.Builder builder1 = new AlertDialog.Builder(context);
 							builder1.setTitle("Could Not Create Asset");
-				            builder1.setMessage("Encountered error("+Integer.toString(aError)+") while creating asset.  This could happen if the device is currently offline, or if the asset manifest was not accessible.  Please try again later.");
-				            builder1.setCancelable(false);
-				            builder1.setPositiveButton("OK",
-				                    new DialogInterface.OnClickListener() {
-				                public void onClick(DialogInterface dialog, int id) {
-				                    dialog.cancel();
-				                }
-				            });
+							builder1.setMessage("Encountered error("+Integer.toString(aError)+") while creating asset.  This could happen if the device is currently offline, or if the asset manifest was not accessible.  Please try again later.");
+							builder1.setCancelable(false);
+							builder1.setPositiveButton("OK",
+									new DialogInterface.OnClickListener() {
+										public void onClick(DialogInterface dialog, int id) {
+											dialog.cancel();
+										}
+									});
 
-				            AlertDialog alert11 = builder1.create();
-				            alert11.show();
+							AlertDialog alert11 = builder1.create();
+							alert11.show();
 						}
-						Log.i(TAG,"Finished procesing hls file addedToQueue:"+addedToQueue + " error:"+aError);						
+						Log.i(TAG,"Finished procesing hls file addedToQueue:"+addedToQueue + " error:"+aError);
 					}
 					
 					@Override

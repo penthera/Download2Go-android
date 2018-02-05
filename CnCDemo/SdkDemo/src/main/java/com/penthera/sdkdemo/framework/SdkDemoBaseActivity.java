@@ -75,7 +75,25 @@ public abstract class SdkDemoBaseActivity extends ActionBarActivity {
 				e.printStackTrace();
 			}
 		}
-	}	
+	}
+
+	//onActivityResult
+
+	/**
+	 * Dispatch incoming result to the correct fragment.
+	 *
+	 * @param requestCode
+	 * @param resultCode
+	 * @param data
+	 */
+	@Override
+	protected void onActivityResult( int requestCode, int resultCode, Intent data ) {
+		super.onActivityResult( requestCode, resultCode, data );
+		if(resultCode == Util.CLOSURE_REASON_LOGOUT){
+			setResult( Util.CLOSURE_REASON_LOGOUT );
+			finish();
+		}
+	}
 
 	// onResume
 	@Override
@@ -131,6 +149,7 @@ public abstract class SdkDemoBaseActivity extends ActionBarActivity {
 	 * User pressed home / back carrot
 	 */
 	private void handleBack() {
+		setResult( Util.CLOSURE_REASON_BACK );
 		finish();
 	}
 
@@ -157,7 +176,10 @@ public abstract class SdkDemoBaseActivity extends ActionBarActivity {
 			if(mLogoutProgress != null){ try{ mLogoutProgress.dismiss();} catch(Exception e){}}
 			if(success){
 				//return to the splash activity
-				Util.startActivity(SdkDemoBaseActivity.this, SplashActivity.class, null,Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_NEW_TASK);	
+				Util.startActivity(SdkDemoBaseActivity.this, SplashActivity.class, null,Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_NEW_TASK);
+
+				setResult( Util.CLOSURE_REASON_LOGOUT );
+				finish();
 			} else {
 				Util.showToast(getApplicationContext(), "Logout failed. Try again later.", Toast.LENGTH_LONG);
 			}

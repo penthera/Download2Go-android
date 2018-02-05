@@ -196,7 +196,7 @@ public class DiagnosticsActivity extends SdkDemoBaseActivity {
 			String value = null;
 			if(url != null)
 				value = url.toString();
-			if(TextUtils.isEmpty(value)) value = "https://services.penthera.com/";
+			if(TextUtils.isEmpty(value)) value = "https://demo.penthera.com/";
 			mBackplaneUrl = value;
 			mLastAuth = mBackplane.getLastAuthentication();
 			

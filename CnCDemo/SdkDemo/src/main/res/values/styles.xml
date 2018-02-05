@@ -20,10 +20,10 @@
     <!-- Text -->
  	<style name="txt_header" parent="android:style/Widget.TextView">
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_width">wrap_content</item> 	
+        <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_gravity">center_vertical</item>
         <item name="android:gravity">center_vertical</item>
-        <item name="android:padding">@dimen/padding_small</item>        
+        <item name="android:padding">@dimen/padding_small</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/txt_header</item>
         <item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
@@ -32,12 +32,12 @@
     <!-- Text -->
  	<style name="txt_footer" parent="android:style/Widget.TextView">
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_width">wrap_content</item> 	
+        <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_gravity">center_vertical</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:textColor">@color/txt_list_header</item>
         <item name="android:textAppearance">?android:attr/textAppearanceSmall</item>
-        <item name="android:maxLines">5</item>        
+        <item name="android:maxLines">5</item>
  	</style>
 
     <style name="PlayerTheme" parent="android:Theme.Holo">
@@ -45,4 +45,11 @@
         <item name="android:windowBackground">@android:color/black</item>
     </style>
 
+    <style name="NotificationTitle">
+        <item name="android:textColor">?android:attr/textColorPrimaryInverse</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="NotificationText">
+        <item name="android:textColor">?android:attr/textColorPrimaryInverse</item>
+    </style>
 </resources>

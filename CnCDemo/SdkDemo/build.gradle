@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 21
+    compileSdkVersion 26
     buildToolsVersion '26.0.2'
 
     defaultConfig {
         applicationId "com.penthera.sdkdemo"
-        minSdkVersion 11
-        targetSdkVersion 23
+        minSdkVersion 14
+        targetSdkVersion 26
         multiDexEnabled true
     }
 
@@ -30,9 +30,9 @@ allprojects {
 }
 
 dependencies {
-    compile(name:'CnC_Android_3.13.6RC_16285_debug', ext:'aar')
+    compile(name:'CnC_Android_3.13.6RC_16370_debug', ext:'aar')
     compile 'com.google.android.exoplayer:exoplayer:r2.1.1'
-    compile 'com.android.support:appcompat-v7:21.0.+'
+    compile 'com.android.support:appcompat-v7:24.0.+'
 
     compile ('com.google.android.gms:play-services:9.2.1'){
         exclude group: 'com.android.support', module: 'appcompat-v7'

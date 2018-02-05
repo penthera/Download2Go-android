@@ -5,24 +5,25 @@
     android:layout_marginLeft="3dip"
     android:layout_marginRight="3dip"
     android:orientation="vertical" >
-    
+
     <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textStyle="bold" />
+        style="@style/NotificationTitle"/>
 
-    
+
     <ProgressBar
         android:id="@+id/progress"
-        style="@android:style/Widget.ProgressBar.Horizontal"
-        android:layout_width="match_parent" 
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
 		android:layout_height="8dip"
         />
 
     <TextView
         android:id="@+id/queued"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        style="@style/NotificationText"/>
 
 </LinearLayout>

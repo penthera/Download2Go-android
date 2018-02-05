@@ -38,7 +38,11 @@ import com.penthera.virtuososdk.Common.EngineStatus;
  */
 public class Util {
 	private static final String TAG = Util.class.getName();
-	
+
+	public static final int CLOSURE_REASON_REQUEST = 1;
+	public static final int CLOSURE_REASON_BACK = 2;
+	public static final int CLOSURE_REASON_LOGOUT = 3;
+
 	/**
 	 * Maps the EngineStatus to a String
 	 * @param state one of the values from EngineStatus
