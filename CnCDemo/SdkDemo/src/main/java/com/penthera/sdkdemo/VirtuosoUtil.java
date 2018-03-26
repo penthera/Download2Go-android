@@ -522,6 +522,7 @@ public class VirtuosoUtil {
 		// Try to play it back using the local data.
 		if (asset != null) {
 			if(canWatchVirtuosoItem(context, asset)){
+				manager.recordOfflinePlay(asset);
 				watchVirtuosoItem(context, asset);
 				return;
 			} else {
