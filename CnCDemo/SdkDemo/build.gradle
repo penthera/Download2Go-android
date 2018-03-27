@@ -30,21 +30,17 @@ allprojects {
 }
 
 dependencies {
-    compile(name:'CnC_Android_3.13.6RC_16484_debug', ext:'aar')
-    compile 'com.google.android.exoplayer:exoplayer:r2.1.1'
-    compile 'com.android.support:appcompat-v7:24.0.+'
+    implementation project(':SDK')
+    implementation 'com.google.android.exoplayer:exoplayer:2.7.0'
+    implementation 'com.android.support:appcompat-v7:24.0.+'
 
-    compile ('com.google.android.gms:play-services:9.2.1'){
-        exclude group: 'com.android.support', module: 'appcompat-v7'
-    }
-    compile ('com.google.firebase:firebase-messaging:9.2.1'){
-        exclude group: 'com.android.support', module: 'appcompat-v7'
-    }
-    compile files('libs/CWAC-SackOfViewsAdapter.jar')
-    compile files('libs/image-master.jar')
-    compile files('libs/mergeadapter.jar')
-    compile files('libs/prettytime-1.0.8.Final.jar')
-    compile 'com.android.support:multidex:1.0.1'
+    implementation ('com.google.android.gms:play-services:10.2.1')
+    implementation ('com.google.firebase:firebase-messaging:10.2.1')
+    implementation files('libs/CWAC-SackOfViewsAdapter.jar')
+    implementation files('libs/image-master.jar')
+    implementation files('libs/mergeadapter.jar')
+    implementation files('libs/prettytime-1.0.8.Final.jar')
+    implementation 'com.android.support:multidex:1.0.1'
     provided files('libs/amazon-device-messaging-1.0.1.jar')
 }
 apply plugin: 'com.google.gms.google-services'

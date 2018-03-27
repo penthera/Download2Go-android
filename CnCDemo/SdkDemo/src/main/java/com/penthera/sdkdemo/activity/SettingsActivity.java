@@ -25,6 +25,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
 import com.penthera.sdkdemo.R;
 import com.penthera.sdkdemo.framework.SdkDemoBaseActivity;
@@ -83,8 +84,13 @@ public class SettingsActivity extends SdkDemoBaseActivity {
 	private Button mEnable;
 
 	/** Change where items will be stored on disk relative to the root of the application */
-	private EditText mDestination;	
-	
+	private EditText mDestination;
+
+	/** Toggle if the downloader should always request download permissions from the backplane,
+	 * regardless of whether there are known limits on downloads.
+	 */
+	private ToggleButton mAlwaysRequestPermissions;
+
 	/** Handle to the backplane interface */
 	private IBackplane mBackplane;
 
@@ -161,7 +167,7 @@ public class SettingsActivity extends SdkDemoBaseActivity {
         mProgressPercent = (SeekBar) findViewById(R.id.progress_percent_value);
         mProgressTimed = (EditText) findViewById(R.id.progress_timed_value);
         mProgressPercentDetails  = (TextView)findViewById(R.id.ProgressPercent);
-        
+
         SeekBar.OnSeekBarChangeListener seekProgressChangeListener = new SeekBar.OnSeekBarChangeListener(){
 
 			@Override
@@ -280,6 +286,20 @@ public class SettingsActivity extends SdkDemoBaseActivity {
         });
         mEnable.setEnabled(false);
 		this.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+		mAlwaysRequestPermissions = (ToggleButton) findViewById(R.id.always_req_perm_toggle);
+		mAlwaysRequestPermissions.setChecked(mSettings.alwaysRequestPermission());
+		mAlwaysRequestPermissions.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				try {
+					mSettings.setAlwaysRequestPermission(mAlwaysRequestPermissions.isChecked()).save();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+		mAlwaysRequestPermissions.setEnabled(true);
 
 		iHandler.post(iUpdater);	
     }

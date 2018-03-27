@@ -22,21 +22,22 @@ import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.ExoPlaybackException;
 import com.google.android.exoplayer2.ExoPlayer;
 import com.google.android.exoplayer2.Format;
+import com.google.android.exoplayer2.PlaybackParameters;
+import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.RendererCapabilities;
 import com.google.android.exoplayer2.Timeline;
 import com.google.android.exoplayer2.audio.AudioRendererEventListener;
 import com.google.android.exoplayer2.decoder.DecoderCounters;
 import com.google.android.exoplayer2.metadata.Metadata;
-import com.google.android.exoplayer2.metadata.MetadataRenderer;
+import com.google.android.exoplayer2.metadata.MetadataOutput;
+import com.google.android.exoplayer2.metadata.emsg.EventMessage;
 import com.google.android.exoplayer2.metadata.id3.ApicFrame;
 import com.google.android.exoplayer2.metadata.id3.CommentFrame;
 import com.google.android.exoplayer2.metadata.id3.GeobFrame;
 import com.google.android.exoplayer2.metadata.id3.Id3Frame;
 import com.google.android.exoplayer2.metadata.id3.PrivFrame;
 import com.google.android.exoplayer2.metadata.id3.TextInformationFrame;
-import com.google.android.exoplayer2.metadata.id3.TxxxFrame;
-import com.google.android.exoplayer2.source.AdaptiveMediaSourceEventListener;
-import com.google.android.exoplayer2.source.ExtractorMediaSource;
+import com.google.android.exoplayer2.source.MediaSourceEventListener;
 import com.google.android.exoplayer2.source.TrackGroup;
 import com.google.android.exoplayer2.source.TrackGroupArray;
 import com.google.android.exoplayer2.trackselection.MappingTrackSelector;
@@ -54,10 +55,10 @@ import java.util.Locale;
 /**
  * Logs player events using {@link Log}.
  */
-/* package */ final class EventLogger implements ExoPlayer.EventListener,
-        AudioRendererEventListener, VideoRendererEventListener, AdaptiveMediaSourceEventListener,
-        ExtractorMediaSource.EventListener, VirtuosoDrmSessionManager.EventListener,
-        MetadataRenderer.Output {
+final class EventLogger implements Player.EventListener,
+        AudioRendererEventListener, VideoRendererEventListener, MediaSourceEventListener,
+        VirtuosoDrmSessionManager.EventListener,
+        MetadataOutput {
 
     private static final String TAG = "EventLogger";
     private static final int MAX_TIMELINE_ITEM_LINES = 3;
@@ -95,12 +96,22 @@ import java.util.Locale;
     }
 
     @Override
-    public void onPositionDiscontinuity() {
-        Log.d(TAG, "positionDiscontinuity");
+    public void onRepeatModeChanged(int repeatMode) {
+
     }
 
     @Override
-    public void onTimelineChanged(Timeline timeline, Object manifest) {
+    public void onShuffleModeEnabledChanged(boolean shuffleModeEnabled) {
+
+    }
+
+    @Override
+    public void onPositionDiscontinuity(int reason) {
+        Log.d(TAG, "positionDiscontinuity " + reason);
+    }
+
+    @Override
+    public void onTimelineChanged(Timeline timeline, Object manifest, int reason) {
         if (timeline == null) {
             return;
         }
@@ -129,6 +140,20 @@ import java.util.Locale;
     public void onPlayerError(ExoPlaybackException e) {
         Log.e(TAG, "playerFailed [" + getSessionTimeString() + "]", e);
     }
+
+
+
+    @Override
+    public void onPlaybackParametersChanged(PlaybackParameters playbackParameters) {
+        Log.d(TAG, "Playback params changed, pitch: " + playbackParameters.pitch + ", speed: " + playbackParameters.speed);
+    }
+
+    @Override
+    public void onSeekProcessed() {
+        // do nothing
+    }
+
+
 
     @Override
     public void onTracksChanged(TrackGroupArray ignored, TrackSelectionArray trackSelections) {
@@ -230,14 +255,14 @@ import java.util.Locale;
     }
 
     @Override
-    public void onAudioDisabled(DecoderCounters counters) {
-        Log.d(TAG, "audioDisabled [" + getSessionTimeString() + "]");
+    public void onAudioSinkUnderrun(int bufferSize, long bufferSizeMs, long elapsedSinceLastFeedMs) {
+        printInternalError("audioSinkUnderrun [" + bufferSize + ", " + bufferSizeMs + ", "
+                + elapsedSinceLastFeedMs + "]", null);
     }
 
     @Override
-    public void onAudioTrackUnderrun(int bufferSize, long bufferSizeMs, long elapsedSinceLastFeedMs) {
-        printInternalError("audioTrackUnderrun [" + bufferSize + ", " + bufferSizeMs + ", "
-                + elapsedSinceLastFeedMs + "]", null);
+    public void onAudioDisabled(DecoderCounters counters) {
+        Log.d(TAG, "audioDisabled [" + getSessionTimeString() + "]");
     }
 
     // VideoRendererEventListener
@@ -292,14 +317,7 @@ import java.util.Locale;
         Log.d(TAG, "drmKeysLoaded [" + getSessionTimeString() + "]");
     }
 
-    // ExtractorMediaSource.EventListener
-
-    @Override
-    public void onLoadError(IOException error) {
-        printInternalError("loadError", error);
-    }
-
-    // AdaptiveMediaSourceEventListener
+    // MediaSourceEventListener
 
     @Override
     public void onLoadStarted(DataSpec dataSpec, int dataType, int trackType, Format trackFormat,
@@ -350,11 +368,7 @@ import java.util.Locale;
     private void printMetadata(Metadata metadata, String prefix) {
         for (int i = 0; i < metadata.length(); i++) {
             Metadata.Entry entry = metadata.get(i);
-            if (entry instanceof TxxxFrame) {
-                TxxxFrame txxxFrame = (TxxxFrame) entry;
-                Log.d(TAG, prefix + String.format("%s: description=%s, value=%s", txxxFrame.id,
-                        txxxFrame.description, txxxFrame.value));
-            } else if (entry instanceof PrivFrame) {
+            if (entry instanceof PrivFrame) {
                 PrivFrame privFrame = (PrivFrame) entry;
                 Log.d(TAG, prefix + String.format("%s: owner=%s", privFrame.id, privFrame.owner));
             } else if (entry instanceof GeobFrame) {
@@ -376,6 +390,11 @@ import java.util.Locale;
             } else if (entry instanceof Id3Frame) {
                 Id3Frame id3Frame = (Id3Frame) entry;
                 Log.d(TAG, prefix + String.format("%s", id3Frame.id));
+            }
+            else if (entry instanceof EventMessage) {
+                EventMessage eventMessage = (EventMessage) entry;
+                Log.d(TAG, prefix + String.format("EMSG: scheme=%s, id=%d, value=%s",
+                        eventMessage.schemeIdUri, eventMessage.id, eventMessage.value));
             }
         }
     }

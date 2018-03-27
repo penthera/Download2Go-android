@@ -104,6 +104,7 @@
     
 	<string name="delete">Delete</string>
 	<string name="unknown">Engine Status Unknown</string>
+    <string name ="request_permissions">Always Request Permissions</string>
 
 	<!-- Acessibility: Descriptions of images -->
 	<string name="content_desc_app_icon">Application Icon</string>

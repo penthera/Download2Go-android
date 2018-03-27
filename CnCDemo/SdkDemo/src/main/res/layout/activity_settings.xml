@@ -373,6 +373,28 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/always_req_perm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:layout_weight="1"
+            android:text="@string/request_permissions" />
+
+        <ToggleButton
+            android:id="@+id/always_req_perm_toggle"
+            android:checked="false"
+            android:textOff="NO"
+            android:textOn="YES"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
     
     <Button
         android:id="@+id/apply"

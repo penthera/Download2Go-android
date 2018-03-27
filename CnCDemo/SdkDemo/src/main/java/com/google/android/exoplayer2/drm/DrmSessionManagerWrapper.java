@@ -19,17 +19,18 @@ import android.os.Looper;
 
 import com.penthera.virtuososdk.client.IAsset;
 import com.penthera.virtuososdk.client.drm.IDrmInitData;
+import com.penthera.virtuososdk.client.drm.IVirtuosoDrmSession;
 import com.penthera.virtuososdk.client.drm.VirtuosoDrmSessionManager;
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 /**
  * Wraps the VirtuosoDrmSessionManager
  */
 
-public class DrmSessionManagerWrapper implements DrmSessionManager<FrameworkMediaCrypto>,
-        DrmSession<FrameworkMediaCrypto> {
+public class DrmSessionManagerWrapper implements DrmSessionManager<FrameworkMediaCrypto> {
 
     private final VirtuosoDrmSessionManager mDrmSessionManager;
 
@@ -56,40 +57,78 @@ public class DrmSessionManagerWrapper implements DrmSessionManager<FrameworkMedi
     }
 
     @Override
+    public boolean canAcquireSession(final DrmInitData drmInitData) {
+        return mDrmSessionManager.canOpen(new IDrmInitData() {
+            @Override
+            public SchemeInitData get(UUID schemeUuid) {
+                DrmInitData.SchemeData sd = drmInitData.get(schemeUuid);
+                return new SchemeInitData(sd.mimeType, sd.data);
+            }
+        });
+    }
+
+    @Override
     public DrmSession<FrameworkMediaCrypto> acquireSession(Looper playbackLooper, final DrmInitData drmInitData) {
-        mDrmSessionManager.setLooper(playbackLooper);
-        mDrmSessionManager.open(new IDrmInitData() {
+        IVirtuosoDrmSession session = mDrmSessionManager.open(new IDrmInitData() {
             @Override
             public SchemeInitData get(UUID schemeUuid) {
                 DrmInitData.SchemeData sd = drmInitData.get(schemeUuid);
                 return new SchemeInitData(sd.mimeType,sd.data);
             }
         });
-        return this;
+        session.setLooper(playbackLooper);
+
+        return new DrmSessionWrapper(session);
     }
 
     @Override
     public void releaseSession(DrmSession<FrameworkMediaCrypto> drmSession) {
-        mDrmSessionManager.close();
+        DrmSessionWrapper sessionWrapper = (DrmSessionWrapper) drmSession;
+        mDrmSessionManager.close(sessionWrapper.getVirtuosoSession());
     }
 
-    @Override
-    public int getState() {
-        return mDrmSessionManager.getState();
-    }
 
-    @Override
-    public FrameworkMediaCrypto getMediaCrypto() {
-        return new FrameworkMediaCrypto(mDrmSessionManager.getMediaCrypto());
-    }
+    static class DrmSessionWrapper implements DrmSession<FrameworkMediaCrypto> {
 
-    @Override
-    public boolean requiresSecureDecoderComponent(String mimeType) {
-        return mDrmSessionManager.requiresSecureDecoderComponent(mimeType);
-    }
+        private final IVirtuosoDrmSession drmSession;
+        private FrameworkMediaCrypto mediaCrypto = null;
 
-    @Override
-    public Exception getError() {
-        return mDrmSessionManager.getError();
+        public DrmSessionWrapper(IVirtuosoDrmSession session) {
+            drmSession = session;
+            mediaCrypto = new FrameworkMediaCrypto(drmSession.getMediaCrypto());
+        }
+
+        public IVirtuosoDrmSession getVirtuosoSession() {
+            return drmSession;
+        }
+
+        @Override
+        public int getState() {
+            return drmSession.getState();
+        }
+
+        @Override
+        public FrameworkMediaCrypto getMediaCrypto() {
+            return mediaCrypto;
+        }
+
+        @Override
+        public DrmSessionException getError() {
+            Exception e = drmSession.getError();
+            if (e != null) {
+                return new DrmSessionException(e);
+            }
+            return null;
+        }
+
+        @Override
+        public Map<String, String> queryKeyStatus() {
+            return drmSession.queryKeyStatus();
+        }
+
+        @Override
+        public byte[] getOfflineLicenseKeySetId() {
+            return drmSession.getLicenseKeySetId();
+        }
     }
 }
