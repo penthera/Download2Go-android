@@ -111,7 +111,8 @@ public class VirtuosoUtil {
 			public void onQueuedWithAssetPermission(boolean queued,boolean aPermitted, final IAsset aAsset, final int aAssetPermissionError) {
 				String error_string;
 				final IAssetPermission permResponse = aAsset.getLastPermissionResponse();
-				final String assetPerm = IAssetPermission.PermissionCode.friendlyName(aAssetPermissionError);
+				final String assetPerm = permResponse.getPermission() == IAssetPermission.PermissionCode.PERMISSION_DENIED_EXTERNAL_POLICY ?
+						permResponse.friendlyName() : IAssetPermission.PermissionCode.friendlyName(aAssetPermissionError);
 				String title;
 				if (!queued) {
 

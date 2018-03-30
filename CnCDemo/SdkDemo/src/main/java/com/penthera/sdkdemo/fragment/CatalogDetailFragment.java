@@ -606,6 +606,11 @@ public class CatalogDetailFragment extends Fragment implements LoaderManager.Loa
 					value = "DENIED : MDA";
 					break;
 
+				case AssetStatus.DOWNLOAD_DENIED_EXTERNAL_POLICY:
+					assetStatus = "Queued";
+					value = "DENIED : EXT";
+					break;
+
 				case AssetStatus.DOWNLOAD_DENIED_MAX_DEVICE_DOWNLOADS:
 					assetStatus = "Queued";
 					value = "DENIED :MPD";
