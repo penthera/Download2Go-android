@@ -21,12 +21,15 @@ import org.ocpsoft.pretty.time.PrettyTime;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.DialogInterface;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.LoaderManager;
@@ -38,8 +41,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -53,6 +59,7 @@ import com.penthera.sdkdemo.ImageHelper;
 import com.penthera.sdkdemo.R;
 import com.penthera.sdkdemo.Util;
 import com.penthera.sdkdemo.VirtuosoUtil;
+import com.penthera.sdkdemo.catalog.Catalog;
 import com.penthera.sdkdemo.catalog.Catalog.CatalogColumns;
 import com.penthera.sdkdemo.catalog.CatalogContentProvider;
 import com.penthera.virtuososdk.Common.AssetStatus;
@@ -63,6 +70,9 @@ import com.penthera.virtuososdk.client.QueueObserver;
 import com.penthera.virtuososdk.client.Virtuoso;
 import com.penthera.virtuososdk.client.database.AssetColumns;
 
+import static com.penthera.sdkdemo.catalog.Catalog.MediaType.MP4;
+import static com.penthera.sdkdemo.catalog.CatalogContentProvider.CATALOG_URI;
+
 /**
  * The catalog detail fragment -- Show detailed information about catalog item
  */
@@ -71,6 +81,9 @@ public class CatalogDetailFragment extends Fragment implements LoaderManager.Loa
 	// --- Constants
 	/** Log Tag */
 	private static final String TAG = CatalogDetailFragment.class.getName();
+
+	/** Custom genre, used to check if this item is editable */
+	private static final String CUSTOM_GENRE = "Custom";
 
 	// --- Service
 	/** The download service from the parent activity */
@@ -104,7 +117,10 @@ public class CatalogDetailFragment extends Fragment implements LoaderManager.Loa
 	
 	/** Asset corresponding to this catalog entry */
 	private IAsset mAsset;
-	
+
+	/** Editable */
+	private boolean mEditable = false;
+
 	// --- Constructors
 
 	public static CatalogDetailFragment newInstance(Virtuoso service) {
@@ -152,7 +168,7 @@ public class CatalogDetailFragment extends Fragment implements LoaderManager.Loa
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 		LoaderManager lm = getActivity().getSupportLoaderManager();
-		lm.initLoader(LOADER_ID, null, CatalogDetailFragment.this);
+        lm.initLoader(LOADER_ID, null, CatalogDetailFragment.this);
 	}
 
 	// onResume
@@ -187,9 +203,9 @@ public class CatalogDetailFragment extends Fragment implements LoaderManager.Loa
 		CursorLoader cursorLoader = null;
 		if (id == LOADER_ID) {
 			cursorLoader = new CursorLoader(getActivity(),	
-					CatalogContentProvider.CATALOG_URI,
+					CATALOG_URI,
 					null, 
-					CatalogColumns._ID + "=?",
+					CatalogColumns.ASSET_ID + "=?",
 					new String[] {mId},
 					null);						
 		}		
@@ -228,10 +244,6 @@ public class CatalogDetailFragment extends Fragment implements LoaderManager.Loa
 	// --- UI methods
 	private void build() {
 
-		if(mBuilt){
-			return;
-		}
-		mBuilt = true;
 		// Background image
 		mCursor.moveToFirst();
 
@@ -272,12 +284,43 @@ public class CatalogDetailFragment extends Fragment implements LoaderManager.Loa
 					Assert.assertEquals(false, "bad button");
 				}
 			}
-		});			
+		});
+
+        // Editable
+        String genre = mCursor.getString(mCursor.getColumnIndex(CatalogColumns.GENRE));
+        mEditable = genre.contentEquals(CUSTOM_GENRE);
+
+        Button editButton = mLayout.findViewById(R.id.btn_detail_edit);
+        editButton.setVisibility(mEditable ? View.VISIBLE : View.GONE);
+        if (mEditable) {
+            editButton.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    enterEditMode(true);
+                }
+            });
+            Button saveButton = mLayout.findViewById(R.id.btn_save_details);
+            saveButton.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    saveDetails();
+                }
+            });
+            String titleStr = mCursor.getString(mCursor.getColumnIndex(CatalogColumns.TITLE));
+            if (TextUtils.isEmpty(titleStr) || titleStr.equalsIgnoreCase("Custom Title")){
+                enterEditMode(true);
+            }
+        } else {
+            enterEditMode(false);
+        }
+
 		update();
+        mBuilt = true;
 	}
 	
 	private void updateDetails(){
-		
+
+
 		// Title
 		String titleStr = mCursor.getString(mCursor.getColumnIndex(CatalogColumns.TITLE));		
 		TextView title = (TextView) mLayout.findViewById(R.id.txt_title);
@@ -332,7 +375,46 @@ public class CatalogDetailFragment extends Fragment implements LoaderManager.Loa
 		String descriptionStr = mCursor.getString(mCursor.getColumnIndex(CatalogColumns.DESC));		
 		TextView description = (TextView) mLayout.findViewById(R.id.txt_description);
 		description.setText(descriptionStr);
-		
+
+		if (mEditable) {
+		    EditText titleEdit = mLayout.findViewById(R.id.edt_title);
+		    titleEdit.setText(titleStr);
+
+            EditText assetIdEdit = mLayout.findViewById(R.id.edt_asset_id);
+            String assetIdText = mCursor.getString(mCursor.getColumnIndex(CatalogColumns.ASSET_ID));
+            assetIdEdit.setText(assetIdText);
+
+            EditText manifestEdit = mLayout.findViewById(R.id.edt_manifest_url);
+            String manifestText = mCursor.getString(mCursor.getColumnIndex(CatalogColumns.CONTENT_URL));
+            manifestEdit.setText(manifestText);
+
+            EditText descriptionEdit = mLayout.findViewById(R.id.edt_description);
+            descriptionEdit.setText(descriptionStr);
+
+            Spinner mediaTypeDropdown = mLayout.findViewById(R.id.spnr_type);
+
+            Resources res = getContext().getResources();
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item,res.getStringArray(R.array.media_types));
+            mediaTypeDropdown.setAdapter(adapter);
+
+            int mediaTypeId = mCursor.getInt(mCursor.getColumnIndex(CatalogColumns.MEDIA_TYPE));
+            int pos;
+            switch(mediaTypeId){
+                case Catalog.MediaType.HSS:
+                    pos = 0;
+                    break;
+                case Catalog.MediaType.HLS:
+                    pos = 1; // HLS
+                    break;
+                case Catalog.MediaType.MPD:
+                    pos = 2; // MPD
+                    break;
+                default:
+                    pos = 3;  // MP4
+            }
+            mediaTypeDropdown.setSelection(pos);
+        }
+
 		updateDownloadButtonText();
 	}
 	
@@ -340,7 +422,88 @@ public class CatalogDetailFragment extends Fragment implements LoaderManager.Loa
 		updateDetails();
 		updateItemStatus(mAsset,true);
 	}
-	
+
+	private void enterEditMode(boolean enter) {
+	    mLayout.findViewById(R.id.detail_edit_container).setVisibility(enter ? View.VISIBLE : View.GONE);
+	    mLayout.findViewById(R.id.details_container).setVisibility(enter ? View.GONE : View.VISIBLE);
+	    mLayout.findViewById(R.id.btn_watch).setEnabled(!enter);
+	    mLayout.findViewById(R.id.btn_download).setEnabled(!enter);
+    }
+
+    private void saveDetails(){
+        EditText titleEdit = mLayout.findViewById(R.id.edt_title);
+        String titleStr = titleEdit.getText().toString();
+
+        EditText assetIdEdit = mLayout.findViewById(R.id.edt_asset_id);
+        String assetIdStr = assetIdEdit.getText().toString();
+
+        EditText manifestEdit = mLayout.findViewById(R.id.edt_manifest_url);
+        String manifestStr = manifestEdit.getText().toString();
+
+        EditText descriptionEdit = mLayout.findViewById(R.id.edt_description);
+        String descriptionStr = descriptionEdit.getText().toString();
+
+        Spinner mediaTypeDropdown = mLayout.findViewById(R.id.spnr_type);
+        int pos = mediaTypeDropdown.getSelectedItemPosition();
+        int mediaTypeId;
+        String mime;
+        switch(pos){
+            case 0:
+                mediaTypeId = Catalog.MediaType.HSS; // HSS
+                mime = "";
+                break;
+            case 1:
+                mediaTypeId = Catalog.MediaType.HLS; // HLS
+                mime = "application/x-mpegurl";
+                break;
+            case 2:
+                mediaTypeId = Catalog.MediaType.MPD; // MPD
+                mime = "application/octet-stream";
+                break;
+            default:
+                mediaTypeId = Catalog.MediaType.MP4;  // MP4
+                mime = "video/mp4";
+        }
+
+        if (TextUtils.isEmpty(titleStr) || TextUtils.isEmpty(assetIdStr)
+                || TextUtils.isEmpty(manifestStr) || TextUtils.isEmpty(descriptionStr)) {
+
+            Toast.makeText(getContext(), R.string.missing_field,Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        boolean valid = false;
+        if (manifestStr.startsWith("http") && manifestStr.contains("://")) {
+            try {
+                Uri test = Uri.parse(manifestStr);
+                valid = (test != null);
+            } catch (Exception e) {}
+        }
+
+        if (!valid) {
+            Toast.makeText(getContext(), R.string.invalid_url, Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        // Save to db
+        ContentValues cv = new ContentValues();
+        cv.put(CatalogColumns.TITLE, titleStr);
+        cv.put(CatalogColumns.ASSET_ID, assetIdStr);
+        cv.put(CatalogColumns.CONTENT_URL, manifestStr);
+        cv.put(CatalogColumns.DESC, descriptionStr);
+        cv.put(CatalogColumns.MEDIA_TYPE, mediaTypeId);
+        cv.put(CatalogColumns.MIME, mime);
+
+        int id = mCursor.getInt(mCursor.getColumnIndex(CatalogColumns._ID));
+        Uri updateUri = Uri.parse("content://" + CatalogContentProvider.AUTHORITY + "/catalog/");
+        getContext().getContentResolver().update(updateUri, cv, CatalogColumns._ID + " = " + id, null);
+
+        // Update cursor
+        getLoaderManager().restartLoader(LOADER_ID, null, this);
+
+        enterEditMode(false);
+    }
+
 	/**
 	 * @return expiration time in milliseconds
 	 */
@@ -406,13 +569,14 @@ public class CatalogDetailFragment extends Fragment implements LoaderManager.Loa
 		// This is being done in order to show the different ways an HLS file can be generated.
 		final int mediaType = cv.getAsInteger(CatalogColumns.MEDIA_TYPE);
 		switch(mediaType){
-		case 2: //a normal mp4
-		case 4: //an hls that will be constructed by adding the fragments.
+		case Catalog.MediaType.MP4: //a normal mp4
+		case Catalog.MediaType.HLS_ADD_FRAGMENT: //an hls that will be constructed by adding the fragments.
 			new AddFileTask(cv).execute();	
 			break;
-		case 3: //shows how an HLS file is passed to Virtuoso for it to choose the best bit rate
-		case 5: // shows how an HLS manifest is parsed and a play list chosen
-		case 6: //dash
+		case Catalog.MediaType.HLS: //shows how an HLS file is passed to Virtuoso for it to choose the best bit rate
+		case Catalog.MediaType.HLS_MANIFEST: // shows how an HLS manifest is parsed and a play list chosen
+		case Catalog.MediaType.MPD: //dash
+		case Catalog.MediaType.HSS:
 			//for these cases we do not use an async task as the processing is async
 			VirtuosoUtil.downloadItem(getActivity(), mService, cv);
 			break;
@@ -454,7 +618,7 @@ public class CatalogDetailFragment extends Fragment implements LoaderManager.Loa
 	 * Delete item
 	 */
 	private void doDelete() {
-		String assetId = mCursor.getString(mCursor.getColumnIndex(CatalogColumns._ID));				
+		String assetId = mCursor.getString(mCursor.getColumnIndex(CatalogColumns.ASSET_ID));
 		IAsset asset = VirtuosoUtil.getVirtuosoAsset(mAssetManager, assetId);
 		mAssetManager.delete(asset);
 		getActivity().finish();		
@@ -713,7 +877,7 @@ public class CatalogDetailFragment extends Fragment implements LoaderManager.Loa
 	 * Update download button to download or delete based on file state
 	 */
 	private void updateDownloadButtonText() {
-		String assetId = mCursor.getString(mCursor.getColumnIndex(CatalogColumns._ID));				
+		String assetId = mCursor.getString(mCursor.getColumnIndex(CatalogColumns.ASSET_ID));
 		boolean known = isQ(assetId) || isDownloaded(assetId) || isExpired(assetId);
 
 		if (!known) {					

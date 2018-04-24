@@ -154,7 +154,7 @@ public class CatalogRequest {
 					"\"airplayEnabled\":true," +
 					"\"catalogExpiry\":" + TWO_YEARS_FROM_NOW +
 				"},"	 +
-							"{" +
+				"{" +
 					"\"genre\":\"Movies\"," +
 					"\"downloadURL\":\"https://storage.googleapis.com/wvmedia/clear/h264/tears/tears_sd.mpd\"," +
 					"\"desc\":\"DASH SD TEARS.\"," +
@@ -215,9 +215,9 @@ public class CatalogRequest {
 					"\"networkUUID\":\"1\"," +
 					"\"airplayEnabled\":true," +
 					"\"catalogExpiry\":" + TWO_YEARS_FROM_NOW +
-					"},"	 +
+				"},"	 +
 
-					"{" +
+				"{" +
 				"\"genre\":\"Speeches\"," +
 				"\"downloadURL\":\"http://virtuoso-demo-content.s3.amazonaws.com/Steve/steve.m3u8\"," +
 				"\"streamURL\":\"http://virtuoso-demo-content.s3.amazonaws.com/Steve/steve.m3u8\"," +
@@ -247,7 +247,38 @@ public class CatalogRequest {
 				"\"networkUUID\":\"1\"," +
 				"\"airplayEnabled\":true," +
 				"\"catalogExpiry\":" + TWO_YEARS_FROM_NOW +
+			"},"	+
+			"{" +
+					"\"genre\":\"Custom\"," +
+					"\"downloadURL\":\"http://\"," +
+					"\"streamURL\":\"http://\"," +
+					"\"desc\":\"Use this to test your own url\"," +
+					"\"featured\":false," +
+					"\"downloadExpiry\":" + FORTNIGHT + "," +
+					"\"availableFrom\":" + NOW + "," +
+					"\"expiryAfterPlay\":" + NEVER + "," +
+					"\"type\":4000," +
+					"\"remoteUUID\":\"CUSTOM_HLS\"," +
+					"\"mediaType\":3," +
+					"\"title\":\"Custom Title\"," +
+					"\"duration\":0," +
+					"\"mime\":\"application/x-mpegurl\"," +
+					"\"popular\":false," +
+					"\"downloadEnabled\":true," +
+					"\"contentRating\":\"PG\"," +
+					"\"imageAssets\":[" +
+					"{\"impKey\":\"gridCellImage\",\"url\":\" \"}," +
+					"{\"impKey\":\"gridCellImage@2x\",\"url\":\" \"}," +
+					"{\"impKey\":\"detailBackgroundImage\",\"url\":\" \"}," +
+					"{\"impKey\":\"detailBackgroundImage@2x\",\"url\":\" \"}" +
+					"]," +
+					"\"categories\":[" +
+					"{\"name\":\"custom\"}" +
+					"]," +
+					"\"networkUUID\":\"1\"," +
+					"\"airplayEnabled\":true," +
+					"\"catalogExpiry\":" + TWO_YEARS_FROM_NOW +
 
-			"}"	+ 
+				"}"	+
 			"]}");
 }

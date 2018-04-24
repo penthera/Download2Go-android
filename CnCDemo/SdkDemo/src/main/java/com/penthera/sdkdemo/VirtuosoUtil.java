@@ -34,6 +34,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.penthera.sdkdemo.catalog.Catalog;
 import com.penthera.sdkdemo.catalog.Catalog.CatalogColumns;
 import com.penthera.sdkdemo.catalog.PermissionManager;
 import com.penthera.sdkdemo.catalog.PermissionManager.Permission;
@@ -154,7 +155,7 @@ public class VirtuosoUtil {
 			}
 		};
 
-		String remoteId = cv.getAsString(CatalogColumns._ID);
+		String remoteId = cv.getAsString(CatalogColumns.ASSET_ID);
 		String url = cv.getAsString(CatalogColumns.CONTENT_URL);
 		long catalogExpiry = cv.getAsLong(CatalogColumns.CATALOG_EXPIRY);			
 		final String title = cv.getAsString(CatalogColumns.TITLE);
@@ -173,6 +174,8 @@ public class VirtuosoUtil {
 		else if(isHls(mediaType)){
 			final int fragmentCount = cv.getAsInteger(CatalogColumns.FRAGMENT_COUNT);
 			downloadHlsItem(context, mediaType, service, downloadEnabledContent, remoteId, url + cv.getAsString(CatalogColumns.FRAGMENT_PREFIX), fragmentCount, catalogExpiry, downloadExpiry, expiryAfterPlay,availabilityStart, title, thumbnail,permObserver);
+		} else if (isHss(mediaType)) {
+			downloadHssItem(context, service, downloadEnabledContent, remoteId, url + cv.getAsString(CatalogColumns.FRAGMENT_PREFIX), catalogExpiry, downloadExpiry, expiryAfterPlay,availabilityStart, title, thumbnail,permObserver);
 		}
 		else  {
 			return downloadItem(context, service, downloadEnabledContent, remoteId, url, mimetype, catalogExpiry, downloadExpiry, expiryAfterPlay, availabilityStart, title,
@@ -297,10 +300,102 @@ public class VirtuosoUtil {
 		}
 
 	}
-	
+
+    /**
+     * Download item checking permissions and informing user of problems
+     *  @param context Activity Context
+     * @param service
+     * @param downloadEnabledContent
+     * @param downloadExpiry
+     * @param expiryAfterPlay
+     * @param availabilityStart
+     * @param permObserver
+     */
+    public static void downloadHssItem(final Context context,  final Virtuoso service, boolean downloadEnabledContent, final String remoteId, String url, final long catalogExpiry, final long downloadExpiry, final long expiryAfterPlay, final long availabilityStart, String title, String thumbnail, IQueue.IQueuedAssetPermissionObserver permObserver) {
+        Log.i(TAG, "Downloading HSS item");
+
+        final HlsResult result = new HlsResult();
+
+        PermissionManager pm = new PermissionManager();
+        Permission authorized = pm.canDownload(service.getBackplane().getSettings().getDownloadEnabled(),
+                downloadEnabledContent, catalogExpiry);
+        final long now = System.currentTimeMillis()/1000;
+
+        // Authorization: Success
+        if (authorized == Permission.EAccessAllowed) {
+            // Create meta data for later display of download list
+            final String json = MetaData.toJson(title, thumbnail);
+            final IAssetManager manager = service.getAssetManager();
+
+
+            //note we would not be able to use the progress dialog if running from doBackground in an async task
+            final ProgressDialog pdlg = ProgressDialog.show(context, "Processing manifest", "Adding fragments...");
+
+            final ISegmentedAssetFromParserObserver observer = new ISegmentedAssetFromParserObserver() {
+                @Override
+                public void willAddToQueue(ISegmentedAsset aHssFile) {
+                    if (aHssFile != null) {
+                        aHssFile.setStartWindow(availabilityStart <= 0 ? now : availabilityStart);
+                        aHssFile.setEndWindow(catalogExpiry <= 0 ? Long.MAX_VALUE : catalogExpiry);
+                        aHssFile.setEap(expiryAfterPlay);
+                        aHssFile.setEad(downloadExpiry);
+                        manager.update(aHssFile);
+                    }
+                }
+
+                @Override
+                public void complete(ISegmentedAsset aHssFile, int aError,
+                                     boolean addedToQueue) {
+                    //store the result
+                    result.error = aError;
+                    result.queued = addedToQueue;
+                    try {
+                        pdlg.dismiss();
+                    } catch (Exception e) {
+                    }
+
+                    if (aHssFile == null) {
+                        AlertDialog.Builder builder1 = new AlertDialog.Builder(context);
+                        builder1.setTitle("Could Not Create Asset");
+                        builder1.setMessage("Encountered error(" + Integer.toString(aError) + ") while creating asset.  This could happen if the device is currently offline, or if the asset manifest was not accessible.  Please try again later.");
+                        builder1.setCancelable(false);
+                        builder1.setPositiveButton("OK",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        dialog.cancel();
+                                    }
+                                });
+
+                        AlertDialog alert11 = builder1.create();
+                        alert11.show();
+                    }
+                    Log.i(TAG, "Finished procesing hss file addedToQueue:" + addedToQueue + " error:" + aError);
+                }
+
+                @Override
+                public String didParseSegment(ISegment segment) {
+                    // This demo does not include assets that require URL manipulation.  If your assets require
+                    // that you add or change the download URL from the manifest prior to downloading it, then
+                    // you would use this method to return the modified URL.
+                    return segment.getRemotePath();
+                }
+            };
+
+            URL u;
+            try {
+                u = new URL(url);
+                manager.createHSSSegmentedAssetAsync(observer, u, 0, 0, remoteId, json,true,permObserver);
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
 	/**
 	 * Download item checking permissions and informing user of problems
-	 *  @param context Activity Context
+	 * @param context Activity Context
+     * @param service
+     * @param mediaType
 	 * @param downloadEnabledContent
 	 * @param downloadExpiry
 	 * @param expiryAfterPlay
@@ -325,7 +420,7 @@ public class VirtuosoUtil {
 			//We are using the mediaType value here to show the different ways for generating hls files.
 			switch(mediaType){
 			
-			case 3:{
+			case Catalog.MediaType.HLS:{
 				//note we would not be able to use the progress dialog if running from doBackground in an async task
 				final ProgressDialog pdlg = ProgressDialog.show(context, "Processing manifest","Adding fragments...");
 				//this case shows how to hand over an HLS file to the SDK for processing and let it choose the best bit rate.
@@ -397,7 +492,7 @@ public class VirtuosoUtil {
 				}
 			}break;
 			
-			case 4:{
+			case Catalog.MediaType.HLS_ADD_FRAGMENT:{
 				//This case shows how to generate an HLS file from a list of fragments.
 				//note that this case is being called from an AsyncTask in the CatalogDetailFragment
 				// Add file to the Q
@@ -412,7 +507,7 @@ public class VirtuosoUtil {
 				result.queued = true;
 			}break;
 			
-			case 5:{
+			case Catalog.MediaType.HLS_MANIFEST:{
 				//note we would not be able to use the progress dialog if running from doBackground in an async task
 				final ProgressDialog pdlg = ProgressDialog.show(context, "Processing manifest","Adding fragments...");
 				//This case shows how to parse a play list and choose one for adding to the queue
@@ -483,19 +578,23 @@ public class VirtuosoUtil {
 	}
 
 	private static boolean isDash(int type){
-		return type == 6;
+		return type == Catalog.MediaType.MPD;
 	}
 
 	private static boolean isHls(int type) {
 		switch (type) {
-			case 3:
-			case 4:
-			case 5:
+			case Catalog.MediaType.HLS:
+			case Catalog.MediaType.HLS_ADD_FRAGMENT:
+			case Catalog.MediaType.HLS_MANIFEST:
 				return true;
 		}
 		return false;
 	}
-	
+
+	private static boolean isHss(int type) {
+		return type == Catalog.MediaType.HSS;
+	}
+
 	static List<String> generateHLSFragmentURLS(String base,int lastFragId){
 		ArrayList<String> fragments = new ArrayList<String>();
 		for(int i = 0;i<=lastFragId; i++){
@@ -516,7 +615,7 @@ public class VirtuosoUtil {
 		if (c == null || c.getCount() == 0) {
 			return;
 		}
-		final String assetId = c.getString(c.getColumnIndex(CatalogColumns._ID));
+		final String assetId = c.getString(c.getColumnIndex(CatalogColumns.ASSET_ID));
 		IAsset asset = getVirtuosoAsset(manager,assetId);
 		
 		// If we have an SDK object for the asset, then it's downloaded or downloading.

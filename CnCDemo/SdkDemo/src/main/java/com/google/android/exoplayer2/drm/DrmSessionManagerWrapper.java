@@ -14,6 +14,7 @@
 package com.google.android.exoplayer2.drm;
 
 import android.content.Context;
+import android.media.MediaDrm;
 import android.os.Handler;
 import android.os.Looper;
 
@@ -33,6 +34,8 @@ import java.util.UUID;
 public class DrmSessionManagerWrapper implements DrmSessionManager<FrameworkMediaCrypto> {
 
     private final VirtuosoDrmSessionManager mDrmSessionManager;
+    // This is optional if you wish to view the Drm events yourself
+    private final MediaDrm.OnEventListener mDrmEventListener;
 
     public DrmSessionManagerWrapper(Context context,
                                      UUID uuid,
@@ -40,9 +43,11 @@ public class DrmSessionManagerWrapper implements DrmSessionManager<FrameworkMedi
                                      HashMap<String, String> optionalKeyRequestParameters,
                                      Looper playbackLooper,
                                      Handler eventHandler,
-                                     VirtuosoDrmSessionManager.EventListener eventListener)  throws com.penthera.virtuososdk.client.drm.UnsupportedDrmException {
+                                     VirtuosoDrmSessionManager.EventListener eventListener,
+                                     MediaDrm.OnEventListener onEventListener)  throws com.penthera.virtuososdk.client.drm.UnsupportedDrmException {
         mDrmSessionManager = new VirtuosoDrmSessionManager(context,uuid, asset,optionalKeyRequestParameters,
                 playbackLooper,eventHandler,eventListener);
+        mDrmEventListener = onEventListener;
     }
 
     public DrmSessionManagerWrapper(Context context,
@@ -51,9 +56,11 @@ public class DrmSessionManagerWrapper implements DrmSessionManager<FrameworkMedi
                                      HashMap<String, String> optionalKeyRequestParameters,
                                      Looper playbackLooper,
                                      Handler eventHandler,
-                                     VirtuosoDrmSessionManager.EventListener eventListener)  throws com.penthera.virtuososdk.client.drm.UnsupportedDrmException {
+                                     VirtuosoDrmSessionManager.EventListener eventListener,
+                                     MediaDrm.OnEventListener onEventListener)  throws com.penthera.virtuososdk.client.drm.UnsupportedDrmException {
         mDrmSessionManager = new VirtuosoDrmSessionManager(context,uuid,remoteAssetId,optionalKeyRequestParameters,
                 playbackLooper,eventHandler,eventListener);
+        mDrmEventListener = onEventListener;
     }
 
     @Override
@@ -77,6 +84,7 @@ public class DrmSessionManagerWrapper implements DrmSessionManager<FrameworkMedi
             }
         });
         session.setLooper(playbackLooper);
+        session.setDrmOnEventListener(mDrmEventListener);
 
         return new DrmSessionWrapper(session);
     }

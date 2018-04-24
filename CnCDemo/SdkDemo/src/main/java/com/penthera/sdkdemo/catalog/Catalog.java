@@ -41,8 +41,10 @@ public final class Catalog {
 		/** The MIME type of a CONTENT_URI sub-directory of a single content item */
 		public static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/vnd.virtuososdk.Catalog";
 
-		/** Asset ID from the server */
+		/** Internal ID for database */
 		public static final String _ID = "_id";
+		/** Asset ID from the server */
+		public static final String ASSET_ID = "asset_id";
 		/** Access window */
 		public static final String ACCESS_WINDOW = "accessWindow";		
 		/** timestamp when item expires in seconds */
@@ -116,12 +118,34 @@ public final class Catalog {
 	 */
 	public static final class Query {				
 		/** Query on asset/catalog ID */
-		public static final String WHERE_ID_IS = Catalog.CatalogColumns._ID + "=?";
+		public static final String WHERE_ID_IS = Catalog.CatalogColumns.ASSET_ID + "=?";
 
 		/** Query on item type */
 		public static final String WHERE_TYPE_IS = Catalog.CatalogColumns.TYPE + "=?";
 
 		/** Query on parent asset/catalog ID */
 		public static final String WHERE_PARENT_IS = Catalog.CatalogColumns.PARENT + "=?";		
+	}
+
+	/** Media types */
+	public static final class MediaType {
+
+		/** A normal mp4 */
+		public static final int MP4 = 2;
+
+		/** Shows how an HLS file is passed to Virtuoso for it to choose the best bit rate */
+		public static final int HLS = 3;
+
+		/** An HLS that will be constructed by adding the fragments */
+		public static final int HLS_ADD_FRAGMENT  = 4;
+
+		/** Shows how an HLS manifest is parsed and a play list chosen */
+		public static final int HLS_MANIFEST = 5;
+
+		/** MPDash */
+		public static final int MPD = 6;
+
+		/** HSS */
+		public static final int HSS = 7;
 	}
 }

@@ -19,7 +19,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -35,7 +35,7 @@ import com.penthera.virtuososdk.client.Observers.IBackplaneObserver;
 /**
  * Base activity for the all activities connection to the Virtuoso service
  */
-public abstract class SdkDemoBaseActivity extends ActionBarActivity {
+public abstract class SdkDemoBaseActivity extends AppCompatActivity {
 
 	/** Check whether intent extras contains this key to determine if a sync should be carried out on connection to Virtuoso */
 	public static final String SYNC_ON_CONNECT = "sync_on_connnect";

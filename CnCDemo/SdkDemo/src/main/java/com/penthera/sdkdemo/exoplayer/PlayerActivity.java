@@ -410,10 +410,10 @@ public class PlayerActivity extends Activity implements OnClickListener, Playbac
 
         if (asset == null) {
             return new DrmSessionManagerWrapper(getApplicationContext(), uuid,
-                    assetId, keyRequestPropertiesMap, null, mainHandler, drmListener);
+                    assetId, keyRequestPropertiesMap, null, mainHandler, drmListener, eventLogger);
         } else {
             return new DrmSessionManagerWrapper(getApplicationContext(), uuid,
-                    asset, keyRequestPropertiesMap, null, mainHandler, drmListener);
+                    asset, keyRequestPropertiesMap, null, mainHandler, drmListener, eventLogger);
         }
     }
 

@@ -44,7 +44,7 @@ public class CatalogDb {
 	/** The name of the DB on internal storage */
 	private static final String DATABASE_NAME = "catalog.db";
 	/** The version of the DB used for upgrades */
-	private static final int DATABASE_VERSION = 3;
+	private static final int DATABASE_VERSION = 4;
 
 	private static CatalogDb iInstance = null;
 	private DatabaseHelper iHelper = null;
@@ -207,14 +207,13 @@ public class CatalogDb {
 						case 0:
 							createCatalogTable(db);		
 							createCatalogTypeTable(db);		
-							upgradedVersion = 1;
+							upgradedVersion = DATABASE_VERSION;
 							break;
-						case 1:
-							db.execSQL("ALTER TABLE " + CATALOG_TABLE_NAME + " ADD " + CatalogColumns.SUBCRIPTION_ASSET + " BOOLEAN DEFAULT 0");	
-							upgradedVersion = 2;
-							break;
+						case 1: // upgrades are unnecessary - simply recreate
 						case 2:
-							db.execSQL("ALTER TABLE " + CATALOG_TABLE_NAME + " ADD " + CatalogColumns.DRM_SCHEME_UUID + " TEXT");
+                        case 3:  // recreate because structure changed
+                            db.execSQL("DROP TABLE IF EXISTS " + CATALOG_TABLE_NAME);
+                            createCatalogTable(db);
 							upgradedVersion = DATABASE_VERSION;
 							break;
 						}
@@ -227,7 +226,9 @@ public class CatalogDb {
 				void createCatalogTable(SQLiteDatabase db) {
 					db.execSQL("CREATE TABLE " + CATALOG_TABLE_NAME + " ("
 							+ CatalogColumns._ID
-							+ " TEXT PRIMARY KEY, " // REMOTE - ASSET ID [FROM CATALOG/SERVER]
+							+ " INTEGER PRIMARY KEY AUTOINCREMENT, "
+							+ CatalogColumns.ASSET_ID
+							+ " TEXT UNIQUE, " // REMOTE - ASSET ID [FROM CATALOG/SERVER]
 							+ CatalogColumns.ACCESS_WINDOW
 							+ " INTEGER DEFAULT 0, "
 							+ CatalogColumns.CONTENT_RATING 
@@ -289,7 +290,11 @@ public class CatalogDb {
 							+ CatalogColumns.FRAGMENT_COUNT
 							+ " INTEGER DEFAULT 0, "
 							+ CatalogColumns.FRAGMENT_PREFIX
-							+ " TEXT"						
+							+ " TEXT, "
+                            + CatalogColumns.SUBCRIPTION_ASSET
+                            + " BOOLEAN DEFAULT 0, "
+                            + CatalogColumns.DRM_SCHEME_UUID
+                            + " TEXT"
 							+ ");");
 				}
 

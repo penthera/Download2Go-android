@@ -15,7 +15,10 @@ package com.penthera.sdkdemo.exoplayer;
  * limitations under the License.
 */
 
+import android.media.MediaDrm;
 import android.os.SystemClock;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.Surface;
 import com.google.android.exoplayer2.C;
@@ -58,7 +61,7 @@ import java.util.Locale;
 final class EventLogger implements Player.EventListener,
         AudioRendererEventListener, VideoRendererEventListener, MediaSourceEventListener,
         VirtuosoDrmSessionManager.EventListener,
-        MetadataOutput {
+        MetadataOutput, MediaDrm.OnEventListener {
 
     private static final String TAG = "EventLogger";
     private static final int MAX_TIMELINE_ITEM_LINES = 3;
@@ -357,6 +360,15 @@ final class EventLogger implements Player.EventListener,
     public void onDownstreamFormatChanged(int trackType, Format trackFormat, int trackSelectionReason,
                                           Object trackSelectionData, long mediaTimeMs) {
         // Do nothing.
+    }
+
+
+    /**
+     * @see MediaDrm.OnEventListener#onEvent(MediaDrm, byte[], int, int, byte[])
+     */
+    @Override
+    public void onEvent(@NonNull MediaDrm md, @Nullable byte[] sessionId, int event, int extra, @Nullable byte[] data) {
+        Log.d(TAG, "MediaDrm event: " + event);
     }
 
     // Internal methods

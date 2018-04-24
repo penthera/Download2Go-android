@@ -32,7 +32,7 @@ allprojects {
 dependencies {
     implementation project(':SDK')
     implementation 'com.google.android.exoplayer:exoplayer:2.7.0'
-    implementation 'com.android.support:appcompat-v7:24.0.+'
+    implementation 'com.android.support:appcompat-v7:26.0.+'
 
     implementation ('com.google.android.gms:play-services:10.2.1')
     implementation ('com.google.firebase:firebase-messaging:10.2.1')

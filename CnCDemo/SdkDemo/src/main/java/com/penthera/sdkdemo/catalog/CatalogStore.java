@@ -66,7 +66,7 @@ public class CatalogStore {
 			}
 			parseCatalogType(context, root);
 			parseContentItems(context, db, root.getJSONArray("contentItems"), null);
-			sp.edit().putLong(Keys.CATALOG_CLIENT_LAST_UPDATED, System.currentTimeMillis()).commit();
+			sp.edit().putLong(Keys.CATALOG_CLIENT_LAST_UPDATED, (System.currentTimeMillis() / 1000) ).commit();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -75,7 +75,7 @@ public class CatalogStore {
 	/**
 	 * Determine when catalog was last updated on the server
 	 * 
-	 * @param the context
+	 * @param context the context
 	 * @param root the catalog
 	 * @return
 	 */
@@ -122,7 +122,7 @@ public class CatalogStore {
 				JSONObject item = contentItems.getJSONObject(i);				
 				parseItem(item, cv, parentId);
 				cv.put(CatalogColumns.PARENT, parentId);
-				commit(context, db, CatalogDb.CATALOG_TABLE_NAME, cv, CatalogColumns._ID);
+				commit(context, db, CatalogDb.CATALOG_TABLE_NAME, cv, CatalogColumns.ASSET_ID);
 			}	
 		} catch (JSONException e) {
 			e.printStackTrace();
@@ -150,6 +150,10 @@ public class CatalogStore {
 				Log.w(TAG, "Insert Failed: " + cv);				
 			}
 		} else {
+			// Don't overwrite the custom object if it exists
+			String genre = cv.getAsString("genre");
+			if (genre.equalsIgnoreCase("Custom"))
+				return;
 			Log.i(TAG, "Updating: " + cv);
 			int updated = db.update(table, cv, field + "=?", new String[]{value});
 			if (updated <= 0) {
@@ -236,7 +240,7 @@ public class CatalogStore {
 	 */
 	public static void parseItem(JSONObject item, ContentValues cv, String parentId) {
 		insertValue(item, cv, "type", Catalog.CatalogColumns.TYPE, "0");
-		insertValue(item, cv, "remoteUUID", Catalog.CatalogColumns._ID, "-1"); 		
+		insertValue(item, cv, "remoteUUID", Catalog.CatalogColumns.ASSET_ID, "-1");
 		insertValue(item, cv, "accessWindow", Catalog.CatalogColumns.ACCESS_WINDOW, "0");		
 		insertValue(item, cv, "catalogExpiry", Catalog.CatalogColumns.CATALOG_EXPIRY, "0");
 		insertValue(item, cv, "contentRating", Catalog.CatalogColumns.CONTENT_RATING, "");
