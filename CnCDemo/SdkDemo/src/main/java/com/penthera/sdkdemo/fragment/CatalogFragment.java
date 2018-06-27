@@ -181,13 +181,13 @@ public class CatalogFragment extends Fragment implements LoaderManager.LoaderCal
 						
 						// Catalog Arguments
 						Bundle args = new Bundle();
-						String id = c.getString(c.getColumnIndex(CatalogColumns.ASSET_ID));
+						String id = c.getString(c.getColumnIndex(CatalogColumns._ID));
 						String title = c.getString(c.getColumnIndex(CatalogColumns.TITLE));
-						args.putString(CatalogDetail.EXTRA_ID, id);
+						args.putString(CatalogDetail.EXTRA_ID, id);						
 						args.putString(CatalogDetail.EXTRA_TITLE, title);						
 
 						// Open Catalog
-    					Util.startActivity(getActivity(), CatalogDetailActivity.class, args);
+						Util.startActivity(getActivity(), CatalogDetailActivity.class, args);
 					}
 
 					@Override

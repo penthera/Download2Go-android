@@ -1,14 +1,14 @@
 //  Copyright (c) 2013 Penthera Partners, LLC. All rights reserved.
-// 
+//
 // PENTHERA CONFIDENTIAL
 //
 // (c) 2013 Penthera Partners Inc. All Rights Reserved.
-// 
-// NOTICE: This file is the property of Penthera Partners Inc.  
+//
+// NOTICE: This file is the property of Penthera Partners Inc.
 // The concepts contained herein are proprietary to Penthera Partners Inc.
-// and may be covered by U.S. and/or foreign patents and/or patent 
+// and may be covered by U.S. and/or foreign patents and/or patent
 // applications, and are protected by trade secret or copyright law.
-// Distributing and/or reproducing this information is forbidden 
+// Distributing and/or reproducing this information is forbidden
 // unless prior written permission is obtained from Penthera Partners Inc.
 //
 
@@ -65,12 +65,12 @@ public class DiagnosticsActivity extends SdkDemoBaseActivity {
 	private String mPowerOkay = "";
 	/** The current battery threshold as a fraction of the battery level */
 	private double mBatThresh = 0.0;
-	
+
 	/** true, the device is registered */
 	private boolean mRegistered = false;
-	
+
 	/** The total amount of storage used in MB */
-	private long mUsedStorage = 0L;	
+	private long mUsedStorage = 0L;
 	/** The total amount of storage available in MB */
 	private long mRemainingStorage = 0L;
 	/** Check that there is disk space available for Virtuoso to download use */
@@ -81,10 +81,10 @@ public class DiagnosticsActivity extends SdkDemoBaseActivity {
 	/** The current download speed for the current asset */
 	private double mCurrentThroughput = 0.0;
 	/** The overall download speed for the current session */
-	private double mOverallThroughput = 0.0;	
+	private double mOverallThroughput = 0.0;
 	/** The windowed download speed */
 	private double mWindowedThroughput = 0.0;
-	
+
 	/** Check that there is a network available for Virtuoso to download */
 	private String mNetworkOkay = "";
 	/** true, Virtuoso is not currently blocked on a setting related to cell quota */
@@ -100,22 +100,22 @@ public class DiagnosticsActivity extends SdkDemoBaseActivity {
 	private int mEngStat;
 	/** The current max storage setting in MB */
 	private long mMaxStorageAllowed = 0L;
-	
+
 	/** The authorization status */
 	private int mAuthStatus = AuthenticationStatus.NOT_AUTHENTICATED;
 	/** Number of devices enabled for download */
 	private long mMaxDeviceDownlaodEnabled;
 	/** The number of devices used against the overall quota */
 	private long mUsedDownloadEnabledQuota = 0;
-	
+
 	/** specifies the amount of time (in seconds) for which a file is available after it has completed download */
 	private long mExpiryAfterDownload;
 	/** This value specifies the amount of time (in seconds) after which clients should expire files once they have been played */
 	private long mExpiryAfterPlay = 0;
-	
+
 	/** he Max Offline value or -1 if the client has not yet authenticated with the Backplane to retrieve the setting */
 	private long mMaxOffline;
-	
+
 	/** The Max Offline value or -1 if the client has not yet authenticated with the Backplane to retrieve the setting */
 	private long mLastAuth = 0;
 	/** true, device is enabled for download */
@@ -126,23 +126,23 @@ public class DiagnosticsActivity extends SdkDemoBaseActivity {
 	long mMaxPermittedAssetDownloads = 0;
 	/** maximum number of downloaded items allowed across user's devices. */
 	long mMaxPermittedAccountDownloads = 0;
-	
+
 	/** Backplane configuration settings */
 	private String mDeviceNickname, mUser, mBackplaneUrl = "";
 
 	//handle on the backplane
 	private IBackplane mBackplane;
-	
+
 	//handle on the backplane settings
 	private IBackplaneSettings mBackplaneSettings;
-	
+
 	//handle on Virtuoso's settings
 	private ISettings mSettings;
-	
+
 	boolean mCanUpdate = true;
 	final Object mBlocker = new Object();
 
-	
+
 	private IService.IConnectionObserver mConnectionObserver = new IService.IConnectionObserver(){
 
 		@Override
@@ -154,7 +154,7 @@ public class DiagnosticsActivity extends SdkDemoBaseActivity {
 		@Override
 		public void disconnected() {
 		}
-		
+
 	};
 	private IService mConnectedService;
 
@@ -173,7 +173,7 @@ public class DiagnosticsActivity extends SdkDemoBaseActivity {
 			mCellOkay = mService.isCellularDataQuotaOK() ? "OKAY":"NOT OKAY";
 			mUsedCellQuota = mService.getUtilizedCellularDataQuota();
 			mDiskOkay = mService.isDiskStatusOK() ? "OKAY":"NOT OKAY";
-			
+
 
 			mCellquota = mSettings.getCellularDataQuota();
 			mQuotaStart = mSettings.getCellularDataQuotaStart()*1000;
@@ -199,7 +199,7 @@ public class DiagnosticsActivity extends SdkDemoBaseActivity {
 			if(TextUtils.isEmpty(value)) value = "https://demo.penthera.com/";
 			mBackplaneUrl = value;
 			mLastAuth = mBackplane.getLastAuthentication();
-			
+
 			if(mConnectedService != null  && mConnectedService.isBound()){
 				try{
 					mEngStat = mConnectedService.getStatus();
@@ -207,7 +207,7 @@ public class DiagnosticsActivity extends SdkDemoBaseActivity {
 					mOverallThroughput = mConnectedService.getOverallThroughput();
 					mWindowedThroughput = mConnectedService.getWindowedThroughput();
 				}
-				
+
 				catch(Exception e) {
 					e.printStackTrace();
 				}
@@ -221,7 +221,7 @@ public class DiagnosticsActivity extends SdkDemoBaseActivity {
 	};
 
 	private final Runnable iUpdater = new Runnable(){
-		
+
 		@SuppressWarnings("deprecation")
 		@Override
 		public void run() {
@@ -250,11 +250,11 @@ public class DiagnosticsActivity extends SdkDemoBaseActivity {
 					tv = (TextView)findViewById(R.id.eap_val);
 					tv.setText("" + mExpiryAfterPlay + " secs");
 					tv = (TextView)findViewById(R.id.ead_val);
-					tv.setText("" + mExpiryAfterDownload + " secs");				
+					tv.setText("" + mExpiryAfterDownload + " secs");
 					tv = (TextView)findViewById(R.id.mdd_val);
-					tv.setText("" + mMaxDeviceDownlaodEnabled);			
+					tv.setText("" + mMaxDeviceDownlaodEnabled);
 					tv = (TextView)findViewById(R.id.deq_val);
-					tv.setText("" + mUsedDownloadEnabledQuota);		
+					tv.setText("" + mUsedDownloadEnabledQuota);
 					tv = (TextView)findViewById(R.id.isdd_val);
 					tv.setText("" + mIsDownloadEnabledDevice);
 					tv = (TextView)findViewById(R.id.mpd_val);
@@ -327,18 +327,18 @@ public class DiagnosticsActivity extends SdkDemoBaseActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_diagnostics); 
+		setContentView(R.layout.activity_diagnostics);
 
 		mSettings = mService.getSettings();
 		mBackplane = mService.getBackplane();
 		mBackplaneSettings = mBackplane.getSettings();
 		mConnectedService = mService.getService();
-		
+
 		if (!mRegistered) registerApiReceiver();
 
 		TextView tvsdk = (TextView)findViewById(R.id.textView_version);
 		tvsdk.setText(VirtuosoSDK.BUILD_VERSION);
-		
+
 		this.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 	}
 
@@ -354,7 +354,7 @@ public class DiagnosticsActivity extends SdkDemoBaseActivity {
 		synchronized(mBlocker){
 			mCanUpdate = false;
 		}
-		
+
 		mHandler.removeCallbacks(iUpdater);
 
 		mConnectedService.setConnectionObserver(null);
@@ -364,11 +364,11 @@ public class DiagnosticsActivity extends SdkDemoBaseActivity {
 	@Override
 	protected void onResume() {
 		super.onResume();
-		
+
 		synchronized(mBlocker){
 			mCanUpdate = true;
 		}
-		
+
 		mService.addObserver(mBackplaneObserver);
 		mService.addObserver(mEngineObserver);
 		mService.addObserver(mEnginePauseResumeObserver);
@@ -388,7 +388,7 @@ public class DiagnosticsActivity extends SdkDemoBaseActivity {
 		}
 	};
 
-	private IQueueObserver mQueueObserver = new QueueObserver(){		
+	private IQueueObserver mQueueObserver = new QueueObserver(){
 		@Override
 		public void enginePerformedProgressUpdateDuringDownload(IIdentifier aFile) {
 			startDataRetriever();
@@ -420,7 +420,7 @@ public class DiagnosticsActivity extends SdkDemoBaseActivity {
 	}
 
 	private BroadcastReceiver mApiReceiver = new BroadcastReceiver(){
-		static final String TAG = "Diagnostics-ApiReceiver";
+		static final String TAG = "Diagnostics-ClientMessageReceiver";
 		@Override
 		public void onReceive(Context context, Intent aIntent) {
 			String action = aIntent.getAction();

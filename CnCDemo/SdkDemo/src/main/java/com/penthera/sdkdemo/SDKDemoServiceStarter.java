@@ -12,6 +12,7 @@ import com.penthera.sdkdemo.notification.NotificationFactory;
 import com.penthera.sdkdemo.activity.SplashActivity;
 import com.penthera.virtuososdk.client.Virtuoso;
 import com.penthera.virtuososdk.service.VirtuosoServiceStarter;
+import static com.penthera.virtuososdk.utility.logger.CnCLogger.Log;
 
 public class SDKDemoServiceStarter extends VirtuosoServiceStarter {
 

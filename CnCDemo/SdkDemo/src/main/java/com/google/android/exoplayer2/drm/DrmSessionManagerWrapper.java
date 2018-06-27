@@ -15,6 +15,7 @@ package com.google.android.exoplayer2.drm;
 
 import android.content.Context;
 import android.media.MediaDrm;
+import android.media.MediaCrypto;
 import android.os.Handler;
 import android.os.Looper;
 
@@ -34,6 +35,7 @@ import java.util.UUID;
 public class DrmSessionManagerWrapper implements DrmSessionManager<FrameworkMediaCrypto> {
 
     private final VirtuosoDrmSessionManager mDrmSessionManager;
+
     // This is optional if you wish to view the Drm events yourself
     private final MediaDrm.OnEventListener mDrmEventListener;
 
@@ -76,7 +78,7 @@ public class DrmSessionManagerWrapper implements DrmSessionManager<FrameworkMedi
 
     @Override
     public DrmSession<FrameworkMediaCrypto> acquireSession(Looper playbackLooper, final DrmInitData drmInitData) {
-        IVirtuosoDrmSession session = mDrmSessionManager.open(new IDrmInitData() {
+        IVirtuosoDrmSession<MediaCrypto> session = mDrmSessionManager.open(new IDrmInitData() {
             @Override
             public SchemeInitData get(UUID schemeUuid) {
                 DrmInitData.SchemeData sd = drmInitData.get(schemeUuid);
@@ -95,13 +97,12 @@ public class DrmSessionManagerWrapper implements DrmSessionManager<FrameworkMedi
         mDrmSessionManager.close(sessionWrapper.getVirtuosoSession());
     }
 
-
     static class DrmSessionWrapper implements DrmSession<FrameworkMediaCrypto> {
 
-        private final IVirtuosoDrmSession drmSession;
+        private final IVirtuosoDrmSession<MediaCrypto> drmSession;
         private FrameworkMediaCrypto mediaCrypto = null;
 
-        public DrmSessionWrapper(IVirtuosoDrmSession session) {
+        public DrmSessionWrapper(IVirtuosoDrmSession<MediaCrypto> session) {
             drmSession = session;
             mediaCrypto = new FrameworkMediaCrypto(drmSession.getMediaCrypto());
         }

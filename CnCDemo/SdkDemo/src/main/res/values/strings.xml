@@ -17,8 +17,6 @@
 	<string name="enable">Enable</string>
 	<string name="disable">Disable</string>
 	<string name="nickname">Nickname</string>
-    <string name="edit_details">Edit details</string>
-    <string name="save">Save</string>
 
 	<!-- Screen names -->    
     <string name="about">About</string>
@@ -84,23 +82,6 @@
     <string name="expires">Expires: </string>
     <string name="available">Available: </string>
     <string name="always">Always</string>
-
-    <!-- Catalog Detail Edit -->
-    <string name="title">Title</string>
-    <string name="asset_id">Asset ID</string>
-    <string name="media_type">Media Type</string>
-    <string name="manifest">Manifest URL</string>
-    <string name="description">Description</string>
-    <string name="missing_field">Please ensure all fields are populated</string>
-    <string name="invalid_url">Invalid manifest url, please correct</string>
-
-    <!-- Don't change the order of these -->
-    <string-array name="media_types">
-        <item>HSS</item>
-        <item>HLS</item>
-        <item>MPD</item>
-        <item>MP4</item>
-    </string-array>
 
     <!-- status in detail -->
     <string name="status_downloading">Downloading</string>

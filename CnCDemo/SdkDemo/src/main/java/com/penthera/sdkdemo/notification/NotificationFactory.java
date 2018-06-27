@@ -1,14 +1,14 @@
 //  Copyright (c) 2013 Penthera Partners, LLC. All rights reserved.
-// 
+//
 // PENTHERA CONFIDENTIAL
 //
 // (c) 2013 Penthera Partners Inc. All Rights Reserved.
-// 
-// NOTICE: This file is the property of Penthera Partners Inc.  
+//
+// NOTICE: This file is the property of Penthera Partners Inc.
 // The concepts contained herein are proprietary to Penthera Partners Inc.
-// and may be covered by U.S. and/or foreign patents and/or patent 
+// and may be covered by U.S. and/or foreign patents and/or patent
 // applications, and are protected by trade secret or copyright law.
-// Distributing and/or reproducing this information is forbidden 
+// Distributing and/or reproducing this information is forbidden
 // unless prior written permission is obtained from Penthera Partners Inc.
 //
 package com.penthera.sdkdemo.notification;
@@ -47,6 +47,10 @@ public final class NotificationFactory {
 
 	static final String LOG_TAG = NotificationFactory.class.getName();
 	private static final AtomicReference<IAssetManager> _assetManager = new AtomicReference<>( null );
+	private static Notification.Builder _notificationBuilder = null;
+	private static NotificationCompat.Builder _compatNotificationBuilder = null;
+	private static String _notificationChannelID = null;
+
 	private NotificationFactory() {
 	}
 
@@ -128,12 +132,12 @@ public final class NotificationFactory {
 
 				notification_type = COMPLETED_NOTIFICATION;
 				Log.d(LOG_TAG, "DOWNLOAD COMPLETE NOTIFICATION FOR " + file.getUuid() + " stat: " + (hasInfo? info:"unknown"));
-				
+
 			} else if(INTENT_ACTION.equals(Common.Notifications.INTENT_NOTIFICATION_DOWNLOAD_START)) {
 
 				notification_type = PROGRESS_NOTIFICATION;
 				Log.d(LOG_TAG, "DOWNLOAD START NOTIFICATION FOR " + file.getUuid() + " stat: " + (hasInfo? info:"unknown"));
-				
+
 			} else if(INTENT_ACTION.equals(Common.Notifications.INTENT_NOTIFICATION_DOWNLOAD_STOPPED)) {
 
 				if(file != null){
@@ -142,7 +146,7 @@ public final class NotificationFactory {
 					Log.d(LOG_TAG, "DOWNLOAD STOP NOTIFICATION FOR UNKNOWN" + " stat: " + (hasInfo? info:"unknown"));
 				}
 				notification_type = STOPPED_NOTIFICATION;
-				
+
 			} else if(INTENT_ACTION.equals(Common.Notifications.INTENT_NOTIFICATION_DOWNLOADS_PAUSED)) {
 
 				if(file != null){
@@ -151,26 +155,26 @@ public final class NotificationFactory {
 					Log.d(LOG_TAG, "DOWNLOAD PAUSED NOTIFICATION FOR UNKNOWN" + " stat: " + (hasInfo? info:"unknown"));
 				}
 				notification_type = PAUSED_NOTIFICATION;
-				
+
 			} else if(INTENT_ACTION.equals(Common.Notifications.INTENT_NOTIFICATION_DOWNLOAD_UPDATE)) {
 
 				notification_type = PROGRESS_NOTIFICATION;
 				Log.d(LOG_TAG, "DOWNLOAD UPDATE NOTIFICATION FOR " + file.getUuid() + " stat: " + (hasInfo? info:"unknown"));
-				
-			} 
+
+			}
 			else {
 				notification_type = RESTART_NOTIFICATION;
 				Log.d(LOG_TAG, "UNHANDLED NOTIFICATION ACTION "+ action);
 			}
 		}
-		
+
 		if(notification_type > -1){
 			notification = createNotification(notification_type, aContext, aNotificationChannelID, file, aAppName);
 		}
-		
+
 		return notification;
 	}
-	
+
 	/**
 	 * create an intent for opening the application when the user clicks on the notification.
 	 * @param aContext used to get the package name
@@ -185,7 +189,7 @@ public final class NotificationFactory {
 		intent.setFlags(Intent.FLAG_FROM_BACKGROUND);
 		return intent;
 	}
-	
+
 	/**
 	 * populate the view which will be used by the notification
 	 * @param context the context
@@ -207,7 +211,7 @@ public final class NotificationFactory {
 		view.setTextViewText(R.id.queued, "Num items in queue: " + aQueueSize);
 		return view;
 	}
-	
+
 	/**
 	 * Get the size of the queue
 	 * @return size
@@ -232,7 +236,7 @@ public final class NotificationFactory {
 		}
 		return (int)  (aAsset.getCurrentSize()/expected * 100.0);
 	}
-	
+
 	/**
 	 * Get the assets title or an empty string
 	 * @param aAsset the asset
@@ -253,7 +257,7 @@ public final class NotificationFactory {
 		}
 		return title;
 	}
-	
+
 	/**
 	 * Create the notification for the specified type.
 	 * @param type The notification type.
@@ -292,14 +296,19 @@ public final class NotificationFactory {
 			title += "is starting up...";
 			break;
 		}
-		
+
 		RemoteViews view = getNotificationView(aContext, title, queued, progress);
 		Intent intent = createIntent(aContext);
 		PendingIntent pIntent = PendingIntent.getActivity(aContext, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
 
 		Notification notification = null;
 		if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && aNotificationChannelID != null && aNotificationChannelID.length() > 0) {
-			notification = new Notification.Builder(aContext,aNotificationChannelID)
+            if (_notificationBuilder == null || (_notificationChannelID == null || !_notificationChannelID.equalsIgnoreCase(aNotificationChannelID)) ){
+                _notificationBuilder = new Notification.Builder(aContext,aNotificationChannelID);
+                _notificationBuilder.setOnlyAlertOnce(true);
+                _notificationChannelID = aNotificationChannelID;
+            }
+            notification = _notificationBuilder
 					.setTicker(aAppName)
 					.setSmallIcon(R.drawable.ic_launcher)
 					.setCustomContentView(view)
@@ -308,8 +317,12 @@ public final class NotificationFactory {
 					.setOngoing(true).build();
 		}
 		else if( Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-			notification = new Notification.Builder(aContext)
-					.setTicker(aAppName)
+            if (_notificationBuilder == null) {
+                _notificationBuilder = new Notification.Builder(aContext);
+                _notificationBuilder.setOnlyAlertOnce(true);
+            }
+            notification = _notificationBuilder
+                    .setTicker(aAppName)
 					.setSmallIcon(R.drawable.ic_launcher)
 					.setCustomContentView(view)
 					.setContentIntent(pIntent)
@@ -317,7 +330,11 @@ public final class NotificationFactory {
 					.setOngoing(true).build();
 		}
 		else {
-			notification = new NotificationCompat.Builder(aContext)
+            if (_compatNotificationBuilder == null) {
+                _compatNotificationBuilder = new NotificationCompat.Builder(aContext);
+                _compatNotificationBuilder.setOnlyAlertOnce(true);
+            }
+            notification = _compatNotificationBuilder
 					.setTicker(aAppName)
 					.setSmallIcon(R.drawable.ic_launcher)
 					.setCustomContentView(view)

@@ -1,0 +1,10 @@
+<resources>
+  <style name="Theme.MyTheme" parent="@android:style/Theme.Holo" />
+  <style name="NotificationTitle" parent="@android:style/TextAppearance.Material.Notification.Title">
+      <item name="android:textColor">?android:attr/textColorPrimary</item>
+      <item name="android:textStyle">bold</item>
+  </style>
+  <style name="NotificationText" parent="@android:style/TextAppearance.Material.Notification.Line2">
+      <item name="android:textColor">?android:attr/textColorPrimary</item>
+  </style>
+</resources>

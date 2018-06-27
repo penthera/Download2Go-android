@@ -22,7 +22,7 @@ import android.os.Bundle;
 
 public class Config {
 	/** The backplane base URL */
-	public static final String BACKPLANE_URL = "https://services.penthera.com/";
+	public static final String BACKPLANE_URL = "https://demo.penthera.com/";
 
 	//SdkDemo Keys
 	/** The backplane public key.  NOTE: YOU MUST REPLACE THIS VALUE WITH YOUR OWN PENTHERA-ASSIGNED KEYS */

@@ -42,5 +42,6 @@ var classSelectorHTML = '\
 		<option value="com.penthera.virtuososdk.client/BackplaneException">BackplaneException</option>\
 		<option value="com.penthera.virtuososdk.client/ClientException">ClientException</option>\
 		<option value="com.penthera.virtuososdk.client/ServiceException">ServiceException</option>\
+		<option value="com.penthera.virtuososdk.client/UnhandledDownloadException">UnhandledDownloadException</option>\
 	</optgroup>\
 ';

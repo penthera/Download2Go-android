@@ -1,14 +1,14 @@
 //  Copyright (c) 2013 Penthera Partners, LLC. All rights reserved.
-// 
+//
 // PENTHERA CONFIDENTIAL
 //
 // (c) 2013 Penthera Partners Inc. All Rights Reserved.
-// 
-// NOTICE: This file is the property of Penthera Partners Inc.  
+//
+// NOTICE: This file is the property of Penthera Partners Inc.
 // The concepts contained herein are proprietary to Penthera Partners Inc.
-// and may be covered by U.S. and/or foreign patents and/or patent 
+// and may be covered by U.S. and/or foreign patents and/or patent
 // applications, and are protected by trade secret or copyright law.
-// Distributing and/or reproducing this information is forbidden 
+// Distributing and/or reproducing this information is forbidden
 // unless prior written permission is obtained from Penthera Partners Inc.
 //
 
@@ -17,9 +17,9 @@ package com.penthera.sdkdemo.framework;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
-import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -40,10 +40,10 @@ public abstract class SdkDemoBaseActivity extends AppCompatActivity {
 	/** Check whether intent extras contains this key to determine if a sync should be carried out on connection to Virtuoso */
 	public static final String SYNC_ON_CONNECT = "sync_on_connnect";
 	private boolean mSyncOnConnect = false;
-	
+
 	/**
 	 * Handle on service
-	 * 
+	 *
 	 * Creating here in the base class, but nothing wrong with creating in the individual activities
 	 */
 	protected Virtuoso mService;
@@ -58,13 +58,13 @@ public abstract class SdkDemoBaseActivity extends AppCompatActivity {
 	@Override
 	protected void onCreate(Bundle arg0) {
 		super.onCreate(arg0);
-		
+
 
 
 		//check whether we should sync
 		Bundle args = getIntent().getExtras();
 		mSyncOnConnect = args != null && args.getBoolean(SYNC_ON_CONNECT);
-		
+
 		mService = new Virtuoso(getApplicationContext());
 		if(mSyncOnConnect){
 			//cancel the sync flag
@@ -104,29 +104,29 @@ public abstract class SdkDemoBaseActivity extends AppCompatActivity {
 		   	mService.addObserver(mBackplaneUnregisterObserver);
 		}
 	}
-	
+
 	// onPause
 	@Override
 	protected void onPause() {
 		super.onPause();
 		if (mService != null) {
 		   	mService.removeObserver(mBackplaneUnregisterObserver);
-		   	mService.onPause();			
+		   	mService.onPause();
 		}
-	}	
+	}
 
 	// --- Menu
-		
+
 	// onCreateOptionsMenu
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu)  {		
+	public boolean onCreateOptionsMenu(Menu menu)  {
 		if (inf == null) {
 			inf = this.getMenuInflater();
-		}		
-		inf.inflate(R.menu.activity_base, menu);			
+		}
+		inf.inflate(R.menu.activity_base, menu);
 		return true;
 	}
-	
+
 	// onOptionsItemSelected
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
@@ -142,7 +142,7 @@ public abstract class SdkDemoBaseActivity extends AppCompatActivity {
 		}
 		return false;
 	}
-	
+
 	// --- Menu Handlers
 
 	/**
@@ -163,16 +163,16 @@ public abstract class SdkDemoBaseActivity extends AppCompatActivity {
 		} catch (BackplaneException e) {
 			e.printStackTrace();
 		}
-		
+
 	}
-	
+
 	/**
 	 * Unregister / Logout observer
 	 */
 	private IBackplaneObserver mBackplaneUnregisterObserver = new IBackplaneObserver(){
 
 		private void handleLogoutComplete(boolean success){
-			
+
 			if(mLogoutProgress != null){ try{ mLogoutProgress.dismiss();} catch(Exception e){}}
 			if(success){
 				//return to the splash activity
@@ -193,10 +193,10 @@ public abstract class SdkDemoBaseActivity extends AppCompatActivity {
 					if (BackplaneCallbackType.UNREGISTER == request || BackplaneCallbackType.REMOTE_WIPE == request)
 					{
 						handleLogoutComplete(result == BackplaneResult.SUCCESS);
-					}				
+					}
 				}
 			});
 		}
 
-	};	
+	};
 }

@@ -73,10 +73,6 @@ public class SplashActivity extends SdkDemoBaseActivity {
 	private EditText mUrl;
 	/** Backplane user edit text */
 	private EditText mUser;
-	/** Backplane public key */
-	private EditText mPublicKey;
-	/** Backplane private key */
-	private EditText mPrivateKey;
 		
 	// --- Options
 	/** Fade in delay in milliseconds */
@@ -115,8 +111,6 @@ public class SplashActivity extends SdkDemoBaseActivity {
 
 					fadeIn(R.id.lyt_url);
 					fadeIn(R.id.lyt_user);
-					fadeIn(R.id.backplane_public_key_layout);
-					fadeIn(R.id.backplane_private_key_layout);
 					break;
 				}
 				default: {
@@ -154,11 +148,7 @@ public class SplashActivity extends SdkDemoBaseActivity {
     	mUser = (EditText) this.findViewById(R.id.edt_user);
     	String identifier = mService.getBackplane().getSettings().getDeviceId();
     	mUser.setText(identifier);
-        mPublicKey = (EditText) this.findViewById(R.id.edt_public_key);
-        mPublicKey.setText(Config.BACKPLANE_PUBLIC_KEY);
-        mPrivateKey = (EditText) this.findViewById(R.id.edt_private_key);
-        mPrivateKey.setText(Config.BACKPLANE_PRIVATE_KEY);
-
+    	
     	// Authentication
 		int status = mService.getBackplane().getAuthenticationStatus();
 		if (status == Common.AuthenticationStatus.NOT_AUTHENTICATED) {
@@ -215,32 +205,6 @@ public class SplashActivity extends SdkDemoBaseActivity {
 		}
 		return user;
 	}
-
-    /**
-     * get public key from editor
-     *
-     * @return
-     */
-    private String getPublicKey() {
-        String key = mPublicKey.getText().toString();
-        if (TextUtils.isEmpty(key)) {
-            key = Config.BACKPLANE_PUBLIC_KEY;
-        }
-        return key;
-    }
-
-    /**
-     * get private key from editor
-     *
-     * @return
-     */
-    private String getPrivateKey() {
-        String key = mPrivateKey.getText().toString();
-        if (TextUtils.isEmpty(key)) {
-            key = Config.BACKPLANE_PRIVATE_KEY;
-        }
-        return key;
-    }
 
 	// onStart
 	@Override
@@ -305,7 +269,7 @@ public class SplashActivity extends SdkDemoBaseActivity {
     	try {
     			final URL url = getUrl();
     			final String user = getUser();
-    			mService.startup(url, user, null, getPublicKey(), getPrivateKey(), new IPushRegistrationObserver() {
+    			mService.startup(url, user, null, Config.BACKPLANE_PUBLIC_KEY, Config.BACKPLANE_PRIVATE_KEY, new IPushRegistrationObserver() {
 					@Override
 					public void onServiceAvailabilityResponse(int pushService, int errorCode) {
 						if(pushService == Common.PushService.FCM_PUSH && errorCode != ConnectionResult.SUCCESS)
@@ -420,7 +384,7 @@ public class SplashActivity extends SdkDemoBaseActivity {
 			Cursor c = null;
 			ContentResolver cr = getContentResolver();
 			try {
-				c = cr.query(CatalogContentProvider.CATALOG_URI, new String[]{CatalogColumns.ASSET_ID}, null, null, null);
+				c = cr.query(CatalogContentProvider.CATALOG_URI, new String[]{CatalogColumns._ID}, null, null, null);
 			} finally {
 				if (c != null) {
 					c.close();

@@ -222,19 +222,23 @@ public class SubscriptionsFragment extends Fragment {
 		}
 
 		@Override
-		public void onUnsubscribe(int result, String uuid) {
-			if (result == 0) {
-				mSubscribeLayout.setVisibility(View.VISIBLE);
-				mUnsubscribeLayout.setVisibility(View.GONE);
-				Toast.makeText(getActivity(), "Unsubscribe Success", Toast.LENGTH_SHORT).show();	
-			} else {
-				Toast.makeText(getActivity(), "Unsubscribe Failure", Toast.LENGTH_SHORT).show();							
-			}
+		public void onUnsubscribe(final int result,final String uuid) {
+			getActivity().runOnUiThread(new Runnable() {
+				@Override
+				public void run() {
+					if (result == 0) {
+						mSubscribeLayout.setVisibility(View.VISIBLE);
+						mUnsubscribeLayout.setVisibility(View.GONE);
+						Toast.makeText(getActivity(), "Unsubscribe Success", Toast.LENGTH_SHORT).show();
+					} else {
+						Toast.makeText(getActivity(), "Unsubscribe Failure", Toast.LENGTH_SHORT).show();
+					}
 
-			try {
-				mProgressDialog.dismiss();
-			} catch(Exception e){}
-
+					try {
+						mProgressDialog.dismiss();
+					} catch(Exception e){}
+				}
+			});
 		}
 
 		@Override

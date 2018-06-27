@@ -55,7 +55,7 @@ public class AboutFragment extends Fragment {
 		
 		// SDK Version
 		TextView serverSdkVersion = (TextView) mLayout.findViewById(R.id.txt_server_sdk_verison);
-		serverSdkVersion.setText(String.format(getString(R.string.server_sdk_version), VirtuosoSDK.NAME));		
+		serverSdkVersion.setText(String.format(getString(R.string.server_sdk_version), VirtuosoSDK.FULL_VERSION));
 
 		// SDK Demo Version
 		TextView clientVersion = (TextView) mLayout.findViewById(R.id.txt_sdk_demo_verison);

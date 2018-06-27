@@ -26,21 +26,40 @@ allprojects {
             dirs 'libs'
         }
         google()
+
+        mavenCentral()
+        maven{
+
+            credentials {
+                username 'public'
+                password 'publ1c'
+            }
+            url "http://clientbuilds.penthera.com:8081/repository/releases/"
+        }
     }
 }
 
 dependencies {
-    implementation project(':SDK')
-    implementation 'com.google.android.exoplayer:exoplayer:2.7.0'
-    implementation 'com.android.support:appcompat-v7:26.0.+'
+    //implementation project(':SDK')
 
-    implementation ('com.google.android.gms:play-services:10.2.1')
-    implementation ('com.google.firebase:firebase-messaging:10.2.1')
+    implementation 'com.penthera:CnC_Android_SDK_Debug:3.14.0@aar'
+    implementation 'com.google.android.exoplayer:exoplayer:2.7.0'
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+
+    implementation 'commons-codec:commons-codec:1.9'
+    implementation group: 'com.squareup.okhttp3', name: 'okhttp', version: '3.9.0'
+    implementation group: 'com.squareup.okio', name: 'okio', version: '1.13.0'
+    implementation group: 'com.squareup.okhttp3', name: 'mockwebserver', version: '3.9.0'
+
+    implementation ('com.google.android.gms:play-services:10.2.1'){
+        exclude group: 'com.android.support'
+    }
+    implementation 'com.google.firebase:firebase-messaging:10.2.1'
     implementation files('libs/CWAC-SackOfViewsAdapter.jar')
     implementation files('libs/image-master.jar')
     implementation files('libs/mergeadapter.jar')
     implementation files('libs/prettytime-1.0.8.Final.jar')
-    implementation 'com.android.support:multidex:1.0.1'
+    implementation 'com.android.support:multidex:1.0.3'
     provided files('libs/amazon-device-messaging-1.0.1.jar')
 }
 apply plugin: 'com.google.gms.google-services'

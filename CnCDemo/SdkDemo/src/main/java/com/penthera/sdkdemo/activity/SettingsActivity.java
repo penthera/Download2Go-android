@@ -167,7 +167,7 @@ public class SettingsActivity extends SdkDemoBaseActivity {
         mProgressPercent = (SeekBar) findViewById(R.id.progress_percent_value);
         mProgressTimed = (EditText) findViewById(R.id.progress_timed_value);
         mProgressPercentDetails  = (TextView)findViewById(R.id.ProgressPercent);
-
+        
         SeekBar.OnSeekBarChangeListener seekProgressChangeListener = new SeekBar.OnSeekBarChangeListener(){
 
 			@Override
@@ -285,21 +285,22 @@ public class SettingsActivity extends SdkDemoBaseActivity {
 			
         });
         mEnable.setEnabled(false);
-		this.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-		mAlwaysRequestPermissions = (ToggleButton) findViewById(R.id.always_req_perm_toggle);
-		mAlwaysRequestPermissions.setChecked(mSettings.alwaysRequestPermission());
-		mAlwaysRequestPermissions.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				try {
-					mSettings.setAlwaysRequestPermission(mAlwaysRequestPermissions.isChecked()).save();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-		mAlwaysRequestPermissions.setEnabled(true);
+        mAlwaysRequestPermissions = (ToggleButton) findViewById(R.id.always_req_perm_toggle);
+        mAlwaysRequestPermissions.setChecked(mSettings.alwaysRequestPermission());
+        mAlwaysRequestPermissions.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    mSettings.setAlwaysRequestPermission(mAlwaysRequestPermissions.isChecked()).save();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        mAlwaysRequestPermissions.setEnabled(true);
+
+		this.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 		iHandler.post(iUpdater);	
     }

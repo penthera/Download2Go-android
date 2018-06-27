@@ -1,3 +1,18 @@
+/*
+ * Copyright (C) 2014 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.penthera.sdkdemo.exoplayer;
 /*
  * Copyright (C) 2016 The Android Open Source Project
@@ -41,17 +56,12 @@ import com.google.android.exoplayer2.ExoPlayerFactory;
 import com.google.android.exoplayer2.PlaybackPreparer;
 import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.SimpleExoPlayer;
-import com.google.android.exoplayer2.Timeline;
 import com.google.android.exoplayer2.drm.DrmSessionManager;
 import com.google.android.exoplayer2.drm.DrmSessionManagerWrapper;
 import com.google.android.exoplayer2.drm.FrameworkMediaCrypto;
-import com.google.android.exoplayer2.source.BehindLiveWindowException;
-import com.google.android.exoplayer2.trackselection.AdaptiveTrackSelection;
-import com.google.android.exoplayer2.ui.PlayerControlView;
-import com.google.android.exoplayer2.ui.PlayerView;
-import com.penthera.sdkdemo.R;
 import com.google.android.exoplayer2.mediacodec.MediaCodecRenderer.DecoderInitializationException;
 import com.google.android.exoplayer2.mediacodec.MediaCodecUtil.DecoderQueryException;
+import com.google.android.exoplayer2.source.BehindLiveWindowException;
 import com.google.android.exoplayer2.source.ExtractorMediaSource;
 import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.source.TrackGroupArray;
@@ -60,12 +70,14 @@ import com.google.android.exoplayer2.source.dash.DefaultDashChunkSource;
 import com.google.android.exoplayer2.source.hls.HlsMediaSource;
 import com.google.android.exoplayer2.source.smoothstreaming.DefaultSsChunkSource;
 import com.google.android.exoplayer2.source.smoothstreaming.SsMediaSource;
+import com.google.android.exoplayer2.trackselection.AdaptiveTrackSelection;
 import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
 import com.google.android.exoplayer2.trackselection.MappingTrackSelector.MappedTrackInfo;
 import com.google.android.exoplayer2.trackselection.TrackSelection;
 import com.google.android.exoplayer2.trackselection.TrackSelectionArray;
 import com.google.android.exoplayer2.ui.DebugTextViewHelper;
-import com.google.android.exoplayer2.ui.PlaybackControlView;
+import com.google.android.exoplayer2.ui.PlayerControlView;
+import com.google.android.exoplayer2.ui.PlayerView;
 import com.google.android.exoplayer2.ui.SimpleExoPlayerView;
 import com.google.android.exoplayer2.upstream.DataSource;
 import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter;
@@ -73,6 +85,7 @@ import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.upstream.DefaultHttpDataSourceFactory;
 import com.google.android.exoplayer2.upstream.HttpDataSource;
 import com.google.android.exoplayer2.util.Util;
+import com.penthera.sdkdemo.R;
 import com.penthera.virtuososdk.Common;
 import com.penthera.virtuososdk.client.IAsset;
 import com.penthera.virtuososdk.client.ISegmentedAsset;
@@ -104,7 +117,7 @@ public class PlayerActivity extends Activity implements OnClickListener, Playbac
     public static final String VIRTUOSO_ASSET_ID = "asset_id";
     public static final String PREFER_EXTENSION_DECODERS = "prefer_extension_decoders";
 
-    public static final String ACTION_VIEW = "com.penthera.sdkdemo.exoplayer.action.VIEW";
+    public static final String ACTION_VIEW = "com.penthera.harness.exoplayer.action.VIEW";
 
     private static final DefaultBandwidthMeter BANDWIDTH_METER = new DefaultBandwidthMeter();
     private static final CookieManager DEFAULT_COOKIE_MANAGER;
@@ -115,7 +128,6 @@ public class PlayerActivity extends Activity implements OnClickListener, Playbac
     }
 
     private Handler mainHandler;
-    private Timeline.Window window;
     private EventLogger eventLogger;
     private PlayerView playerView;
     private LinearLayout debugRootView;
@@ -132,7 +144,6 @@ public class PlayerActivity extends Activity implements OnClickListener, Playbac
     private TrackGroupArray lastSeenTrackGroupArray;
 
     private boolean shouldAutoPlay;
-    private boolean isTimelineStatic;
     private int resumeWindow;
     private long resumePosition;
 
@@ -142,9 +153,10 @@ public class PlayerActivity extends Activity implements OnClickListener, Playbac
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         shouldAutoPlay = true;
+        clearResumePosition();
+
         mediaDataSourceFactory = buildDataSourceFactory(true);
         mainHandler = new Handler();
-        window = new Timeline.Window();
         if (CookieHandler.getDefault() != DEFAULT_COOKIE_MANAGER) {
             CookieHandler.setDefault(DEFAULT_COOKIE_MANAGER);
         }
@@ -157,7 +169,7 @@ public class PlayerActivity extends Activity implements OnClickListener, Playbac
         retryButton = (Button) findViewById(R.id.retry_button);
         retryButton.setOnClickListener(this);
 
-        playerView = findViewById(R.id.player_view);
+        playerView = (SimpleExoPlayerView) findViewById(R.id.player_view);
         playerView.setControllerVisibilityListener(this);
         playerView.requestFocus();
     }
@@ -165,7 +177,6 @@ public class PlayerActivity extends Activity implements OnClickListener, Playbac
     @Override
     public void onNewIntent(Intent intent) {
         releasePlayer();
-        isTimelineStatic = false;
         shouldAutoPlay = true;
         clearResumePosition();
         setIntent(intent);
@@ -203,6 +214,8 @@ public class PlayerActivity extends Activity implements OnClickListener, Playbac
         }
     }
 
+
+    @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions,
                                            int[] grantResults) {
         if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
@@ -416,7 +429,6 @@ public class PlayerActivity extends Activity implements OnClickListener, Playbac
                     asset, keyRequestPropertiesMap, null, mainHandler, drmListener, eventLogger);
         }
     }
-
 
     private void releasePlayer() {
         if (player != null) {
@@ -641,7 +653,7 @@ public class PlayerActivity extends Activity implements OnClickListener, Playbac
 
     private static class DrmListener implements VirtuosoDrmSessionManager.EventListener {
 
-        private  PlayerActivity mActivity;
+        private PlayerActivity mActivity;
         private EventLogger mLogger;
 
         public DrmListener(PlayerActivity activity, EventLogger logger) {
@@ -662,3 +674,4 @@ public class PlayerActivity extends Activity implements OnClickListener, Playbac
         }
     }
 }
+
