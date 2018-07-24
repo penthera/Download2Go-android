@@ -60,6 +60,7 @@ public final class NotificationFactory {
 	final static int STOPPED_NOTIFICATION		= 2;
 	final static int PAUSED_NOTIFICATION		= 3;
 	final static int RESTART_NOTIFICATION		= 4;
+	final static int FAILED_NOTIFICATION		= 5;
 
 	/**
 	 * Get the notification to be used for the intent.
@@ -161,7 +162,11 @@ public final class NotificationFactory {
 				notification_type = PROGRESS_NOTIFICATION;
 				Log.d(LOG_TAG, "DOWNLOAD UPDATE NOTIFICATION FOR " + file.getUuid() + " stat: " + (hasInfo? info:"unknown"));
 
-			}
+			} else if (INTENT_ACTION.equals(Common.Notifications.INTENT_NOTIFICATION_MANIFEST_PARSE_FAILED)) {
+
+                notification_type = FAILED_NOTIFICATION;
+                Log.d(LOG_TAG, "EXCEPTIONAL CIRCUMSTANCE NOTIFICATION for asset failed to be queued while in background");
+            }
 			else {
 				notification_type = RESTART_NOTIFICATION;
 				Log.d(LOG_TAG, "UNHANDLED NOTIFICATION ACTION "+ action);
@@ -295,6 +300,10 @@ public final class NotificationFactory {
 		case RESTART_NOTIFICATION:
 			title += "is starting up...";
 			break;
+
+        case FAILED_NOTIFICATION:
+            title += " asset could not be queued";
+            break;
 		}
 
 		RemoteViews view = getNotificationView(aContext, title, queued, progress);

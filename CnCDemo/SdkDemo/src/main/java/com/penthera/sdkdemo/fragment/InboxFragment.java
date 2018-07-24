@@ -77,6 +77,8 @@ import com.penthera.virtuososdk.client.IAssetManager;
 import com.penthera.virtuososdk.client.IAssetPermission;
 import com.penthera.virtuososdk.client.IQueue;
 import com.penthera.virtuososdk.client.IService;
+import com.penthera.virtuososdk.client.Observers;
+import com.penthera.virtuososdk.client.QueueObserver;
 import com.penthera.virtuososdk.client.ServiceException;
 import com.penthera.virtuososdk.client.Virtuoso;
 import com.penthera.virtuososdk.client.database.AssetColumns;
@@ -274,6 +276,7 @@ public class InboxFragment extends ListFragment implements LoaderManager.LoaderC
 		super.onResume();
 		if (mService != null) {
 			mService.addObserver(mEngineObserver);
+			mService.addObserver(mQueueObserver);
 		} else {
 			Log.w(TAG, "problem");
 		}
@@ -298,12 +301,24 @@ public class InboxFragment extends ListFragment implements LoaderManager.LoaderC
 	}
 	private MyEngineObserver mEngineObserver = new MyEngineObserver();
 
+	private class MyQueueObserver extends QueueObserver {
+		@Override
+		public void engineEncounteredErrorParsingAsset(String mAssetId) {
+			// Handle the case here where an asset that failed to complete queuing during a pause
+			// is returned to the app after resuming, where the observer is no longer available
+			Log.e(TAG,"Failed to parse asset but observer unavailable to report issue");
+		}
+	}
+
+	private Observers.IQueueObserver mQueueObserver = new MyQueueObserver();
+
 	// onPause
 	@Override
 	public void onPause() {
 		super.onPause();
 		if (mService != null) {
 			mService.removeObserver(mEngineObserver);
+			mService.removeObserver(mQueueObserver);
 		}
 
 		if( mConnectedService != null )
