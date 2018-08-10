@@ -621,6 +621,11 @@ public class CatalogDetailFragment extends Fragment implements LoaderManager.Loa
 					value = "AWAITING PERMISSION";
 					break;
 
+				case AssetStatus.DOWNLOAD_DENIED_COPIES:
+					assetStatus = "Queued";
+					value = "DENIED : COPIES";
+					break;
+
 				default:
 					assetStatus = getString(R.string.status_pending);
 					value = "pending";

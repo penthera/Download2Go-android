@@ -740,6 +740,10 @@ public class InboxFragment extends ListFragment implements LoaderManager.LoaderC
 							value = "DENIED :MPD";
 							break;
 
+                        case AssetStatus.DOWNLOAD_DENIED_COPIES:
+                            value = "DENIED : COPIES";
+                            break;
+
 						case AssetStatus.DOWNLOAD_BLOCKED_AWAITING_PERMISSION:
 							value = "AWAITING PERMISSION";
 							break;

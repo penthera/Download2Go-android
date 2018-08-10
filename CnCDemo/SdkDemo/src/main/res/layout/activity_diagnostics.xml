@@ -397,6 +397,24 @@
            </TableRow>
 
            <TableRow
+               android:id="@+id/tableRowMac"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content" >
+
+               <TextView
+                   android:id="@+id/textViewMac"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="Max Asset Copies (MCA):"
+                   android:textStyle="bold"  />
+               <TextView
+                   android:id="@+id/mac_val"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="undefined" />
+           </TableRow>
+
+           <TableRow
                 android:id="@+id/tableRow11"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" >

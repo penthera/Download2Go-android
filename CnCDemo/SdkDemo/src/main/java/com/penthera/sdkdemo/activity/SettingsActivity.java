@@ -18,6 +18,7 @@ import java.util.Date;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -91,6 +92,9 @@ public class SettingsActivity extends SdkDemoBaseActivity {
 	 */
 	private ToggleButton mAlwaysRequestPermissions;
 
+	/** Change which video codecs to include in downloaded content*/
+	private EditText mCodecs;
+
 	/** Handle to the backplane interface */
 	private IBackplane mBackplane;
 
@@ -133,6 +137,7 @@ public class SettingsActivity extends SdkDemoBaseActivity {
 			mProgressTimed.setText(""+mSettings.getProgressUpdateByTime());
 			mPermittedSegmentErrors.setText(""+mSettings.getMaxPermittedSegmentErrors());
 			mProxySegmentErrorHttpCode.setText(""+mSettings.getSegmentErrorHttpCode());
+			mCodecs.setText(mSettings.getDesiredVideoFormats() != null ? TextUtils.join(",", mSettings.getDesiredVideoFormats()) : "");
 		}};
 			
 	@Override
@@ -300,6 +305,14 @@ public class SettingsActivity extends SdkDemoBaseActivity {
         });
         mAlwaysRequestPermissions.setEnabled(true);
 
+        mCodecs = findViewById(R.id.sdk_allowed_video_codecs);
+        findViewById(R.id.sdk_allowed_codecs_reset).setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				mSettings.resetDesiredVideoFormats().save();
+			}
+		});
+
 		this.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 		iHandler.post(iUpdater);	
@@ -354,6 +367,7 @@ public class SettingsActivity extends SdkDemoBaseActivity {
 					.setHTTPSocketTimeout(Integer.parseInt(mSocketTimeout.getText().toString()))
 					.setSegmentErrorHttpCode(Integer.parseInt(mProxySegmentErrorHttpCode.getText().toString()))
 					.setMaxPermittedSegmentErrors(Integer.parseInt(mPermittedSegmentErrors.getText().toString()))
+					.setDesiredVideoFormats(mCodecs.getText().toString().length() > 0 ? mCodecs.getText().toString().split(",") : null)
 					.save();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -378,5 +392,9 @@ public class SettingsActivity extends SdkDemoBaseActivity {
 	
 	public void onProgressTimedReset(View view) {
 		mSettings.resetProgressUpdateByTime().save();
+	}
+
+	public void onAllowedVideoCodecsReset(View view){
+		mSettings.resetDesiredVideoFormats().save();
 	}
 }

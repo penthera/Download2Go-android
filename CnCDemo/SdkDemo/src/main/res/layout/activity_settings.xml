@@ -395,6 +395,29 @@
             android:layout_height="wrap_content" />
 
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/sdk_allowed_video_codecs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:layout_weight="3"
+            android:text="@string/sdk_allowed_video_codec_hint" />
+
+        <Button
+            android:id="@+id/sdk_allowed_codecs_reset"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="onSocketTimeoutReset"
+            android:text="@string/reset" />
+
+    </LinearLayout>
     
     <Button
         android:id="@+id/apply"

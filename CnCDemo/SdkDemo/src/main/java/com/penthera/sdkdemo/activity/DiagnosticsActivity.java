@@ -126,6 +126,8 @@ public class DiagnosticsActivity extends SdkDemoBaseActivity {
 	long mMaxPermittedAssetDownloads = 0;
 	/** maximum number of downloaded items allowed across user's devices. */
 	long mMaxPermittedAccountDownloads = 0;
+	/** maximum number of copies of an asset across all devices */
+	long mMaxPermittedAssetCopies = 0;
 
 	/** Backplane configuration settings */
 	private String mDeviceNickname, mUser, mBackplaneUrl = "";
@@ -190,6 +192,7 @@ public class DiagnosticsActivity extends SdkDemoBaseActivity {
 			mMaxPermittedDownloads = mBackplaneSettings.getMaxPermittedDownloads();
 			mMaxPermittedAssetDownloads = mBackplaneSettings.getMaxDownloadsPerAsset();
 			mMaxPermittedAccountDownloads = mBackplaneSettings.getMaxDownloadsPerAccount();
+			mMaxPermittedAssetCopies = mBackplaneSettings.getMaxCopiesPerAsset();
 			mDeviceNickname = mBackplaneSettings.getDeviceNickname();
 			mUser = mBackplaneSettings.getUserId();
 			URL url = mBackplaneSettings.getURL();
@@ -263,7 +266,8 @@ public class DiagnosticsActivity extends SdkDemoBaseActivity {
 					tv.setText("" + mMaxPermittedAccountDownloads);
 					tv = (TextView)findViewById(R.id.mad_val);
 					tv.setText("" + mMaxPermittedAssetDownloads);
-
+                    tv = (TextView)findViewById(R.id.mac_val);
+                    tv.setText("" + mMaxPermittedAssetCopies);
 					tv = (TextView)findViewById(R.id.backplane_user);
 					tv.setText(mUser);
 					tv = (TextView)findViewById(R.id.device_name);
