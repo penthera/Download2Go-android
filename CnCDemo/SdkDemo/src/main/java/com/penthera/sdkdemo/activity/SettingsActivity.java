@@ -137,7 +137,7 @@ public class SettingsActivity extends SdkDemoBaseActivity {
 			mProgressTimed.setText(""+mSettings.getProgressUpdateByTime());
 			mPermittedSegmentErrors.setText(""+mSettings.getMaxPermittedSegmentErrors());
 			mProxySegmentErrorHttpCode.setText(""+mSettings.getSegmentErrorHttpCode());
-			mCodecs.setText(mSettings.getDesiredVideoFormats() != null ? TextUtils.join(",", mSettings.getDesiredVideoFormats()) : "");
+			mCodecs.setText(mSettings.getAudioCodecsToDownload() != null ? TextUtils.join(",", mSettings.getAudioCodecsToDownload()) : "");
 		}};
 			
 	@Override
@@ -309,7 +309,7 @@ public class SettingsActivity extends SdkDemoBaseActivity {
         findViewById(R.id.sdk_allowed_codecs_reset).setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				mSettings.resetDesiredVideoFormats().save();
+				mSettings.resetAudioCodecsToDownload().save();
 			}
 		});
 
@@ -367,7 +367,7 @@ public class SettingsActivity extends SdkDemoBaseActivity {
 					.setHTTPSocketTimeout(Integer.parseInt(mSocketTimeout.getText().toString()))
 					.setSegmentErrorHttpCode(Integer.parseInt(mProxySegmentErrorHttpCode.getText().toString()))
 					.setMaxPermittedSegmentErrors(Integer.parseInt(mPermittedSegmentErrors.getText().toString()))
-					.setDesiredVideoFormats(mCodecs.getText().toString().length() > 0 ? mCodecs.getText().toString().split(",") : null)
+					.setAudioCodecsToDownload(mCodecs.getText().toString().length() > 0 ? mCodecs.getText().toString().split(",") : null)
 					.save();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -395,6 +395,6 @@ public class SettingsActivity extends SdkDemoBaseActivity {
 	}
 
 	public void onAllowedVideoCodecsReset(View view){
-		mSettings.resetDesiredVideoFormats().save();
+		mSettings.resetAudioCodecsToDownload().save();
 	}
 }
