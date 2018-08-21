@@ -106,6 +106,7 @@
 	<string name="unknown">Engine Status Unknown</string>
     <string name ="request_permissions">Always Request Permissions</string>
     <string name="sdk_allowed_video_codec_hint">Allowed video codecs ex:(mp4a,ec3)</string>
+    <string name="hide_notifications_pause">Hide notifications on pause</string>
 
 	<!-- Acessibility: Descriptions of images -->
 	<string name="content_desc_app_icon">Application Icon</string>

@@ -92,6 +92,10 @@ public class SettingsActivity extends SdkDemoBaseActivity {
 	 */
 	private ToggleButton mAlwaysRequestPermissions;
 
+    /** Toggle if the downloader should leave background mode and hide any current notification when
+     * downloads are paused. */
+	private ToggleButton mBackgroundOnPause;
+
 	/** Change which video codecs to include in downloaded content*/
 	private EditText mCodecs;
 
@@ -138,6 +142,7 @@ public class SettingsActivity extends SdkDemoBaseActivity {
 			mPermittedSegmentErrors.setText(""+mSettings.getMaxPermittedSegmentErrors());
 			mProxySegmentErrorHttpCode.setText(""+mSettings.getSegmentErrorHttpCode());
 			mCodecs.setText(mSettings.getAudioCodecsToDownload() != null ? TextUtils.join(",", mSettings.getAudioCodecsToDownload()) : "");
+            mBackgroundOnPause.setChecked(mSettings.getRemoveNotificationOnPause());
 		}};
 			
 	@Override
@@ -312,6 +317,20 @@ public class SettingsActivity extends SdkDemoBaseActivity {
 				mSettings.resetAudioCodecsToDownload().save();
 			}
 		});
+
+        mBackgroundOnPause = (ToggleButton) findViewById(R.id.background_on_pause_toggle);
+        mBackgroundOnPause.setChecked(mSettings.getRemoveNotificationOnPause());
+        mBackgroundOnPause.setEnabled(true);
+        mBackgroundOnPause.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    mSettings.setRemoveNotificationOnPause(mBackgroundOnPause.isChecked()).save();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
 
 		this.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
