@@ -35,7 +35,7 @@ allprojects {
 }
 
 dependencies {
-    implementation 'com.penthera:cnc-android-sdk-debug:3.14.7'
+    implementation 'com.penthera:cnc-android-sdk-debug:3.14.8'
     implementation 'com.google.android.exoplayer:exoplayer:2.7.0'
     implementation 'com.android.support:appcompat-v7:26.1.0'
     implementation ('com.google.android.gms:play-services:10.2.1'){
