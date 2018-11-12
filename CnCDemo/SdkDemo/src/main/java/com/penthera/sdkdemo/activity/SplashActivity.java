@@ -37,6 +37,8 @@ import android.view.animation.AnimationUtils;
 import android.widget.EditText;
 
 import android.view.Menu;
+import android.widget.Toast;
+
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -50,7 +52,9 @@ import com.penthera.sdkdemo.framework.SdkDemoBaseActivity;
 import com.penthera.virtuoso.net.security.client.IKeyStore;
 import com.penthera.virtuososdk.Common;
 import com.penthera.virtuososdk.Common.BackplaneCallbackType;
+import com.penthera.virtuososdk.client.EngineObserver;
 import com.penthera.virtuososdk.client.IPushRegistrationObserver;
+import com.penthera.virtuososdk.client.Observers;
 import com.penthera.virtuososdk.client.ServiceException;
 import com.penthera.virtuososdk.client.Observers.IBackplaneObserver;
 
@@ -219,6 +223,7 @@ public class SplashActivity extends SdkDemoBaseActivity {
     	super.onResume();    	
     	if (mService!=null) {
     	   	mService.addObserver(mBackplaneObserver);
+    	   	mService.addObserver(mEngineObserver);
     	}
     }
 
@@ -228,6 +233,7 @@ public class SplashActivity extends SdkDemoBaseActivity {
     	super.onPause();
     	if (mService != null) {
     	   	mService.removeObserver(mBackplaneObserver);
+    	   	mService.removeObserver(mEngineObserver);
     	}
 
     }
@@ -484,5 +490,17 @@ public class SplashActivity extends SdkDemoBaseActivity {
 			}
 			return null;
 		}
-    } 
+    }
+
+	private Observers.IEngineObserver mEngineObserver = new EngineObserver() {
+		@Override
+		public void engineDidNotStart(String reason) {
+			runOnUiThread(new Runnable() {
+				@Override
+				public void run() {
+					Toast.makeText(SplashActivity.this, R.string.error_start_service, Toast.LENGTH_LONG).show();
+				}
+			});
+		}
+	};
 }

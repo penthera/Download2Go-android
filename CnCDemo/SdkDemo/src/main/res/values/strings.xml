@@ -8,6 +8,7 @@
     <string name="hello_world">Hello world!</string>
 
     <string name="generic_problem">Failure</string>
+    <string name="error_start_service">Fatal error: The service could not be started</string>
 
 	<!-- Generic words -->
     <string name="add">Add</string>
