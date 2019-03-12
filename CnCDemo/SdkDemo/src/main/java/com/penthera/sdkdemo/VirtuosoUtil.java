@@ -259,28 +259,33 @@ public class VirtuosoUtil {
 				}
 
 				@Override
-				public void complete(ISegmentedAsset aSegmentedAsset, int aError, boolean addedToQueue) {
+				public void complete(final ISegmentedAsset aSegmentedAsset, final int aError, final boolean addedToQueue) {
 
-					try {
-						pdlg.dismiss();
-					} catch( Exception e) {}
+					((Activity)context).runOnUiThread(new Runnable() {
+						public void run() {
+							try {
+								pdlg.dismiss();
+							} catch (Exception e) {
+							}
 
-					if( aSegmentedAsset == null ) {
-						AlertDialog.Builder builder1 = new AlertDialog.Builder(context);
-						builder1.setTitle("Could Not Create Asset");
-						builder1.setMessage("Encountered error("+Integer.toString(aError)+") while creating asset.  This could happen if the device is currently offline, or if the asset manifest was not accessible.  Please try again later.");
-						builder1.setCancelable(false);
-						builder1.setPositiveButton("OK",
-								new DialogInterface.OnClickListener() {
-									public void onClick(DialogInterface dialog, int id) {
-										dialog.cancel();
-									}
-								});
+							if (aSegmentedAsset == null) {
+								AlertDialog.Builder builder1 = new AlertDialog.Builder(context);
+								builder1.setTitle("Could Not Create Asset");
+								builder1.setMessage("Encountered error(" + Integer.toString(aError) + ") while creating asset.  This could happen if the device is currently offline, or if the asset manifest was not accessible.  Please try again later.");
+								builder1.setCancelable(false);
+								builder1.setPositiveButton("OK",
+										new DialogInterface.OnClickListener() {
+											public void onClick(DialogInterface dialog, int id) {
+												dialog.cancel();
+											}
+										});
 
-						AlertDialog alert11 = builder1.create();
-						alert11.show();
-					}
-					Log.i(TAG,"Finished procesing dash file addedToQueue:"+addedToQueue + " error:"+aError);
+								AlertDialog alert11 = builder1.create();
+								alert11.show();
+							}
+							Log.i(TAG, "Finished procesing dash file addedToQueue:" + addedToQueue + " error:" + aError);
+						}
+					});
 				}
 
 				@Override
