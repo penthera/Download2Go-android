@@ -89,6 +89,7 @@ import com.penthera.sdkdemo.R;
 import com.penthera.virtuososdk.Common;
 import com.penthera.virtuososdk.client.IAsset;
 import com.penthera.virtuososdk.client.ISegmentedAsset;
+import com.penthera.virtuososdk.client.Virtuoso;
 import com.penthera.virtuososdk.client.drm.UnsupportedDrmException;
 import com.penthera.virtuososdk.client.drm.VirtuosoDrmSessionManager;
 
@@ -106,6 +107,10 @@ public class PlayerActivity extends Activity implements OnClickListener, Playbac
 
     // For backwards compatability
     public static final String DRM_SCHEME_UUID_EXTRA = "drm_scheme_uuid";
+
+    // Best practice is to ensure we have a Virtuoso instance available while playing segmented assets
+    // as this will guarantee the proxy service remains available throughout.
+    private Virtuoso mVirtuoso;
 
     // DRM
     public static final String DRM_SCHEME_EXTRA = "drm_scheme";
@@ -152,6 +157,9 @@ public class PlayerActivity extends Activity implements OnClickListener, Playbac
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        mVirtuoso = new Virtuoso(getApplicationContext());
+
         shouldAutoPlay = true;
         clearResumePosition();
 
@@ -196,6 +204,7 @@ public class PlayerActivity extends Activity implements OnClickListener, Playbac
         if ((Util.SDK_INT <= 23 || player == null)) {
             initializePlayer();
         }
+        mVirtuoso.onResume();
     }
 
     @Override
@@ -204,6 +213,7 @@ public class PlayerActivity extends Activity implements OnClickListener, Playbac
         if (Util.SDK_INT <= 23) {
             releasePlayer();
         }
+        mVirtuoso.onPause();
     }
 
     @Override
