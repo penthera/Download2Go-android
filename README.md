@@ -26,14 +26,14 @@ The SDK offers an extensive range of capabilities. Check out the Client Develope
 This repository contains the Download2Go SDK binaries, along with a sample application (with source code) that demonstrates how to use the SDK. A complete startup guide is included in the Client Developers' Guide documentation for each operating system.  
 
 Official SDK Locations
--[Download2Go - iOS](https://github.com/penthera/Download2Go-ios)
--[Download2Go - MacOS](https://github.com/penthera/Download2Go-MacOS)
--[Download2Go - Android](https://github.com/penthera/Download2Go-android)
--[Download2Go - Windows UWP](https://github.com/penthera/Download2Go-Win10)
+- [Download2Go - iOS](https://github.com/penthera/Download2Go-ios)
+- [Download2Go - MacOS](https://github.com/penthera/Download2Go-MacOS)
+- [Download2Go - Android](https://github.com/penthera/Download2Go-android)
+- [Download2Go - Windows UWP](https://github.com/penthera/Download2Go-Win10)
 
 In order to compile the demo app, you will need to obtain a public/private key pair, which enables the SDK and provides access to our backplane server for a trial period. Please contact [Penthera Support](mailto:support@penthera.com) to obtain these keys.
 
 ## Licensing
 
-Penthera's Download2Go SDK is licensed for production use under commercial terms. Please contact [Penthera Sales](sales@penthera.com) to request terms.
+Penthera's Download2Go SDK is licensed for production use under commercial terms. Please contact [Penthera Sales](mailto:sales@penthera.com) to request terms.
 
