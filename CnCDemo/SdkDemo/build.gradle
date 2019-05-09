@@ -40,7 +40,7 @@ dependencies {
         implementation project(':SDK')
     } else {
 
-        implementation 'com.penthera:cnc-android-sdk-debug:3.14.22'
+        implementation 'com.penthera:cnc-android-sdk-debug:3.14.23'
     }
 
     implementation 'com.google.android.exoplayer:exoplayer:2.7.0'
