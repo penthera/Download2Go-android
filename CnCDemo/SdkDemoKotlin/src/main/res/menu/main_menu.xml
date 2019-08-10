@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/menu_login"
+        app:showAsAction="never"
+        android:title="@string/login"
+        android:titleCondensed="@string/login"
+        android:visible="true"/>
+    <item
+        android:id="@+id/menu_logout"
+        app:showAsAction="never"
+        android:title="@string/logout"
+        android:titleCondensed="@string/logout"
+        android:visible="true"/>
+    <item
+        android:id="@+id/menu_unregister"
+        app:showAsAction="never"
+        android:title="@string/unregister"
+        android:titleCondensed="@string/unregister"
+        android:visible="true"/>
+    <item
+        android:id="@+id/menu_pause_resume"
+        app:showAsAction="ifRoom"
+        android:title="@string/pause"
+        android:visible="true"/>
+    <item
+        android:id="@+id/menu_add_test_item"
+        app:showAsAction="never"
+        android:title="@string/add_test_item"
+        android:titleCondensed="@string/add_test_item"
+        android:visible="true" />
+
+</menu>

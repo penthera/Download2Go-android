@@ -50,7 +50,7 @@ import com.penthera.virtuososdk.client.Observers.IQueueObserver;
  */
 public class DiagnosticsActivity extends SdkDemoBaseActivity {
 	/** Log tag */
-	private static final String TAG = DiagnosticsActivity.class.getName();
+	private static final String TAG = DiagnosticsActivity.class.getSimpleName();
 
 	/** Used for posting on the UI thread */
 	private Handler mHandler = new Handler();
@@ -145,21 +145,6 @@ public class DiagnosticsActivity extends SdkDemoBaseActivity {
 	final Object mBlocker = new Object();
 
 
-	private IService.IConnectionObserver mConnectionObserver = new IService.IConnectionObserver(){
-
-		@Override
-		public void connected() {
-			Log.i(TAG, "serviceConnected");
-			startDataRetriever();
-		}
-
-		@Override
-		public void disconnected() {
-		}
-
-	};
-	private IService mConnectedService;
-
 	/**
 	 * Retrive settings from service
 	 */
@@ -168,13 +153,13 @@ public class DiagnosticsActivity extends SdkDemoBaseActivity {
 		public void run() {
 			//no Service connection needed for these
 			//no connection needed
-			mUsedStorage = mService.getStorageUsed();
-			mRemainingStorage = mService.getAllowableStorageRemaining();
-			mPowerOkay = mService.isPowerStatusOK() ? "OKAY":"NOT OKAY";
-			mNetworkOkay = mService.isNetworkStatusOK()  ? "OKAY":"NOT OKAY";
-			mCellOkay = mService.isCellularDataQuotaOK() ? "OKAY":"NOT OKAY";
-			mUsedCellQuota = mService.getUtilizedCellularDataQuota();
-			mDiskOkay = mService.isDiskStatusOK() ? "OKAY":"NOT OKAY";
+			mUsedStorage = mVirtuoso.getStorageUsed();
+			mRemainingStorage = mVirtuoso.getAllowableStorageRemaining();
+			mPowerOkay = mVirtuoso.isPowerStatusOK() ? "OKAY":"NOT OKAY";
+			mNetworkOkay = mVirtuoso.isNetworkStatusOK()  ? "OKAY":"NOT OKAY";
+			mCellOkay = mVirtuoso.isCellularDataQuotaOK() ? "OKAY":"NOT OKAY";
+			mUsedCellQuota = mVirtuoso.getUtilizedCellularDataQuota();
+			mDiskOkay = mVirtuoso.isDiskStatusOK() ? "OKAY":"NOT OKAY";
 
 
 			mCellquota = mSettings.getCellularDataQuota();
@@ -228,7 +213,7 @@ public class DiagnosticsActivity extends SdkDemoBaseActivity {
 		@SuppressWarnings("deprecation")
 		@Override
 		public void run() {
-			if(mService != null){
+			if(mVirtuoso != null){
 
 				try {
 					TextView tv = (TextView)findViewById(R.id.eng_state);
@@ -244,8 +229,13 @@ public class DiagnosticsActivity extends SdkDemoBaseActivity {
 						break;
 					case AuthenticationStatus.AUTHENTICATION_EXPIRED:
 						tv.setText("AUTHENTICATION_EXPIRED");
+						break;
 					case AuthenticationStatus.INVALID_LICENSE:
 						tv.setText("INVALID_LICENSE");
+						break;
+					case AuthenticationStatus.SHUTDOWN:
+						tv.setText("LOGGED OUT");
+						break;
 					}
 
 					tv = (TextView)findViewById(R.id.moff_val);
@@ -333,10 +323,10 @@ public class DiagnosticsActivity extends SdkDemoBaseActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_diagnostics);
 
-		mSettings = mService.getSettings();
-		mBackplane = mService.getBackplane();
+		mSettings = mVirtuoso.getSettings();
+		mBackplane = mVirtuoso.getBackplane();
 		mBackplaneSettings = mBackplane.getSettings();
-		mConnectedService = mService.getService();
+		mConnectedService = mVirtuoso.getService();
 
 		if (!mRegistered) registerApiReceiver();
 
@@ -351,18 +341,15 @@ public class DiagnosticsActivity extends SdkDemoBaseActivity {
 		super.onPause();
 
 		if (mRegistered) unregisterApiReceiver();
-		mService.removeObserver(mEngineObserver);
-		mService.removeObserver(mBackplaneObserver);
-		mService.removeObserver(mEnginePauseResumeObserver);
-		mService.removeObserver(mQueueObserver);
+		mVirtuoso.removeObserver(mEngineObserver);
+		mVirtuoso.removeObserver(mBackplaneObserver);
+		mVirtuoso.removeObserver(mEnginePauseResumeObserver);
+		mVirtuoso.removeObserver(mQueueObserver);
 		synchronized(mBlocker){
 			mCanUpdate = false;
 		}
 
 		mHandler.removeCallbacks(iUpdater);
-
-		mConnectedService.setConnectionObserver(null);
-		mConnectedService.unbind();
 	}
 
 	@Override
@@ -373,21 +360,18 @@ public class DiagnosticsActivity extends SdkDemoBaseActivity {
 			mCanUpdate = true;
 		}
 
-		mService.addObserver(mBackplaneObserver);
-		mService.addObserver(mEngineObserver);
-		mService.addObserver(mEnginePauseResumeObserver);
-		mService.addObserver(mQueueObserver);
+		mVirtuoso.addObserver(mBackplaneObserver);
+		mVirtuoso.addObserver(mEngineObserver);
+		mVirtuoso.addObserver(mEnginePauseResumeObserver);
+		mVirtuoso.addObserver(mQueueObserver);
 
 		if (!mRegistered) registerApiReceiver();
-
-		mConnectedService.setConnectionObserver(mConnectionObserver);
-		mConnectedService.bind();
 	}
 
 	private IBackplaneObserver mBackplaneObserver = new IBackplaneObserver() {
 
 		@Override
-		public void requestComplete(int callbackType, int result) {
+		public void requestComplete(int callbackType, int result, final String errorMessage) {
 			startDataRetriever();
 		}
 	};
@@ -416,7 +400,7 @@ public class DiagnosticsActivity extends SdkDemoBaseActivity {
 		}
 	};
 
-	private void startDataRetriever(){
+	public void startDataRetriever(){
 		if(mDataRetrievalThread == null){
 			mDataRetrievalThread = new Thread(iRetriever);
 			mDataRetrievalThread.start();

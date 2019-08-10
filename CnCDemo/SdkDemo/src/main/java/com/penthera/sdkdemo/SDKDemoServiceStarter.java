@@ -7,9 +7,11 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
+import android.support.annotation.Nullable;
 
 import com.penthera.sdkdemo.notification.NotificationFactory;
 import com.penthera.sdkdemo.activity.SplashActivity;
+import com.penthera.sdkdemo.notification.ServiceForegroundNotificationProvider;
 import com.penthera.virtuososdk.client.Virtuoso;
 import com.penthera.virtuososdk.service.VirtuosoServiceStarter;
 import static com.penthera.virtuososdk.utility.logger.CnCLogger.Log;
@@ -22,9 +24,9 @@ public class SDKDemoServiceStarter extends VirtuosoServiceStarter {
     private static NotificationChannel notificationChannel = null;
     private static Notification currentNotification = null;
 
-    private final static String CHANNEL_ID = "VIRTUOSO_DEMO_CHANNEL_ID";
-    private final static String CHANNEL_NAME = "SdkDemo Background Activity";
-    private final static String CHANNEL_DESCRIPTION = "Indicates activity this application will perform when the application is not open";
+    public final static String CHANNEL_ID = "VIRTUOSO_DEMO_CHANNEL_ID";
+    public final static String CHANNEL_NAME = "SdkDemo Background Activity";
+    public final static String CHANNEL_DESCRIPTION = "Indicates activity this application will perform when the application is not open";
 
 
 	public static void updateNotification(Context aContext, Intent aIntent ) {
@@ -32,7 +34,7 @@ public class SDKDemoServiceStarter extends VirtuosoServiceStarter {
 	}
 
     @Override
-    protected Notification getForegroundServiceNotification(Context context, Intent forIntent) {
+    public Notification getForegroundServiceNotification(Context context, @Nullable Intent forIntent) {
 
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && notificationChannel == null) {
             notificationChannel = new NotificationChannel(CHANNEL_ID,CHANNEL_NAME, NotificationManager.IMPORTANCE_LOW);
@@ -57,6 +59,15 @@ public class SDKDemoServiceStarter extends VirtuosoServiceStarter {
         }
 
         return currentNotification;
+    }
+
+    @Override
+    public Class getForegroundServiceNotificationProvider(){
+	    // Returning this class definition causes the service to instantiate and use the class
+        // from within the service process to generate all notifications relating to asset downloads.
+        // Returning null results in the classic SDK behaviour where all notifications are generated
+        // and delivered to the service via the service starter.
+        return ServiceForegroundNotificationProvider.class;
     }
 
 }

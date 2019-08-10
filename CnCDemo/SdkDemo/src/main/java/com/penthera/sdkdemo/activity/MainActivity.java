@@ -226,11 +226,11 @@ public class MainActivity extends SdkDemoBaseActivity {
 			Log.i(TAG,"getItem " + position);
 			switch (position) {
 				case 0: {
-					mIf = InboxFragment.newInstance(mService, mMyDemoTabListener);
+					mIf = InboxFragment.newInstance(mVirtuoso, mMyDemoTabListener);
 					return mIf;
 				}
 				case 1: {
-					return CatalogFragment.newInstance(mService);
+					return CatalogFragment.newInstance(mVirtuoso);
 				}
 				case 2: {
 					return OtherFragment.newInstance();

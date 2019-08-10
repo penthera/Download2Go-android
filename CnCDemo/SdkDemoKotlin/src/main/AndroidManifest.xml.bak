@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.penthera.sdkdemokotlin">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.QUICKBOOT_POWERON"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+
+    <application
+        android:allowBackup="false"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:theme="@style/AppTheme"
+        android:networkSecurityConfig="@xml/network_security_config"
+        tools:ignore="GoogleAppIndexingWarning">
+
+        <!-- Main activity for Demo UI -->
+        <activity android:name=".activity.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Player -->
+        <activity android:name=".activity.VideoPlayerActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|smallestScreenSize|uiMode"
+            android:launchMode="singleTop"
+            android:label="Player"
+            > <!--  Need theme? android:theme="@style/PlayerTheme"  -->
+            <intent-filter>
+                <action android:name="com.penthera.sdkdemo.exoplayer.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:scheme="http"/>
+                <data android:scheme="https"/>
+                <data android:scheme="content"/>
+                <data android:scheme="asset"/>
+                <data android:scheme="file"/>
+            </intent-filter>
+        </activity>
+
+        <!-- Meta Data -->
+        <meta-data android:name="com.penthera.virtuososdk.client.pckg" android:value="@string/client_package" />
+        <meta-data tools:replace="android:value" android:name="com.penthera.virtuososdk.license.manager.impl" android:value="com.penthera.sdkdemokotlin.drm.DemoLicenseManager"/>
+
+        <!-- Service -->
+        <service android:name="com.penthera.virtuososdk.service.VirtuosoService"
+            android:process=":service"
+            android:label="VirtuosoService">
+        </service>
+        <receiver android:name="com.penthera.virtuososdk.service.VirtuosoService$ServiceMessageReceiver"
+            android:label="VirtuosoServiceMessageReceiver"
+            android:process=":service"/>
+
+        <!-- HLS Proxy service -->
+        <service android:name="com.penthera.virtuososdk.service.VirtuosoClientHTTPService"
+            android:label="VirtuosoClientHTTPService"
+            android:enabled="true">
+        </service>
+
+        <!-- Service Starter -->
+        <receiver android:name=".ServiceStarter"
+            android:enabled="true"
+            android:process=":starter"
+            android:label="SDKDemo Service Starter"
+            android:directBootAware="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="android.intent.action.QUICKBOOT_POWERON"/>
+                <action android:name="com.htc.intent.action.QUICKBOOT_POWERON"/>
+                <action android:name="virtuoso.intent.action.SERVICE_NOTIFICATION_UPDATE" />
+                <action android:name="virtuoso.intent.action.DOWNLOAD_UPDATE"/>
+                <action android:name="virtuoso.intent.action.CONFIGURE_VIRTUOSO_SERVICE_LOGGING"/>
+                <action android:name="virtuoso.intent.action.BACKPLANE_SYNC_DEVICE" />
+                <action android:name="android.intent.action.PACKAGE_REMOVED" />
+                <action android:name="virtuoso.intent.action.START_SERVICE" />
+                <data android:scheme="package"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="virtuoso.intent.action.START_SERVICE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+        </receiver>
+
+        <!-- Content Provider -->
+        <provider android:name=".provider.DemoContentProvider"
+            android:authorities="@string/client_package"
+            android:exported="false"
+            android:process=":provider"/>
+
+        <!-- Notification Receiver -->
+        <receiver android:name=".notification.NotificationReceiver"
+            android:enabled="true"
+            android:exported="false"
+            android:process=":receiver"
+            android:label="NotificationReceiver">
+            <intent-filter>
+                <action android:name="com.penthera.virtuososdk.provider.sdkdemo.NOTIFICATION_DOWNLOAD_START"/>
+                <action android:name="com.penthera.virtuososdk.provider.sdkdemo.NOTIFICATION_DOWNLOAD_STOPPED"/>
+                <action android:name="com.penthera.virtuososdk.provider.sdkdemo.NOTIFICATION_DOWNLOAD_COMPLETE"/>
+                <action android:name="com.penthera.virtuososdk.provider.sdkdemo.NOTIFICATION_DOWNLOAD_UPDATE"/>
+                <action android:name="com.penthera.virtuososdk.provider.sdkdemo.NOTIFICATION_DOWNLOADS_PAUSED" />
+                <action android:name="com.penthera.virtuososdk.provider.reference.NOTIFICATION_MANIFEST_PARSE_FAILED" />
+
+                <!-- Only include these if you use the event notifications -->
+                <!--
+                <action android:name="com.penthera.virtuososdk.provider.sdkdemo.EVENT_APP_LAUNCH" />
+                <action android:name="com.penthera.virtuososdk.provider.sdkdemo.EVENT_QUEUE_FOR_DOWNLOAD" />
+                <action android:name="com.penthera.virtuososdk.provider.sdkdemo.EVENT_ASSET_REMOVED_FROM_QUEUE" />
+                <action android:name="com.penthera.virtuososdk.provider.sdkdemo.EVENT_DOWNLOAD_START" />
+                <action android:name="com.penthera.virtuososdk.provider.sdkdemo.EVENT_DOWNLOAD_COMPLETE" />
+                <action android:name="com.penthera.virtuososdk.provider.sdkdemo.EVENT_DOWNLOAD_ERROR" />
+                <action android:name="com.penthera.virtuososdk.provider.sdkdemo.EVENT_MAX_ERRORS_RESET" />
+                <action android:name="com.penthera.virtuososdk.provider.sdkdemo.EVENT_ASSET_DELETED" />
+                <action android:name="com.penthera.virtuososdk.provider.sdkdemo.EVENT_ASSET_EXPIRE" />
+                <action android:name="com.penthera.virtuososdk.provider.sdkdemo.EVENT_SYNC_WITH_SERVER" />
+                <action android:name="com.penthera.virtuososdk.provider.sdkdemo.EVENT_PLAY_START" />
+                <action android:name="com.penthera.virtuososdk.provider.sdkdemo.EVENT_STREAM_PLAY_START" />
+                <action android:name="com.penthera.virtuososdk.provider.sdkdemo.EVENT_PLAY_STOP" />
+                <action android:name="com.penthera.virtuososdk.provider.sdkdemo.EVENT_STREAM_PLAY_STOP" />
+                <action android:name="com.penthera.virtuososdk.provider.sdkdemo.EVENT_RESET" />
+                <action android:name="com.penthera.virtuososdk.provider.sdkdemo.EVENT_SUBSCRIBE" />
+                <action android:name="com.penthera.virtuososdk.provider.sdkdemo.EVENT_UNSUBSCRIBE" />
+                -->
+            </intent-filter>
+        </receiver>
+
+
+
+    </application>
+
+</manifest>

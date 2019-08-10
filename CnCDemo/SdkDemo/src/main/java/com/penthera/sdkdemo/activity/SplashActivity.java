@@ -150,11 +150,11 @@ public class SplashActivity extends SdkDemoBaseActivity {
     	mUrl = (EditText) this.findViewById(R.id.edt_url);
     	mUrl.setText(Config.BACKPLANE_URL);
     	mUser = (EditText) this.findViewById(R.id.edt_user);
-    	String identifier = mService.getBackplane().getSettings().getDeviceId();
+    	String identifier = mVirtuoso.getBackplane().getSettings().getDeviceId();
     	mUser.setText(identifier);
     	
     	// Authentication
-		int status = mService.getBackplane().getAuthenticationStatus();
+		int status = mVirtuoso.getBackplane().getAuthenticationStatus();
 		if (status == Common.AuthenticationStatus.NOT_AUTHENTICATED) {
 	    	mHandler.sendEmptyMessageDelayed(MSG_FADE_IN, FADE_IN_DELAY);
 		} else {				
@@ -205,7 +205,7 @@ public class SplashActivity extends SdkDemoBaseActivity {
 	private String getUser() {
 		String user = mUser.getText().toString();		
 		if (TextUtils.isEmpty(user)) {
-			user = mService.getBackplane().getSettings().getDeviceId();
+			user = mVirtuoso.getBackplane().getSettings().getDeviceId();
 		}
 		return user;
 	}
@@ -221,9 +221,9 @@ public class SplashActivity extends SdkDemoBaseActivity {
     @Override
     public void onResume() {
     	super.onResume();    	
-    	if (mService!=null) {
-    	   	mService.addObserver(mBackplaneObserver);
-    	   	mService.addObserver(mEngineObserver);
+    	if (mVirtuoso!=null) {
+			mVirtuoso.addObserver(mBackplaneObserver);
+			mVirtuoso.addObserver(mEngineObserver);
     	}
     }
 
@@ -231,9 +231,9 @@ public class SplashActivity extends SdkDemoBaseActivity {
     @Override
     public void onPause() {
     	super.onPause();
-    	if (mService != null) {
-    	   	mService.removeObserver(mBackplaneObserver);
-    	   	mService.removeObserver(mEngineObserver);
+    	if (mVirtuoso != null) {
+			mVirtuoso.removeObserver(mBackplaneObserver);
+			mVirtuoso.removeObserver(mEngineObserver);
     	}
 
     }
@@ -258,7 +258,7 @@ public class SplashActivity extends SdkDemoBaseActivity {
 			 */
 			if(Build.VERSION.SDK_INT <= 20){
 				Log.d(TAG,"Amazon device based on kitkat or below.");
-				mService.getSettings().setProgressUpdateByPercent(4).save();
+				mVirtuoso.getSettings().setProgressUpdateByPercent(4).save();
 			}
 			else{
 
@@ -275,7 +275,7 @@ public class SplashActivity extends SdkDemoBaseActivity {
     	try {
     			final URL url = getUrl();
     			final String user = getUser();
-    			mService.startup(url, user, null, Config.BACKPLANE_PUBLIC_KEY, Config.BACKPLANE_PRIVATE_KEY, new IPushRegistrationObserver() {
+			mVirtuoso.startup(url, user, null, Config.BACKPLANE_PUBLIC_KEY, Config.BACKPLANE_PRIVATE_KEY, new IPushRegistrationObserver() {
 					@Override
 					public void onServiceAvailabilityResponse(int pushService, int errorCode) {
 						if(pushService == Common.PushService.FCM_PUSH && errorCode != ConnectionResult.SUCCESS)
@@ -375,6 +375,9 @@ public class SplashActivity extends SdkDemoBaseActivity {
     			});
 		} catch (MalformedURLException e1) {
 			e1.printStackTrace();
+		} catch (IllegalArgumentException iae) {
+            Log.w(TAG, "Missing login details");
+            Toast.makeText(this, getString(R.string.error_login_details), Toast.LENGTH_LONG).show();
 		}
     }
      
@@ -442,10 +445,13 @@ public class SplashActivity extends SdkDemoBaseActivity {
 		 * @param result
 		 */
 		private void handleFailure(final int result) {
+
+
+
 			if(result == Common.BackplaneResult.INVALID_CREDENTIALS){
 				showAlertDialog(R.string.invalid_credentials, R.string.invalid_credentials);
 			} else {
-				showAlertDialog(R.string.generic_problem, R.string.generic_problem);
+				showAlertDialog(R.string.reg_failure_title, R.string.reg_failure_msg);
 			}			
 		}
 		
@@ -457,7 +463,7 @@ public class SplashActivity extends SdkDemoBaseActivity {
 	    }
 
 		@Override
-		public void requestComplete(final int request, final int result) {
+		public void requestComplete(final int request, final int result, String errorMessage) {
 			runOnUiThread(new Runnable() {
 				@Override
 				public void run() {
@@ -480,7 +486,7 @@ public class SplashActivity extends SdkDemoBaseActivity {
 			Log.d(TAG, "seeding catalog");
 			
 			try {
-				IKeyStore keystore = mService.getKeyStore();
+				IKeyStore keystore = mVirtuoso.getKeyStore();
 				if(!keystore.containsAlias("lfclient")){
 					InputStream is = getApplicationContext().getResources().openRawResource(R.raw.clientnopassword);
 					keystore.importPKCS12(is, null);

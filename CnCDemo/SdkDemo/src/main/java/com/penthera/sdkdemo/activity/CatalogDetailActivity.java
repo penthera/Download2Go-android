@@ -38,7 +38,7 @@ public class CatalogDetailActivity extends SdkDemoBaseActivity {
 
 		if (savedInstanceState == null) {			
 			// Catalog Detail Fragment
-			CatalogDetailFragment cdf = CatalogDetailFragment.newInstance(mService);
+			CatalogDetailFragment cdf = CatalogDetailFragment.newInstance(mVirtuoso);
 			getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, cdf, "cdf").commit();		
 			cdf.setArguments(getIntent().getExtras());
 			
@@ -49,7 +49,7 @@ public class CatalogDetailActivity extends SdkDemoBaseActivity {
 			ab.setDisplayHomeAsUpEnabled(true);	
 		} else {
 			CatalogDetailFragment cdf = (CatalogDetailFragment) getSupportFragmentManager().findFragmentByTag("cdf");
-			cdf.setService(mService);
+			cdf.setService(mVirtuoso);
 		}
 	}
 

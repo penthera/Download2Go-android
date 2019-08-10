@@ -26,6 +26,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.penthera.sdkdemo.R;
@@ -96,6 +97,10 @@ public class SettingsActivity extends SdkDemoBaseActivity {
      * downloads are paused. */
 	private ToggleButton mBackgroundOnPause;
 
+
+	/** Toggle whether DRM licenses are automitcally renewed */
+	private ToggleButton mAutoRenewDrmLicenses;
+
 	/** Change which video codecs to include in downloaded content*/
 	private EditText mCodecs;
 
@@ -143,6 +148,7 @@ public class SettingsActivity extends SdkDemoBaseActivity {
 			mProxySegmentErrorHttpCode.setText(""+mSettings.getSegmentErrorHttpCode());
 			mCodecs.setText(mSettings.getAudioCodecsToDownload() != null ? TextUtils.join(",", mSettings.getAudioCodecsToDownload()) : "");
             mBackgroundOnPause.setChecked(mSettings.getRemoveNotificationOnPause());
+            mAutoRenewDrmLicenses.setChecked(mSettings.isAutomaticDrmLicenseRenewalEnabled());
 		}};
 			
 	@Override
@@ -150,9 +156,9 @@ public class SettingsActivity extends SdkDemoBaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        mBackplane = mService.getBackplane();
+        mBackplane = mVirtuoso.getBackplane();
         mBackplaneSettings = mBackplane.getSettings();
-        mSettings = mService.getSettings();
+        mSettings = mVirtuoso.getSettings();
         
         mDestination = (EditText) findViewById(R.id.destination_value);
         mCellquota = (EditText) findViewById(R.id.cellquota_value);
@@ -332,6 +338,20 @@ public class SettingsActivity extends SdkDemoBaseActivity {
             }
         });
 
+		mAutoRenewDrmLicenses = (ToggleButton) findViewById(R.id.auto_renew_drm_licenses);
+		mAutoRenewDrmLicenses.setChecked(mSettings.isAutomaticDrmLicenseRenewalEnabled());
+		mAutoRenewDrmLicenses.setEnabled(true);
+		mAutoRenewDrmLicenses.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				try {
+					mSettings.setAutomaticDrmLicenseRenewalEnabled(mAutoRenewDrmLicenses.isChecked()).save();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+
 		this.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 		iHandler.post(iUpdater);	
@@ -341,23 +361,35 @@ public class SettingsActivity extends SdkDemoBaseActivity {
     @Override
 	protected void onPause() {
 		super.onPause();
-		mService.removeObserver(mBackplaneObserver);
-		mService.removeObserver(mEngineObserver);
+		mVirtuoso.removeObserver(mBackplaneObserver);
+		mVirtuoso.removeObserver(mEngineObserver);
 	}
 
     // onResume
 	@Override
 	protected void onResume() {
 		super.onResume();
-		mService.addObserver(mBackplaneObserver);
-		mService.addObserver(mEngineObserver);
+		mVirtuoso.addObserver(mBackplaneObserver);
+		mVirtuoso.addObserver(mEngineObserver);
 	}
 		
 	private IBackplaneObserver mBackplaneObserver = new IBackplaneObserver(){
 
 		@Override
-		public void requestComplete(int callbackType, int result) {
-			iHandler.post(iUpdater);	
+		public void requestComplete(int callbackType, int result, final String errorMessage) {
+			iHandler.post(iUpdater);
+
+			if (callbackType == Common.BackplaneCallbackType.DOWNLOAD_ENABLEMENT_CHANGE &&
+					result == Common.BackplaneResult.MAXIMUM_ENABLEMENT_REACHED) {
+				// Show a warning message - in this case we show the server response directly,
+				// but this would not be the case in a production application.
+				iHandler.post(new Runnable() {
+					@Override
+					public void run() {
+						Toast.makeText(SettingsActivity.this, errorMessage, Toast.LENGTH_LONG).show();
+					}
+				});
+			}
 		}
 	};
 	

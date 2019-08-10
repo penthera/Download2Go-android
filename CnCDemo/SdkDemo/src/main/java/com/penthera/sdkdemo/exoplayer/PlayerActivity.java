@@ -40,6 +40,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
+import android.util.Log;
+import android.util.Pair;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -48,8 +50,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.ads.interactivemedia.v3.api.ImaSdkFactory;
+import com.google.ads.interactivemedia.v3.api.ImaSdkSettings;
 import com.google.android.exoplayer2.BuildConfig;
 import com.google.android.exoplayer2.C;
+import com.google.android.exoplayer2.ControlDispatcher;
 import com.google.android.exoplayer2.DefaultRenderersFactory;
 import com.google.android.exoplayer2.ExoPlaybackException;
 import com.google.android.exoplayer2.ExoPlayerFactory;
@@ -59,12 +64,17 @@ import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.drm.DrmSessionManager;
 import com.google.android.exoplayer2.drm.DrmSessionManagerWrapper;
 import com.google.android.exoplayer2.drm.FrameworkMediaCrypto;
+import com.google.android.exoplayer2.ext.ima.ImaAdsLoader;
 import com.google.android.exoplayer2.mediacodec.MediaCodecRenderer.DecoderInitializationException;
 import com.google.android.exoplayer2.mediacodec.MediaCodecUtil.DecoderQueryException;
+import com.google.android.exoplayer2.metadata.Metadata;
+import com.google.android.exoplayer2.metadata.MetadataOutput;
+import com.google.android.exoplayer2.metadata.id3.TextInformationFrame;
 import com.google.android.exoplayer2.source.BehindLiveWindowException;
 import com.google.android.exoplayer2.source.ExtractorMediaSource;
 import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.source.TrackGroupArray;
+import com.google.android.exoplayer2.source.ads.AdsMediaSource;
 import com.google.android.exoplayer2.source.dash.DashMediaSource;
 import com.google.android.exoplayer2.source.dash.DefaultDashChunkSource;
 import com.google.android.exoplayer2.source.hls.HlsMediaSource;
@@ -79,6 +89,7 @@ import com.google.android.exoplayer2.ui.DebugTextViewHelper;
 import com.google.android.exoplayer2.ui.PlayerControlView;
 import com.google.android.exoplayer2.ui.PlayerView;
 import com.google.android.exoplayer2.ui.SimpleExoPlayerView;
+import com.google.android.exoplayer2.ui.TrackSelectionView;
 import com.google.android.exoplayer2.upstream.DataSource;
 import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
@@ -87,9 +98,15 @@ import com.google.android.exoplayer2.upstream.HttpDataSource;
 import com.google.android.exoplayer2.util.Util;
 import com.penthera.sdkdemo.R;
 import com.penthera.virtuososdk.Common;
+import com.penthera.virtuososdk.ads.VirtuosoAdScheduling;
+import com.penthera.virtuososdk.ads.vast.VirtuosoVideoAd;
 import com.penthera.virtuososdk.client.IAsset;
 import com.penthera.virtuososdk.client.ISegmentedAsset;
 import com.penthera.virtuososdk.client.Virtuoso;
+import com.penthera.virtuososdk.client.ads.IServerDAICuePoint;
+import com.penthera.virtuososdk.client.ads.IServerDAIPackage;
+import com.penthera.virtuososdk.client.ads.IVideoAdPackage;
+import com.penthera.virtuososdk.client.ads.IVirtuosoAdManager;
 import com.penthera.virtuososdk.client.drm.UnsupportedDrmException;
 import com.penthera.virtuososdk.client.drm.VirtuosoDrmSessionManager;
 
@@ -97,6 +114,7 @@ import java.net.CookieHandler;
 import java.net.CookieManager;
 import java.net.CookiePolicy;
 import java.util.HashMap;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -142,15 +160,20 @@ public class PlayerActivity extends Activity implements OnClickListener, Playbac
     private DataSource.Factory mediaDataSourceFactory;
     private SimpleExoPlayer player;
     private DefaultTrackSelector trackSelector;
-    private TrackSelectionHelper trackSelectionHelper;
+    private DefaultTrackSelector.Parameters trackSelectorParameters;
     private DebugTextViewHelper debugViewHelper;
     private boolean playerNeedsSource;
     private boolean inErrorState;
     private TrackGroupArray lastSeenTrackGroupArray;
+    private PlayerControlView customController;
 
     private boolean shouldAutoPlay;
     private int resumeWindow;
     private long resumePosition;
+
+    private IVirtuosoAdManager adManager;
+    private IServerDAIPackage serverDAIPackage;
+    ImaAdsLoader adsLoader;
 
     // Activity lifecycle
 
@@ -177,9 +200,17 @@ public class PlayerActivity extends Activity implements OnClickListener, Playbac
         retryButton = (Button) findViewById(R.id.retry_button);
         retryButton.setOnClickListener(this);
 
-        playerView = (SimpleExoPlayerView) findViewById(R.id.player_view);
+        playerView = findViewById(R.id.player_view);
         playerView.setControllerVisibilityListener(this);
         playerView.requestFocus();
+
+        trackSelectorParameters = new DefaultTrackSelector.ParametersBuilder().build();
+
+        // In a real application you may want to create a custom controller or override the timebar.
+        // You cannot find the controller by viewid as it is constructed internally in code, so
+        // we find the timebar and then grab the parent instead for this demonstration.
+        View progressView = playerView.findViewById(com.google.android.exoplayer2.ui.R.id.exo_progress);
+        customController = (PlayerControlView)(progressView.getParent().getParent().getParent());
     }
 
     @Override
@@ -254,10 +285,23 @@ public class PlayerActivity extends Activity implements OnClickListener, Playbac
             initializePlayer();
         } else if (view.getParent() == debugRootView) {
             MappedTrackInfo mappedTrackInfo = trackSelector.getCurrentMappedTrackInfo();
-            if (mappedTrackInfo != null) {
-                trackSelectionHelper.showSelectionDialog(this, ((Button) view).getText(),
-                        mappedTrackInfo, (int) view.getTag());
+            if (mappedTrackInfo == null) {
+                return;
             }
+
+            int rendererIndex = (int) view.getTag();
+            String title = ((Button) view).getText().toString();
+            int rendererType = mappedTrackInfo.getRendererType(rendererIndex);
+            boolean allowAdaptiveSelections =
+                    rendererType == C.TRACK_TYPE_VIDEO
+                            || (rendererType == C.TRACK_TYPE_AUDIO
+                            && mappedTrackInfo.getTypeSupport(C.TRACK_TYPE_VIDEO)
+                            == MappedTrackInfo.RENDERER_SUPPORT_NO_TRACKS);
+            Pair<AlertDialog, TrackSelectionView> dialogPair =
+                    TrackSelectionView.getDialog(this, title, trackSelector, rendererIndex);
+            dialogPair.second.setShowDisableOption(true);
+            dialogPair.second.setAllowAdaptiveSelections(allowAdaptiveSelections);
+            dialogPair.first.show();
         }
     }
 
@@ -279,12 +323,14 @@ public class PlayerActivity extends Activity implements OnClickListener, Playbac
 
     private void initializePlayer() {
         Intent intent = getIntent();
+
+        IAsset asset = intent.getParcelableExtra(VIRTUOSO_ASSET);
         if (player == null) {
 
             TrackSelection.Factory adaptiveTrackSelectionFactory =
                     new AdaptiveTrackSelection.Factory(BANDWIDTH_METER);
             trackSelector = new DefaultTrackSelector(adaptiveTrackSelectionFactory);
-            trackSelectionHelper = new TrackSelectionHelper(trackSelector, adaptiveTrackSelectionFactory);
+            trackSelector.setParameters(trackSelectorParameters);
             lastSeenTrackGroupArray = null;
             eventLogger = new EventLogger(trackSelector);
 
@@ -309,7 +355,7 @@ public class PlayerActivity extends Activity implements OnClickListener, Playbac
                                 drmSchemeUuid = Util.getDrmUuid(drmUuid);
 
                             if (drmSchemeUuid != null) {
-                                IAsset asset = intent.getParcelableExtra(VIRTUOSO_ASSET);
+
                                 drmSessionManager = buildDrmSessionManager(drmSchemeUuid,
                                         keyRequestPropertiesArray,
                                         asset, intent.getStringExtra(VIRTUOSO_ASSET_ID));
@@ -377,11 +423,177 @@ public class PlayerActivity extends Activity implements OnClickListener, Playbac
             if (haveResumePosition) {
                 player.seekTo(resumeWindow, resumePosition);
             }
-            player.prepare(mediaSource, !haveResumePosition, false);
+
+            //simple video playback only requires the url of the relevant content
+
+            if(asset != null) {//additional features require the asset to be passed in the intent extras
+
+                if (asset.adSupport() == Common.AdSupportType.CLIENT_ADS) {
+
+                    String adsResponse = null;
+
+
+                    adManager = mVirtuoso.getAssetManager().getAdManager();
+                    IVideoAdPackage adsPackage = adManager.fetchAdsForAsset(asset);
+
+                    if (adsPackage != null) {
+
+
+                        if (adsPackage.getAds().size() > 1 //multiple vast ads
+                                && TextUtils.isEmpty(((VirtuosoVideoAd) adsPackage.getAds().get(0)).getAdScheduling().getBreakType())) {//ad scheduling is not provided
+                            //exoplayer does not like the ads xml that is generated by multiple vast ads without any
+                            //scheduling info.   We take the first 2 ads in the collection and run them as pre and post roll
+
+                            //TODO:  allow apps to customize this ad scheduling
+
+                            VirtuosoVideoAd preroll = (VirtuosoVideoAd) adsPackage.getAds().get(0);
+                            VirtuosoAdScheduling presched = new VirtuosoAdScheduling();
+                            presched.setAdSourceId(preroll.getAdId());
+                            presched.setAllowMultiple(false);
+                            presched.setBreakId("preroll");
+                            presched.setBreakType("linear");
+                            presched.setFollowRedirects(true);
+                            presched.setTimeOffset("start");
+                            preroll.setAdScheduling(presched);
+
+                            VirtuosoVideoAd postroll = (VirtuosoVideoAd) adsPackage.getAds().get(1);
+                            VirtuosoAdScheduling postsched = new VirtuosoAdScheduling();
+                            postsched.setAdSourceId(postroll.getAdId());
+                            postsched.setAllowMultiple(false);
+                            postsched.setBreakId("postroll");
+                            postsched.setBreakType("linear");
+                            postsched.setFollowRedirects(true);
+                            postsched.setTimeOffset("end");
+                            postroll.setAdScheduling(postsched);
+
+
+                            while (adsPackage.getAds().size() > 2) {//remove other ads
+                                adsPackage.getAds().remove(2);
+                            }
+                        }
+
+
+                        adsResponse = adsPackage.getInlineAdResponse();
+
+                    }
+
+                    if (!TextUtils.isEmpty(adsResponse)) {
+                        ImaAdsLoader.Builder builder = new ImaAdsLoader.Builder(this);
+                        ImaSdkSettings settings = ImaSdkFactory.getInstance().createImaSdkSettings();
+                        settings.setDebugMode(true);
+                        builder.setImaSdkSettings(settings);
+                        adsLoader = builder.buildForAdsResponse(adsResponse);
+                        adsLoader.setPlayer(player);
+
+                        AdsMediaSource mediaSourceWithAds = new AdsMediaSource(mediaSource, mediaDataSourceFactory, adsLoader, playerView);
+                        player.prepare(mediaSourceWithAds, !haveResumePosition, false);
+                    } else {
+                        player.prepare(mediaSource, !haveResumePosition, false);
+                    }
+                } else {
+                    player.prepare(mediaSource, !haveResumePosition, false);
+                }
+
+                if ( asset.adSupport() == Common.AdSupportType.SERVER_ADS) {
+                    //Common.AdSupportType.SERVER_ADS indicates that the asset is using google server side ads
+                    //This block of code is optional for applications that do not ue google server ads fpr their video content
+
+
+                    // Set up a handler for string metadata from the stream, which contains media verification ids.
+                    // These are posted back to the server for impression tracking.
+                    adManager = mVirtuoso.getAssetManager().getAdManager();
+                    serverDAIPackage = adManager.fetchServerAdsForAsset(asset);
+                    if (serverDAIPackage != null) {
+
+                        player.addMetadataOutput(new MetadataOutput() {
+                            @Override
+                            public void onMetadata(Metadata metadata) {
+                                for (int i = 0; i < metadata.length(); i++) {
+                                    Metadata.Entry entry = metadata.get(i);
+                                    if (entry instanceof TextInformationFrame) {
+                                        TextInformationFrame textFrame = (TextInformationFrame) entry;
+                                        if ("TXXX".equals(textFrame.id)) {
+                                            String value = textFrame.value;
+                                            Log.d("Player", "Received user text meta: " + value);
+
+                                            // Google DAI - tracking ids all start with "google_"
+                                            if (value.startsWith("google_")) {
+                                                serverDAIPackage.sendMediaVerificationId(value, player.getCurrentPosition());
+                                            }
+                                        }
+                                    }
+
+                                }
+                            }
+                        });
+
+                        updateAdTimebarMarkers();
+                        serverDAIPackage.useAutomaticCueMarks(true);
+
+                        playerView.setControlDispatcher(new ControlDispatcher() {
+                            @Override
+                            public boolean dispatchSetPlayWhenReady(Player player, boolean playWhenReady) {
+                                player.setPlayWhenReady(playWhenReady);
+                                return true;
+                            }
+
+                            @Override
+                            public boolean dispatchSeekTo(Player player, int windowIndex, long positionMs) {
+                                long newSeekPositionMs = positionMs;
+                                if (serverDAIPackage != null) {
+                                    IServerDAICuePoint prevCuePoint =
+                                            serverDAIPackage.getPreviousCuePointForStreamTime(positionMs);
+                                    if (prevCuePoint != null && !prevCuePoint.isPlayed()) {
+                                        newSeekPositionMs = (long) (prevCuePoint.getStartTime());
+                                    }
+                                }
+                                player.seekTo(windowIndex, newSeekPositionMs);
+                                return true;
+                            }
+
+                            @Override
+                            public boolean dispatchSetRepeatMode(Player player, int repeatMode) {
+                                return false;
+                            }
+
+                            @Override
+                            public boolean dispatchSetShuffleModeEnabled(Player player,
+                                                                         boolean shuffleModeEnabled) {
+                                return false;
+                            }
+
+                            @Override
+                            public boolean dispatchStop(Player player, boolean reset) {
+                                player.stop(reset);
+                                return true;
+                            }
+
+                        });
+                    }
+
+                }
+            }
+
+
             inErrorState = false;
             updateButtonVisibilities();
         }
     }
+
+    private void updateAdTimebarMarkers(){
+        List<IServerDAICuePoint> cuePoints = serverDAIPackage.getCuePoints();
+
+        int sz = cuePoints.size();
+        long[] startTimes = new long[sz];
+        boolean[] played = new boolean[sz];
+        for (int i=0; i<sz; i++) {
+            IServerDAICuePoint pt = cuePoints.get(i);
+            startTimes[i] = pt.getStartTime();
+            played[i] = pt.isPlayed();
+        }
+        customController.setExtraAdGroupMarkers(startTimes, played);
+    }
+
 
     private MediaSource buildMediaSource(Uri uri, int type) {
         switch (type) {
@@ -449,7 +661,6 @@ public class PlayerActivity extends Activity implements OnClickListener, Playbac
             player.release();
             player = null;
             trackSelector = null;
-            trackSelectionHelper = null;
             eventLogger = null;
         }
     }

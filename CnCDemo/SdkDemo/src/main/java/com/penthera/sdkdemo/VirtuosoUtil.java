@@ -18,6 +18,7 @@ import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import android.app.Activity;
@@ -39,6 +40,7 @@ import com.penthera.sdkdemo.catalog.PermissionManager;
 import com.penthera.sdkdemo.catalog.PermissionManager.Permission;
 import com.penthera.sdkdemo.exoplayer.PlayerActivity;
 import com.penthera.virtuososdk.Common;
+import com.penthera.virtuososdk.client.AncillaryFile;
 import com.penthera.virtuososdk.client.IAssetManager;
 import com.penthera.virtuososdk.client.IAssetPermission;
 import com.penthera.virtuososdk.client.IQueue;
@@ -49,6 +51,8 @@ import com.penthera.virtuososdk.client.IFile;
 import com.penthera.virtuososdk.client.IIdentifier;
 import com.penthera.virtuososdk.client.ISegmentedAsset;
 import com.penthera.virtuososdk.client.Virtuoso;
+import com.penthera.virtuososdk.client.builders.HLSAssetBuilder;
+import com.penthera.virtuososdk.client.builders.MPDAssetBuilder;
 
 public class VirtuosoUtil {
 	/** Log tag */
@@ -295,7 +299,21 @@ public class VirtuosoUtil {
 			};
 
 			try {
-				manager.createMPDSegmentedAssetAsync(observer,new URL(url),0,0,remoteId,json,true,permObserver);
+
+				MPDAssetBuilder mpdAsset = new MPDAssetBuilder()
+						.assetObserver(observer)
+						.manifestUrl(new URL(url))
+						.desiredAudioBitrate(0)
+						.desiredVideoBitrate(0)
+						.addToQueue(true)
+						.assetId(remoteId)
+						.withMetadata(json)
+						.withPermissionObserver(permObserver);
+
+				if(remoteId.contains("ANCILLARY"))
+						mpdAsset.withAncillaryFiles(Arrays.asList(new AncillaryFile[]{new AncillaryFile(new URL("http://virtuoso-demo-content.s3.amazonaws.com/jobs.jpg"),"ancillary image", new String[] {"tag1,tag2"})}));
+				manager.createMPDSegmentedAssetAsync(mpdAsset.build());
+						//.createMPDSegmentedAssetAsync(observer,new URL(url),0,0,remoteId,json,true,permObserver);
 			} catch (MalformedURLException e) {
 				Log.e(TAG,"Problem with dash url.",e);
 			}
@@ -388,7 +406,21 @@ public class VirtuosoUtil {
 				try {
 					// Note, the value of the third parameter (aDesiredBitRate) should be between 1 and Integer.MAX_VALUE.  Sending
 					// 1 means "choose the lowest possible bitrate" and sending Integer.MAX_VALUE means "choose the highest possible bitrate".
-					manager.createHLSSegmentedAssetAsync(observer, 
+
+					HLSAssetBuilder hlsAsset = new HLSAssetBuilder()
+							.assetObserver(observer)
+							.manifestUrl(new URL(url))
+							.desiredVideoBitrate(Integer.MAX_VALUE)
+							.addToQueue(true)
+							.assetId(remoteId)
+							.withMetadata(json)
+							.withPermissionObserver(permObserver);
+
+					if(remoteId.contains("ANCILLARY"))
+							hlsAsset.withAncillaryFiles(Arrays.asList(new AncillaryFile[]{new AncillaryFile(new URL("http://virtuoso-demo-content.s3.amazonaws.com/jobs.jpg"),"ancillary image", new String[] {"tag1,tag2"})}));
+
+					manager.createHLSSegmentedAssetAsync(hlsAsset.build());
+							/*createHLSSegmentedAssetAsync(observer,
 																new URL(url), 
 																Integer.MAX_VALUE, //let Virtuoso choose the highest bandwidth
 																remoteId, 
@@ -396,7 +428,7 @@ public class VirtuosoUtil {
 																true,
 																true,
 																permObserver
-																);
+																);*/
 				} catch (MalformedURLException e) {
 					Log.e(TAG, "problem with hls URL",e);
 				}

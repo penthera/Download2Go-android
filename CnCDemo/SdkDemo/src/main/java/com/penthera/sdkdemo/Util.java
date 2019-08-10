@@ -30,6 +30,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.penthera.sdkdemo.activity.SplashActivity;
+import com.penthera.virtuososdk.Common.EngineBlockedReason;
 import com.penthera.virtuososdk.Common.EngineStatus;
 
 import java.text.DecimalFormat;
@@ -67,6 +68,34 @@ public class Util {
 			return "IDLE";
 		}
 	}
+
+	/**
+	 * Maps the blocking issues flags to a string
+	 * @param flags An integer contains a set of enumerated flags for current reasons blocking download
+	 * @return The string detailing the reasons.
+	 */
+	public static String buildIssuesString(final int flags) {
+		boolean first = true;
+		StringBuffer reasonString = new StringBuffer();
+		first = checkErrorFlag(reasonString, flags, first, EngineBlockedReason.PERMISSIONS, "Permissions");
+		first = checkErrorFlag(reasonString, flags, first, EngineBlockedReason.POWER, "Power");
+		first = checkErrorFlag(reasonString, flags, first, EngineBlockedReason.NETWORK, "Network");
+		first = checkErrorFlag(reasonString, flags, first, EngineBlockedReason.DISK_FULL, "Disk Space");
+		first = checkErrorFlag(reasonString, flags, first, EngineBlockedReason.DISK_UNAVAILABLE, "Disk Unavailable");
+		checkErrorFlag(reasonString, flags, first, EngineBlockedReason.DISK_PERMISSION, "File Permissions");
+		return reasonString.toString();
+	}
+
+	private static boolean checkErrorFlag(StringBuffer reasonString, final int flags, boolean first, int permission, String permissionName) {
+		if ((flags & permission) == permission) {
+			if (!first) reasonString.append(", ");
+			reasonString.append(permissionName);
+			return false;
+		}
+		return first;
+	}
+
+
 	/**
 	 * Get the authority
 	 *

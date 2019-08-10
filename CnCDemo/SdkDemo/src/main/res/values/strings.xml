@@ -9,6 +9,11 @@
 
     <string name="generic_problem">Failure</string>
     <string name="error_start_service">Fatal error: The service could not be started</string>
+    <string name="error_blocked_reasons">Downloads blocked by following reasons: %1$s</string>
+    <string name="error_login_details">Could not login to backplane. Please ensure url and userid are present.</string>
+
+    <string name="license_fetch_success">Fetched license for asset id: %1$s</string>
+    <string name="license_fetch_failure">License fetch failed for asset id: %1$s</string>
 
 	<!-- Generic words -->
     <string name="add">Add</string>
@@ -26,7 +31,11 @@
     <string name="diagnostics">Diagnostics</string>
     <string name="settings">Settings</string>
     <string name="user_devices">Users Devices</string>
+
+    <!-- Menu items -->
+    <string name="login">Login</string>
     <string name="logout">Logout</string>
+    <string name="unregister">Unregister</string>
 
 	<!-- Splash -->    
     <string name="welcome">WELCOME TO THE SDK Demo!</string>
@@ -36,7 +45,14 @@
     <string name="user">USER:</string>
     <string name="url">URL:</string>
     <string name="group">GROUP:</string>
-    
+    <string name="reg_failure_title">Registration Failed</string>
+    <string name="reg_failure_msg">Please check your internet connection</string>
+
+    <!-- Permission reason dialog -->
+    <string name="permission_dialog_reason">We need permission to write to the storage to save your video files to the location you requested. Without permission the app will not download any content for offline playback</string>
+    <string name="permission_dialog_ok">Ok, let android ask me again</string>
+    <string name="permission_dialog_no">I still don\'t want to!</string>
+
  	<!-- About -->
 	<string name="client_version">Demo Version: %1$s</string>
 	<string name="server_sdk_version">Server SDK Version: %1$s</string>
@@ -62,6 +78,9 @@
 	<string name="menu_delete">Delete</string>
 	<string name="menu_reset">Reset</string>   
 	<string name="long_press_cab">Long press items to open CAB cmds</string>
+    <string name="menu_refresh_drm">Refresh DRM</string>
+    <string name="menu_refresh_all_ads">Refresh all ads</string>
+
 
 	<!-- Download -->
     <string name="device_disabled">Device Disabled</string>
@@ -77,6 +96,8 @@
     <string name="catalog_detail">Catalog Detail</string>
     <string name="watch_now">Watch Now</string>
     <string name="download">Download</string>
+    <string name="refresh_ads">Refresh Ads</string>
+    <string name="itempause">Pause Item</string>
     <string name="are_you_sure">Are you sure?</string>
     <string name="delete_item">Delete Item?</string>	
     <string name="cannot_find_item">Cannot Find Item</string>

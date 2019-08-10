@@ -24,6 +24,7 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
@@ -54,6 +55,7 @@ public class DevicesActivity extends SdkDemoBaseActivity {
 	private ProgressDialog mProgressDialog;
 	@SuppressLint("SimpleDateFormat")
 	SimpleDateFormat formatter = new SimpleDateFormat("MMM d, yyyy HH:mm:ss");
+    private Handler mHandler;
 	
 	private ArrayList<IBackplaneDevice> iBackplaneDevices;
 	
@@ -63,19 +65,29 @@ public class DevicesActivity extends SdkDemoBaseActivity {
 	final IBackplaneObserver mBackplaneObserver = new IBackplaneObserver(){
 
 		@Override
-		public void requestComplete(int callbackType, int result) {
-			if( callbackType == Common.BackplaneCallbackType.DOWNLOAD_ENABLEMENT_CHANGE ||
-				callbackType == Common.BackplaneCallbackType.DEVICE_UNREGISTERED ||
-				callbackType == Common.BackplaneCallbackType.NAME_CHANGE){
-				
-				if(result == Common.BackplaneResult.SUCCESS){
-					handleRefresh();
-				}
-				else{
-					dismissProgressDialog();
-					Log.w(LOG_TAG, "Problem communicating wih the backplane result = " + result);
-				}
-			}
+		public void requestComplete(final int callbackType, final int result, final String errorMessage) {
+            mHandler.postDelayed( new Runnable() {
+                @Override
+                public void run() {
+                    if (callbackType == Common.BackplaneCallbackType.DOWNLOAD_ENABLEMENT_CHANGE ||
+                            callbackType == Common.BackplaneCallbackType.DEVICE_UNREGISTERED ||
+                            callbackType == Common.BackplaneCallbackType.NAME_CHANGE)
+
+                    {
+
+                        if (result == Common.BackplaneResult.SUCCESS) {
+                            handleRefresh();
+                        } else if (result == Common.BackplaneResult.MAXIMUM_ENABLEMENT_REACHED) {
+                            dismissProgressDialog();
+                            Toast.makeText(DevicesActivity.this, errorMessage, Toast.LENGTH_LONG).show();
+                            Log.w(LOG_TAG, "Problem changing device enablement:  " + errorMessage);
+                        } else {
+                            dismissProgressDialog();
+                            Log.w(LOG_TAG, "Problem communicating wih the backplane result = " + result);
+                        }
+                    }
+                }
+            }, 100);
 		}
 		
 	};
@@ -182,7 +194,7 @@ public class DevicesActivity extends SdkDemoBaseActivity {
 									mProgressDialog = ProgressDialog.show(DevicesActivity.this, "Change Device Enablement", 
 											i.downloadEnabled() ? "Disabling Download on Device " + i.id():"Enabling Download on Device " + i.id(),
 											true);
-									mService.getBackplane().changeDownloadEnablement(!i.downloadEnabled(), i);
+									mVirtuoso.getBackplane().changeDownloadEnablement(!i.downloadEnabled(), i);
 								} catch (BackplaneException e) {
 									Log.e(LOG_TAG, "Caught exception changing enablement",e);
 									dismissProgressDialog();
@@ -203,7 +215,7 @@ public class DevicesActivity extends SdkDemoBaseActivity {
 									mProgressDialog = ProgressDialog.show(DevicesActivity.this, "Unregister Device",
 											"Unregistering device " + i.id(),
 											true);
-									mService.getBackplane().unregisterDevice(i);
+									mVirtuoso.getBackplane().unregisterDevice(i);
 								} catch (BackplaneException e) {
 									Log.e(LOG_TAG, "Caught exception unregistering device", e);
 									dismissProgressDialog();
@@ -258,6 +270,7 @@ public class DevicesActivity extends SdkDemoBaseActivity {
         iAdapter = new ItemAdapter(getApplicationContext(),R.layout.row,iBackplaneDevices);
         ListView lv = (ListView) this.findViewById(android.R.id.list);
         lv.setAdapter(iAdapter);
+        mHandler = new Handler();
     }
 	
 	/* (non-Javadoc)
@@ -266,8 +279,8 @@ public class DevicesActivity extends SdkDemoBaseActivity {
 	@Override
 	protected void onPause() {
 		super.onPause();
-		mService.removeObserver(mBackplaneObserver);
-		mService.onPause();
+		mVirtuoso.removeObserver(mBackplaneObserver);
+		mVirtuoso.onPause();
 	}
 
 	/* (non-Javadoc)
@@ -276,8 +289,8 @@ public class DevicesActivity extends SdkDemoBaseActivity {
 	@Override
 	protected void onResume() {
 		super.onResume();
-		mService.addObserver(mBackplaneObserver);
-		mService.onResume();
+		mVirtuoso.addObserver(mBackplaneObserver);
+		mVirtuoso.onResume();
 		if(iBackplaneDevices.size() > 0){
 			iBackplaneDevices.clear();
 			iAdapter.notifyDataSetChanged();
@@ -297,7 +310,7 @@ public class DevicesActivity extends SdkDemoBaseActivity {
 				mProgressDialog = ProgressDialog.show(DevicesActivity.this, "Change Device Nickname", 
 						"Changing Nickname...",
 						true);
-				mService.getBackplane().changeNickname(args.getString("nickname"), device);
+				mVirtuoso.getBackplane().changeNickname(args.getString("nickname"), device);
 			} catch (BackplaneException e) {
 				Log.e(LOG_TAG, "Caught exception requesting nickname change",e);
 				dismissProgressDialog();
@@ -318,7 +331,7 @@ public class DevicesActivity extends SdkDemoBaseActivity {
 		try {
 			dismissProgressDialog();
 			mProgressDialog = ProgressDialog.show(DevicesActivity.this, "Retrieve Devices", "Requesting Devices from Backplane...",true);
-			mService.getBackplane().getDevices(mDeviceListingObserver);
+			mVirtuoso.getBackplane().getDevices(mDeviceListingObserver);
 		} catch (BackplaneException be) {
 			Log.e(LOG_TAG, "Caught exception requesting devices",be);
 			dismissProgressDialog();

@@ -42,10 +42,7 @@ public class Config {
 	
 	/** How frequency to check the timestamp on the catalog for modifications */
 	public static final int CATALOG_UPDATE_INTERVAL = 30 * 60 * 1000;
-	
-	/** This is created in the GooglePlay console -- See quick start guide for instructions */
-	public static final String SENDER_ID = "877988993366";
-	
+
 	public static String getAuthority(Context context) {
 		String authority = "";
 		try {

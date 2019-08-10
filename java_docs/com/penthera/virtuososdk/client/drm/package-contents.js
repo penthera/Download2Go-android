@@ -17,6 +17,7 @@ var classSelectorHTML = '\
 		<option value="com.penthera.virtuososdk.client.drm/UUIDS">UUIDS</option>\
 		<option value="com.penthera.virtuososdk.client.drm/VirtuosoDrmSession">VirtuosoDrmSession</option>\
 		<option value="com.penthera.virtuososdk.client.drm/VirtuosoDrmSessionManager">VirtuosoDrmSessionManager</option>\
+		<option value="com.penthera.virtuososdk.client.drm/VirtuosoDrmSessionManager.MediaDrmHandler">VirtuosoDrmSessionManager.MediaDrmHandler</option>\
 	</optgroup>\
 	<optgroup label="Exceptions">\
 		<option value="com.penthera.virtuososdk.client.drm/KeysExpiredException">KeysExpiredException</option>\

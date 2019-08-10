@@ -1,0 +1,208 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">SdkDemoKotlin</string>
+
+    <string name="client_package">com.penthera.virtuososdk.provider.sdkkotlindemo</string>
+
+    <!-- Error conditions -->
+    <string name="generic_problem">Failure</string>
+    <string name="error_start_service">Fatal error: The service could not be started</string>
+    <string name="invalid_credentials">Invalid Credentials</string>
+    <string name="error_backplane_comms">Problem communicating with the server</string>
+
+    <!-- General -->
+    <string name="no">NO</string>
+    <string name="yes">YES</string>
+    <string name="enable">ENABLE</string>
+    <string name="disable">DISABLE</string>
+    <string name="delete">Delete</string>
+    <string name="cancel">Cancel</string>
+
+    <!-- Screen names -->
+    <string name="about">About</string>
+    <string name="inbox">Inbox</string>
+    <string name="catalog">Catalog</string>
+    <string name="diagnostics">Diagnostics</string>
+    <string name="settings">Settings</string>
+    <string name="user_devices">Users Devices</string>
+    <string name="other">Other</string>
+
+    <!-- Menu items -->
+    <string name="login">Login</string>
+    <string name="logout">Logout</string>
+    <string name="unregister">Unregister</string>
+    <string name="pause">Pause</string>
+    <string name="resume">Resume</string>
+    <string name="add_test_item">Add Test Item</string>
+
+    <!-- Context Menu -->
+    <string name="menu_delete">Delete</string>
+    <string name="menu_reset">Reset</string>
+    <string name="menu_pause_item">Pause Item</string>
+    <string name="menu_resume_item">Resume Item</string>
+    <string name="menu_refresh_drm">Refresh DRM</string>
+    <string name="long_press_cab">Long press items to open context menu</string>
+
+    <!-- Status view -->
+    <string name="download_engine_status">Download Status</string>
+    <string name="overall_throughput">Overall Rate</string>
+    <string name="current_throughput">Current Rate</string>
+
+    <!-- Login -->
+    <string name="intro">Penthera SDK Demo</string>
+    <string name="continue_button">Continue</string>
+    <string name="user">User:</string>
+    <string name="url">Backplane URL:</string>
+    <string name="error_login_details">Could not login to backplane. Please ensure url and userid are present.</string>
+
+    <!-- Inbox -->
+    <string name="no_download">No items downloading or downloaded. Please select the catalog from main menu to begin downloading content.</string>
+    <string name="item_icon">Item Icon</string>
+    <string name="queued">Queued</string>
+    <string name="expired">Expired</string>
+    <string name="downloaded">Downloaded</string>
+    <string name="num_selected">%1$d selected</string>
+    <string name="download_status">Status: </string>
+    <string name="error_count">Error Count: </string>
+    <string name="expiration">Expiration: </string>
+    <string name="never">Never</string>
+
+    <string-array name="other_menu">
+        <item>Settings</item>
+        <item>Users Devices</item>
+        <item>Diagnostics</item>
+        <item>About</item>
+    </string-array>
+
+    <!-- Catalog -->
+    <string name="catalog_rating_label">Rating:</string>
+    <string name="catalog_duration_label">Duration:</string>
+
+    <!-- Catalog Detail -->
+    <string name="catalog_detail">Catalog Detail</string>
+    <string name="watch_now">Watch Now</string>
+    <string name="download">Download</string>
+    <string name="are_you_sure">Are you sure?</string>
+    <string name="delete_item">Delete Item?</string>
+    <string name="cannot_find_item">Cannot Find Item</string>
+    <string name="expires">Expires: </string>
+    <string name="available">Available: </string>
+    <string name="always">Always</string>
+
+    <!-- status in detail -->
+    <string name="status_downloading">Downloading</string>
+    <string name="status_downloaded">Downloaded</string>
+    <string name="status_pending">Queued</string>
+    <string name="status_expired">Expired</string>
+    <string name="asset_status">File %1$s with %2$d errors, current state: %3$s</string>
+
+    <!-- Settings -->
+    <string name="download_enabled">Download Enabled</string>
+    <string name="max_storage">Max Storage Allowed MB (negative = no limit)</string>
+    <string name="headroom">Headroom MB</string>
+    <string name="max_segment_errors">Max Permitted Segment Errors</string>
+    <string name="error_segment_code">HTTP code in proxy for errd Segment</string>
+    <string name="battery_threshold">Battery Threshold %1$d %%</string>
+    <string name="destination_path">Destination path</string>
+    <string name="cell_quota">Cell Quota MB</string>
+    <string name="cell_quota_start_date">Cell Quota start date</string>
+    <string name="report_progress_setting">Report Progress %1$d %%</string>
+    <string name="progress_timed">Report Progress ms</string>
+    <string name="socket_timeout">Socket timeout</string>
+    <string name="connection_timeout">Socket connection timeout</string>
+    <string name="reset">Reset</string>
+    <string name="fragment_progress_rate">Fragment Progress Rate</string>
+    <string name="drm_autorenew">Auto renew drm licenses</string>
+    <string name="unknown">Engine Status Unknown</string>
+    <string name ="request_permissions">Always Request Permissions</string>
+    <string name="sdk_allowed_video_codec_hint">Allowed video codecs ex:(mp4a,ec3)</string>
+    <string name="hide_notifications_pause">Hide notifications on pause</string>
+    <string name="apply">Apply Settings</string>
+
+    <!-- User Devices -->
+    <string name="change_nickname">Change Nickname</string>
+    <string name="device_id">Device ID:</string>
+    <string name="device_nickname">Nickname:</string>
+    <string name="current_device">Is this device:</string>
+    <string name="device_last_sync">Last sync:</string>
+    <string name="device_last_modified">Last modified:</string>
+    <string name="no_sync">None</string>
+    <string name="fetching_devices">Fetching devices from the backplane</string>
+    <string name="fetching_devices_failed">Cannot get Devices: Registered? Connection?</string>
+    <string name="changing_nickname">Changing Nickname&#8230;</string>
+    <string name="changing_enablement">Changing device enablement&#8230;</string>
+    <string name="unregistering_device">Unregistering device&#8230;</string>
+
+    <!-- Diagnostics -->
+    <string name="undefined">Undefined</string>
+
+    <!-- About -->
+    <string name="client_version">Demo Version: %1$s</string>
+    <string name="server_sdk_version">Penthera SDK Version: %1$s</string>
+    <string name="android_sdk_version">Android SDK Version: %1$s</string>
+    <string name="copyright">Copyright 2019 Penthera Partners Inc (www.penthera.com)</string>
+    <string name="hosted">Some content in this application may be provided by and hosted by the Internet Archive (www.archive.org) </string>
+
+    <!-- Acessibility: Descriptions of images -->
+    <string name="content_desc_app_icon">Application Icon</string>
+    <string name="content_desc_up">Up</string>
+    <string name="content_desc_down">Down</string>
+
+
+    <!-- player -->
+    <string name="video">Video</string>
+
+    <string name="audio">Audio</string>
+
+    <string name="text">Text</string>
+    <string name="retry">Retry</string>
+    <string name="selection_disabled">Disabled</string>
+
+    <string name="selection_default">Default</string>
+
+    <string name="selection_default_none">Default (none)</string>
+
+    <string name="unexpected_intent_action">Unexpected intent action: <xliff:g id="action">%1$s</xliff:g></string>
+
+    <string name="enable_random_adaptation">Enable random adaptation</string>
+
+    <string name="error_drm_not_supported">Protected content not supported on API levels below 18</string>
+
+    <string name="error_drm_unsupported_scheme">This device does not support the required DRM scheme</string>
+
+    <string name="error_drm_unknown">An unknown DRM error occurred</string>
+
+    <string name="error_no_decoder">This device does not provide a decoder for <xliff:g id="mime_type">%1$s</xliff:g></string>
+
+    <string name="error_no_secure_decoder">This device does not provide a secure decoder for <xliff:g id="mime_type">%1$s</xliff:g></string>
+
+    <string name="error_querying_decoders">Unable to query device decoders</string>
+
+    <string name="error_instantiating_decoder">Unable to instantiate decoder <xliff:g id="decoder_name">%1$s</xliff:g></string>
+
+    <string name="error_unsupported_video">Media includes video tracks, but none are playable by this device</string>
+
+    <string name="error_unsupported_audio">Media includes audio tracks, but none are playable by this device</string>
+
+    <string name="storage_permission_denied">Permission to access storage was denied</string>
+
+
+    <!-- add new catalog item -->
+    <string name="add_item_title_hint">Catalog Item Title</string>
+    <string name="add_item_asset_id_hint">Asset ID</string>
+    <string name="add_item_desc_hint">Catalog Item Description</string>
+    <string name="add_item_url_hint">Catalog item Content URI</string>
+    <string name="add_item_mime_type_hiht">Content MIME Type</string>
+    <string name="lbl_add_item_asset_type">Content asset type</string>
+    <string name="add_item_duration_hint">Duration (in seconds)</string>
+    <string name="add_item_rating_hint">Content Rating (PG,R)</string>
+    <string name="content_tab_lbl">Content</string>
+    <string name="meta_tab_lbl">Metadata</string>
+    <string name="expiry_tab_lbl">Expiry</string>
+
+    <string-array name="add_item_content_type">
+        <item>Single file (MP4)</item>
+        <item>HLS Manifest</item>
+        <item>DASH Manifest</item>
+    </string-array>
+
+</resources>

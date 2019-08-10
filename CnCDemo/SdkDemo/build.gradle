@@ -1,13 +1,19 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion 28
+    buildToolsVersion '28.0.3'
 
     defaultConfig {
         applicationId "com.penthera.sdkdemo"
-        minSdkVersion 14
-        targetSdkVersion 26
+        minSdkVersion 15
+        targetSdkVersion 28
         multiDexEnabled true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 
     buildTypes {
@@ -20,11 +26,12 @@ android {
 
 allprojects {
     repositories {
+        google()
         jcenter()
         flatDir {
             dirs 'libs'
         }
-        google()
+
 
         mavenCentral()
         maven{
@@ -34,25 +41,32 @@ allprojects {
 }
 
 dependencies {
+
     def sysprops = System.getProperties()
-    if (sysprops['idea.platform.prefix'] != null) {
-        implementation project(':SDK')
+    if (sysprops['idea.platform.prefix'] != null || project.hasProperty("devCmdLine")) {
+        implementation 'com.penthera:cnc-android-sdk-debug:3.15.0'
     } else {
-
-        implementation 'com.penthera:cnc-android-sdk-debug:3.14.28'
+        implementation 'com.penthera:cnc-android-sdk-debug:3.15.0'
     }
 
-    implementation 'com.google.android.exoplayer:exoplayer:2.7.0'
-    implementation 'com.android.support:appcompat-v7:26.1.0'
-    implementation ('com.google.android.gms:play-services:10.2.1'){
-        exclude group: 'com.android.support'
+    implementation ('com.google.android.exoplayer:exoplayer:2.9.6') {
+        exclude group: 'com.google.android.gms'
     }
-    implementation 'com.google.firebase:firebase-messaging:10.2.1'
+    implementation ('com.google.android.exoplayer:extension-ima:2.9.6'){
+        exclude group: 'com.google.android.gms'
+    }
+
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.google.firebase:firebase-messaging:17.3.4'
+    implementation 'com.google.firebase:firebase-core:16.0.6'
     implementation files('libs/CWAC-SackOfViewsAdapter.jar')
     implementation files('libs/image-master.jar')
     implementation files('libs/mergeadapter.jar')
     implementation files('libs/prettytime-1.0.8.Final.jar')
     implementation 'com.android.support:multidex:1.0.3'
-    provided files('libs/amazon-device-messaging-1.0.1.jar')
+
+    compileOnly files('libs/amazon-device-messaging-1.0.1.jar')
+
 }
+com.google.gms.googleservices.GoogleServicesPlugin.config.disableVersionCheck = true
 apply plugin: 'com.google.gms.google-services'

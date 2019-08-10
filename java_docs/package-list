@@ -2,7 +2,10 @@ com.penthera
 com.penthera.virtuoso.net.security.client
 com.penthera.virtuososdk
 com.penthera.virtuososdk.client
+com.penthera.virtuososdk.client.builders
 com.penthera.virtuososdk.client.database
 com.penthera.virtuososdk.client.drm
+com.penthera.virtuososdk.client.drm.castlabs
 com.penthera.virtuososdk.client.subscriptions
 com.penthera.virtuososdk.database.impl.provider
+com.penthera.virtuososdk.service

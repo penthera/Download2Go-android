@@ -248,6 +248,71 @@ public class CatalogRequest {
 				"\"airplayEnabled\":true," +
 				"\"catalogExpiry\":" + TWO_YEARS_FROM_NOW +
 
-			"}"	+ 
+			"},"	+
+
+					"{" +
+					"\"genre\":\"Movies\"," +
+					"\"downloadURL\":\"https://storage.googleapis.com/wvmedia/clear/h264/tears/tears_sd.mpd\"," +
+					"\"desc\":\"DASH SD TEARS with ancillary\"," +
+					"\"featured\":false," +
+					"\"downloadExpiry\":" + FORTNIGHT + "," +
+					"\"availableFrom\":" + NOW + "," +
+					"\"expiryAfterPlay\":" + NEVER + "," +
+					"\"type\":4000," +
+					"\"remoteUUID\":\"DASH_TEARS+ANCILLARY\"," +
+					"\"mediaType\":6," +
+					"\"mime\":\"application/octet-stream\"," +
+					"\"title\":\"(DASH) Tears\"," +
+					"\"duration\":3882," +
+					"\"streamURL\":\"https://storage.googleapis.com/wvmedia/clear/h264/tears/tears_sd.mpd\"," +
+					"\"popular\":false," +
+					"\"downloadEnabled\":true," +
+					"\"contentRating\":\"PG\"," +
+					"\"imageAssets\":[" +
+					"{\"impKey\":\"gridCellImage\",\"url\":\"http://virtuoso-demo-content.s3.amazonaws.com/College.jpg\"}," +
+					"{\"impKey\":\"gridCellImage@2x\",\"url\":\"http://virtuoso-demo-content.s3.amazonaws.com/College.jpg\"}," +
+					"{\"impKey\":\"detailBackgroundImage\",\"url\":\"http://virtuoso-demo-content.s3.amazonaws.com/College.jpg\"}," +
+					"{\"impKey\":\"detailBackgroundImage@2x\",\"url\":\"http://virtuoso-demo-content.s3.amazonaws.com/College.jpg\"}" +
+					"]," +
+					"\"categories\":[" +
+					"{\"name\":\"movies\"}" +
+					"]," +
+					"\"networkUUID\":\"1\"," +
+					"\"airplayEnabled\":true," +
+					"\"catalogExpiry\":" + TWO_YEARS_FROM_NOW +
+					"},"	 +
+
+					"{" +
+					"\"genre\":\"Speeches\"," +
+					"\"downloadURL\":\"http://virtuoso-demo-content.s3.amazonaws.com/Steve/steve.m3u8\"," +
+					"\"streamURL\":\"http://virtuoso-demo-content.s3.amazonaws.com/Steve/steve.m3u8\"," +
+					"\"desc\":\"At his Stanford University commencement speech, Steve Jobs, CEO and co-founder of Apple and Pixar, urges us to pursue our dreams and see the opportunities in life's setbacks - including death itself.\"," +
+					"\"featured\":false," +
+					"\"downloadExpiry\":" + FORTNIGHT + "," +
+					"\"availableFrom\":" + NOW + "," +
+					"\"expiryAfterPlay\":" + NEVER + "," +
+					"\"type\":4000," +
+					"\"remoteUUID\":\"JOBS_HLS+ANCILLARY\"," +
+					"\"mediaType\":3," +
+					"\"title\":\"(HLS) Steve Jobs, Stanford with ancillary files\"," +
+					"\"duration\":904," +
+					"\"mime\":\"application/x-mpegurl\"," +
+					"\"popular\":false," +
+					"\"downloadEnabled\":true," +
+					"\"contentRating\":\"PG\"," +
+					"\"imageAssets\":[" +
+					"{\"impKey\":\"gridCellImage\",\"url\":\"http://virtuoso-demo-content.s3.amazonaws.com/jobs.jpg\"}," +
+					"{\"impKey\":\"gridCellImage@2x\",\"url\":\"http://virtuoso-demo-content.s3.amazonaws.com/jobs.jpg\"}," +
+					"{\"impKey\":\"detailBackgroundImage\",\"url\":\"http://virtuoso-demo-content.s3.amazonaws.com/jobs.jpg\"}," +
+					"{\"impKey\":\"detailBackgroundImage@2x\",\"url\":\"http://virtuoso-demo-content.s3.amazonaws.com/jobs.jpg\"}" +
+					"]," +
+					"\"categories\":[" +
+					"{\"name\":\"speeches\"}" +
+					"]," +
+					"\"networkUUID\":\"1\"," +
+					"\"airplayEnabled\":true," +
+					"\"catalogExpiry\":" + TWO_YEARS_FROM_NOW +
+					"}"	+
+
 			"]}");
 }

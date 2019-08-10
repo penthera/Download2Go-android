@@ -14,18 +14,24 @@
 
 package com.penthera.sdkdemo.fragment;
 
+import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Date;
-import junit.framework.Assert;
+import java.util.List;
 
 import org.ocpsoft.pretty.time.PrettyTime;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -38,7 +44,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -55,13 +64,22 @@ import com.penthera.sdkdemo.Util;
 import com.penthera.sdkdemo.VirtuosoUtil;
 import com.penthera.sdkdemo.catalog.Catalog.CatalogColumns;
 import com.penthera.sdkdemo.catalog.CatalogContentProvider;
+import com.penthera.virtuososdk.Common;
 import com.penthera.virtuososdk.Common.AssetStatus;
+import com.penthera.virtuososdk.ads.AdRefreshWorker;
+import com.penthera.virtuososdk.client.AncillaryFile;
 import com.penthera.virtuososdk.client.IAsset;
 import com.penthera.virtuososdk.client.IAssetManager;
 import com.penthera.virtuososdk.client.IIdentifier;
+import com.penthera.virtuososdk.client.ISegmentedAsset;
 import com.penthera.virtuososdk.client.QueueObserver;
 import com.penthera.virtuososdk.client.Virtuoso;
+import com.penthera.virtuososdk.client.ads.IVirtuosoAdParserObserver;
+import com.penthera.virtuososdk.client.ads.IVirtuosoAdUrlResolver;
 import com.penthera.virtuososdk.client.database.AssetColumns;
+import com.penthera.virtuososdk.drm.DrmRefreshWorker;
+
+import static com.penthera.virtuososdk.utility.logger.CnCLogger.Log;
 
 /**
  * The catalog detail fragment -- Show detailed information about catalog item
@@ -101,7 +119,13 @@ public class CatalogDetailFragment extends Fragment implements LoaderManager.Loa
 	private boolean mBuilt = false;
 	/** Download (or delete) items based on file state */
 	private Button mDownloadButton;
-	
+	/** Pause button */
+	private Button mPauseButton;
+	/** Layout containing pause button */
+	private View mPauseLayout;
+
+	private Button refreshAdsBtn;
+
 	/** Asset corresponding to this catalog entry */
 	private IAsset mAsset;
 	
@@ -165,12 +189,20 @@ public class CatalogDetailFragment extends Fragment implements LoaderManager.Loa
 			mAsset = VirtuosoUtil.getVirtuosoAsset(mAssetManager, mId);
 			update();
 		}
+
+		mService.getAssetManager().getAdManager().addParserObserver(mAdParserObserver );
+		mService.getAssetManager().getAdManager().addUrlResolver(mAdUrlResolver);
+
 	}
 		
 	// onPause
 	public void onPause() {
 		super.onPause();
-		mService.removeObserver(mQueueObserver);		
+		mService.removeObserver(mQueueObserver);
+
+
+		mService.getAssetManager().getAdManager().removeParserObserver(mAdParserObserver);
+		mService.getAssetManager().getAdManager().removeUrlResolver(mAdUrlResolver);
 	}
 
 	// onDestory
@@ -269,10 +301,37 @@ public class CatalogDetailFragment extends Fragment implements LoaderManager.Loa
 				} else if (bText.equals(getString(R.string.delete))) {
 					handleDelete();
 				} else {
-					Assert.assertEquals(false, "bad button");
+					Log.w(TAG, "Bad button");
 				}
 			}
-		});			
+		});
+
+		mPauseLayout = mLayout.findViewById(R.id.pause_button_row);
+		mPauseButton = mLayout.findViewById(R.id.btn_pause_item);
+		mPauseButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+                Button b = (Button) v;
+                String bText = b.getText().toString();
+
+                if (bText.equals(getString(R.string.pause))) {
+                    handlePause();
+                } else if (bText.equals(getString(R.string.resume))) {
+                    handleResume();
+                } else {
+                    Log.w(TAG, "Bad button");
+                }
+
+                updatePauseButton();
+			}
+		});
+
+		refreshAdsBtn = mLayout.findViewById(R.id.btn_refresh_ads);
+		refreshAdsBtn.setOnClickListener(v -> {
+
+			if(mAsset != null)
+				mAssetManager.getAdManager().refreshAdsForAsset(mAsset);
+		});
 		update();
 	}
 	
@@ -334,8 +393,106 @@ public class CatalogDetailFragment extends Fragment implements LoaderManager.Loa
 		description.setText(descriptionStr);
 		
 		updateDownloadButtonText();
+
+		updateAdRefreshBtn();
+
+		showAncillaryFiles();
+
+		updatePauseButton();
+
 	}
-	
+
+	private void showAncillaryFiles() {
+
+
+		if (mAsset != null){
+
+			mLayout.findViewById(R.id.no_ancillary_files_lbl).setVisibility(View.VISIBLE);
+
+			if (mAsset.getType() == Common.AssetIdentifierType.SEGMENTED_ASSET_IDENTIFIER) {//segmented files can have ancillaries
+				ISegmentedAsset file = (ISegmentedAsset) mAsset;
+
+				List<AncillaryFile> ancillaries = file.getAncillaryFiles(getContext());
+
+				if (ancillaries != null && ancillaries.size() > 0) {
+
+					mLayout.findViewById(R.id.no_ancillary_files).setVisibility(View.GONE);
+					mLayout.findViewById(R.id.ancillary_files).setVisibility(View.VISIBLE);
+
+					ListView list = mLayout.findViewById(R.id.ancillary_files);
+
+					list.setAdapter(new AncillaryAdapter(getContext(), ancillaries));
+				} else {
+					mLayout.findViewById(R.id.ancillary_files).setVisibility(View.GONE);
+					mLayout.findViewById(R.id.no_ancillary_files).setVisibility(View.VISIBLE);
+				}
+
+
+			} else {
+				mLayout.findViewById(R.id.ancillary_files).setVisibility(View.GONE);
+				mLayout.findViewById(R.id.no_ancillary_files).setVisibility(View.VISIBLE);
+			}
+		}else {
+			mLayout.findViewById(R.id.no_ancillary_files_lbl).setVisibility(View.GONE);
+			mLayout.findViewById(R.id.ancillary_files).setVisibility(View.GONE);
+			mLayout.findViewById(R.id.no_ancillary_files).setVisibility(View.GONE);
+		}
+
+
+	}
+
+	private static class AncillaryAdapter extends BaseAdapter{
+
+		private Context context;
+		private List<AncillaryFile> files;
+
+
+		public AncillaryAdapter(Context context, List<AncillaryFile> files){
+			this.context = context;
+			this.files = files;
+		}
+
+		@Override
+		public int getCount() {
+			return files != null ? files.size() : 0;
+		}
+
+		@Override
+		public Object getItem(int position) {
+			return null;
+		}
+
+		@Override
+		public long getItemId(int position) {
+			return 0;
+		}
+
+		@Override
+		public View getView(int position, View convertView, ViewGroup parent) {
+			if(convertView == null){
+				convertView = LayoutInflater.from(context).inflate(R.layout.ancillary_list_item, parent, false);
+			}
+
+			AncillaryFile file = files.get(position);
+
+			((TextView)convertView.findViewById(R.id.ancillary_desc)).setText(file.description);
+			((TextView)convertView.findViewById(R.id.ancillary_src)).setText(file.srcUrl.toString());
+			((TextView)convertView.findViewById(R.id.ancillary_path)).setText(file.localPath);
+			((TextView)convertView.findViewById(R.id.ancillary_tags)).setText(file.tags != null && file.tags.length > 0 ? TextUtils.join(",", file.tags) : "NONE");
+
+			if(file.srcUrl.toString().endsWith(".jpg")){
+				File img = new File(file.localPath);
+
+				((ImageView)convertView.findViewById(R.id.ancillary_img)).setImageBitmap(BitmapFactory.decodeFile(img.getAbsolutePath()));
+			}
+			else{
+				convertView.findViewById(R.id.ancillary_img).setVisibility(View.GONE);
+			}
+
+			return convertView;
+		}
+	}
+
 	private void update(){
 		updateDetails();
 		updateItemStatus(mAsset,true);
@@ -424,7 +581,22 @@ public class CatalogDetailFragment extends Fragment implements LoaderManager.Loa
 	 */
 	private void handleDelete() {
 		showDeleteDialog();
-	}	
+	}
+
+	/**
+	 * Pause Item Handler (pauses the individual item)
+	 */
+	private void handlePause() {
+		if (mAsset != null && mAsset.getDownloadStatus() != AssetStatus.DOWNLOAD_PAUSED) {
+            mAssetManager.pauseDownload(mAsset);
+        }
+	}
+
+	private void handleResume() {
+        if (mAsset != null && mAsset.getDownloadStatus() == AssetStatus.DOWNLOAD_PAUSED) {
+            mAssetManager.resumeDownload(mAsset);
+        }
+	}
 	
 	/**
 	 * Show delete confirmation dialog
@@ -541,8 +713,11 @@ public class CatalogDetailFragment extends Fragment implements LoaderManager.Loa
 			getActivity().runOnUiThread(new Runnable() {
 				@Override
 				public void run() {
-					updateDownloadButtonText();					
-				}				
+					updateDownloadButtonText();
+					updatePauseButton();
+					updateAdRefreshBtn();
+
+				}
 			});
 		}
 		
@@ -695,7 +870,6 @@ public class CatalogDetailFragment extends Fragment implements LoaderManager.Loa
 		finally {
 			if(c != null && !c.isClosed())
 				c.close();
-			c = null;
 		}
 	}
 	
@@ -715,8 +889,36 @@ public class CatalogDetailFragment extends Fragment implements LoaderManager.Loa
 		finally {
 			if(c != null && !c.isClosed())
 				c.close();
-			c = null;
 		}
+	}
+
+	/**
+	 * Test if the item is currently in the paused state
+	 * @param assetId the asset id to check
+	 * @return true if the item is paused.
+	 */
+	private boolean isPaused(String assetId) {
+		if (mAssetManager == null)
+			return false;
+		Cursor c = null;
+		try{
+			c = mAssetManager.getQueue().getCursor(new String[]{AssetColumns._ID, AssetColumns.DOWNLOAD_STATUS}, AssetColumns.ASSET_ID+"=?", new String[]{assetId});
+			if (c != null && c.getCount() > 0 && c.moveToFirst()){
+                return c.getInt(1) == AssetStatus.DOWNLOAD_PAUSED;
+            }
+			return false;
+		}
+		finally {
+			if(c != null && !c.isClosed())
+				c.close();
+		}
+	}
+
+	private void updateAdRefreshBtn(){
+		String assetId = mCursor.getString(mCursor.getColumnIndex(CatalogColumns._ID));
+
+		mLayout.findViewById(R.id.row_btn2).setVisibility(isDownloaded(assetId) ? View.VISIBLE : View.GONE);
+
 	}
 
 	/**
@@ -732,7 +934,23 @@ public class CatalogDetailFragment extends Fragment implements LoaderManager.Loa
 			mDownloadButton.setText(R.string.delete);					
 		}		
 	}
-	
+
+	private void updatePauseButton() {
+		String assetId = mCursor.getString(mCursor.getColumnIndex(CatalogColumns._ID));
+		boolean queued = isQ(assetId);
+		if (queued) {
+            if (isPaused(assetId)) {
+                mPauseButton.setText(R.string.resume);
+            } else {
+                mPauseButton.setText(R.string.pause);
+            }
+
+			mPauseLayout.setVisibility(View.VISIBLE);
+		} else {
+			mPauseLayout.setVisibility(View.GONE);
+		}
+	}
+
 	/**
 	 * Task for adding item to the download Q
 	 */
@@ -773,4 +991,48 @@ public class CatalogDetailFragment extends Fragment implements LoaderManager.Loa
 			}
 		}
 	}
+
+	private IVirtuosoAdParserObserver mAdParserObserver = new IVirtuosoAdParserObserver() {
+		@Override
+		public void onParserError(IAsset asset, int error, String message) {
+			Log.e("TAG", "Failed to parse ads for asset, error code: " + error + " message: " + message);
+
+			final String dlgmessage = (message != null ? message : "No Message") + "  Code: " + error;
+
+			final Activity context = getActivity();
+			context.runOnUiThread(new Runnable() {
+				public void run() {
+					AlertDialog.Builder builder1 = new AlertDialog.Builder(context);
+					builder1.setTitle("Advert Parser Error");
+					builder1.setMessage(dlgmessage);
+					builder1.setCancelable(false);
+					builder1.setPositiveButton("OK",
+							new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog, int id) {
+									dialog.cancel();
+								}
+							});
+
+					AlertDialog alert11 = builder1.create();
+					alert11.show();
+				}
+			});
+		}
+	};
+
+
+	private IVirtuosoAdUrlResolver mAdUrlResolver = new IVirtuosoAdUrlResolver() {
+		@Override
+		public URL getUrlForAsset(IAsset asset) throws MalformedURLException {
+
+
+			try {
+				return new URL("https://s3.amazonaws.com/hls-vbcp/testads/vmap_3ads_adtag.xml");
+			} catch (MalformedURLException mue) {
+				Log.e("Failed to generate valid ad url");
+				return null;
+			}
+
+		}
+	};
 }

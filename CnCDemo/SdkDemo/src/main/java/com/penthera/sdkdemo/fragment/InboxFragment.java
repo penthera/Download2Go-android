@@ -69,6 +69,7 @@ import com.penthera.sdkdemo.VirtuosoUtil;
 import com.penthera.sdkdemo.activity.CatalogDetailActivity;
 import com.penthera.sdkdemo.activity.MainActivity.DemoTabListener;
 import com.penthera.sdkdemo.customviews.InboxRow;
+import com.penthera.virtuososdk.Common;
 import com.penthera.virtuososdk.Common.AssetStatus;
 import com.penthera.virtuososdk.Common.EngineStatus;
 import com.penthera.virtuososdk.client.EngineObserver;
@@ -76,12 +77,15 @@ import com.penthera.virtuososdk.client.IAsset;
 import com.penthera.virtuososdk.client.IAssetManager;
 import com.penthera.virtuososdk.client.IAssetPermission;
 import com.penthera.virtuososdk.client.IQueue;
+import com.penthera.virtuososdk.client.ISegmentedAsset;
 import com.penthera.virtuososdk.client.IService;
 import com.penthera.virtuososdk.client.Observers;
 import com.penthera.virtuososdk.client.QueueObserver;
 import com.penthera.virtuososdk.client.ServiceException;
 import com.penthera.virtuososdk.client.Virtuoso;
 import com.penthera.virtuososdk.client.database.AssetColumns;
+
+
 
 /**
  * Display the inbox Q
@@ -700,6 +704,10 @@ public class InboxFragment extends ListFragment implements LoaderManager.LoaderC
 							value = "complete";
 							break;
 
+						case AssetStatus.DOWNLOAD_PAUSED:
+							value = "paused";
+							break;
+
 						case AssetStatus.EXPIRED:
 							value = "expired";
 							break;
@@ -991,7 +999,11 @@ public class InboxFragment extends ListFragment implements LoaderManager.LoaderC
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-			} else {
+
+			} else if (item.getItemId() == R.id.menu_refresh_drm) {
+	        	handleOp(REFRESH_DRM);
+
+			}else {
 				return false;
 			}
 
@@ -1008,6 +1020,7 @@ public class InboxFragment extends ListFragment implements LoaderManager.LoaderC
 
 		private static final int DELETE = 0;
 		private static final int RESET = 1;
+		private static final int REFRESH_DRM = 3;
 
 		/**
 		 * Handle Delete
@@ -1020,6 +1033,9 @@ public class InboxFragment extends ListFragment implements LoaderManager.LoaderC
 	    	} else if (op == RESET) {
 	    		resetSet(idSet);
 	    	}
+	    	else if(op == REFRESH_DRM){
+	    		refreshDrm(idSet);
+			}
 	    	mCompletedAdapter.mChecked.clear();
 
 	    	// Downloading
@@ -1028,7 +1044,9 @@ public class InboxFragment extends ListFragment implements LoaderManager.LoaderC
 		    	deleteSet(idSet);
 	    	} else if (op == RESET) {
 	    		resetSet(idSet);
-	    	}
+	    	} else if(op == REFRESH_DRM){
+				refreshDrm(idSet);
+			}
 	    	mQueueAdapter.mChecked.clear();
 
 	    	// Expired
@@ -1037,7 +1055,9 @@ public class InboxFragment extends ListFragment implements LoaderManager.LoaderC
 		    	deleteSet(idSet);
 	    	} else if (op == RESET) {
 	    		resetSet(idSet);
-	    	}
+	    	}else if(op == REFRESH_DRM){
+				refreshDrm(idSet);
+			}
 	    	mExpiredAdapter.mChecked.clear();
 	    }
 
@@ -1052,9 +1072,15 @@ public class InboxFragment extends ListFragment implements LoaderManager.LoaderC
 	    		mAssetManager.getQueue().resetErrors(id);
 	    	}
 	    }
+
+	    private void refreshDrm(Set<Integer> idSet) {
+			for (Integer id : idSet) {
+				((ISegmentedAsset)mAssetManager.get(id)).manualDrmRefresh();
+			}
+
+		}
 	};
 
-	// TODO: Doesn't seem to be showing up?
 	private void setFooter() {
 		if (mQueueAdapter.getCount() > 0 || mCompletedAdapter.getCount() > 0 || mExpiredAdapter.getCount() > 0) {
 			mFooterLayout.setVisibility(View.VISIBLE);
@@ -1080,7 +1106,8 @@ public class InboxFragment extends ListFragment implements LoaderManager.LoaderC
 		// we could just use a notify on the queue uri if we are paused.
 
 		setPauseResumeMenuItem();
-		mStatus.setText("Engine Status: " + Util.virtuosoStateToString(mVirtuosoStatus));
+		boolean loggedOut = mService.getBackplane().getAuthenticationStatus() == Common.AuthenticationStatus.SHUTDOWN;
+		mStatus.setText("Engine Status: " + Util.virtuosoStateToString(mVirtuosoStatus) + (loggedOut ? " - Logged Out" : ""));
 	}
 
 	private void setStatus() {

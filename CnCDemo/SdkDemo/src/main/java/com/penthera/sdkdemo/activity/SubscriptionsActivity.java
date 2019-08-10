@@ -41,7 +41,7 @@ public class SubscriptionsActivity extends SdkDemoBaseActivity
 
 		if (savedInstanceState == null) {			
 			// Catalog Detail Fragment
-			mSf = SubscriptionsFragment.newInstance(mService);
+			mSf = SubscriptionsFragment.newInstance(mVirtuoso);
 			getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, mSf, "mSf").commit();		
 			mSf.setArguments(getIntent().getExtras());
 
@@ -52,7 +52,7 @@ public class SubscriptionsActivity extends SdkDemoBaseActivity
 			ab.setDisplayHomeAsUpEnabled(true);	
 		} else {
 			mSf = (SubscriptionsFragment) getSupportFragmentManager().findFragmentByTag("mSf");
-			mSf.setService(mService);
+			mSf.setService(mVirtuoso);
 		}	
 	}
 

@@ -11,5 +11,12 @@
      	android:showAsAction="always" 
      	android:title="@string/menu_reset" 
      	android:visible="true">
-    </item>     
+    </item>
+
+	<item
+		android:id="@+id/menu_refresh_drm"
+		android:showAsAction="ifRoom"
+		android:title="@string/menu_refresh_drm"
+		android:visible="true">
+	</item>
 </menu>
