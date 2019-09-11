@@ -19,7 +19,7 @@ android {
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-project.txt'
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
 }
@@ -44,9 +44,9 @@ dependencies {
 
     def sysprops = System.getProperties()
     if (sysprops['idea.platform.prefix'] != null || project.hasProperty("devCmdLine")) {
-        implementation 'com.penthera:cnc-android-sdk-debug:3.15.4'
+        implementation 'com.penthera:cnc-android-sdk-debug:3.15.7'
     } else {
-        implementation 'com.penthera:cnc-android-sdk-debug:3.15.4'
+        implementation 'com.penthera:cnc-android-sdk-debug:3.15.7'
     }
 
     implementation ('com.google.android.exoplayer:exoplayer:2.9.6') {
