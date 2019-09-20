@@ -1,7 +1,6 @@
 package com.penthera.sdkdemokotlin.catalog
 
 import android.content.Context
-import android.os.Environment
 import android.util.Log
 import com.penthera.sdkdemokotlin.util.SingletonHolder
 import com.squareup.moshi.JsonAdapter
@@ -32,16 +31,16 @@ class ExampleCatalog(context: Context) {
 
     private var c: Context = context
 
-    var currentCatalog: List<ExampleCatalogItem> = ArrayList<ExampleCatalogItem>()
+    var currentCatalog: List<ExampleCatalogItem> = ArrayList()
 
-    var observers : ArrayList<CatalogObserver> = ArrayList();
+    private var observers : ArrayList<CatalogObserver> = ArrayList()
 
     init {
         loadStore()
     }
 
-    fun loadStore() {
-        var catalogItemsString: String? = null;
+    private fun loadStore() {
+        var catalogItemsString: String?
         // Look for a stored file first
         catalogItemsString = readStore()
 
@@ -78,8 +77,8 @@ class ExampleCatalog(context: Context) {
     }
 
     fun addAndStore(item: ExampleCatalogItem) {
-        var updatedCatalog: ArrayList<ExampleCatalogItem> = ArrayList(currentCatalog)
-        updatedCatalog.add(item);
+        val updatedCatalog: ArrayList<ExampleCatalogItem> = ArrayList(currentCatalog)
+        updatedCatalog.add(item)
 
         currentCatalog = updatedCatalog
 
@@ -94,7 +93,7 @@ class ExampleCatalog(context: Context) {
             val json = catalogItemAdapter.toJson(currentCatalog)
             writeStore(json)
 
-            for(observer : CatalogObserver in observers){
+            for(observer : CatalogObserver in this.observers){
                 observer.catalogChanged()
             }
 
@@ -109,8 +108,9 @@ class ExampleCatalog(context: Context) {
     }
 
     fun unregisterObserver(observer: CatalogObserver){
-        if(observers.contains(observer))
+        if(observers.contains(observer)) {
             observers.remove(observer)
+        }
     }
 
     private fun readStore(): String? {
@@ -136,18 +136,18 @@ class ExampleCatalog(context: Context) {
 
     fun findItemById( id : String): ExampleCatalogItem ?{
 
-        return currentCatalog?.let{ it.filter {item -> item.exampleAssetId == id} }.first()
+        return currentCatalog.let{ it.filter {item -> item.exampleAssetId == id} }.first()
 
     }
     private fun writeStore(json: String) {
-        val sd_main = File(c.filesDir, directory)
+        val sdMain = File(c.filesDir, directory)
         var success = true
-        if (!sd_main.exists()){
-            success = sd_main.mkdir()
+        if (!sdMain.exists()){
+            success = sdMain.mkdir()
         }
         if (success) {
             try {
-                File(sd_main, fileName).bufferedWriter(Charsets.UTF_8).use {
+                File(sdMain, fileName).bufferedWriter(Charsets.UTF_8).use {
                     it.write(json)
                 }
             } catch (e : Exception) {

@@ -1,6 +1,5 @@
 package com.penthera.sdkdemokotlin.fragment
 
-import android.app.ProgressDialog
 import android.arch.lifecycle.Lifecycle
 import android.arch.lifecycle.LifecycleObserver
 import android.arch.lifecycle.LiveData
@@ -174,37 +173,39 @@ class DevicesFragment : Fragment(), CancellableProgressDialog.CancelDialogListen
 
     // IBackplane observer
     override fun requestComplete(callbackType: Int, result: Int, errorMessage: String?) {
-        activity?.runOnUiThread(Runnable {
+        activity?.runOnUiThread {
             if (callbackType == Common.BackplaneCallbackType.DOWNLOAD_ENABLEMENT_CHANGE ||
                     callbackType == Common.BackplaneCallbackType.DEVICE_UNREGISTERED ||
                     callbackType == Common.BackplaneCallbackType.NAME_CHANGE) {
 
                 dismissProgressDialog()
-                if (result == Common.BackplaneResult.SUCCESS) {
-                    handleRefresh()
-                } else if (result == Common.BackplaneResult.MAXIMUM_ENABLEMENT_REACHED) {
-                    Toast.makeText(context, errorMessage, Toast.LENGTH_LONG).show()
-                    Log.w(TAG, "Problem changing device enablement:  $errorMessage")
-                } else {
-                    Toast.makeText(context, R.string.error_backplane_comms, Toast.LENGTH_LONG).show()
-                    Log.w(TAG, "Problem communicating wih the backplane result = $result")
+                when (result) {
+                    Common.BackplaneResult.SUCCESS -> handleRefresh()
+                    Common.BackplaneResult.MAXIMUM_ENABLEMENT_REACHED -> {
+                        Toast.makeText(context, errorMessage, Toast.LENGTH_LONG).show()
+                        Log.w(TAG, "Problem changing device enablement:  $errorMessage")
+                    }
+                    else -> {
+                        Toast.makeText(context, R.string.error_backplane_comms, Toast.LENGTH_LONG).show()
+                        Log.w(TAG, "Problem communicating wih the backplane result = $result")
+                    }
                 }
             }
-        })
+        }
     }
 
     class DevicesRecyclerAdapter(private val context: Context?, private val fragment: DevicesFragment) : RecyclerView.Adapter<DevicesRecyclerAdapter.DeviceViewHolder>() {
 
         var devices : Array<IBackplaneDevice> = arrayOf()
 
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DevicesRecyclerAdapter.DeviceViewHolder {
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DeviceViewHolder {
             val inflatedView = parent.inflate(R.layout.device_row, false)
             return DeviceViewHolder(inflatedView, context, fragment)
         }
 
         override fun getItemCount(): Int = devices.size
 
-        override fun onBindViewHolder(holder: DevicesRecyclerAdapter.DeviceViewHolder, position: Int) {
+        override fun onBindViewHolder(holder: DeviceViewHolder, position: Int) {
             holder.bind(devices[position])
         }
 

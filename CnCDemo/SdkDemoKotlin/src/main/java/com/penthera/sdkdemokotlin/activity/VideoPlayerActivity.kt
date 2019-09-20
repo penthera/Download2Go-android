@@ -1,28 +1,22 @@
 package com.penthera.sdkdemokotlin.activity
 
-import android.annotation.SuppressLint
+
 import android.annotation.TargetApi
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.Context
-import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.media.MediaDrm
 import android.net.Uri
-import android.os.Build
-import android.os.Bundle
-import android.os.Handler
-import android.os.SystemClock
+import android.os.*
 import android.text.TextUtils
 import android.util.Log
-import android.util.Pair
 import android.view.*
 import android.widget.*
 import com.google.android.exoplayer2.*
 import com.google.android.exoplayer2.BuildConfig
-import com.google.android.exoplayer2.audio.AudioRendererEventListener
-import com.google.android.exoplayer2.decoder.DecoderCounters
+import com.google.android.exoplayer2.analytics.AnalyticsListener
 import com.google.android.exoplayer2.drm.DrmSessionManager
 import com.google.android.exoplayer2.drm.DrmSessionManagerWrapper
 import com.google.android.exoplayer2.drm.FrameworkMediaCrypto
@@ -41,9 +35,7 @@ import com.google.android.exoplayer2.source.smoothstreaming.SsMediaSource
 import com.google.android.exoplayer2.trackselection.*
 import com.google.android.exoplayer2.ui.*
 import com.google.android.exoplayer2.upstream.*
-import com.google.android.exoplayer2.util.MimeTypes
 import com.google.android.exoplayer2.util.Util
-import com.google.android.exoplayer2.video.VideoRendererEventListener
 import com.penthera.virtuososdk.Common
 import com.penthera.virtuososdk.client.drm.UnsupportedDrmException
 import com.penthera.virtuososdk.client.drm.VirtuosoDrmSessionManager
@@ -130,14 +122,14 @@ class VideoPlayerActivity : Activity(), View.OnClickListener, PlaybackPreparer, 
 
     public override fun onStart() {
         super.onStart()
-        if (Util.SDK_INT > 23) {
-            initializePlayer()
-        }
+
+        initializePlayer()
+
     }
 
     public override fun onResume() {
         super.onResume()
-        if (Util.SDK_INT <= 23 || player == null) {
+        if ( player == null) {
             initializePlayer()
         }
         mVirtuoso!!.onResume()
@@ -145,29 +137,24 @@ class VideoPlayerActivity : Activity(), View.OnClickListener, PlaybackPreparer, 
 
     public override fun onPause() {
         super.onPause()
-        if (Util.SDK_INT <= 23) {
-            releasePlayer()
-        }
+
         mVirtuoso!!.onPause()
     }
 
     public override fun onStop() {
         super.onStop()
-        if (Util.SDK_INT > 23) {
             releasePlayer()
-        }
     }
 
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>,
-                                            grantResults: IntArray) {
-        if (grantResults.size > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                                            grantResults: IntArray) =
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
             initializePlayer()
         } else {
             showToast(R.string.storage_permission_denied)
             finish()
         }
-    }
 
     // Activity input
 
@@ -184,7 +171,7 @@ class VideoPlayerActivity : Activity(), View.OnClickListener, PlaybackPreparer, 
         if (view === retryButton) {
             initializePlayer()
         } else if (view.parent === debugRootView) {
-            val mappedTrackInfo = trackSelector?.getCurrentMappedTrackInfo() ?: return
+            val mappedTrackInfo = trackSelector?.currentMappedTrackInfo ?: return
 
             val rendererIndex = view.tag as Int
             val title = (view as Button).text.toString()
@@ -213,13 +200,16 @@ class VideoPlayerActivity : Activity(), View.OnClickListener, PlaybackPreparer, 
 
     private fun initializePlayer() {
         val intent = intent
+
+
         if (player == null) {
 
-            val adaptiveTrackSelectionFactory = AdaptiveTrackSelection.Factory(BANDWIDTH_METER)
+            val adaptiveTrackSelectionFactory = AdaptiveTrackSelection.Factory()
             trackSelector = DefaultTrackSelector(adaptiveTrackSelectionFactory)
             trackSelector?.parameters = trackSelectorParameters
             lastSeenTrackGroupArray = null
             eventLogger = EventLogger(trackSelector!!)
+
 
             var drmSessionManager: DrmSessionManager<FrameworkMediaCrypto>? = null
             if (intent.hasExtra(DRM_SCHEME_UUID_EXTRA) || intent.hasExtra(DRM_SCHEME_EXTRA)) {
@@ -277,15 +267,19 @@ class VideoPlayerActivity : Activity(), View.OnClickListener, PlaybackPreparer, 
                 DefaultRenderersFactory.EXTENSION_RENDERER_MODE_OFF
 
 
-            val renderersFactory = DefaultRenderersFactory(this,
-                    drmSessionManager, extensionRendererMode)
+            val renderersFactory = DefaultRenderersFactory(this)
+            renderersFactory.setExtensionRendererMode(extensionRendererMode)
 
-            player = ExoPlayerFactory.newSimpleInstance(renderersFactory, trackSelector)
+            player = ExoPlayerFactory.newSimpleInstance(this,
+                    renderersFactory,
+                    trackSelector,
+                    DefaultLoadControl(),
+                    drmSessionManager,
+                    BANDWIDTH_METER)
             player!!.addListener(PlayerEventListener())
             player!!.addListener(eventLogger)
             player!!.addMetadataOutput(eventLogger)
-            player!!.addAudioDebugListener(eventLogger)
-            player!!.addVideoDebugListener(eventLogger)
+            player!!.addAnalyticsListener(eventLogger)
             player!!.playWhenReady = shouldAutoPlay
 
             playerView!!.player = player
@@ -323,23 +317,26 @@ class VideoPlayerActivity : Activity(), View.OnClickListener, PlaybackPreparer, 
     }
 
     private fun buildMediaSource(uri: Uri?, type: Int): MediaSource {
+
+        val ret : MediaSource
         when (type) {
-            ISegmentedAsset.SEG_FILE_TYPE_HSS -> return SsMediaSource.Factory(
+            ISegmentedAsset.SEG_FILE_TYPE_HSS -> ret =  SsMediaSource.Factory(
                     DefaultSsChunkSource.Factory(mediaDataSourceFactory),
                     buildDataSourceFactory(false))
-                    .createMediaSource(uri, mainHandler, eventLogger)
-            ISegmentedAsset.SEG_FILE_TYPE_MPD -> return DashMediaSource.Factory(
+                    .createMediaSource(uri)
+            ISegmentedAsset.SEG_FILE_TYPE_MPD -> ret =  DashMediaSource.Factory(
                     DefaultDashChunkSource.Factory(mediaDataSourceFactory),
                     buildDataSourceFactory(false))
-                    .createMediaSource(uri, mainHandler, eventLogger)
-            ISegmentedAsset.SEG_FILE_TYPE_HLS -> return HlsMediaSource.Factory(mediaDataSourceFactory)
-                    .createMediaSource(uri, mainHandler, eventLogger)
-            Common.AssetIdentifierType.FILE_IDENTIFIER -> return ExtractorMediaSource.Factory(mediaDataSourceFactory).createMediaSource(uri,
-                    mainHandler, eventLogger)
+                    .createMediaSource(uri)
+            ISegmentedAsset.SEG_FILE_TYPE_HLS -> ret = HlsMediaSource.Factory(mediaDataSourceFactory)
+                    .createMediaSource(uri)
+            Common.AssetIdentifierType.FILE_IDENTIFIER -> ret = ExtractorMediaSource.Factory(mediaDataSourceFactory).createMediaSource(uri)
             else -> {
                 throw IllegalStateException("Unsupported type: $type")
             }
         }
+        ret.addEventListener(mainHandler, eventLogger)
+        return ret
     }
 
     @Throws(UnsupportedDrmException::class)
@@ -347,33 +344,35 @@ class VideoPlayerActivity : Activity(), View.OnClickListener, PlaybackPreparer, 
                                        keyRequestPropertiesArray: Array<String>?,
                                        asset: IAsset?,
                                        assetId: String): DrmSessionManager<FrameworkMediaCrypto>? {
-        if (Util.SDK_INT < 18) {
-            return null
-        }
+
         var keyRequestPropertiesMap: HashMap<String, String>? = null
-        if (keyRequestPropertiesArray != null && keyRequestPropertiesArray.size > 0) {
+        if (!keyRequestPropertiesArray.isNullOrEmpty()) {
             keyRequestPropertiesMap = HashMap()
             var key: String? = null
             for (i in keyRequestPropertiesArray.indices) {
                 if (i % 2 == 0) {
                     key = keyRequestPropertiesArray[i]
                 } else {
-                    val `val` = keyRequestPropertiesArray[i]
-                    if (key != null && key.length > 0 && `val` != null && `val`.length > 0)
-                        keyRequestPropertiesMap[key] = `val`
+                    val prop = keyRequestPropertiesArray[i]
+                    if (!key.isNullOrEmpty() && !prop.isNullOrEmpty()) {
+                        keyRequestPropertiesMap[key] = prop
+                    }
                 }
             }
         }
 
         val drmListener = DrmListener(this, eventLogger!!)
 
-        return if (asset == null) {
+
+        return asset?.let{
             DrmSessionManagerWrapper(applicationContext, uuid,
-                    assetId, keyRequestPropertiesMap!!, null!!, mainHandler!!, drmListener, eventLogger!!)
-        } else {
+                    asset, keyRequestPropertiesMap!!, null as Looper, mainHandler!!, drmListener, eventLogger!!)
+        }?:run{
             DrmSessionManagerWrapper(applicationContext, uuid,
-                    asset, keyRequestPropertiesMap!!, null!!, mainHandler!!, drmListener, eventLogger!!)
+                    assetId, keyRequestPropertiesMap!!, null as Looper, mainHandler!!, drmListener, eventLogger!!)
         }
+
+
     }
 
     private fun releasePlayer() {
@@ -441,13 +440,12 @@ class VideoPlayerActivity : Activity(), View.OnClickListener, PlaybackPreparer, 
             val trackGroups = mappedTrackInfo.getTrackGroups(i)
             if (trackGroups.length != 0) {
                 val button = Button(this)
-                val label: Int
-                when (player!!.getRendererType(i)) {
-                    C.TRACK_TYPE_AUDIO -> label = R.string.audio
-                    C.TRACK_TYPE_VIDEO -> label = R.string.video
-                    C.TRACK_TYPE_TEXT -> label = R.string.text
+                val label: Int = when (player!!.getRendererType(i)) {
+                    C.TRACK_TYPE_AUDIO -> R.string.audio
+                    C.TRACK_TYPE_VIDEO -> R.string.video
+                    C.TRACK_TYPE_TEXT -> R.string.text
                     else -> {
-                        label = -1
+                        -1
                     }
                 }
 
@@ -461,7 +459,7 @@ class VideoPlayerActivity : Activity(), View.OnClickListener, PlaybackPreparer, 
         }
     }
 
-    private inner class PlayerEventListener : Player.DefaultEventListener() {
+    private inner class PlayerEventListener : Player.EventListener {
 
         override fun onPlayerStateChanged(playWhenReady: Boolean, playbackState: Int) {
             if (playbackState == Player.STATE_ENDED) {
@@ -485,22 +483,18 @@ class VideoPlayerActivity : Activity(), View.OnClickListener, PlaybackPreparer, 
             var errorString: String? = null
             if (e!!.type == ExoPlaybackException.TYPE_RENDERER) {
                 val cause = e.rendererException
-                if (cause is MediaCodecRenderer.DecoderInitializationException) {
-                    // Special case for decoder initialization failures.
-                    if (cause.decoderName == null) {
-                        if (cause.cause is MediaCodecUtil.DecoderQueryException) {
-                            errorString = getString(R.string.error_querying_decoders)
-                        } else if (cause.secureDecoderRequired) {
-                            errorString = getString(R.string.error_no_secure_decoder,
-                                    cause.mimeType)
-                        } else {
-                            errorString = getString(R.string.error_no_decoder,
-                                    cause.mimeType)
-                        }
-                    } else {
-                        errorString = getString(R.string.error_instantiating_decoder,
-                                cause.decoderName)
+                // Special case for decoder initialization failures.
+                if (cause is MediaCodecRenderer.DecoderInitializationException) errorString = if (cause.decoderName == null) {
+                    when {
+                        cause.cause is MediaCodecUtil.DecoderQueryException -> getString(R.string.error_querying_decoders)
+                        cause.secureDecoderRequired -> getString(R.string.error_no_secure_decoder,
+                                cause.mimeType)
+                        else -> getString(R.string.error_no_decoder,
+                                cause.mimeType)
                     }
+                } else {
+                    getString(R.string.error_instantiating_decoder,
+                            cause.decoderName)
                 }
             }
             if (errorString != null) {
@@ -522,10 +516,10 @@ class VideoPlayerActivity : Activity(), View.OnClickListener, PlaybackPreparer, 
             if (trackGroups !== lastSeenTrackGroupArray) {
                 val mappedTrackInfo = trackSelector!!.currentMappedTrackInfo
                 if (mappedTrackInfo != null) {
-                    if (mappedTrackInfo.getTrackTypeRendererSupport(C.TRACK_TYPE_VIDEO) == MappingTrackSelector.MappedTrackInfo.RENDERER_SUPPORT_UNSUPPORTED_TRACKS) {
+                    if (mappedTrackInfo.getTypeSupport(C.TRACK_TYPE_VIDEO) == MappingTrackSelector.MappedTrackInfo.RENDERER_SUPPORT_UNSUPPORTED_TRACKS) {
                         showToast(R.string.error_unsupported_video)
                     }
-                    if (mappedTrackInfo.getTrackTypeRendererSupport(C.TRACK_TYPE_AUDIO) == MappingTrackSelector.MappedTrackInfo.RENDERER_SUPPORT_UNSUPPORTED_TRACKS) {
+                    if (mappedTrackInfo.getTypeSupport(C.TRACK_TYPE_AUDIO) == MappingTrackSelector.MappedTrackInfo.RENDERER_SUPPORT_UNSUPPORTED_TRACKS) {
                         showToast(R.string.error_unsupported_audio)
                     }
                 }
@@ -579,25 +573,24 @@ class VideoPlayerActivity : Activity(), View.OnClickListener, PlaybackPreparer, 
     companion object {
 
         // For backwards compatability
-        val DRM_SCHEME_UUID_EXTRA = "drm_scheme_uuid"
+        const val DRM_SCHEME_UUID_EXTRA = "drm_scheme_uuid"
 
         // DRM
-        val DRM_SCHEME_EXTRA = "drm_scheme"
-        val DRM_LICENSE_URL = "drm_license_url" //  ??
-        val DRM_KEY_REQUEST_PROPERTIES = "drm_key_request_properties"
+        private const val DRM_SCHEME_EXTRA = "drm_scheme"
+        private const val DRM_LICENSE_URL = "drm_license_url" //  ??
+        private const val DRM_KEY_REQUEST_PROPERTIES = "drm_key_request_properties"
 
-        val VIRTUOSO_CONTENT_TYPE = "asset_type"
-        val VIRTUOSO_ASSET = "asset"
-        val VIRTUOSO_ASSET_ID = "asset_id"
-        val PREFER_EXTENSION_DECODERS = "prefer_extension_decoders"
+        private const val VIRTUOSO_CONTENT_TYPE = "asset_type"
+        private const val VIRTUOSO_ASSET = "asset"
+        private const val VIRTUOSO_ASSET_ID = "asset_id"
+        private const val PREFER_EXTENSION_DECODERS = "prefer_extension_decoders"
 
-        val ACTION_VIEW = "com.penthera.harness.exoplayer.action.VIEW"
+        private const val ACTION_VIEW = "com.penthera.harness.exoplayer.action.VIEW"
 
         private val BANDWIDTH_METER = DefaultBandwidthMeter()
-        private val DEFAULT_COOKIE_MANAGER: CookieManager
+        private val DEFAULT_COOKIE_MANAGER: CookieManager = CookieManager()
 
         init {
-            DEFAULT_COOKIE_MANAGER = CookieManager()
             DEFAULT_COOKIE_MANAGER.setCookiePolicy(CookiePolicy.ACCEPT_ORIGINAL_SERVER)
         }
 
@@ -615,28 +608,27 @@ class VideoPlayerActivity : Activity(), View.OnClickListener, PlaybackPreparer, 
             return false
         }
 
-        public fun playVideoStream(item : ExampleCatalogItem, context : Context){
+        fun playVideoStream(item : ExampleCatalogItem, context : Context){
 
-            var type : Int
-            when(item.contentType){
+            val type : Int = when(item.contentType){
                 CatalogItemType.HLS_MANIFEST -> {
-                    type = SEGMENTED_ASSET_IDENTIFIER_HLS
+                    SEGMENTED_ASSET_IDENTIFIER_HLS
                 }
                 CatalogItemType.DASH_MANIFEST -> {
-                    type = SEGMENTED_ASSET_IDENTIFIER_MPD
+                    SEGMENTED_ASSET_IDENTIFIER_MPD
                 }
                 else -> {
-                    type = FILE_IDENTIFIER
+                    FILE_IDENTIFIER
                 }
 
             }
 
 
             val intent = Intent(context, VideoPlayerActivity::class.java)
-                    .setAction(VideoPlayerActivity.ACTION_VIEW)
+                    .setAction(ACTION_VIEW)
                     .setData(Uri.parse(item.contentUri))
-                    .putExtra(VideoPlayerActivity.VIRTUOSO_CONTENT_TYPE, type)
-                    .putExtra(VideoPlayerActivity.VIRTUOSO_ASSET_ID, item.exampleAssetId)
+                    .putExtra(VIRTUOSO_CONTENT_TYPE, type)
+                    .putExtra(VIRTUOSO_ASSET_ID, item.exampleAssetId)
 
             context.startActivity(intent)
         }
@@ -646,7 +638,7 @@ class VideoPlayerActivity : Activity(), View.OnClickListener, PlaybackPreparer, 
             var type = Common.AssetIdentifierType.FILE_IDENTIFIER
             val path: Uri
             var drmuuid: String? = null
-            if (asset.getType() == Common.AssetIdentifierType.SEGMENTED_ASSET_IDENTIFIER) {
+            if (asset.type == Common.AssetIdentifierType.SEGMENTED_ASSET_IDENTIFIER) {
                 val sa = asset as ISegmentedAsset
                 type = sa.segmentedFileType()
                 path = Uri.parse(sa.playlist.toString())
@@ -657,11 +649,11 @@ class VideoPlayerActivity : Activity(), View.OnClickListener, PlaybackPreparer, 
             }
 
             val intent = Intent(context, VideoPlayerActivity::class.java)
-                    .setAction(VideoPlayerActivity.ACTION_VIEW)
+                    .setAction(ACTION_VIEW)
                     .setData(path)
-                    .putExtra(VideoPlayerActivity.DRM_SCHEME_UUID_EXTRA, drmuuid)
-                    .putExtra(VideoPlayerActivity.VIRTUOSO_CONTENT_TYPE, type)
-                    .putExtra(VideoPlayerActivity.VIRTUOSO_ASSET_ID, asset.assetId)
+                    .putExtra(DRM_SCHEME_UUID_EXTRA, drmuuid)
+                    .putExtra(VIRTUOSO_CONTENT_TYPE, type)
+                    .putExtra(VIRTUOSO_ASSET_ID, asset.assetId)
 
             context.startActivity(intent)
 
@@ -672,21 +664,15 @@ class VideoPlayerActivity : Activity(), View.OnClickListener, PlaybackPreparer, 
     }
 
     @TargetApi(18)
-    internal class EventLogger(private val trackSelector: MappingTrackSelector) : Player.EventListener, AudioRendererEventListener, VideoRendererEventListener, MediaSourceEventListener, VirtuosoDrmSessionManager.EventListener, MetadataOutput, MediaDrm.OnEventListener {
+    internal class EventLogger(private val trackSelector: MappingTrackSelector) : Player.EventListener,  MediaSourceEventListener, VirtuosoDrmSessionManager.EventListener, MetadataOutput, MediaDrm.OnEventListener, AnalyticsListener {
 
 
-        private val window: Timeline.Window
-        private val period: Timeline.Period
-        private val startTimeMs: Long
+        private val window: Timeline.Window = Timeline.Window()
+        private val period: Timeline.Period = Timeline.Period()
+        private val startTimeMs: Long = SystemClock.elapsedRealtime()
 
         private val sessionTimeString: String
             get() = getTimeString(SystemClock.elapsedRealtime() - startTimeMs)
-
-        init {
-            window = Timeline.Window()
-            period = Timeline.Period()
-            startTimeMs = SystemClock.elapsedRealtime()
-        }
 
         // ExoPlayer.EventListener
 
@@ -769,7 +755,7 @@ class VideoPlayerActivity : Activity(), View.OnClickListener, PlaybackPreparer, 
                         for (trackIndex in 0 until trackGroup.length) {
                             val status = getTrackStatusString(trackSelection, trackGroup, trackIndex)
                             val formatSupport = getFormatSupportString(
-                                    mappedTrackInfo.getTrackFormatSupport(rendererIndex, groupIndex, trackIndex))
+                                    mappedTrackInfo.getTrackSupport(rendererIndex, groupIndex, trackIndex))
                             Log.d(TAG, "      " + status + " Track:" + trackIndex + ", "
                                     + getFormatString(trackGroup.getFormat(trackIndex))
                                     + ", supported=" + formatSupport)
@@ -821,65 +807,6 @@ class VideoPlayerActivity : Activity(), View.OnClickListener, PlaybackPreparer, 
             Log.d(TAG, "]")
         }
 
-        // AudioRendererEventListener
-
-        override fun onAudioEnabled(counters: DecoderCounters) {
-            Log.d(TAG, "audioEnabled [$sessionTimeString]")
-        }
-
-        override fun onAudioSessionId(audioSessionId: Int) {
-            Log.d(TAG, "audioSessionId [$audioSessionId]")
-        }
-
-        override fun onAudioDecoderInitialized(decoderName: String, elapsedRealtimeMs: Long,
-                                               initializationDurationMs: Long) {
-            Log.d(TAG, "audioDecoderInitialized [$sessionTimeString, $decoderName]")
-        }
-
-        override fun onAudioInputFormatChanged(format: Format) {
-            Log.d(TAG, "audioFormatChanged [" + sessionTimeString + ", " + getFormatString(format)
-                    + "]")
-        }
-
-        override fun onAudioSinkUnderrun(bufferSize: Int, bufferSizeMs: Long, elapsedSinceLastFeedMs: Long) {
-            printInternalError("audioSinkUnderrun [" + bufferSize + ", " + bufferSizeMs + ", "
-                    + elapsedSinceLastFeedMs + "]", null)
-        }
-
-        override fun onAudioDisabled(counters: DecoderCounters) {
-            Log.d(TAG, "audioDisabled [$sessionTimeString]")
-        }
-
-        // VideoRendererEventListener
-
-        override fun onVideoEnabled(counters: DecoderCounters) {
-            Log.d(TAG, "videoEnabled [$sessionTimeString]")
-        }
-
-        override fun onVideoDecoderInitialized(decoderName: String, elapsedRealtimeMs: Long,
-                                               initializationDurationMs: Long) {
-            Log.d(TAG, "videoDecoderInitialized [$sessionTimeString, $decoderName]")
-        }
-
-        override fun onVideoInputFormatChanged(format: Format) {
-            Log.d(TAG, "videoFormatChanged [" + sessionTimeString + ", " + getFormatString(format)
-                    + "]")
-        }
-
-        override fun onVideoDisabled(counters: DecoderCounters) {
-            Log.d(TAG, "videoDisabled [$sessionTimeString]")
-        }
-
-        override fun onDroppedFrames(count: Int, elapsed: Long) {
-            Log.d(TAG, "droppedFrames [$sessionTimeString, $count]")
-        }
-
-        override fun onVideoSizeChanged(width: Int, height: Int, unappliedRotationDegrees: Int,
-                                        pixelWidthHeightRatio: Float) {
-            // Do nothing.
-        }
-
-
         // StreamingDrmSessionManager.EventListener
 
         override fun onDrmSessionManagerError(e: Exception) {
@@ -907,25 +834,18 @@ class VideoPlayerActivity : Activity(), View.OnClickListener, PlaybackPreparer, 
 
         private fun printMetadata(metadata: Metadata, prefix: String) {
             for (i in 0 until metadata.length()) {
-                val entry = metadata.get(i)
-                if (entry is PrivFrame) {
-                    Log.d(TAG, prefix + String.format("%s: owner=%s", entry.id, entry.owner))
-                } else if (entry is GeobFrame) {
-                    Log.d(TAG, prefix + String.format("%s: mimeType=%s, filename=%s, description=%s",
+                when (val entry = metadata.get(i)) {
+                    is PrivFrame -> Log.d(TAG, prefix + String.format("%s: owner=%s", entry.id, entry.owner))
+                    is GeobFrame -> Log.d(TAG, prefix + String.format("%s: mimeType=%s, filename=%s, description=%s",
                             entry.id, entry.mimeType, entry.filename, entry.description))
-                } else if (entry is ApicFrame) {
-                    Log.d(TAG, prefix + String.format("%s: mimeType=%s, description=%s",
+                    is ApicFrame -> Log.d(TAG, prefix + String.format("%s: mimeType=%s, description=%s",
                             entry.id, entry.mimeType, entry.description))
-                } else if (entry is TextInformationFrame) {
-                    Log.d(TAG, prefix + String.format("%s: description=%s", entry.id,
+                    is TextInformationFrame -> Log.d(TAG, prefix + String.format("%s: description=%s", entry.id,
                             entry.description))
-                } else if (entry is CommentFrame) {
-                    Log.d(TAG, prefix + String.format("%s: language=%s description=%s", entry.id,
+                    is CommentFrame -> Log.d(TAG, prefix + String.format("%s: language=%s description=%s", entry.id,
                             entry.language, entry.description))
-                } else if (entry is Id3Frame) {
-                    Log.d(TAG, prefix + String.format("%s", entry.id))
-                } else if (entry is EventMessage) {
-                    Log.d(TAG, prefix + String.format("EMSG: scheme=%s, id=%d, value=%s",
+                    is Id3Frame -> Log.d(TAG, prefix + String.format("%s", entry.id))
+                    is EventMessage -> Log.d(TAG, prefix + String.format("EMSG: scheme=%s, id=%d, value=%s",
                             entry.schemeIdUri, entry.id, entry.value))
                 }
             }
@@ -969,12 +889,11 @@ class VideoPlayerActivity : Activity(), View.OnClickListener, PlaybackPreparer, 
 
         companion object {
 
-            private val TAG = "EventLogger"
-            private val MAX_TIMELINE_ITEM_LINES = 3
-            private val TIME_FORMAT: NumberFormat
+            private const val TAG = "EventLogger"
+            private const val MAX_TIMELINE_ITEM_LINES = 3
+            private val TIME_FORMAT: NumberFormat = NumberFormat.getInstance(Locale.US)
 
             init {
-                TIME_FORMAT = NumberFormat.getInstance(Locale.US)
                 TIME_FORMAT.minimumFractionDigits = 2
                 TIME_FORMAT.maximumFractionDigits = 2
                 TIME_FORMAT.isGroupingUsed = false
@@ -985,22 +904,23 @@ class VideoPlayerActivity : Activity(), View.OnClickListener, PlaybackPreparer, 
             }
 
             private fun getStateString(state: Int): String {
-                when (state) {
-                    ExoPlayer.STATE_BUFFERING -> return "B"
-                    ExoPlayer.STATE_ENDED -> return "E"
-                    ExoPlayer.STATE_IDLE -> return "I"
-                    ExoPlayer.STATE_READY -> return "R"
-                    else -> return "?"
+                return when (state) {
+                    Player.STATE_BUFFERING -> "B"
+                    Player.STATE_ENDED -> "E"
+                    Player.STATE_IDLE -> "I"
+                    Player.STATE_READY -> "R"
+                    else -> "?"
                 }
             }
 
             private fun getFormatSupportString(formatSupport: Int): String {
-                when (formatSupport) {
-                    RendererCapabilities.FORMAT_HANDLED -> return "YES"
-                    RendererCapabilities.FORMAT_EXCEEDS_CAPABILITIES -> return "NO_EXCEEDS_CAPABILITIES"
-                    RendererCapabilities.FORMAT_UNSUPPORTED_SUBTYPE -> return "NO_UNSUPPORTED_TYPE"
-                    RendererCapabilities.FORMAT_UNSUPPORTED_TYPE -> return "NO"
-                    else -> return "?"
+
+                return when (formatSupport) {
+                    RendererCapabilities.FORMAT_HANDLED -> "YES"
+                    RendererCapabilities.FORMAT_EXCEEDS_CAPABILITIES -> "NO_EXCEEDS_CAPABILITIES"
+                    RendererCapabilities.FORMAT_UNSUPPORTED_SUBTYPE -> "NO_UNSUPPORTED_TYPE"
+                    RendererCapabilities.FORMAT_UNSUPPORTED_TYPE -> "NO"
+                    else -> "?"
                 }
             }
 
@@ -1008,11 +928,11 @@ class VideoPlayerActivity : Activity(), View.OnClickListener, PlaybackPreparer, 
                 if (trackCount < 2) {
                     return "N/A"
                 }
-                when (adaptiveSupport) {
-                    RendererCapabilities.ADAPTIVE_SEAMLESS -> return "YES"
-                    RendererCapabilities.ADAPTIVE_NOT_SEAMLESS -> return "YES_NOT_SEAMLESS"
-                    RendererCapabilities.ADAPTIVE_NOT_SUPPORTED -> return "NO"
-                    else -> return "?"
+                return when (adaptiveSupport) {
+                    RendererCapabilities.ADAPTIVE_SEAMLESS -> "YES"
+                    RendererCapabilities.ADAPTIVE_NOT_SEAMLESS -> "YES_NOT_SEAMLESS"
+                    RendererCapabilities.ADAPTIVE_NOT_SUPPORTED -> "NO"
+                    else -> "?"
                 }
             }
 

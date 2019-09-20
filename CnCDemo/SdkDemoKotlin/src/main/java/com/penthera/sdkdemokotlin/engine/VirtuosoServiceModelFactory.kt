@@ -6,6 +6,7 @@ import android.arch.lifecycle.ViewModelProvider
 /**
  * A simple view model factory to add the VirtuosoServiceViewModel
  */
+@Suppress("UNCHECKED_CAST")
 class VirtuosoServiceModelFactory (private val offlineEngine: OfflineVideoEngine) :
         ViewModelProvider.NewInstanceFactory() {
 

@@ -12,7 +12,7 @@ class VirtuosoServiceViewModel(private val offlineVideoEngine: OfflineVideoEngin
     private val engineStateListener: VirtuosoEngineStateLiveData = offlineVideoEngine.getEngineState()
 
     fun getCurrentEngineStatusString(): String {
-        var state = ""
+        var state : String
         when(engineStateListener.value?.downloadStatusInt) {
             Common.EngineStatus.AUTH_FAILURE -> state = "AUTH_FAILURE"
             Common.EngineStatus.ERROR -> state = "ERROR"

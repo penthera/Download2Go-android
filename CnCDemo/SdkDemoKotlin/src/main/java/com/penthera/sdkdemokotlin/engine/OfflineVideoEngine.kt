@@ -3,7 +3,6 @@ package com.penthera.sdkdemokotlin.engine
 import android.arch.lifecycle.*
 import android.content.Context
 import android.util.Log
-import com.penthera.sdkdemokotlin.catalog.ExampleMetaData
 import com.penthera.virtuososdk.Common
 import com.penthera.virtuososdk.client.*
 
@@ -18,9 +17,9 @@ class OfflineVideoEngine(lifeCycleOwner: LifecycleOwner, context: Context) : Lif
     }
 
     /** The Context used to create virtuoso class */
-    var context: Context = context
+    var mContext: Context
 
-    private var lifeCycleOwner: LifecycleOwner = lifeCycleOwner
+    private var mLifeCycleOwner: LifecycleOwner
 
     /** The Virtuoso class */
     private var virtuoso: Virtuoso? = null
@@ -38,12 +37,14 @@ class OfflineVideoEngine(lifeCycleOwner: LifecycleOwner, context: Context) : Lif
     var resumeRequested = false
 
     init {
-        lifeCycleOwner.lifecycle.addObserver(this)
+        mLifeCycleOwner = lifeCycleOwner
+        mLifeCycleOwner.lifecycle.addObserver(this)
+        mContext = context
     }
 
     fun getVirtuoso(): Virtuoso {
         if(virtuoso == null) {
-            virtuoso = Virtuoso(context)
+            virtuoso = Virtuoso(mContext)
             settingsLiveData.postValue(virtuoso!!.settings)
             backplaneSettingsLiveData.postValue(virtuoso!!.backplane.settings)
         }
@@ -71,7 +72,7 @@ class OfflineVideoEngine(lifeCycleOwner: LifecycleOwner, context: Context) : Lif
 
     fun getBackplaneDevices() : LiveData<Array<IBackplaneDevice>> {
         // fetch devices
-        getVirtuoso()?.backplane.getDevices(this)
+        getVirtuoso().backplane.getDevices(this)
         return backplaneDevicesData
     }
 
@@ -100,7 +101,7 @@ class OfflineVideoEngine(lifeCycleOwner: LifecycleOwner, context: Context) : Lif
      * @return
      */
     fun getVirtuosoAsset(assetId: String): IAsset? {
-        getVirtuoso()?.assetManager?.apply{
+        getVirtuoso().assetManager?.apply{
             val ls = this.getByAssetId(assetId)
             return if (ls == null || ls.size == 0) {
                 null
@@ -194,43 +195,43 @@ class OfflineVideoEngine(lifeCycleOwner: LifecycleOwner, context: Context) : Lif
     override fun disconnected() {}
 
 
-    /**
+    /*
      * Download item checking permissions and informing user of problems
      *
      * @param context Activity Context
      * @param permObserver
      */
-    fun downloadItem(remoteId: String, url: String, mimetype: String,
-                     catalogExpiry: Long, downloadExpiry: Long, expiryAfterPlay: Long,
-                     availabilityStart: Long, metaData: ExampleMetaData,
-                     permObserver: IQueue.IQueuedAssetPermissionObserver): Boolean {
-        Log.i(TAG, "Downloading item")
-        var success = false
-
-        getVirtuoso().assetManager?.apply {
-            val json = metaData.toJson()
-            val now = System.currentTimeMillis() / 1000
-
-            // Create an asset
-            var file: IFile? = this.createFileAsset(url, remoteId, mimetype, json)
-            file!!.startWindow = if (availabilityStart <= 0) now else availabilityStart
-            file.endWindow = if (catalogExpiry <= 0) java.lang.Long.MAX_VALUE else catalogExpiry
-            file.eap = expiryAfterPlay
-            file.ead = downloadExpiry
-
-            // Add file to the Queue
-            this.queue.add(file, permObserver)
-
-            success = true
-        }
-        return success
-    }
-
-
-    internal class HlsResult {
-        var error = 0
-        var queued = false
-    }
+//    fun downloadItem(remoteId: String, url: String, mimetype: String,
+//                     catalogExpiry: Long, downloadExpiry: Long, expiryAfterPlay: Long,
+//                     availabilityStart: Long, metaData: ExampleMetaData,
+//                     permObserver: IQueue.IQueuedAssetPermissionObserver): Boolean {
+//        Log.i(TAG, "Downloading item")
+//        var success = false
+//
+//        getVirtuoso().assetManager?.apply {
+//            val json = metaData.toJson()
+//            val now = System.currentTimeMillis() / 1000
+//
+//            // Create an asset
+//            var file: IFile? = this.createFileAsset(url, remoteId, mimetype, json)
+//            file!!.startWindow = if (availabilityStart <= 0) now else availabilityStart
+//            file.endWindow = if (catalogExpiry <= 0) java.lang.Long.MAX_VALUE else catalogExpiry
+//            file.eap = expiryAfterPlay
+//            file.ead = downloadExpiry
+//
+//            // Add file to the Queue
+//            this.queue.add(file, permObserver)
+//
+//            success = true
+//        }
+//        return success
+//    }
+//
+//
+//    internal class HlsResult {
+//        var error = 0
+//        var queued = false
+//    }
 
 //    fun downloadDashItem(context: Context, service: Virtuoso,
 //                         downloadEnabledContent: Boolean, remoteId: String,

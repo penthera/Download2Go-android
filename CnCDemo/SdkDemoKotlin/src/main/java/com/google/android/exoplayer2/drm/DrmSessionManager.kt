@@ -67,13 +67,28 @@ class DrmSessionManagerWrapper : DrmSessionManager<FrameworkMediaCrypto> {
 
     override fun acquireSession(playbackLooper: Looper, drmInitData: DrmInitData): DrmSession<FrameworkMediaCrypto> {
         val session = mDrmSessionManager.open { schemeUuid ->
-            val sd = drmInitData.get(schemeUuid)
-            IDrmInitData.SchemeInitData(sd.mimeType, sd.data)
+
+            val sd = getMatchingSchemeData(drmInitData,schemeUuid)
+            IDrmInitData.SchemeInitData(sd?.mimeType, sd?.data)
         }
         session.setLooper(playbackLooper)
         session.setDrmOnEventListener(mDrmEventListener)
 
         return DrmSessionWrapper(session)
+    }
+
+    private fun getMatchingSchemeData(drmInitData: DrmInitData, schemeUuid: UUID) : DrmInitData.SchemeData?{
+
+        var ret :DrmInitData.SchemeData? = null
+
+        for(i in 0 until drmInitData.schemeDataCount ){
+            if(drmInitData.get(i).matches(schemeUuid)){
+                ret = drmInitData.get(i)
+                break
+            }
+        }
+
+        return ret;
     }
 
     override fun releaseSession(drmSession: DrmSession<FrameworkMediaCrypto>) {

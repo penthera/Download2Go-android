@@ -178,9 +178,9 @@ class InboxFragment : Fragment(), AssetsRecyclerAdapter.AssetInboxActionListener
 
     override fun selectionUpdated() {
         var count = 0
-        downloadedAdapter?.let {count += it.checked?.count()}
-        queuedAdapter?.let {count += it.checked?.count()}
-        expiredAdapter?.let {count += it.checked?.count()}
+        downloadedAdapter?.let {count += it.checked.count()}
+        queuedAdapter?.let {count += it.checked.count()}
+        expiredAdapter?.let {count += it.checked.count()}
 
         if (count > 0 && actionMode == null) {
             actionMode = activity?.startActionMode(this)

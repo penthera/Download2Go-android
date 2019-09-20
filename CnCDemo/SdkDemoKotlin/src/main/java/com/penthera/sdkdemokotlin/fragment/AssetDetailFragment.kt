@@ -1,12 +1,11 @@
+@file:Suppress("DEPRECATION")
+
 package com.penthera.sdkdemokotlin.fragment
 
 import android.app.Activity
 import android.app.AlertDialog
 import android.app.ProgressDialog
-import android.content.Context
-import android.content.DialogInterface
 import android.database.Cursor
-import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.PorterDuff
 import android.graphics.drawable.BitmapDrawable
@@ -34,14 +33,15 @@ import com.penthera.virtuososdk.client.*
 import com.penthera.virtuososdk.client.builders.HLSAssetBuilder
 import com.penthera.virtuososdk.client.builders.MPDAssetBuilder
 import com.penthera.virtuososdk.client.database.AssetColumns
-import com.penthera.virtuososdk.manager.PermissionManager
 import com.squareup.picasso.Picasso
 import com.squareup.picasso.Target
 import kotlinx.android.synthetic.main.fragment_asset_detail.*
 import org.ocpsoft.prettytime.PrettyTime
 import java.lang.Exception
+import java.lang.Long.MAX_VALUE
 import java.net.URL
 import java.util.*
+import android.graphics.Bitmap as Bitmap1
 
 /**
  *
@@ -49,16 +49,16 @@ import java.util.*
 class AssetDetailFragment : Fragment()  {
     companion object {
         fun newInstance(asset: IAsset): AssetDetailFragment {
-            var frag =  AssetDetailFragment()
+            val frag =  AssetDetailFragment()
 
-            val args : Bundle = Bundle()
+            val args = Bundle()
             args.putString("assetID", asset.uuid)
              frag.arguments = args
             return frag
         }
 
         fun newInstance(catalogItem: ExampleCatalogItem): AssetDetailFragment {
-            var frag = AssetDetailFragment()
+            val frag = AssetDetailFragment()
 
             val args = Bundle()
 
@@ -75,24 +75,17 @@ class AssetDetailFragment : Fragment()  {
     private var offlineVideoEngine: OfflineVideoEngine? = null
 
     private lateinit var exampleCatalog : ExampleCatalog
-    private lateinit var queueOserver : AssetQueueObserver;
+    private lateinit var queueOserver : AssetQueueObserver
 
     private lateinit var rootView : View
-    private lateinit var progressBar: ProgressBar
+    //private lateinit var progressBar: ProgressBar
 
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         rootView = inflater.inflate(R.layout.fragment_asset_detail, container, false)
 
-        return rootView;
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-
-
+        return rootView
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -131,14 +124,6 @@ class AssetDetailFragment : Fragment()  {
         setupUI()
     }
 
-
-
-
-    override fun onAttach(context: Context?) {
-        super.onAttach(context)
-
-    }
-
     override fun onPause() {
         super.onPause()
         offlineVideoEngine?.getVirtuoso()?.removeObserver(queueOserver)
@@ -162,7 +147,7 @@ class AssetDetailFragment : Fragment()  {
 
         if(asset == null){
 
-            var list : MutableList<IIdentifier>? = offlineVideoEngine?.getVirtuoso()?.assetManager?.getByAssetId(catalogItem?.exampleAssetId)
+            val list : MutableList<IIdentifier>? = offlineVideoEngine?.getVirtuoso()?.assetManager?.getByAssetId(catalogItem?.exampleAssetId)
 
             list?.let{
                 if (it.size > 0)
@@ -187,16 +172,16 @@ class AssetDetailFragment : Fragment()  {
 
                     override fun onBitmapFailed(e: Exception?, errorDrawable: Drawable?) {}
 
-                    override fun onBitmapLoaded(bitmap: Bitmap?, from: Picasso.LoadedFrom?) {
-                        val mutableBitmap = if (bitmap!!.isMutable())
+                    override fun onBitmapLoaded(bitmap: Bitmap1?, from: Picasso.LoadedFrom?) {
+                        val mutableBitmap = if (bitmap!!.isMutable)
                             bitmap
                         else
-                            bitmap.copy(Bitmap.Config.ARGB_8888, true)
+                            bitmap.copy(Bitmap1.Config.ARGB_8888, true)
                         val canvas = Canvas(mutableBitmap)
                         val colour = 88 and 0xFF shl 24
                         canvas.drawColor(colour, PorterDuff.Mode.DST_IN)
 
-                        detail_bg_img.background = BitmapDrawable(mutableBitmap)
+                        detail_bg_img.background = BitmapDrawable(context?.resources,mutableBitmap)
                     }
 
                 })
@@ -205,15 +190,15 @@ class AssetDetailFragment : Fragment()  {
         txt_description.text = catalogItem?.description
         txt_duration.text = getDurationString(catalogItem!!.durationSeconds)
 
-        txt_expiry.text = makePretty(getExpiry(), "Never");
-        txt_available.visibility = View.GONE;
+        txt_expiry.text = makePretty(getExpiry(), "Never")
+        txt_available.visibility = View.GONE
         txt_description.text = catalogItem?.description
 
-        var assetId : String  = catalogItem!!.exampleAssetId
+        val assetId : String  = catalogItem!!.exampleAssetId
 
         btn_download.text = if (isDownloaded(assetId) || isQ(assetId) || isExpired(assetId) ) "Delete " else  "Download"
 
-        btn_download.setOnClickListener () {_ ->
+        btn_download.setOnClickListener {
             if(isDownloaded(assetId) || isQ(assetId) || isExpired(assetId) ){
                 showDeleteDialog()
             }
@@ -222,8 +207,8 @@ class AssetDetailFragment : Fragment()  {
             }
         }
 
-        btn_watch.setOnClickListener() {_ ->
-            watchItem();
+        btn_watch.setOnClickListener {
+            watchItem()
         }
     }
 
@@ -250,56 +235,52 @@ class AssetDetailFragment : Fragment()  {
      * @param asset the asset
      * @return expiration in seconds, -1 never
      */
-    fun getExpiration(asset: IAsset): Long {
+    private fun getExpiration(asset: IAsset): Long {
         val completionTime = asset.completionTime
         val endWindow = asset.endWindow
         // Not downloaded
-        if (completionTime == 0L) {
-            return if (endWindow == java.lang.Long.MAX_VALUE) -1 else endWindow
-// Downloaded
-        } else {
-            //here the minimum value is used in the calculation.
-            val playTime = asset.firstPlayTime
-            var playExpiry = java.lang.Long.MAX_VALUE
-            val eap = asset.eap
-            val ead = asset.ead
-            var expiry = endWindow
 
-            if (playTime > 0 && eap > -1)
-                playExpiry = playTime + eap
+        var ret : Long
+        when(completionTime) {
+            0L -> ret = when (endWindow) {
+                MAX_VALUE -> -1
+                else -> endWindow
+            }
+            else -> ret =  getExpiration(asset.completionTime, asset.endWindow, asset.firstPlayTime, asset.eap, asset.ead)
 
-            expiry = Math.min(expiry, playExpiry)
-
-            if (ead > -1)
-                expiry = Math.min(expiry, completionTime + ead)
-
-            return getExpiration(asset.completionTime, asset.endWindow, asset.firstPlayTime, asset.eap, asset.ead)
         }
+
+        return ret
     }
 
-    fun getExpiration(completionTime: Long, endWindow: Long, firstPlayTime: Long, expiryAfterPlay: Long, expiryAfterDownload: Long): Long {
-        // Not downloaded
-        if (completionTime == 0L) {
-            return if (endWindow == java.lang.Long.MAX_VALUE) -1 else endWindow
-// Downloaded
-        } else {
-            //here the minimum value is used in the calculation.
-            var playExpiry = java.lang.Long.MAX_VALUE
-            var expiry = endWindow
+    private fun getExpiration(completionTime: Long, endWindow: Long, firstPlayTime: Long, expiryAfterPlay: Long, expiryAfterDownload: Long): Long {
 
-            if (firstPlayTime > 0 && expiryAfterPlay > -1)
-                playExpiry = firstPlayTime + expiryAfterPlay
+        var ret : Long
 
-            expiry = Math.min(expiry, playExpiry)
+        when(completionTime){
 
-            if (expiryAfterDownload > -1)
-                expiry = Math.min(expiry, completionTime + expiryAfterDownload)
+            0L -> ret = when (endWindow) {
+                MAX_VALUE -> -1
+                else -> endWindow
+            }
+            else -> {var playExpiry = MAX_VALUE
+                var expiry = endWindow
 
-            return if (expiry == java.lang.Long.MAX_VALUE) -1 else expiry
+                if (firstPlayTime > 0 && expiryAfterPlay > -1)
+                    playExpiry = firstPlayTime + expiryAfterPlay
+
+                expiry = Math.min(expiry, playExpiry)
+
+                if (expiryAfterDownload > -1)
+                    expiry = Math.min(expiry, completionTime + expiryAfterDownload)
+
+                ret = if (expiry == MAX_VALUE) -1 else expiry}
         }
+
+        return ret
     }
 
-    fun getDurationString(seconds: Int): String {
+    private fun getDurationString(seconds: Int): String {
         val hours = seconds / 3600
         val minutes = seconds % 3600 / 60
         val secondsVal = seconds % 60
@@ -313,7 +294,7 @@ class AssetDetailFragment : Fragment()  {
      *
      * @return two digit time as string
      */
-    fun twoDigitString(number: Int): String {
+    private fun twoDigitString(number: Int): String {
         if (number == 0) {
             return "00"
         }
@@ -338,7 +319,6 @@ class AssetDetailFragment : Fragment()  {
         } finally {
             if (c != null && !c.isClosed)
                 c.close()
-            c = null
         }
 
         return ret
@@ -360,7 +340,6 @@ class AssetDetailFragment : Fragment()  {
         } finally {
             if (c != null && !c.isClosed)
                 c.close()
-            c = null
         }
 
         return ret
@@ -373,7 +352,7 @@ class AssetDetailFragment : Fragment()  {
      */
     private fun isExpired(assetId: String): Boolean {
 
-        var ret: Boolean = false
+        var ret :Boolean
 
         var c: Cursor? = null
         try {
@@ -384,7 +363,7 @@ class AssetDetailFragment : Fragment()  {
                 c.close()
         }
 
-        return ret;
+        return ret
     }
 
     /**
@@ -424,13 +403,13 @@ class AssetDetailFragment : Fragment()  {
 
     private fun deleteItem() {
 
-        var assetId : String = catalogItem!!.exampleAssetId
+        val assetId : String = catalogItem!!.exampleAssetId
         if(asset == null){
             asset = offlineVideoEngine?.getVirtuosoAsset(assetId)
         }
 
         offlineVideoEngine?.getVirtuoso()?.assetManager?.delete(asset)
-        activity?.runOnUiThread() {
+        activity?.runOnUiThread{
             btn_download.text = if (isDownloaded(assetId) || isQ(assetId) || isExpired(assetId) ) "Delete " else  "Download"
         }
     }
@@ -474,7 +453,7 @@ class AssetDetailFragment : Fragment()  {
 
             CatalogItemType.FILE -> {
 
-                val manager :IAssetManager = offlineVideoEngine?.getVirtuoso()!!.assetManager;
+                val manager :IAssetManager = offlineVideoEngine?.getVirtuoso()!!.assetManager
 
                 val file: IFile = manager.createFileAsset(catalogItem?.contentUri, catalogItem?.exampleAssetId, catalogItem?.mimeType, metadata)
                 manager.queue.add(file)
@@ -499,14 +478,10 @@ class AssetDetailFragment : Fragment()  {
     class AssetQueueObserver(activity: Activity?) : Observers.IQueueObserver {
 
 
-        var lastProgress : Int = -1
-        var  mActivity : Activity?
+        private var lastProgress : Int = -1
+        private var  mActivity : Activity? = activity
 
         lateinit var parent: AssetDetailFragment
-
-        init{
-            mActivity = activity
-        }
 
         override fun engineStartedDownloadingAsset(aAsset: IIdentifier) {
             lastProgress = -1
@@ -545,9 +520,9 @@ class AssetDetailFragment : Fragment()  {
             val assetId = asset.assetId
 
             // Progress is for catalog item
-            if (!TextUtils.isEmpty(assetId) && assetId == parent?.catalogItem?.exampleAssetId) {
+            if (!TextUtils.isEmpty(assetId) && assetId == parent.catalogItem?.exampleAssetId) {
                 //update our asset status
-                mActivity?.runOnUiThread( { updateItemStatus(asset, forceUpdate) })
+                mActivity?.runOnUiThread{ updateItemStatus(asset, forceUpdate) }
 
             }
         }
@@ -558,11 +533,11 @@ class AssetDetailFragment : Fragment()  {
                 //update our asset reference
                 parent.asset = asset
 
-                var progress = (parent.asset!!.getFractionComplete() * 100.0).toInt()
+                var progress = (parent.asset!!.fractionComplete * 100.0).toInt()
                 // Not a repeated progress -- Keep context switches minimal due to frequency of messages, unless forced
                 if (forceUpdate || progress != lastProgress) {
-                    var assetStatus = ""
-                    val fds = parent.asset?.getDownloadStatus()
+                    var assetStatus : String
+                    val fds = parent.asset?.downloadStatus
                     val value: String
                     when (fds) {
 
@@ -618,17 +593,15 @@ class AssetDetailFragment : Fragment()  {
                     }
                     val tv = parent.rootView.findViewById(R.id.txt_assetstatus) as TextView
                     tv.visibility = View.VISIBLE
-                    tv.setText(String.format(parent.getString(R.string.asset_status), assetStatus, asset.getErrorCount(), value))
+                    tv.text = String.format(parent.getString(R.string.asset_status), assetStatus, asset.errorCount, value)
 
                     lastProgress = progress
                     // Tiny Progress
-                    if (progress == 0) {
-                        progress = 1
-                    }
+                    if (progress == 0) progress = 1
 
                     // Progress Bar
                     val pb = parent.rootView.findViewById(R.id.prg) as ProgressBar
-                    if (progress > 0 && progress < 100) {
+                    if (progress in 1..99) {
                         pb.progress = progress
                         pb.visibility = View.VISIBLE
                     } else {
@@ -641,40 +614,36 @@ class AssetDetailFragment : Fragment()  {
 
     class AssetPermissionObserver (activity : FragmentActivity ) : IQueue.IQueuedAssetPermissionObserver {
 
-        private var mActivity : FragmentActivity
-
-        init{
-            mActivity = activity
-        }
+        private var mActivity : FragmentActivity = activity
 
         override fun onQueuedWithAssetPermission(aQueued: Boolean, aDownloadPermitted: Boolean, aAsset: IAsset?, aAssetPermissionError: Int) {
-            var error_string: String
+            var errorString: String
             val permResponse = aAsset?.lastPermissionResponse
             val assetPerm = if (permResponse?.permission == IAssetPermission.PermissionCode.PERMISSION_DENIED_EXTERNAL_POLICY)
-                permResponse?.friendlyName()
+                permResponse.friendlyName()
             else
                 IAssetPermission.PermissionCode.friendlyName(aAssetPermissionError)
             val title: String
             if (!aQueued) {
 
                 title = "Queue Permission Denied"
-                error_string = "Not permitted to queue asset [$assetPerm]  response: $permResponse"
+                errorString = "Not permitted to queue asset [$assetPerm]  response: $permResponse"
                 if (aAssetPermissionError == IAssetPermission.PermissionCode.PERMISSON_REQUEST_FAILED) {
-                    error_string = "Not permitted to queue asset [$assetPerm]  This could happen if the device is currently offline."
+                    errorString = "Not permitted to queue asset [$assetPerm]  This could happen if the device is currently offline."
 
 
                 }
 
             } else {
                 title = "Queue Permission Granted"
-                error_string = "Asset " + (if (aDownloadPermitted) "Granted" else "Denied") + " Download Permission [" + assetPerm + "]  response: " + permResponse
+                errorString = "Asset " + (if (aDownloadPermitted) "Granted" else "Denied") + " Download Permission [" + assetPerm + "]  response: " + permResponse
 
             }
 
             mActivity.runOnUiThread {
                 val permDlgBuilder = AlertDialog.Builder(mActivity)
                 permDlgBuilder.setTitle(title)
-                permDlgBuilder.setMessage(error_string)
+                permDlgBuilder.setMessage(errorString)
                 permDlgBuilder.setCancelable(false)
                 permDlgBuilder.setPositiveButton("OK"
                 ) { dialog, _ -> dialog.cancel() }
@@ -691,8 +660,8 @@ class AssetDetailFragment : Fragment()  {
 
     class AssetObserver(progress : ProgressDialog, activity: FragmentActivity) : ISegmentedAssetFromParserObserver  {
 
-        var mProgress : ProgressDialog
-        var mActivity : FragmentActivity
+        private var mProgress : ProgressDialog
+        private var mActivity : FragmentActivity
         init{
            mProgress = progress
             mActivity = activity

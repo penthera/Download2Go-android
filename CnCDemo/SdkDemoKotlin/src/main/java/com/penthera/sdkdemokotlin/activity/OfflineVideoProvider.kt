@@ -6,7 +6,6 @@ import com.penthera.sdkdemokotlin.engine.OfflineVideoEngine
  *
  */
 interface OfflineVideoProvider {
-
-    open fun getOfflineEngine(): OfflineVideoEngine
+    fun getOfflineEngine(): OfflineVideoEngine
 
 }

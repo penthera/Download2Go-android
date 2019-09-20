@@ -4,9 +4,10 @@ import android.content.Context
 import android.database.Cursor
 import android.support.v7.widget.RecyclerView
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import com.penthera.sdkdemokotlin.R
-import com.penthera.sdkdemokotlin.activity.NavigationListener
 import com.penthera.sdkdemokotlin.catalog.ExampleMetaData
 import com.penthera.sdkdemokotlin.util.TextUtils
 import com.penthera.sdkdemokotlin.util.inflate
@@ -19,7 +20,7 @@ import java.util.*
 /**
  *
  */
-class AssetsRecyclerAdapter (private val context: Context, cursor: Cursor, private val type: Int, private val listener: AssetInboxActionListener) : RecyclerView.Adapter<AssetsRecyclerAdapter.AssetHolder>() {
+class AssetsRecyclerAdapter (private val context: Context, var cursor: Cursor, private val type: Int, private val listener: AssetInboxActionListener) : RecyclerView.Adapter<AssetsRecyclerAdapter.AssetHolder>() {
 
     interface AssetInboxActionListener {
         fun openDetailView(assetId: Int)
@@ -29,24 +30,22 @@ class AssetsRecyclerAdapter (private val context: Context, cursor: Cursor, priva
     }
 
     companion object {
-        val DOWNLOADED = 0
-        val QUEUED = 1
-        val EXPIRED = 2
+        const val DOWNLOADED = 0
+        const val QUEUED = 1
+        const val EXPIRED = 2
     }
 
-    var cursor: Cursor = cursor
-
     /** Keep track of selections  */
-    val checked : Hashtable<Int, Int> = Hashtable<Int, Int>()
+    val checked : Hashtable<Int, Int> = Hashtable()
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AssetsRecyclerAdapter.AssetHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AssetHolder {
         val inflatedView = parent.inflate(R.layout.listrow_inbox, false)
         return AssetHolder(inflatedView, type, listener, this, context)
     }
 
     override fun getItemCount(): Int = cursor.count
 
-    override fun onBindViewHolder(holder: AssetsRecyclerAdapter.AssetHolder, position: Int) {
+    override fun onBindViewHolder(holder: AssetHolder, position: Int) {
         cursor.moveToPosition(position)
         holder.bindItem(cursor, position)
     }
@@ -100,7 +99,7 @@ class AssetsRecyclerAdapter (private val context: Context, cursor: Cursor, priva
             view.title.text = metaData?.title
 
             metaData?.thumbnailUri?.let {
-                if(it.length > 0) {
+                if(it.isNotEmpty()) {
                     Picasso.get()
                             .load(it)
                             .placeholder(R.drawable.cloud)
@@ -112,7 +111,8 @@ class AssetsRecyclerAdapter (private val context: Context, cursor: Cursor, priva
             when (type){
                 DOWNLOADED -> { bindDownloaded(cursor) }
                 QUEUED -> { bindQueued(cursor) }
-                EXPIRED -> { bindExpired(cursor) }
+                EXPIRED -> { bindExpired()
+                }
             }
 
             // Update the check-marks for the CAB
@@ -121,10 +121,10 @@ class AssetsRecyclerAdapter (private val context: Context, cursor: Cursor, priva
         }
 
         private fun bindDownloaded(cursor: Cursor) {
-            view.btnUp.setVisibility(View.GONE)
-            view.btnDown.setVisibility(View.GONE)
+            view.btnUp.visibility = GONE
+            view.btnDown.visibility = GONE
             view.downloadStatus.text = context.getString(R.string.downloaded)
-            view.rowErrorCount.visibility = View.VISIBLE
+            view.rowErrorCount.visibility = VISIBLE
             view.errorCount.text = cursor.getInt(cursor.getColumnIndex(AssetColumns.ERROR_COUNT)).toString()
             updateExpiry(cursor)
         }
@@ -135,43 +135,43 @@ class AssetsRecyclerAdapter (private val context: Context, cursor: Cursor, priva
 
             // Up
             if (showUp(count, position!!)) {
-                view.btnUp.setVisibility(View.VISIBLE)
+                view.btnUp.visibility = VISIBLE
             } else {
-                view.btnUp.setVisibility(View.GONE)
+                view.btnUp.visibility = GONE
             }
 
             // Down
             if (showDown(count, position!!)) {
-                view.btnDown.setVisibility(View.VISIBLE)
+                view.btnDown.visibility = VISIBLE
             } else {
-                view.btnDown.setVisibility(View.GONE)
+                view.btnDown.visibility = GONE
             }
 
             // Download status and error count
             val downloadStatus = cursor.getInt(cursor.getColumnIndex(AssetColumns.DOWNLOAD_STATUS))
             view.downloadStatus.text = TextUtils().getAssetStatusDescription(downloadStatus)
-            view.rowErrorCount.visibility = View.VISIBLE
+            view.rowErrorCount.visibility = VISIBLE
             view.errorCount.text = cursor.getInt(cursor.getColumnIndex(AssetColumns.ERROR_COUNT)).toString()
 
             // Progress bar if downloading
             if (downloadStatus == Common.AssetStatus.DOWNLOADING) {
-                view.downloadProgress.setVisibility(View.VISIBLE)
+                view.downloadProgress.visibility = VISIBLE
                 val fraction = cursor.getDouble(12)
                 val percent = (fraction * 100).toInt()
-                view.downloadProgress.setProgress(percent)
+                view.downloadProgress.progress = percent
             } else {
-                view.downloadProgress.setVisibility(View.GONE)
+                view.downloadProgress.visibility = GONE
             }
 
             updateExpiry(cursor)
         }
 
-        private fun bindExpired(cursor: Cursor) {
-            view.btnUp.setVisibility(View.GONE)
-            view.btnDown.setVisibility(View.GONE)
+        private fun bindExpired() {
+            view.btnUp.visibility = GONE
+            view.btnDown.visibility = GONE
             view.downloadStatus.text = context.getString(R.string.expired)
-            view.rowErrorCount.visibility = View.GONE
-            view.rowExpiration.visibility = View.GONE
+            view.rowErrorCount.visibility = GONE
+            view.rowExpiration.visibility = GONE
         }
 
         private fun updateExpiry(cursor: Cursor) {
@@ -184,10 +184,10 @@ class AssetsRecyclerAdapter (private val context: Context, cursor: Cursor, priva
             val date = TextUtils().getExpirationString(completionTime, endWindow, firstPlayTime, eap, ead)
 
             if (!android.text.TextUtils.isEmpty(date)) {
-                view.rowExpiration.visibility = View.VISIBLE
+                view.rowExpiration.visibility = VISIBLE
                 view.expiration.text = date
             } else {
-                view.rowExpiration.visibility = View.GONE
+                view.rowExpiration.visibility = GONE
             }
         }
 

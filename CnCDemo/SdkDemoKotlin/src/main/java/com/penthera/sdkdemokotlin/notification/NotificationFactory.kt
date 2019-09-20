@@ -21,7 +21,7 @@ import com.penthera.virtuososdk.client.Virtuoso
 /**
  *
  */
-class NotificationFactory(applicationName: String) {
+class NotificationFactory(private val applicationName: String) {
 
     companion object {
         fun channelId() = "VIRTUOSO_KOTLIN_DEMO_CHANNEL_ID"
@@ -31,27 +31,26 @@ class NotificationFactory(applicationName: String) {
         private val TAG = NotificationFactory::class.java.simpleName
     }
 
-    private val applicationName: String = applicationName
     private var assetManager: IAssetManager? = null
     private var notificationBuilder: Notification.Builder? = null
     private var compatNotificationBuilder: NotificationCompat.Builder? = null
 
-    internal val PROGRESS_NOTIFICATION = 0
-    internal val COMPLETED_NOTIFICATION = 1
-    internal val STOPPED_NOTIFICATION = 2
-    internal val PAUSED_NOTIFICATION = 3
-    internal val RESTART_NOTIFICATION = 4
-    internal val FAILED_NOTIFICATION = 5
+    private val PROGRESS_NOTIFICATION = 0
+    private val COMPLETED_NOTIFICATION = 1
+    private val STOPPED_NOTIFICATION = 2
+    private val PAUSED_NOTIFICATION = 3
+    private val RESTART_NOTIFICATION = 4
+    private val FAILED_NOTIFICATION = 5
 
     /**
      * This defines a default intent for the app which can be used if none is provided in the request
      */
-    fun defaultNotificationIntent(context: Context) : Intent {
+    private fun defaultNotificationIntent(context: Context) : Intent {
 
-        val notificationIntent = android.content.Intent(context, MainActivity::class.java)
+        val notificationIntent = Intent(context, MainActivity::class.java)
         notificationIntent.action = "foregroundservice.action.ForegroundServiceNotificationAction"
-        notificationIntent.flags = android.content.Intent.FLAG_ACTIVITY_NEW_TASK or android.content.Intent.FLAG_ACTIVITY_CLEAR_TASK
-        return notificationIntent;
+        notificationIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        return notificationIntent
     }
 
     fun getNotification(context: Context, intent: Intent?): Notification? {
@@ -61,7 +60,7 @@ class NotificationFactory(applicationName: String) {
         var clientReference: String?
 
         try {
-            val ai = context.getPackageManager().getApplicationInfo(context.getPackageName(), PackageManager.GET_META_DATA)
+            val ai = context.packageManager.getApplicationInfo(context.packageName, PackageManager.GET_META_DATA)
             val b = ai.metaData
 
             clientReference = b.getString(Common.CLIENT_PACKAGE)
@@ -70,7 +69,7 @@ class NotificationFactory(applicationName: String) {
             throw RuntimeException("cannot retrieve client", e)
         }
 
-        val action = notificationIntent.getAction()
+        val action = notificationIntent.action
         if (clientReference == null || action == null) {
             return null
         }
@@ -82,7 +81,7 @@ class NotificationFactory(applicationName: String) {
         // status bar notice from being shown.
         if (action.contains(Common.Notifications.NOTIFICATION_EVENT_TAG)) {
 
-            val event: IEvent = notificationIntent.getParcelableExtra<IEvent>(Common.Notifications.EXTRA_NOTIFICATION_EVENT)
+            val event: IEvent = notificationIntent.getParcelableExtra(Common.Notifications.EXTRA_NOTIFICATION_EVENT)
 
             Log.d(TAG, "Got event named(" + event.name() + ") asset(" + event.assetId() + " data(" + event.numericData() + ")")
             return null
@@ -90,22 +89,20 @@ class NotificationFactory(applicationName: String) {
 
         // The other broadcasts are notification broadcasts specifically sent for (optional) status bar notification delivery.
         // Determine which action we are handling and create a notification for it.
-        if (assetManager == null) {
-            synchronized(this) {
-                if (assetManager == null) {
-                    assetManager = Virtuoso(context).assetManager;
-                }
+        if (assetManager == null) synchronized(this) {
+            if (assetManager == null) {
+                assetManager = Virtuoso(context).assetManager
             }
         }
 
-        var notification_type = -1
+        var notificationType : Int
         var file: IAsset? = null
 
         if (action == Common.START_VIRTUOSO_SERVICE) {
-            notification_type = RESTART_NOTIFICATION
+            notificationType = RESTART_NOTIFICATION
         } else {
             var hasInfo = false
-            val extras = notificationIntent.getExtras()
+            val extras = notificationIntent.extras
             var info = Common.Notifications.DownloadStopReason.NO_ERROR
 
             if (extras != null) {
@@ -115,54 +112,60 @@ class NotificationFactory(applicationName: String) {
                 }
                 file = extras.getParcelable(Common.Notifications.EXTRA_NOTIFICATION_FILE)
             }
-            val INTENT_ACTION = action.replace(clientReference, "")
 
-            if (INTENT_ACTION == Common.Notifications.INTENT_NOTIFICATION_DOWNLOAD_COMPLETE) {
+            when(action.replace(clientReference, "")){
 
-                notification_type = COMPLETED_NOTIFICATION
-                Log.d(TAG, "DOWNLOAD COMPLETE NOTIFICATION FOR " + file?.getUuid() + " stat: " + if (hasInfo) info else "unknown")
+                Common.Notifications.INTENT_NOTIFICATION_DOWNLOAD_COMPLETE -> {
+                    notificationType = COMPLETED_NOTIFICATION
+                    Log.d(TAG, "DOWNLOAD COMPLETE NOTIFICATION FOR " + file?.uuid + " stat: " + if (hasInfo) info else "unknown")
 
-            } else if (INTENT_ACTION == Common.Notifications.INTENT_NOTIFICATION_DOWNLOAD_START) {
-
-                notification_type = PROGRESS_NOTIFICATION
-                Log.d(TAG, "DOWNLOAD START NOTIFICATION FOR " + file?.getUuid() + " stat: " + if (hasInfo) info else "unknown")
-
-            } else if (INTENT_ACTION == Common.Notifications.INTENT_NOTIFICATION_DOWNLOAD_STOPPED) {
-
-                if (file != null) {
-                    Log.d(TAG, "DOWNLOAD STOP NOTIFICATION FOR " + file.getUuid() + " stat: " + if (hasInfo) info else "unknown")
-                } else {
-                    Log.d(TAG, "DOWNLOAD STOP NOTIFICATION FOR UNKNOWN" + " stat: " + if (hasInfo) info else "unknown")
                 }
-                notification_type = STOPPED_NOTIFICATION
+                Common.Notifications.INTENT_NOTIFICATION_DOWNLOAD_START ->{
+                    notificationType = PROGRESS_NOTIFICATION
+                    Log.d(TAG, "DOWNLOAD START NOTIFICATION FOR " + file?.uuid + " stat: " + if (hasInfo) info else "unknown")
 
-            } else if (INTENT_ACTION == Common.Notifications.INTENT_NOTIFICATION_DOWNLOADS_PAUSED) {
-
-                if (file != null) {
-                    Log.d(TAG, "DOWNLOAD PAUSED NOTIFICATION FOR " + file.getUuid() + " stat: " + if (hasInfo) info else "unknown")
-                } else {
-                    Log.d(TAG, "DOWNLOAD PAUSED NOTIFICATION FOR UNKNOWN" + " stat: " + if (hasInfo) info else "unknown")
                 }
-                notification_type = PAUSED_NOTIFICATION
 
-            } else if (INTENT_ACTION == Common.Notifications.INTENT_NOTIFICATION_DOWNLOAD_UPDATE) {
+                Common.Notifications.INTENT_NOTIFICATION_DOWNLOAD_STOPPED-> {
+                    if (file != null) {
+                        Log.d(TAG, "DOWNLOAD STOP NOTIFICATION FOR " + file.uuid + " stat: " + if (hasInfo) info else "unknown")
+                    } else {
+                        Log.d(TAG, "DOWNLOAD STOP NOTIFICATION FOR UNKNOWN" + " stat: " + if (hasInfo) info else "unknown")
+                    }
+                    notificationType = STOPPED_NOTIFICATION
+                }
 
-                notification_type = PROGRESS_NOTIFICATION
-                Log.d(TAG, "DOWNLOAD UPDATE NOTIFICATION FOR " + file?.getUuid() + " stat: " + if (hasInfo) info else "unknown")
+                Common.Notifications.INTENT_NOTIFICATION_DOWNLOADS_PAUSED -> {
+                    if (file != null) {
+                        Log.d(TAG, "DOWNLOAD PAUSED NOTIFICATION FOR " + file.uuid + " stat: " + if (hasInfo) info else "unknown")
+                    } else {
+                        Log.d(TAG, "DOWNLOAD PAUSED NOTIFICATION FOR UNKNOWN" + " stat: " + if (hasInfo) info else "unknown")
+                    }
+                    notificationType = PAUSED_NOTIFICATION
+                }
 
-            } else if (INTENT_ACTION == Common.Notifications.INTENT_NOTIFICATION_MANIFEST_PARSE_FAILED) {
+                Common.Notifications.INTENT_NOTIFICATION_DOWNLOAD_UPDATE -> {
+                    notificationType = PROGRESS_NOTIFICATION
+                    Log.d(TAG, "DOWNLOAD UPDATE NOTIFICATION FOR " + file?.uuid + " stat: " + if (hasInfo) info else "unknown")
 
-                notification_type = FAILED_NOTIFICATION
-                Log.d(TAG, "EXCEPTIONAL CIRCUMSTANCE NOTIFICATION for asset failed to be queued while in background")
-            } else {
-                notification_type = RESTART_NOTIFICATION
-                Log.d(TAG, "UNHANDLED NOTIFICATION ACTION $action")
+                }
+
+                Common.Notifications.INTENT_NOTIFICATION_MANIFEST_PARSE_FAILED-> {
+                    notificationType = FAILED_NOTIFICATION
+                    Log.d(TAG, "EXCEPTIONAL CIRCUMSTANCE NOTIFICATION for asset failed to be queued while in background")
+                }
+
+                else ->{
+                    notificationType = RESTART_NOTIFICATION
+                    Log.d(TAG, "UNHANDLED NOTIFICATION ACTION $action")
+                }
             }
+
         }
 
         var notification: Notification? = null
-        if (notification_type > -1) {
-            notification = createNotification(notification_type, context, file)
+        if (notificationType > -1) {
+            notification = createNotification(notificationType, context, file)
         }
 
         return notification
@@ -171,14 +174,12 @@ class NotificationFactory(applicationName: String) {
     /**
      * Create the notification for the specified type.
      * @param type The notification type.
-     * @param aContext The context to be used
-     * @param aNotificationChannelID The notification channel to use.  May be null if not using notification channels.
-     * @param aAsset the asset (may be null)
-     * @param aAppName name of the application - this is used in the notification title
+     * @param context The context to be used
+     * @param asset the asset (may be null)
      * @return the notification.
      */
-    fun  createNotification(type: Int, context: Context, asset: IAsset?): Notification? {
-        var title = applicationName + ": "
+    private fun  createNotification(type: Int, context: Context, asset: IAsset?): Notification? {
+        var title = "$applicationName: "
         var contentText = ""
         var progress = -1
 
@@ -206,7 +207,7 @@ class NotificationFactory(applicationName: String) {
 
         val pendingIntent = PendingIntent.getActivity(context, 0, createIntent(context), PendingIntent.FLAG_CANCEL_CURRENT)
 
-        var notification: Notification? = null
+        var notification: Notification?
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             if (notificationBuilder == null) {
                 synchronized(this){
@@ -214,6 +215,7 @@ class NotificationFactory(applicationName: String) {
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                             notificationBuilder = Notification.Builder(context, channelId())
                         } else {
+                            @Suppress("DEPRECATION")
                             notificationBuilder = Notification.Builder(context)
                         }
                         notificationBuilder!!.setOnlyAlertOnce(true)
@@ -238,7 +240,7 @@ class NotificationFactory(applicationName: String) {
             if (compatNotificationBuilder == null) {
                 synchronized(this){
                     if (compatNotificationBuilder == null) {
-                        compatNotificationBuilder = NotificationCompat.Builder(context)
+                        compatNotificationBuilder = NotificationCompat.Builder(context, channelId())
                         compatNotificationBuilder!!.setOnlyAlertOnce(true)
                     }
                 }
@@ -264,17 +266,17 @@ class NotificationFactory(applicationName: String) {
 
     /**
     * calculates the progress of the current download.
-    * @param aAsset the current asset downloading
+    * @param asset the current asset downloading
     * @return progress
     */
-    fun getDownloadProgress(asset: IAsset?): Int {
+    private fun getDownloadProgress(asset: IAsset?): Int {
         if (asset == null)
             return 0
 
-        var fractionComplete = asset.getFractionComplete();
-        fractionComplete *= 100;
+        var fractionComplete = asset.fractionComplete
+        fractionComplete *= 100
         if (fractionComplete > 99.0) {
-            fractionComplete = 99.0;
+            fractionComplete = 99.0
         }
 
         return fractionComplete.toInt()
@@ -282,18 +284,18 @@ class NotificationFactory(applicationName: String) {
 
     /**
      * Get the assets title or an empty string
-     * @param aAsset the asset
+     * @param asset the asset
      * @return
      */
-    internal fun getAssetTitle(asset: IAsset?): String {
+    private fun getAssetTitle(asset: IAsset?): String {
 
-        var title = asset?.let {
-            var title : String = ""
+        val title = asset?.let {
+            var title = ""
             val json: String = it.metadata
             if (json.isNotEmpty()) {
                title = ExampleMetaData().fromJson(json).title
             }
-            title ?: ""
+            title
         }
 
         return title ?: ""
@@ -304,9 +306,9 @@ class NotificationFactory(applicationName: String) {
      * @param aContext used to get the package name
      * @return the intent
      */
-    fun createIntent(aContext: Context): Intent {
+    private fun createIntent(aContext: Context): Intent {
         val intent = Intent(aContext.packageName + ".DEMO_NOTIFICATION")
-        intent.component = ComponentName(aContext.packageName, MainActivity::class.java.getName())
+        intent.component = ComponentName(aContext.packageName, MainActivity::class.java.name)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
         intent.flags = Intent.FLAG_ACTIVITY_SINGLE_TOP
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP

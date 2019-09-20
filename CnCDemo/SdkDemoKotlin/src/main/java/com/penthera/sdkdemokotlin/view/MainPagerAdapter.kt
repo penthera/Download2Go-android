@@ -12,22 +12,19 @@ import com.penthera.sdkdemokotlin.fragment.OtherViewFragment
 /**
  *
  */
-class MainPagerAdapter (fm:FragmentManager, context: Context?) : FragmentPagerAdapter(fm) {
+class MainPagerAdapter (fm:FragmentManager, val context: Context?) : FragmentPagerAdapter(fm) {
 
-    val context = context
 
     override fun getItem(position: Int): Fragment {
-        return when (position) {
-            0 -> {
-                return InboxFragment.newInstance()
-            }
-            1 -> {
-                return CatalogFragment()
-            }
-            else -> {
-                return OtherViewFragment();
-            }
+
+        val ret : Fragment
+        when (position) {
+            0 -> ret =  InboxFragment.newInstance()
+            1 -> ret = CatalogFragment()
+            else -> ret =  OtherViewFragment()
         }
+
+        return ret
     }
 
     override fun getCount(): Int = 3

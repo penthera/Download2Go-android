@@ -42,7 +42,7 @@ class DateTimeDialogFragment : DialogFragment() {
     // onCreateView
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        mLayout = inflater!!.inflate(R.layout.datetime_dialog, container, false)
+        mLayout = inflater.inflate(R.layout.datetime_dialog, container, false)
 
         getDialog().setTitle(mTitle)
 

@@ -42,7 +42,7 @@ class LoginFragment : Fragment(), View.OnClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         continueButton.setOnClickListener(this)
 
-        val identifier = offlineVideoProvider?.getOfflineEngine()?.getVirtuoso()?.getBackplane()?.getSettings()?.getDeviceId()
+        val identifier = offlineVideoProvider?.getOfflineEngine()?.getVirtuoso()?.backplane?.settings?.deviceId
 
         edt_user.setText(identifier)
         edt_url.setText(Config.BACKPLANE_URL)
@@ -73,43 +73,43 @@ class LoginFragment : Fragment(), View.OnClickListener {
             val backplaneUrl = getUrl()
             val user = getUser()
             if (TextUtils.isEmpty(user)) {
-                throw IllegalArgumentException("Missing username");
+                throw IllegalArgumentException("Missing username")
             }
 
             offlineVideoProvider?.getOfflineEngine()?.getVirtuoso()?.let{
-                it.startup(backplaneUrl, user, null, Config.BACKPLANE_PUBLIC_KEY, Config.BACKPLANE_PRIVATE_KEY, com.penthera.virtuososdk.client.IPushRegistrationObserver { pushService, errorCode ->
-// TODO:  Set up push messaging
-//                    if (pushService == Common.PushService.FCM_PUSH && errorCode != ConnectionResult.SUCCESS) {
-//                        val gApi = GoogleApiAvailability.getInstance()
-//                        if (gApi.isUserResolvableError(errorCode)) {
-//
-//                            runOnUiThread(Runnable {
-//                                gApi.makeGooglePlayServicesAvailable(context)
-//                                        .addOnCompleteListener(object:OnCompleteListener<Void> {
-//                                            override fun onComplete(task:Task<Void>) {
-//                                                Log.d(TAG, "makeGooglePlayServicesAvailable complete")
-//                                                mGcmRegistered = true
-//                                                if (task.isSuccessful()) {
-//                                                    Log.d(TAG, "makeGooglePlayServicesAvailable completed successfully")
-//                                                } else {
-//                                                    val e = task.getException()
-//                                                    Log.e(TAG, "makeGooglePlayServicesAvailable completed with exception " + e!!.message, e)
-//                                                }
-//                                                if (mRegistered) {
-//                                                    Util.startActivity(this@SplashActivity, MainActivity::class.java, null)
-//                                                }
-//                                            }
-//                                        })
-//                            })
-//
-//                        }
-//                    } else {
-//                        mGcmRegistered = true
-//                        if (mRegistered) {
-//                            Util.startActivity(this@SplashActivity, MainActivity::class.java, null)
-//                        }
-//                    }
-                })
+                it.startup(backplaneUrl, user, null, Config.BACKPLANE_PUBLIC_KEY, Config.BACKPLANE_PRIVATE_KEY) { _, _ ->
+                    // TODO:  Set up push messaging
+        //                    if (pushService == Common.PushService.FCM_PUSH && errorCode != ConnectionResult.SUCCESS) {
+        //                        val gApi = GoogleApiAvailability.getInstance()
+        //                        if (gApi.isUserResolvableError(errorCode)) {
+        //
+        //                            runOnUiThread(Runnable {
+        //                                gApi.makeGooglePlayServicesAvailable(context)
+        //                                        .addOnCompleteListener(object:OnCompleteListener<Void> {
+        //                                            override fun onComplete(task:Task<Void>) {
+        //                                                Log.d(TAG, "makeGooglePlayServicesAvailable complete")
+        //                                                mGcmRegistered = true
+        //                                                if (task.isSuccessful()) {
+        //                                                    Log.d(TAG, "makeGooglePlayServicesAvailable completed successfully")
+        //                                                } else {
+        //                                                    val e = task.getException()
+        //                                                    Log.e(TAG, "makeGooglePlayServicesAvailable completed with exception " + e!!.message, e)
+        //                                                }
+        //                                                if (mRegistered) {
+        //                                                    Util.startActivity(this@SplashActivity, MainActivity::class.java, null)
+        //                                                }
+        //                                            }
+        //                                        })
+        //                            })
+        //
+        //                        }
+        //                    } else {
+        //                        mGcmRegistered = true
+        //                        if (mRegistered) {
+        //                            Util.startActivity(this@SplashActivity, MainActivity::class.java, null)
+        //                        }
+        //                    }
+                }
 // TODO:  add a progress dialog?
             }
 
@@ -128,7 +128,7 @@ class LoginFragment : Fragment(), View.OnClickListener {
      */
     @Throws(MalformedURLException::class)
     private fun getUrl(): URL {
-        var url = edt_url.getText().toString()
+        var url = edt_url.text.toString()
         if (TextUtils.isEmpty(url)) {
             url = Config.BACKPLANE_URL
         }
@@ -141,9 +141,10 @@ class LoginFragment : Fragment(), View.OnClickListener {
      * @return
      */
     private fun getUser(): String {
-        var user = edt_user.getText().toString()
+        var user = edt_user.text.toString()
         if (TextUtils.isEmpty(user)) {
-            user = offlineVideoProvider?.getOfflineEngine()?.getVirtuoso()?.getBackplane()?.getSettings()?.getDeviceId() ?: ""
+            user = offlineVideoProvider?.getOfflineEngine()?.getVirtuoso()?.backplane?.settings?.deviceId
+                    ?: ""
         }
         return user
     }
@@ -198,13 +199,13 @@ class LoginFragment : Fragment(), View.OnClickListener {
         }
 
         override fun requestComplete(request: Int, result: Int, errorMessage: String) {
-            activity?.runOnUiThread(Runnable {
+            activity?.runOnUiThread {
                 if (result == Common.BackplaneResult.SUCCESS || request == Common.BackplaneCallbackType.SYNC) {
                     handleSuccess(request)
                 } else {
                     handleFailure(result)
                 }
-            })
+            }
         }
     }
 
