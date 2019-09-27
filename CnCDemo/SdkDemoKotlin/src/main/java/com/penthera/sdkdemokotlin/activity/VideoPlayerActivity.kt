@@ -366,10 +366,10 @@ class VideoPlayerActivity : Activity(), View.OnClickListener, PlaybackPreparer, 
 
         return asset?.let{
             DrmSessionManagerWrapper(applicationContext, uuid,
-                    asset, keyRequestPropertiesMap!!, null as Looper, mainHandler!!, drmListener, eventLogger!!)
+                    asset, keyRequestPropertiesMap!!, mainHandler!!.looper, mainHandler!!, drmListener, eventLogger!!)
         }?:run{
             DrmSessionManagerWrapper(applicationContext, uuid,
-                    assetId, keyRequestPropertiesMap!!, null as Looper, mainHandler!!, drmListener, eventLogger!!)
+                    assetId, keyRequestPropertiesMap!!, mainHandler!!.looper, mainHandler!!, drmListener, eventLogger!!)
         }
 
 

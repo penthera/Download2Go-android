@@ -1034,5 +1034,10 @@ public class CatalogDetailFragment extends Fragment implements LoaderManager.Loa
 			}
 
 		}
+
+		@Override
+		public String getAdNetworkName() {
+			return "SdkDemoAdSource";
+		}
 	};
 }
