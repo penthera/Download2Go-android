@@ -4,6 +4,7 @@ var classSelectorHTML = '\
 		<option value="com.penthera.virtuososdk/Common">Common</option>\
 		<option value="com.penthera.virtuososdk/Common.AdmPushServiceAvailability">Common.AdmPushServiceAvailability</option>\
 		<option value="com.penthera.virtuososdk/Common.AdSupportType">Common.AdSupportType</option>\
+		<option value="com.penthera.virtuososdk/Common.AssetActionState">Common.AssetActionState</option>\
 		<option value="com.penthera.virtuososdk/Common.AssetIdentifierType">Common.AssetIdentifierType</option>\
 		<option value="com.penthera.virtuososdk/Common.AssetStatus">Common.AssetStatus</option>\
 		<option value="com.penthera.virtuososdk/Common.AuthenticationStatus">Common.AuthenticationStatus</option>\
