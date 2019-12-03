@@ -3,8 +3,8 @@
 	xmlns:tools="http://schemas.android.com/tools"
 	xmlns:amazon="http://schemas.amazon.com/apk/res/android"
 	package="com.penthera.sdkdemo"
-	android:versionCode="31511000"
-	android:versionName="3.15.11">
+	android:versionCode="31512000"
+	android:versionName="3.15.12">
 
 	<uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="com.penthera.sdkdemo.permission.CATALOG"/>
