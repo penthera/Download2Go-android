@@ -2,11 +2,11 @@ package com.penthera.sdkdemokotlin.engine
 
 import android.content.Context
 import android.database.Cursor
-import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
 import com.penthera.sdkdemokotlin.R
 import com.penthera.sdkdemokotlin.catalog.ExampleMetaData
 import com.penthera.sdkdemokotlin.util.TextUtils
@@ -154,7 +154,7 @@ class AssetsRecyclerAdapter (private val context: Context, var cursor: Cursor, p
             view.errorCount.text = cursor.getInt(cursor.getColumnIndex(AssetColumns.ERROR_COUNT)).toString()
 
             // Progress bar if downloading
-            if (downloadStatus == Common.AssetStatus.DOWNLOADING) {
+            if (downloadStatus == Common.AssetStatus.DOWNLOADING || downloadStatus == Common.AssetStatus.EARLY_DOWNLOADING) {
                 view.downloadProgress.visibility = VISIBLE
                 val fraction = cursor.getDouble(12)
                 val percent = (fraction * 100).toInt()

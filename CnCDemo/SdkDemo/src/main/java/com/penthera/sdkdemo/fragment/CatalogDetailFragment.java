@@ -35,9 +35,6 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.app.LoaderManager;
-import android.support.v4.content.CursorLoader;
-import android.support.v4.content.Loader;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -52,7 +49,11 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import android.support.v4.app.Fragment;
+import androidx.fragment.app.Fragment;
+import androidx.loader.app.LoaderManager;
+import androidx.loader.content.CursorLoader;
+import androidx.loader.content.Loader;
+
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.FailReason;
@@ -757,6 +758,7 @@ public class CatalogDetailFragment extends Fragment implements LoaderManager.Loa
 				switch(fds){
 				
 				case AssetStatus.DOWNLOADING:
+				case AssetStatus.EARLY_DOWNLOADING:
 					assetStatus = getString(R.string.status_downloading);
 					value = "downloading";
 					break;

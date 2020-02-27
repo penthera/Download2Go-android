@@ -1,9 +1,9 @@
 package com.penthera.sdkdemokotlin.catalog
 
 import android.content.Context
-import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
 import com.penthera.sdkdemokotlin.R
 import com.penthera.sdkdemokotlin.activity.NavigationListener
 import com.penthera.sdkdemokotlin.util.TextUtils
@@ -24,14 +24,14 @@ class CatalogRecyclerAdapter(context: Context) : RecyclerView.Adapter<CatalogRec
         catalog = ExampleCatalog.getInstance(context)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CatalogRecyclerAdapter.CatalogItemHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CatalogItemHolder {
         val inflatedView = parent.inflate(R.layout.listrow_catalog, false)
         return CatalogItemHolder(inflatedView)
     }
 
     override fun getItemCount(): Int = catalog.currentCatalog.size
 
-    override fun onBindViewHolder(holder: CatalogRecyclerAdapter.CatalogItemHolder, position: Int) {
+    override fun onBindViewHolder(holder: CatalogItemHolder, position: Int) {
         holder.bindItem(catalog.currentCatalog.get(position), navigationListener)
     }
 

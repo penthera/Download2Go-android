@@ -1,8 +1,8 @@
 package com.penthera.sdkdemokotlin.engine
 
-import android.arch.lifecycle.*
 import android.content.Context
 import android.util.Log
+import androidx.lifecycle.*
 import com.penthera.virtuososdk.Common
 import com.penthera.virtuososdk.client.*
 
@@ -172,10 +172,6 @@ class OfflineVideoEngine(lifeCycleOwner: LifecycleOwner, context: Context) : Lif
     }
 
     override fun engineEncounteredErrorDownloadingAsset(aAsset: IIdentifier) {
-
-    }
-
-    override fun engineCompletedDownloadingSegment(aAsset: IIdentifier) {
 
     }
 

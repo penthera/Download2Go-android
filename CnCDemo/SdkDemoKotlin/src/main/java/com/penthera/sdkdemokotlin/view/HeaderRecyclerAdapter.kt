@@ -1,8 +1,9 @@
 package com.penthera.sdkdemokotlin.view
 
-import android.support.v7.widget.RecyclerView
+
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
 import com.penthera.sdkdemokotlin.R
 import com.penthera.sdkdemokotlin.engine.AssetsRecyclerAdapter
 import com.penthera.sdkdemokotlin.util.inflate

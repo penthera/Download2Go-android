@@ -7,7 +7,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 import com.penthera.sdkdemo.notification.NotificationFactory;
 import com.penthera.sdkdemo.activity.SplashActivity;

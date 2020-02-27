@@ -31,7 +31,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
-import android.support.v4.app.Fragment;
+import androidx.fragment.app.Fragment;
+
 import com.penthera.sdkdemo.Config;
 import com.penthera.sdkdemo.R;
 import com.penthera.virtuososdk.backplane.AddItemAndNotifyDeviceRequest;
@@ -280,7 +281,7 @@ public class SubscriptionsFragment extends Fragment {
     	
         @Override
         protected Void doInBackground(Void... params) {
-			AddItemAndNotifyDeviceRequest a = new AddItemAndNotifyDeviceRequest(mContext, Config.getAuthority(mContext));
+			AddItemAndNotifyDeviceRequest a = new AddItemAndNotifyDeviceRequest();
 			mObj = a.executeToJson(mContext, new Bundle());
         	
         	return null;

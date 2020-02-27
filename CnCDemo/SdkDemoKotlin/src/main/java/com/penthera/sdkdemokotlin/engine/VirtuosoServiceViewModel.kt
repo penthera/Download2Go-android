@@ -1,6 +1,6 @@
 package com.penthera.sdkdemokotlin.engine
 
-import android.arch.lifecycle.ViewModel
+import androidx.lifecycle.ViewModel
 import com.penthera.virtuososdk.Common
 
 

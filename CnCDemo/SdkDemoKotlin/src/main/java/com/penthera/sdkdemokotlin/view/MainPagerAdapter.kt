@@ -1,9 +1,9 @@
 package com.penthera.sdkdemokotlin.view
 
 import android.content.Context
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
-import android.support.v4.app.FragmentPagerAdapter
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentPagerAdapter
 import com.penthera.sdkdemokotlin.R
 import com.penthera.sdkdemokotlin.fragment.CatalogFragment
 import com.penthera.sdkdemokotlin.fragment.InboxFragment
@@ -13,7 +13,6 @@ import com.penthera.sdkdemokotlin.fragment.OtherViewFragment
  *
  */
 class MainPagerAdapter (fm:FragmentManager, val context: Context?) : FragmentPagerAdapter(fm) {
-
 
     override fun getItem(position: Int): Fragment {
 

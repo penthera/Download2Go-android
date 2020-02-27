@@ -21,7 +21,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import android.support.v4.app.ListFragment;
+import androidx.fragment.app.ListFragment;
+
 import com.penthera.sdkdemo.R;
 import com.penthera.sdkdemo.Util;
 import com.penthera.sdkdemo.activity.AboutActivity;

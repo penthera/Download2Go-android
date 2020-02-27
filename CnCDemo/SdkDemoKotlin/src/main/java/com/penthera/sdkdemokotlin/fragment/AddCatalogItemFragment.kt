@@ -1,7 +1,6 @@
 package com.penthera.sdkdemokotlin.fragment
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,10 +11,11 @@ import kotlinx.android.synthetic.main.fragment_add_catalog_item.*
 import android.R.array
 import android.app.DatePickerDialog
 import android.content.Context
-import android.support.v4.app.FragmentManager
-import android.support.v4.app.FragmentPagerAdapter
 import android.widget.ArrayAdapter
 import android.widget.TextView
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentPagerAdapter
 import com.penthera.sdkdemokotlin.catalog.CatalogItemType
 import com.penthera.sdkdemokotlin.dialog.DateTimeDialogFragment
 import kotlinx.android.synthetic.main.datetime_dialog.*

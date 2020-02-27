@@ -17,6 +17,7 @@ var classSelectorHTML = '\
 		<option value="com.penthera.virtuososdk/Common.Events">Common.Events</option>\
 		<option value="com.penthera.virtuososdk/Common.FileSegmentType">Common.FileSegmentType</option>\
 		<option value="com.penthera.virtuososdk/Common.LicenseError">Common.LicenseError</option>\
+		<option value="com.penthera.virtuososdk/Common.LogLevelHelper">Common.LogLevelHelper</option>\
 		<option value="com.penthera.virtuososdk/Common.LogLevels">Common.LogLevels</option>\
 		<option value="com.penthera.virtuososdk/Common.Notifications">Common.Notifications</option>\
 		<option value="com.penthera.virtuososdk/Common.Notifications.DownloadStopReason">Common.Notifications.DownloadStopReason</option>\

@@ -15,19 +15,18 @@
 package com.penthera.sdkdemo.activity;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.ViewPager;
-import android.support.v4.view.ViewPager.OnPageChangeListener;
-import android.support.v7.app.ActionBar;
 import android.util.Log;
 
-import android.support.v7.app.ActionBar.Tab;
-import android.support.v7.app.ActionBar.TabListener;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.viewpager2.adapter.FragmentStateAdapter;
+import androidx.viewpager2.widget.ViewPager2;
+
+import com.google.android.material.tabs.TabLayout;
+
+import com.google.android.material.tabs.TabLayoutMediator;
 import com.penthera.sdkdemo.R;
 import com.penthera.sdkdemo.fragment.CatalogFragment;
 import com.penthera.sdkdemo.fragment.InboxFragment;
@@ -41,84 +40,36 @@ public class MainActivity extends SdkDemoBaseActivity {
 	/** Log tag */
     private static final String TAG = MainActivity.class.getName(); 		
     
-	/** Tab: Settings */
-	private MyTabListener<InboxFragment> mInboxTabListener;
-   
-	/** Tab: Alerts */
-	private MyTabListener<CatalogFragment> mCatalogTabListener;
-    		
-	/** Tab: History */
-	private MyTabListener<OtherFragment> mOtherTabListener;
+	public static final int NUM_TABS = 3;
 
-	/** Tab Index: Settings */
-	private static String TAB_TAG_INBOX = "0";
-	/** Tab Index: Alerts */
-	private static String TAB_TAG_CATALOG = "1";
-	/** Tab Index: History*/
-	private static String TAB_TAG_OTHER = "2";
+	private static int[] tabTitles =  new int[]{R.string.inbox, R.string.catalog, R.string.other};
         
-	/** ActionBar */
-	private ActionBar mActionBar;
-
 	/** View Pager: Horizontal slide */
-	private ViewPager mPager;
+	private ViewPager2 mPager;
     		
 	/** View Pager Adapter: bind data to the view pager */
-	private PagerAdapter mPagerAdapter;
+	private DemoFragmentStateAdapter mFragmentAdapter;
 
-	public interface DemoTabListener {
-		public void onChange(int index);
-	}
-	
-	public class MyDemoTabListener implements DemoTabListener {
-		@Override
-		public void onChange(int index) {
-			mPager.setCurrentItem(index);
-		}		
-	}
-	MyDemoTabListener mMyDemoTabListener = new MyDemoTabListener();
-	
-	
 	@SuppressLint("DefaultLocale") @Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
-		mActionBar = getSupportActionBar();
-
 		// --- Pager
-		mPager = (ViewPager)findViewById(R.id.pgr);
-		mPager.setAdapter(mPagerAdapter);
-		
+		mPager = findViewById(R.id.pgr);
 		mPager.setOffscreenPageLimit(1);
-		mPager.setOnPageChangeListener(new OnPageChangeListener() {            	
-			@Override
-			public void onPageScrollStateChanged(int arg0) {
-			}
+		mFragmentAdapter = new DemoFragmentStateAdapter(this);
+		mPager.setAdapter(mFragmentAdapter);
 
-			@Override
-			public void onPageScrolled(int arg0, float arg1, int arg2) {
-			}
+		// --- Tabs
+		TabLayout tabLayout = findViewById(R.id.tab_layout);
+		new TabLayoutMediator(tabLayout, mPager,
+				(tab, position) -> tab.setText(tabTitles[position])
+		).attach();
 
-			@Override
-			public void onPageSelected(int index) {
-				mActionBar.getTabAt(index).select();  
-			}
-		});
-		
-		mPagerAdapter = new PagerAdapter(getSupportFragmentManager(), mActionBar);
-		mPager.setAdapter(mPagerAdapter);
-
-		// --- Action Bar
-		mActionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);		        
-		addTabs();
-		mPagerAdapter.notifyDataSetChanged();
+		mFragmentAdapter.notifyDataSetChanged();
 	}
-		
-	@Override
-	public void onNewIntent(Intent i) {
-	}
-	 
+
 	// onStart
 	@Override
 	public void onStart()
@@ -143,91 +94,28 @@ public class MainActivity extends SdkDemoBaseActivity {
 	public void onDestroy() {    	
 		super.onDestroy();
 	}
-        
-	/**
-	 * Add the tabs
-	 */
-	private void addTabs()
-	{	 
-		mInboxTabListener = new MyTabListener<InboxFragment>(TAB_TAG_INBOX, mPager);
-		mActionBar.addTab(mActionBar.newTab()
-    				.setText(R.string.inbox)
-    				.setTabListener(mInboxTabListener));		 
 
-		mCatalogTabListener = new MyTabListener<CatalogFragment>(TAB_TAG_CATALOG, mPager);
-		mActionBar.addTab(mActionBar.newTab()
-    				.setText(R.string.catalog)
-    				.setTabListener(mCatalogTabListener));		
-
-		mOtherTabListener = new MyTabListener<OtherFragment>(TAB_TAG_OTHER, mPager);
-		mActionBar.addTab(mActionBar.newTab()
-    				.setText(R.string.other)
-    				.setTabListener(mOtherTabListener));				
-	}
-
-	/**
-	 * Tab listener
-	 */
-	public class MyTabListener<T extends Fragment> implements TabListener
-	{
-		private final String mTag;
-		private ViewPager mPager;
-
-		/**
-		 * Constructor
-		 * 
-		 * @param tag
-		 * @param viewPager
-		 */
-		public MyTabListener(String tag, ViewPager viewPager) 
-		{
-			mTag = tag;
-			mPager = viewPager;
-		}
-
-		// onTabSelected
-		@Override
-		public void onTabSelected(Tab tab, FragmentTransaction ft) {
-			mPager.setCurrentItem(Integer.parseInt(mTag));
-		}
-
-		// onTabUnselected
-		@Override
-		public void onTabUnselected(Tab tab, FragmentTransaction ft) {
-		}
-
-		// onTabReselected
-		@Override
-		public void onTabReselected(Tab tab, FragmentTransaction ft) {
-		}
-	}
-    	
 	/**
 	 * Pager Adapter
 	 */
-	public class PagerAdapter extends FragmentPagerAdapter {
-		ActionBar mActionBar;
-    
-		// TODO: Shouldn't keep handle here re-factor
-		private InboxFragment mIf;
-		
-		public PagerAdapter(FragmentManager fm, ActionBar actionBar) {
-			super(fm);
-			mActionBar = actionBar;
+	public class DemoFragmentStateAdapter extends FragmentStateAdapter {
+
+		public DemoFragmentStateAdapter(FragmentActivity fa) {
+			super(fa);
 		}
 
 		@Override
-		public int getCount() {
-			return mActionBar.getNavigationItemCount();  
+		public int getItemCount() {
+			return NUM_TABS;
 		}
 
+		@NonNull
 		@Override
-		public Fragment getItem(int position) {
+		public Fragment createFragment(int position) {
 			Log.i(TAG,"getItem " + position);
 			switch (position) {
 				case 0: {
-					mIf = InboxFragment.newInstance(mVirtuoso, mMyDemoTabListener);
-					return mIf;
+					return InboxFragment.newInstance(mVirtuoso);
 				}
 				case 1: {
 					return CatalogFragment.newInstance(mVirtuoso);

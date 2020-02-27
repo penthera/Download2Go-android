@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 29
     buildToolsVersion '28.0.3'
 
     defaultConfig {
         applicationId "com.penthera.sdkdemo"
-        minSdkVersion 15
-        targetSdkVersion 28
+        minSdkVersion 16
+        targetSdkVersion 29
         multiDexEnabled true
     }
 
@@ -44,9 +44,9 @@ dependencies {
 
     def sysprops = System.getProperties()
     if (sysprops['idea.platform.prefix'] != null || project.hasProperty("devCmdLine")) {
-        implementation 'com.penthera:cnc-android-sdk-debug:3.15.12'
+        implementation 'com.penthera:cnc-android-sdk-debug:3.15.14'
     } else {
-        implementation 'com.penthera:cnc-android-sdk-debug:3.15.12'
+        implementation 'com.penthera:cnc-android-sdk-debug:3.15.14'
     }
 
     implementation ('com.google.android.exoplayer:exoplayer:2.9.6') {
@@ -56,14 +56,16 @@ dependencies {
         exclude group: 'com.google.android.gms'
     }
 
-    implementation 'com.android.support:appcompat-v7:28.0.0'
-    implementation 'com.google.firebase:firebase-messaging:17.3.4'
-    implementation 'com.google.firebase:firebase-core:16.0.6'
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'com.google.firebase:firebase-messaging:20.0.0'
+    implementation 'com.google.firebase:firebase-core:17.2.0'
+    implementation "androidx.viewpager2:viewpager2:1.0.0"
+    implementation "com.google.android.material:material:1.1.0-rc02"
     implementation files('libs/CWAC-SackOfViewsAdapter.jar')
     implementation files('libs/image-master.jar')
     implementation files('libs/mergeadapter.jar')
     implementation files('libs/prettytime-1.0.8.Final.jar')
-    implementation 'com.android.support:multidex:1.0.3'
+    implementation 'androidx.multidex:multidex:2.0.0'
 
     compileOnly files('libs/amazon-device-messaging-1.0.1.jar')
 

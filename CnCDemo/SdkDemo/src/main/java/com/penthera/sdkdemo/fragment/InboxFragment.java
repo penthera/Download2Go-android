@@ -23,7 +23,6 @@ import java.util.UUID;
 import org.json.JSONObject;
 import org.ocpsoft.pretty.time.PrettyTime;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -31,10 +30,6 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 
-import android.support.v4.app.LoaderManager;
-import android.support.v4.content.CursorLoader;
-import android.support.v4.content.Loader;
-import android.support.v4.widget.CursorAdapter;
 
 import android.text.TextUtils;
 import android.util.Log;
@@ -51,10 +46,16 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import android.support.v4.app.ListFragment;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+
+import androidx.cursoradapter.widget.CursorAdapter;
+import androidx.fragment.app.ListFragment;
+import androidx.loader.app.LoaderManager;
+import androidx.loader.content.CursorLoader;
+import androidx.loader.content.Loader;
+
 import com.commonsware.cwac.merge.MergeAdapter;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -67,7 +68,6 @@ import com.penthera.sdkdemo.R;
 import com.penthera.sdkdemo.Util;
 import com.penthera.sdkdemo.VirtuosoUtil;
 import com.penthera.sdkdemo.activity.CatalogDetailActivity;
-import com.penthera.sdkdemo.activity.MainActivity.DemoTabListener;
 import com.penthera.sdkdemo.customviews.InboxRow;
 import com.penthera.virtuososdk.Common;
 import com.penthera.virtuososdk.Common.AssetStatus;
@@ -182,13 +182,10 @@ public class InboxFragment extends ListFragment implements LoaderManager.LoaderC
 	 * @param service the Vrituoso service
 	 * @return
 	 */
-	DemoTabListener mListener;
-
-	public static InboxFragment newInstance(Virtuoso service, DemoTabListener l) {
+	public static InboxFragment newInstance(Virtuoso service) {
 		InboxFragment inf = new InboxFragment();
 		inf.mService = service;
 		inf.mAssetManager = service.getAssetManager();
-		inf.mListener = l;
 		return inf;
 	}
 
@@ -696,7 +693,17 @@ public class InboxFragment extends ListFragment implements LoaderManager.LoaderC
 	        		// Download status
 	        		String value;
 	        		switch(download_status){
+
+						case Common.AssetStatus.MANIFEST_PARSE_PENDING:
+							value = "parse pending";
+							break;
+
+						case Common.AssetStatus.MANIFEST_PARSING:
+							value = "parsing";
+							break;
+
 						case AssetStatus.DOWNLOADING:
+						case AssetStatus.EARLY_DOWNLOADING:
 							value = "downloading";
 							break;
 
@@ -730,6 +737,14 @@ public class InboxFragment extends ListFragment implements LoaderManager.LoaderC
 
 						case AssetStatus.DOWNLOAD_REACHABILITY_ERROR:
 							value = "unreachable";
+							break;
+
+						case Common.AssetStatus.MANIFEST_REACHABILITY_ERROR:
+							value = "manifest unreachable";
+							break;
+
+						case Common.AssetStatus.MANIFEST_PARSING_ERROR:
+							value = "parsing error";
 							break;
 
 						case AssetStatus.DOWNLOAD_DENIED_ASSET:
@@ -772,7 +787,7 @@ public class InboxFragment extends ListFragment implements LoaderManager.LoaderC
 	        		rowErrorCount.setVisibility(View.VISIBLE);
 
 	        		// 12 maps to AssetColumns.FRACTION_COMPLETE from projection
-					if(download_status == AssetStatus.DOWNLOADING){
+					if(download_status == AssetStatus.DOWNLOADING || download_status == AssetStatus.EARLY_DOWNLOADING){
 			        	pb.setVisibility(View.VISIBLE);
 			        	double fraction = cursor.getDouble( 12 );
 			        	int percent = (int) (fraction*100);
@@ -893,17 +908,8 @@ public class InboxFragment extends ListFragment implements LoaderManager.LoaderC
 
 	// --- UI Events
 
-	@Override
-	public void onListItemClick(ListView l, View v, int position, long id) {
-		Log.i(TAG, "onListItemClick");
-		if (v.getId() == R.id.row_empty) {
-			if (mListener != null)
-				mListener.onChange(1);
-		}
-	}
-
 	/**
-	 * A wee command to add a test item
+	 * A command to add a test item
 	 */
 	private static int mCount = 0;
 	private void handleAddTestItem() {

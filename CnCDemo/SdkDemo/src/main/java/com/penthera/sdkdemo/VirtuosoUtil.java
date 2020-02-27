@@ -165,20 +165,21 @@ public class VirtuosoUtil {
 		final String thumbnail = cv.getAsString(CatalogColumns.IMAGE_THUMBNAIL);
 		final int mediaType = cv.getAsInteger(CatalogColumns.MEDIA_TYPE);
 		final boolean downloadEnabledContent = cv.getAsInteger(CatalogColumns.DOWNLOAD_ENABLED) == 1;
-		final long downloadExpiry = cv.getAsLong(CatalogColumns.DOWNLOAD_EXPIRY);
-		final long expiryAfterPlay = cv.getAsLong(CatalogColumns.EXPIRY_AFTER_PLAY);
-		final long availabilityStart = cv.getAsLong(CatalogColumns.AVAILABILITY_START);
 		final String mimetype = cv.getAsString(CatalogColumns.MIME);
 
-		if(isDash(mediaType)){
+		if(isDash(mediaType)){  // DASH
 			downloadDashItem(context,service,downloadEnabledContent,remoteId,url,catalogExpiry,
-					downloadExpiry,expiryAfterPlay,availabilityStart,title,thumbnail,permObserver);
+					title,thumbnail,permObserver);
 		}
-		else if(isHls(mediaType)){
-			final int fragmentCount = cv.getAsInteger(CatalogColumns.FRAGMENT_COUNT);
-			downloadHlsItem(context, mediaType, service, downloadEnabledContent, remoteId, url + cv.getAsString(CatalogColumns.FRAGMENT_PREFIX), fragmentCount, catalogExpiry, downloadExpiry, expiryAfterPlay,availabilityStart, title, thumbnail,permObserver);
+		else if(isHls(mediaType)){  // HLS
+			downloadHlsItem(context, service, downloadEnabledContent, remoteId, url + cv.getAsString(CatalogColumns.FRAGMENT_PREFIX), catalogExpiry, title, thumbnail,permObserver);
 		}
-		else  {
+		else  {  // FLAT MP4
+			// In the case of a flat file there is no parsing, so the extra attributes are set during initial creation.
+			final long downloadExpiry = cv.getAsLong(CatalogColumns.DOWNLOAD_EXPIRY);
+			final long expiryAfterPlay = cv.getAsLong(CatalogColumns.EXPIRY_AFTER_PLAY);
+			final long availabilityStart = cv.getAsLong(CatalogColumns.AVAILABILITY_START);
+
 			return downloadItem(context, service, downloadEnabledContent, remoteId, url, mimetype, catalogExpiry, downloadExpiry, expiryAfterPlay, availabilityStart, title,
 					thumbnail,permObserver);
 		}
@@ -187,27 +188,41 @@ public class VirtuosoUtil {
 	}
 
 	/**
-	 * Download item checking permissions and informing user of problems
+	 * Download a flat item (no manifest) checking permissions and informing user of problems
 	 *
 	 * @param context Activity Context
-	 * @param permObserver
+	 * @param virtuoso The virtuoso object
+	 * @param downloadEnabledContent Indicates a catalog state for if the content is currently download enabled
+	 * @param remoteId The remote catalog asset id that will be used to reference the asset within the SDK
+	 * @param url The asset manifest url, or content url for a flat file
+	 * @param mimetype The expected mime type of the asset
+	 * @param catalogExpiry The expiry time from the catalog, used to check download permission prior to parsing
+	 * @param downloadExpiry The expiry time to set for the downloaded asset to override any backplane default
+	 * @param expiryAfterPlay The expiry after play interval to set for the asset to override any backplane default
+	 * @param availabilityStart The time when the asset should be made available to play
+	 * @param title Title to display for the asset, stored in the asset metadata
+	 * @param thumbnail Url for the thumbnail to display for the asset, stored in the asset metadata
+	 * @param permObserver A permission observer which will be informed of the asset permission that is
+	 *                     checked at the time of queuing. Setting a permission observer will ensure the
+	 *                     permission is checked during queueing.
 	 */
-	public static boolean downloadItem(Context context, Virtuoso service, boolean downloadEnabledContent, String remoteId, String url, String mimetype,
-									   long catalogExpiry, final long downloadExpiry, final long expiryAfterPlay,
-									   final long availabilityStart, String title, String thumbnail,
+	public static boolean downloadItem(final Context context, final Virtuoso virtuoso, boolean downloadEnabledContent,
+									   final String remoteId, final String url, final String mimetype,
+									   final long catalogExpiry, final long downloadExpiry, final long expiryAfterPlay,
+									   final long availabilityStart, final String title, final String thumbnail,
 									   final IQueue.IQueuedAssetPermissionObserver permObserver) {
 		Log.i(TAG, "Downloading item");
 		boolean success = false;
 		
 		PermissionManager pm = new PermissionManager();
-		Permission authorized = pm.canDownload(service.getBackplane().getSettings().getDownloadEnabled(), 
+		Permission authorized = pm.canDownload(virtuoso.getBackplane().getSettings().getDownloadEnabled(),
 												downloadEnabledContent, catalogExpiry);
 
 		// Authorization: Success
 		if (authorized == Permission.EAccessAllowed) {
 			// Create meta data for later display of download list
 			String json = MetaData.toJson(title, thumbnail);				
-			IAssetManager manager = service.getAssetManager();
+			IAssetManager manager = virtuoso.getAssetManager();
 			long now = System.currentTimeMillis()/1000;
 			// Add file to the Q
 			IFile file = null;
@@ -231,72 +246,56 @@ public class VirtuosoUtil {
 		boolean queued = false;
 	}
 
-	public static void downloadDashItem(final Context context, final Virtuoso service,
+	/**
+	 * Download a DASH item checking permissions and informing user of problems
+	 * @param context Activity Context
+	 * @param virtuoso The virtuoso object
+	 * @param downloadEnabledContent Indicates a catalog state for if the content is currently download enabled
+	 * @param remoteId The remote catalog asset id that will be used to reference the asset within the SDK
+	 * @param url The asset manifest url, or content url for a flat file
+	 * @param catalogExpiry The expiry time from the catalog, used to check download permission prior to parsing
+	 * @param title Title to display for the asset, stored in the asset metadata
+	 * @param thumbnail Url for the thumbnail to display for the asset, stored in the asset metadata
+	 * @param permObserver A permission observer which will be informed of the asset permission that is
+	 *                     checked at the time of queuing. Setting a permission observer will ensure the
+	 *                     permission is checked during queueing.
+	 */
+	public static void downloadDashItem(final Context context, final Virtuoso virtuoso,
 										boolean downloadEnabledContent, final String remoteId,
-										String url, final long catalogExpiry,
-										final long downloadExpiry, final long expiryAfterPlay,
-										final long availabilityStart, String title,
-										String thumbnail, IQueue.IQueuedAssetPermissionObserver permObserver){
+										final String url, final long catalogExpiry, final String title,
+										final String thumbnail, final IQueue.IQueuedAssetPermissionObserver permObserver){
 
 		PermissionManager pm = new PermissionManager();
-		Permission authorized = pm.canDownload(service.getBackplane().getSettings().getDownloadEnabled(),
+		Permission authorized = pm.canDownload(virtuoso.getBackplane().getSettings().getDownloadEnabled(),
 				downloadEnabledContent, catalogExpiry);
-		final long now = System.currentTimeMillis()/1000;
+
 		if (authorized == Permission.EAccessAllowed) {
 
 			// Create meta data for later display of download list
 			final String json = MetaData.toJson(title, thumbnail);
-			final IAssetManager manager = service.getAssetManager();
+			final IAssetManager manager = virtuoso.getAssetManager();
 
 			//note we would not be able to use the progress dialog if running from doBackground in an async task
 			final ProgressDialog pdlg = ProgressDialog.show(context, "Processing dash manifest","Adding fragments...");
-			final ISegmentedAssetFromParserObserver observer = new ISegmentedAssetFromParserObserver() {
-				@Override
-				public void willAddToQueue(ISegmentedAsset aSegmentedAsset) {
-					if (aSegmentedAsset != null) {
-						aSegmentedAsset.setStartWindow(availabilityStart <= 0 ? now : availabilityStart);
-						aSegmentedAsset.setEndWindow(catalogExpiry <= 0 ? Long.MAX_VALUE : catalogExpiry);
-						aSegmentedAsset.setEap(expiryAfterPlay);
-						aSegmentedAsset.setEad(downloadExpiry);
-						manager.update(aSegmentedAsset);
-					}
+			final ISegmentedAssetFromParserObserver observer = (aSegmentedAsset, aError, addedToQueue) -> ((Activity)context).runOnUiThread(() -> {
+				try {
+					pdlg.dismiss();
+				} catch (Exception e) {
 				}
 
-				@Override
-				public void complete(final ISegmentedAsset aSegmentedAsset, final int aError, final boolean addedToQueue) {
+				if (aSegmentedAsset == null) {
+					AlertDialog.Builder builder1 = new AlertDialog.Builder(context);
+					builder1.setTitle("Could Not Create Asset");
+					builder1.setMessage("Encountered error(" + aError + ") while creating asset.  This could happen if the device is currently offline, or if the asset manifest was not accessible.  Please try again later.");
+					builder1.setCancelable(false);
+					builder1.setPositiveButton("OK",
+							(dialog, id) -> dialog.cancel());
 
-					((Activity)context).runOnUiThread(new Runnable() {
-						public void run() {
-							try {
-								pdlg.dismiss();
-							} catch (Exception e) {
-							}
-
-							if (aSegmentedAsset == null) {
-								AlertDialog.Builder builder1 = new AlertDialog.Builder(context);
-								builder1.setTitle("Could Not Create Asset");
-								builder1.setMessage("Encountered error(" + Integer.toString(aError) + ") while creating asset.  This could happen if the device is currently offline, or if the asset manifest was not accessible.  Please try again later.");
-								builder1.setCancelable(false);
-								builder1.setPositiveButton("OK",
-										new DialogInterface.OnClickListener() {
-											public void onClick(DialogInterface dialog, int id) {
-												dialog.cancel();
-											}
-										});
-
-								AlertDialog alert11 = builder1.create();
-								alert11.show();
-							}
-							Log.i(TAG, "Finished procesing dash file addedToQueue:" + addedToQueue + " error:" + aError);
-						}
-					});
+					AlertDialog alert11 = builder1.create();
+					alert11.show();
 				}
-
-				@Override
-				public String didParseSegment(ISegment segment) {
-					return segment.getRemotePath();
-				}
-			};
+				Log.i(TAG, "Finished procesing dash file addedToQueue:" + addedToQueue + " error:" + aError);
+			});
 
 			try {
 
@@ -322,223 +321,105 @@ public class VirtuosoUtil {
 	}
 	
 	/**
-	 * Download item checking permissions and informing user of problems
-	 *  @param context Activity Context
-	 * @param downloadEnabledContent
-	 * @param downloadExpiry
-	 * @param expiryAfterPlay
-	 * @param availabilityStart
-	 * @param permObserver
+	 * Download an HLS item checking permissions and informing user of problems
+	 * @param context Activity Context
+	 * @param virtuoso The virtuoso object
+	 * @param downloadEnabledContent Indicates a catalog state for if the content is currently download enabled
+	 * @param remoteId The remote catalog asset id that will be used to reference the asset within the SDK
+	 * @param url The asset manifest url, or content url for a flat file
+	 * @param catalogExpiry The expiry time from the catalog, used to check download permission prior to parsing
+	 * @param title Title to display for the asset, stored in the asset metadata
+	 * @param thumbnail Url for the thumbnail to display for the asset, stored in the asset metadata
+	 * @param permObserver A permission observer which will be informed of the asset permission that is
+	 *                     checked at the time of queuing. Setting a permission observer will ensure the
+	 *                     permission is checked during queueing.
 	 */
-	public static void downloadHlsItem(final Context context, int mediaType, final Virtuoso service, boolean downloadEnabledContent, final String remoteId, String url, int fragmentCount, final long catalogExpiry, final long downloadExpiry, final long expiryAfterPlay, final long availabilityStart, String title, String thumbnail, IQueue.IQueuedAssetPermissionObserver permObserver) {
+	public static void downloadHlsItem(final Context context, final Virtuoso virtuoso, boolean downloadEnabledContent,
+									   final String remoteId, final String url, final long catalogExpiry, final String title,
+									   final String thumbnail, final IQueue.IQueuedAssetPermissionObserver permObserver) {
 		Log.i(TAG, "Downloading HLS item");
 		
 		final HlsResult result = new HlsResult();
 		
 		PermissionManager pm = new PermissionManager();
-		Permission authorized = pm.canDownload(service.getBackplane().getSettings().getDownloadEnabled(), 
+		Permission authorized = pm.canDownload(virtuoso.getBackplane().getSettings().getDownloadEnabled(),
 												downloadEnabledContent, catalogExpiry);
-		final long now = System.currentTimeMillis()/1000;
-		
+
 		// Authorization: Success
 		if (authorized == Permission.EAccessAllowed) {
 			// Create meta data for later display of download list
-			final String json = MetaData.toJson(title, thumbnail);				
-			final IAssetManager manager = service.getAssetManager();
-			//We are using the mediaType value here to show the different ways for generating hls files.
-			switch(mediaType){
-			
-			case 3:{
-				//note we would not be able to use the progress dialog if running from doBackground in an async task
-				final ProgressDialog pdlg = ProgressDialog.show(context, "Processing manifest","Adding fragments...");
-				//this case shows how to hand over an HLS file to the SDK for processing and let it choose the best bit rate.
-				//an observer to receive notification of when the file has been generated
-				final ISegmentedAssetFromParserObserver observer =
-						new ISegmentedAssetFromParserObserver(){
-							@Override
-							public void willAddToQueue(ISegmentedAsset aHlsFile) {
-								if (aHlsFile != null) {
-									aHlsFile.setStartWindow(availabilityStart <= 0 ? now : availabilityStart);
-									aHlsFile.setEndWindow(catalogExpiry <= 0 ? Long.MAX_VALUE : catalogExpiry);
-									aHlsFile.setEap(expiryAfterPlay);
-									aHlsFile.setEad(downloadExpiry);
-									manager.update(aHlsFile);
-								}
-							}
+			final String json = MetaData.toJson(title, thumbnail);
+			final IAssetManager manager = virtuoso.getAssetManager();
 
-							@Override
-							public void complete(ISegmentedAsset aHlsFile, int aError, boolean addedToQueue) {
-								//store the result
-								result.error = aError;
-								result.queued = addedToQueue;
+			//note we would not be able to use the progress dialog if running from doBackground in an async task
+			final ProgressDialog pdlg = ProgressDialog.show(context, "Processing manifest", "Adding fragments...");
 
-								try {
-									pdlg.dismiss();
-								} catch( Exception e){}
+			// This shows how we hand over an HLS file to the SDK for processing and let it choose the best bit rate.
 
-								if( aHlsFile == null ) {
-									AlertDialog.Builder builder1 = new AlertDialog.Builder(context);
-									builder1.setTitle("Could Not Create Asset");
-									builder1.setMessage("Encountered error("+Integer.toString(aError)+") while creating asset.  This could happen if the device is currently offline, or if the asset manifest was not accessible.  Please try again later.");
-									builder1.setCancelable(false);
-									builder1.setPositiveButton("OK",
-											new DialogInterface.OnClickListener() {
-												public void onClick(DialogInterface dialog, int id) {
-													dialog.cancel();
-												}
-											});
-
-									AlertDialog alert11 = builder1.create();
-									alert11.show();
-								}
-							}
-
-							@Override
-							public String didParseSegment(ISegment segment)
-							{
-								// This demo does not include assets that require URL manipulation.  If your assets require
-								// that you add or change the download URL from the manifest prior to downloading it, then
-								// you would use this method to return the modified URL.
-								return segment.getRemotePath();
-							}
-						};
-
-				try {
-					// Note, the value of the third parameter (aDesiredBitRate) should be between 1 and Integer.MAX_VALUE.  Sending
-					// 1 means "choose the lowest possible bitrate" and sending Integer.MAX_VALUE means "choose the highest possible bitrate".
-
-					HLSAssetBuilder hlsAsset = new HLSAssetBuilder()
-							.assetObserver(observer)
-							.manifestUrl(new URL(url))
-							.desiredVideoBitrate(Integer.MAX_VALUE)
-							.addToQueue(true)
-							.assetId(remoteId)
-							.withMetadata(json)
-							.withPermissionObserver(permObserver);
-
-					if(remoteId.contains("ANCILLARY"))
-							hlsAsset.withAncillaryFiles(Arrays.asList(new AncillaryFile[]{new AncillaryFile(new URL("http://virtuoso-demo-content.s3.amazonaws.com/jobs.jpg"),"ancillary image", new String[] {"tag1,tag2"})}));
-
-					manager.createHLSSegmentedAssetAsync(hlsAsset.build());
-							/*createHLSSegmentedAssetAsync(observer,
-																new URL(url), 
-																Integer.MAX_VALUE, //let Virtuoso choose the highest bandwidth
-																remoteId, 
-																json,
-																true,
-																true,
-																permObserver
-																);*/
-				} catch (MalformedURLException e) {
-					Log.e(TAG, "problem with hls URL",e);
-				}
-			}break;
-			
-			case 4:{
-				//This case shows how to generate an HLS file from a list of fragments.
-				//note that this case is being called from an AsyncTask in the CatalogDetailFragment
-				// Add file to the Q
-				ISegmentedAsset file = null;
-				file = manager.createSegmentedAsset(remoteId, json);		
-				file.addSegments(context, generateHLSFragmentURLS(url, fragmentCount));
-				file.setStartWindow(availabilityStart <=0 ? now:availabilityStart);
-				file.setEndWindow(catalogExpiry <=0 ? Long.MAX_VALUE:catalogExpiry);
-				file.setEap(expiryAfterPlay);
-				file.setEad(downloadExpiry);
-				manager.getQueue().add(file);
-				result.queued = true;
-			}break;
-			
-			case 5:{
-				//note we would not be able to use the progress dialog if running from doBackground in an async task
-				final ProgressDialog pdlg = ProgressDialog.show(context, "Processing manifest","Adding fragments...");
-				//This case shows how to parse a play list and choose one for adding to the queue
-				//an observer to receive notification of when the file has been generated
-				final ISegmentedAssetFromParserObserver observer = new ISegmentedAssetFromParserObserver() {
-					@Override
-					public void willAddToQueue(ISegmentedAsset aHlsFile) {
-						if (aHlsFile != null) {
-							aHlsFile.setStartWindow(availabilityStart <= 0 ? now : availabilityStart);
-							aHlsFile.setEndWindow(catalogExpiry <= 0 ? Long.MAX_VALUE : catalogExpiry);
-							aHlsFile.setEap(expiryAfterPlay);
-							aHlsFile.setEad(downloadExpiry);
-							manager.update(aHlsFile);
-						}
-					}
-
-					@Override
-					public void complete(ISegmentedAsset aHlsFile, int aError,
-										 boolean addedToQueue) {
+			// We register an observer to receive notification of when the file has been generated
+			final ISegmentedAssetFromParserObserver observer =
+					(aHlsFile, aError, addedToQueue) -> {
 						//store the result
 						result.error = aError;
 						result.queued = addedToQueue;
+
 						try {
 							pdlg.dismiss();
-						} catch( Exception e) {}
+						} catch (Exception e) {
+						}
 
-						if( aHlsFile == null ) {
+						if (aHlsFile == null) {
 							AlertDialog.Builder builder1 = new AlertDialog.Builder(context);
 							builder1.setTitle("Could Not Create Asset");
-							builder1.setMessage("Encountered error("+Integer.toString(aError)+") while creating asset.  This could happen if the device is currently offline, or if the asset manifest was not accessible.  Please try again later.");
+							builder1.setMessage("Encountered error(" + Integer.toString(aError) + ") while creating asset.  This could happen if the device is currently offline, or if the asset manifest was not accessible.  Please try again later.");
 							builder1.setCancelable(false);
 							builder1.setPositiveButton("OK",
-									new DialogInterface.OnClickListener() {
-										public void onClick(DialogInterface dialog, int id) {
-											dialog.cancel();
-										}
-									});
+									(dialog, id) -> dialog.cancel());
 
 							AlertDialog alert11 = builder1.create();
 							alert11.show();
 						}
-						Log.i(TAG,"Finished procesing hls file addedToQueue:"+addedToQueue + " error:"+aError);
-					}
+					};
 
-					@Override
-					public String didParseSegment(ISegment segment)
-					{
-						// This demo does not include assets that require URL manipulation.  If your assets require
-						// that you add or change the download URL from the manifest prior to downloading it, then 
-						// you would use this method to return the modified URL.  
-						return segment.getRemotePath();
-					}
-				};
-				
-				URL u;
-				try {
-					u = new URL(url);					
-					manager.createHLSSegmentedAssetAsync(observer, u, 0, remoteId, json,true,true,permObserver);
-				} catch (MalformedURLException e) {
-					e.printStackTrace();
-				} 
-			}break;
-				
-			default:
-				throw new RuntimeException("not a valid HLS file media type.");
+			try {
+				// Note, the value of the third parameter (aDesiredBitRate) should be between 1 and Integer.MAX_VALUE.  Sending
+				// 1 means "choose the lowest possible bitrate" and sending Integer.MAX_VALUE means "choose the highest possible bitrate".
+
+				HLSAssetBuilder hlsAsset = new HLSAssetBuilder()
+						.assetObserver(observer)
+						.manifestUrl(new URL(url))
+						.desiredVideoBitrate(Integer.MAX_VALUE)
+						.addToQueue(true)
+						.assetId(remoteId)
+						.withMetadata(json)
+						.withPermissionObserver(permObserver);
+
+				if (remoteId.contains("ANCILLARY"))
+					hlsAsset.withAncillaryFiles(Arrays.asList(new AncillaryFile[]{new AncillaryFile(new URL("http://virtuoso-demo-content.s3.amazonaws.com/jobs.jpg"), "ancillary image", new String[]{"tag1,tag2"})}));
+
+				manager.createHLSSegmentedAssetAsync(hlsAsset.build());
+			} catch (MalformedURLException e) {
+				Log.e(TAG, "problem with hls URL", e);
 			}
 		}
 	}
 
+	/**
+	 * Helper to check if a catalog item is of DASH type
+	 * @param type The media type from the catalog
+	 * @return true if this is a dash item
+	 */
 	private static boolean isDash(int type){
 		return type == 6;
 	}
 
+	/**
+	 * Helper to check if a catalog item is of HLS type
+	 * @param type The media type from the catalog
+	 * @return true if this is an HLS item
+	 */
 	private static boolean isHls(int type) {
-		switch (type) {
-			case 3:
-			case 4:
-			case 5:
-				return true;
-		}
-		return false;
-	}
-	
-	static List<String> generateHLSFragmentURLS(String base,int lastFragId){
-		ArrayList<String> fragments = new ArrayList<String>();
-		for(int i = 0;i<=lastFragId; i++){
-			fragments.add(base + i + ".ts");//https://vbcp.penthera.com/tmpfiles/HTTYD_ENC_4S_B/fileSequence 1478
-		}
-		return fragments;
+		return type == 3;
 	}
 	
 	/**

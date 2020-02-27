@@ -47,7 +47,13 @@ class TextUtils {
 
         var value : String
         when (status) {
+            Common.AssetStatus.MANIFEST_PARSE_PENDING -> value = "parse pending"
+
+            Common.AssetStatus.MANIFEST_PARSING -> value = "parsing"
+
             Common.AssetStatus.DOWNLOADING -> value = "downloading"
+
+            Common.AssetStatus.EARLY_DOWNLOADING -> value = "downloading"
 
             Common.AssetStatus.DOWNLOAD_COMPLETE -> value = "complete"
 
@@ -64,6 +70,10 @@ class TextUtils {
             Common.AssetStatus.DOWNLOAD_NETWORK_ERROR -> value = "network error"
 
             Common.AssetStatus.DOWNLOAD_REACHABILITY_ERROR -> value = "unreachable"
+
+            Common.AssetStatus.MANIFEST_REACHABILITY_ERROR -> value = "manifest unreachable"
+
+            Common.AssetStatus.MANIFEST_PARSING_ERROR -> value = "parsing error"
 
             Common.AssetStatus.DOWNLOAD_DENIED_ASSET -> value = "DENIED : MAD"
 

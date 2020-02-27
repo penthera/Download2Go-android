@@ -1,16 +1,17 @@
 package com.penthera.sdkdemokotlin.fragment
 
-import android.arch.lifecycle.LiveData
+
 import android.content.Context
 import android.os.Bundle
 import android.os.Handler
-import android.support.v4.app.Fragment
 import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SeekBar
 import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.LiveData
 import com.penthera.sdkdemokotlin.R
 import com.penthera.sdkdemokotlin.activity.OfflineVideoProvider
 import com.penthera.virtuososdk.Common
@@ -91,7 +92,6 @@ class SettingsFragment : Fragment() {
         btnDestinationReset.setOnClickListener(View.OnClickListener { settings?.value?.resetDestinationPath()?.save() })
         btnCellquotaReset.setOnClickListener(View.OnClickListener { settings?.value?.resetCellularDataQuota()?.save() })
         btnCellquotaDateReset.setOnClickListener(View.OnClickListener { settings?.value?.resetCellularDataQuotaStart()?.save() })
-        btnFragmentProgressRateReset.setOnClickListener(View.OnClickListener { settings?.value?.resetProgressUpdatesPerSegment()?.save() })
         btnProgressPercentReset.setOnClickListener(View.OnClickListener { settings?.value?.resetProgressUpdateByPercent()?.save() })
         btnProgressTimedReset.setOnClickListener(View.OnClickListener { settings?.value?.resetProgressUpdateByTime()?.save() })
         btnConnectionTimeoutReset.setOnClickListener(View.OnClickListener { settings?.value?.resetHTTPConnectionTimeout()?.save() })
@@ -110,9 +110,9 @@ class SettingsFragment : Fragment() {
         val offlineVideoProvider = activity as OfflineVideoProvider
         backplane = offlineVideoProvider.getOfflineEngine().getVirtuoso().backplane
         settings = offlineVideoProvider.getOfflineEngine().getSettings()
-        settings?.observe(this, android.arch.lifecycle.Observer { handler.post(valuesUpdater) })
+        settings?.observe(this, androidx.lifecycle.Observer { handler.post(valuesUpdater) })
         backplaneSettings = offlineVideoProvider.getOfflineEngine().getBackplaneSettings()
-        backplaneSettings?.observe(this, android.arch.lifecycle.Observer{ handler.post(valuesUpdater)})
+        backplaneSettings?.observe(this, androidx.lifecycle.Observer{ handler.post(valuesUpdater)})
         handler.post(valuesUpdater)
         offlineVideoProvider.getOfflineEngine().getVirtuoso().addObserver(backplaneObserver)
     }
@@ -140,7 +140,6 @@ class SettingsFragment : Fragment() {
             headroom.setText(it.headroom.toString())
             cellquota.setText(it.cellularDataQuota.toString())
             destinationPath.setText(it.destinationPath)
-            fragmentProgressRate.setText(it.progressUpdatesPerSegment.toString())
 
             progressPercentBar.progress = it.progressUpdateByPercent
             progressPercentLabel.text = getString(R.string.report_progress_setting, it.progressUpdateByPercent)
@@ -172,7 +171,6 @@ class SettingsFragment : Fragment() {
                         .setCellularDataQuota(java.lang.Long.parseLong(cellquota.getText().toString()))
                         .setHeadroom(java.lang.Long.parseLong(headroom.getText().toString()))
                         .setMaxStorageAllowed(java.lang.Long.parseLong(maxstorage.getText().toString()))
-                        .setProgressUpdatesPerSegment(Integer.parseInt(fragmentProgressRate.getText().toString()))
                         .setHTTPConnectionTimeout(Integer.parseInt(connectionTimeout.getText().toString()))
                         .setHTTPSocketTimeout(Integer.parseInt(socketTimeout.getText().toString()))
                         .setSegmentErrorHttpCode(Integer.parseInt(proxySegmentErrorCode.getText().toString()))

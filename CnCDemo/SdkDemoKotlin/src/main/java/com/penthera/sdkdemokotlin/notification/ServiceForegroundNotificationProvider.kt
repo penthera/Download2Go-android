@@ -36,7 +36,7 @@ class ServiceForegroundNotificationProvider : IForegroundNotificationProvider{
         }
 
         // Do not update progress for events
-        return action.contains(Common.Notifications.NOTIFICATION_EVENT_TAG)
+        return !action.contains(Common.Notifications.NOTIFICATION_EVENT_TAG)
     }
 
     override fun setExistingNotificationForReuse(notification: Notification?) {

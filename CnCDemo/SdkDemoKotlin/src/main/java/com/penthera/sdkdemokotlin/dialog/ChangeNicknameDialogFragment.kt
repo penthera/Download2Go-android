@@ -1,10 +1,10 @@
 package com.penthera.sdkdemokotlin.dialog
 
 import android.os.Bundle
-import android.support.v4.app.DialogFragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.DialogFragment
 import com.penthera.sdkdemokotlin.R
 import com.penthera.virtuososdk.client.IBackplaneDevice
 import kotlinx.android.synthetic.main.dialog_nickname.view.*
@@ -32,7 +32,7 @@ class ChangeNicknameDialogFragment : DialogFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setStyle(android.support.v4.app.DialogFragment.STYLE_NORMAL, 0)
+        setStyle(DialogFragment.STYLE_NORMAL, 0)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

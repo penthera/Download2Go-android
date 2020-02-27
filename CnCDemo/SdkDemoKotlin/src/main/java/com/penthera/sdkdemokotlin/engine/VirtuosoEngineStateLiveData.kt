@@ -1,6 +1,6 @@
 package com.penthera.sdkdemokotlin.engine
 
-import android.arch.lifecycle.LiveData
+import androidx.lifecycle.LiveData
 import com.penthera.virtuososdk.client.IService
 import com.penthera.virtuososdk.client.ServiceException
 

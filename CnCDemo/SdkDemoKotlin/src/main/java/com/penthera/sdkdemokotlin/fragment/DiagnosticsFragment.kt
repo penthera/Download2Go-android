@@ -1,7 +1,5 @@
 package com.penthera.sdkdemokotlin.fragment
 
-import android.arch.lifecycle.*
-import android.arch.lifecycle.Observer
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
@@ -9,11 +7,12 @@ import android.content.IntentFilter
 import android.os.BatteryManager
 import android.os.Bundle
 import android.os.Handler
-import android.support.v4.app.Fragment
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.*
 import com.penthera.VirtuosoSDK
 import com.penthera.sdkdemokotlin.R
 import com.penthera.sdkdemokotlin.activity.OfflineVideoProvider
@@ -28,6 +27,7 @@ import com.penthera.virtuososdk.client.Virtuoso
 import kotlinx.android.synthetic.main.fragment_diagnostics.*
 import java.text.SimpleDateFormat
 import java.util.*
+import java.util.Observer
 
 /**
  *
@@ -77,13 +77,13 @@ class DiagnosticsFragment : Fragment(), LifecycleObserver {
         virtuoso = offlineVideoProvider.getOfflineEngine().getVirtuoso()
         backplane = offlineVideoProvider.getOfflineEngine().getVirtuoso().backplane
         settings = offlineVideoProvider.getOfflineEngine().getSettings()
-        settings?.observe(this, android.arch.lifecycle.Observer { handler.post(settingsValuesUpdater) })
+        settings?.observe(this, androidx.lifecycle.Observer { handler.post(settingsValuesUpdater) })
         backplaneSettings = offlineVideoProvider.getOfflineEngine().getBackplaneSettings()
-        backplaneSettings?.observe(this, android.arch.lifecycle.Observer{ handler.post(backplaneSettingsValuesUpdater)})
+        backplaneSettings?.observe(this, androidx.lifecycle.Observer{ handler.post(backplaneSettingsValuesUpdater)})
 
         serviceViewModel = ViewModelProviders.of(this, VirtuosoServiceModelFactory(offlineVideoProvider.getOfflineEngine()))
                 .get(VirtuosoServiceViewModel::class.java)
-        serviceViewModel.getEngineState().observe(this, Observer<VirtuosoEngineState>{
+        serviceViewModel.getEngineState().observe(this, androidx.lifecycle.Observer<VirtuosoEngineState>{
             it?.let {downloadThroughputUpdater(it)}
         })
         lifecycle.addObserver(this)

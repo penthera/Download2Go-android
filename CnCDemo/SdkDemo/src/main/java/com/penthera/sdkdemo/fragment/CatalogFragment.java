@@ -20,10 +20,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.support.v4.app.LoaderManager;
-import android.support.v4.content.CursorLoader;
-import android.support.v4.content.Loader;
-import android.support.v4.widget.CursorAdapter;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -38,10 +34,16 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import android.support.v4.app.Fragment;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+
+import androidx.cursoradapter.widget.CursorAdapter;
+import androidx.fragment.app.Fragment;
+import androidx.loader.app.LoaderManager;
+import androidx.loader.content.CursorLoader;
+import androidx.loader.content.Loader;
+
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
@@ -116,12 +118,6 @@ public class CatalogFragment extends Fragment implements LoaderManager.LoaderCal
 	@Override
 	public void onResume() {
 		super.onResume();
-		LoaderManager lm = getActivity().getSupportLoaderManager();
-		if (lm.hasRunningLoaders() == false) {
-			lm.restartLoader(LOADER_ID, null, CatalogFragment.this);
-		} else {
-			Log.i(TAG, "LOADER RUNNING");
-		}
 	}
 	
 	// onPause
@@ -256,7 +252,7 @@ public class CatalogFragment extends Fragment implements LoaderManager.LoaderCal
 	/**
 	 * 
 	 */
-	public class CatalogAdapter extends CursorAdapter 
+	public class CatalogAdapter extends CursorAdapter
 	{
 		/** Keep track of checks */
 		public Hashtable<Integer, Integer> mChecked = new Hashtable<Integer, Integer>();

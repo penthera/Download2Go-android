@@ -33,8 +33,8 @@ package com.penthera.sdkdemo.exoplayer;
 import android.annotation.TargetApi;
 import android.media.MediaDrm;
 import android.os.SystemClock;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import android.util.Log;
 import android.view.Surface;
 

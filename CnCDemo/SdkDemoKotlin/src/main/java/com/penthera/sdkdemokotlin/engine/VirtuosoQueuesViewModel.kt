@@ -1,8 +1,8 @@
 package com.penthera.sdkdemokotlin.engine
 
-import android.arch.lifecycle.MediatorLiveData
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModel
+import androidx.lifecycle.MediatorLiveData
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModel
 import android.content.Context
 import android.database.Cursor
 import com.penthera.virtuososdk.client.Virtuoso

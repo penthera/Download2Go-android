@@ -128,25 +128,25 @@ public class SdkDemoSubscriptionsService extends SubscriptionsService {
         		}	
         	}
         	//or mime
-        	if(assetType == -1 && data.has(SubscriptionKey.ASSET_MIME_TYPE)){
-        		
-        		String mime = data.optString(SubscriptionKey.ASSET_MIME_TYPE);
-        		if(mime != null){
-        			mime = mime.toLowerCase().trim();
-        				
-	        		if("application/x-mpegurl".equals(mime) || "application/vnd.apple.mpegurl".equals(mime)){
-	        			assetType = Common.AssetIdentifierType.SEGMENTED_ASSET_IDENTIFIER;
-        				segmentedType = ISegmentedAsset.SEG_FILE_TYPE_HLS;
-	        		}
-	        		else if("application/dash+xml".equals(mime) || "video/vnd.mpeg.dash.mpd".equals(mime)){
-	        			assetType = Common.AssetIdentifierType.SEGMENTED_ASSET_IDENTIFIER;
-        				segmentedType = ISegmentedAsset.SEG_FILE_TYPE_MPD;
-	        		}
-	        		else if(mime.startsWith("video")){
-	        			assetType = Common.AssetIdentifierType.FILE_IDENTIFIER;	
-	        		}
-        		}
-        	}
+//        	if(assetType == -1 && data.has(SubscriptionKey.ASSET_MIME_TYPE)){
+//
+//        		String mime = data.optString(SubscriptionKey.ASSET_MIME_TYPE);
+//        		if(mime != null){
+//        			mime = mime.toLowerCase().trim();
+//
+//	        		if("application/x-mpegurl".equals(mime) || "application/vnd.apple.mpegurl".equals(mime)){
+//	        			assetType = Common.AssetIdentifierType.SEGMENTED_ASSET_IDENTIFIER;
+//        				segmentedType = ISegmentedAsset.SEG_FILE_TYPE_HLS;
+//	        		}
+//	        		else if("application/dash+xml".equals(mime) || "video/vnd.mpeg.dash.mpd".equals(mime)){
+//	        			assetType = Common.AssetIdentifierType.SEGMENTED_ASSET_IDENTIFIER;
+//        				segmentedType = ISegmentedAsset.SEG_FILE_TYPE_MPD;
+//	        		}
+//	        		else if(mime.startsWith("video")){
+//	        			assetType = Common.AssetIdentifierType.FILE_IDENTIFIER;
+//	        		}
+//        		}
+//        	}
         	if(assetType > -1){
 				try {
 					data.put(SubscriptionKey.ASSET_TYPE, assetType);
@@ -174,7 +174,7 @@ public class SdkDemoSubscriptionsService extends SubscriptionsService {
 		}
 		
 		try {
-			data.put(SubscriptionKey.ASSET_META_DATA, MetaData.toJson(title, image));
+			data.put(SubscriptionKey.META_DATA, MetaData.toJson(title, image));
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
@@ -186,7 +186,7 @@ public class SdkDemoSubscriptionsService extends SubscriptionsService {
 
 			ContentValues cv = new ContentValues();
 			
-			CatalogStore.parseItem(data, cv, data.optString(SubscriptionKey.FEED_UUID));
+			CatalogStore.parseItem(data, cv, data.optString(SubscriptionKey.COLLECTION_ID));
 			//we do this so that the item does not appear in our demos catalog
 			cv.put(CatalogColumns.SUBCRIPTION_ASSET, true);
 			ContentResolver cr = getApplicationContext().getContentResolver();

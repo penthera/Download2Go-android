@@ -18,7 +18,6 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
-import android.support.v4.app.DialogFragment;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -27,6 +26,8 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+
+import androidx.fragment.app.DialogFragment;
 
 import com.penthera.sdkdemo.R;
 import com.penthera.virtuososdk.client.IBackplaneDevice;

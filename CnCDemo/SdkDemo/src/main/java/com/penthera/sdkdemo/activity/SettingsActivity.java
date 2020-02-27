@@ -64,9 +64,7 @@ public class SettingsActivity extends SdkDemoBaseActivity {
 	private Button mApply; 
 	/** The battery level */
 	private TextView mBatteryDetail;
-	/** the current fragment progress rate used by Virtuoso */
-	private EditText mHlsFragmentProgressRate;
-	
+
 
 	/** The current percent based progress rate used by Virtuoso */
 	private SeekBar mProgressPercent;
@@ -137,7 +135,6 @@ public class SettingsActivity extends SdkDemoBaseActivity {
 			mHeadroom.setText(""+mSettings.getHeadroom());
 			mCellquota.setText(""+mSettings.getCellularDataQuota());
 			mDestination.setText(mSettings.getDestinationPath());
-			mHlsFragmentProgressRate.setText(""+ mSettings.getProgressUpdatesPerSegment());
 			mEnablement.setText("" + mBackplaneSettings.getDownloadEnabled());
 			mEnable.setText(mBackplaneSettings.getDownloadEnabled() ? "Disable":"Enable");
 			mEnable.setEnabled(mBackplane.getAuthenticationStatus() != AuthenticationStatus.NOT_AUTHENTICATED);
@@ -168,7 +165,6 @@ public class SettingsActivity extends SdkDemoBaseActivity {
         mBatterythreshold = (SeekBar) findViewById(R.id.battery_value);
         mApply = (Button)findViewById(R.id.apply);
         mBatteryDetail = (TextView)findViewById(R.id.battery);
-        mHlsFragmentProgressRate = (EditText) findViewById(R.id.edt_fragment_progress_rate);
         mConnectionTimeout = (EditText) findViewById(R.id.edt_connection_timeout);
         mSocketTimeout = (EditText) findViewById(R.id.edt_socket_timeout);
 		mPermittedSegmentErrors = (EditText) findViewById(R.id.edt_max_segment_errors);
@@ -413,7 +409,6 @@ public class SettingsActivity extends SdkDemoBaseActivity {
 					.setCellularDataQuota(Long.parseLong(mCellquota.getText().toString()))
 					.setHeadroom(Long.parseLong(mHeadroom.getText().toString()))
 					.setMaxStorageAllowed(Long.parseLong(mMaxstorage.getText().toString()))
-					.setProgressUpdatesPerSegment(Integer.parseInt(mHlsFragmentProgressRate.getText().toString()))
 					.setHTTPConnectionTimeout(Integer.parseInt(mConnectionTimeout.getText().toString()))
 					.setHTTPSocketTimeout(Integer.parseInt(mSocketTimeout.getText().toString()))
 					.setSegmentErrorHttpCode(Integer.parseInt(mProxySegmentErrorHttpCode.getText().toString()))

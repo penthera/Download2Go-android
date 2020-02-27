@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -29,7 +30,7 @@
         android:layout_marginTop="@dimen/padding_extra_large"
         />
 
-    <android.support.design.widget.TextInputLayout
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/lyt_user"
         android:hint="@string/user"
         android:layout_width="match_parent"
@@ -43,14 +44,14 @@
         android:layout_marginBottom="@dimen/padding_large"
         >
 
-        <android.support.design.widget.TextInputEditText
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edt_user"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             />
-    </android.support.design.widget.TextInputLayout>
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <android.support.design.widget.TextInputLayout
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/lyt_url"
         android:hint="@string/url"
         android:layout_width="match_parent"
@@ -64,12 +65,12 @@
         android:layout_marginBottom="@dimen/padding_large"
         >
 
-        <android.support.design.widget.TextInputEditText
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edt_url"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             />
-    </android.support.design.widget.TextInputLayout>
+    </com.google.android.material.textfield.TextInputLayout>
 
 
     <Button
@@ -90,4 +91,4 @@
     />
 
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

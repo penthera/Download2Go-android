@@ -1,16 +1,16 @@
 package com.penthera.sdkdemokotlin.activity
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
-import android.support.v7.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.view.Window
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import com.penthera.sdkdemokotlin.R
 import com.penthera.sdkdemokotlin.catalog.ExampleCatalogItem
 import com.penthera.sdkdemokotlin.engine.OfflineVideoEngine

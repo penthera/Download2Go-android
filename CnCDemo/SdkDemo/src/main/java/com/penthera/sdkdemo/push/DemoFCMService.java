@@ -26,4 +26,14 @@ public class DemoFCMService extends FcmMessagingService {
         super.onMessageReceived(msg);
         //handle your own messages
     }
+
+    /**
+     * Demonstrates how to capture the device token if required.
+     */
+    @Override
+    public void onNewToken(String token) {
+        // Please always call super to ensure SDK can also use the updated push token
+        super.onNewToken(token);
+
+    }
 }

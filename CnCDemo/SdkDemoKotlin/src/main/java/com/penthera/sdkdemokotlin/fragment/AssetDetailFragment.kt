@@ -11,8 +11,6 @@ import android.graphics.PorterDuff
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentActivity
 import android.text.TextUtils
 import android.util.Log
 import android.view.LayoutInflater
@@ -20,6 +18,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import com.penthera.sdkdemokotlin.R
 import com.penthera.sdkdemokotlin.activity.OfflineVideoProvider
 import com.penthera.sdkdemokotlin.activity.VideoPlayerActivity
@@ -500,10 +500,6 @@ class AssetDetailFragment : Fragment()  {
             // The base implementation does nothing.  See class documentation.
         }
 
-        override fun engineCompletedDownloadingSegment(aAsset: IIdentifier) {
-            updateItem(aAsset, true)
-        }
-
         override fun engineUpdatedQueue() {
             // The base implementation does nothing.  See class documentation.
         }
@@ -542,6 +538,11 @@ class AssetDetailFragment : Fragment()  {
                     when (fds) {
 
                         Common.AssetStatus.DOWNLOADING -> {
+                            assetStatus = parent.getString(R.string.status_downloading)
+                            value = "downloading"
+                        }
+
+                        Common.AssetStatus.EARLY_DOWNLOADING -> {
                             assetStatus = parent.getString(R.string.status_downloading)
                             value = "downloading"
                         }
@@ -612,7 +613,7 @@ class AssetDetailFragment : Fragment()  {
         }
     }
 
-    class AssetPermissionObserver (activity : FragmentActivity ) : IQueue.IQueuedAssetPermissionObserver {
+    class AssetPermissionObserver (activity : FragmentActivity) : IQueue.IQueuedAssetPermissionObserver {
 
         private var mActivity : FragmentActivity = activity
 
@@ -665,12 +666,6 @@ class AssetDetailFragment : Fragment()  {
         init{
            mProgress = progress
             mActivity = activity
-        }
-        override fun didParseSegment(segment: ISegment?): String {
-           return segment!!.remotePath
-        }
-
-        override fun willAddToQueue(aSegmentedAsset: ISegmentedAsset?) {
         }
 
         override fun complete(aSegmentedAsset: ISegmentedAsset?, aError: Int, addedToQueue: Boolean) {
