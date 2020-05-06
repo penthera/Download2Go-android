@@ -40,7 +40,7 @@
     "imageUri" : "https://virtuoso-demo-content.s3.amazonaws.com/College.jpg"
   },
   {
-    "id" : "DASH_TEARS",
+    "id" : "DASH_TEARS_WV",
     "title" : "(DASH) Widevine Secure Tears",
     "contentUri" : "https://storage.googleapis.com/wvmedia/cenc/h264/tears/tears_sd.mpd",
     "contentType" : "mpdash",

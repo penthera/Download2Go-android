@@ -11,14 +11,21 @@
 //Distributing and/or reproducing this information is forbidden
 //unless prior written permission is obtained from Penthera Partners Inc.
 //
-package com.google.android.exoplayer2.drm;
+package com.penthera.sdkdemo.drm;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.media.MediaDrm;
 import android.media.MediaCrypto;
 import android.os.Handler;
 import android.os.Looper;
 
+import androidx.annotation.Nullable;
+
+import com.google.android.exoplayer2.drm.DrmInitData;
+import com.google.android.exoplayer2.drm.DrmSession;
+import com.google.android.exoplayer2.drm.DrmSessionManager;
+import com.google.android.exoplayer2.drm.FrameworkMediaCrypto;
 import com.penthera.virtuososdk.client.IAsset;
 import com.penthera.virtuososdk.client.drm.IDrmInitData;
 import com.penthera.virtuososdk.client.drm.IVirtuosoDrmSession;
@@ -31,7 +38,7 @@ import java.util.UUID;
 /**
  * Wraps the VirtuosoDrmSessionManager
  */
-
+@TargetApi(18)
 public class DrmSessionManagerWrapper implements DrmSessionManager<FrameworkMediaCrypto> {
 
     private final VirtuosoDrmSessionManager mDrmSessionManager;
@@ -39,29 +46,22 @@ public class DrmSessionManagerWrapper implements DrmSessionManager<FrameworkMedi
     // This is optional if you wish to view the Drm events yourself
     private final MediaDrm.OnEventListener mDrmEventListener;
 
-    public DrmSessionManagerWrapper(Context context,
-                                     UUID uuid,
-                                     IAsset asset,
-                                     HashMap<String, String> optionalKeyRequestParameters,
-                                     Looper playbackLooper,
-                                     Handler eventHandler,
-                                     VirtuosoDrmSessionManager.EventListener eventListener,
-                                     MediaDrm.OnEventListener onEventListener)  throws com.penthera.virtuososdk.client.drm.UnsupportedDrmException {
-        mDrmSessionManager = new VirtuosoDrmSessionManager(context,uuid, asset,optionalKeyRequestParameters,
-                playbackLooper,eventHandler,eventListener);
-        mDrmEventListener = onEventListener;
-    }
+    // If you are using the event listener, then create a handler and pass into the session manager to deliver
+    // the listener messages
+    private Handler eventHandler = null;
 
     public DrmSessionManagerWrapper(Context context,
-                                     UUID uuid,
-                                     String remoteAssetId,
-                                     HashMap<String, String> optionalKeyRequestParameters,
-                                     Looper playbackLooper,
-                                     Handler eventHandler,
-                                     VirtuosoDrmSessionManager.EventListener eventListener,
-                                     MediaDrm.OnEventListener onEventListener)  throws com.penthera.virtuososdk.client.drm.UnsupportedDrmException {
-        mDrmSessionManager = new VirtuosoDrmSessionManager(context,uuid,remoteAssetId,optionalKeyRequestParameters,
-                playbackLooper,eventHandler,eventListener);
+                                    UUID uuid,
+                                    IAsset asset,
+                                    HashMap<String, String> optionalKeyRequestParameters,
+                                    VirtuosoDrmSessionManager.EventListener eventListener,
+                                    MediaDrm.OnEventListener onEventListener)  throws com.penthera.virtuososdk.client.drm.UnsupportedDrmException {
+        // If using an eventListener then also provide a handler for calling the events on
+        if (eventListener != null) {
+            eventHandler = new Handler();
+        }
+        mDrmSessionManager = new VirtuosoDrmSessionManager(context,uuid, asset,optionalKeyRequestParameters,
+                null,eventHandler,eventListener);
         mDrmEventListener = onEventListener;
     }
 
@@ -78,7 +78,7 @@ public class DrmSessionManagerWrapper implements DrmSessionManager<FrameworkMedi
 
     @Override
     public DrmSession<FrameworkMediaCrypto> acquireSession(Looper playbackLooper, final DrmInitData drmInitData) {
-        IVirtuosoDrmSession<MediaCrypto> session = mDrmSessionManager.open(new IDrmInitData() {
+        IVirtuosoDrmSession session = mDrmSessionManager.open(new IDrmInitData() {
             @Override
             public SchemeInitData get(UUID schemeUuid) {
                 DrmInitData.SchemeData sd = drmInitData.get(schemeUuid);
@@ -88,27 +88,39 @@ public class DrmSessionManagerWrapper implements DrmSessionManager<FrameworkMedi
         session.setLooper(playbackLooper);
         session.setDrmOnEventListener(mDrmEventListener);
 
-        return new DrmSessionWrapper(session);
+        return new DrmSessionWrapper(session, mDrmSessionManager.getSchemeUUID(), mDrmSessionManager);
     }
 
     @Override
-    public void releaseSession(DrmSession<FrameworkMediaCrypto> drmSession) {
-        DrmSessionWrapper sessionWrapper = (DrmSessionWrapper) drmSession;
-        mDrmSessionManager.close(sessionWrapper.getVirtuosoSession());
+    @Nullable
+    public Class<FrameworkMediaCrypto> getExoMediaCryptoType(DrmInitData drmInitData) {
+        /* ExoMediaCrypto is An opaque {@link android.media.MediaCrypto} equivalent. */
+        return canAcquireSession(drmInitData)
+                ? FrameworkMediaCrypto.class
+                : null;
     }
 
+    /**
+     *
+     */
     static class DrmSessionWrapper implements DrmSession<FrameworkMediaCrypto> {
 
-        private final IVirtuosoDrmSession<MediaCrypto> drmSession;
+       /** DrmSession that will provide the offline license */
+        private final IVirtuosoDrmSession drmSession;
+
+        /** Link to the session manager, used to close the session when finished */
+        private VirtuosoDrmSessionManager drmSessionManager;
+
+        /** The underlying media crypto object used by the DRM */
         private FrameworkMediaCrypto mediaCrypto = null;
 
-        public DrmSessionWrapper(IVirtuosoDrmSession<MediaCrypto> session) {
-            drmSession = session;
-            mediaCrypto = new FrameworkMediaCrypto(drmSession.getMediaCrypto());
-        }
+        /** Exoplayer users a reference count in the acquire/release of the session */
+        private int referenceCount = 0;
 
-        public IVirtuosoDrmSession getVirtuosoSession() {
-            return drmSession;
+        public DrmSessionWrapper(IVirtuosoDrmSession session, UUID schemeUUID, VirtuosoDrmSessionManager drmSessionManager) {
+            drmSession = session;
+            mediaCrypto = new FrameworkMediaCrypto(schemeUUID, session.getSessionId(), false);
+            this.drmSessionManager = drmSessionManager;
         }
 
         @Override
@@ -125,6 +137,7 @@ public class DrmSessionManagerWrapper implements DrmSessionManager<FrameworkMedi
         public DrmSessionException getError() {
             Exception e = drmSession.getError();
             if (e != null) {
+                // Wrap the exception into the exoplayer exception type
                 return new DrmSessionException(e);
             }
             return null;
@@ -138,6 +151,19 @@ public class DrmSessionManagerWrapper implements DrmSessionManager<FrameworkMedi
         @Override
         public byte[] getOfflineLicenseKeySetId() {
             return drmSession.getLicenseKeySetId();
+        }
+
+        @Override
+        public void acquire() {
+            referenceCount++;
+        }
+
+        @Override
+        public void release() {
+            if (--referenceCount == 0){
+                drmSessionManager.close(drmSession);
+                drmSessionManager = null;
+            }
         }
     }
 }

@@ -464,6 +464,27 @@
             android:text="@string/reset" />
 
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/configure_mime_settings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/mime_type_config_btn_label" />
+
+        <Button
+            android:id="@+id/reset_mime_settings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/mime_type_reset_btn_label" />
+
+    </LinearLayout>
     
     <Button
         android:id="@+id/apply"

@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import com.penthera.sdkdemokotlin.R
-import kotlinx.android.synthetic.main.fragment_add_catalog_content.*
+import kotlinx.android.synthetic.main.fragment_add_catalog_content.view.*
 
 class AddItemContentFragment : Fragment() {
 
@@ -17,7 +17,7 @@ class AddItemContentFragment : Fragment() {
 
         val adapter = ArrayAdapter.createFromResource(context!!, R.array.add_item_content_type, android.R.layout.simple_spinner_item)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spinner_item_type.setAdapter(adapter)
+        ret.spinner_item_type.adapter = adapter
 
         return ret
     }

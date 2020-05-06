@@ -1,49 +1,38 @@
-package com.google.android.exoplayer2.drm
+package com.penthera.sdkdemokotlin.drm
 
 import android.content.Context
 import android.media.MediaCrypto
 import android.media.MediaDrm
 import android.os.Handler
 import android.os.Looper
+import com.google.android.exoplayer2.drm.*
 import com.penthera.virtuososdk.client.IAsset
 import com.penthera.virtuososdk.client.drm.IDrmInitData
 import com.penthera.virtuososdk.client.drm.IVirtuosoDrmSession
 import com.penthera.virtuososdk.client.drm.VirtuosoDrmSessionManager
 import java.util.*
 
-class DrmSessionManagerWrapper : DrmSessionManager<FrameworkMediaCrypto> {
+class DrmSessionManagerWrapper @Throws(com.penthera.virtuososdk.client.drm.UnsupportedDrmException::class)
+        constructor(context: Context, uuid: UUID, asset: IAsset, optionalKeyRequestParameters: HashMap<String, String>,
+                    eventListener: VirtuosoDrmSessionManager.EventListener?,
+                    onEventListener: MediaDrm.OnEventListener) : DrmSessionManager<FrameworkMediaCrypto> {
 
     private val mDrmSessionManager: VirtuosoDrmSessionManager
 
     // This is optional if you wish to view the Drm events yourself
-    private val mDrmEventListener: MediaDrm.OnEventListener
+    private val mDrmEventListener: MediaDrm.OnEventListener? = onEventListener
 
-    @Throws(com.penthera.virtuososdk.client.drm.UnsupportedDrmException::class)
-    constructor(context: Context,
-                uuid: UUID,
-                asset: IAsset,
-                optionalKeyRequestParameters: HashMap<String, String>,
-                playbackLooper: Looper,
-                eventHandler: Handler,
-                eventListener: VirtuosoDrmSessionManager.EventListener,
-                onEventListener: MediaDrm.OnEventListener) {
-        mDrmSessionManager = VirtuosoDrmSessionManager(context, uuid, asset, optionalKeyRequestParameters,
-                playbackLooper, eventHandler, eventListener)
-        mDrmEventListener = onEventListener
-    }
+    // If you are using the event listener, then create a handler and pass into the session manager to deliver
+    // the listener messages
+    private var eventHandler: Handler? = null
 
-    @Throws(com.penthera.virtuososdk.client.drm.UnsupportedDrmException::class)
-    constructor(context: Context,
-                uuid: UUID,
-                remoteAssetId: String,
-                optionalKeyRequestParameters: HashMap<String, String>,
-                playbackLooper: Looper,
-                eventHandler: Handler,
-                eventListener: VirtuosoDrmSessionManager.EventListener,
-                onEventListener: MediaDrm.OnEventListener) {
-        mDrmSessionManager = VirtuosoDrmSessionManager(context, uuid, remoteAssetId, optionalKeyRequestParameters,
-                playbackLooper, eventHandler, eventListener)
-        mDrmEventListener = onEventListener
+    init {
+        // If using an eventListener then also provide a handler for calling the events on
+        if (eventListener != null) {
+            eventHandler = Handler()
+        }
+        mDrmSessionManager = VirtuosoDrmSessionManager(context,uuid, asset,optionalKeyRequestParameters,
+                null,eventHandler,eventListener)
     }
 
     override fun canAcquireSession(drmInitData: DrmInitData): Boolean {
@@ -54,7 +43,7 @@ class DrmSessionManagerWrapper : DrmSessionManager<FrameworkMediaCrypto> {
                 sd = drmInitData.get(i)
 
                 if(sd.matches(schemeUuid))
-                    break;
+                    break
 
                 sd = null
 
@@ -74,12 +63,12 @@ class DrmSessionManagerWrapper : DrmSessionManager<FrameworkMediaCrypto> {
         session.setLooper(playbackLooper)
         session.setDrmOnEventListener(mDrmEventListener)
 
-        return DrmSessionWrapper(session)
+        return DrmSessionWrapper(session, mDrmSessionManager.schemeUUID, mDrmSessionManager)
     }
 
     private fun getMatchingSchemeData(drmInitData: DrmInitData, schemeUuid: UUID) : DrmInitData.SchemeData?{
 
-        var ret :DrmInitData.SchemeData? = null
+        var ret : DrmInitData.SchemeData? = null
 
         for(i in 0 until drmInitData.schemeDataCount ){
             if(drmInitData.get(i).matches(schemeUuid)){
@@ -88,22 +77,25 @@ class DrmSessionManagerWrapper : DrmSessionManager<FrameworkMediaCrypto> {
             }
         }
 
-        return ret;
+        return ret
     }
 
-    override fun releaseSession(drmSession: DrmSession<FrameworkMediaCrypto>) {
-        val sessionWrapper = drmSession as DrmSessionWrapper
-        mDrmSessionManager.close(sessionWrapper.virtuosoSession)
+    override fun getExoMediaCryptoType(drmInitData: DrmInitData): Class<out ExoMediaCrypto>? {
+        /* ExoMediaCrypto is An opaque {@link android.media.MediaCrypto} equivalent. */
+        return if (canAcquireSession(drmInitData)) FrameworkMediaCrypto::class.java else null
     }
 
-    internal class DrmSessionWrapper(private val drmSession: IVirtuosoDrmSession<MediaCrypto>) : DrmSession<FrameworkMediaCrypto> {
+    internal class DrmSessionWrapper(private val drmSession: IVirtuosoDrmSession<MediaCrypto>,
+                                     schemeUUID: UUID, private val drmSessionManager: VirtuosoDrmSessionManager) : DrmSession<FrameworkMediaCrypto> {
+
         private var mediaCrypto: FrameworkMediaCrypto? = null
+        private var referenceCount = 0
 
         val virtuosoSession: IVirtuosoDrmSession<*>
             get() = drmSession
 
         init {
-            mediaCrypto = FrameworkMediaCrypto(drmSession.mediaCrypto)
+            mediaCrypto = FrameworkMediaCrypto(schemeUUID, drmSession.sessionId, false)
         }
 
         override fun getState(): Int {
@@ -127,6 +119,16 @@ class DrmSessionManagerWrapper : DrmSessionManager<FrameworkMediaCrypto> {
 
         override fun getOfflineLicenseKeySetId(): ByteArray {
             return drmSession.licenseKeySetId
+        }
+
+        override fun acquire() {
+            referenceCount++
+        }
+
+        override fun release() {
+            if (--referenceCount == 0) {
+                drmSessionManager.close(drmSession)
+            }
         }
     }
 }

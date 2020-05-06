@@ -44,23 +44,20 @@ dependencies {
 
     def sysprops = System.getProperties()
     if (sysprops['idea.platform.prefix'] != null || project.hasProperty("devCmdLine")) {
-        implementation 'com.penthera:cnc-android-sdk-debug:3.15.14.2'
+        implementation 'com.penthera:cnc-android-sdk-debug:3.15.15'
     } else {
-        implementation 'com.penthera:cnc-android-sdk-debug:3.15.14.2'
+        implementation 'com.penthera:cnc-android-sdk-debug:3.15.15'
     }
 
-    implementation ('com.google.android.exoplayer:exoplayer:2.9.6') {
-        exclude group: 'com.google.android.gms'
-    }
-    implementation ('com.google.android.exoplayer:extension-ima:2.9.6'){
-        exclude group: 'com.google.android.gms'
-    }
+    def google_exoplayer_version = "2.11.3"
+    implementation "com.google.android.exoplayer:exoplayer:$google_exoplayer_version"
+    implementation "com.google.android.exoplayer:extension-ima:$google_exoplayer_version"
 
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'com.google.firebase:firebase-messaging:20.0.0'
     implementation 'com.google.firebase:firebase-core:17.2.0'
     implementation "androidx.viewpager2:viewpager2:1.0.0"
-    implementation "com.google.android.material:material:1.1.0-rc02"
+    implementation 'com.google.android.material:material:1.1.0'
     implementation files('libs/CWAC-SackOfViewsAdapter.jar')
     implementation files('libs/image-master.jar')
     implementation files('libs/mergeadapter.jar')

@@ -465,7 +465,7 @@ public class VirtuosoUtil {
 			public void onClick(DialogInterface dialog, int which) {
 				try {
 
-					watchStream(context,c,asset.getAssetId(), asset.getUuid());
+					watchStream(context,c,asset.getAssetId(),asset.getUuid());
 					dialog.dismiss();
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -512,8 +512,11 @@ public class VirtuosoUtil {
         else if(isHls(mediaType)){
             assetType = ISegmentedAsset.SEG_FILE_TYPE_HLS;
         }
-        Intent intent = buildPlayerIntent(context,
-                c.getString(c.getColumnIndex(CatalogColumns.DRM_SCHEME_UUID)),uri,assetType,assetId);
+
+		Intent intent =  new Intent(context, PlayerActivity.class)
+				.setAction(PlayerActivity.ACTION_VIEW)
+				.setData(uri)
+				.putExtra(PlayerActivity.VIRTUOSO_CONTENT_TYPE,assetType);
 
 		Common.Events.addPlayStartEvent(context, assetId, assetUuid);
 		context.startActivity(intent);
@@ -567,30 +570,22 @@ public class VirtuosoUtil {
     private static Intent buildPlayerIntent(Context context,IAsset a) throws MalformedURLException {
         int type = Common.AssetIdentifierType.FILE_IDENTIFIER;
         Uri path;
-        String drmuuid = null;
         if(a.getType() == Common.AssetIdentifierType.SEGMENTED_ASSET_IDENTIFIER){
             ISegmentedAsset sa = (ISegmentedAsset)a;
             type = sa.segmentedFileType();
             path = Uri.parse(sa.getPlaylist().toString());
-            drmuuid = sa.contentProtectionUuid();
         }
         else{
             IFile f = (IFile)a;
             path = Uri.parse(f.getFilePath());
         }
-        return buildPlayerIntent(context,drmuuid,path,type,a.getAssetId())
-                .putExtra(PlayerActivity.VIRTUOSO_ASSET,a);
-    }
 
-    private static Intent buildPlayerIntent(Context context,String drmSchemUuid, Uri uri,
-                                            int assetType,String assetId){
-        Intent intent =  new Intent(context, PlayerActivity.class)
-                .setAction(PlayerActivity.ACTION_VIEW)
-                .setData(uri)
-                .putExtra(PlayerActivity.DRM_SCHEME_UUID_EXTRA,drmSchemUuid)
-                .putExtra(PlayerActivity.VIRTUOSO_CONTENT_TYPE,assetType)
-                .putExtra(PlayerActivity.VIRTUOSO_ASSET_ID,assetId);
-        return intent;
+		Intent intent =  new Intent(context, PlayerActivity.class)
+				.setAction(PlayerActivity.ACTION_VIEW)
+				.setData(path)
+				.putExtra(PlayerActivity.VIRTUOSO_ASSET,a)
+				.putExtra(PlayerActivity.VIRTUOSO_CONTENT_TYPE,type);
+		return intent;
     }
 
 	public static void watchVirtuosoItem(Context context, IAsset i) {

@@ -191,19 +191,12 @@ public class CatalogDetailFragment extends Fragment implements LoaderManager.Loa
 			update();
 		}
 
-		mService.getAssetManager().getAdManager().addParserObserver(mAdParserObserver );
-		mService.getAssetManager().getAdManager().addUrlResolver(mAdUrlResolver);
-
 	}
 		
 	// onPause
 	public void onPause() {
 		super.onPause();
 		mService.removeObserver(mQueueObserver);
-
-
-		mService.getAssetManager().getAdManager().removeParserObserver(mAdParserObserver);
-		mService.getAssetManager().getAdManager().removeUrlResolver(mAdUrlResolver);
 	}
 
 	// onDestory
@@ -994,52 +987,4 @@ public class CatalogDetailFragment extends Fragment implements LoaderManager.Loa
 		}
 	}
 
-	private IVirtuosoAdParserObserver mAdParserObserver = new IVirtuosoAdParserObserver() {
-		@Override
-		public void onParserError(IAsset asset, int error, String message) {
-			Log.e("TAG", "Failed to parse ads for asset, error code: " + error + " message: " + message);
-
-			final String dlgmessage = (message != null ? message : "No Message") + "  Code: " + error;
-
-			final Activity context = getActivity();
-			context.runOnUiThread(new Runnable() {
-				public void run() {
-					AlertDialog.Builder builder1 = new AlertDialog.Builder(context);
-					builder1.setTitle("Advert Parser Error");
-					builder1.setMessage(dlgmessage);
-					builder1.setCancelable(false);
-					builder1.setPositiveButton("OK",
-							new DialogInterface.OnClickListener() {
-								public void onClick(DialogInterface dialog, int id) {
-									dialog.cancel();
-								}
-							});
-
-					AlertDialog alert11 = builder1.create();
-					alert11.show();
-				}
-			});
-		}
-	};
-
-
-	private IVirtuosoAdUrlResolver mAdUrlResolver = new IVirtuosoAdUrlResolver() {
-		@Override
-		public URL getUrlForAsset(IAsset asset) throws MalformedURLException {
-
-
-			try {
-				return new URL("https://s3.amazonaws.com/hls-vbcp/testads/vmap_3ads_adtag.xml");
-			} catch (MalformedURLException mue) {
-				Log.e("Failed to generate valid ad url");
-				return null;
-			}
-
-		}
-
-		@Override
-		public String getAdNetworkName() {
-			return "SdkDemoAdSource";
-		}
-	};
 }

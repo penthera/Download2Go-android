@@ -30,6 +30,7 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.penthera.sdkdemo.R;
+import com.penthera.sdkdemo.dialog.MimeTypeSettingsDialog;
 import com.penthera.sdkdemo.framework.SdkDemoBaseActivity;
 import com.penthera.virtuososdk.Common;
 import com.penthera.virtuososdk.Common.AuthenticationStatus;
@@ -38,13 +39,14 @@ import com.penthera.virtuososdk.client.EngineObserver;
 import com.penthera.virtuososdk.client.IBackplane;
 import com.penthera.virtuososdk.client.IBackplaneSettings;
 import com.penthera.virtuososdk.client.ISettings;
+import com.penthera.virtuososdk.client.MimeTypeSettings;
 import com.penthera.virtuososdk.client.Observers.IBackplaneObserver;
 import com.penthera.virtuososdk.client.Observers.IEngineObserver;
 
 /**
  * Demonstrate the settings capabilities of the Virtuoso SDK
  */
-public class SettingsActivity extends SdkDemoBaseActivity {
+public class SettingsActivity extends SdkDemoBaseActivity implements MimeTypeSettingsDialog.MimeTypeSettingsCallback {
 
 	/** The current value for battery threshold */
 	private SeekBar mBatterythreshold;
@@ -350,8 +352,29 @@ public class SettingsActivity extends SdkDemoBaseActivity {
 
 		this.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+		findViewById(R.id.configure_mime_settings).setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				onConfigureMime();
+			}
+		});
+
+		findViewById(R.id.reset_mime_settings).setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				mSettings.resetMimeTypeSettings().save();
+			}
+		});
+
 		iHandler.post(iUpdater);	
     }
+
+	private void onConfigureMime() {
+
+		new MimeTypeSettingsDialog().show(getSupportFragmentManager(),"MIME");
+
+
+	}
 
 	// onPause
     @Override
@@ -443,4 +466,15 @@ public class SettingsActivity extends SdkDemoBaseActivity {
 	public void onAllowedVideoCodecsReset(View view){
 		mSettings.resetAudioCodecsToDownload().save();
 	}
+
+	@Override
+	public MimeTypeSettings initialSettings() {
+		return mSettings.getMimeTypeSettings();
+	}
+	@Override
+	public void complete(MimeTypeSettings settings) {
+		mSettings.setMimeTypeSettings(settings).save();
+
+	}
+
 }

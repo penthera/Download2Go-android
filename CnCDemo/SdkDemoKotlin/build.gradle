@@ -47,14 +47,14 @@ allprojects {
     }
 }
 
-def lifecycle_version = "2.0.0"
+def lifecycle_version = "2.1.0"
 
 dependencies {
     def sysprops = System.getProperties()
     if (sysprops['idea.platform.prefix'] != null || project.hasProperty("devCmdLine")) {
-        implementation 'com.penthera:cnc-android-sdk-debug:3.15.14.2'
+        implementation 'com.penthera:cnc-android-sdk-debug:3.15.15'
     } else {
-        implementation 'com.penthera:cnc-android-sdk-debug:3.15.14.2'
+        implementation 'com.penthera:cnc-android-sdk-debug:3.15.15'
     }
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -77,12 +77,9 @@ dependencies {
     implementation("com.squareup.moshi:moshi-kotlin:1.8.0")
 
     // Player
-    implementation ('com.google.android.exoplayer:exoplayer:2.9.6') {
-        exclude group: 'com.google.android.gms'
-    }
-    implementation ('com.google.android.exoplayer:extension-ima:2.9.6'){
-        exclude group: 'com.google.android.gms'
-    }
+    def google_exoplayer_version = "2.11.3"
+    implementation "com.google.android.exoplayer:exoplayer:$google_exoplayer_version"
+    implementation "com.google.android.exoplayer:extension-ima:$google_exoplayer_version"
 
     // A recyclerview merge adapter to simplify the example app
     implementation 'me.mvdw.recyclerviewmergeadapter:recyclerviewmergeadapter:2.1.0'
@@ -93,8 +90,8 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
-    testImplementation 'androidx.arch.core:core-testing:2.0.0'
-    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0-alpha02'
+    testImplementation 'androidx.arch.core:core-testing:2.1.0'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0'
 }
 com.google.gms.googleservices.GoogleServicesPlugin.config.disableVersionCheck = true
 apply plugin: 'com.google.gms.google-services'

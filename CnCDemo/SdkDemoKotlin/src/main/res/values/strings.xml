@@ -155,6 +155,9 @@
 
     <string name="text">Text</string>
     <string name="retry">Retry</string>
+
+    <string name="track_selection_title">Select tracks</string>
+
     <string name="selection_disabled">Disabled</string>
 
     <string name="selection_default">Default</string>
@@ -164,6 +167,8 @@
     <string name="unexpected_intent_action">Unexpected intent action: <xliff:g id="action">%1$s</xliff:g></string>
 
     <string name="enable_random_adaptation">Enable random adaptation</string>
+
+    <string name="error_generic">Problem with playback, unclassified</string>
 
     <string name="error_drm_not_supported">Protected content not supported on API levels below 18</string>
 
