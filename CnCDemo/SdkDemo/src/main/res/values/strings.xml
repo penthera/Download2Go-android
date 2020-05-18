@@ -73,6 +73,8 @@
 	<string name="expiration">Expiration: </string>
 	<string name="never">Never</string>
 	<string name="other">Other</string>
+    <string name="error_count_value">%1$d %2$s</string>
+    <string name="no_retry">No more retry attempts</string>
 
 	<!-- Menu CAB -->
 	<string name="menu_delete">Delete</string>
@@ -104,6 +106,7 @@
     <string name="expires">Expires: </string>
     <string name="available">Available: </string>
     <string name="always">Always</string>
+    <string name="retries_exceeded">No further retries. Reset to try again</string>
 
     <!-- status in detail -->
     <string name="status_downloading">Downloading</string>

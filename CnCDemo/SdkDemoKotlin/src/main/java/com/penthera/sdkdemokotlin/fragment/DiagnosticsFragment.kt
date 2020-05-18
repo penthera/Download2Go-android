@@ -77,13 +77,13 @@ class DiagnosticsFragment : Fragment(), LifecycleObserver {
         virtuoso = offlineVideoProvider.getOfflineEngine().getVirtuoso()
         backplane = offlineVideoProvider.getOfflineEngine().getVirtuoso().backplane
         settings = offlineVideoProvider.getOfflineEngine().getSettings()
-        settings?.observe(this, androidx.lifecycle.Observer { handler.post(settingsValuesUpdater) })
+        settings?.observe(viewLifecycleOwner, androidx.lifecycle.Observer { handler.post(settingsValuesUpdater) })
         backplaneSettings = offlineVideoProvider.getOfflineEngine().getBackplaneSettings()
-        backplaneSettings?.observe(this, androidx.lifecycle.Observer{ handler.post(backplaneSettingsValuesUpdater)})
+        backplaneSettings?.observe(viewLifecycleOwner, androidx.lifecycle.Observer{ handler.post(backplaneSettingsValuesUpdater)})
 
-        serviceViewModel = ViewModelProviders.of(this, VirtuosoServiceModelFactory(offlineVideoProvider.getOfflineEngine()))
+        serviceViewModel = ViewModelProvider(this, VirtuosoServiceModelFactory(offlineVideoProvider.getOfflineEngine()))
                 .get(VirtuosoServiceViewModel::class.java)
-        serviceViewModel.getEngineState().observe(this, androidx.lifecycle.Observer<VirtuosoEngineState>{
+        serviceViewModel.getEngineState().observe(viewLifecycleOwner, androidx.lifecycle.Observer<VirtuosoEngineState>{
             it?.let {downloadThroughputUpdater(it)}
         })
         lifecycle.addObserver(this)

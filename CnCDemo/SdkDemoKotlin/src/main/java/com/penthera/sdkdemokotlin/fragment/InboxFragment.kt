@@ -1,12 +1,11 @@
 package com.penthera.sdkdemokotlin.fragment
 
-import android.content.Context
 import android.database.Cursor
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.penthera.sdkdemokotlin.R
@@ -91,9 +90,9 @@ class InboxFragment : Fragment(), AssetsRecyclerAdapter.AssetInboxActionListener
         offlineVideoProvider = activity as OfflineVideoProvider
 
         offlineVideoProvider?.getOfflineEngine()?.let {
-            queuesViewModel = ViewModelProviders.of(this, VirtuosoQueueViewModelFactory(it))
+            queuesViewModel = ViewModelProvider(this, VirtuosoQueueViewModelFactory(it))
                     .get(VirtuosoQueuesViewModel::class.java)
-            queuesViewModel?.combinedQueuesLiveData?.observe(this, Observer<List<Cursor?>> {
+            queuesViewModel?.combinedQueuesLiveData?.observe(viewLifecycleOwner, Observer<List<Cursor?>> {
                 it?.let {
                     if (inboxList.adapter != null) {
                         it[0]?.let {
@@ -129,15 +128,15 @@ class InboxFragment : Fragment(), AssetsRecyclerAdapter.AssetInboxActionListener
 
         val adaptersList = ArrayList<AssetsRecyclerAdapter>()
 
-        downloadedAdapter = AssetsRecyclerAdapter(context!!, downloadedCursor, DOWNLOADED, this)
+        downloadedAdapter = AssetsRecyclerAdapter(requireContext(), downloadedCursor, DOWNLOADED, this)
         adaptersList.add(downloadedAdapter!!)
         val downloadedHeader = HeaderRecyclerAdapter(getString(R.string.downloaded), downloadedAdapter!!)
 
-        queuedAdapter = AssetsRecyclerAdapter(context!!, queuedCursor, QUEUED, this)
+        queuedAdapter = AssetsRecyclerAdapter(requireContext(), queuedCursor, QUEUED, this)
         adaptersList.add(queuedAdapter!!)
         val queuedHeader = HeaderRecyclerAdapter(getString(R.string.queued), queuedAdapter!!)
 
-        expiredAdapter = AssetsRecyclerAdapter(context!!, expiredCursor, EXPIRED, this)
+        expiredAdapter = AssetsRecyclerAdapter(requireContext(), expiredCursor, EXPIRED, this)
         adaptersList.add(expiredAdapter!!)
         val expiredHeader = HeaderRecyclerAdapter(getString(R.string.expired), expiredAdapter!!)
 
@@ -271,7 +270,7 @@ class InboxFragment : Fragment(), AssetsRecyclerAdapter.AssetInboxActionListener
 
     private fun resetSet(idSet: Set<Int>) {
         for (id in idSet) {
-            offlineVideoProvider?.getOfflineEngine()?.getVirtuoso()?.assetManager?.getQueue()?.resetErrors(id)
+            offlineVideoProvider?.getOfflineEngine()?.getVirtuoso()?.assetManager?.getQueue()?.clearRetryCount(id)
         }
     }
 

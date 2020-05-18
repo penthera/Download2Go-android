@@ -81,9 +81,11 @@ class NotificationFactory(private val applicationName: String) {
         // status bar notice from being shown.
         if (action.contains(Common.Notifications.NOTIFICATION_EVENT_TAG)) {
 
-            val event: IEvent = notificationIntent.getParcelableExtra(Common.Notifications.EXTRA_NOTIFICATION_EVENT)
+            val event: IEvent? = notificationIntent.getParcelableExtra(Common.Notifications.EXTRA_NOTIFICATION_EVENT)
 
-            Log.d(TAG, "Got event named(" + event.name() + ") asset(" + event.assetId() + " data(" + event.numericData() + ")")
+            event?.let {
+                Log.d(TAG, "Got event named(" + it.name() + ") asset(" + it.assetId() + " data(" + it.numericData() + ")")
+            }
             return null
         }
 

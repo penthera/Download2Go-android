@@ -1,16 +1,15 @@
 package com.penthera.sdkdemokotlin.activity
 
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.view.Window
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.penthera.sdkdemokotlin.R
 import com.penthera.sdkdemokotlin.catalog.ExampleCatalogItem
 import com.penthera.sdkdemokotlin.engine.OfflineVideoEngine
@@ -36,6 +35,8 @@ class MainActivity : AppCompatActivity(), NavigationListener, OfflineVideoProvid
 
     private var downloadStatus: Int = Common.EngineStatus.IDLE
 
+    private var mainTabs: MainTabsFragment? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
 
@@ -60,8 +61,7 @@ class MainActivity : AppCompatActivity(), NavigationListener, OfflineVideoProvid
             }
         }
 
-        serviceViewModel = ViewModelProviders.of(this, VirtuosoServiceModelFactory(offlineEngine))
-                .get(VirtuosoServiceViewModel::class.java)
+        serviceViewModel =  ViewModelProvider(this, VirtuosoServiceModelFactory(offlineEngine)).get(VirtuosoServiceViewModel::class.java)
         serviceViewModel.getEngineState().observe(this, Observer<VirtuosoEngineState>{
             downloadStatusTxt.text = serviceViewModel.getCurrentEngineStatusString()
             if (it != null) {
@@ -97,25 +97,41 @@ class MainActivity : AppCompatActivity(), NavigationListener, OfflineVideoProvid
 
         }
 
+        var loginMi: MenuItem? = menu.findItem(R.id.menu_login)
+        var logoutMi: MenuItem? = menu.findItem(R.id.menu_logout)
+
+        val authenticationStatus: Int = offlineEngine.getVirtuoso().backplane?.authenticationStatus
+                ?: Common.AuthenticationStatus.NOT_AUTHENTICATED
+
+        val isShutdown = authenticationStatus == Common.AuthenticationStatus.SHUTDOWN
+
+        loginMi?.isVisible = isShutdown
+        logoutMi?.isVisible = !isShutdown
+
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item?.itemId) {
+        when (item.itemId) {
             R.id.menu_login -> {
-
+                offlineEngine.loginAccount()
+                invalidateOptionsMenu()
                 return true
             }
             R.id.menu_logout -> {
-
+                offlineEngine.shutdownEngine()
+                invalidateOptionsMenu()
                 return true
             }
             R.id.menu_unregister -> {
-
+                offlineEngine.unregisterAccount()
+                invalidateOptionsMenu()
+                // transition to login fragment after calling unregister
+                showLogin()
                 return true
             }
             R.id.menu_add_test_item -> {
-
+                showAddCatalogItemView()
                 return true
             }
             R.id.menu_pause_resume -> {
@@ -164,10 +180,15 @@ class MainActivity : AppCompatActivity(), NavigationListener, OfflineVideoProvid
 
     override fun hideLogin() {
 
-        supportFragmentManager
-                .beginTransaction()
-                .replace(R.id.main_container, MainTabsFragment.newInstance(), "login")
-                .commit()
+        if (mainTabs == null) {
+            mainTabs = MainTabsFragment.newInstance()
+        }
+        mainTabs?.let {
+            supportFragmentManager
+                    .beginTransaction()
+                    .replace(R.id.main_container, it, "login")
+                    .commit()
+        }
         statusView.visibility = View.VISIBLE
         supportActionBar?.show()
     }

@@ -37,7 +37,6 @@ import com.squareup.picasso.Picasso
 import com.squareup.picasso.Target
 import kotlinx.android.synthetic.main.fragment_asset_detail.*
 import org.ocpsoft.prettytime.PrettyTime
-import java.lang.Exception
 import java.lang.Long.MAX_VALUE
 import java.net.URL
 import java.util.*
@@ -75,7 +74,7 @@ class AssetDetailFragment : Fragment()  {
     private var offlineVideoEngine: OfflineVideoEngine? = null
 
     private lateinit var exampleCatalog : ExampleCatalog
-    private lateinit var queueOserver : AssetQueueObserver
+    private lateinit var queueObserver : AssetQueueObserver
 
     private lateinit var rootView : View
     //private lateinit var progressBar: ProgressBar
@@ -103,7 +102,7 @@ class AssetDetailFragment : Fragment()  {
         val offlineVideoProvider = activity as OfflineVideoProvider
         offlineVideoEngine = offlineVideoProvider.getOfflineEngine()
         exampleCatalog = ExampleCatalog(context!!)
-        queueOserver = AssetQueueObserver(activity)
+        queueObserver = AssetQueueObserver(activity)
 
 
         var assetid : String?  = null
@@ -126,14 +125,17 @@ class AssetDetailFragment : Fragment()  {
 
     override fun onPause() {
         super.onPause()
-        offlineVideoEngine?.getVirtuoso()?.removeObserver(queueOserver)
+        offlineVideoEngine?.getVirtuoso()?.removeObserver(queueObserver)
 
     }
 
     override fun onResume() {
         super.onResume()
-        queueOserver.update(this)
-        offlineVideoEngine?.getVirtuoso()?.addObserver(queueOserver)
+        queueObserver.update(this)
+        offlineVideoEngine?.getVirtuoso()?.addObserver(queueObserver)
+        asset?.let {
+            queueObserver.enginePerformedProgressUpdateDuringDownload(it)
+        }
     }
 
 
@@ -428,12 +430,12 @@ class AssetDetailFragment : Fragment()  {
 
                 offlineVideoEngine?.getVirtuoso()?.assetManager?.createMPDSegmentedAssetAsync(MPDAssetBuilder().assetId(catalogItem?.exampleAssetId)
                         .manifestUrl(contentURL)
-                        .assetObserver(AssetObserver(pdlg, activity!!))
+                        .assetObserver(AssetObserver(pdlg, requireActivity()))
                         .addToQueue(true)
                         .desiredAudioBitrate(0)
                         .desiredVideoBitrate(0)
                         .withMetadata(metadata)
-                        .withPermissionObserver(AssetPermissionObserver(activity!!))
+                        .withPermissionObserver(AssetPermissionObserver(requireActivity()))
                         .build())
             }
 
@@ -442,11 +444,11 @@ class AssetDetailFragment : Fragment()  {
                 val contentURL = URL(catalogItem?.contentUri)
                 offlineVideoEngine?.getVirtuoso()?.assetManager?.createHLSSegmentedAssetAsync(HLSAssetBuilder().assetId(catalogItem?.exampleAssetId)
                         .manifestUrl(contentURL)
-                        .assetObserver(AssetObserver(pdlg, activity!!))
+                        .assetObserver(AssetObserver(pdlg, requireActivity()))
                         .addToQueue(true)
                         .desiredVideoBitrate(0)
                         .withMetadata(metadata)
-                        .withPermissionObserver(AssetPermissionObserver(activity!!))
+                        .withPermissionObserver(AssetPermissionObserver(requireActivity()))
                         .build())
 
             }
@@ -498,6 +500,7 @@ class AssetDetailFragment : Fragment()  {
 
         override fun engineEncounteredErrorDownloadingAsset(aAsset: IIdentifier) {
             // The base implementation does nothing.  See class documentation.
+            updateItem(aAsset, true)
         }
 
         override fun engineUpdatedQueue() {
@@ -508,7 +511,6 @@ class AssetDetailFragment : Fragment()  {
 
         fun  update(fragment: AssetDetailFragment ){
            parent = fragment
-
         }
         private fun updateItem(aFile: IIdentifier, forceUpdate: Boolean) {
 
@@ -535,6 +537,7 @@ class AssetDetailFragment : Fragment()  {
                     var assetStatus : String
                     val fds = parent.asset?.downloadStatus
                     val value: String
+                    var checkRetryState = false
                     when (fds) {
 
                         Common.AssetStatus.DOWNLOADING -> {
@@ -560,41 +563,58 @@ class AssetDetailFragment : Fragment()  {
                         Common.AssetStatus.DOWNLOAD_DENIED_ASSET -> {
                             assetStatus = "Queued"
                             value = "DENIED : MAD"
+                            checkRetryState = true
                         }
 
                         Common.AssetStatus.DOWNLOAD_DENIED_ACCOUNT -> {
                             assetStatus = "Queued"
                             value = "DENIED : MDA"
+                            checkRetryState = true
                         }
 
                         Common.AssetStatus.DOWNLOAD_DENIED_EXTERNAL_POLICY -> {
                             assetStatus = "Queued"
                             value = "DENIED : EXT"
+                            checkRetryState = true
                         }
 
                         Common.AssetStatus.DOWNLOAD_DENIED_MAX_DEVICE_DOWNLOADS -> {
                             assetStatus = "Queued"
                             value = "DENIED :MPD"
+                            checkRetryState = true
                         }
 
                         Common.AssetStatus.DOWNLOAD_BLOCKED_AWAITING_PERMISSION -> {
                             assetStatus = "Queued"
                             value = "AWAITING PERMISSION"
+                            checkRetryState = true
                         }
 
                         Common.AssetStatus.DOWNLOAD_DENIED_COPIES -> {
                             assetStatus = "Queued"
                             value = "DENIED : COPIES"
+                            checkRetryState = true
                         }
 
                         else -> {
                             assetStatus = parent.getString(R.string.status_pending)
                             value = "pending"
+                            checkRetryState = true
                         }
                     }
                     val tv = parent.rootView.findViewById(R.id.txt_assetstatus) as TextView
                     tv.visibility = View.VISIBLE
                     tv.text = String.format(parent.getString(R.string.asset_status), assetStatus, asset.errorCount, value)
+
+                    val retryTv = parent.rootView.findViewById(R.id.txt_retrystatus) as TextView
+                    var showRetryState = false
+                    if (checkRetryState) {
+                        if (parent.asset?.maximumRetriesExceeded() == true) {
+                            retryTv.setText(R.string.retries_exceeded)
+                            showRetryState = true
+                        }
+                    }
+                    retryTv.visibility = if (showRetryState) View.VISIBLE else View.GONE
 
                     lastProgress = progress
                     // Tiny Progress

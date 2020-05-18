@@ -12,7 +12,7 @@ import com.penthera.sdkdemokotlin.fragment.OtherViewFragment
 /**
  *
  */
-class MainPagerAdapter (fm:FragmentManager, val context: Context?) : FragmentPagerAdapter(fm) {
+class MainPagerAdapter (fm:FragmentManager, val context: Context?) : FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
     override fun getItem(position: Int): Fragment {
 

@@ -41,7 +41,7 @@ class OtherViewFragment : Fragment(), View.OnClickListener {
         optionsList.adapter = adapter
     }
 
-    override fun onAttach(context: Context?) {
+    override fun onAttach(context: Context) {
         super.onAttach(context)
         navigationListener = activity as NavigationListener
     }

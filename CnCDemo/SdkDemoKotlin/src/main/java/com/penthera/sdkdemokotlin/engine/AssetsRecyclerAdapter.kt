@@ -151,7 +151,12 @@ class AssetsRecyclerAdapter (private val context: Context, var cursor: Cursor, p
             val downloadStatus = cursor.getInt(cursor.getColumnIndex(AssetColumns.DOWNLOAD_STATUS))
             view.downloadStatus.text = TextUtils().getAssetStatusDescription(downloadStatus)
             view.rowErrorCount.visibility = VISIBLE
-            view.errorCount.text = cursor.getInt(cursor.getColumnIndex(AssetColumns.ERROR_COUNT)).toString()
+            val errors = cursor.getInt(cursor.getColumnIndex(AssetColumns.ERROR_COUNT))
+            var retryString = ""
+            if (errors >= Common.ASSET_RETRY_ERROR_LIMIT) {
+                retryString = " " + context.getString(R.string.no_retry)
+            }
+            view.errorCount.text = String.format(context.getString(R.string.error_count_value), errors, retryString)
 
             // Progress bar if downloading
             if (downloadStatus == Common.AssetStatus.DOWNLOADING || downloadStatus == Common.AssetStatus.EARLY_DOWNLOADING) {

@@ -300,6 +300,18 @@
                 android:textIsSelectable="false"
                 android:visibility="gone" />
 
+            <TextView
+                android:id="@+id/txt_retrystatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/padding_medium"
+                android:layout_marginRight="@dimen/padding_medium"
+                android:layout_marginTop="@dimen/padding_medium"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#FFFFFFFF"
+                android:textIsSelectable="false"
+                android:visibility="gone" />
+
             <ProgressBar
                 android:id="@+id/prg"
                 style="?android:attr/progressBarStyleHorizontal"

@@ -73,7 +73,7 @@ class AddCatalogItemFragment : Fragment(){
         }
     }
 
-    private class AddItemPagerAdapter (fm: FragmentManager, context: Context?) : FragmentPagerAdapter(fm) {
+    private class AddItemPagerAdapter (fm: FragmentManager, context: Context?) : FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
         val context = context
         val content : AddItemContentFragment = AddItemContentFragment()

@@ -50,7 +50,7 @@ class LoginFragment : Fragment(), View.OnClickListener {
         super.onViewCreated(view, savedInstanceState)
     }
 
-    override fun onAttach(context: Context?) {
+    override fun onAttach(context: Context) {
         super.onAttach(context)
         navigationListener = activity as NavigationListener
         offlineVideoProvider = activity as OfflineVideoProvider
@@ -76,43 +76,11 @@ class LoginFragment : Fragment(), View.OnClickListener {
                 throw IllegalArgumentException("Missing username")
             }
 
-            offlineVideoProvider?.getOfflineEngine()?.getVirtuoso()?.let{
+            offlineVideoProvider?.getOfflineEngine()?.getVirtuoso()?.let {
                 it.startup(backplaneUrl, user, null, Config.BACKPLANE_PUBLIC_KEY, Config.BACKPLANE_PRIVATE_KEY) { _, _ ->
-                    // TODO:  Set up push messaging
-        //                    if (pushService == Common.PushService.FCM_PUSH && errorCode != ConnectionResult.SUCCESS) {
-        //                        val gApi = GoogleApiAvailability.getInstance()
-        //                        if (gApi.isUserResolvableError(errorCode)) {
-        //
-        //                            runOnUiThread(Runnable {
-        //                                gApi.makeGooglePlayServicesAvailable(context)
-        //                                        .addOnCompleteListener(object:OnCompleteListener<Void> {
-        //                                            override fun onComplete(task:Task<Void>) {
-        //                                                Log.d(TAG, "makeGooglePlayServicesAvailable complete")
-        //                                                mGcmRegistered = true
-        //                                                if (task.isSuccessful()) {
-        //                                                    Log.d(TAG, "makeGooglePlayServicesAvailable completed successfully")
-        //                                                } else {
-        //                                                    val e = task.getException()
-        //                                                    Log.e(TAG, "makeGooglePlayServicesAvailable completed with exception " + e!!.message, e)
-        //                                                }
-        //                                                if (mRegistered) {
-        //                                                    Util.startActivity(this@SplashActivity, MainActivity::class.java, null)
-        //                                                }
-        //                                            }
-        //                                        })
-        //                            })
-        //
-        //                        }
-        //                    } else {
-        //                        mGcmRegistered = true
-        //                        if (mRegistered) {
-        //                            Util.startActivity(this@SplashActivity, MainActivity::class.java, null)
-        //                        }
-        //                    }
+                    // THIS IS WHERE WE WOULD SET UP PUSH MESSAGING
                 }
-// TODO:  add a progress dialog?
             }
-
 
         } catch (e: Exception) {
             Toast.makeText(context, getString(R.string.error_login_details), Toast.LENGTH_LONG).show()
@@ -198,7 +166,7 @@ class LoginFragment : Fragment(), View.OnClickListener {
             ad.show()
         }
 
-        override fun requestComplete(request: Int, result: Int, errorMessage: String) {
+        override fun requestComplete(request: Int, result: Int, errorMessage: String?) {
             activity?.runOnUiThread {
                 if (result == Common.BackplaneResult.SUCCESS || request == Common.BackplaneCallbackType.SYNC) {
                     handleSuccess(request)

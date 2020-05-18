@@ -47,25 +47,26 @@ allprojects {
     }
 }
 
-def lifecycle_version = "2.1.0"
+def lifecycle_version = "2.2.0"
 
 dependencies {
     def sysprops = System.getProperties()
     if (sysprops['idea.platform.prefix'] != null || project.hasProperty("devCmdLine")) {
-        implementation 'com.penthera:cnc-android-sdk-debug:3.15.15'
+        implementation 'com.penthera:cnc-android-sdk-debug:3.16.0'
     } else {
-        implementation 'com.penthera:cnc-android-sdk-debug:3.15.15'
+        implementation 'com.penthera:cnc-android-sdk-debug:3.16.0'
     }
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.0.0'
+    implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    implementation 'com.google.android.material:material:1.0.0'
+    implementation 'com.google.android.material:material:1.1.0'
+    implementation 'androidx.fragment:fragment-ktx:1.2.4'
 
 
-    implementation 'com.google.firebase:firebase-messaging:17.3.4'
-    implementation 'com.google.firebase:firebase-core:16.0.6'
+    implementation 'com.google.firebase:firebase-messaging:20.1.6'
+    implementation 'com.google.firebase:firebase-core:17.4.0'
 
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
 

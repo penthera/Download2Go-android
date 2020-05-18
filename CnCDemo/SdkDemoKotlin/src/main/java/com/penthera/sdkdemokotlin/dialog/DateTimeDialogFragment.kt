@@ -44,7 +44,7 @@ class DateTimeDialogFragment : DialogFragment() {
 
         mLayout = inflater.inflate(R.layout.datetime_dialog, container, false)
 
-        getDialog().setTitle(mTitle)
+        dialog?.setTitle(mTitle)
 
         mDateTimePicker = mLayout!!.findViewById(R.id.DateTimePicker)
         mDateTimePicker!!.is24HourView = true

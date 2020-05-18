@@ -44,10 +44,10 @@ class CatalogFragment : Fragment() , ExampleCatalog.CatalogObserver {
         }
     }
 
-    override fun onAttach(context: Context?) {
+    override fun onAttach(context: Context) {
         super.onAttach(context)
         linearLayoutManager = LinearLayoutManager(context)
-        adapter = CatalogRecyclerAdapter(context!!)
+        adapter = CatalogRecyclerAdapter(context)
 
         navigationListener = activity as NavigationListener
         adapter.navigationListener = navigationListener
@@ -60,9 +60,12 @@ class CatalogFragment : Fragment() , ExampleCatalog.CatalogObserver {
     override fun onDetach() {
         super.onDetach()
 
-        ExampleCatalog.getInstance(context!!).unregisterObserver(this)
+        ExampleCatalog.getInstance(requireContext()).unregisterObserver(this)
+    }
 
-
+    override fun onStart() {
+        super.onStart()
+        adapter.notifyDataSetChanged()
     }
 
     override fun catalogChanged() {

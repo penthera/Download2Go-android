@@ -23,7 +23,7 @@ class MainTabsFragment  : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view: View = inflater.inflate(R.layout.fragment_main_tabs, container, false)
 
-        fragmentManager?.apply {
+        parentFragmentManager.apply {
             val fragmentAdapter = MainPagerAdapter(this, context)
             view.viewpager_main.adapter = fragmentAdapter
             view.tabs_main.setupWithViewPager(view.viewpager_main)

@@ -67,7 +67,6 @@ import com.penthera.sdkdemo.catalog.Catalog.CatalogColumns;
 import com.penthera.sdkdemo.catalog.CatalogContentProvider;
 import com.penthera.virtuososdk.Common;
 import com.penthera.virtuososdk.Common.AssetStatus;
-import com.penthera.virtuososdk.ads.AdRefreshWorker;
 import com.penthera.virtuososdk.client.AncillaryFile;
 import com.penthera.virtuososdk.client.IAsset;
 import com.penthera.virtuososdk.client.IAssetManager;
@@ -75,10 +74,7 @@ import com.penthera.virtuososdk.client.IIdentifier;
 import com.penthera.virtuososdk.client.ISegmentedAsset;
 import com.penthera.virtuososdk.client.QueueObserver;
 import com.penthera.virtuososdk.client.Virtuoso;
-import com.penthera.virtuososdk.client.ads.IVirtuosoAdParserObserver;
-import com.penthera.virtuososdk.client.ads.IVirtuosoAdUrlResolver;
 import com.penthera.virtuososdk.client.database.AssetColumns;
-import com.penthera.virtuososdk.drm.DrmRefreshWorker;
 
 import static com.penthera.virtuososdk.utility.logger.CnCLogger.Log;
 
@@ -748,6 +744,7 @@ public class CatalogDetailFragment extends Fragment implements LoaderManager.Loa
 				String assetStatus = "";
 				int fds = mAsset.getDownloadStatus();
 				String value;
+				boolean checkRetryingState = false;
 				switch(fds){
 				
 				case AssetStatus.DOWNLOADING:
@@ -769,21 +766,25 @@ public class CatalogDetailFragment extends Fragment implements LoaderManager.Loa
 				case AssetStatus.DOWNLOAD_DENIED_ASSET:
 					assetStatus = "Queued";
 					value = "DENIED : MAD";
+					checkRetryingState = true;
 					break;
 
 				case AssetStatus.DOWNLOAD_DENIED_ACCOUNT :
 					assetStatus = "Queued";
 					value = "DENIED : MDA";
+					checkRetryingState = true;
 					break;
 
 				case AssetStatus.DOWNLOAD_DENIED_EXTERNAL_POLICY:
 					assetStatus = "Queued";
 					value = "DENIED : EXT";
+					checkRetryingState = true;
 					break;
 
 				case AssetStatus.DOWNLOAD_DENIED_MAX_DEVICE_DOWNLOADS:
 					assetStatus = "Queued";
 					value = "DENIED :MPD";
+					checkRetryingState = true;
 					break;
 
 				case AssetStatus.DOWNLOAD_BLOCKED_AWAITING_PERMISSION:
@@ -794,15 +795,26 @@ public class CatalogDetailFragment extends Fragment implements LoaderManager.Loa
 				case AssetStatus.DOWNLOAD_DENIED_COPIES:
 					assetStatus = "Queued";
 					value = "DENIED : COPIES";
+					checkRetryingState = true;
 					break;
 
 				default:
 					assetStatus = getString(R.string.status_pending);
+					checkRetryingState = true;
 					value = "pending";
 				}
-				TextView tv = (TextView)mLayout.findViewById(R.id.txt_assetstatus);
+				TextView tv = mLayout.findViewById(R.id.txt_assetstatus);
 				tv.setVisibility(View.VISIBLE);
 				tv.setText(String.format(getString(R.string.asset_status), assetStatus,mAsset.getErrorCount(),value));
+				TextView retryTv = mLayout.findViewById(R.id.txt_retrystatus);
+				boolean showRetryState = false;
+				if (checkRetryingState) {
+					if (mAsset.maximumRetriesExceeded()) {
+						retryTv.setText(R.string.retries_exceeded);
+						showRetryState = true;
+					}
+				}
+				retryTv.setVisibility(showRetryState ? View.VISIBLE : View.GONE);
 				updateProgressBar(progress);
 			}
 		}

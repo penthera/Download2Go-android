@@ -23,8 +23,8 @@ import com.google.android.exoplayer2.drm.FrameworkMediaCrypto
 import com.google.android.exoplayer2.mediacodec.MediaCodecRenderer.DecoderInitializationException
 import com.google.android.exoplayer2.mediacodec.MediaCodecUtil.DecoderQueryException
 import com.google.android.exoplayer2.source.BehindLiveWindowException
-import com.google.android.exoplayer2.source.ExtractorMediaSource
 import com.google.android.exoplayer2.source.MediaSource
+import com.google.android.exoplayer2.source.ProgressiveMediaSource
 import com.google.android.exoplayer2.source.TrackGroupArray
 import com.google.android.exoplayer2.source.dash.DashMediaSource
 import com.google.android.exoplayer2.source.dash.DefaultDashChunkSource
@@ -122,10 +122,10 @@ class VideoPlayerActivity : AppCompatActivity(), View.OnClickListener, PlaybackP
             startWindow = savedInstanceState.getInt(KEY_WINDOW)
             startPosition = savedInstanceState.getLong(KEY_POSITION)
         } else {
-            trackSelectorParameters = ParametersBuilder().build()
+            trackSelectorParameters = ParametersBuilder(this).build()
             clearStartPosition()
         }
-        trackSelectorParameters = DefaultTrackSelector.ParametersBuilder().build()
+        trackSelectorParameters = DefaultTrackSelector.ParametersBuilder(this).build()
 
         receiver = ProxyUpdateListener(this)
     }
@@ -327,7 +327,7 @@ class VideoPlayerActivity : AppCompatActivity(), View.OnClickListener, PlaybackP
                 }
                 ret = factory.createMediaSource(uri!!)
             }
-            Common.AssetIdentifierType.FILE_IDENTIFIER -> ret = ExtractorMediaSource.Factory(mediaDataSourceFactory).createMediaSource(uri)
+            Common.AssetIdentifierType.FILE_IDENTIFIER -> ret = ProgressiveMediaSource.Factory(mediaDataSourceFactory).createMediaSource(uri)
             else -> {
                 throw IllegalStateException("Unsupported type: $type")
             }

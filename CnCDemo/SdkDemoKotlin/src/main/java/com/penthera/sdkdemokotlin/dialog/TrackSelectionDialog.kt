@@ -60,7 +60,7 @@ class TrackSelectionDialog : DialogFragment() {
                     parameters,  /* allowAdaptiveSelections =*/
                     true,  /* allowMultipleOverrides= */
                     false,  /* onClickListener= */
-                    DialogInterface.OnClickListener { dialog: DialogInterface?, which: Int ->
+                    DialogInterface.OnClickListener { _: DialogInterface?, _: Int ->
                         val builder = parameters.buildUpon()
                         for (i in 0 until mappedTrackInfo.rendererCount) {
                             builder
@@ -191,7 +191,7 @@ class TrackSelectionDialog : DialogFragment() {
         return dialog
     }
 
-    override fun onDismiss(dialog: DialogInterface?) {
+    override fun onDismiss(dialog: DialogInterface) {
         super.onDismiss(dialog)
         onDismissListener!!.onDismiss(dialog)
     }
@@ -215,8 +215,8 @@ class TrackSelectionDialog : DialogFragment() {
     }
 
 
-    private class FragmentAdapter(fragmentManager: FragmentManager?, var tabFragments: SparseArray<TrackSelectionViewFragment>,
-                                  var  tabTrackTypes: ArrayList<Int>, var resources: Resources) : FragmentPagerAdapter(fragmentManager) {
+    private class FragmentAdapter(fragmentManager: FragmentManager, var tabFragments: SparseArray<TrackSelectionViewFragment>,
+                                  var  tabTrackTypes: ArrayList<Int>, var resources: Resources) : FragmentPagerAdapter(fragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
         override fun getItem(position: Int): Fragment {
             return tabFragments.valueAt(position)
         }

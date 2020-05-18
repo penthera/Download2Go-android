@@ -85,6 +85,7 @@ import com.penthera.virtuososdk.client.ServiceException;
 import com.penthera.virtuososdk.client.Virtuoso;
 import com.penthera.virtuososdk.client.database.AssetColumns;
 
+import static com.penthera.virtuososdk.Common.ASSET_RETRY_ERROR_LIMIT;
 
 
 /**
@@ -780,7 +781,12 @@ public class InboxFragment extends ListFragment implements LoaderManager.LoaderC
 
 					// 5 maps to AssetColumns.ERROR_COUNT from projection
 					final int error_count = cursor.getInt(5);
-        			errorCount.setText(""+error_count);
+					String retryString = "";
+					if (error_count >= ASSET_RETRY_ERROR_LIMIT) {
+						retryString = " " + getString(R.string.no_retry);
+					}
+					String errorCountText = String.format(getString(R.string.error_count_value), error_count, retryString);
+        			errorCount.setText(errorCountText);
 
 	        		// Visibility
 	        		rowDownloadStatus.setVisibility(View.VISIBLE);
@@ -1075,7 +1081,7 @@ public class InboxFragment extends ListFragment implements LoaderManager.LoaderC
 
 	    private void resetSet(Set<Integer> idSet) {
 	    	for (Integer id : idSet) {
-	    		mAssetManager.getQueue().resetErrors(id);
+	    		mAssetManager.getQueue().clearRetryCount(id);
 	    	}
 	    }
 

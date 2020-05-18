@@ -67,7 +67,6 @@ class DevicesFragment : Fragment(), CancellableProgressDialog.CancelDialogListen
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        super.onAttach(context)
         val offlineVideoProvider = activity as OfflineVideoProvider
         offlineVideoEngine = offlineVideoProvider.getOfflineEngine()
         backplane = offlineVideoEngine?.getVirtuoso()?.backplane
@@ -112,7 +111,7 @@ class DevicesFragment : Fragment(), CancellableProgressDialog.CancelDialogListen
         if (progressDialog == null){
             progressDialog = CancellableProgressDialog.newInstance(this, title)
         }
-        val ft = fragmentManager?.beginTransaction()
+        val ft = parentFragmentManager.beginTransaction()
         progressDialog?.show(ft, "PROGRESS")
     }
 
@@ -126,7 +125,7 @@ class DevicesFragment : Fragment(), CancellableProgressDialog.CancelDialogListen
     }
 
     private fun showNicknameDialog(device: IBackplaneDevice) {
-        val ft = fragmentManager?.beginTransaction()
+        val ft = parentFragmentManager.beginTransaction()
         try {
             // Create Dialog
             val dialog = ChangeNicknameDialogFragment.newInstance(this, device)

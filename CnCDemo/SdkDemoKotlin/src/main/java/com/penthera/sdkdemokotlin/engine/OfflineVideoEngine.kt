@@ -3,6 +3,7 @@ package com.penthera.sdkdemokotlin.engine
 import android.content.Context
 import android.util.Log
 import androidx.lifecycle.*
+import com.penthera.sdkdemokotlin.Config
 import com.penthera.virtuososdk.Common
 import com.penthera.virtuososdk.client.*
 
@@ -131,6 +132,23 @@ class OfflineVideoEngine(lifeCycleOwner: LifecycleOwner, context: Context) : Lif
         return false
     }
 
+    // This login is only used to restart the engine after a shutdown.
+    fun loginAccount() {
+        virtuoso?.backplane?.settings?.let{
+            virtuoso?.startup(it.url, it.userId, it.externalDeviceId, Config.BACKPLANE_PUBLIC_KEY, Config.BACKPLANE_PRIVATE_KEY) { _, _ ->
+                // THIS IS WHERE WE WOULD SET UP PUSH MESSAGING
+            }
+        }
+    }
+
+    fun shutdownEngine() {
+        virtuoso?.shutdown()
+    }
+
+    fun unregisterAccount() {
+        virtuoso?.backplane?.unregister()
+    }
+
     // EngineObserver
     override fun engineDidNotStart(reason: String) {
      //   runOnUiThread { Toast.makeText(this@MainActivity, R.string.error_start_service, Toast.LENGTH_LONG).show() }
@@ -189,109 +207,4 @@ class OfflineVideoEngine(lifeCycleOwner: LifecycleOwner, context: Context) : Lif
     }
 
     override fun disconnected() {}
-
-
-    /*
-     * Download item checking permissions and informing user of problems
-     *
-     * @param context Activity Context
-     * @param permObserver
-     */
-//    fun downloadItem(remoteId: String, url: String, mimetype: String,
-//                     catalogExpiry: Long, downloadExpiry: Long, expiryAfterPlay: Long,
-//                     availabilityStart: Long, metaData: ExampleMetaData,
-//                     permObserver: IQueue.IQueuedAssetPermissionObserver): Boolean {
-//        Log.i(TAG, "Downloading item")
-//        var success = false
-//
-//        getVirtuoso().assetManager?.apply {
-//            val json = metaData.toJson()
-//            val now = System.currentTimeMillis() / 1000
-//
-//            // Create an asset
-//            var file: IFile? = this.createFileAsset(url, remoteId, mimetype, json)
-//            file!!.startWindow = if (availabilityStart <= 0) now else availabilityStart
-//            file.endWindow = if (catalogExpiry <= 0) java.lang.Long.MAX_VALUE else catalogExpiry
-//            file.eap = expiryAfterPlay
-//            file.ead = downloadExpiry
-//
-//            // Add file to the Queue
-//            this.queue.add(file, permObserver)
-//
-//            success = true
-//        }
-//        return success
-//    }
-//
-//
-//    internal class HlsResult {
-//        var error = 0
-//        var queued = false
-//    }
-
-//    fun downloadDashItem(context: Context, service: Virtuoso,
-//                         downloadEnabledContent: Boolean, remoteId: String,
-//                         url: String, catalogExpiry: Long,
-//                         downloadExpiry: Long, expiryAfterPlay: Long,
-//                         availabilityStart: Long, title: String,
-//                         thumbnail: String, permObserver: IQueue.IQueuedAssetPermissionObserver) {
-//
-//        val pm = PermissionManager()
-//        val authorized = pm.canDownload(service.backplane.settings.downloadEnabled,
-//                downloadEnabledContent, catalogExpiry)
-//        val now = System.currentTimeMillis() / 1000
-//        if (authorized == Permission.EAccessAllowed) {
-//
-//            // Create meta data for later display of download list
-//            val json = MetaData.toJson(title, thumbnail)
-//            val manager = service.assetManager
-//
-//            //note we would not be able to use the progress dialog if running from doBackground in an async task
-//            val pdlg = ProgressDialog.show(context, "Processing dash manifest", "Adding fragments...")
-//            val observer = object : ISegmentedAssetFromParserObserver {
-//                override fun willAddToQueue(aSegmentedAsset: ISegmentedAsset?) {
-//                    if (aSegmentedAsset != null) {
-//                        aSegmentedAsset.startWindow = if (availabilityStart <= 0) now else availabilityStart
-//                        aSegmentedAsset.endWindow = if (catalogExpiry <= 0) java.lang.Long.MAX_VALUE else catalogExpiry
-//                        aSegmentedAsset.eap = expiryAfterPlay
-//                        aSegmentedAsset.ead = downloadExpiry
-//                        manager.update(aSegmentedAsset)
-//                    }
-//                }
-//
-//                override fun complete(aSegmentedAsset: ISegmentedAsset?, aError: Int, addedToQueue: Boolean) {
-//
-//                    try {
-//                        pdlg.dismiss()
-//                    } catch (e: Exception) {
-//                    }
-//
-//                    if (aSegmentedAsset == null) {
-//                        val builder1 = AlertDialog.Builder(context)
-//                        builder1.setTitle("Could Not Create Asset")
-//                        builder1.setMessage("Encountered error(" + Integer.toString(aError) + ") while creating asset.  This could happen if the device is currently offline, or if the asset manifest was not accessible.  Please try again later.")
-//                        builder1.setCancelable(false)
-//                        builder1.setPositiveButton("OK"
-//                        ) { dialog, id -> dialog.cancel() }
-//
-//                        val alert11 = builder1.create()
-//                        alert11.show()
-//                    }
-//                    Log.i(TAG, "Finished procesing dash file addedToQueue:$addedToQueue error:$aError")
-//                }
-//
-//                override fun didParseSegment(segment: ISegment): String {
-//                    return segment.remotePath
-//                }
-//            }
-//
-//            try {
-//                manager.createMPDSegmentedAssetAsync(observer, URL(url), 0, 0, remoteId, json, true, permObserver)
-//            } catch (e: MalformedURLException) {
-//                Log.e(TAG, "Problem with dash url.", e)
-//            }
-//
-//        }
-//
-//    }
 }
