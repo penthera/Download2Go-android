@@ -52,9 +52,9 @@ def lifecycle_version = "2.2.0"
 dependencies {
     def sysprops = System.getProperties()
     if (sysprops['idea.platform.prefix'] != null || project.hasProperty("devCmdLine")) {
-        implementation 'com.penthera:cnc-android-sdk-debug:3.16.0'
+        implementation 'com.penthera:cnc-android-sdk-debug:3.16.1'
     } else {
-        implementation 'com.penthera:cnc-android-sdk-debug:3.16.0'
+        implementation 'com.penthera:cnc-android-sdk-debug:3.16.1'
     }
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
