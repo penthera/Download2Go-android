@@ -44,9 +44,9 @@ dependencies {
 
     def sysprops = System.getProperties()
     if (sysprops['idea.platform.prefix'] != null || project.hasProperty("devCmdLine")) {
-        implementation 'com.penthera:cnc-android-sdk-debug:3.16.1'
+        implementation 'com.penthera:cnc-android-sdk-debug:3.16.2'
     } else {
-        implementation 'com.penthera:cnc-android-sdk-debug:3.16.1'
+        implementation 'com.penthera:cnc-android-sdk-debug:3.16.2'
     }
 
     def google_exoplayer_version = "2.11.3"
