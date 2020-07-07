@@ -44,9 +44,9 @@ dependencies {
 
     def sysprops = System.getProperties()
     if (sysprops['idea.platform.prefix'] != null || project.hasProperty("devCmdLine")) {
-        implementation 'com.penthera:cnc-android-sdk-debug:3.16.2'
+        implementation 'com.penthera:cnc-android-sdk-debug:3.16.3'
     } else {
-        implementation 'com.penthera:cnc-android-sdk-debug:3.16.2'
+        implementation 'com.penthera:cnc-android-sdk-debug:3.16.3'
     }
 
     def google_exoplayer_version = "2.11.3"
@@ -67,5 +67,4 @@ dependencies {
     compileOnly files('libs/amazon-device-messaging-1.0.1.jar')
 
 }
-com.google.gms.googleservices.GoogleServicesPlugin.config.disableVersionCheck = true
 apply plugin: 'com.google.gms.google-services'

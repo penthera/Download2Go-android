@@ -1,0 +1,2 @@
+rootProject.name='download2go1_7'
+include ':app'

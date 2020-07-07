@@ -4,6 +4,7 @@ var classSelectorHTML = '\
 		<option value="com.penthera.virtuososdk.client.drm/IDrmInitData">IDrmInitData</option>\
 		<option value="com.penthera.virtuososdk.client.drm/ILicenseManager">ILicenseManager</option>\
 		<option value="com.penthera.virtuososdk.client.drm/IVirtuosoDrmSession">IVirtuosoDrmSession</option>\
+		<option value="com.penthera.virtuososdk.client.drm/IVirtuosoDrmSessionManager">IVirtuosoDrmSessionManager</option>\
 		<option value="com.penthera.virtuososdk.client.drm/VirtuosoDrmSessionManager.EventListener">VirtuosoDrmSessionManager.EventListener</option>\
 	</optgroup>\
 	<optgroup label="Classes">\

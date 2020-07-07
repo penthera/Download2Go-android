@@ -8,6 +8,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.MergeAdapter
 import com.penthera.sdkdemokotlin.R
 import com.penthera.sdkdemokotlin.activity.NavigationListener
 import com.penthera.sdkdemokotlin.activity.OfflineVideoProvider
@@ -22,7 +23,6 @@ import com.penthera.sdkdemokotlin.view.HeaderRecyclerAdapter
 import com.penthera.virtuososdk.client.IAsset
 import com.penthera.virtuososdk.client.ISegmentedAsset
 import kotlinx.android.synthetic.main.fragment_inbox.*
-import me.mvdw.recyclerviewmergeadapter.adapter.RecyclerViewMergeAdapter
 
 /**
  * A single inbox fragment displays some of the different queues available from the SDK for:
@@ -48,12 +48,15 @@ class InboxFragment : Fragment(), AssetsRecyclerAdapter.AssetInboxActionListener
     private lateinit var linearLayoutManager: LinearLayoutManager
 
     /** Merge adapter - combines the three adapters for the different queues plus headers */
-    private var mergeAdapter : RecyclerViewMergeAdapter? = null
+    private var mergeAdapter : MergeAdapter? = null
 
     /** Adapters for the three queues: downloaded, queued, and expired */
     private var downloadedAdapter: AssetsRecyclerAdapter? = null
     private var queuedAdapter: AssetsRecyclerAdapter? = null
     private var expiredAdapter: AssetsRecyclerAdapter? = null
+    private var downloadedHeaderAdapter: HeaderRecyclerAdapter? = null
+    private var queuedHeaderAdapter: HeaderRecyclerAdapter? = null
+    private var expiredHeaderAdapter: HeaderRecyclerAdapter? = null
     private var emptyAdapter: EmptyRecyclerAdapter? = null
 
     /** View model for obtaining the livedata to back the adapters */
@@ -98,15 +101,19 @@ class InboxFragment : Fragment(), AssetsRecyclerAdapter.AssetInboxActionListener
                         it[0]?.let {
                             downloadedAdapter?.cursor = it
                             downloadedAdapter?.notifyDataSetChanged()
+                            downloadedHeaderAdapter?.notifyDataSetChanged()
                         }
                         it[1]?.let {
                             queuedAdapter?.cursor = it
                             queuedAdapter?.notifyDataSetChanged()
+                            queuedHeaderAdapter?.notifyDataSetChanged()
                         }
                         it[2]?.let {
                             expiredAdapter?.cursor = it
                             expiredAdapter?.notifyDataSetChanged()
+                            expiredHeaderAdapter?.notifyDataSetChanged()
                         }
+                        emptyAdapter?.notifyDataSetChanged()
                         setFooter()
                     } else if (it.get(0) != null && it.get(1) != null && it.get(2) != null) {
                         // Wait until we have all three cursors. Simple demo approach.
@@ -130,24 +137,24 @@ class InboxFragment : Fragment(), AssetsRecyclerAdapter.AssetInboxActionListener
 
         downloadedAdapter = AssetsRecyclerAdapter(requireContext(), downloadedCursor, DOWNLOADED, this)
         adaptersList.add(downloadedAdapter!!)
-        val downloadedHeader = HeaderRecyclerAdapter(getString(R.string.downloaded), downloadedAdapter!!)
+        downloadedHeaderAdapter = HeaderRecyclerAdapter(getString(R.string.downloaded), downloadedAdapter!!)
 
         queuedAdapter = AssetsRecyclerAdapter(requireContext(), queuedCursor, QUEUED, this)
         adaptersList.add(queuedAdapter!!)
-        val queuedHeader = HeaderRecyclerAdapter(getString(R.string.queued), queuedAdapter!!)
+        queuedHeaderAdapter = HeaderRecyclerAdapter(getString(R.string.queued), queuedAdapter!!)
 
         expiredAdapter = AssetsRecyclerAdapter(requireContext(), expiredCursor, EXPIRED, this)
         adaptersList.add(expiredAdapter!!)
-        val expiredHeader = HeaderRecyclerAdapter(getString(R.string.expired), expiredAdapter!!)
+        expiredHeaderAdapter = HeaderRecyclerAdapter(getString(R.string.expired), expiredAdapter!!)
 
         emptyAdapter = EmptyRecyclerAdapter(getString(R.string.no_download), adaptersList)
 
-        mergeAdapter = RecyclerViewMergeAdapter()
-        mergeAdapter?.addAdapter(downloadedHeader)
+        mergeAdapter = MergeAdapter()
+        mergeAdapter?.addAdapter(downloadedHeaderAdapter!!)
         mergeAdapter?.addAdapter(downloadedAdapter!!)
-        mergeAdapter?.addAdapter(queuedHeader)
+        mergeAdapter?.addAdapter(queuedHeaderAdapter!!)
         mergeAdapter?.addAdapter(queuedAdapter!!)
-        mergeAdapter?.addAdapter(expiredHeader)
+        mergeAdapter?.addAdapter(expiredHeaderAdapter!!)
         mergeAdapter?.addAdapter(expiredAdapter!!)
         mergeAdapter?.addAdapter(emptyAdapter!!)
 
@@ -209,6 +216,9 @@ class InboxFragment : Fragment(), AssetsRecyclerAdapter.AssetInboxActionListener
         queuedAdapter?.notifyDataSetChanged()
         downloadedAdapter?.notifyDataSetChanged()
         expiredAdapter?.notifyDataSetChanged()
+        downloadedHeaderAdapter?.notifyDataSetChanged()
+        queuedHeaderAdapter?.notifyDataSetChanged()
+        expiredHeaderAdapter?.notifyDataSetChanged()
     }
 
     // onActionItemClicked

@@ -105,7 +105,6 @@
         <receiver android:name=".notification.NotificationReceiver"
             android:enabled="true"
             android:exported="false"
-            android:process=":receiver"
             android:label="NotificationReceiver">
             <intent-filter>
                 <action android:name="com.penthera.virtuososdk.provider.sdkdemo.NOTIFICATION_DOWNLOAD_START"/>
