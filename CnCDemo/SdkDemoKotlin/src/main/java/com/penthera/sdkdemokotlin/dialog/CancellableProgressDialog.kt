@@ -22,10 +22,10 @@ class CancellableProgressDialog : DialogFragment() {
 
     companion object {
         fun newInstance(listener: CancelDialogListener?, title: String): CancellableProgressDialog {
-            val dialog = CancellableProgressDialog()
-            dialog.listener = listener
-            dialog.title = title
-            return dialog
+           return  CancellableProgressDialog().apply {
+               this.listener = listener
+               this.title = title
+           }
         }
     }
 
@@ -37,10 +37,10 @@ class CancellableProgressDialog : DialogFragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.dialog_progress, container, false)
         view.progressTitle.text = title
-        view.btnCancelProgress.setOnClickListener(View.OnClickListener {
+        view.btnCancelProgress.setOnClickListener {
             listener?.cancel()
             dismiss()
-        })
+        }
         return view;
     }
 

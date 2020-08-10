@@ -3,6 +3,7 @@ package com.penthera.sdkdemokotlin.util
 import com.penthera.virtuososdk.Common
 import org.ocpsoft.prettytime.PrettyTime
 import java.util.*
+import kotlin.math.min
 
 /**
  *
@@ -31,7 +32,7 @@ class TextUtils {
      *
      * @return two digit time as string
      */
-    fun twoDigitString(number: Int): String {
+    private fun twoDigitString(number: Int): String {
         if (number == 0) {
             return "00"
         }
@@ -45,7 +46,7 @@ class TextUtils {
      */
     fun getAssetStatusDescription(status: Int) : String {
 
-        var value : String
+        val value : String
         when (status) {
             Common.AssetStatus.MANIFEST_PARSE_PENDING -> value = "parse pending"
 
@@ -110,7 +111,7 @@ class TextUtils {
     /**
      * Calculate expiration time from all the parameters
      */
-    fun getExpiration(completionTime: Long, endWindow: Long, firstPlayTime: Long, expiryAfterPlay: Long, expiryAfterDownload: Long): Long {
+    private fun getExpiration(completionTime: Long, endWindow: Long, firstPlayTime: Long, expiryAfterPlay: Long, expiryAfterDownload: Long): Long {
 
         if (completionTime == 0L) {
             // Not downloaded
@@ -124,10 +125,10 @@ class TextUtils {
             if (firstPlayTime > 0 && expiryAfterPlay > -1)
                 playExpiry = firstPlayTime + expiryAfterPlay
 
-            expiry = Math.min(expiry, playExpiry)
+            expiry = min(expiry, playExpiry)
 
             if (expiryAfterDownload > -1)
-                expiry = Math.min(expiry, completionTime + expiryAfterDownload)
+                expiry = min(expiry, completionTime + expiryAfterDownload)
 
             return if (expiry == java.lang.Long.MAX_VALUE) -1 else expiry
         }

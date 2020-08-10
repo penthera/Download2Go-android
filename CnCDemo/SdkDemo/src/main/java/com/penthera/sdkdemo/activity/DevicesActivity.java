@@ -47,6 +47,7 @@ import com.penthera.virtuososdk.client.BackplaneException;
 import com.penthera.virtuososdk.client.IBackplane;
 import com.penthera.virtuososdk.client.IBackplaneDevice;
 import com.penthera.virtuososdk.client.Observers.IBackplaneObserver;
+import com.penthera.virtuososdk.client.ServiceException;
 
 public class DevicesActivity extends SdkDemoBaseActivity {
 

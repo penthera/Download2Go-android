@@ -62,15 +62,11 @@ public class MimeTypeSettingsDialog extends DialogFragment {
                         break;
                     }
                     case 2: {
-                        currentManifestType = MimeTypeSettings.ManifestType.HSS;
-                        break;
-                    }
-                    case 3: {
                         currentManifestType = MimeTypeSettings.ManifestType.DASH;
                         break;
                     }
 
-                    case 4: {
+                    case 3: {
                         currentManifestType = MimeTypeSettings.ManifestType.ALL;
                         break;
                     }

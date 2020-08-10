@@ -20,7 +20,7 @@ class OfflineVideoEngine(lifeCycleOwner: LifecycleOwner, context: Context) : Lif
     /** The Context used to create virtuoso class */
     var mContext: Context
 
-    private var mLifeCycleOwner: LifecycleOwner
+    private var mLifeCycleOwner: LifecycleOwner = lifeCycleOwner
 
     /** The Virtuoso class */
     private var virtuoso: Virtuoso? = null
@@ -38,7 +38,6 @@ class OfflineVideoEngine(lifeCycleOwner: LifecycleOwner, context: Context) : Lif
     var resumeRequested = false
 
     init {
-        mLifeCycleOwner = lifeCycleOwner
         mLifeCycleOwner.lifecycle.addObserver(this)
         mContext = context
     }

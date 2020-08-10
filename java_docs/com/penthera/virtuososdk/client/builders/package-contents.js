@@ -4,7 +4,6 @@ var classSelectorHTML = '\
 		<option value="com.penthera.virtuososdk.client.builders/IAssetParams">IAssetParams</option>\
 	</optgroup>\
 	<optgroup label="Classes">\
-		<option value="com.penthera.virtuososdk.client.builders/AssetBuilder">AssetBuilder</option>\
 		<option value="com.penthera.virtuososdk.client.builders/AssetParams">AssetParams</option>\
 		<option value="com.penthera.virtuososdk.client.builders/FileAssetBuilder">FileAssetBuilder</option>\
 		<option value="com.penthera.virtuososdk.client.builders/FileAssetBuilder.FileAssetParams">FileAssetBuilder.FileAssetParams</option>\
@@ -14,9 +13,6 @@ var classSelectorHTML = '\
 		<option value="com.penthera.virtuososdk.client.builders/HSSAssetBuilder.HSSAssetParams">HSSAssetBuilder.HSSAssetParams</option>\
 		<option value="com.penthera.virtuososdk.client.builders/MPDAssetBuilder">MPDAssetBuilder</option>\
 		<option value="com.penthera.virtuososdk.client.builders/MPDAssetBuilder.MPDAssetParams">MPDAssetBuilder.MPDAssetParams</option>\
-	</optgroup>\
-	<optgroup label="Enums">\
-		<option value="com.penthera.virtuososdk.client.builders/AssetBuilder.AssetParamsType">AssetBuilder.AssetParamsType</option>\
 	</optgroup>\
 	<optgroup label="Exceptions">\
 		<option value="com.penthera.virtuososdk.client.builders/FileAssetBuilder.FileAssetParamsException">FileAssetBuilder.FileAssetParamsException</option>\

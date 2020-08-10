@@ -8,6 +8,8 @@ Android Tutorials
 * Example1.2 - Download ancillary files
 * Example1.3 - Engine status
 * Example1.4 - Engine performance settings
+* Example1.5 - Customizing Logging
 * Example1.6 - Multi-asset view using cursor
 * Example1.7 - Push Notification Configuration
 * Example6 - **Beta** ~ Client Ads sample
+* Example8 - Widevine DRM integration

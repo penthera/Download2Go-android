@@ -1,6 +1,8 @@
 package com.penthera.sdkdemokotlin.notification
 
 import android.app.Notification
+import android.app.NotificationChannel
+import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.ComponentName
 import android.content.Context
@@ -29,11 +31,11 @@ class NotificationFactory(private val applicationName: String) {
         fun channelDescription() = "Indicates activity this application will perform when the application is not open"
 
         private val TAG = NotificationFactory::class.java.simpleName
+        private var notificationChannel : NotificationChannel? = null
+        private var compatNotificationBuilder: NotificationCompat.Builder? = null
     }
 
     private var assetManager: IAssetManager? = null
-    private var notificationBuilder: Notification.Builder? = null
-    private var compatNotificationBuilder: NotificationCompat.Builder? = null
 
     private val PROGRESS_NOTIFICATION = 0
     private val COMPLETED_NOTIFICATION = 1
@@ -47,9 +49,11 @@ class NotificationFactory(private val applicationName: String) {
      */
     private fun defaultNotificationIntent(context: Context) : Intent {
 
-        val notificationIntent = Intent(context, MainActivity::class.java)
-        notificationIntent.action = "foregroundservice.action.ForegroundServiceNotificationAction"
-        notificationIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        val notificationIntent = Intent(context, MainActivity::class.java).apply{
+            this.action = "foregroundservice.action.ForegroundServiceNotificationAction"
+            this.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        }
+
         return notificationIntent
     }
 
@@ -189,13 +193,13 @@ class NotificationFactory(private val applicationName: String) {
         when (type) {
             PROGRESS_NOTIFICATION -> {
                 progress = getDownloadProgress(asset)
-                title += getAssetTitle(asset)
+                title += asset?.metadata
                 contentText += progress.toString() + "%" + " : " + String.format(" ( %1$,.0f)", asset?.currentSize)
             }
 
             COMPLETED_NOTIFICATION -> {
                 progress = 100
-                title += getAssetTitle(asset) + " complete."
+                title += asset?.metadata + " complete."
             }
 
             STOPPED_NOTIFICATION -> title += "stopped downloads."
@@ -209,61 +213,40 @@ class NotificationFactory(private val applicationName: String) {
 
         val pendingIntent = PendingIntent.getActivity(context, 0, createIntent(context), PendingIntent.FLAG_CANCEL_CURRENT)
 
-        var notification: Notification?
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            if (notificationBuilder == null) {
-                synchronized(this){
-                    if (notificationBuilder == null){
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                            notificationBuilder = Notification.Builder(context, channelId())
-                        } else {
-                            @Suppress("DEPRECATION")
-                            notificationBuilder = Notification.Builder(context)
-                        }
-                        notificationBuilder!!.setOnlyAlertOnce(true)
+        if(compatNotificationBuilder == null) {
+            synchronized(this) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+
+                    notificationChannel = NotificationChannel(channelId(), channelName(), NotificationManager.IMPORTANCE_LOW)
+                    notificationChannel?.apply {
+                        description = channelDescription()
+                        enableLights(false)
+                        enableVibration(false)
                     }
+                    val manager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+                    manager.createNotificationChannel(notificationChannel!!)
+                    compatNotificationBuilder = NotificationCompat.Builder(context, channelId())
+
+                } else {
+                    @Suppress("DEPRECATION")
+                    compatNotificationBuilder = NotificationCompat.Builder(context)
+                    compatNotificationBuilder?.setOnlyAlertOnce(true)
+
                 }
             }
-            var nb = notificationBuilder!!
-                    .setTicker(applicationName)
-                    .setSmallIcon(R.drawable.small_logo)
-                    .setContentTitle(title)
-                    .setContentIntent(pendingIntent)
-                    .setColor(context.getColor(android.R.color.holo_blue_bright))
-                    .setContentText(contentText)
 
-            if (progress >= 0) {
-                nb = nb.setProgress(100, progress, false)
-            }
-            notification =
-                    nb.setWhen(System.currentTimeMillis())
-                    .setOngoing(true).build()
-        } else {
-            if (compatNotificationBuilder == null) {
-                synchronized(this){
-                    if (compatNotificationBuilder == null) {
-                        compatNotificationBuilder = NotificationCompat.Builder(context, channelId())
-                        compatNotificationBuilder!!.setOnlyAlertOnce(true)
-                    }
-                }
-            }
-            var nb = compatNotificationBuilder!!
-                    .setTicker(applicationName)
-                    .setSmallIcon(R.drawable.small_logo)
-                    .setContentTitle(title)
-                    .setContentIntent(pendingIntent)
-                    .setColor(context.getColor(android.R.color.holo_blue_bright))
-                    .setContentText(contentText)
-
-            if (progress >= 0) {
-                nb = nb.setProgress(100, progress, false)
-            }
-            notification =
-                    nb.setWhen(System.currentTimeMillis())
-                            .setOngoing(true).build()
         }
 
-        return notification
+        return compatNotificationBuilder!!.apply {
+            setSmallIcon(R.drawable.small_logo)
+            setContentTitle(title)
+            setContentIntent(pendingIntent)
+            color = context.getColor(android.R.color.holo_blue_bright)
+            setContentText(contentText)
+            if(progress >= 0)setProgress(100, progress, false)
+            setWhen(System.currentTimeMillis())
+            setOngoing(true)
+        }.build()
     }
 
     /**
@@ -272,16 +255,17 @@ class NotificationFactory(private val applicationName: String) {
     * @return progress
     */
     private fun getDownloadProgress(asset: IAsset?): Int {
-        if (asset == null)
-            return 0
-
-        var fractionComplete = asset.fractionComplete
-        fractionComplete *= 100
-        if (fractionComplete > 99.0) {
-            fractionComplete = 99.0
+        var ret  = 0.0
+        asset?.let{
+            var fractionComplete = it.fractionComplete
+            fractionComplete *= 100
+            if (fractionComplete > 99.0) {
+                fractionComplete = 99.0
+            }
+            ret = fractionComplete
         }
 
-        return fractionComplete.toInt()
+        return ret.toInt()
     }
 
     /**
@@ -294,7 +278,7 @@ class NotificationFactory(private val applicationName: String) {
         val title = asset?.let {
             var title = ""
             val json: String = it.metadata
-            if (json.isNotEmpty()) {
+            if (!json.isNullOrEmpty()) {
                title = ExampleMetaData().fromJson(json).title
             }
             title
@@ -309,12 +293,11 @@ class NotificationFactory(private val applicationName: String) {
      * @return the intent
      */
     private fun createIntent(aContext: Context): Intent {
-        val intent = Intent(aContext.packageName + ".DEMO_NOTIFICATION")
-        intent.component = ComponentName(aContext.packageName, MainActivity::class.java.name)
-        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-        intent.flags = Intent.FLAG_ACTIVITY_SINGLE_TOP
-        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-        intent.flags = Intent.FLAG_FROM_BACKGROUND
+        val intent = Intent(aContext.packageName + ".DEMO_NOTIFICATION").apply{
+            this.component = ComponentName(aContext.packageName, MainActivity::class.java.name)
+            this.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_SINGLE_TOP or  Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_FROM_BACKGROUND
+        }
+
         return intent
     }
 }

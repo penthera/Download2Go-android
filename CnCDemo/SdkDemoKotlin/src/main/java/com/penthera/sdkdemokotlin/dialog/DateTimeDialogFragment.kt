@@ -30,11 +30,11 @@ class DateTimeDialogFragment : DialogFragment() {
 
     companion object {
         fun newInstance(listener: OnDateSetListener, currentTime: Long, title: String): DateTimeDialogFragment {
-            val f = DateTimeDialogFragment()
-            f.mDateSetListener = listener
-            f.mTitle = title
-            f.mInitialTime = if (currentTime != java.lang.Long.MAX_VALUE) currentTime else System.currentTimeMillis()
-            return f
+           return DateTimeDialogFragment().apply {
+               mDateSetListener = listener
+               mTitle = title
+               mInitialTime = if (currentTime != java.lang.Long.MAX_VALUE) currentTime else System.currentTimeMillis()
+           }
         }
 
     }
@@ -46,20 +46,25 @@ class DateTimeDialogFragment : DialogFragment() {
 
         dialog?.setTitle(mTitle)
 
-        mDateTimePicker = mLayout!!.findViewById(R.id.DateTimePicker)
-        mDateTimePicker!!.is24HourView = true
-        mDateTimePicker!!.dateTimeMillis = mInitialTime
-
-        mLayout!!.findViewById<View>(R.id.SetDateTime).setOnClickListener {
-            if (mDateSetListener != null) {
-                mDateSetListener!!.onDateTimeSet(mDateTimePicker!!.dateTimeMillis)
+        mLayout?.let{
+            mDateTimePicker = it.findViewById(R.id.DateTimePicker)
+            mDateTimePicker?.let{dp ->
+                dp.is24HourView = true
+                dp.dateTimeMillis = mInitialTime
             }
-            dismiss()
+
+            it.findViewById<View>(R.id.SetDateTime)?.let{setDT->
+                setDT.setOnClickListener {
+                    if (mDateSetListener != null) {
+                        mDateSetListener!!.onDateTimeSet(mDateTimePicker!!.dateTimeMillis)
+                    }
+                    dismiss()
+                }
+            }
+
+            it.findViewById<View>(R.id.ResetDateTime).setOnClickListener { mDateTimePicker!!.dateTimeMillis = mInitialTime }
+            it.findViewById<View>(R.id.CancelDialog).setOnClickListener { dismiss() }
         }
-
-        mLayout!!.findViewById<View>(R.id.ResetDateTime).setOnClickListener { mDateTimePicker!!.dateTimeMillis = mInitialTime }
-
-        mLayout!!.findViewById<View>(R.id.CancelDialog).setOnClickListener { dismiss() }
 
         return mLayout
     }

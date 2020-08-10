@@ -94,7 +94,7 @@ class VirtuosoQueueLiveData(private val context: Context, private val uri: Uri) 
 
     }
 
-    inner class FetchCursorTask : AsyncTask<Void, Void, Cursor>() {
+     inner class FetchCursorTask : AsyncTask<Void, Void, Cursor>() {
         override fun doInBackground(vararg params: Void?): Cursor? {
             synchronized(this@VirtuosoQueueLiveData) {
                 cancellationSignal = CancellationSignal()

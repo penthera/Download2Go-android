@@ -44,9 +44,9 @@ dependencies {
 
     def sysprops = System.getProperties()
     if (sysprops['idea.platform.prefix'] != null || project.hasProperty("devCmdLine")) {
-        implementation 'com.penthera:cnc-android-sdk-debug:3.16.3'
+        implementation 'com.penthera:cnc-android-sdk-debug:3.16.4'
     } else {
-        implementation 'com.penthera:cnc-android-sdk-debug:3.16.3'
+        implementation 'com.penthera:cnc-android-sdk-debug:3.16.4'
     }
 
     def google_exoplayer_version = "2.11.3"
@@ -64,7 +64,7 @@ dependencies {
     implementation files('libs/prettytime-1.0.8.Final.jar')
     implementation 'androidx.multidex:multidex:2.0.0'
 
-    compileOnly files('libs/amazon-device-messaging-1.0.1.jar')
+    compileOnly files('libs/amazon-device-messaging-1.1.0.jar')
 
 }
 apply plugin: 'com.google.gms.google-services'

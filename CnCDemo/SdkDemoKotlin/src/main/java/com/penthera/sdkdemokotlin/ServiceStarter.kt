@@ -34,7 +34,7 @@ class ServiceStarter : VirtuosoServiceStarter() {
          * into the download service process.
          */
         fun updateNotification(aContext: Context, aIntent: Intent) {
-            VirtuosoServiceStarter.updateNotification(aContext, aIntent, ServiceStarter::class.java)
+            updateNotification(aContext, aIntent, ServiceStarter::class.java)
         }
     }
 
@@ -57,16 +57,6 @@ class ServiceStarter : VirtuosoServiceStarter() {
      * (see ServiceForegroundNotificationProvider). In a more complex application this may not be shared.
      */
     override fun getForegroundServiceNotification(context: Context?, forIntent: Intent?): Notification {
-
-        // Create a notification channel
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && notificationChannel == null) {
-            notificationChannel = NotificationChannel(NotificationFactory.channelId(), NotificationFactory.channelName(), NotificationManager.IMPORTANCE_LOW)
-            notificationChannel?.setDescription(NotificationFactory.channelDescription())
-            notificationChannel?.enableLights(false)
-            notificationChannel?.enableVibration(false)
-            val manager = context?.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-            manager.createNotificationChannel(notificationChannel!!)
-        }
 
         val notification = notificationFactory.getNotification(context!!, forIntent)
         if (notification != null) {

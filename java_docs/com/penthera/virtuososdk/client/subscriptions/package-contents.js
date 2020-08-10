@@ -4,6 +4,7 @@ var classSelectorHTML = '\
 		<option value="com.penthera.virtuososdk.client.subscriptions/ISubscriptionsProvider">ISubscriptionsProvider</option>\
 	</optgroup>\
 	<optgroup label="Classes">\
+		<option value="com.penthera.virtuososdk.client.subscriptions/ADMJobMessageHandler">ADMJobMessageHandler</option>\
 		<option value="com.penthera.virtuososdk.client.subscriptions/ADMReceiver">ADMReceiver</option>\
 		<option value="com.penthera.virtuososdk.client.subscriptions/ADMService">ADMService</option>\
 		<option value="com.penthera.virtuososdk.client.subscriptions/FcmMessagingService">FcmMessagingService</option>\

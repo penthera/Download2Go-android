@@ -29,14 +29,16 @@ class ServiceForegroundNotificationProvider : IForegroundNotificationProvider{
     }
 
     override fun shouldUpdateForegroundServiceNotificationOnIntent(context: Context?, reasonIntent: Intent?): Boolean {
-        val action = reasonIntent!!.action
-        Log.d("ForegroundNotification" , "got action: $action")
-        if (context == null ||  action == null) {
-            return false
+        if(context != null) {
+            reasonIntent?.let {
+                val action = it.action
+                Log.d("ForegroundNotification", "got action: $action")
+                action?.let{// Do not update progress for events
+                    return !action.contains(Common.Notifications.NOTIFICATION_EVENT_TAG)
+                }
+            }
         }
-
-        // Do not update progress for events
-        return !action.contains(Common.Notifications.NOTIFICATION_EVENT_TAG)
+        return false
     }
 
     override fun setExistingNotificationForReuse(notification: Notification?) {

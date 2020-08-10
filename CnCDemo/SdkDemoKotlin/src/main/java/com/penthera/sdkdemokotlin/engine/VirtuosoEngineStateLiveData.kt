@@ -8,9 +8,7 @@ import com.penthera.virtuososdk.client.ServiceException
 /**
  *
  */
-class VirtuosoEngineStateLiveData(virtuosoService: IService) : LiveData<VirtuosoEngineState>() {
-
-    val virtuosoService: IService = virtuosoService
+class VirtuosoEngineStateLiveData(val virtuosoService: IService) : LiveData<VirtuosoEngineState>() {
 
     override fun onActive() {
         super.onActive()

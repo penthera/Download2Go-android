@@ -51,9 +51,7 @@ class AssetsRecyclerAdapter (private val context: Context, var cursor: Cursor, p
     }
 
     fun toggleCheck(id: Int) {
-        val contains = checked.containsKey(id)
-
-        if (!contains) {
+        if (checked.containsKey(id)) {
             checked[id] = Integer.valueOf(1)
         } else {
             checked.remove(id)

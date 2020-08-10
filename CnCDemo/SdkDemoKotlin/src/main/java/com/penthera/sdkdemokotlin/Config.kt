@@ -14,10 +14,10 @@ class Config {
 
         //SdkDemo Keys
         /** The backplane public key.  NOTE: YOU MUST REPLACE THIS VALUE WITH YOUR OWN PENTHERA-ASSIGNED KEYS  */
-        val BACKPLANE_PUBLIC_KEY = "73ca8dfb4e0f7144fdf43640aa70cc0fdfc9d10e4cd530d5ba6370cf56527f39"
+        val BACKPLANE_PUBLIC_KEY = 
 
         /** The backplane private key.  NOTE: YOU MUST REPLACE THIS VALUE WITH YOUR OWN PENTHERA-ASSIGNED KEYS  */
-        val BACKPLANE_PRIVATE_KEY = "a546f1037420a552f5d6305cb85feb1d1d710555a48e6afc2d74237ccf335938"
+        val BACKPLANE_PRIVATE_KEY = 
 
         /** Test download  */
         val SMALL_DOWNLOAD = "http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4"

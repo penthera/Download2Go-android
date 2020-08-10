@@ -21,13 +21,11 @@ class TextInputDialog : DialogFragment() {
 
     companion object {
         fun newInstance(observer: TextInputObserver , value : String, hint : String) : TextInputDialog{
-            var dialog = TextInputDialog()
-            dialog.hint = hint
-            dialog.value = value
-            dialog.observer = observer
-
-            return dialog
-
+            return TextInputDialog().apply{
+                this.hint = hint
+                this.value = value
+                this.observer = observer
+            }
         }
 
     }

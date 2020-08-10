@@ -30,14 +30,6 @@ public class DemoADMService extends ADMService {
 
     private static final String TAG = DemoADMService.class.getName();
 
-    static public class DemoADMReceiver extends ADMReceiver{
-
-        public DemoADMReceiver(){
-            //Pass our ADM Service to the parent class
-            super(DemoADMService.class);
-        }
-    }
-
     @Override
     protected void onMessage(Intent intent) {
         //always call super so that the SDK works correctly

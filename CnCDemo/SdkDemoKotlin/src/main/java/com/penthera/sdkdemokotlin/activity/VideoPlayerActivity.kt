@@ -111,10 +111,13 @@ class VideoPlayerActivity : AppCompatActivity(), View.OnClickListener, PlaybackP
         selectTracksButton = findViewById<View>(R.id.select_tracks_button) as Button
         selectTracksButton!!.setOnClickListener(this)
 
-        playerView = findViewById<View>(R.id.player_view) as PlayerView
-        playerView!!.setControllerVisibilityListener(this)
-        playerView!!.setErrorMessageProvider(PlayerErrorMessageProvider(this))
-        playerView!!.requestFocus()
+        playerView = findViewById<PlayerView>(R.id.player_view).apply{
+            setControllerVisibilityListener(this@VideoPlayerActivity)
+            setErrorMessageProvider(PlayerErrorMessageProvider(this@VideoPlayerActivity))
+            requestFocus()
+
+        }
+
 
         if (savedInstanceState != null) {
             trackSelectorParameters = savedInstanceState.getParcelable(KEY_TRACK_SELECTOR_PARAMETERS)
@@ -125,7 +128,6 @@ class VideoPlayerActivity : AppCompatActivity(), View.OnClickListener, PlaybackP
             trackSelectorParameters = ParametersBuilder(this).build()
             clearStartPosition()
         }
-        trackSelectorParameters = DefaultTrackSelector.ParametersBuilder(this).build()
 
         receiver = ProxyUpdateListener(this)
     }
@@ -263,13 +265,14 @@ class VideoPlayerActivity : AppCompatActivity(), View.OnClickListener, PlaybackP
             val renderersFactory = DefaultRenderersFactory(this)
             renderersFactory.setExtensionRendererMode(extensionRendererMode)
 
-            player = SimpleExoPlayer.Builder(this, renderersFactory)
-                    .setTrackSelector(trackSelector!!)
-                    .setBandwidthMeter(BANDWIDTH_METER)
-                    .build()
-            player?.addListener(PlayerEventListener())
-            player?.addAnalyticsListener(EventLogger(trackSelector))
-            player?.playWhenReady = shouldAutoPlay
+            player = SimpleExoPlayer.Builder(this, renderersFactory).apply {
+                setTrackSelector(trackSelector!!)
+                setBandwidthMeter(BANDWIDTH_METER)
+            }.build().apply {
+                addListener(PlayerEventListener())
+                addAnalyticsListener(EventLogger(trackSelector))
+                playWhenReady = shouldAutoPlay
+            }
 
 
             playerView?.player = player
@@ -302,15 +305,6 @@ class VideoPlayerActivity : AppCompatActivity(), View.OnClickListener, PlaybackP
 
         val ret : MediaSource
         when (type) {
-            ISegmentedAsset.SEG_FILE_TYPE_HSS -> {
-                val factory = SsMediaSource.Factory(
-                        DefaultSsChunkSource.Factory(mediaDataSourceFactory!!),
-                        buildDataSourceFactory(false))
-                if (drmSessionManager != null) {
-                    factory.setDrmSessionManager(drmSessionManager!!)
-                }
-                ret = factory.createMediaSource(uri!!)
-            }
             ISegmentedAsset.SEG_FILE_TYPE_MPD -> {
                 val factory = DashMediaSource.Factory(
                         DefaultDashChunkSource.Factory(mediaDataSourceFactory!!),
@@ -468,14 +462,14 @@ class VideoPlayerActivity : AppCompatActivity(), View.OnClickListener, PlaybackP
         debugRootView!!.visibility = View.GONE
 
         runOnUiThread {
-            val alertDialog = AlertDialog.Builder(this@VideoPlayerActivity).create()
-            alertDialog.setTitle("License unavailable")
-            alertDialog.setMessage("License for offline playback expired and renew is unavailable.")
-            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK") { dialog, _ ->
-                dialog.dismiss()
-                this@VideoPlayerActivity.finish()
-            }
-            alertDialog.show()
+            AlertDialog.Builder(this@VideoPlayerActivity).apply {
+                title = "License unavailable"
+                setMessage("License for offline playback expired and renew is unavailable.")
+                setNeutralButton("OK", {dialog, _ ->
+                    dialog.dismiss()
+                    this@VideoPlayerActivity.finish()
+                })
+            }.create().show()
         }
     }
 

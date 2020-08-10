@@ -194,7 +194,6 @@
     <string-array name="mime_manifest_types">
         <item>Select a manifest type</item>
         <item>HLS</item>
-        <item>HSS</item>
         <item>MPEG DASH</item>
         <item>ALL</item>
     </string-array>
