@@ -46,10 +46,7 @@ import com.penthera.sdkdemokotlin.catalog.ExampleCatalogItem
 import com.penthera.sdkdemokotlin.dialog.TrackSelectionDialog
 import com.penthera.sdkdemokotlin.drm.DrmSessionManagerWrapper
 import com.penthera.virtuososdk.Common
-import com.penthera.virtuososdk.client.IAsset
-import com.penthera.virtuososdk.client.IFile
-import com.penthera.virtuososdk.client.ISegmentedAsset
-import com.penthera.virtuososdk.client.Virtuoso
+import com.penthera.virtuososdk.client.*
 import com.penthera.virtuososdk.client.drm.UnsupportedDrmException
 import com.penthera.virtuososdk.client.drm.VirtuosoDrmSessionManager
 import com.penthera.virtuososdk.utility.CommonUtil.Identifier.*
@@ -67,8 +64,6 @@ class VideoPlayerActivity : AppCompatActivity(), View.OnClickListener, PlaybackP
     // Best practice is to ensure we have a Virtuoso instance available while playing segmented assets
     // as this will guarantee the proxy service remains available throughout.
     private var mVirtuoso: Virtuoso? = null
-
-    private var receiver: ProxyUpdateListener? = null
 
     private var playerView: PlayerView? = null
     private var debugRootView: LinearLayout? = null
@@ -128,8 +123,6 @@ class VideoPlayerActivity : AppCompatActivity(), View.OnClickListener, PlaybackP
             trackSelectorParameters = ParametersBuilder(this).build()
             clearStartPosition()
         }
-
-        receiver = ProxyUpdateListener(this)
     }
 
     public override fun onNewIntent(intent: Intent) {
@@ -149,15 +142,12 @@ class VideoPlayerActivity : AppCompatActivity(), View.OnClickListener, PlaybackP
     public override fun onResume() {
         super.onResume()
         mVirtuoso?.onResume()
-        val auth = "com.penthera.virtuososdk.provider.sdkkotlindemo"
-        val filter = IntentFilter(auth + Common.Notifications.INTENT_PROXY_UPDATE)
-        registerReceiver(receiver, filter)
+        mVirtuoso?.addObserver(ProxyPortUpdated(this))
     }
 
     public override fun onPause() {
         super.onPause()
         mVirtuoso?.onPause()
-        unregisterReceiver(receiver)
     }
 
     public override fun onStop() {
@@ -600,12 +590,13 @@ class VideoPlayerActivity : AppCompatActivity(), View.OnClickListener, PlaybackP
     }
 
     /**
-     * The proxy update listener receives broadcasts if the proxy needs to change port after a restart,
+     * The proxy update observes if the proxy needs to change port after a restart,
      * which can occur if the app is placed in the background and then brought back to the foreground.
      * In this case the player needs to be set back up to get the new base url.
      */
-    private class ProxyUpdateListener(private val player: VideoPlayerActivity) : BroadcastReceiver() {
-        override fun onReceive(context: Context, intent: Intent) {
+    private class ProxyPortUpdated(private val player: VideoPlayerActivity) : EngineObserver() {
+        override fun proxyPortUpdated() {
+            super.proxyPortUpdated()
             Log.w(VideoPlayerActivity::class.java.getSimpleName(), "Received warning about change in port, restarting player")
             player.releasePlayer()
             player.shouldAutoPlay = true

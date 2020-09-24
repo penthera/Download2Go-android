@@ -32,11 +32,8 @@ package com.penthera.sdkdemo.exoplayer;
 
 import android.annotation.TargetApi;
 import android.app.AlertDialog;
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.media.MediaDrm;
 import android.net.Uri;
 import android.os.Bundle;
@@ -104,6 +101,7 @@ import com.penthera.sdkdemo.drm.DrmSessionManagerWrapper;
 import com.penthera.virtuososdk.Common;
 import com.penthera.virtuososdk.ads.VirtuosoAdScheduling;
 import com.penthera.virtuososdk.ads.vast.VirtuosoVideoAd;
+import com.penthera.virtuososdk.client.EngineObserver;
 import com.penthera.virtuososdk.client.IAsset;
 import com.penthera.virtuososdk.client.ISegmentedAsset;
 import com.penthera.virtuososdk.client.Virtuoso;
@@ -149,8 +147,6 @@ public class PlayerActivity extends AppCompatActivity implements OnClickListener
         DEFAULT_COOKIE_MANAGER = new CookieManager();
         DEFAULT_COOKIE_MANAGER.setCookiePolicy(CookiePolicy.ACCEPT_ORIGINAL_SERVER);
     }
-
-    private ProxyUpdateListener receiver;
 
     private PlayerView playerView;
     private LinearLayout debugRootView;
@@ -219,8 +215,6 @@ public class PlayerActivity extends AppCompatActivity implements OnClickListener
         // we find the timebar and then grab the parent instead for this demonstration.
         View progressView = playerView.findViewById(com.google.android.exoplayer2.ui.R.id.exo_progress);
         customController = (PlayerControlView)(progressView.getParent().getParent().getParent());
-
-        receiver = new ProxyUpdateListener();
     }
 
     @Override
@@ -247,9 +241,25 @@ public class PlayerActivity extends AppCompatActivity implements OnClickListener
     public void onResume() {
         super.onResume();
         mVirtuoso.onResume();  // best to ensure we have bound to ensure proxy remains available
-        String auth = "com.penthera.virtuososdk.provider.sdkdemo";
-        IntentFilter filter = new IntentFilter(auth + Common.Notifications.INTENT_PROXY_UPDATE);
-        registerReceiver(receiver, filter);
+        mVirtuoso.addObserver(new EngineObserver(){
+            @Override
+            public void proxyPortUpdated(){
+                /*
+                 * The proxy update occurs if the proxy needs to change port after a restart,
+                 * which can occur if the app is placed in the background and then brought back to the foreground.
+                 * In this case the player needs to be set back up to get the new base url.
+                 */
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Log.w(PlayerActivity.class.getSimpleName(), "Received warning about change in port, restarting player");
+                        releasePlayer();
+                        shouldAutoPlay = true;
+                        initializePlayer();
+                    }
+                });
+            }
+        });
         if ((Util.SDK_INT <= 23 || player == null)) {
             initializePlayer();
             if (playerView != null) {
@@ -262,7 +272,6 @@ public class PlayerActivity extends AppCompatActivity implements OnClickListener
     public void onPause() {
         super.onPause();
         mVirtuoso.onPause();
-        unregisterReceiver(receiver);
         if (Util.SDK_INT <= 23) {
             if (playerView != null) {
                 playerView.onPause();
@@ -852,22 +861,6 @@ public class PlayerActivity extends AppCompatActivity implements OnClickListener
         @Override
         public void onEvent(@NonNull MediaDrm md, @Nullable byte[] sessionId, int event, int extra, @Nullable byte[] data) {
             Log.d("MediaDrm", "MediaDrm event: " + event);
-        }
-    }
-
-    /**
-     * The proxy update listener receives broadcasts if the proxy needs to change port after a restart,
-     * which can occur if the app is placed in the background and then brought back to the foreground.
-     * In this case the player needs to be set back up to get the new base url.
-     */
-    private class ProxyUpdateListener extends BroadcastReceiver {
-
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            Log.w(PlayerActivity.class.getSimpleName(), "Received warning about change in port, restarting player");
-            releasePlayer();
-            shouldAutoPlay = true;
-            initializePlayer();
         }
     }
 

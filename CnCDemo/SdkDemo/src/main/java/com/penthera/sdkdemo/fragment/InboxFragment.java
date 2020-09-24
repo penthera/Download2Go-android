@@ -376,10 +376,6 @@ public class InboxFragment extends ListFragment implements LoaderManager.LoaderC
 				handlePauseResume(item);
 				break;
 			}
-	        case R.id.menu_sync: {
-	        	handleSync();
-	        	return true;
-	        }
 		}
 		return super.onOptionsItemSelected(item);
 	}
@@ -1172,17 +1168,5 @@ public class InboxFragment extends ListFragment implements LoaderManager.LoaderC
 				e.printStackTrace();
 			}
     	}
-	}
-
-	/**
-	 * Perform a sync with the server
-	 */
-	private void handleSync() {
-		try {
-			if( mService != null )
-				mService.getBackplane().sync();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 }

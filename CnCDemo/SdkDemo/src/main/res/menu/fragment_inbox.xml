@@ -1,26 +1,19 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item 
-   		android:id="@+id/menu_pause_resume" 
-     	android:showAsAction="ifRoom" 
+   		android:id="@+id/menu_pause_resume"
+		app:showAsAction="ifRoom"
      	android:title="@string/pause" 
      	android:visible="true">
     </item>
 
-    <item 
-   		android:id="@+id/menu_sync" 
-     	android:showAsAction="always" 
-     	android:title="@string/sync" 
-     	android:titleCondensed="@string/sync" 
-     	android:visible="true">
-    </item>
-
 	<item 
-   		android:id="@+id/menu_add_test_item" 
-     	android:showAsAction="never" 
-     	android:title="@string/add_test_item" 
+   		android:id="@+id/menu_add_test_item"
+		android:title="@string/add_test_item"
      	android:titleCondensed="@string/add_test_item" 
-     	android:visible="true">
+     	android:visible="true"
+		app:showAsAction="never">
     </item>
     
 </menu>

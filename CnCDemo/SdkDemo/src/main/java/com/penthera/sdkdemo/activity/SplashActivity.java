@@ -161,11 +161,7 @@ public class SplashActivity extends SdkDemoBaseActivity {
 			if (ALWAYS_SHOW_SPLASH) {
 				mHandler.sendEmptyMessageDelayed(MSG_FADE_IN_LOGGED_IN, FADE_IN_DELAY);
 			} else {
-				//make sure we sync on startup.
-				//This is not entirely necessary but good practice to ensure backplane settings are up to date.
-				Bundle args = new Bundle();
-				args.putBoolean(SdkDemoBaseActivity.SYNC_ON_CONNECT, true);
-				Util.startActivity(SplashActivity.this, MainActivity.class, args);				
+				Util.startActivity(SplashActivity.this, MainActivity.class, null);
 			}
 		}
     	

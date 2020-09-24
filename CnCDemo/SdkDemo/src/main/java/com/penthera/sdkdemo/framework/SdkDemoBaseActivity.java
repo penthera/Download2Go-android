@@ -60,7 +60,6 @@ public abstract class SdkDemoBaseActivity extends AppCompatActivity {
 
 	/** Check whether intent extras contains this key to determine if a sync should be carried out on connection to Virtuoso */
 	public static final String SYNC_ON_CONNECT = "sync_on_connnect";
-	private boolean mSyncOnConnect = false;
 
 	/**
 	 * Handle on the base Penthera SDK API
@@ -143,23 +142,8 @@ public abstract class SdkDemoBaseActivity extends AppCompatActivity {
 	protected void onCreate(Bundle arg0) {
 		super.onCreate(arg0);
 
-
-
-		//check whether we should sync
-		Bundle args = getIntent().getExtras();
-		mSyncOnConnect = args != null && args.getBoolean(SYNC_ON_CONNECT);
-
 		mVirtuoso = new Virtuoso(getApplicationContext());
         mConnectedService = mVirtuoso.getService();
-		if(mSyncOnConnect){
-			//cancel the sync flag
-			mSyncOnConnect = false;
-			try {
-				mVirtuoso.getBackplane().sync();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
         doPermissionsCheck(false);
 	}
 
