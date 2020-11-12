@@ -4,7 +4,7 @@
 	xmlns:amazon="http://schemas.amazon.com/apk/res/android"
 	package="com.penthera.sdkdemo"
 	android:versionCode="31605000"
-	android:versionName="3.16.5">
+	android:versionName="3.16.5.1">
 
 	<uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="com.penthera.sdkdemo.permission.CATALOG"/>
