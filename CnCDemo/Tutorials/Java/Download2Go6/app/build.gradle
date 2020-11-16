@@ -58,8 +58,8 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
 
     // TODO: temporarily changed until release SDK catches up
-    implementation 'com.penthera:cnc-android-sdk-debug:3.16.3.3'
-//    implementation 'com.penthera:cnc-android-sdk-debug:3.16.3.3'
+    implementation 'com.penthera:cnc-android-sdk-debug:3.16.3.4'
+//    implementation 'com.penthera:cnc-android-sdk-debug:3.16.3.4'
 
     implementation 'com.google.android.exoplayer:exoplayer:2.11.3'
     // The ima exoplayer extension is required for client side ad insertion in order to interpret and play the
