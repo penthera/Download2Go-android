@@ -19,8 +19,6 @@ import com.penthera.virtuososdk.Common;
 import com.penthera.virtuososdk.client.IAsset;
 import com.penthera.virtuososdk.client.IEvent;
 
-import static androidx.constraintlayout.widget.Constraints.TAG;
-
 /**
  * This notification factory is a helper class for creating our notifications throughout the tutorial series.
  * Nothing in this class is specific to the Download2Go SDK, it encapsulates all of the standard methods that
@@ -31,9 +29,9 @@ public class NotificationFactory {
     // Log Tag
     static final String LOG_TAG = NotificationFactory.class.getName();
 
-    private static String channelID = "DOWNLOAD2GO_HELLO_WORLD_CHANNEL_ID";
-    private static String channelName = "Download2GoHelloWorld Background Activity";
-    private static String channelDescription = "Indicates activity this application will perform when the application is not open";
+    private static final String channelID = "DOWNLOAD2GO_HELLO_WORLD_CHANNEL_ID";
+    private static final String channelName = "Download2GoHelloWorld Background Activity";
+    private static final String channelDescription = "Indicates activity this application will perform when the application is not open";
 
     /** Internal list of types of notifications in this factory */
     final static int PROGRESS_NOTIFICATION		= 0;
@@ -71,7 +69,7 @@ public class NotificationFactory {
         Intent notificationIntent = intent != null ? intent : defaultNotificationIntent(context);
 
         // Get package name for use in modifying actions
-        String clientReference = null;
+        String clientReference;
         try {
             ApplicationInfo ai = context.getPackageManager().getApplicationInfo(context.getPackageName(), PackageManager.GET_META_DATA);
             Bundle b =ai.metaData;
@@ -95,16 +93,17 @@ public class NotificationFactory {
 
             IEvent event = notificationIntent.getParcelableExtra(Common.Notifications.EXTRA_NOTIFICATION_EVENT);
 
-            Log.d(TAG, "Got event named(" + event.name() + ") asset(" + event.assetId() + " data(" + event.numericData() + ")");
+            if(event != null)
+                Log.d(LOG_TAG, "Got event named(" + event.name() + ") asset(" + event.assetId() + " data(" + event.numericData() + ")");
             return null;
         }
 
         // The other broadcasts are notification broadcasts specifically sent for (optional) status bar notification delivery.
         // Determine which action we are handling and create a notification for it.
-        int notificationType = -1;
+        int notificationType;
         IAsset asset = null;
 
-        if (action == Common.START_VIRTUOSO_SERVICE) {
+        if (action.equals(Common.START_VIRTUOSO_SERVICE)) {
             notificationType = RESTART_NOTIFICATION;
         } else {
             boolean hasInfo = false;
@@ -123,45 +122,57 @@ public class NotificationFactory {
             switch(intentAction) {
                 case Common.Notifications.INTENT_NOTIFICATION_DOWNLOAD_COMPLETE:
                     notificationType = COMPLETED_NOTIFICATION;
-                    Log.d(TAG, "DOWNLOAD COMPLETE NOTIFICATION FOR " + asset.getUuid() + " stat: " + (hasInfo ? info : "unknown"));
+                    if (asset != null) {
+                        Log.d(LOG_TAG, "DOWNLOAD COMPLETE NOTIFICATION FOR " + asset.getUuid() + " stat: " + (hasInfo ? info : "unknown"));
+                    }else {
+                        Log.d(LOG_TAG, "DOWNLOAD COMPLETE NOTIFICATION FOR UNKNOWN" + " stat: " + (hasInfo ? info : "unknown"));
+                    }
                     break;
 
                 case Common.Notifications.INTENT_NOTIFICATION_DOWNLOAD_START:
                     notificationType = PROGRESS_NOTIFICATION;
-                    Log.d(TAG, "DOWNLOAD START NOTIFICATION FOR " + asset.getUuid() + " stat: " + (hasInfo ? info : "unknown"));
+                    if (asset != null) {
+                        Log.d(LOG_TAG, "DOWNLOAD START NOTIFICATION FOR " + asset.getUuid() + " stat: " + (hasInfo ? info : "unknown"));
+                    }else {
+                        Log.d(LOG_TAG, "DOWNLOAD START NOTIFICATION FOR UNKNOWN" + " stat: " + (hasInfo ? info : "unknown"));
+                    }
                     break;
 
                 case Common.Notifications.INTENT_NOTIFICATION_DOWNLOAD_STOPPED:
                     if (asset != null) {
-                        Log.d(TAG, "DOWNLOAD STOP NOTIFICATION FOR " + asset.getUuid() + " stat: " + (hasInfo ? info : "unknown"));
+                        Log.d(LOG_TAG, "DOWNLOAD STOP NOTIFICATION FOR " + asset.getUuid() + " stat: " + (hasInfo ? info : "unknown"));
                     } else {
-                        Log.d(TAG, "DOWNLOAD STOP NOTIFICATION FOR UNKNOWN" + " stat: " + (hasInfo ? info : "unknown"));
+                        Log.d(LOG_TAG, "DOWNLOAD STOP NOTIFICATION FOR UNKNOWN" + " stat: " + (hasInfo ? info : "unknown"));
                     }
                     notificationType = STOPPED_NOTIFICATION;
                     break;
 
                 case Common.Notifications.INTENT_NOTIFICATION_DOWNLOADS_PAUSED:
                     if (asset != null) {
-                        Log.d(TAG, "DOWNLOAD PAUSED NOTIFICATION FOR " + asset.getUuid()  + " stat: " + (hasInfo ? info : "unknown"));
+                        Log.d(LOG_TAG, "DOWNLOAD PAUSED NOTIFICATION FOR " + asset.getUuid()  + " stat: " + (hasInfo ? info : "unknown"));
                     } else {
-                        Log.d(TAG, "DOWNLOAD PAUSED NOTIFICATION FOR UNKNOWN" + " stat: " + (hasInfo ? info : "unknown"));
+                        Log.d(LOG_TAG, "DOWNLOAD PAUSED NOTIFICATION FOR UNKNOWN" + " stat: " + (hasInfo ? info : "unknown"));
                     }
                     notificationType = PAUSED_NOTIFICATION;
                     break;
 
                 case Common.Notifications.INTENT_NOTIFICATION_DOWNLOAD_UPDATE:
                     notificationType = PROGRESS_NOTIFICATION;
-                    Log.d(TAG, "DOWNLOAD UPDATE NOTIFICATION FOR " + asset.getUuid() + " stat: " + (hasInfo ? info : "unknown"));
+                    if (asset != null) {
+                        Log.d(LOG_TAG, "DOWNLOAD UPDATE NOTIFICATION FOR " + asset.getUuid() + " stat: " + (hasInfo ? info : "unknown"));
+                    }else {
+                        Log.d(LOG_TAG, "DOWNLOAD UPDATE NOTIFICATION FOR UNKNOWN" + " stat: " + (hasInfo ? info : "unknown"));
+                    }
                     break;
 
                 case Common.Notifications.INTENT_NOTIFICATION_MANIFEST_PARSE_FAILED:
                     notificationType = FAILED_NOTIFICATION;
-                    Log.d(TAG, "EXCEPTIONAL CIRCUMSTANCE NOTIFICATION for asset failed to be queued while in background");
+                    Log.d(LOG_TAG, "EXCEPTIONAL CIRCUMSTANCE NOTIFICATION for asset failed to be queued while in background");
                     break;
 
                 default:
                     notificationType = RESTART_NOTIFICATION;
-                    Log.d(TAG, "UNHANDLED NOTIFICATION ACTION " + intentAction);
+                    Log.d(LOG_TAG, "UNHANDLED NOTIFICATION ACTION " + intentAction);
             }
         }
 
@@ -228,7 +239,7 @@ public class NotificationFactory {
 
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, createIntent(context), PendingIntent.FLAG_CANCEL_CURRENT);
 
-        Notification notification = null;
+        Notification notification;
         if (compatNotificationBuilder == null) {
             synchronized (this) {
                 if( Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -238,7 +249,9 @@ public class NotificationFactory {
                     notificationChannel.enableLights(false);
                     notificationChannel.enableVibration(false);
                     NotificationManager manager = (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
-                    manager.createNotificationChannel(notificationChannel);
+                    if (manager != null) {
+                        manager.createNotificationChannel(notificationChannel);
+                    }
                     compatNotificationBuilder = new NotificationCompat.Builder(context, channelID);
                 } else {
                     // Below API26 there are no notification channels.

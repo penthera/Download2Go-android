@@ -54,23 +54,17 @@ public class DemoDrmSessionManager implements DrmSessionManager<FrameworkMediaCr
 
     @Override
     public boolean canAcquireSession(final DrmInitData drmInitData) {
-        return mDrmSessionManager.canOpen(new IDrmInitData() {
-            @Override
-            public SchemeInitData get(UUID schemeUuid) {
-                DrmInitData.SchemeData sd = drmInitData.get(schemeUuid);
-                return new SchemeInitData(sd.mimeType, sd.data);
-            }
+        return mDrmSessionManager.canOpen(schemeUuid -> {
+            DrmInitData.SchemeData sd = drmInitData.get(schemeUuid);
+            return new IDrmInitData.SchemeInitData(sd.mimeType, sd.data);
         });
     }
 
     @Override
     public DrmSession<FrameworkMediaCrypto> acquireSession(Looper playbackLooper, final DrmInitData drmInitData) {
-        IVirtuosoDrmSession session = mDrmSessionManager.open(new IDrmInitData() {
-            @Override
-            public SchemeInitData get(UUID schemeUuid) {
-                DrmInitData.SchemeData sd = drmInitData.get(schemeUuid);
-                return new SchemeInitData(sd.mimeType,sd.data);
-            }
+        IVirtuosoDrmSession session = mDrmSessionManager.open(schemeUuid -> {
+            DrmInitData.SchemeData sd = drmInitData.get(schemeUuid);
+            return new IDrmInitData.SchemeInitData(sd.mimeType,sd.data);
         });
         session.setLooper(playbackLooper);
         session.setDrmOnEventListener(mDrmEventListener);

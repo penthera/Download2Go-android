@@ -24,4 +24,9 @@ var classSelectorHTML = '\
 		<option value="com.penthera.virtuososdk/Common.PushService">Common.PushService</option>\
 		<option value="com.penthera.virtuososdk/Common.SettingFlag">Common.SettingFlag</option>\
 	</optgroup>\
+	<optgroup label="Enums">\
+		<option value="com.penthera.virtuososdk/Common.PlaylistDownloadOption">Common.PlaylistDownloadOption</option>\
+		<option value="com.penthera.virtuososdk/Common.PlaylistItemStatus">Common.PlaylistItemStatus</option>\
+		<option value="com.penthera.virtuososdk/Common.PlaylistStatus">Common.PlaylistStatus</option>\
+	</optgroup>\
 ';

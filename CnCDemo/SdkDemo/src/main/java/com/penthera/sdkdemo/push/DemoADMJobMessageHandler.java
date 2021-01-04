@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
-import com.penthera.virtuososdk.client.subscriptions.ADMJobMessageHandler;
+import com.penthera.virtuososdk.client.push.ADMJobMessageHandler;
 
 public class DemoADMJobMessageHandler extends ADMJobMessageHandler {
 

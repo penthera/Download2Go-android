@@ -33,15 +33,15 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     // DEMO Server details
-    private static String BACKPLANE_URL = "https://demo.penthera.com/";
-    private static String BACKPLANE_PUBLIC_KEY = ;
-    private static String BACKPLANE_PRIVATE_KEY = ;
+    private static final String BACKPLANE_URL = "https://demo.penthera.com/";
+    private static final String BACKPLANE_PUBLIC_KEY = ;
+    private static final String BACKPLANE_PRIVATE_KEY = ;
 
     // This is the test asset which will be downloaded
     // Important: Asset ID should be unique across your video catalog
-    private static String ASSET_ID = "TEST_ASSET_ID";
-    private static String ASSET_TITLE = "TEST ASSET";
-    private static String ASSET_URL = "http://virtuoso-demo-content.s3.amazonaws.com/Steve/steve.m3u8";
+    private static final String ASSET_ID = "TEST_ASSET_ID";
+    private static final String ASSET_TITLE = "TEST ASSET";
+    private static final String ASSET_URL = "http://virtuoso-demo-content.s3.amazonaws.com/Steve/steve.m3u8";
 
     private Virtuoso virtuoso;
     private IAsset asset = null;

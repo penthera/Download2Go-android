@@ -25,6 +25,7 @@ import com.penthera.virtuososdk.client.Virtuoso;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 
 /**
@@ -44,7 +45,7 @@ public class StatusViewActivity extends AppCompatActivity {
 
     private List<StatusValue> statusValues;
 
-    private static SimpleDateFormat dateFormatter = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss a");
+    private static SimpleDateFormat dateFormatter = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss a", Locale.US);
 
     private int engineStatus = 0;
 
@@ -243,10 +244,10 @@ public class StatusViewActivity extends AppCompatActivity {
         }
 
         // 9. Current Throughput
-        statusValues.get(9).value = String.format("%.2f" ,currentThroughput);
+        statusValues.get(9).value = String.format(Locale.US,"%.2f" ,currentThroughput);
 
         // 10. Overall Throughput
-        statusValues.get(10).value = String.format("%.2f" ,overallThroughput);
+        statusValues.get(10).value = String.format(Locale.US,"%.2f" ,overallThroughput);
 
         statusArrayAdapter.notifyItemRangeChanged(9, 2);
     }

@@ -16,7 +16,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.penthera.VirtuosoSDK;
 import com.penthera.virtuososdk.Common;
 import com.penthera.virtuososdk.client.EngineObserver;
-import com.penthera.virtuososdk.client.IAsset;
 import com.penthera.virtuososdk.client.IIdentifier;
 import com.penthera.virtuososdk.client.IService;
 import com.penthera.virtuososdk.client.Observers;
@@ -26,6 +25,7 @@ import com.penthera.virtuososdk.client.Virtuoso;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 
 /**
@@ -45,7 +45,7 @@ public class StatusViewActivity extends AppCompatActivity {
 
     private List<StatusValue> statusValues;
 
-    private static SimpleDateFormat dateFormatter = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss a");
+    private static SimpleDateFormat dateFormatter = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss a", Locale.US);
 
     private int engineStatus = 0;
 
@@ -244,10 +244,10 @@ public class StatusViewActivity extends AppCompatActivity {
         }
 
         // 9. Current Throughput
-        statusValues.get(9).value = String.format("%.2f" ,currentThroughput);
+        statusValues.get(9).value = String.format(Locale.US,"%.2f" ,currentThroughput);
 
         // 10. Overall Throughput
-        statusValues.get(10).value = String.format("%.2f" ,overallThroughput);
+        statusValues.get(10).value = String.format(Locale.US,"%.2f" ,overallThroughput);
 
         statusArrayAdapter.notifyItemRangeChanged(9, 2);
     }
@@ -363,7 +363,7 @@ public class StatusViewActivity extends AppCompatActivity {
 
     // A very simple adapter for demonstration purposes which populates a number of key-value status rows into
     // a recyclerview
-    static class StatusArrayAdapter extends RecyclerView.Adapter<StatusArrayAdapter.StatusArrayAdapterViewHolder> {
+    private static class StatusArrayAdapter extends RecyclerView.Adapter<StatusArrayAdapter.StatusArrayAdapterViewHolder> {
 
         private List<StatusValue> values;
 
@@ -388,7 +388,7 @@ public class StatusViewActivity extends AppCompatActivity {
             return values.size();
         }
 
-        class StatusArrayAdapterViewHolder extends RecyclerView.ViewHolder {
+        private static class StatusArrayAdapterViewHolder extends RecyclerView.ViewHolder {
 
             TextView keyTextView, valueTextView;
 

@@ -48,21 +48,21 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     // DEMO Server details
-    private static String BACKPLANE_URL = "https://demo.penthera.com/";
-    private static String BACKPLANE_PUBLIC_KEY = ;
-    private static String BACKPLANE_PRIVATE_KEY = ;
+    private static final String BACKPLANE_URL = "https://demo.penthera.com/";
+    private static final String BACKPLANE_PUBLIC_KEY = ;
+    private static final String BACKPLANE_PRIVATE_KEY = ;
 
     // This is the test asset which will be downloaded
     // Important: Asset ID should be unique across your video catalog
-    private static String ASSET_ID = "TEST_ASSET_ID";
-    private static String ASSET_TITLE = "TEST ASSET";
-    private static String ASSET_URL = "https://storage.googleapis.com/wvmedia/clear/h264/tears/tears_sd.mpd";
+    private static final String ASSET_ID = "TEST_ASSET_ID";
+    private static final String ASSET_TITLE = "TEST ASSET";
+    private static final String ASSET_URL = "https://storage.googleapis.com/wvmedia/clear/h264/tears/tears_sd.mpd";
 
     // The additional url which will be downloaded with the asset
-    private static String ANCILLARY_IMAGE_URL = "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Tos-poster.png/440px-Tos-poster.png";
+    private static final String ANCILLARY_IMAGE_URL = "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Tos-poster.png/440px-Tos-poster.png";
 
     // Tag for the ancillary type (optional)
-    private static String ANCILLARY_IMAGE_TAG = "movie-posters";
+    private static final String ANCILLARY_IMAGE_TAG = "movie-posters";
 
     private Virtuoso virtuoso;
     private IAsset asset = null;
@@ -192,7 +192,7 @@ public class MainActivity extends AppCompatActivity {
                     );
                 }
             } catch (MalformedURLException mue) {
-
+                Log.e("MainActivity", "Error with backplane url", mue);
             }
         }
 
@@ -239,7 +239,7 @@ public class MainActivity extends AppCompatActivity {
 
     // Load the ancillary image that was downloaded with the asset into the image view in the UI.
     void showAncillaryImage(IAsset asset) {
-        if (asset != null && asset instanceof ISegmentedAsset){
+        if (asset instanceof ISegmentedAsset){
             ISegmentedAsset segmentedAsset = (ISegmentedAsset)asset;
             List<AncillaryFile> fileList = segmentedAsset.getAncillaryFilesForTag(this, ANCILLARY_IMAGE_TAG);
 
@@ -299,7 +299,7 @@ public class MainActivity extends AppCompatActivity {
     private void deleteAsset() {
 
         virtuoso.getAssetManager().delete(asset);
-        textView.setText("Deleting asset");
+        textView.setText(R.string.deleting_asset);
         asset = null;
         updateUI();
         ancillaryImage.setVisibility(View.GONE);
@@ -326,7 +326,7 @@ public class MainActivity extends AppCompatActivity {
                     download2GoService.resumeDownloads();
                 }
             } catch (ServiceException se) {
-
+                Log.e("MainActivity", "Error connecting to Virtuoso service", se);
             }
         }
     }
@@ -390,7 +390,7 @@ public class MainActivity extends AppCompatActivity {
         public void complete(final ISegmentedAsset asset, int error, boolean addedToQueue) {
             activity.runOnUiThread(() -> {
 
-                if(asset != null && error == 0) {    //TODO: we should have a success constant!
+                if(asset != null && error == 0) {
                     Toast.makeText(activity, "Asset parsed and " + (addedToQueue ? "added" : "not added") + " to download queue", Toast.LENGTH_LONG  ).show();
                 }
                 else{
@@ -448,12 +448,9 @@ public class MainActivity extends AppCompatActivity {
             }
             if (queued == 0) {
                 // The asset has been deleted or downloaded
-                mainActivity.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        mainActivity.textView.setText(downloaded == 0 ? "Asset Deleted" : "Asset Downloaded");
-                        mainActivity.progressBar.setVisibility(View.GONE);
-                    }
+                mainActivity.runOnUiThread(() -> {
+                    mainActivity.textView.setText(downloaded == 0 ? "Asset Deleted" : "Asset Downloaded");
+                    mainActivity.progressBar.setVisibility(View.GONE);
                 });
             }
         }
@@ -464,18 +461,13 @@ public class MainActivity extends AppCompatActivity {
         }
 
         private void updateItem(final IIdentifier identifier, boolean forceUpdate) {
-            if (identifier != null && identifier instanceof IAsset) {
+            if (identifier instanceof IAsset) {
                 final IAsset asset = (IAsset) identifier;
                 String assetId = asset.getAssetId();
 
                 // Ensure progress is for our catalog item
                 if (!TextUtils.isEmpty(assetId) && assetId.equals(ASSET_ID)){
-                    mainActivity.runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            updateItemStatus(asset, forceUpdate);
-                        }
-                    });
+                    mainActivity.runOnUiThread(() -> updateItemStatus(asset, forceUpdate));
                 }
             }
         }

@@ -1,7 +1,6 @@
 package com.penthera.download2gohelloworld;
 
 import android.app.Notification;
-import android.app.NotificationChannel;
 import android.content.Context;
 import android.content.Intent;
 
@@ -13,11 +12,7 @@ import com.penthera.virtuososdk.service.VirtuosoServiceStarter;
  *
  */
 public class ServiceStarter extends VirtuosoServiceStarter {
-
-
-    private static NotificationChannel notificationChannel = null;
     private static Notification currentNotification = null;
-
 
     /**
      * This convenience method shows how to call the underlying method to force the SDK

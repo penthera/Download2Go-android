@@ -1,6 +1,6 @@
 package com.penthera.sdkdemo.push;
 
-import com.penthera.virtuososdk.client.subscriptions.ADMReceiver;
+import com.penthera.virtuososdk.client.push.ADMReceiver;
 
 public class DemoADMReceiver extends ADMReceiver {
 

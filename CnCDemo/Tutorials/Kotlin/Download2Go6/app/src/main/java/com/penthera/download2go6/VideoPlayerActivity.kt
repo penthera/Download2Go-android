@@ -384,7 +384,7 @@ class VideoPlayerActivity : Activity(),  PlaybackPreparer {
 
         fun playVideoDownload(asset: IAsset , context: Context){
 
-            val path: Uri = Uri.parse(asset.playlist.toString())
+            val path: Uri = Uri.parse(asset.playlist.toString())  //.playbackURL.toString())
 
             context.startActivity(Intent(context, VideoPlayerActivity::class.java).apply {
                 action = ACTION_VIEW

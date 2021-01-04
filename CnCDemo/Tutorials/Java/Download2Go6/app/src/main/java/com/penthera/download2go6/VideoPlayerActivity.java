@@ -11,12 +11,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Pair;
 import android.view.KeyEvent;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.ads.interactivemedia.v3.api.ImaSdkFactory;
@@ -38,7 +38,6 @@ import com.google.android.exoplayer2.source.TrackGroupArray;
 import com.google.android.exoplayer2.source.ads.AdsMediaSource;
 import com.google.android.exoplayer2.source.dash.DashMediaSource;
 import com.google.android.exoplayer2.source.hls.HlsMediaSource;
-import com.google.android.exoplayer2.source.smoothstreaming.SsMediaSource;
 import com.google.android.exoplayer2.trackselection.AdaptiveTrackSelection;
 import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
 import com.google.android.exoplayer2.trackselection.MappingTrackSelector;
@@ -94,8 +93,6 @@ public class VideoPlayerActivity extends AppCompatActivity implements PlaybackPr
     // a singleton for the whole application. But this should not be instantiated in an application onCreate().
     private Virtuoso mVirtuoso;
 
-    private Handler mainHandler;
-
     private PlayerView playerView;
 
     private DataSource.Factory dataSourceFactory;
@@ -117,9 +114,9 @@ public class VideoPlayerActivity extends AppCompatActivity implements PlaybackPr
     public static void playVideoDownload(Context context, IAsset asset) {
         try {
             // We get the path in advance to ensure the asset is playable before sending to the player activity
-            URL playlist = asset.getPlaylist(); // This will return null if the asset is unavailable due to business rules
-            if (playlist != null) {
-                Uri path = Uri.parse(playlist.toString());
+            URL playbackURL = asset.getPlaybackURL(); // This will return null if the asset is unavailable due to business rules
+            if (playbackURL != null) {
+                Uri path = Uri.parse(playbackURL.toString());
                 Intent intent = new Intent(context, VideoPlayerActivity.class)
                         .setAction(ACTION_VIEW)
                         .setData(path)
@@ -211,7 +208,7 @@ public class VideoPlayerActivity extends AppCompatActivity implements PlaybackPr
      }
 
     @Override
-    public void onSaveInstanceState(Bundle outState) {
+    public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         updateTrackSelectorParameters();
         updateStartPosition();
@@ -278,12 +275,10 @@ public class VideoPlayerActivity extends AppCompatActivity implements PlaybackPr
             if (segmentedAsset != null && segmentedAsset.adSupport() == Common.AdSupportType.CLIENT_ADS) {
 
                 String adsResponse = null;
-                if (asset != null) {
-                    adManager = mVirtuoso.getAssetManager().getAdManager();
-                    IVideoAdPackage adsPackage = adManager.fetchAdsForAsset(segmentedAsset);
-                    if (adsPackage != null) {
-                        adsResponse = adsPackage.getInlineAdResponse();
-                    }
+                adManager = mVirtuoso.getAssetManager().getAdManager();
+                IVideoAdPackage adsPackage = adManager.fetchAdsForAsset(segmentedAsset);
+                if (adsPackage != null) {
+                    adsResponse = adsPackage.getInlineAdResponse();
                 }
 
                 if (!TextUtils.isEmpty(adsResponse)) {
@@ -294,10 +289,7 @@ public class VideoPlayerActivity extends AppCompatActivity implements PlaybackPr
                     adsLoader = builder.buildForAdsResponse(adsResponse);
                     adsLoader.setPlayer(player);
 
-                    AdsMediaSource mediaSourceWithAds = new AdsMediaSource(mediaSource, dataSourceFactory, adsLoader, playerView);
-                    if (mediaSourceWithAds != null) {
-                        mediaSource = mediaSourceWithAds;
-                    }
+                    mediaSource = new AdsMediaSource(mediaSource, dataSourceFactory, adsLoader, playerView);
                 }
             }
         }
@@ -312,9 +304,6 @@ public class VideoPlayerActivity extends AppCompatActivity implements PlaybackPr
 
     private MediaSource buildMediaSource(Uri uri, int type) {
         switch (type) {
-            case ISegmentedAsset.SEG_FILE_TYPE_HSS:
-                return new SsMediaSource.Factory(dataSourceFactory)
-                        .createMediaSource(uri);
             case ISegmentedAsset.SEG_FILE_TYPE_MPD:
                 return new DashMediaSource.Factory(dataSourceFactory)
                         .createMediaSource(uri);
@@ -449,6 +438,7 @@ public class VideoPlayerActivity extends AppCompatActivity implements PlaybackPr
     // This inner class is taken directly from the Exoplayer demo. It provides human readable error messages for exoplayer errors.
     private class PlayerErrorMessageProvider implements ErrorMessageProvider<ExoPlaybackException> {
 
+        @NonNull
         @Override
         public Pair<Integer, String> getErrorMessage(ExoPlaybackException e) {
             String errorString = getString(R.string.error_generic);

@@ -115,8 +115,6 @@
     <string name="status_expired">Expired</string>
     <string name="asset_status">File %1$s with %2$d errors, current state: %3$s</string>
 
-	<string name="subscriptions">Subscriptions</string>
-
 	<!-- Settings -->
     <string name="socket_timeout">Socket timeout</string>
     <string name="connection_timeout">Socket timeout</string>

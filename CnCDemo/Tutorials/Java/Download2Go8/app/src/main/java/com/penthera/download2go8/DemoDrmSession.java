@@ -28,7 +28,7 @@ public class DemoDrmSession  implements DrmSession<FrameworkMediaCrypto> {
 
     private final IVirtuosoDrmSession drmSession;
     private VirtuosoDrmSessionManager drmSessionManager;
-    private FrameworkMediaCrypto mediaCrypto = null;
+    private FrameworkMediaCrypto mediaCrypto;
     private int referenceCount = 0;
 
     public DemoDrmSession(IVirtuosoDrmSession session, UUID schemeUUID, VirtuosoDrmSessionManager drmSessionManager) {

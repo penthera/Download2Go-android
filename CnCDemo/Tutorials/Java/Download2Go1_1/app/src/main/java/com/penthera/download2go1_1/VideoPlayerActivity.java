@@ -16,6 +16,7 @@ import android.util.Pair;
 import android.view.KeyEvent;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.exoplayer2.C;
@@ -84,8 +85,6 @@ public class VideoPlayerActivity extends AppCompatActivity implements PlaybackPr
     // a singleton for the whole application. But this should not be instantiated in an application onCreate().
     private Virtuoso mVirtuoso;
 
-    private Handler mainHandler;
-
     private PlayerView playerView;
 
     private DataSource.Factory dataSourceFactory;
@@ -102,7 +101,7 @@ public class VideoPlayerActivity extends AppCompatActivity implements PlaybackPr
     public static void playVideoDownload(Context context, IAsset asset) {
         try {
             // We get the path in advance to ensure the asset is playable before sending to the player activity
-            URL playlist = asset.getPlaylist(); // This will return null if the asset is unavailable due to business rules
+            URL playlist = asset.getPlaybackURL(); // This will return null if the asset is unavailable due to business rules
             if (playlist != null) {
                 Uri path = Uri.parse(playlist.toString());
                 Intent intent = new Intent(context, VideoPlayerActivity.class)
@@ -196,7 +195,7 @@ public class VideoPlayerActivity extends AppCompatActivity implements PlaybackPr
      }
 
     @Override
-    public void onSaveInstanceState(Bundle outState) {
+    public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         updateTrackSelectorParameters();
         updateStartPosition();
@@ -399,6 +398,7 @@ public class VideoPlayerActivity extends AppCompatActivity implements PlaybackPr
     // This inner class is taken directly from the Exoplayer demo. It provides human readable error messages for exoplayer errors.
     private class PlayerErrorMessageProvider implements ErrorMessageProvider<ExoPlaybackException> {
 
+        @NonNull
         @Override
         public Pair<Integer, String> getErrorMessage(ExoPlaybackException e) {
             String errorString = getString(R.string.error_generic);

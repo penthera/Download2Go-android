@@ -93,22 +93,22 @@
             style="@style/detailValue"
             />
         <TextView
-            android:id="@+id/playlist_label"
+            android:id="@+id/playback_label"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/pathValue"
-            android:text="@string/playlist"
+            android:text="@string/playback"
             style="@style/detailLabel"
             />
         <TextView
-            android:id="@+id/playlistValue"
+            android:id="@+id/playbackValue"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/playlist_label"
+            app:layout_constraintTop_toBottomOf="@id/playback_label"
             style="@style/detailValue"
             />
         <TextView
             android:id="@+id/segmentcount_label"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/playlistValue"
+            app:layout_constraintTop_toBottomOf="@id/playbackValue"
             android:text="@string/segmentCount"
             style="@style/detailLabel"
             />

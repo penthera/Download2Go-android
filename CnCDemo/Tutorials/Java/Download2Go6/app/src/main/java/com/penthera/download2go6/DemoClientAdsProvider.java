@@ -40,12 +40,7 @@ public class DemoClientAdsProvider implements IClientSideAdsParserProvider {
         // This provider is being instantiated within the SDK Service process, so it cannot directly inform
         // the user or action the UI. It could be used however for error tracking, ad correction, immediate
         // refresh, or using android OS cross-process messaging to inform the client application.
-        return Collections.singletonList(new IVirtuosoAdParserObserver() {
-            @Override
-            public void onParserError(IAsset asset, int error, String message) {
-                Log.e("ClientAdsProvider", "Failed to process advertising definitions for asset");
-            }
-        });
+        return Collections.singletonList((asset, error, message) -> Log.e("ClientAdsProvider", "Failed to process advertising definitions for asset"));
     }
 
     @NonNull

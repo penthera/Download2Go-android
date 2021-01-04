@@ -14,7 +14,7 @@
 package com.penthera.sdkdemo.push;
 
 import com.google.firebase.messaging.RemoteMessage;
-import com.penthera.virtuososdk.client.subscriptions.FcmMessagingService;
+import com.penthera.virtuososdk.client.push.FcmMessagingService;
 
 /**
  * Demonstrates how to override the FCMMessagingService to handle messages not handled by SDK.

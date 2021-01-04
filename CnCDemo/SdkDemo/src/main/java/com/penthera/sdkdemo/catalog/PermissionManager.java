@@ -73,7 +73,7 @@ public class PermissionManager {
 	public Permission canPlay(IAsset asset) {
 		if(asset instanceof ISegmentedAsset){
 			try {
-				return ((ISegmentedAsset)asset).getPlaylist() == null ? Permission.EAccessDeniedWindow:Permission.EAccessAllowed;
+				return ((ISegmentedAsset)asset).getPlaybackURL() == null ? Permission.EAccessDeniedWindow:Permission.EAccessAllowed;
 			} catch (MalformedURLException e) {
 				e.printStackTrace();
 			}

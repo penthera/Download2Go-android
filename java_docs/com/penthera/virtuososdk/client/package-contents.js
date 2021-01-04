@@ -18,7 +18,6 @@ var classSelectorHTML = '\
 		<option value="com.penthera.virtuososdk.client/IIdentifier">IIdentifier</option>\
 		<option value="com.penthera.virtuososdk.client/IManifestParserObserver">IManifestParserObserver</option>\
 		<option value="com.penthera.virtuososdk.client/INetworkCapabilities">INetworkCapabilities</option>\
-		<option value="com.penthera.virtuososdk.client/IPlaylistAssetProvider">IPlaylistAssetProvider</option>\
 		<option value="com.penthera.virtuososdk.client/IPushRegistrationObserver">IPushRegistrationObserver</option>\
 		<option value="com.penthera.virtuososdk.client/IQueue">IQueue</option>\
 		<option value="com.penthera.virtuososdk.client/IQueue.IQueuedAssetPermissionObserver">IQueue.IQueuedAssetPermissionObserver</option>\
@@ -44,7 +43,6 @@ var classSelectorHTML = '\
 		<option value="com.penthera.virtuososdk.client/Observers">Observers</option>\
 		<option value="com.penthera.virtuososdk.client/QueueObserver">QueueObserver</option>\
 		<option value="com.penthera.virtuososdk.client/SegmentedParserError">SegmentedParserError</option>\
-		<option value="com.penthera.virtuososdk.client/SubscriptionObserver">SubscriptionObserver</option>\
 		<option value="com.penthera.virtuososdk.client/Virtuoso">Virtuoso</option>\
 	</optgroup>\
 	<optgroup label="Enums">\

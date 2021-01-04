@@ -9,9 +9,9 @@ package com.penthera.download2go8;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -35,15 +35,15 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     // DEMO Server details
-    private static String BACKPLANE_URL = "https://demo.penthera.com/";
-    private static String BACKPLANE_PUBLIC_KEY = "73ca8dfb4e0f7144fdf43640aa70cc0fdfc9d10e4cd530d5ba6370cf56527f39";
-    private static String BACKPLANE_PRIVATE_KEY = "a546f1037420a552f5d6305cb85feb1d1d710555a48e6afc2d74237ccf335938";
+    private static final String BACKPLANE_URL = "https://demo.penthera.com/";
+    private static final String BACKPLANE_PUBLIC_KEY = ;
+    private static final String BACKPLANE_PRIVATE_KEY = ;
 
     // This is the test asset which will be downloaded
     // Important: Asset ID should be unique across your video catalog
-    private static String ASSET_ID = "TEST_ASSET_ID";
-    private static String ASSET_TITLE = "TEST ASSET";
-    private static String ASSET_URL = "https://storage.googleapis.com/wvmedia/cenc/h264/tears/tears_sd.mpd";
+    private static final String ASSET_ID = "TEST_ASSET_ID";
+    private static final String ASSET_TITLE = "TEST ASSET";
+    private static final String ASSET_URL = "https://storage.googleapis.com/wvmedia/cenc/h264/tears/tears_sd.mpd";
 
     private Virtuoso virtuoso;
     private IAsset asset = null;
@@ -123,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
                     );
                 }
             } catch (MalformedURLException mue) {
-
+                Log.e("MainActivity", "Error with backplane url", mue);
             }
         }
 
@@ -192,7 +192,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void complete(final ISegmentedAsset asset, int error, boolean addedToQueue) {
             activity.runOnUiThread(() -> {
-                if(asset != null && error == 0) {    //TODO: we should have a success constant!
+                if(asset != null && error == 0) {
                     Toast.makeText(activity, "Asset parsed and " + (addedToQueue ? "added" : "not added") + " to download queue", Toast.LENGTH_LONG  ).show();
                 }
                 else{
@@ -212,16 +212,13 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void assetLicenseRetrieved(final IIdentifier aItem, final boolean aSuccess) {
-            activity.runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    ISegmentedAsset asset = (ISegmentedAsset)aItem;
-                    Toast.makeText(activity, activity.getString(aSuccess ? R.string.license_fetch_success : R.string.license_fetch_failure, asset.getAssetId()), Toast.LENGTH_LONG).show();
-                }
+            activity.runOnUiThread(() -> {
+                ISegmentedAsset asset = (ISegmentedAsset)aItem;
+                Toast.makeText(activity, activity.getString(aSuccess ? R.string.license_fetch_success : R.string.license_fetch_failure, asset.getAssetId()), Toast.LENGTH_LONG).show();
             });
         }
 
-    };
+    }
 
 
     /**
@@ -268,18 +265,13 @@ public class MainActivity extends AppCompatActivity {
         }
 
         private void updateItem(final IIdentifier identifier, boolean forceUpdate) {
-            if (identifier != null && identifier instanceof IAsset) {
+            if ( identifier instanceof IAsset) {
                 final IAsset asset = (IAsset) identifier;
                 String assetId = asset.getAssetId();
 
                 // Ensure progress is for our catalog item
                 if (!TextUtils.isEmpty(assetId) && assetId.equals(ASSET_ID)){
-                    mainActivity.runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            updateItemStatus(asset, forceUpdate);
-                        }
-                    });
+                    mainActivity.runOnUiThread(() -> updateItemStatus(asset, forceUpdate));
                 }
             }
         }

@@ -28,7 +28,7 @@ class AssetDetailActivity : AppCompatActivity() {
     private var durationView: TextView? = null
     private var statusView: TextView? = null
     private var pathView: TextView? = null
-    private var playlistView: TextView? = null
+    private var playbackView: TextView? = null
     private var segmentCountView: TextView? = null
     private var firstPlayView: TextView? = null
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,7 +43,7 @@ class AssetDetailActivity : AppCompatActivity() {
         durationView = findViewById(R.id.durationValue)
         statusView = findViewById(R.id.statusValue)
         pathView = findViewById(R.id.pathValue)
-        playlistView = findViewById(R.id.playlistValue)
+        playbackView = findViewById(R.id.playbackValue)
         segmentCountView = findViewById(R.id.segmentCountValue)
         firstPlayView = findViewById(R.id.firstPlayValue)
         findViewById<View>(R.id.btn_play).setOnClickListener { playAsset() }
@@ -127,14 +127,14 @@ class AssetDetailActivity : AppCompatActivity() {
             statusView?.text = MainActivity.getStatusText(this, it.downloadStatus)
             pathView!!.text = it.localBaseDir
             try {
-                val url = it.playlist
+                val url = it.playbackURL
                 if (url != null) {
-                    playlistView!!.text = url.toString()
+                    playbackView!!.text = url.toString()
                 } else {
-                    playlistView!!.setText(R.string.unavailable)
+                    playbackView!!.setText(R.string.unavailable)
                 }
             } catch (mue: MalformedURLException) {
-                playlistView!!.setText(R.string.unavailable)
+                playbackView!!.setText(R.string.unavailable)
             }
             segmentCountView!!.text = it.totalSegments.toString()
             val firstPlayTime = it.firstPlayTime

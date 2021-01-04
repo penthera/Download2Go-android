@@ -54,7 +54,7 @@ public class SettingsViewActivity extends AppCompatActivity {
     /** The current time based progress rate used by Virtuoso */
     private EditText progressTimed;
 
-    private static SimpleDateFormat dateFormatter = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss a");
+    private static SimpleDateFormat dateFormatter = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss a", Locale.US);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -173,7 +173,7 @@ public class SettingsViewActivity extends AppCompatActivity {
         headroom.setText(String.format(Locale.getDefault() , "%d",settings.getHeadroom()));
 
         int val = (int)(settings.getBatteryThreshold() * 100);
-        val = val < 0 ? 0: val > 100 ? 100 : val;
+        val = val < 0 ? 0: Math.min(val, 100);
         batterythreshold.setProgress(val);
         batteryDetail.setText(getString(R.string.battery_threshold, val));
 

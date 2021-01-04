@@ -12,7 +12,7 @@ import com.penthera.virtuososdk.database.impl.provider.VirtuosoSDKContentProvide
  */
 public class DemoContentProvider extends VirtuosoSDKContentProvider {
 
-    /**
+    /*
      * Upon initialization the authority must be set on the content provider.
      */
     static{

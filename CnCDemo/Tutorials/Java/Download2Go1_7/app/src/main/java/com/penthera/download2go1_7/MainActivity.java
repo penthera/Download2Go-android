@@ -7,7 +7,6 @@
 */
 package com.penthera.download2go1_7;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -21,8 +20,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.GoogleApiAvailability;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.penthera.virtuososdk.Common;
 import com.penthera.virtuososdk.client.BackplaneException;
 import com.penthera.virtuososdk.client.IAsset;
@@ -42,17 +39,17 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     // DEMO Server details
-    private static String BACKPLANE_URL = "https://demo.penthera.com/";
-    private static String BACKPLANE_PUBLIC_KEY = ;
-    private static String BACKPLANE_PRIVATE_KEY = ;
+    private static final String BACKPLANE_URL = "https://demo.penthera.com/";
+    private static final String BACKPLANE_PUBLIC_KEY = ;
+    private static final String BACKPLANE_PRIVATE_KEY = ;
 
 
 
     // This is the test asset which will be downloaded
     // Important: Asset ID should be unique across your video catalog
-    private static String ASSET_ID = "TEST_ASSET_ID";
-    private static String ASSET_TITLE = "TEST ASSET";
-    private static String ASSET_URL = "https://storage.googleapis.com/wvmedia/clear/h264/tears/tears_sd.mpd";
+    private static final String ASSET_ID = "TEST_ASSET_ID";
+    private static final String ASSET_TITLE = "TEST ASSET";
+    private static final String ASSET_URL = "https://storage.googleapis.com/wvmedia/clear/h264/tears/tears_sd.mpd";
 
     private Virtuoso virtuoso;
     private IAsset asset = null;
@@ -152,7 +149,7 @@ public class MainActivity extends AppCompatActivity {
             String name = accountName.getText().toString();
             if (!TextUtils.isEmpty(name)) {
 
-                URL backplaneUrl = null;
+                URL backplaneUrl;
                 try {
                     // Here we use the simplest login with hard coded values
                     backplaneUrl = new URL(BACKPLANE_URL);
@@ -183,34 +180,27 @@ public class MainActivity extends AppCompatActivity {
                                     final GoogleApiAvailability gApi = GoogleApiAvailability.getInstance();
                                     if (!retry && gApi.isUserResolvableError(connectionResponse)) {
 
-                                        runOnUiThread(new Runnable() {
+                                        runOnUiThread(() -> gApi.makeGooglePlayServicesAvailable(MainActivity.this)
+                                                .addOnCompleteListener(task -> {
+                                                    Log.d("Push Registration", "makeGooglePlayServicesAvailable complete");
 
-                                            @Override
-                                            public void run() {
-                                                gApi.makeGooglePlayServicesAvailable(MainActivity.this)
-                                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                                            @Override
-                                                            public void onComplete(@NonNull Task<Void> task) {
-                                                                Log.d("Push Registration", "makeGooglePlayServicesAvailable complete");
+                                                    if (task.isSuccessful()) {
+                                                        Log.d("Push Registration", "makeGooglePlayServicesAvailable completed successfully");
+                                                        doRegister(true);
+                                                    } else {
+                                                        Exception e = task.getException();
 
-                                                                if (task.isSuccessful()) {
-                                                                    Log.d("Push Registration", "makeGooglePlayServicesAvailable completed successfully");
-                                                                    doRegister(true);
-                                                                } else {
-                                                                    Exception e = task.getException();
-                                                                    Log.e("Push Registration", "makeGooglePlayServicesAvailable completed with exception " + e.getMessage(), e);
-                                                                }
-                                                            }
-                                                        });
-                                            }
-                                        });
+                                                        Log.e("Push Registration", "makeGooglePlayServicesAvailable completed with exception " +
+                                                                (e != null ? e.getMessage() : "unknown"), e);
+                                                    }
+                                                }));
 
                                     }
                                 } // on success we do not take any action in this demonstration
                         });
 
             } else {
-                Toast.makeText(this, R.string.missing_account_name, Toast.LENGTH_LONG);
+                Toast.makeText(this, R.string.missing_account_name, Toast.LENGTH_LONG).show();
             }
         }
     }
@@ -245,7 +235,7 @@ public class MainActivity extends AppCompatActivity {
                 });
             } catch (BackplaneException be) {
                 Log.e("Unregister", "Caught exception requesting devices",be);
-            };
+            }
         }
 
         unregisterDevicesBtn.setEnabled(true);
@@ -309,7 +299,7 @@ public class MainActivity extends AppCompatActivity {
     private void deleteAsset() {
 
         virtuoso.getAssetManager().delete(asset);
-        textView.setText("Deleting asset");
+        textView.setText(R.string.deleting_asset);
         asset = null;
         updateUI();
     }
@@ -389,12 +379,9 @@ public class MainActivity extends AppCompatActivity {
             }
             if (queued == 0) {
                 // The asset has been deleted or downloaded
-                mainActivity.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        mainActivity.textView.setText(downloaded == 0 ? "Asset Deleted" : "Asset Downloaded");
-                        mainActivity.progressBar.setVisibility(View.GONE);
-                    }
+                mainActivity.runOnUiThread(() -> {
+                    mainActivity.textView.setText(downloaded == 0 ? "Asset Deleted" : "Asset Downloaded");
+                    mainActivity.progressBar.setVisibility(View.GONE);
                 });
             }
         }
@@ -405,18 +392,13 @@ public class MainActivity extends AppCompatActivity {
         }
 
         private void updateItem(final IIdentifier identifier, boolean forceUpdate) {
-            if (identifier != null && identifier instanceof IAsset) {
+            if (identifier instanceof IAsset) {
                 final IAsset asset = (IAsset) identifier;
                 String assetId = asset.getAssetId();
 
                 // Ensure progress is for our catalog item
                 if (!TextUtils.isEmpty(assetId) && assetId.equals(ASSET_ID)){
-                    mainActivity.runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            updateItemStatus(asset, forceUpdate);
-                        }
-                    });
+                    mainActivity.runOnUiThread(() -> updateItemStatus(asset, forceUpdate));
                 }
             }
         }
@@ -512,32 +494,24 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // Observe backplane request changes, enabling the UI to react to actions such as SDK startup and unregister.
-    private Observers.IBackplaneObserver backplaneObserver = new Observers.IBackplaneObserver(){
-        @Override
-        public void requestComplete(final int request, final int result, final String errorMessage) {
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    if (request == Common.BackplaneCallbackType.SYNC) {
-                        // Push messages result in a sync. That sync response may contain instructions such as to
-                        // unregister the device, disable downloads, or remote wipe.
-                        if (result == Common.BackplaneResult.SUCCESS) {
-                            updateRegisterButtons();
-                        }
-                    }
-                    if (request == Common.BackplaneCallbackType.REGISTER || request == Common.BackplaneCallbackType.UNREGISTER) {
-                        registering = false;
-                        if (result == Common.BackplaneResult.SUCCESS) {
-                            updateRegisterButtons();
-                        } else {
-                            Toast.makeText(getBaseContext(), "Backplane register / unregister failed", Toast.LENGTH_SHORT).show();
-                        }
-                    } else if (request == Common.BackplaneCallbackType.DEVICE_UNREGISTERED) {
-                        // Unregister a different device
-                        Toast.makeText(getBaseContext(),  (result == Common.BackplaneResult.SUCCESS) ? R.string.unregister_success : R.string.unregister_fail, Toast.LENGTH_SHORT).show();
-                    }
-                }
-            });
+    private Observers.IBackplaneObserver backplaneObserver = (request, result, errorMessage) -> runOnUiThread(() -> {
+        if (request == Common.BackplaneCallbackType.SYNC) {
+            // Push messages result in a sync. That sync response may contain instructions such as to
+            // unregister the device, disable downloads, or remote wipe.
+            if (result == Common.BackplaneResult.SUCCESS) {
+                updateRegisterButtons();
+            }
         }
-    };
+        if (request == Common.BackplaneCallbackType.REGISTER || request == Common.BackplaneCallbackType.UNREGISTER) {
+            registering = false;
+            if (result == Common.BackplaneResult.SUCCESS) {
+                updateRegisterButtons();
+            } else {
+                Toast.makeText(getBaseContext(), "Backplane register / unregister failed", Toast.LENGTH_SHORT).show();
+            }
+        } else if (request == Common.BackplaneCallbackType.DEVICE_UNREGISTERED) {
+            // Unregister a different device
+            Toast.makeText(getBaseContext(),  (result == Common.BackplaneResult.SUCCESS) ? R.string.unregister_success : R.string.unregister_fail, Toast.LENGTH_SHORT).show();
+        }
+    });
 }

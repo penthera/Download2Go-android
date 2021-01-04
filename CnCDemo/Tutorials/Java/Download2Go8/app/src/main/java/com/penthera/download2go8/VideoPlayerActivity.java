@@ -10,17 +10,14 @@ package com.penthera.download2go8;
 import android.annotation.TargetApi;
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.MediaDrm;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.Pair;
 import android.view.KeyEvent;
-import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -45,7 +42,6 @@ import com.google.android.exoplayer2.source.TrackGroupArray;
 import com.google.android.exoplayer2.source.dash.DashMediaSource;
 import com.google.android.exoplayer2.source.dash.DefaultDashChunkSource;
 import com.google.android.exoplayer2.source.hls.HlsMediaSource;
-import com.google.android.exoplayer2.source.smoothstreaming.SsMediaSource;
 import com.google.android.exoplayer2.trackselection.AdaptiveTrackSelection;
 import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
 import com.google.android.exoplayer2.trackselection.MappingTrackSelector;
@@ -101,8 +97,6 @@ public class VideoPlayerActivity extends AppCompatActivity implements PlaybackPr
     // a singleton for the whole application. But this should not be instantiated in an application onCreate().
     private Virtuoso mVirtuoso;
 
-    private Handler mainHandler;
-
     private PlayerView playerView;
 
     private DataSource.Factory dataSourceFactory;
@@ -121,9 +115,9 @@ public class VideoPlayerActivity extends AppCompatActivity implements PlaybackPr
     public static void playVideoDownload(Context context, IAsset asset) {
         try {
             // We get the path in advance to ensure the asset is playable before sending to the player activity
-            URL playlist = asset.getPlaylist(); // This will return null if the asset is unavailable due to business rules
-            if (playlist != null) {
-                Uri path = Uri.parse(playlist.toString());
+            URL playbackURL = asset.getPlaybackURL(); // This will return null if the asset is unavailable due to business rules
+            if (playbackURL != null) {
+                Uri path = Uri.parse(playbackURL.toString());
                 Intent intent = new Intent(context, VideoPlayerActivity.class)
                         .setAction(ACTION_VIEW)
                         .setData(path)
@@ -215,7 +209,7 @@ public class VideoPlayerActivity extends AppCompatActivity implements PlaybackPr
     }
 
     @Override
-    public void onSaveInstanceState(Bundle outState) {
+    public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         updateTrackSelectorParameters();
         updateStartPosition();
@@ -415,21 +409,15 @@ public class VideoPlayerActivity extends AppCompatActivity implements PlaybackPr
     public void handleDrmLicenseNotAvailable() {
         clearStartPosition();
 
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                AlertDialog alertDialog = new AlertDialog.Builder(VideoPlayerActivity.this).create();
-                alertDialog.setTitle("License unavailable");
-                alertDialog.setMessage("License for offline playback expired and renew is unavailable.");
-                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                        VideoPlayerActivity.this.finish();
-                    }
-                });
-                alertDialog.show();
-            }
+        runOnUiThread(() -> {
+            AlertDialog alertDialog = new AlertDialog.Builder(VideoPlayerActivity.this).create();
+            alertDialog.setTitle("License unavailable");
+            alertDialog.setMessage("License for offline playback expired and renew is unavailable.");
+            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK", (dialog, which) -> {
+                dialog.dismiss();
+                VideoPlayerActivity.this.finish();
+            });
+            alertDialog.show();
         });
     }
 
@@ -519,6 +507,7 @@ public class VideoPlayerActivity extends AppCompatActivity implements PlaybackPr
     // This inner class is taken directly from the Exoplayer demo. It provides human readable error messages for exoplayer errors.
     private class PlayerErrorMessageProvider implements ErrorMessageProvider<ExoPlaybackException> {
 
+        @NonNull
         @Override
         public Pair<Integer, String> getErrorMessage(ExoPlaybackException e) {
             String errorString = getString(R.string.error_generic);

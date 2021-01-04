@@ -4,6 +4,7 @@ import com.penthera.virtuososdk.client.IBackgroundProcessingManager;
 import com.penthera.virtuososdk.client.IManifestParserObserver;
 import com.penthera.virtuososdk.client.IPlaylistAssetProvider;
 import com.penthera.virtuososdk.client.ads.IClientSideAdsParserProvider;
+import com.penthera.virtuososdk.client.push.ISubscriptionsProvider;
 import com.penthera.virtuososdk.client.subscriptions.ISubscriptionsProvider;
 
 /**
@@ -24,11 +25,6 @@ public class DemoBackgroundProcessingManager implements IBackgroundProcessingMan
     @Override
     public IClientSideAdsParserProvider getClientSideAdsParserProvider() {
         return DemoClientAdsProvider.getInstance();
-    }
-
-    @Override
-    public ISubscriptionsProvider getSubscriptionsProvider() {
-        return null;
     }
 
     @Override

@@ -14,10 +14,8 @@
 
 package com.penthera.sdkdemo;
 
-import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -44,7 +42,6 @@ import com.penthera.virtuososdk.client.AncillaryFile;
 import com.penthera.virtuososdk.client.IAssetManager;
 import com.penthera.virtuososdk.client.IAssetPermission;
 import com.penthera.virtuososdk.client.IQueue;
-import com.penthera.virtuososdk.client.ISegment;
 import com.penthera.virtuososdk.client.ISegmentedAssetFromParserObserver;
 import com.penthera.virtuososdk.client.IAsset;
 import com.penthera.virtuososdk.client.IFile;
@@ -556,7 +553,7 @@ public class VirtuosoUtil {
 			ISegmentedAsset file = (ISegmentedAsset) id;
 			URL theUrl;
 			try {
-				theUrl = file.getPlaylist();
+				theUrl = file.getPlaybackURL();
 				if (theUrl != null) {
 					path = theUrl.toString();
 				}
@@ -573,7 +570,7 @@ public class VirtuosoUtil {
         if(a.getType() == Common.AssetIdentifierType.SEGMENTED_ASSET_IDENTIFIER){
             ISegmentedAsset sa = (ISegmentedAsset)a;
             type = sa.segmentedFileType();
-            path = Uri.parse(sa.getPlaylist().toString());
+            path = Uri.parse(sa.getPlaybackURL().toString());
         }
         else{
             IFile f = (IFile)a;

@@ -22,12 +22,8 @@ import android.database.ContentObserver;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -36,53 +32,44 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.penthera.virtuososdk.Common;
-import com.penthera.virtuososdk.client.AncillaryFile;
-import com.penthera.virtuososdk.client.EngineObserver;
-import com.penthera.virtuososdk.client.IAsset;
 import com.penthera.virtuososdk.client.IAssetManager;
-import com.penthera.virtuososdk.client.IIdentifier;
 import com.penthera.virtuososdk.client.ISegmentedAsset;
 import com.penthera.virtuososdk.client.ISegmentedAssetFromParserObserver;
-import com.penthera.virtuososdk.client.IService;
-import com.penthera.virtuososdk.client.Observers;
-import com.penthera.virtuososdk.client.ServiceException;
 import com.penthera.virtuososdk.client.Virtuoso;
 import com.penthera.virtuososdk.client.builders.HLSAssetBuilder;
 import com.penthera.virtuososdk.client.builders.MPDAssetBuilder;
 import com.penthera.virtuososdk.client.database.AssetColumns;
 
-import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Locale;
 
 import static android.content.Intent.ACTION_VIEW;
 
 public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
     // DEMO Server details
-    private static String BACKPLANE_URL = "https://demo.penthera.com/";
-    private static String BACKPLANE_PUBLIC_KEY = ;
-    private static String BACKPLANE_PRIVATE_KEY = ;
+    private static final String BACKPLANE_URL = "https://demo.penthera.com/";
+    private static final String BACKPLANE_PUBLIC_KEY = ;
+    private static final String BACKPLANE_PRIVATE_KEY = ;
 
     // This is the first test asset which will be downloaded
     // Important: Asset ID should be unique across your video catalog
-    private static String ASSET_ID_1 = "TEST_ASSET_ID_1";
+    private static final String ASSET_ID_1 = "TEST_ASSET_ID_1";
     private String ASSET_TITLE_1;
-    private static String ASSET_URL_1 = "https://storage.googleapis.com/wvmedia/clear/h264/tears/tears_sd.mpd";
+    private static final String ASSET_URL_1 = "https://storage.googleapis.com/wvmedia/clear/h264/tears/tears_sd.mpd";
 
     // This is the first test asset which will be downloaded
     // Important: Asset ID should be unique across your video catalog
-    private static String ASSET_ID_2 = "TEST_ASSET_ID_2";
+    private static final String ASSET_ID_2 = "TEST_ASSET_ID_2";
     private String ASSET_TITLE_2;
-    private static String ASSET_URL_2 = "http://virtuoso-demo-content.s3.amazonaws.com/Steve/steve.m3u8";
+    private static final String ASSET_URL_2 = "http://virtuoso-demo-content.s3.amazonaws.com/Steve/steve.m3u8";
 
     // This is the first test asset which will be downloaded
     // Important: Asset ID should be unique across your video catalog
-    private static String ASSET_ID_3 = "TEST_ASSET_ID_3";
+    private static final String ASSET_ID_3 = "TEST_ASSET_ID_3";
     private String ASSET_TITLE_3;
-    private static String ASSET_URL_3 = "http://virtuoso-demo-content.s3.amazonaws.com/College/college.m3u8";
+    private static final String ASSET_URL_3 = "http://virtuoso-demo-content.s3.amazonaws.com/College/college.m3u8";
 
     // We only use one loader here, so this is of little significance.
     private int LOADER_ID = 1;
@@ -200,7 +187,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                     );
                 }
             } catch (MalformedURLException mue) {
-
+                Log.e("MainActivity", "Error with backplane url", mue);
             }
         }
 
@@ -300,16 +287,16 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         startActivity(intent);
     }
 
+    @NonNull
     @Override
     public Loader<Cursor> onCreateLoader(int loader, Bundle arg1) {
         Uri uri = assetManager.CONTENT_URI();
-        CursorLoader cursorLoader = new CursorLoader(this,uri,PROJECTION,null,null,null);
-        return cursorLoader;
+        return new CursorLoader(this,uri,PROJECTION,null,null,null);
     }
 
     // onLoadFinished
     @Override
-    public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
+    public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor cursor) {
         if (cursor != null) {
             cursor.setNotificationUri(getContentResolver(), privateUpdateURI);
             adapter.setCursor(cursor);
@@ -318,7 +305,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     // onLoaderReset
     @Override
-    public void onLoaderReset(Loader<Cursor> arg0) {
+    public void onLoaderReset(@NonNull Loader<Cursor> loader) {
             adapter.setCursor(null);
     }
 
@@ -337,7 +324,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         public void complete(final ISegmentedAsset asset, int error, boolean addedToQueue) {
             activity.runOnUiThread(() -> {
 
-                if(asset != null && error == 0) {    //TODO: we should have a success constant!
+                if(asset != null && error == 0) {
                     Toast.makeText(activity, "Asset parsed and " + (addedToQueue ? "added" : "not added") + " to download queue", Toast.LENGTH_LONG  ).show();
                 }
                 else{
@@ -415,19 +402,9 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                 sizeTextView = itemView.findViewById(R.id.sizeTextView);
                 progressBar = itemView.findViewById(R.id.progressBar);
 
-                itemView.findViewById(R.id.delete).setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        deleteAsset(itemId);
-                    }
-                });
+                itemView.findViewById(R.id.delete).setOnClickListener(v -> deleteAsset(itemId));
 
-                itemView.setOnClickListener(new View.OnClickListener(){
-                    @Override
-                    public void onClick(View v) {
-                        openAsset(assetId);
-                    }
-                });
+                itemView.setOnClickListener(v -> openAsset(assetId));
             }
 
             public void bindItem(Cursor cursor) {
@@ -445,10 +422,10 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
                 long currentSize = cursor.getLong(currentSizeIndex);
                 long expectedSize = cursor.getLong(estimatedSizeIndex);
-                sizeTextView.setText(context.getString(R.string.asset_size, String.format("%.2f MB", currentSize/1048576.00), String.format("%.2f MB", expectedSize/1048576.00)));
+                sizeTextView.setText(context.getString(R.string.asset_size, String.format(Locale.US,"%.2f MB", currentSize/1048576.00), String.format(Locale.US,"%.2f MB", expectedSize/1048576.00)));
 
                 double progressPercent = cursor.getDouble(progressIndex);
-                progressTextView.setText(String.format("(%.2f)", progressPercent));
+                progressTextView.setText(String.format(Locale.US,"(%.2f)", progressPercent));
 
                 progressBar.setProgress((int)(progressPercent * 100));
             }

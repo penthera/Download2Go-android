@@ -38,7 +38,7 @@
     <string name="duration">Duration (s):</string>
     <string name="downloadStatus">Download Status:</string>
     <string name="assetPath">Local File Path:</string>
-    <string name="playlist">Playlist URI:</string>
+    <string name="playback">Playback URL:</string>
     <string name="segmentCount">Total Segment Count:</string>
     <string name="firstPlayTime">First Play Time:</string>
 
@@ -50,7 +50,7 @@
 
     <!-- Playback messages -->
     <string name="error_cannot_play">Cannot play asset</string>
-    <string name="error_invalid_url">Cannot play asset - playlist issue</string>
+    <string name="error_invalid_url">Cannot play asset - playback URL issue</string>
     <string name="unexpected_intent_action">Unexpected intent action: <xliff:g id="action">%1$s</xliff:g></string>
     <string name="storage_permission_denied">Permission to access storage was denied</string>
 

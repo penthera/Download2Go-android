@@ -15,7 +15,7 @@ package com.penthera.sdkdemokotlin.push
 
 import android.content.Intent
 import android.util.Log
-import com.penthera.virtuososdk.client.subscriptions.ADMService
+import com.penthera.virtuososdk.client.push.ADMService
 
 /**
  * Demonstrates how to subclass an ADM service and intercept tokens and messages.

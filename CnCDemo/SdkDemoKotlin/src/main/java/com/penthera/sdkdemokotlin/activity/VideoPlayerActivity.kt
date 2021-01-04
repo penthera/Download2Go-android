@@ -29,8 +29,6 @@ import com.google.android.exoplayer2.source.TrackGroupArray
 import com.google.android.exoplayer2.source.dash.DashMediaSource
 import com.google.android.exoplayer2.source.dash.DefaultDashChunkSource
 import com.google.android.exoplayer2.source.hls.HlsMediaSource
-import com.google.android.exoplayer2.source.smoothstreaming.DefaultSsChunkSource
-import com.google.android.exoplayer2.source.smoothstreaming.SsMediaSource
 import com.google.android.exoplayer2.trackselection.*
 import com.google.android.exoplayer2.trackselection.DefaultTrackSelector.ParametersBuilder
 import com.google.android.exoplayer2.ui.DebugTextViewHelper
@@ -541,7 +539,8 @@ class VideoPlayerActivity : AppCompatActivity(), View.OnClickListener, PlaybackP
             if (asset.type == Common.AssetIdentifierType.SEGMENTED_ASSET_IDENTIFIER) {
                 val sa = asset as ISegmentedAsset
                 type = sa.segmentedFileType()
-                path = Uri.parse(sa.playlist.toString())
+                val url = sa.playbackURL ?: return
+                path = Uri.parse(url.toString())
             } else {
                 val f = asset as IFile
                 path = Uri.parse(f.filePath)

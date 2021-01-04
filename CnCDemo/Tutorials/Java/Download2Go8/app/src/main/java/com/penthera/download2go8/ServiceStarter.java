@@ -8,7 +8,6 @@
 package com.penthera.download2go8;
 
 import android.app.Notification;
-import android.app.NotificationChannel;
 import android.content.Context;
 import android.content.Intent;
 
@@ -21,8 +20,6 @@ import com.penthera.virtuososdk.service.VirtuosoServiceStarter;
  */
 public class ServiceStarter extends VirtuosoServiceStarter {
 
-
-    private static NotificationChannel notificationChannel = null;
     private static Notification currentNotification = null;
 
 
@@ -38,7 +35,7 @@ public class ServiceStarter extends VirtuosoServiceStarter {
     }
 
     // This is a helper class which is used in the demo for creating the notifications
-    private NotificationFactory notificationFactory = new NotificationFactory("Download2GoHelloWorld");
+    private NotificationFactory notificationFactory = new NotificationFactory("Download2Go8");
 
     /**
      * This method will be called by the framework to request the generation of a notification,

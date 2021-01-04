@@ -458,8 +458,8 @@ class MainActivity : AppCompatActivity() {
         const val ASSET_URL: String = "https://storage.googleapis.com/wvmedia/clear/h264/tears/tears_sd.mpd"
 
         const val BACKPLANE_URL = "https://demo.penthera.com"
-        const val BACKPLANE_PUBLIC_KEY =  "73ca8dfb4e0f7144fdf43640aa70cc0fdfc9d10e4cd530d5ba6370cf56527f39"
-        const val BACKPLANE_PRIVATE_KEY = "a546f1037420a552f5d6305cb85feb1d1d710555a48e6afc2d74237ccf335938"
+        const val BACKPLANE_PUBLIC_KEY =  
+        const val BACKPLANE_PRIVATE_KEY = 
 
 
     }

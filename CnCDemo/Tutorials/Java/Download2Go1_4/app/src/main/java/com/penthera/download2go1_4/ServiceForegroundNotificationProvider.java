@@ -60,11 +60,7 @@ public class ServiceForegroundNotificationProvider implements IForegroundNotific
         }
 
         // Do not update progress for events
-        if( action.contains(Common.Notifications.NOTIFICATION_EVENT_TAG) ){
-            return false;
-        }
-
-        return true;
+        return !action.contains(Common.Notifications.NOTIFICATION_EVENT_TAG);
     }
 
     /**
@@ -82,13 +78,14 @@ public class ServiceForegroundNotificationProvider implements IForegroundNotific
                 return;
             }
             NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-            notificationChannel = manager.getNotificationChannel(channelId);
+            if (manager != null) {
+                notificationChannel = manager.getNotificationChannel(channelId);
+            }
             NotificationFactory.setChannel(notificationChannel);
             this.channelId = channelId;
-            currentNotification = notification;
-        } else {
-            currentNotification = notification;
         }
+
+        currentNotification = notification;
     }
 
     /**

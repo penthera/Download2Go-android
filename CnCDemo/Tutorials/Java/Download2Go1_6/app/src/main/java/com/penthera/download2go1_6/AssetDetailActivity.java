@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.penthera.virtuososdk.client.IAssetManager;
@@ -25,6 +26,7 @@ import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class AssetDetailActivity extends AppCompatActivity {
 
@@ -48,11 +50,11 @@ public class AssetDetailActivity extends AppCompatActivity {
     private TextView durationView;
     private TextView statusView;
     private TextView pathView;
-    private TextView playlistView;
+    private TextView playbackURLView;
     private TextView segmentCountView;
     private TextView firstPlayView;
 
-    private static SimpleDateFormat dateFormatter = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss a");
+    private static SimpleDateFormat dateFormatter = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss a", Locale.US);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,13 +70,11 @@ public class AssetDetailActivity extends AppCompatActivity {
         durationView = findViewById(R.id.durationValue);
         statusView = findViewById(R.id.statusValue);
         pathView = findViewById(R.id.pathValue);
-        playlistView = findViewById(R.id.playlistValue);
+        playbackURLView = findViewById(R.id.playbackValue);
         segmentCountView = findViewById(R.id.segmentCountValue);
         firstPlayView = findViewById(R.id.firstPlayValue);
 
-        findViewById(R.id.btn_play).setOnClickListener(v -> {
-            playAsset();
-        });
+        findViewById(R.id.btn_play).setOnClickListener(v -> playAsset());
 
         findViewById(R.id.btn_delete).setOnClickListener(v -> {
             if (asset != null) {
@@ -120,7 +120,7 @@ public class AssetDetailActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onSaveInstanceState(Bundle outState) {
+    public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putString(ASSET_ID_KEY, assetId);
     }
@@ -151,20 +151,20 @@ public class AssetDetailActivity extends AppCompatActivity {
             uuidView.setText(asset.getUuid());
             idView.setText(asset.getAssetId());
             fileTypeView.setText(fileTypeFromId(asset.segmentedFileType()));
-            expectedSizeView.setText(String.format("%.2f MB", asset.getExpectedSize()/1048576.00));
-            currentSizeView.setText(String.format("%.2f MB", asset.getCurrentSize()/1048576.00));
-            durationView.setText(String.format("%d seconds", asset.getDuration()));
+            expectedSizeView.setText(String.format(Locale.US,"%.2f MB", asset.getExpectedSize()/1048576.00));
+            currentSizeView.setText(String.format(Locale.US,"%.2f MB", asset.getCurrentSize()/1048576.00));
+            durationView.setText(String.format(Locale.US,"%d seconds", asset.getDuration()));
             statusView.setText(MainActivity.getStatusText(this,asset.getDownloadStatus()));
             pathView.setText(asset.getLocalBaseDir());
             try {
-                URL url = asset.getPlaylist();
+                URL url = asset.getPlaybackURL();
                 if (url != null) {
-                    playlistView.setText(url.toString());
+                    playbackURLView.setText(url.toString());
                 } else {
-                    playlistView.setText(R.string.unavailable);
+                    playbackURLView.setText(R.string.unavailable);
                 }
             } catch (MalformedURLException mue) {
-                playlistView.setText(R.string.unavailable);
+                playbackURLView.setText(R.string.unavailable);
             }
             segmentCountView.setText(Integer.toString(asset.getTotalSegments()));
             long firstPlayTime = asset.getFirstPlayTime();
@@ -237,17 +237,14 @@ public class AssetDetailActivity extends AppCompatActivity {
         }
 
         private void updateItem(final IIdentifier identifier, boolean forceUpdate) {
-            if (identifier != null && identifier instanceof ISegmentedAsset) {
+            if (identifier instanceof ISegmentedAsset) {
                 final ISegmentedAsset asset = (ISegmentedAsset) identifier;
                 String assetId = asset.getAssetId();
 
                 if (!TextUtils.isEmpty(assetId) && assetId.equals(activity.assetId)) {
-                    activity.runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            activity.asset = asset;
-                            activity.updateUI();
-                        }
+                    activity.runOnUiThread(() -> {
+                        activity.asset = asset;
+                        activity.updateUI();
                     });
                 }
             }

@@ -29,7 +29,7 @@ public class ServiceStarter extends VirtuosoServiceStarter {
     }
 
     // This is a helper class which is used in the demo for creating the notifications
-    private NotificationFactory notificationFactory = new NotificationFactory("Download2GoHelloWorld");
+    private NotificationFactory notificationFactory = new NotificationFactory("Download2Go1.2");
 
     /**
      * This method will be called by the framework to request the generation of a notification,
