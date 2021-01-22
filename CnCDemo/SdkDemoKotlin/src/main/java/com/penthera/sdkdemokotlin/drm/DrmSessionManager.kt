@@ -7,8 +7,9 @@ import android.os.Handler
 import android.os.Looper
 import com.google.android.exoplayer2.drm.*
 import com.penthera.virtuososdk.client.IAsset
-import com.penthera.virtuososdk.client.drm.IDrmInitData
 import com.penthera.virtuososdk.client.drm.IVirtuosoDrmSession
+import com.penthera.virtuososdk.client.drm.UUIDS
+import com.penthera.virtuososdk.client.drm.VirtuosoDrmInitData
 import com.penthera.virtuososdk.client.drm.VirtuosoDrmSessionManager
 import java.util.*
 
@@ -31,44 +32,43 @@ class DrmSessionManagerWrapper @Throws(com.penthera.virtuososdk.client.drm.Unsup
         if (eventListener != null) {
             eventHandler = Handler()
         }
-        mDrmSessionManager = VirtuosoDrmSessionManager(context,uuid, asset,optionalKeyRequestParameters,
-                null,eventHandler,eventListener)
+        mDrmSessionManager = VirtuosoDrmSessionManager(context, uuid, asset, optionalKeyRequestParameters,
+                null, eventHandler, eventListener)
     }
 
     override fun canAcquireSession(drmInitData: DrmInitData): Boolean {
-        return mDrmSessionManager.canOpen { schemeUuid ->
 
-            var sd : DrmInitData.SchemeData? = null
-            for( i in 0 until drmInitData.schemeDataCount){
-                sd = drmInitData.get(i)
-
-                if(sd.matches(schemeUuid))
-                    break
-
-                sd = null
-
+        val virtuosoSchemeDatas = ArrayList<VirtuosoDrmInitData.SchemeInitData>()
+        for (i in 0 until drmInitData.schemeDataCount) {
+            val sd: DrmInitData.SchemeData = drmInitData.get(i)
+            if (sd.matches(UUIDS.WIDEVINE_UUID)) {  // only supports widevine
+                virtuosoSchemeDatas.add(VirtuosoDrmInitData.SchemeInitData(UUIDS.WIDEVINE_UUID, sd.mimeType, sd.data))
             }
-
-            sd?.let{IDrmInitData.SchemeInitData(it.mimeType, it.data)}
-
         }
+
+        return mDrmSessionManager.canOpen(VirtuosoDrmInitData(virtuosoSchemeDatas))
     }
 
     override fun acquireSession(playbackLooper: Looper, drmInitData: DrmInitData): DrmSession<FrameworkMediaCrypto> {
-        val session = mDrmSessionManager.open { schemeUuid ->
 
-            val sd = getMatchingSchemeData(drmInitData,schemeUuid)
-            IDrmInitData.SchemeInitData(sd?.mimeType, sd?.data)
+        val virtuosoSchemeDatas = ArrayList<VirtuosoDrmInitData.SchemeInitData>()
+        for (i in 0 until drmInitData.schemeDataCount) {
+            val sd: DrmInitData.SchemeData = drmInitData.get(i)
+            if (sd.matches(UUIDS.WIDEVINE_UUID)) {  // only supports widevine
+                virtuosoSchemeDatas.add(VirtuosoDrmInitData.SchemeInitData(UUIDS.WIDEVINE_UUID, sd.mimeType, sd.data))
+            }
         }
+
+        val session = mDrmSessionManager.open(VirtuosoDrmInitData(virtuosoSchemeDatas))
         session.setLooper(playbackLooper)
         session.setDrmOnEventListener(mDrmEventListener)
 
         return DrmSessionWrapper(session, mDrmSessionManager.schemeUUID, mDrmSessionManager)
     }
 
-    private fun getMatchingSchemeData(drmInitData: DrmInitData, schemeUuid: UUID) : DrmInitData.SchemeData?{
+    private fun getMatchingSchemeData(drmInitData: VirtuosoDrmInitData, schemeUuid: UUID) : VirtuosoDrmInitData.SchemeInitData?{
 
-        var ret : DrmInitData.SchemeData? = null
+        var ret : VirtuosoDrmInitData.SchemeInitData? = null
 
         for(i in 0 until drmInitData.schemeDataCount ){
             if(drmInitData.get(i).matches(schemeUuid)){

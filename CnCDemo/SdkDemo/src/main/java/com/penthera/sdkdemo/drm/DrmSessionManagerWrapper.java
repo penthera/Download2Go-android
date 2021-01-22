@@ -16,21 +16,21 @@ package com.penthera.sdkdemo.drm;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.media.MediaDrm;
-import android.media.MediaCrypto;
 import android.os.Handler;
 import android.os.Looper;
 
 import androidx.annotation.Nullable;
 
-import com.google.android.exoplayer2.drm.DrmInitData;
 import com.google.android.exoplayer2.drm.DrmSession;
 import com.google.android.exoplayer2.drm.DrmSessionManager;
 import com.google.android.exoplayer2.drm.FrameworkMediaCrypto;
 import com.penthera.virtuososdk.client.IAsset;
-import com.penthera.virtuososdk.client.drm.IDrmInitData;
+import com.penthera.virtuososdk.client.drm.UUIDS;
+import com.penthera.virtuososdk.client.drm.VirtuosoDrmInitData;
 import com.penthera.virtuososdk.client.drm.IVirtuosoDrmSession;
 import com.penthera.virtuososdk.client.drm.VirtuosoDrmSessionManager;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -66,34 +66,39 @@ public class DrmSessionManagerWrapper implements DrmSessionManager<FrameworkMedi
     }
 
     @Override
-    public boolean canAcquireSession(final DrmInitData drmInitData) {
-        return mDrmSessionManager.canOpen(new IDrmInitData() {
-            @Override
-            public SchemeInitData get(UUID schemeUuid) {
-                DrmInitData.SchemeData sd = drmInitData.get(schemeUuid);
-                return new SchemeInitData(sd.mimeType, sd.data);
+    public boolean canAcquireSession(final com.google.android.exoplayer2.drm.DrmInitData drmInitData) {
+
+        ArrayList<VirtuosoDrmInitData.SchemeInitData> virtuosoSchemeDatas = new ArrayList<>();
+        for (int i=0; i<drmInitData.schemeDataCount; i++) {
+            com.google.android.exoplayer2.drm.DrmInitData.SchemeData sd = drmInitData.get(i);
+            if (sd.matches(UUIDS.WIDEVINE_UUID)) {  // only supports widevine
+                virtuosoSchemeDatas.add(new VirtuosoDrmInitData.SchemeInitData(UUIDS.WIDEVINE_UUID, sd.mimeType, sd.data));
             }
-        });
+        }
+
+        return mDrmSessionManager.canOpen(new VirtuosoDrmInitData(virtuosoSchemeDatas));
     }
 
     @Override
-    public DrmSession<FrameworkMediaCrypto> acquireSession(Looper playbackLooper, final DrmInitData drmInitData) {
-        IVirtuosoDrmSession session = mDrmSessionManager.open(new IDrmInitData() {
-            @Override
-            public SchemeInitData get(UUID schemeUuid) {
-                DrmInitData.SchemeData sd = drmInitData.get(schemeUuid);
-                return new SchemeInitData(sd.mimeType,sd.data);
+    public DrmSession<FrameworkMediaCrypto> acquireSession(Looper playbackLooper, final com.google.android.exoplayer2.drm.DrmInitData drmInitData) {
+        ArrayList<VirtuosoDrmInitData.SchemeInitData> virtuosoSchemeDatas = new ArrayList<>();
+        for (int i=0; i<drmInitData.schemeDataCount; i++) {
+            com.google.android.exoplayer2.drm.DrmInitData.SchemeData sd = drmInitData.get(i);
+            if (sd.matches(UUIDS.WIDEVINE_UUID)) {  // only supports widevine
+                virtuosoSchemeDatas.add(new VirtuosoDrmInitData.SchemeInitData(UUIDS.WIDEVINE_UUID, sd.mimeType, sd.data));
             }
-        });
-        session.setLooper(playbackLooper);
-        session.setDrmOnEventListener(mDrmEventListener);
+        }
 
-        return new DrmSessionWrapper(session, mDrmSessionManager.getSchemeUUID(), mDrmSessionManager);
+        IVirtuosoDrmSession virtuosoDrmSession = mDrmSessionManager.open(new VirtuosoDrmInitData(virtuosoSchemeDatas));
+        virtuosoDrmSession.setLooper(playbackLooper);
+        virtuosoDrmSession.setDrmOnEventListener(mDrmEventListener);
+
+        return new DrmSessionWrapper(virtuosoDrmSession, mDrmSessionManager.getSchemeUUID(), mDrmSessionManager);
     }
 
     @Override
     @Nullable
-    public Class<FrameworkMediaCrypto> getExoMediaCryptoType(DrmInitData drmInitData) {
+    public Class<FrameworkMediaCrypto> getExoMediaCryptoType(com.google.android.exoplayer2.drm.DrmInitData drmInitData) {
         /* ExoMediaCrypto is An opaque {@link android.media.MediaCrypto} equivalent. */
         return canAcquireSession(drmInitData)
                 ? FrameworkMediaCrypto.class

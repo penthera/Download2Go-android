@@ -52,9 +52,9 @@ def lifecycle_version = "2.2.0"
 dependencies {
     def sysprops = System.getProperties()
     if (sysprops['idea.platform.prefix'] != null || project.hasProperty("devCmdLine")) {
-        implementation 'com.penthera:cnc-android-sdk-debug:3.17.0'
+        implementation 'com.penthera:cnc-android-sdk-debug:3.17.0.1'
     } else {
-        implementation 'com.penthera:cnc-android-sdk-debug:3.17.0'
+        implementation 'com.penthera:cnc-android-sdk-debug:3.17.0.1'
     }
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
