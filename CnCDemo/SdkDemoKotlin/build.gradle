@@ -11,8 +11,8 @@ android {
         applicationId "com.penthera.sdkdemokotlin"
         minSdkVersion 24
         targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
+        versionCode = 317002
+        versionName = "3.17.0.2"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
@@ -50,12 +50,7 @@ allprojects {
 def lifecycle_version = "2.2.0"
 
 dependencies {
-    def sysprops = System.getProperties()
-    if (sysprops['idea.platform.prefix'] != null || project.hasProperty("devCmdLine")) {
-        implementation 'com.penthera:cnc-android-sdk-debug:3.17.0.1'
-    } else {
-        implementation 'com.penthera:cnc-android-sdk-debug:3.17.0.1'
-    }
+    implementation  'com.penthera:cnc-android-sdk-debug:3.17.0.2'
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.1.0'

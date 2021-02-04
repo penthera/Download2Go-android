@@ -52,7 +52,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
     //add dependency to latest Download2Go SDK version
-    implementation 'com.penthera:cnc-android-sdk-debug:3.17.0.1'
+    implementation 'com.penthera:cnc-android-sdk-debug:3.17.0.2'
 
     // Player
     implementation ('com.google.android.exoplayer:exoplayer:2.11.3')
