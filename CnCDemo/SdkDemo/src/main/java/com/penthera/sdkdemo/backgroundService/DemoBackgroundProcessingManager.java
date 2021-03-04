@@ -2,6 +2,7 @@ package com.penthera.sdkdemo.backgroundService;
 
 import com.penthera.virtuososdk.client.IBackgroundProcessingManager;
 import com.penthera.virtuososdk.client.IManifestParserObserver;
+import com.penthera.virtuososdk.client.IPrepareURLObserver;
 import com.penthera.virtuososdk.client.autodownload.IPlaylistAssetProvider;
 import com.penthera.virtuososdk.client.ads.IClientSideAdsParserProvider;
 
@@ -21,6 +22,11 @@ public class DemoBackgroundProcessingManager implements IBackgroundProcessingMan
 
     @Override
     public IPlaylistAssetProvider getPlaylistProvider() {
+        return null;
+    }
+
+    @Override
+    public IPrepareURLObserver getSegmentPrepareObserver() {
         return null;
     }
 }

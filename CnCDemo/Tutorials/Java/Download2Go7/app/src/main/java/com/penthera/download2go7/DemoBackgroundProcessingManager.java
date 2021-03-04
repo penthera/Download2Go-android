@@ -42,6 +42,10 @@ public class DemoBackgroundProcessingManager implements IBackgroundProcessingMan
         return new DemoPlaylistAssetProvider();
     }
 
+	@Override
+    public IPrepareURLObserver getSegmentPrepareObserver() {
+        return null;
+    } 
 
     private static class DemoPlaylistAssetProvider implements IPlaylistAssetProvider{
 

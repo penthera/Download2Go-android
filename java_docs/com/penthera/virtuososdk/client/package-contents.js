@@ -18,6 +18,7 @@ var classSelectorHTML = '\
 		<option value="com.penthera.virtuososdk.client/IIdentifier">IIdentifier</option>\
 		<option value="com.penthera.virtuososdk.client/IManifestParserObserver">IManifestParserObserver</option>\
 		<option value="com.penthera.virtuososdk.client/INetworkCapabilities">INetworkCapabilities</option>\
+		<option value="com.penthera.virtuososdk.client/IPrepareURLObserver">IPrepareURLObserver</option>\
 		<option value="com.penthera.virtuososdk.client/IPushRegistrationObserver">IPushRegistrationObserver</option>\
 		<option value="com.penthera.virtuososdk.client/IQueue">IQueue</option>\
 		<option value="com.penthera.virtuososdk.client/IQueue.IQueuedAssetPermissionObserver">IQueue.IQueuedAssetPermissionObserver</option>\

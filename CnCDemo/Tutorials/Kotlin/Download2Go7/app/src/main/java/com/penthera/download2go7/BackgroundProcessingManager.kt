@@ -25,6 +25,9 @@ class BackgroundProcessingManager : IBackgroundProcessingManager {
         return PlaylistProvider()
     }
 
+	override fun getSegmentPrepareObserver(): IPrepareURLObserver? {
+        return null;
+    }
 
     class ManifestParseObserver : IManifestParserObserver{
         override fun willAddToQueue(asset: ISegmentedAsset?, assetManager: IAssetManager?, context: Context?) {

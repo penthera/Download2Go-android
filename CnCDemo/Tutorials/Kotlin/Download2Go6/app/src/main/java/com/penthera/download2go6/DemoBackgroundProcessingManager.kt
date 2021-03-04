@@ -32,4 +32,8 @@ class DemoBackgroundProcessingManager :
     override fun getPlaylistProvider(): IPlaylistAssetProvider? {
         return null
     }
+	
+	override fun getSegmentPrepareObserver(): IPrepareURLObserver? {
+        return null;
+    }
 }
