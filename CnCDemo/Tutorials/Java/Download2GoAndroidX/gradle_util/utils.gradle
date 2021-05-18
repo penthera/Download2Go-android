@@ -1,0 +1,222 @@
+import groovy.json.JsonSlurper
+
+
+boolean isReleaseBuild(){
+
+    boolean ret = false
+
+    if(project.properties.containsKey("publishRelease")){
+        ret = "true".equals(project.properties["publishRelease"])
+    }
+
+    return ret
+}
+
+boolean hasOverrideVersion(){
+    boolean ret = false
+
+    if(project.hasProperty("overrideVersion")){
+        ret = !project.properties["overrideVersion"].isEmpty()
+    }
+
+
+    return ret
+}
+
+boolean hasSdkVersion(){
+    boolean ret = false
+
+    if(project.hasProperty("sdkVersion")){
+        ret = !project.properties["sdkVersion"].isEmpty()
+    }
+
+
+    return ret
+}
+
+def String getAppVersion(){
+    def fullSemVersion
+
+
+    if(hasOverrideVersion()) {
+        fullSemVersion = project.properties["overrideVersion"]
+    }
+    else if (hasSdkVersion()) {
+        fullSemVersion = project.properties["sdkVersion"]
+    }
+    else {
+
+        def stdout = new ByteArrayOutputStream()
+
+        exec {
+            commandLine 'gitversion'
+            standardOutput = stdout
+        }
+        def gitVersionString = stdout.toString().trim()
+        def json = new JsonSlurper().parseText(gitVersionString)
+
+        fullSemVersion = json["Major"].toString() + "." + json["Minor"].toString() + "." + json["Patch"].toString()
+    }
+
+
+    return fullSemVersion
+}
+
+def String getBuildAppVersion(){
+
+    def fullSemVersion, preRelease
+
+    if(hasOverrideVersion()) {
+        fullSemVersion = project.properties["overrideVersion"]
+        preRelease = "1"
+    }
+    else if (hasSdkVersion()) {
+        fullSemVersion = project.properties["sdkVersion"]
+    }
+    else {
+
+
+        def stdout = new ByteArrayOutputStream()
+
+        exec {
+            commandLine 'gitversion'
+            standardOutput = stdout
+        }
+        def gitVersionString = stdout.toString().trim()
+        def json = new JsonSlurper().parseText(gitVersionString)
+
+        fullSemVersion = json["Major"].toString() + "." + json["Minor"].toString() + "." + json["Patch"].toString()
+        preRelease = json["PreReleaseNumber"]
+    }
+
+    if (!isReleaseBuild()) {
+        if (System.env.BUILD_NUMBER == null) {//not a jenkins build
+            fullSemVersion += "(" + preRelease + ")"
+        } else {
+            fullSemVersion += "(" + System.env.BUILD_NUMBER + ")"
+        }
+    }
+
+    return fullSemVersion
+
+}
+
+def String getAppVersionCode(){
+    def appCode, preRelease
+    def minorPatch = false
+    if(hasOverrideVersion()) {
+
+        def fullSemVersion = project.properties["overrideVersion"]
+        String[] versionInfo = fullSemVersion.split("\\.")
+
+        appCode = versionInfo[0] + versionInfo[1].padLeft(2,"0")
+
+        if(versionInfo[2].indexOf('-') > -1){//beta build verPatch contains -BETA
+            appCode += versionInfo[2].substring(0, versionInfo[2].indexOf('-')).padLeft(2,"0")
+        } else{
+            appCode += versionInfo[2].padLeft(2, "0")
+        }
+        if(versionInfo.size() > 3){
+            minorPatch = true
+            appCode += versionInfo[3]
+        }
+        preRelease = "1"
+    }
+    else if (hasSdkVersion()) {
+        def fullSemVersion = project.properties["sdkVersion"]
+
+        String[] versionInfo = fullSemVersion.split("\\.")
+
+        appCode = versionInfo[0] + versionInfo[1].padLeft(2,"0")
+
+        if(versionInfo[2].indexOf('-') > -1){//beta build verPatch contains -BETA
+            appCode += versionInfo[2].substring(0, versionInfo[2].indexOf('-')).padLeft(2,"0")
+        } else{
+            appCode += versionInfo[2].padLeft(2, "0")
+        }
+        if(versionInfo.size() > 3){
+            minorPatch = true
+            appCode += versionInfo[3]
+        }
+        preRelease = "1"
+    }
+    else {
+        def stdout = new ByteArrayOutputStream()
+
+        exec {
+            commandLine 'gitversion'
+            standardOutput = stdout
+        }
+        def gitVersionString = stdout.toString().trim()
+        def json = new JsonSlurper().parseText(gitVersionString)
+
+        appCode = json["Major"].toString() + json["Minor"].toString().padLeft(2, "0") + json["Patch"].toString().padLeft(2, "0")
+        preRelease = json["PreReleaseNumber"].toString()
+    }
+
+    if (!isReleaseBuild()) {
+        if (System.env.BUILD_NUMBER == null) {//not a jenkins build
+            appCode += (minorPatch ? preRelease.padLeft(1,"0") : preRelease.padLeft(3, "0"))
+        } else {
+            appCode += System.env.BUILD_NUMBER
+        }
+    }
+    return appCode
+}
+
+def String getAppBuildName(){
+    return getBuildName("CnC_Android_SDK_")
+}
+
+def String getBitmovinSupportBuildName(){
+    return getBuildName("CnC_Android_Bitmovin_Support_")
+}
+
+def String getExoplayerImaSupportBuildName(){
+    return getBuildName("CnC_Android_Exoplayer_IMA_Support")
+}
+
+
+
+
+def String getBuildName(String prefix){
+    def buildName, preRelease
+
+
+    if(hasOverrideVersion()) {
+
+        buildName = prefix + project.properties["overrideVersion"]
+        preRelease = "1"
+    }
+    else {
+        def stdout = new ByteArrayOutputStream()
+
+        exec {
+            commandLine 'gitversion'
+            standardOutput = stdout
+        }
+        def gitVersionString = stdout.toString().trim()
+        def json = new JsonSlurper().parseText(gitVersionString)
+
+        buildName = "CnC_Android_SDK_" + json["Major"].toString() + "." + json["Minor"].toString() + "." + json["Patch"].toString()
+        preRelease = json["PreReleaseNumber"]
+    }
+
+    if (!isReleaseBuild()){
+        if (System.env.BUILD_NUMBER == null) {//not a jenkins build
+            buildName += "(" + preRelease + ")"
+        } else {
+            buildName += "(" + System.env.BUILD_NUMBER + ")"
+        }
+    }
+
+    return buildName
+}
+
+
+project.ext.getAppVersionCode = this.&getAppVersionCode
+project.ext.getAppVersion = this.&getAppVersion
+project.ext.getBuildAppVersion = this.&getBuildAppVersion
+project.ext.getAppBuildName = this.&getAppBuildName
+project.ext.getBitmovinSupportBuildName = this.&getBitmovinSupportBuildName
+project.ext.getExoplayerImaSupportBuildName = this.&getExoplayerImaSupportBuildName

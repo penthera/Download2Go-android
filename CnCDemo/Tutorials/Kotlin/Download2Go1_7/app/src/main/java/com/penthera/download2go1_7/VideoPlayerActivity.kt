@@ -198,10 +198,6 @@ class VideoPlayerActivity : Activity(),  PlaybackPreparer {
 
         val ret : MediaSource
         when (type) {
-            ISegmentedAsset.SEG_FILE_TYPE_HSS -> ret =  SsMediaSource.Factory(
-                DefaultSsChunkSource.Factory(mediaDataSourceFactory!!),
-                buildDataSourceFactory())
-                .createMediaSource(uri)
             ISegmentedAsset.SEG_FILE_TYPE_MPD -> ret =  DashMediaSource.Factory(
                 DefaultDashChunkSource.Factory(mediaDataSourceFactory!!),
                 buildDataSourceFactory())

@@ -254,7 +254,7 @@ public class SplashActivity extends SdkDemoBaseActivity {
 			 */
 			if(Build.VERSION.SDK_INT <= 20){
 				Log.d(TAG,"Amazon device based on kitkat or below.");
-				mVirtuoso.getSettings().setProgressUpdateByPercent(4).save();
+				mVirtuoso.getSettings().setProgressUpdateByPercent(4);
 			}
 			else{
 

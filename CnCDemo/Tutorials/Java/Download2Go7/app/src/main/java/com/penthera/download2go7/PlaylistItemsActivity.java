@@ -60,8 +60,8 @@ public class PlaylistItemsActivity extends AppCompatActivity implements LoaderMa
         super.onCreate(savedInstanceState);
         setContentView(R.layout.playlist_activity);
 
-        mEmptyView = findViewById(android.R.id.empty);
-        mList = findViewById(android.R.id.list);
+        mEmptyView = findViewById(R.id.empty_list);
+        mList = findViewById(R.id.playlists);
         mList.setEmptyView(mEmptyView);
         mVirtuoso = new Virtuoso(this);
 

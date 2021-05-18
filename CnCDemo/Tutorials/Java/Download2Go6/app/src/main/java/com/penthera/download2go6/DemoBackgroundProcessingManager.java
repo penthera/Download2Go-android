@@ -2,10 +2,9 @@ package com.penthera.download2go6;
 
 import com.penthera.virtuososdk.client.IBackgroundProcessingManager;
 import com.penthera.virtuososdk.client.IManifestParserObserver;
-import com.penthera.virtuososdk.client.IPlaylistAssetProvider;
+import com.penthera.virtuososdk.client.IPrepareURLObserver;
 import com.penthera.virtuososdk.client.ads.IClientSideAdsParserProvider;
-import com.penthera.virtuososdk.client.push.ISubscriptionsProvider;
-import com.penthera.virtuososdk.client.subscriptions.ISubscriptionsProvider;
+import com.penthera.virtuososdk.client.autodownload.IPlaylistAssetProvider;
 
 /**
  * An example background processing manager.

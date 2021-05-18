@@ -47,20 +47,6 @@ class MainActivity : AppCompatActivity() ,
     private lateinit var recyclerView : RecyclerView
     private lateinit var assetAdapter : AssetRecyclerAdapter
 
-
-    var privateUpdateURI: Uri = Uri.parse("content://com.penthera.virtuososdk.provider.download2go1_6/mainActivity")
-
-    private var changeObserver : ContentObserver =  object : ContentObserver(null){
-        override fun deliverSelfNotifications() : Boolean{return false }
-        override fun onChange(selfChange: Boolean) {
-            onChange(selfChange, null)
-        }
-
-        override fun onChange(selfChange: Boolean, uri: Uri?) {
-            contentResolver.notifyChange(privateUpdateURI, this)
-        }
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -129,13 +115,6 @@ class MainActivity : AppCompatActivity() ,
             virtuoso.onResume()
         }
 
-        virtuoso.assetManager.apply{
-            contentResolver.registerContentObserver(this.CONTENT_URI(), true, changeObserver)
-            contentResolver.registerContentObserver(this.queue.CONTENT_URI(), true, changeObserver)
-            contentResolver.registerContentObserver(this.deferred.CONTENT_URI(), true, changeObserver)
-        }
-        contentResolver.notifyChange(privateUpdateURI, changeObserver)
-
     }
 
     override fun onPause() {
@@ -143,7 +122,6 @@ class MainActivity : AppCompatActivity() ,
 
         //pause the VirtuosoSDK on activity pause
         virtuoso.onPause()
-        contentResolver.unregisterContentObserver(changeObserver)
     }
 
     private fun deleteAsset(assetId : Int){
@@ -222,7 +200,7 @@ class MainActivity : AppCompatActivity() ,
 
     override fun onLoadFinished(loader: Loader<Cursor>, data: Cursor?) {
         data?.let{
-            it.setNotificationUri(contentResolver, privateUpdateURI)
+            it.setNotificationUri(contentResolver, virtuoso.assetManager?.CONTENT_URI())
             assetAdapter.setCursor(it)
         }
     }
@@ -349,11 +327,11 @@ class MainActivity : AppCompatActivity() ,
 
         const val ASSET_ID_2: String = "TEST_ASSET_ID_2"
         lateinit var ASSET_TITLE_2 :String
-        const val ASSET_URL_2: String = "http://virtuoso-demo-content.s3.amazonaws.com/Steve/steve.m3u8"
+        const val ASSET_URL_2: String = "https://virtuoso-demo-content.s3.amazonaws.com/Steve/steve.m3u8"
 
         const val ASSET_ID_3 : String = "TEST_ASSET_ID_3"
         lateinit var ASSET_TITLE_3 :String
-        const val ASSET_URL_3: String = "http://virtuoso-demo-content.s3.amazonaws.com/College/college.m3u8"
+        const val ASSET_URL_3: String = "https://virtuoso-demo-content.s3.amazonaws.com/College/college.m3u8"
 
         val PROJECTION = arrayOf(
             AssetColumns._ID

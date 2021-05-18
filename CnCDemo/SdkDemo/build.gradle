@@ -6,6 +6,8 @@ android {
 
     defaultConfig {
         applicationId "com.penthera.sdkdemo"
+        versionCode = 40000
+        versionName = "4.0.0"
         minSdkVersion 16
         targetSdkVersion 29
         multiDexEnabled true
@@ -32,7 +34,6 @@ allprojects {
             dirs 'libs'
         }
 
-
         mavenCentral()
         maven{
             url "http://clientbuilds.penthera.com:8081/repository/releases/"
@@ -42,12 +43,8 @@ allprojects {
 
 dependencies {
 
-    def sysprops = System.getProperties()
-    if (sysprops['idea.platform.prefix'] != null || project.hasProperty("devCmdLine")) {
-        implementation 'com.penthera:cnc-android-sdk:3.17.2'
-    } else {
-        implementation 'com.penthera:cnc-android-sdk:3.17.2'
-    }
+    implementation  'com.penthera:cnc-android-sdk-debug:4.0.0'
+    Implementation 'com.penthera:cnc-exoplayer-2_11-support:4.0.0'
 
     def google_exoplayer_version = "2.11.3"
     implementation "com.google.android.exoplayer:exoplayer:$google_exoplayer_version"

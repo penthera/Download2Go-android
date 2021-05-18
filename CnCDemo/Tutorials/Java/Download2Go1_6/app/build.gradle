@@ -1,12 +1,15 @@
-apply plugin: 'com.android.application'
+plugins {
+    id 'com.android.application'
+    id 'com.penthera.virtuoso-sdk-configuration' version '1.0.0'
+}
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.2"
+    compileSdkVersion 30
+    buildToolsVersion "30.0.2"
     defaultConfig {
         applicationId "com.penthera.download2go1_6"
         minSdkVersion 24
-        targetSdkVersion 29
+        targetSdkVersion 30
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -41,10 +44,11 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-    // TODO: move this up to 1.1.0 once using 4.0.0 SDK version
-    implementation 'androidx.recyclerview:recyclerview:1.0.0'
 
-    implementation 'com.penthera:cnc-android-sdk-debug:3.17.2'
+    implementation 'androidx.recyclerview:recyclerview:1.2.0'
+
+    implementation 'com.penthera:cnc-android-sdk-debug:4.0.0'
+    implementation 'com.penthera:cnc-exoplayer-2_11-support-debug:4.0.0'
 
     implementation 'com.google.android.exoplayer:exoplayer:2.11.3'
 

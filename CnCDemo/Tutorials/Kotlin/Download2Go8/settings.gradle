@@ -1,2 +1,11 @@
+pluginManagement {
+    repositories {
+        maven {
+            url "https://clientbuilds.penthera.com/repository/releases"
+        }
+        google()
+        jcenter()
+    }
+}
 include ':app'
 rootProject.name = "Download2Go8"

@@ -10,8 +10,8 @@ package com.penthera.download2go8
 import com.google.android.exoplayer2.drm.DrmSession
 import com.google.android.exoplayer2.drm.DrmSession.DrmSessionException
 import com.google.android.exoplayer2.drm.FrameworkMediaCrypto
-import com.penthera.virtuososdk.client.drm.IVirtuosoDrmSession
-import com.penthera.virtuososdk.client.drm.VirtuosoDrmSessionManager
+import com.penthera.virtuososdk.support.exoplayer211.drm.IVirtuosoDrmSession
+import com.penthera.virtuososdk.support.exoplayer211.drm.SupportDrmSessionManager
 import java.util.*
 
 /**
@@ -26,9 +26,9 @@ import java.util.*
 class DemoDrmSession(
     private val virtuosoSession: IVirtuosoDrmSession<*>,
     schemeUUID: UUID?,
-    drmSessionManager: VirtuosoDrmSessionManager?) : DrmSession<FrameworkMediaCrypto> {
+    drmSessionManager: SupportDrmSessionManager?) : DrmSession<FrameworkMediaCrypto> {
 
-    private var drmSessionManager: VirtuosoDrmSessionManager?
+    private var drmSessionManager: SupportDrmSessionManager?
     private var mediaCrypto: FrameworkMediaCrypto? = null
     private var referenceCount = 0
 

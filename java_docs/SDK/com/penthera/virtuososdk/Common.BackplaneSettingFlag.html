@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<!-- NewPage -->
+<html lang="en" class="fancy">
+<head>
+<meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="../../../stylesheet2.css" title="Style">
+<script type="text/javascript" src="../../../doc2.js"></script>
+<script type="text/javascript">var pathSeparator = "/";
+var rootPath = "../../../";
+var currentPackage = "com.penthera.virtuososdk";
+var currentClass = "Common.BackplaneSettingFlag";
+</script>
+<script type="text/javascript" src="package-contents.js"></script>
+</head>
+<body class="contentPage classPage">
+<div id="innerBody">
+<script type="text/javascript"><!--
+    if (location.href.indexOf('is-external=true') == -1) {
+        parent.document.title="Common.BackplaneSettingFlag (Download2Go Android SDK)";
+    }
+//-->
+</script>
+<noscript>
+<div>This web site requires JavaScript for proper operation. JavaScript is disabled on your browser.</div>
+</noscript>
+<!-- ========= START OF TOP NAVBAR ======= -->
+<div class="navBar hidden" id="topNavBar">
+<div class="navigationLine1">
+<div class="navigationLinks">
+<div class="navBarButton active"><a href="../../../overview-summary.html">Overview</a></div>
+<div class="navBarButton active"><a href="package-summary.html">Package</a></div>
+<div class="navBarButton inactive selected"><a href>Class</a></div>
+<div class="navBarButton active"><a href="package-tree.html">Tree</a></div>
+<div class="navBarButton active"><a href="../../../deprecated-list.html">Deprecated</a></div>
+<div class="navBarButton active"><a href="../../../index-all.html">Index</a></div>
+<div class="navBarButton active"><a href="../../../allclasses-noframe.html">All Classes</a></div>
+<div class="navBarButton active"><a href="../../../help-doc.html">Help</a></div>
+</div>
+<div class="pageControls">
+<div class="navBarButton active"><a href="Common.BackplaneResult.html"><span class="strong">Prev Class</span></a></div>
+<div class="navBarButton active"><a href="Common.Base64Serialization.html"><span class="strong">Next Class</span></a></div>
+</div>
+<select id="packageSelector">
+<option value>packages...</option>
+<option value>com.penthera</option>
+<option value>com.penthera.virtuoso.net.security.client</option>
+<option value>com.penthera.virtuososdk</option>
+<option value>com.penthera.virtuososdk.autodownload</option>
+<option value>com.penthera.virtuososdk.client</option>
+<option value>com.penthera.virtuososdk.client.ads</option>
+<option value>com.penthera.virtuososdk.client.autodownload</option>
+<option value>com.penthera.virtuososdk.client.builders</option>
+<option value>com.penthera.virtuososdk.client.database</option>
+<option value>com.penthera.virtuososdk.client.drm</option>
+<option value>com.penthera.virtuososdk.client.drm.castlabs</option>
+<option value>com.penthera.virtuososdk.client.push</option>
+<option value>com.penthera.virtuososdk.database.impl.provider</option>
+<option value>com.penthera.virtuososdk.service</option>
+</select>
+<select id="packageClassSelector">
+<option value selected="selected">classes...</option>
+</select>
+</div>
+<div class="pageTitle"><span>Class <span class="packagePrefix">com.penthera.virtuososdk</span>.Common.BackplaneSettingFlag</span></div>
+<div class="navigationLine2">
+<div class="inheritedMembersSelector">Inherited members: <span class="radioButton" id="showInheritedMembersSelector" onclick="setInheritedVisible(true)">Show</span><span class="radioButton" id="hideInheritedMembersSelector" onclick="setInheritedVisible(false)">Hide</span></div>
+<div class="deprecatedSelector">Deprecated: <span class="radioButton" id="showDeprecatedSelector" onclick="setDeprecatedVisible(true)">Show</span><span class="radioButton" id="hideDeprecatedSelector" onclick="setDeprecatedVisible(false)">Hide</span></div>
+<span class="accessViewSelectors">View: <span class="radioButton" id="clientViewSelector" onclick="showClientView();">Client</span><span class="radioButton" id="subclassViewSelector" onclick="showSubclassView();">Subclass</span><span class="radioButton" id="packageViewSelector" onclick="showPackageView();">Package</span><span class="radioButton" id="implementationViewSelector" onclick="showImplementationView();">Implementation</span></span>
+<div class="entitySelectors">
+<select id="classSelector">
+<option value selected="selected">classes...</option>
+</select>
+<select id="enumConstantSelector">
+<option value selected="selected">enum constants...</option>
+</select>
+<select id="fieldSelector">
+<option value selected="selected">fields...</option>
+</select>
+<select id="staticMethodSelector">
+<option value selected="selected">static methods...</option>
+</select>
+<select id="constructorSelector">
+<option value selected="selected">constructors...</option>
+</select>
+<select id="methodSelector">
+<option value selected="selected">methods...</option>
+</select>
+<select id="propertySelector">
+<option value selected="selected">properties...</option>
+</select>
+</div>
+</div>
+</div>
+<!-- ========= END OF TOP NAVBAR ========= -->
+<div id="dataArea" class="hidden">
+<div id="content">
+<!-- ======== START OF CLASS DATA ======== -->
+<div class="header">
+<div class="subTitle">com.penthera.virtuososdk</div>
+<h2 title="Class Common.BackplaneSettingFlag" class="title">Class Common.BackplaneSettingFlag</h2>
+</div>
+<div class="contentContainer">
+<div class="classInheritance">
+<ul class="inheritance">
+<li>java.lang.Object</li>
+<li>
+<ul class="inheritance">
+<li>com.penthera.virtuososdk.Common.BackplaneSettingFlag</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="description">
+<ul class="blockList">
+<li class="blockList">
+<dl>
+<dt>Enclosing class:</dt>
+<dd><a class="code" href="Common.html" title="class in com.penthera.virtuososdk">Common</a></dd>
+</dl>
+<div class="classSignature">public static final class <span class="strong">Common.BackplaneSettingFlag</span>
+extends java.lang.Object</div>
+<div class="block">Flags for determining which backplane settings have been modified in the
+ <a class="code" href="client/Observers.IEngineObserver.html#backplaneSettingChanged(int)" title="method defined in com.penthera.virtuososdk.client.Observers.IEngineObserver"><code>Observers.IEngineObserver.backplaneSettingChanged(int)</code></a> callback.</div>
+</li>
+</ul>
+</div>
+<div class="summary">
+<ul class="blockList">
+<li class="blockList">
+<!-- =========== FIELD SUMMARY =========== -->
+<ul class="blockList">
+<li class="blockList"><a name="field_summary">
+<!--   -->
+</a>
+<table class="overviewSummary summaryTable memberSummary fieldElementList" border="0" cellpadding="3" cellspacing="0" summary="Field Summary table, listing fields, and an explanation">
+<caption class="tableHeader"><span>Fields</span><span class="tabEnd">&nbsp;</span></caption>
+<tr class="columnHeaders">
+<th class="colFirst" scope="col"> </th>
+<th scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Field and Description</th>
+</tr>
+<tr class="member field public">
+<td class="memberMarker colFirst"><img src="../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="RESERVED_FLAG" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">RESERVED_FLAG</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>static int&nbsp;</code><span class="itemTitle">RESERVED_FLAG</span></div>
+<div class="block">value = 0x800000; Flag for reserved rules.</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">public static final&nbsp;int RESERVED_FLAG</div>
+<dl>
+<dd>
+<div class="block">value = 0x800000; Flag for reserved rules.</div>
+<dl class="tagSection"><dt><span class="strong">See Also:</span></dt><dd><a href="../../../constant-values.html#com.penthera.virtuososdk.Common.BackplaneSettingFlag.RESERVED_FLAG">Constant Field Values</a></dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member field public">
+<td class="memberMarker colFirst"><img src="../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="SETTING_ALL" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">SETTING_ALL</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>static int&nbsp;</code><span class="itemTitle">SETTING_ALL</span></div>
+<div class="block">Flag for all settings.</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">public static final&nbsp;int SETTING_ALL</div>
+<dl>
+<dd>
+<div class="block">Flag for all settings. Passed to the <code>backplaneSettingChanged</code> callback of <code>IEngineObserver</code> when all setting values have been modified.</div>
+<dl class="tagSection"><dt><span class="strong">See Also:</span></dt><dd><a class="code" href="client/Observers.IEngineObserver.html#backplaneSettingChanged(int)" title="method defined in com.penthera.virtuososdk.client.Observers.IEngineObserver"><code>Observers.IEngineObserver.backplaneSettingChanged(int)</code></a>, 
+<a href="../../../constant-values.html#com.penthera.virtuososdk.Common.BackplaneSettingFlag.SETTING_ALL">Constant Field Values</a></dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member field public">
+<td class="memberMarker colFirst"><img src="../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="SETTING_DEVICE_DOWNLOAD_ENABLED" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">SETTING_DEVICE_DOWNLOAD_ENABLED</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>static int&nbsp;</code><span class="itemTitle">SETTING_DEVICE_DOWNLOAD_ENABLED</span></div>
+<div class="block">value = 0x20;
+ Flag Download Enabled device setting.</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">public static final&nbsp;int SETTING_DEVICE_DOWNLOAD_ENABLED</div>
+<dl>
+<dd>
+<div class="block">value = 0x20;
+ Flag Download Enabled device setting. Passed to the <code>backplaneSettingChanged</code> callback of <code>IEngineObserver</code>
+ when its value has been modified.
+ This setting is managed by the Backplane. Clients can request a change to their download enablement through the
+ <a class="code" href="client/IBackplane.html#changeDownloadEnablement(boolean)" title="method defined in com.penthera.virtuososdk.client.IBackplane"><code>IBackplane.changeDownloadEnablement(boolean)</code></a>.</div>
+<dl class="tagSection"><dt><span class="strong">See Also:</span></dt><dd><a class="code" href="client/IBackplane.html" title="interface in com.penthera.virtuososdk.client"><code>IBackplane</code></a>, 
+<a class="code" href="client/IBackplaneSettings.html#getDownloadEnabled()" title="method defined in com.penthera.virtuososdk.client.IBackplaneSettings"><code>IBackplaneSettings.getDownloadEnabled()</code></a>, 
+<a class="code" href="client/Observers.IEngineObserver.html#backplaneSettingChanged(int)" title="method defined in com.penthera.virtuososdk.client.Observers.IEngineObserver"><code>Observers.IEngineObserver.backplaneSettingChanged(int)</code></a>, 
+<a href="../../../constant-values.html#com.penthera.virtuososdk.Common.BackplaneSettingFlag.SETTING_DEVICE_DOWNLOAD_ENABLED">Constant Field Values</a></dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member field public">
+<td class="memberMarker colFirst"><img src="../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="SETTING_EAD" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">SETTING_EAD</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>static int&nbsp;</code><span class="itemTitle">SETTING_EAD</span></div>
+<div class="block">value = 0x08;
+ Flag for the Expiry After Download window.</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">public static final&nbsp;int SETTING_EAD</div>
+<dl>
+<dd>
+<div class="block">value = 0x08;
+ Flag for the Expiry After Download window. Passed to the <code>backplaneSettingChanged</code> callback of <code>IEngineObserver</code>
+ when its value has been modified.
+ Clients cannot modify the Expiry After Download value.
+ The Backplane manages this value and transmits it to the SDK during a sync.
+ However, clients can set the Expiry After Download window on individual assets through the <code>IAsset</code> interface.</div>
+<dl class="tagSection"><dt><span class="strong">See Also:</span></dt><dd><a class="code" href="client/IBackplaneSettings.html#getExpiryAfterDownload()" title="method defined in com.penthera.virtuososdk.client.IBackplaneSettings"><code>IBackplaneSettings.getExpiryAfterDownload()</code></a>, 
+<a class="code" href="client/IAsset.html#getEad()" title="method defined in com.penthera.virtuososdk.client.IAsset"><code>IAsset.getEad()</code></a>, 
+<a class="code" href="client/IAsset.html#setEad(long)" title="method defined in com.penthera.virtuososdk.client.IAsset"><code>IAsset.setEad(long)</code></a>, 
+<a class="code" href="client/Observers.IEngineObserver.html#backplaneSettingChanged(int)" title="method defined in com.penthera.virtuososdk.client.Observers.IEngineObserver"><code>Observers.IEngineObserver.backplaneSettingChanged(int)</code></a>, 
+<a href="../../../constant-values.html#com.penthera.virtuososdk.Common.BackplaneSettingFlag.SETTING_EAD">Constant Field Values</a></dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member field public">
+<td class="memberMarker colFirst"><img src="../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="SETTING_EAP" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">SETTING_EAP</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>static int&nbsp;</code><span class="itemTitle">SETTING_EAP</span></div>
+<div class="block">value = 0x04;
+ Flag for the Expiry After Play window.</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">public static final&nbsp;int SETTING_EAP</div>
+<dl>
+<dd>
+<div class="block">value = 0x04;
+ Flag for the Expiry After Play window. Passed to the <code>backplaneSettingChanged</code> callback of <code>IEngineObserver</code> when its value
+ has been modified.
+ Clients cannot modify the Expiry After Play value.
+ The Backplane manages this value and transmits it to the SDK during a sync.
+ However, clients can set the Expiry After Play window on individual assets through the <code>IAsset</code> interface.</div>
+<dl class="tagSection"><dt><span class="strong">See Also:</span></dt><dd><a class="code" href="client/IBackplaneSettings.html#getExpiryAfterPlay()" title="method defined in com.penthera.virtuososdk.client.IBackplaneSettings"><code>IBackplaneSettings.getExpiryAfterPlay()</code></a>, 
+<a class="code" href="client/IAsset.html#getEap()" title="method defined in com.penthera.virtuososdk.client.IAsset"><code>IAsset.getEap()</code></a>, 
+<a class="code" href="client/IAsset.html#setEap(long)" title="method defined in com.penthera.virtuososdk.client.IAsset"><code>IAsset.setEap(long)</code></a>, 
+<a class="code" href="client/Observers.IEngineObserver.html#backplaneSettingChanged(int)" title="method defined in com.penthera.virtuososdk.client.Observers.IEngineObserver"><code>Observers.IEngineObserver.backplaneSettingChanged(int)</code></a>, 
+<a href="../../../constant-values.html#com.penthera.virtuososdk.Common.BackplaneSettingFlag.SETTING_EAP">Constant Field Values</a></dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member field public">
+<td class="memberMarker colFirst"><img src="../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="SETTING_MAX_COPIES_PER_ASSET" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">SETTING_MAX_COPIES_PER_ASSET</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>static int&nbsp;</code><span class="itemTitle">SETTING_MAX_COPIES_PER_ASSET</span></div>
+<div class="block">value = 0x200; Flag for the "maximum copies per asset" rule.</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">public static final&nbsp;int SETTING_MAX_COPIES_PER_ASSET</div>
+<dl>
+<dd>
+<div class="block">value = 0x200; Flag for the "maximum copies per asset" rule.  Passed to the <code>backplaneSettingChanged</code> callback of <code>IEngineObserver</code>
+ when its value has been modified. This setting is managed by the Backplane.</div>
+<dl class="tagSection"><dt><span class="strong">See Also:</span></dt><dd><a class="code" href="client/IBackplane.html" title="interface in com.penthera.virtuososdk.client"><code>IBackplane</code></a>, 
+<a class="code" href="client/IBackplaneSettings.html#getMaxCopiesPerAsset()" title="method defined in com.penthera.virtuososdk.client.IBackplaneSettings"><code>IBackplaneSettings.getMaxCopiesPerAsset()</code></a>, 
+<a class="code" href="client/Observers.IEngineObserver.html#backplaneSettingChanged(int)" title="method defined in com.penthera.virtuososdk.client.Observers.IEngineObserver"><code>Observers.IEngineObserver.backplaneSettingChanged(int)</code></a>, 
+<a href="../../../constant-values.html#com.penthera.virtuososdk.Common.BackplaneSettingFlag.SETTING_MAX_COPIES_PER_ASSET">Constant Field Values</a></dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member field public">
+<td class="memberMarker colFirst"><img src="../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="SETTING_MAX_DOWNLOADS_PER_ACCOUNT" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">SETTING_MAX_DOWNLOADS_PER_ACCOUNT</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>static int&nbsp;</code><span class="itemTitle">SETTING_MAX_DOWNLOADS_PER_ACCOUNT</span></div>
+<div class="block">value = 0x40; Flag for the "maximum downloads per account" rule.</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">public static final&nbsp;int SETTING_MAX_DOWNLOADS_PER_ACCOUNT</div>
+<dl>
+<dd>
+<div class="block">value = 0x40; Flag for the "maximum downloads per account" rule.  Passed to the <code>backplaneSettingChanged</code> callback of <code>IEngineObserver</code>
+ when its value has been modified. This setting is managed by the Backplane.</div>
+<dl class="tagSection"><dt><span class="strong">See Also:</span></dt><dd><a class="code" href="client/IBackplane.html" title="interface in com.penthera.virtuososdk.client"><code>IBackplane</code></a>, 
+<a class="code" href="client/IBackplaneSettings.html#getMaxDownloadsPerAccount()" title="method defined in com.penthera.virtuososdk.client.IBackplaneSettings"><code>IBackplaneSettings.getMaxDownloadsPerAccount()</code></a>, 
+<a class="code" href="client/Observers.IEngineObserver.html#backplaneSettingChanged(int)" title="method defined in com.penthera.virtuososdk.client.Observers.IEngineObserver"><code>Observers.IEngineObserver.backplaneSettingChanged(int)</code></a>, 
+<a href="../../../constant-values.html#com.penthera.virtuososdk.Common.BackplaneSettingFlag.SETTING_MAX_DOWNLOADS_PER_ACCOUNT">Constant Field Values</a></dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member field public">
+<td class="memberMarker colFirst"><img src="../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="SETTING_MAX_DOWNLOADS_PER_ASSET" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">SETTING_MAX_DOWNLOADS_PER_ASSET</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>static int&nbsp;</code><span class="itemTitle">SETTING_MAX_DOWNLOADS_PER_ASSET</span></div>
+<div class="block">value = 0x80; Flag for the "maximum downloads per asset" rule.</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">public static final&nbsp;int SETTING_MAX_DOWNLOADS_PER_ASSET</div>
+<dl>
+<dd>
+<div class="block">value = 0x80; Flag for the "maximum downloads per asset" rule.  Passed to the <code>backplaneSettingChanged</code> callback of <code>IEngineObserver</code>
+ when its value has been modified. This setting is managed by the Backplane.</div>
+<dl class="tagSection"><dt><span class="strong">See Also:</span></dt><dd><a class="code" href="client/IBackplane.html" title="interface in com.penthera.virtuososdk.client"><code>IBackplane</code></a>, 
+<a class="code" href="client/IBackplaneSettings.html#getMaxDownloadsPerAsset()" title="method defined in com.penthera.virtuososdk.client.IBackplaneSettings"><code>IBackplaneSettings.getMaxDownloadsPerAsset()</code></a>, 
+<a class="code" href="client/Observers.IEngineObserver.html#backplaneSettingChanged(int)" title="method defined in com.penthera.virtuososdk.client.Observers.IEngineObserver"><code>Observers.IEngineObserver.backplaneSettingChanged(int)</code></a>, 
+<a href="../../../constant-values.html#com.penthera.virtuososdk.Common.BackplaneSettingFlag.SETTING_MAX_DOWNLOADS_PER_ASSET">Constant Field Values</a></dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member field public">
+<td class="memberMarker colFirst"><img src="../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="SETTING_MDD" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">SETTING_MDD</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>static int&nbsp;</code><span class="itemTitle">SETTING_MDD</span></div>
+<div class="block">value = 0x02;
+ Flag for the Max Download Devices quota.</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">public static final&nbsp;int SETTING_MDD</div>
+<dl>
+<dd>
+<div class="block">value = 0x02;
+ Flag for the Max Download Devices quota. Passed to the <code>backplaneSettingChanged</code> callback of <code>IEngineObserver</code>
+ when its value has been modified.
+ Clients cannot modify the Max Download Devices quota.
+ The Backplane manages this value, and transmits it to the SDK during a sync.</div>
+<dl class="tagSection"><dt><span class="strong">See Also:</span></dt><dd><a class="code" href="client/IBackplaneSettings.html#getMaxDevicesAllowedForDownload()" title="method defined in com.penthera.virtuososdk.client.IBackplaneSettings"><code>IBackplaneSettings.getMaxDevicesAllowedForDownload()</code></a>, 
+<a class="code" href="client/Observers.IEngineObserver.html#backplaneSettingChanged(int)" title="method defined in com.penthera.virtuososdk.client.Observers.IEngineObserver"><code>Observers.IEngineObserver.backplaneSettingChanged(int)</code></a>, 
+<a href="../../../constant-values.html#com.penthera.virtuososdk.Common.BackplaneSettingFlag.SETTING_MDD">Constant Field Values</a></dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member field public">
+<td class="memberMarker colFirst"><img src="../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="SETTING_MOFF" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">SETTING_MOFF</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>static int&nbsp;</code><span class="itemTitle">SETTING_MOFF</span></div>
+<div class="block">value = 0x01;
+ Flag for the Max Offline Period.</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">public static final&nbsp;int SETTING_MOFF</div>
+<dl>
+<dd>
+<div class="block">value = 0x01;
+ Flag for the Max Offline Period. Passed to the <code>settingChanged</code> callback of <code>IEngineObserver</code>
+ when its value has been modified.
+ Clients cannot modify the Max Offline Period.
+ The Backplane manages this value, and transmits this value to the SDK during a sync.</div>
+<dl class="tagSection"><dt><span class="strong">See Also:</span></dt><dd><a class="code" href="client/IBackplaneSettings.html#getMaxOffline()" title="method defined in com.penthera.virtuososdk.client.IBackplaneSettings"><code>IBackplaneSettings.getMaxOffline()</code></a>, 
+<a class="code" href="client/Observers.IEngineObserver.html#settingChanged(int)" title="method defined in com.penthera.virtuososdk.client.Observers.IEngineObserver"><code>Observers.IEngineObserver.settingChanged(int)</code></a>, 
+<a href="../../../constant-values.html#com.penthera.virtuososdk.Common.BackplaneSettingFlag.SETTING_MOFF">Constant Field Values</a></dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member field public">
+<td class="memberMarker colFirst"><img src="../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="SETTING_MPD" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">SETTING_MPD</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>static int&nbsp;</code><span class="itemTitle">SETTING_MPD</span></div>
+<div class="block">value = 0x10; Flag for the "maximum downloaded assets" rule.</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">public static final&nbsp;int SETTING_MPD</div>
+<dl>
+<dd>
+<div class="block">value = 0x10; Flag for the "maximum downloaded assets" rule.  Passed to the <code>backplaneSettingChanged</code> callback of <code>IEngineObserver</code>
+ when its value has been modified. This setting is managed by the Backplane.</div>
+<dl class="tagSection"><dt><span class="strong">See Also:</span></dt><dd><a class="code" href="client/IBackplane.html" title="interface in com.penthera.virtuososdk.client"><code>IBackplane</code></a>, 
+<a class="code" href="client/IBackplaneSettings.html#getMaxPermittedDownloads()" title="method defined in com.penthera.virtuososdk.client.IBackplaneSettings"><code>IBackplaneSettings.getMaxPermittedDownloads()</code></a>, 
+<a class="code" href="client/Observers.IEngineObserver.html#backplaneSettingChanged(int)" title="method defined in com.penthera.virtuososdk.client.Observers.IEngineObserver"><code>Observers.IEngineObserver.backplaneSettingChanged(int)</code></a>, 
+<a href="../../../constant-values.html#com.penthera.virtuososdk.Common.BackplaneSettingFlag.SETTING_MPD">Constant Field Values</a></dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member field public">
+<td class="memberMarker colFirst"><img src="../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="SETTING_REQUIRE_PERMISSION_ON_QUEUED" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">SETTING_REQUIRE_PERMISSION_ON_QUEUED</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>static int&nbsp;</code><span class="itemTitle">SETTING_REQUIRE_PERMISSION_ON_QUEUED</span></div>
+<div class="block">value = 0x100; Flag for the Require Permission on Queued Setting.</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">public static final&nbsp;int SETTING_REQUIRE_PERMISSION_ON_QUEUED</div>
+<dl>
+<dd>
+<div class="block">value = 0x100; Flag for the Require Permission on Queued Setting. Passed to the <code>backplaneSettingChanged</code> callback of <code>IEngineObserver</code>
+ when its value has been modified. This setting is managed by the Backplane.</div>
+<dl class="tagSection"><dt><span class="strong">See Also:</span></dt><dd><a class="code" href="client/IBackplaneSettings.html#getRequirePermissionWhenQueued()" title="method defined in com.penthera.virtuososdk.client.IBackplaneSettings"><code>IBackplaneSettings.getRequirePermissionWhenQueued()</code></a>, 
+<a class="code" href="client/Observers.IEngineObserver.html#backplaneSettingChanged(int)" title="method defined in com.penthera.virtuososdk.client.Observers.IEngineObserver"><code>Observers.IEngineObserver.backplaneSettingChanged(int)</code></a>, 
+<a href="../../../constant-values.html#com.penthera.virtuososdk.Common.BackplaneSettingFlag.SETTING_REQUIRE_PERMISSION_ON_QUEUED">Constant Field Values</a></dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+</table>
+</li>
+</ul>
+<!-- ========== METHOD SUMMARY =========== -->
+<ul class="blockList">
+<li class="blockList"><a name="method_summary">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList inheritedMemberSummary summaryTable"><a name="methods_inherited_from_class_java.lang.Object">
+<!--   -->
+</a>
+<h3 class="tableHeader">Methods inherited from class&nbsp;java.lang.Object</h3>
+<code>clone, equals, finalize, getClass, hashCode, notify, notifyAll, toString, wait, wait, wait</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<!-- ========= END OF CLASS DATA ========= -->
+<!-- ======= START OF BOTTOM NAVBAR ====== -->
+<!-- ======== END OF BOTTOM NAVBAR ======= -->
+</div>
+</div>
+</div>
+</body>
+</html>

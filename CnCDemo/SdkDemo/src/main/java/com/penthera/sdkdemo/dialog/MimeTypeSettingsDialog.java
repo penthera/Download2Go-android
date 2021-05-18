@@ -14,7 +14,8 @@ import android.widget.Spinner;
 import androidx.fragment.app.DialogFragment;
 
 import com.penthera.sdkdemo.R;
-import com.penthera.virtuososdk.client.MimeTypeSettings;
+import com.penthera.virtuososdk.client.IMimeTypeSettings;
+
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -24,19 +25,19 @@ import java.util.StringTokenizer;
 public class MimeTypeSettingsDialog extends DialogFragment {
 
     public interface MimeTypeSettingsCallback{
-        MimeTypeSettings initialSettings();
-        void complete(MimeTypeSettings settings);
+        IMimeTypeSettings initialSettings();
+
     }
 
     private MimeTypeSettingsCallback callback;
-    private MimeTypeSettings settings;
+    private IMimeTypeSettings settings;
 
     private Spinner manifestSpinner;
     private Spinner segmentSpinner;
     private EditText values;
 
-    private MimeTypeSettings.ManifestType currentManifestType;
-    private MimeTypeSettings.SegmentType currentSegmentType;
+    private IMimeTypeSettings.ManifestType currentManifestType;
+    private IMimeTypeSettings.SegmentType currentSegmentType;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -58,16 +59,16 @@ public class MimeTypeSettingsDialog extends DialogFragment {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 switch(position){
                     case 1: {
-                        currentManifestType = MimeTypeSettings.ManifestType.HLS;
+                        currentManifestType = IMimeTypeSettings.ManifestType.HLS;
                         break;
                     }
                     case 2: {
-                        currentManifestType = MimeTypeSettings.ManifestType.DASH;
+                        currentManifestType = IMimeTypeSettings.ManifestType.DASH;
                         break;
                     }
 
                     case 3: {
-                        currentManifestType = MimeTypeSettings.ManifestType.ALL;
+                        currentManifestType = IMimeTypeSettings.ManifestType.ALL;
                         break;
                     }
                     default:
@@ -97,17 +98,17 @@ public class MimeTypeSettingsDialog extends DialogFragment {
                 switch(position){
                     case 1:{
 
-                        currentSegmentType = MimeTypeSettings.SegmentType.VIDEO;
+                        currentSegmentType = IMimeTypeSettings.SegmentType.VIDEO;
                         break;
                     }
 
                     case 2:{
-                        currentSegmentType  = MimeTypeSettings.SegmentType.AUDIO;
+                        currentSegmentType  = IMimeTypeSettings.SegmentType.AUDIO;
                         break;
                     }
 
                     case 3: {
-                        currentSegmentType = MimeTypeSettings.SegmentType.TEXT;
+                        currentSegmentType = IMimeTypeSettings.SegmentType.TEXT;
                         break;
                     }
 
@@ -160,7 +161,6 @@ public class MimeTypeSettingsDialog extends DialogFragment {
         view.findViewById(R.id.mime_settings_done_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                callback.complete(settings);
                 dismiss();
             }
         });

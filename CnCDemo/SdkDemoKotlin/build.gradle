@@ -5,17 +5,14 @@ android {
     compileSdkVersion 29
     buildToolsVersion '28.0.3'
 
-
-
     defaultConfig {
         applicationId "com.penthera.sdkdemokotlin"
         minSdkVersion 24
         targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
+        versionCode = 40000
+        versionName = "4.0.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
     }
 
     compileOptions {
@@ -29,7 +26,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-
 }
 
 allprojects {
@@ -50,12 +46,7 @@ allprojects {
 def lifecycle_version = "2.2.0"
 
 dependencies {
-    def sysprops = System.getProperties()
-    if (sysprops['idea.platform.prefix'] != null || project.hasProperty("devCmdLine")) {
-        implementation 'com.penthera:cnc-android-sdk-debug:3.17.2'
-    } else {
-        implementation 'com.penthera:cnc-android-sdk-debug:3.17.2'
-    }
+    implementation  'com.penthera:cnc-android-sdk-debug:4.0.0'
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.1.0'

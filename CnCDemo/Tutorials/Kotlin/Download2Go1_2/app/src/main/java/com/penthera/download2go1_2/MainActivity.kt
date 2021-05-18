@@ -237,11 +237,12 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun showAncillaryImage(asset: IAsset?) {
-        asset?.let{
-            if(it is ISegmentedAsset){
-                val fileList = it.getAncillaryFiles(this)
-                if(fileList.isNotEmpty()){
-                    val fileLocalPath = fileList[0].localPath
+        asset?.let{ iAsset ->
+            if(iAsset is ISegmentedAsset){
+                var fileList : List<AncillaryFile>? = iAsset.getAncillaryFiles(this)
+                fileList?.let{ ancillaries ->
+
+                    val fileLocalPath = ancillaries[0].localPath
 
                     fileLocalPath?.let{filePath->
                         val imgFile = File(filePath)

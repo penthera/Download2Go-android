@@ -2,19 +2,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.penthera.download2go1_7">
 
-    <!-- A number of permissions that are required by the SDK -->
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
-    <uses-permission android:name="android.permission.WAKE_LOCK"/>
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
-    <uses-permission android:name="android.permission.QUICKBOOT_POWERON"/>
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-
     <!-- The networkSecurityConfig is required to enable playback from the local proxy using http and not https -->
     <application
         android:allowBackup="true"
@@ -51,71 +38,24 @@
             </intent-filter>
         </activity>
 
-        <!-- Meta Data -->
-        <meta-data android:name="com.penthera.virtuososdk.client.pckg" android:value="@string/client_package" />
-
-        <!-- Service -->
-        <service android:name="com.penthera.virtuososdk.service.VirtuosoService"
-            android:process=":service"
-            android:label="VirtuosoService">
-        </service>
-        <receiver android:name="com.penthera.virtuososdk.service.VirtuosoService$ServiceMessageReceiver"
-            android:label="VirtuosoServiceMessageReceiver"
-            android:process=":service"/>
-
-        <!-- HLS Proxy service -->
-        <service android:name="com.penthera.virtuososdk.service.VirtuosoClientHTTPService"
-            android:label="VirtuosoClientHTTPService"
-            android:enabled="true">
-        </service>
-
         <!-- Service Starter -->
         <receiver android:name=".ServiceStarter"
             android:enabled="true"
-            android:process=":starter"
             android:label="SDKDemo Service Starter"
             android:directBootAware="true">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED"/>
                 <action android:name="android.intent.action.QUICKBOOT_POWERON"/>
                 <action android:name="com.htc.intent.action.QUICKBOOT_POWERON"/>
-                <action android:name="virtuoso.intent.action.SERVICE_NOTIFICATION_UPDATE" />
-                <action android:name="virtuoso.intent.action.DOWNLOAD_UPDATE"/>
-                <action android:name="virtuoso.intent.action.CONFIGURE_VIRTUOSO_SERVICE_LOGGING"/>
-                <action android:name="virtuoso.intent.action.BACKPLANE_SYNC_DEVICE" />
                 <action android:name="android.intent.action.PACKAGE_REMOVED" />
-                <action android:name="virtuoso.intent.action.START_SERVICE" />
                 <data android:scheme="package"/>
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED"/>
-                <action android:name="virtuoso.intent.action.START_SERVICE" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
 
         </receiver>
-
-        <!-- Content Provider -->
-        <provider android:name=".DemoContentProvider"
-            android:authorities="@string/client_package"
-            android:exported="false"
-            android:process=":provider"/>
-
-        <!-- These intent filters are only required if using the inter-process method of updating notifications -->
-        <receiver android:name=".NotificationReceiver"
-            android:enabled="true"
-            android:exported="false"
-            android:label="NotificationReceiver">
-            <intent-filter>
-                <action android:name="com.penthera.virtuososdk.provider.sdkdemo.NOTIFICATION_DOWNLOAD_START"/>
-                <action android:name="com.penthera.virtuososdk.provider.sdkdemo.NOTIFICATION_DOWNLOAD_STOPPED"/>
-                <action android:name="com.penthera.virtuososdk.provider.sdkdemo.NOTIFICATION_DOWNLOAD_COMPLETE"/>
-                <action android:name="com.penthera.virtuososdk.provider.sdkdemo.NOTIFICATION_DOWNLOAD_UPDATE"/>
-                <action android:name="com.penthera.virtuososdk.provider.sdkdemo.NOTIFICATION_DOWNLOADS_PAUSED" />
-                <action android:name="com.penthera.virtuososdk.provider.reference.NOTIFICATION_MANIFEST_PARSE_FAILED" />
-            </intent-filter>
-        </receiver>
-
 
         <service
             android:name=".DemoPushMessagingService">
@@ -123,6 +63,19 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
+
+        <!--
+       The DemoCustomPushMessagingService shows an alternate way to integrate the Virtuoso FCM messaging
+       components without subclassing a Virtuoso SDK class.
+
+       <service
+           android:name=".DemoCustomPushMessagingService">
+           <intent-filter>
+               <action android:name="com.google.firebase.MESSAGING_EVENT" />
+           </intent-filter>
+       </service>
+       -->
+
 
     </application>
 </manifest>

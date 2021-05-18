@@ -63,13 +63,13 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     // Important: Asset ID should be unique across your video catalog
     private static final String ASSET_ID_2 = "TEST_ASSET_ID_2";
     private String ASSET_TITLE_2;
-    private static final String ASSET_URL_2 = "http://virtuoso-demo-content.s3.amazonaws.com/Steve/steve.m3u8";
+    private static final String ASSET_URL_2 = "https://virtuoso-demo-content.s3.amazonaws.com/Steve/steve.m3u8";
 
     // This is the first test asset which will be downloaded
     // Important: Asset ID should be unique across your video catalog
     private static final String ASSET_ID_3 = "TEST_ASSET_ID_3";
     private String ASSET_TITLE_3;
-    private static final String ASSET_URL_3 = "http://virtuoso-demo-content.s3.amazonaws.com/College/college.m3u8";
+    private static final String ASSET_URL_3 = "https://virtuoso-demo-content.s3.amazonaws.com/College/college.m3u8";
 
     // We only use one loader here, so this is of little significance.
     private int LOADER_ID = 1;
@@ -94,11 +94,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     private Button download1;
     private Button download2;
     private Button download3;
-
-    // We use a content observer to manage observation of multiple notification update urls
-    private ContentObserver changeObserver;
-    // This URI is used for sending a combined notification for any of the update urls to our UI
-    private Uri privateUpdateURI;
 
     private RecyclerView recyclerView;
 
@@ -142,12 +137,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
         // Resume the Download2Go SDK on activity resume
         virtuoso.onResume();
-
-        getContentResolver().registerContentObserver(assetManager.CONTENT_URI(), true, changeObserver);
-        getContentResolver().registerContentObserver(assetManager.getQueue().CONTENT_URI(), true, changeObserver);
-        getContentResolver().registerContentObserver(assetManager.getDeferred().CONTENT_URI(), true, changeObserver);
-
-        getContentResolver().notifyChange(privateUpdateURI, changeObserver);
     }
 
     @Override
@@ -156,8 +145,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
         // Pause the Download2Go SDK on activity pause
         virtuoso.onPause();
-
-        getContentResolver().unregisterContentObserver(changeObserver);
     }
 
 
@@ -190,26 +177,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                 Log.e("MainActivity", "Error with backplane url", mue);
             }
         }
-
-        // We need to listen on a number of update uris in this case, but the cursor will only
-        // register a notification for one
-        privateUpdateURI = Uri.parse("content://com.penthera.virtuososdk.provider.download2go1_6/mainActivity");
-        changeObserver = new ContentObserver(null) {
-            @Override
-            public boolean deliverSelfNotifications() {
-                return false;
-            }
-
-            @Override
-            public void onChange(boolean selfChange) {
-                onChange(selfChange, null);
-            }
-
-            @Override
-            public void onChange(boolean selfChange, Uri uri) {
-                getContentResolver().notifyChange(privateUpdateURI, this);
-            }
-        };
 
     }
 
@@ -298,7 +265,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     @Override
     public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor cursor) {
         if (cursor != null) {
-            cursor.setNotificationUri(getContentResolver(), privateUpdateURI);
+            cursor.setNotificationUri(getContentResolver(), assetManager.CONTENT_URI());
             adapter.setCursor(cursor);
         }
     }

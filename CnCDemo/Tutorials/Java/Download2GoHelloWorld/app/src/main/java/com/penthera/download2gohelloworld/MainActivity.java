@@ -30,6 +30,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
 
+import static com.penthera.virtuososdk.client.SegmentedParserError.NO_ERROR;
+
 public class MainActivity extends AppCompatActivity {
 
     // DEMO Server details
@@ -41,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
     // Important: Asset ID should be unique across your video catalog
     private static final String ASSET_ID = "TEST_ASSET_ID";
     private static final String ASSET_TITLE = "TEST ASSET";
-    private static final String ASSET_URL = "http://virtuoso-demo-content.s3.amazonaws.com/Steve/steve.m3u8";
+    private static final String ASSET_URL = "https://virtuoso-demo-content.s3.amazonaws.com/Steve/steve.m3u8";
 
     private Virtuoso virtuoso;
     private IAsset asset = null;
@@ -186,7 +188,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void complete(final ISegmentedAsset asset, int error, boolean addedToQueue) {
             activity.runOnUiThread(() -> {
-                if(asset != null && error == 0) {    //TODO: we should have a success constant!
+                if(asset != null && error == NO_ERROR) {
                     Toast.makeText(activity, "Asset parsed and " + (addedToQueue ? "added" : "not added") + " to download queue", Toast.LENGTH_LONG  ).show();
                 }
                 else{

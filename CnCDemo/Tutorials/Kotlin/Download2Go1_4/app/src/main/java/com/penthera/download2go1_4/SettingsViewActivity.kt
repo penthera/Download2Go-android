@@ -128,7 +128,6 @@ class SettingsViewActivity : AppCompatActivity() {
             resetMaxDownloadConnections()
             resetProgressUpdateByPercent()
             resetProgressUpdateByTime()
-            save()
         }
     }
 
@@ -144,7 +143,6 @@ class SettingsViewActivity : AppCompatActivity() {
                 maxDownloadConnections = maxConcurrentConnections!!.text.toString().toInt()
                 progressUpdateByPercent = progressPercent!!.progress
                 progressUpdateByTime = progressTimed!!.text.toString().toLong()
-                save()
             }
         } catch (e: Exception) {
             e.printStackTrace()
@@ -182,52 +180,52 @@ class SettingsViewActivity : AppCompatActivity() {
 
     // Reset Methods
     fun onMaxStorageReset() {
-        settings.resetMaxStorageAllowed().save()
+        settings.resetMaxStorageAllowed()
         updateSettingsValues()
     }
 
     fun onHeadroomReset() {
-        settings.resetHeadroom().save()
+        settings.resetHeadroom()
         updateSettingsValues()
     }
 
     fun onBatteryReset() {
-        settings.resetBatteryThreshold().save()
+        settings.resetBatteryThreshold()
         updateSettingsValues()
     }
 
     fun onCellQuotaReset() {
-        settings.resetCellularDataQuota().save()
+        settings.resetCellularDataQuota()
         updateSettingsValues()
     }
 
     fun onCellQuotaDateReset() {
-        settings.resetCellularDataQuotaStart().save()
+        settings.resetCellularDataQuotaStart()
         updateSettingsValues()
     }
 
     fun onConnectionTimeoutReset() {
-        settings.resetHTTPConnectionTimeout().save()
+        settings.resetHTTPConnectionTimeout()
         updateSettingsValues()
     }
 
     fun onSocketTimeoutReset() {
-        settings.resetHTTPSocketTimeout().save()
+        settings.resetHTTPSocketTimeout()
         updateSettingsValues()
     }
 
     fun onMaxConnectionReset() {
-        settings.resetMaxDownloadConnections().save()
+        settings.resetMaxDownloadConnections()
         updateSettingsValues()
     }
 
     fun onProgressPercentReset() {
-        settings.resetProgressUpdateByPercent().save()
+        settings.resetProgressUpdateByPercent()
         updateSettingsValues()
     }
 
     fun onProgressTimedReset() {
-        settings.resetProgressUpdateByTime().save()
+        settings.resetProgressUpdateByTime()
         updateSettingsValues()
     }
 

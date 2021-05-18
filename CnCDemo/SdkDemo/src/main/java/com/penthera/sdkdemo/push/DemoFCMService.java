@@ -13,6 +13,8 @@
 //
 package com.penthera.sdkdemo.push;
 
+import androidx.annotation.NonNull;
+
 import com.google.firebase.messaging.RemoteMessage;
 import com.penthera.virtuososdk.client.push.FcmMessagingService;
 
@@ -21,7 +23,7 @@ import com.penthera.virtuososdk.client.push.FcmMessagingService;
  */
 public class DemoFCMService extends FcmMessagingService {
     @Override
-    public void onMessageReceived(RemoteMessage msg) {
+    public void onMessageReceived(@NonNull RemoteMessage msg) {
         //always call super to ensure sdk messages get handled correctly
         super.onMessageReceived(msg);
         //handle your own messages
@@ -31,7 +33,7 @@ public class DemoFCMService extends FcmMessagingService {
      * Demonstrates how to capture the device token if required.
      */
     @Override
-    public void onNewToken(String token) {
+    public void onNewToken(@NonNull String token) {
         // Please always call super to ensure SDK can also use the updated push token
         super.onNewToken(token);
 

@@ -16,9 +16,10 @@ import com.google.android.exoplayer2.drm.DrmSession
 import com.google.android.exoplayer2.drm.DrmSessionManager
 import com.google.android.exoplayer2.drm.FrameworkMediaCrypto
 import com.penthera.virtuososdk.client.IAsset
-import com.penthera.virtuososdk.client.drm.IDrmInitData
-import com.penthera.virtuososdk.client.drm.IVirtuosoDrmSession
-import com.penthera.virtuososdk.client.drm.VirtuosoDrmSessionManager
+import com.penthera.virtuososdk.client.drm.VirtuosoDrmInitData
+import com.penthera.virtuososdk.support.exoplayer211.drm.IVirtuosoDrmSession;
+import com.penthera.virtuososdk.support.exoplayer211.drm.SupportDrmSessionManager
+import com.penthera.virtuososdk.support.exoplayer211.drm.UUIDUtil
 import java.util.*
 
 /**
@@ -31,14 +32,14 @@ class DemoDrmSessionManager(
     uuid: UUID?,
     asset: IAsset?,
     optionalKeyRequestParameters: HashMap<String?, String?>?,
-    eventListener: VirtuosoDrmSessionManager.EventListener?,
+    eventListener: SupportDrmSessionManager.EventListener?,
     onEventListener: MediaDrm.OnEventListener
 ) : DrmSessionManager<FrameworkMediaCrypto> {
 
 
 
 
-    private val mDrmSessionManager: VirtuosoDrmSessionManager
+    private val mDrmSessionManager: SupportDrmSessionManager
     private val mDrmEventListener: MediaDrm.OnEventListener
     private var eventHandler: Handler? = null
 
@@ -47,27 +48,45 @@ class DemoDrmSessionManager(
         if (eventListener != null) {
             eventHandler = Handler()
         }
-        mDrmSessionManager = VirtuosoDrmSessionManager(
+        mDrmSessionManager = SupportDrmSessionManager(
             context, uuid, asset, optionalKeyRequestParameters,
             null, eventHandler, eventListener
         )
         mDrmEventListener = onEventListener
     }
     override fun canAcquireSession(drmInitData: DrmInitData): Boolean {
-        return mDrmSessionManager.canOpen { schemeUuid ->
-            val sd = drmInitData[schemeUuid]
-            IDrmInitData.SchemeInitData(sd!!.mimeType, sd.data)
+
+        val schemeDatas = ArrayList<VirtuosoDrmInitData.SchemeInitData>()
+
+        for (i in 0 until drmInitData.schemeDataCount) {
+            val sd =
+                drmInitData[i]
+            schemeDatas.add(VirtuosoDrmInitData.SchemeInitData(UUIDUtil.getUUIDFromSchemeData(sd), sd.mimeType, sd.data))
         }
+        return mDrmSessionManager.canOpen(VirtuosoDrmInitData(schemeDatas))
+        
     }
 
     override fun acquireSession(
         playbackLooper: Looper,
         drmInitData: DrmInitData
     ): DrmSession<FrameworkMediaCrypto> {
-        val session: IVirtuosoDrmSession<*> = mDrmSessionManager.open { schemeUuid ->
-            val sd = drmInitData[schemeUuid]
-            IDrmInitData.SchemeInitData(sd!!.mimeType, sd.data)
+
+        val schemeDatas =
+            ArrayList<VirtuosoDrmInitData.SchemeInitData>()
+        for (i in 0 until drmInitData.schemeDataCount) {
+            val sd = drmInitData[i]
+            schemeDatas.add(
+                VirtuosoDrmInitData.SchemeInitData(
+                    UUIDUtil.getUUIDFromSchemeData(sd),
+                    sd.mimeType,
+                    sd.data
+                )
+            )
         }
+        val session: IVirtuosoDrmSession<*> =
+            mDrmSessionManager.open(VirtuosoDrmInitData(schemeDatas))
+       
         session.setLooper(playbackLooper)
         session.setDrmOnEventListener(mDrmEventListener)
         return DemoDrmSession(session, mDrmSessionManager.schemeUUID, mDrmSessionManager)

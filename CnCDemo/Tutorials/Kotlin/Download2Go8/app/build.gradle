@@ -1,14 +1,18 @@
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-android-extensions'
+    id 'com.penthera.virtuoso-sdk-configuration' version '1.0.0'
+}
 
 android {
-    compileSdkVersion 29
-
+    compileSdkVersion 30
+    buildToolsVersion "30.0.2"
+	
     defaultConfig {
         applicationId "com.penthera.download2go8"
         minSdkVersion 24
-        targetSdkVersion 29
+        targetSdkVersion 30
         versionCode 1
         versionName "1.0"
 
@@ -38,6 +42,7 @@ allprojects {
         maven{
             url "http://clientbuilds.penthera.com:8081/repository/releases/"
         }
+
     }
 }
 dependencies {
@@ -47,7 +52,8 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.0.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
 
-    implementation 'com.penthera:cnc-android-sdk-debug:3.17.2'
+    implementation 'com.penthera:cnc-android-sdk-debug:4.0.0'
+    implementation 'com.penthera:cnc-exoplayer-2_11-support-debug:4.0.0'
 
     implementation 'com.google.android.exoplayer:exoplayer:2.11.3'
 

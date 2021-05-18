@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<!-- NewPage -->
+<html lang="en" class="fancy">
+<head>
+<meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="../../../stylesheet2.css" title="Style">
+<script type="text/javascript" src="../../../doc2.js"></script>
+<script type="text/javascript">var pathSeparator = "/";
+var rootPath = "../../../";
+var currentPackage = "com.penthera.virtuososdk";
+var currentClass = "Common.Events";
+</script>
+<script type="text/javascript" src="package-contents.js"></script>
+</head>
+<body class="contentPage classPage">
+<div id="innerBody">
+<script type="text/javascript"><!--
+    if (location.href.indexOf('is-external=true') == -1) {
+        parent.document.title="Common.Events (Download2Go Android SDK)";
+    }
+//-->
+</script>
+<noscript>
+<div>This web site requires JavaScript for proper operation. JavaScript is disabled on your browser.</div>
+</noscript>
+<!-- ========= START OF TOP NAVBAR ======= -->
+<div class="navBar hidden" id="topNavBar">
+<div class="navigationLine1">
+<div class="navigationLinks">
+<div class="navBarButton active"><a href="../../../overview-summary.html">Overview</a></div>
+<div class="navBarButton active"><a href="package-summary.html">Package</a></div>
+<div class="navBarButton inactive selected"><a href>Class</a></div>
+<div class="navBarButton active"><a href="package-tree.html">Tree</a></div>
+<div class="navBarButton active"><a href="../../../deprecated-list.html">Deprecated</a></div>
+<div class="navBarButton active"><a href="../../../index-all.html">Index</a></div>
+<div class="navBarButton active"><a href="../../../allclasses-noframe.html">All Classes</a></div>
+<div class="navBarButton active"><a href="../../../help-doc.html">Help</a></div>
+</div>
+<div class="pageControls">
+<div class="navBarButton active"><a href="Common.EngineStatus.html"><span class="strong">Prev Class</span></a></div>
+<div class="navBarButton active"><a href="Common.FileSegmentType.html"><span class="strong">Next Class</span></a></div>
+</div>
+<select id="packageSelector">
+<option value>packages...</option>
+<option value>com.penthera</option>
+<option value>com.penthera.virtuoso.net.security.client</option>
+<option value>com.penthera.virtuososdk</option>
+<option value>com.penthera.virtuososdk.autodownload</option>
+<option value>com.penthera.virtuososdk.client</option>
+<option value>com.penthera.virtuososdk.client.ads</option>
+<option value>com.penthera.virtuososdk.client.autodownload</option>
+<option value>com.penthera.virtuososdk.client.builders</option>
+<option value>com.penthera.virtuososdk.client.database</option>
+<option value>com.penthera.virtuososdk.client.drm</option>
+<option value>com.penthera.virtuososdk.client.drm.castlabs</option>
+<option value>com.penthera.virtuososdk.client.push</option>
+<option value>com.penthera.virtuososdk.database.impl.provider</option>
+<option value>com.penthera.virtuososdk.service</option>
+</select>
+<select id="packageClassSelector">
+<option value selected="selected">classes...</option>
+</select>
+</div>
+<div class="pageTitle"><span>Class <span class="packagePrefix">com.penthera.virtuososdk</span>.Common.Events</span></div>
+<div class="navigationLine2">
+<div class="inheritedMembersSelector">Inherited members: <span class="radioButton" id="showInheritedMembersSelector" onclick="setInheritedVisible(true)">Show</span><span class="radioButton" id="hideInheritedMembersSelector" onclick="setInheritedVisible(false)">Hide</span></div>
+<div class="deprecatedSelector">Deprecated: <span class="radioButton" id="showDeprecatedSelector" onclick="setDeprecatedVisible(true)">Show</span><span class="radioButton" id="hideDeprecatedSelector" onclick="setDeprecatedVisible(false)">Hide</span></div>
+<span class="accessViewSelectors">View: <span class="radioButton" id="clientViewSelector" onclick="showClientView();">Client</span><span class="radioButton" id="subclassViewSelector" onclick="showSubclassView();">Subclass</span><span class="radioButton" id="packageViewSelector" onclick="showPackageView();">Package</span><span class="radioButton" id="implementationViewSelector" onclick="showImplementationView();">Implementation</span></span>
+<div class="entitySelectors">
+<select id="classSelector">
+<option value selected="selected">classes...</option>
+</select>
+<select id="enumConstantSelector">
+<option value selected="selected">enum constants...</option>
+</select>
+<select id="fieldSelector">
+<option value selected="selected">fields...</option>
+</select>
+<select id="staticMethodSelector">
+<option value selected="selected">static methods...</option>
+</select>
+<select id="constructorSelector">
+<option value selected="selected">constructors...</option>
+</select>
+<select id="methodSelector">
+<option value selected="selected">methods...</option>
+</select>
+<select id="propertySelector">
+<option value selected="selected">properties...</option>
+</select>
+</div>
+</div>
+</div>
+<!-- ========= END OF TOP NAVBAR ========= -->
+<div id="dataArea" class="hidden">
+<div id="content">
+<!-- ======== START OF CLASS DATA ======== -->
+<div class="header">
+<div class="subTitle">com.penthera.virtuososdk</div>
+<h2 title="Class Common.Events" class="title">Class Common.Events</h2>
+</div>
+<div class="contentContainer">
+<div class="classInheritance">
+<ul class="inheritance">
+<li>java.lang.Object</li>
+<li>
+<ul class="inheritance">
+<li>com.penthera.virtuososdk.Common.Events</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="description">
+<ul class="blockList">
+<li class="blockList">
+<dl>
+<dt>Enclosing class:</dt>
+<dd><a class="code" href="Common.html" title="class in com.penthera.virtuososdk">Common</a></dd>
+</dl>
+<div class="classSignature">public static final class <span class="strong">Common.Events</span>
+extends java.lang.Object</div>
+<div class="block">Identifies Virtuoso's <code>Events</code>, meaning "things that gets reported to the Backplane."
+ Provides helper methods for instantiating <code>Events</code> that Virtuoso reports.</div>
+</li>
+</ul>
+</div>
+<div class="summary">
+<ul class="blockList">
+<li class="blockList">
+<!-- =========== FIELD SUMMARY =========== -->
+<ul class="blockList">
+<li class="blockList"><a name="field_summary">
+<!--   -->
+</a>
+<table class="overviewSummary summaryTable memberSummary fieldElementList" border="0" cellpadding="3" cellspacing="0" summary="Field Summary table, listing fields, and an explanation">
+<caption class="tableHeader"><span>Fields</span><span class="tabEnd">&nbsp;</span></caption>
+<tr class="columnHeaders">
+<th class="colFirst" scope="col"> </th>
+<th scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Field and Description</th>
+</tr>
+<tr class="member field public">
+<td class="memberMarker colFirst"><img src="../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="EVENT_APP_LAUNCH" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">EVENT_APP_LAUNCH</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>static java.lang.String&nbsp;</code><span class="itemTitle">EVENT_APP_LAUNCH</span></div>
+<div class="block">Identifies a fresh application launch and must be reported by the client using the
+ <a class="code" href="Common.Events.html#addAppLaunchEvent(android.content.Context)" title="method defined in com.penthera.virtuososdk.Common.Events"><code>addAppLaunchEvent</code></a> method.</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">public static final&nbsp;java.lang.String EVENT_APP_LAUNCH</div>
+<dl>
+<dd>
+<div class="block">Identifies a fresh application launch and must be reported by the client using the
+ <a class="code" href="Common.Events.html#addAppLaunchEvent(android.content.Context)" title="method defined in com.penthera.virtuososdk.Common.Events"><code>addAppLaunchEvent</code></a> method.</div>
+<dl class="tagSection"><dt><span class="strong">See Also:</span></dt><dd><a href="../../../constant-values.html#com.penthera.virtuososdk.Common.Events.EVENT_APP_LAUNCH">Constant Field Values</a></dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member field public">
+<td class="memberMarker colFirst"><img src="../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="EVENT_ASSET_DELETED" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">EVENT_ASSET_DELETED</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>static java.lang.String&nbsp;</code><span class="itemTitle">EVENT_ASSET_DELETED</span></div>
+<div class="block">Reported automatically by the SDK when the user deletes a file.</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">public static final&nbsp;java.lang.String EVENT_ASSET_DELETED</div>
+<dl>
+<dd>
+<div class="block">Reported automatically by the SDK when the user deletes a file.</div>
+<dl class="tagSection"><dt><span class="strong">See Also:</span></dt><dd><a href="../../../constant-values.html#com.penthera.virtuososdk.Common.Events.EVENT_ASSET_DELETED">Constant Field Values</a></dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member field public">
+<td class="memberMarker colFirst"><img src="../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="EVENT_ASSET_EXPIRE" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">EVENT_ASSET_EXPIRE</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>static java.lang.String&nbsp;</code><span class="itemTitle">EVENT_ASSET_EXPIRE</span></div>
+<div class="block">Reported automatically by the SDK when an asset is determined to be expired.</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">public static final&nbsp;java.lang.String EVENT_ASSET_EXPIRE</div>
+<dl>
+<dd>
+<div class="block">Reported automatically by the SDK when an asset is determined to be expired.</div>
+<dl class="tagSection"><dt><span class="strong">See Also:</span></dt><dd><a href="../../../constant-values.html#com.penthera.virtuososdk.Common.Events.EVENT_ASSET_EXPIRE">Constant Field Values</a></dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member field public">
+<td class="memberMarker colFirst"><img src="../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="EVENT_ASSET_REMOVED_FROM_QUEUE" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">EVENT_ASSET_REMOVED_FROM_QUEUE</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>static java.lang.String&nbsp;</code><span class="itemTitle">EVENT_ASSET_REMOVED_FROM_QUEUE</span></div>
+<div class="block">Reported automatically by the SDK when the user has removed a file from the download queue.</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">public static final&nbsp;java.lang.String EVENT_ASSET_REMOVED_FROM_QUEUE</div>
+<dl>
+<dd>
+<div class="block">Reported automatically by the SDK when the user has removed a file from the download queue.</div>
+<dl class="tagSection"><dt><span class="strong">See Also:</span></dt><dd><a href="../../../constant-values.html#com.penthera.virtuososdk.Common.Events.EVENT_ASSET_REMOVED_FROM_QUEUE">Constant Field Values</a></dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member field public">
+<td class="memberMarker colFirst"><img src="../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="EVENT_DOWNLOAD_COMPLETE" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">EVENT_DOWNLOAD_COMPLETE</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>static java.lang.String&nbsp;</code><span class="itemTitle">EVENT_DOWNLOAD_COMPLETE</span></div>
+<div class="block">Reported automatically by the SDK when a file download completes.</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">public static final&nbsp;java.lang.String EVENT_DOWNLOAD_COMPLETE</div>
+<dl>
+<dd>
+<div class="block">Reported automatically by the SDK when a file download completes.</div>
+<dl class="tagSection"><dt><span class="strong">See Also:</span></dt><dd><a href="../../../constant-values.html#com.penthera.virtuososdk.Common.Events.EVENT_DOWNLOAD_COMPLETE">Constant Field Values</a></dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member field public">
+<td class="memberMarker colFirst"><img src="../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="EVENT_DOWNLOAD_ERROR" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">EVENT_DOWNLOAD_ERROR</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>static java.lang.String&nbsp;</code><span class="itemTitle">EVENT_DOWNLOAD_ERROR</span></div>
+<div class="block">Reported automatically by the SDK when a file download cannot be finished due to errors.</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">public static final&nbsp;java.lang.String EVENT_DOWNLOAD_ERROR</div>
+<dl>
+<dd>
+<div class="block">Reported automatically by the SDK when a file download cannot be finished due to errors.</div>
+<dl class="tagSection"><dt><span class="strong">See Also:</span></dt><dd><a href="../../../constant-values.html#com.penthera.virtuososdk.Common.Events.EVENT_DOWNLOAD_ERROR">Constant Field Values</a></dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member field public">
+<td class="memberMarker colFirst"><img src="../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="EVENT_DOWNLOAD_LIMIT_REACHED" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">EVENT_DOWNLOAD_LIMIT_REACHED</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>static java.lang.String&nbsp;</code><span class="itemTitle">EVENT_DOWNLOAD_LIMIT_REACHED</span></div>
+<div class="block">Reported automatically by the SDK when a file cannot download due to permissions.</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">public static final&nbsp;java.lang.String EVENT_DOWNLOAD_LIMIT_REACHED</div>
+<dl>
+<dd>
+<div class="block">Reported automatically by the SDK when a file cannot download due to permissions.</div>
+<dl class="tagSection"><dt><span class="strong">See Also:</span></dt><dd><a href="../../../constant-values.html#com.penthera.virtuososdk.Common.Events.EVENT_DOWNLOAD_LIMIT_REACHED">Constant Field Values</a></dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member field public">
+<td class="memberMarker colFirst"><img src="../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="EVENT_DOWNLOAD_REQUESTED" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">EVENT_DOWNLOAD_REQUESTED</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>static java.lang.String&nbsp;</code><span class="itemTitle">EVENT_DOWNLOAD_REQUESTED</span></div>
+<div class="block">Reported automatically by the SDK when a download is requested</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">public static final&nbsp;java.lang.String EVENT_DOWNLOAD_REQUESTED</div>
+<dl>
+<dd>
+<div class="block">Reported automatically by the SDK when a download is requested</div>
+<dl class="tagSection"><dt><span class="strong">See Also:</span></dt><dd><a href="../../../constant-values.html#com.penthera.virtuososdk.Common.Events.EVENT_DOWNLOAD_REQUESTED">Constant Field Values</a></dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member field public">
+<td class="memberMarker colFirst"><img src="../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="EVENT_DOWNLOAD_START" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">EVENT_DOWNLOAD_START</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>static java.lang.String&nbsp;</code><span class="itemTitle">EVENT_DOWNLOAD_START</span></div>
+<div class="block">Reported automatically by the SDK when a file begins to download.</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">public static final&nbsp;java.lang.String EVENT_DOWNLOAD_START</div>
+<dl>
+<dd>
+<div class="block">Reported automatically by the SDK when a file begins to download.</div>
+<dl class="tagSection"><dt><span class="strong">See Also:</span></dt><dd><a href="../../../constant-values.html#com.penthera.virtuososdk.Common.Events.EVENT_DOWNLOAD_START">Constant Field Values</a></dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member field public">
+<td class="memberMarker colFirst"><img src="../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="EVENT_DOWNLOAD_WARNING" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">EVENT_DOWNLOAD_WARNING</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>static java.lang.String&nbsp;</code><span class="itemTitle">EVENT_DOWNLOAD_WARNING</span></div>
+<div class="block">Reported automatically by the SDK when a file download encounters an issue that could
+ prevent the download completing successfully, but the SDK tries to continue.</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">public static final&nbsp;java.lang.String EVENT_DOWNLOAD_WARNING</div>
+<dl>
+<dd>
+<div class="block">Reported automatically by the SDK when a file download encounters an issue that could
+ prevent the download completing successfully, but the SDK tries to continue.</div>
+<dl class="tagSection"><dt><span class="strong">See Also:</span></dt><dd><a href="../../../constant-values.html#com.penthera.virtuososdk.Common.Events.EVENT_DOWNLOAD_WARNING">Constant Field Values</a></dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member field public">
+<td class="memberMarker colFirst"><img src="../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="EVENT_ENGINE_BLOCKED" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">EVENT_ENGINE_BLOCKED</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>static java.lang.String&nbsp;</code><span class="itemTitle">EVENT_ENGINE_BLOCKED</span></div>
+<div class="block">Reported automatically by the SDK when the download engine status changes to blocked</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">public static final&nbsp;java.lang.String EVENT_ENGINE_BLOCKED</div>
+<dl>
+<dd>
+<div class="block">Reported automatically by the SDK when the download engine status changes to blocked</div>
+<dl class="tagSection"><dt><span class="strong">See Also:</span></dt><dd><a href="../../../constant-values.html#com.penthera.virtuososdk.Common.Events.EVENT_ENGINE_BLOCKED">Constant Field Values</a></dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member field public">
+<td class="memberMarker colFirst"><img src="../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="EVENT_FAST_PLAY_ENABLED" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">EVENT_FAST_PLAY_ENABLED</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>static java.lang.String&nbsp;</code><span class="itemTitle">EVENT_FAST_PLAY_ENABLED</span></div>
+<div class="block">Reported automatically by the SDK whenever the download of all of an asset's FastPlay segments is complete</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">public static final&nbsp;java.lang.String EVENT_FAST_PLAY_ENABLED</div>
+<dl>
+<dd>
+<div class="block">Reported automatically by the SDK whenever the download of all of an asset's FastPlay segments is complete</div>
+<dl class="tagSection"><dt><span class="strong">See Also:</span></dt><dd><a href="../../../constant-values.html#com.penthera.virtuososdk.Common.Events.EVENT_FAST_PLAY_ENABLED">Constant Field Values</a></dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member field public">
+<td class="memberMarker colFirst"><img src="../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="EVENT_FAST_PLAY_INITIATED" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">EVENT_FAST_PLAY_INITIATED</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>static java.lang.String&nbsp;</code><span class="itemTitle">EVENT_FAST_PLAY_INITIATED</span></div>
+<div class="block">Reported automatically by the SDK whenever a FastPlay asset playback is initiated</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">public static final&nbsp;java.lang.String EVENT_FAST_PLAY_INITIATED</div>
+<dl>
+<dd>
+<div class="block">Reported automatically by the SDK whenever a FastPlay asset playback is initiated</div>
+<dl class="tagSection"><dt><span class="strong">See Also:</span></dt><dd><a href="../../../constant-values.html#com.penthera.virtuososdk.Common.Events.EVENT_FAST_PLAY_INITIATED">Constant Field Values</a></dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member field public">
+<td class="memberMarker colFirst"><img src="../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="EVENT_FAST_PLAY_TRIGGERED" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">EVENT_FAST_PLAY_TRIGGERED</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>static java.lang.String&nbsp;</code><span class="itemTitle">EVENT_FAST_PLAY_TRIGGERED</span></div>
+<div class="block">Reported automatically by the SDK whenever a FastPlay asset download is initiated</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">public static final&nbsp;java.lang.String EVENT_FAST_PLAY_TRIGGERED</div>
+<dl>
+<dd>
+<div class="block">Reported automatically by the SDK whenever a FastPlay asset download is initiated</div>
+<dl class="tagSection"><dt><span class="strong">See Also:</span></dt><dd><a href="../../../constant-values.html#com.penthera.virtuososdk.Common.Events.EVENT_FAST_PLAY_TRIGGERED">Constant Field Values</a></dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member field public">
+<td class="memberMarker colFirst"><img src="../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="EVENT_GENERAL_ERROR" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">EVENT_GENERAL_ERROR</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>static java.lang.String&nbsp;</code><span class="itemTitle">EVENT_GENERAL_ERROR</span></div>
+<div class="block">Internal event for general error reporting, not asset or download specific.</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">public static final&nbsp;java.lang.String EVENT_GENERAL_ERROR</div>
+<dl>
+<dd>
+<div class="block">Internal event for general error reporting, not asset or download specific.</div>
+<dl class="tagSection"><dt><span class="strong">See Also:</span></dt><dd><a href="../../../constant-values.html#com.penthera.virtuososdk.Common.Events.EVENT_GENERAL_ERROR">Constant Field Values</a></dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member field public">
+<td class="memberMarker colFirst"><img src="../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="EVENT_MAX_ERRORS_RESET" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">EVENT_MAX_ERRORS_RESET</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>static java.lang.String&nbsp;</code><span class="itemTitle">EVENT_MAX_ERRORS_RESET</span></div>
+<div class="block">Reported automatically by the SDK when the asset has been blocked due to errors, and the
+ errors are reset in order to allow the download to continue.</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">public static final&nbsp;java.lang.String EVENT_MAX_ERRORS_RESET</div>
+<dl>
+<dd>
+<div class="block">Reported automatically by the SDK when the asset has been blocked due to errors, and the
+ errors are reset in order to allow the download to continue.</div>
+<dl class="tagSection"><dt><span class="strong">See Also:</span></dt><dd><a href="../../../constant-values.html#com.penthera.virtuososdk.Common.Events.EVENT_MAX_ERRORS_RESET">Constant Field Values</a></dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member field public">
+<td class="memberMarker colFirst"><img src="../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="EVENT_PLAY_START" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">EVENT_PLAY_START</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>static java.lang.String&nbsp;</code><span class="itemTitle">EVENT_PLAY_START</span></div>
+<div class="block">Identifies that a player has begun local playback of the asset and must be reported by the client using the
+ <a class="code" href="Common.Events.html#addPlayStartEvent(android.content.Context%2C%20java.lang.String%2C%20java.lang.String)" title="method defined in com.penthera.virtuososdk.Common.Events"><code>addPlayStartEvent</code></a> method.</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">public static final&nbsp;java.lang.String EVENT_PLAY_START</div>
+<dl>
+<dd>
+<div class="block">Identifies that a player has begun local playback of the asset and must be reported by the client using the
+ <a class="code" href="Common.Events.html#addPlayStartEvent(android.content.Context%2C%20java.lang.String%2C%20java.lang.String)" title="method defined in com.penthera.virtuososdk.Common.Events"><code>addPlayStartEvent</code></a> method.</div>
+<dl class="tagSection"><dt><span class="strong">See Also:</span></dt><dd><a href="../../../constant-values.html#com.penthera.virtuososdk.Common.Events.EVENT_PLAY_START">Constant Field Values</a></dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member field public">
+<td class="memberMarker colFirst"><img src="../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="EVENT_PLAY_STOP" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">EVENT_PLAY_STOP</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>static java.lang.String&nbsp;</code><span class="itemTitle">EVENT_PLAY_STOP</span></div>
+<div class="block">Identifies that a player has stopped local playback of the asset and must be reported by the client using the
+ <a class="code" href="Common.Events.html#addPlayStopEvent(android.content.Context%2C%20java.lang.String%2C%20java.lang.String%2C%20long)" title="method defined in com.penthera.virtuososdk.Common.Events"><code>addPlayStopEvent</code></a> method.</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">public static final&nbsp;java.lang.String EVENT_PLAY_STOP</div>
+<dl>
+<dd>
+<div class="block">Identifies that a player has stopped local playback of the asset and must be reported by the client using the
+ <a class="code" href="Common.Events.html#addPlayStopEvent(android.content.Context%2C%20java.lang.String%2C%20java.lang.String%2C%20long)" title="method defined in com.penthera.virtuososdk.Common.Events"><code>addPlayStopEvent</code></a> method.</div>
+<dl class="tagSection"><dt><span class="strong">See Also:</span></dt><dd><a href="../../../constant-values.html#com.penthera.virtuososdk.Common.Events.EVENT_PLAY_STOP">Constant Field Values</a></dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member field public">
+<td class="memberMarker colFirst"><img src="../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="EVENT_PLAYBACK_INITIATED" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">EVENT_PLAYBACK_INITIATED</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>static java.lang.String&nbsp;</code><span class="itemTitle">EVENT_PLAYBACK_INITIATED</span></div>
+<div class="block">Reported automatically by the SDK the first time an asset is played through the proxy.</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">public static final&nbsp;java.lang.String EVENT_PLAYBACK_INITIATED</div>
+<dl>
+<dd>
+<div class="block">Reported automatically by the SDK the first time an asset is played through the proxy.</div>
+<dl class="tagSection"><dt><span class="strong">See Also:</span></dt><dd><a href="../../../constant-values.html#com.penthera.virtuososdk.Common.Events.EVENT_PLAYBACK_INITIATED">Constant Field Values</a></dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member field public">
+<td class="memberMarker colFirst"><img src="../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="EVENT_QUEUE_FOR_DOWNLOAD" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">EVENT_QUEUE_FOR_DOWNLOAD</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>static java.lang.String&nbsp;</code><span class="itemTitle">EVENT_QUEUE_FOR_DOWNLOAD</span></div>
+<div class="block">Reported automatically by the SDK when the user has added a file to the download queue.</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">public static final&nbsp;java.lang.String EVENT_QUEUE_FOR_DOWNLOAD</div>
+<dl>
+<dd>
+<div class="block">Reported automatically by the SDK when the user has added a file to the download queue.</div>
+<dl class="tagSection"><dt><span class="strong">See Also:</span></dt><dd><a href="../../../constant-values.html#com.penthera.virtuososdk.Common.Events.EVENT_QUEUE_FOR_DOWNLOAD">Constant Field Values</a></dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member field public">
+<td class="memberMarker colFirst"><img src="../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="EVENT_RESET" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">EVENT_RESET</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>static java.lang.String&nbsp;</code><span class="itemTitle">EVENT_RESET</span></div>
+<div class="block">Reported automatically by the SDK after the SDK has handled a remote kill or detected a reinstall of the client app.</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">public static final&nbsp;java.lang.String EVENT_RESET</div>
+<dl>
+<dd>
+<div class="block">Reported automatically by the SDK after the SDK has handled a remote kill or detected a reinstall of the client app.</div>
+<dl class="tagSection"><dt><span class="strong">See Also:</span></dt><dd><a href="../../../constant-values.html#com.penthera.virtuososdk.Common.Events.EVENT_RESET">Constant Field Values</a></dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member field public">
+<td class="memberMarker colFirst"><img src="../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="EVENT_SDK_EXCEPTION" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">EVENT_SDK_EXCEPTION</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>static java.lang.String&nbsp;</code><span class="itemTitle">EVENT_SDK_EXCEPTION</span></div>
+<div class="block">Internal event for error reporting.</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">public static final&nbsp;java.lang.String EVENT_SDK_EXCEPTION</div>
+<dl>
+<dd>
+<div class="block">Internal event for error reporting.</div>
+<dl class="tagSection"><dt><span class="strong">See Also:</span></dt><dd><a href="../../../constant-values.html#com.penthera.virtuososdk.Common.Events.EVENT_SDK_EXCEPTION">Constant Field Values</a></dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member field public">
+<td class="memberMarker colFirst"><img src="../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="EVENT_SUBSCRIBE" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">EVENT_SUBSCRIBE</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>static java.lang.String&nbsp;</code><span class="itemTitle">EVENT_SUBSCRIBE</span></div>
+<div class="block">Reported automatically by the SDK after the user has subscribed to receive updates to a feed.</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">public static final&nbsp;java.lang.String EVENT_SUBSCRIBE</div>
+<dl>
+<dd>
+<div class="block">Reported automatically by the SDK after the user has subscribed to receive updates to a feed.</div>
+<dl class="tagSection"><dt><span class="strong">See Also:</span></dt><dd><a href="../../../constant-values.html#com.penthera.virtuososdk.Common.Events.EVENT_SUBSCRIBE">Constant Field Values</a></dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member field public">
+<td class="memberMarker colFirst"><img src="../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="EVENT_UNSUBSCRIBE" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">EVENT_UNSUBSCRIBE</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>static java.lang.String&nbsp;</code><span class="itemTitle">EVENT_UNSUBSCRIBE</span></div>
+<div class="block">Reported automatically by the SDK after the user has unsubscribed from a feed.</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">public static final&nbsp;java.lang.String EVENT_UNSUBSCRIBE</div>
+<dl>
+<dd>
+<div class="block">Reported automatically by the SDK after the user has unsubscribed from a feed.</div>
+<dl class="tagSection"><dt><span class="strong">See Also:</span></dt><dd><a href="../../../constant-values.html#com.penthera.virtuososdk.Common.Events.EVENT_UNSUBSCRIBE">Constant Field Values</a></dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member field subclass">
+<td class="memberMarker colFirst"><img src="../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="launchEventCreated" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">launchEventCreated</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>protected static boolean&nbsp;</code><span class="itemTitle">launchEventCreated</span></div>
+<div class="block">&nbsp;</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">protected static&nbsp;boolean launchEventCreated</div>
+</div>
+</td>
+</tr>
+<tr class="member field subclass">
+<td class="memberMarker colFirst"><img src="../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="launchEventIncremented" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">launchEventIncremented</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>protected static boolean&nbsp;</code><span class="itemTitle">launchEventIncremented</span></div>
+<div class="block">&nbsp;</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">protected static&nbsp;boolean launchEventIncremented</div>
+</div>
+</td>
+</tr>
+</table>
+</li>
+</ul>
+<!-- ========== METHOD SUMMARY =========== -->
+<ul class="blockList">
+<li class="blockList"><a name="static_method_summary">
+<!--   -->
+</a>
+<table class="overviewSummary summaryTable memberSummary staticMethodElementList" border="0" cellpadding="3" cellspacing="0" summary="Static Method Summary table, listing static methods, and an explanation">
+<caption class="tableHeader"><span>Static Methods</span><span class="tabEnd">&nbsp;</span></caption>
+<tr class="columnHeaders">
+<th class="colFirst" scope="col"> </th>
+<th scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Static Method and Description</th>
+</tr>
+<tr class="member method public">
+<td class="memberMarker colFirst"><img src="../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="addAppLaunchEvent(android.content.Context)" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">addAppLaunchEvent</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>static boolean&nbsp;</code><span class="itemTitle">addAppLaunchEvent</span>(android.content.Context&nbsp;context)</div>
+<div class="block">Creates and automatically saves an App-Launch Event using the provided <code>Context</code>.</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">public static&nbsp;boolean&nbsp;<span class="itemTitle">addAppLaunchEvent</span>(android.content.Context&nbsp;context)</div>
+<dl>
+<dd>
+<div class="block">Creates and automatically saves an App-Launch Event using the provided <code>Context</code>.</div>
+<dl class="tagSection"><dt><span class="strong">Parameters:</span></dt><dd><code>context</code> - Context to use when saving the event</dd>
+<dt><span class="strong">Returns:</span></dt><dd>True if the event was successfully saved</dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member method public">
+<td class="memberMarker colFirst"><img src="../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="addCustomEvent(android.content.Context, java.lang.String, java.lang.String, long)" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">addCustomEvent</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>static boolean&nbsp;</code><span class="itemTitle">addCustomEvent</span>(android.content.Context&nbsp;context,
+              java.lang.String&nbsp;aName,
+              java.lang.String&nbsp;assetId,
+              long&nbsp;data)</div>
+<div class="block">Creates and automatically saves a Custom Event using the provided <code>Context</code>.</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">public static&nbsp;boolean&nbsp;<span class="itemTitle">addCustomEvent</span>(android.content.Context&nbsp;context,
+                     java.lang.String&nbsp;aName,
+                     java.lang.String&nbsp;assetId,
+                     long&nbsp;data)</div>
+<dl>
+<dd>
+<div class="block">Creates and automatically saves a Custom Event using the provided <code>Context</code>.
+ The Custom Event allows you to create arbitrarily named events and record these events on the Backplane along with the Virtuoso built-in events.
+ This method version takes a long data argument.
+ To send text event data, use the <a class="code" href="Common.Events.html#customEvent(java.lang.String%2C%20java.lang.String%2C%20java.lang.String)" title="method defined in com.penthera.virtuososdk.Common.Events"><code>customEvent</code></a> method.</div>
+<dl class="tagSection"><dt><span class="strong">Parameters:</span></dt><dd><code>context</code> - Context to use when saving the event</dd><dd><code>aName</code> - Name for this custom Event</dd><dd><code>assetId</code> - Externally provided ID for the asset</dd><dd><code>data</code> - Data to be associated with this Event</dd>
+<dt><span class="strong">Returns:</span></dt><dd>True if the event was successfully saved</dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member method public">
+<td class="memberMarker colFirst"><img src="../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="addCustomEvent(android.content.Context, java.lang.String, java.lang.String, java.lang.String)" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">addCustomEvent</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>static boolean&nbsp;</code><span class="itemTitle">addCustomEvent</span>(android.content.Context&nbsp;context,
+              java.lang.String&nbsp;aName,
+              java.lang.String&nbsp;assetId,
+              java.lang.String&nbsp;data)</div>
+<div class="block">Creates and automatically saves a Custom Event using the provided <code>Context</code>.</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">public static&nbsp;boolean&nbsp;<span class="itemTitle">addCustomEvent</span>(android.content.Context&nbsp;context,
+                     java.lang.String&nbsp;aName,
+                     java.lang.String&nbsp;assetId,
+                     java.lang.String&nbsp;data)</div>
+<dl>
+<dd>
+<div class="block">Creates and automatically saves a Custom Event using the provided <code>Context</code>.
+ The Custom Event allows you to create arbitrarily named events and record these events on the Backplane along with the Virtuoso built-in events.
+ This method version takes a String data argument.
+ To send numeric event data, use the <a class="code" href="Common.Events.html#customEvent(java.lang.String%2C%20java.lang.String%2C%20long)" title="method defined in com.penthera.virtuososdk.Common.Events"><code>customEvent</code></a> method.</div>
+<dl class="tagSection"><dt><span class="strong">Parameters:</span></dt><dd><code>context</code> - Context to use when saving the event</dd><dd><code>aName</code> - Name for this custom Event</dd><dd><code>assetId</code> - Externally provided ID for the asset</dd><dd><code>data</code> - Data to be associated with this Event</dd>
+<dt><span class="strong">Returns:</span></dt><dd>True if the event was successfully saved.</dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member method public">
+<td class="memberMarker colFirst"><img src="../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="addPlayStartEvent(android.content.Context, java.lang.String, java.lang.String)" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">addPlayStartEvent</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>static boolean&nbsp;</code><span class="itemTitle">addPlayStartEvent</span>(android.content.Context&nbsp;context,
+                 java.lang.String&nbsp;assetId,
+                 java.lang.String&nbsp;assetUuid)</div>
+<div class="block">Creates and automatically saves a Play-Start Event using the provided <code>Context</code>.</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">public static&nbsp;boolean&nbsp;<span class="itemTitle">addPlayStartEvent</span>(android.content.Context&nbsp;context,
+                        java.lang.String&nbsp;assetId,
+                        <span class="annotation">@Nullable</span>&nbsp;java.lang.String&nbsp;assetUuid)</div>
+<dl>
+<dd>
+<div class="block">Creates and automatically saves a Play-Start Event using the provided <code>Context</code>.
+ Include asset Uuid if the asset has been added for download to ensure correct management of expiry. It is optional to allow for recording streaming events.</div>
+<dl class="tagSection"><dt><span class="strong">Parameters:</span></dt><dd><code>context</code> - Context to use when saving the event</dd><dd><code>assetId</code> - Externally provided ID for the asset</dd><dd><code>assetUuid</code> - System generated ID for the asset</dd>
+<dt><span class="strong">Returns:</span></dt><dd>True if the event was successfully saved</dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member method public">
+<td class="memberMarker colFirst"><img src="../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="addPlayStartEvent(android.content.Context, java.lang.String, java.lang.String, double)" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">addPlayStartEvent</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>static boolean&nbsp;</code><span class="itemTitle">addPlayStartEvent</span>(android.content.Context&nbsp;context,
+                 java.lang.String&nbsp;assetId,
+                 java.lang.String&nbsp;assetUuid,
+                 double&nbsp;timeToFirstFrame)</div>
+<div class="block">Creates and automatically saves a Play-Start Event using the provided <code>Context</code>.</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">public static&nbsp;boolean&nbsp;<span class="itemTitle">addPlayStartEvent</span>(android.content.Context&nbsp;context,
+                        java.lang.String&nbsp;assetId,
+                        <span class="annotation">@Nullable</span>&nbsp;java.lang.String&nbsp;assetUuid,
+                        double&nbsp;timeToFirstFrame)</div>
+<dl>
+<dd>
+<div class="block">Creates and automatically saves a Play-Start Event using the provided <code>Context</code>.
+ Include asset Uuid if the asset has been added for download to ensure correct management of expiry. It is optional to allow for recording streaming events.</div>
+<dl class="tagSection"><dt><span class="strong">Parameters:</span></dt><dd><code>context</code> - Context to use when saving the event</dd><dd><code>assetId</code> - Externally provided ID for the asset</dd><dd><code>assetUuid</code> - System generated ID for the asset</dd><dd><code>timeToFirstFrame</code> - double value of the time to first frame of video playback</dd>
+<dt><span class="strong">Returns:</span></dt><dd>True if the event was successfully saved</dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member method public">
+<td class="memberMarker colFirst"><img src="../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="addPlayStopEvent(android.content.Context, java.lang.String, java.lang.String, long)" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">addPlayStopEvent</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>static boolean&nbsp;</code><span class="itemTitle">addPlayStopEvent</span>(android.content.Context&nbsp;context,
+                java.lang.String&nbsp;assetId,
+                java.lang.String&nbsp;assetUuid,
+                long&nbsp;secondsPlayed)</div>
+<div class="block">Creates and automatically saves a Play-Stop Event using the provided <code>Context</code>.</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">public static&nbsp;boolean&nbsp;<span class="itemTitle">addPlayStopEvent</span>(android.content.Context&nbsp;context,
+                       java.lang.String&nbsp;assetId,
+                       <span class="annotation">@Nullable</span>&nbsp;java.lang.String&nbsp;assetUuid,
+                       long&nbsp;secondsPlayed)</div>
+<dl>
+<dd>
+<div class="block">Creates and automatically saves a Play-Stop Event using the provided <code>Context</code>.</div>
+<dl class="tagSection"><dt><span class="strong">Parameters:</span></dt><dd><code>context</code> - The context to use when saving the event</dd><dd><code>assetId</code> - Externally provided ID for the asset</dd><dd><code>assetUuid</code> - System generated ID for the asset</dd><dd><code>secondsPlayed</code> - The amount of time the Asset was played, since the last Play Start Event, in seconds.</dd>
+<dt><span class="strong">Returns:</span></dt><dd>True if the event was successfully saved</dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member method public">
+<td class="memberMarker colFirst"><img src="../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="appInternalAppLaunchEvent(android.content.Context)" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">appInternalAppLaunchEvent</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>static void&nbsp;</code><span class="itemTitle">appInternalAppLaunchEvent</span>(android.content.Context&nbsp;context)</div>
+<div class="block">&nbsp;</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">public static&nbsp;void&nbsp;<span class="itemTitle">appInternalAppLaunchEvent</span>(android.content.Context&nbsp;context)</div>
+</div>
+</td>
+</tr>
+</table>
+</li>
+</ul>
+<!-- ======== CONSTRUCTOR SUMMARY ======== -->
+<ul class="blockList">
+<li class="blockList"><a name="constructor_summary">
+<!--   -->
+</a>
+<table class="overviewSummary summaryTable memberSummary constructorElementList" border="0" cellpadding="3" cellspacing="0" summary="Constructor Summary table, listing constructors, and an explanation">
+<caption class="tableHeader"><span>Constructors</span><span class="tabEnd">&nbsp;</span></caption>
+<tr class="columnHeaders">
+<th class="colFirst" scope="col"> </th>
+<th class="colLast" scope="col">Constructor and Description</th>
+</tr>
+<tr class="member constructor public">
+<td class="memberMarker colFirst"><img src="../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="Events()" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">Events</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><span class="itemTitle">Events</span>()</div>
+<div class="block">&nbsp;</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">public&nbsp;<span class="itemTitle">Events</span>()</div>
+</div>
+</td>
+</tr>
+</table>
+</li>
+</ul>
+<!-- ========== METHOD SUMMARY =========== -->
+<ul class="blockList">
+<li class="blockList"><a name="method_summary">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList inheritedMemberSummary summaryTable"><a name="methods_inherited_from_class_java.lang.Object">
+<!--   -->
+</a>
+<h3 class="tableHeader">Methods inherited from class&nbsp;java.lang.Object</h3>
+<code>clone, equals, finalize, getClass, hashCode, notify, notifyAll, toString, wait, wait, wait</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<!-- ========= END OF CLASS DATA ========= -->
+<!-- ======= START OF BOTTOM NAVBAR ====== -->
+<!-- ======== END OF BOTTOM NAVBAR ======= -->
+</div>
+</div>
+</div>
+</body>
+</html>

@@ -82,7 +82,7 @@
                 android:orientation="horizontal">
 
                 <EditText
-                    android:id="@+id/headroom"
+                    android:id="@+id/headroomValue"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -182,7 +182,7 @@
                 android:orientation="horizontal" >
 
                 <EditText
-                    android:id="@+id/destinationPath"
+                    android:id="@+id/destinationPathValue"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"

@@ -145,8 +145,7 @@ public class SettingsViewActivity extends AppCompatActivity {
                 .resetHTTPSocketTimeout()
                 .resetMaxDownloadConnections()
                 .resetProgressUpdateByPercent()
-                .resetProgressUpdateByTime()
-                .save();
+                .resetProgressUpdateByTime();
     }
 
     public void onApplySettings(View view) {
@@ -160,8 +159,7 @@ public class SettingsViewActivity extends AppCompatActivity {
                     .setHTTPSocketTimeout(Integer.parseInt(socketTimeout.getText().toString()))
                     .setMaxDownloadConnections(Integer.parseInt(maxConcurrentConnections.getText().toString()))
                     .setProgressUpdateByPercent(progressPercent.getProgress())
-                    .setProgressUpdateByTime(Long.parseLong(progressTimed.getText().toString()))
-                    .save();
+                    .setProgressUpdateByTime(Long.parseLong(progressTimed.getText().toString()));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -194,51 +192,51 @@ public class SettingsViewActivity extends AppCompatActivity {
 
     // Reset Methods
     public void onMaxStorageReset(View view) {
-        settings.resetMaxStorageAllowed().save();
+        settings.resetMaxStorageAllowed();
     }
 
     public void onHeadroomReset(View view) {
-        settings.resetHeadroom().save();
+        settings.resetHeadroom();
         updateSettingsValues();
     }
 
     public void onBatteryReset(View view) {
-        settings.resetBatteryThreshold().save();
+        settings.resetBatteryThreshold();
         updateSettingsValues();
     }
 
     public void onCellQuotaReset(View view) {
-        settings.resetCellularDataQuota().save();
+        settings.resetCellularDataQuota();
         updateSettingsValues();
     }
 
     public void onCellQuotaDateReset(View view) {
-        settings.resetCellularDataQuotaStart().save();
+        settings.resetCellularDataQuotaStart();
         updateSettingsValues();
     }
 
     public void onConnectionTimeoutReset(View view) {
-        settings.resetHTTPConnectionTimeout().save();
+        settings.resetHTTPConnectionTimeout();
         updateSettingsValues();
     }
 
     public void onSocketTimeoutReset(View view) {
-        settings.resetHTTPSocketTimeout().save();
+        settings.resetHTTPSocketTimeout();
         updateSettingsValues();
     }
 
     public void onMaxConnectionReset(View view) {
-        settings.resetMaxDownloadConnections().save();
+        settings.resetMaxDownloadConnections();
         updateSettingsValues();
     }
 
     public void onProgressPercentReset(View view) {
-        settings.resetProgressUpdateByPercent().save();
+        settings.resetProgressUpdateByPercent();
         updateSettingsValues();
     }
 
     public void onProgressTimedReset(View view) {
-        settings.resetProgressUpdateByTime().save();
+        settings.resetProgressUpdateByTime();
         updateSettingsValues();
     }
 }

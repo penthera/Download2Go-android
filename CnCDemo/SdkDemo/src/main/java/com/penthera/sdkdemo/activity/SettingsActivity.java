@@ -21,11 +21,11 @@ import android.os.Handler;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
@@ -38,8 +38,8 @@ import com.penthera.virtuososdk.client.BackplaneException;
 import com.penthera.virtuososdk.client.EngineObserver;
 import com.penthera.virtuososdk.client.IBackplane;
 import com.penthera.virtuososdk.client.IBackplaneSettings;
+import com.penthera.virtuososdk.client.IMimeTypeSettings;
 import com.penthera.virtuososdk.client.ISettings;
-import com.penthera.virtuososdk.client.MimeTypeSettings;
 import com.penthera.virtuososdk.client.Observers.IBackplaneObserver;
 import com.penthera.virtuososdk.client.Observers.IEngineObserver;
 
@@ -159,18 +159,18 @@ public class SettingsActivity extends SdkDemoBaseActivity implements MimeTypeSet
         mBackplaneSettings = mBackplane.getSettings();
         mSettings = mVirtuoso.getSettings();
         
-        mDestination = (EditText) findViewById(R.id.destination_value);
-        mCellquota = (EditText) findViewById(R.id.cellquota_value);
-        mCellquotastart = (TextView) findViewById(R.id.cellquota_date_value);
-        mHeadroom = (EditText) findViewById(R.id.headroom_value);
-        mMaxstorage = (EditText) findViewById(R.id.maxstorage_value);
-        mBatterythreshold = (SeekBar) findViewById(R.id.battery_value);
-        mApply = (Button)findViewById(R.id.apply);
-        mBatteryDetail = (TextView)findViewById(R.id.battery);
-        mConnectionTimeout = (EditText) findViewById(R.id.edt_connection_timeout);
-        mSocketTimeout = (EditText) findViewById(R.id.edt_socket_timeout);
-		mPermittedSegmentErrors = (EditText) findViewById(R.id.edt_max_segment_errors);
-		mProxySegmentErrorHttpCode = (EditText) findViewById(R.id.edt_proxy_segment_error_code);
+        mDestination = findViewById(R.id.destination_value);
+        mCellquota = findViewById(R.id.cellquota_value);
+        mCellquotastart = findViewById(R.id.cellquota_date_value);
+        mHeadroom = findViewById(R.id.headroom_value);
+        mMaxstorage = findViewById(R.id.maxstorage_value);
+        mBatterythreshold = findViewById(R.id.battery_value);
+        mApply = findViewById(R.id.apply);
+        mBatteryDetail = findViewById(R.id.battery);
+        mConnectionTimeout =  findViewById(R.id.edt_connection_timeout);
+        mSocketTimeout = findViewById(R.id.edt_socket_timeout);
+		mPermittedSegmentErrors = findViewById(R.id.edt_max_segment_errors);
+		mProxySegmentErrorHttpCode = findViewById(R.id.edt_proxy_segment_error_code);
         
         mConnectionTimeout.setText("" + Common.DEFAULT_HTTP_CONNECTION_TIMEOUT);
         mSocketTimeout.setText("" + Common.DEFAULT_HTTP_SOCKET_TIMEOUT);
@@ -178,9 +178,9 @@ public class SettingsActivity extends SdkDemoBaseActivity implements MimeTypeSet
         mConnectionTimeout.setText("" + mSettings.getHTTPConnectionTimeout());
         mSocketTimeout.setText("" + mSettings.getHTTPSocketTimeout());
         
-        mProgressPercent = (SeekBar) findViewById(R.id.progress_percent_value);
-        mProgressTimed = (EditText) findViewById(R.id.progress_timed_value);
-        mProgressPercentDetails  = (TextView)findViewById(R.id.ProgressPercent);
+        mProgressPercent = findViewById(R.id.progress_percent_value);
+        mProgressTimed = findViewById(R.id.progress_timed_value);
+        mProgressPercentDetails  = findViewById(R.id.ProgressPercent);
         
         SeekBar.OnSeekBarChangeListener seekProgressChangeListener = new SeekBar.OnSeekBarChangeListener(){
 
@@ -200,19 +200,14 @@ public class SettingsActivity extends SdkDemoBaseActivity implements MimeTypeSet
         };
         mProgressPercent.setOnSeekBarChangeListener(seekProgressChangeListener);
         
-        TextView.OnEditorActionListener actionListener = new TextView.OnEditorActionListener(){
-
-			@Override
-			public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-				// ignore enter key
-				if (event!=null && (event.getAction() == KeyEvent.ACTION_DOWN) || (event.getAction() == KeyEvent.ACTION_MULTIPLE)){
-					return true;
-				}
-
-				return false;
+        OnEditorActionListener actionListener = (v, actionId, event) -> {
+			// ignore enter key
+			if (event!=null && (event.getAction() == KeyEvent.ACTION_DOWN) || (event.getAction() == KeyEvent.ACTION_MULTIPLE)){
+				return true;
 			}
-        	
-        };
+
+			return false;
+		};
         mDestination.setOnEditorActionListener(actionListener);
         
         SeekBar.OnSeekBarChangeListener seekChangeListener = new SeekBar.OnSeekBarChangeListener(){
@@ -235,136 +230,72 @@ public class SettingsActivity extends SdkDemoBaseActivity implements MimeTypeSet
         
         mBatterythreshold.setOnSeekBarChangeListener(seekChangeListener);
                 
-        mApply.setOnClickListener(new OnClickListener(){
+        mApply.setOnClickListener(view-> save());
 
-			@Override
-			public void onClick(View arg0) {
-				save();
-				
-			}});
+        findViewById(R.id.battery_reset).setOnClickListener(view -> mSettings.resetBatteryThreshold());
 
-        findViewById(R.id.battery_reset).setOnClickListener(new OnClickListener(){
-
-			@Override
-			public void onClick(View arg0) {
-				mSettings.resetBatteryThreshold().save();
-			}});
-
-        findViewById(R.id.cellquota_date_reset).setOnClickListener(new OnClickListener(){
-
-			@Override
-			public void onClick(View arg0) {
-				mSettings.resetCellularDataQuotaStart().save();
-			}});
+        findViewById(R.id.cellquota_date_reset).setOnClickListener(view -> mSettings.resetCellularDataQuotaStart());
         
-        findViewById(R.id.cellquota_reset).setOnClickListener(new OnClickListener(){
-
-			@Override
-			public void onClick(View arg0) {
-				mSettings.resetCellularDataQuota().save();
-			}});
+        findViewById(R.id.cellquota_reset).setOnClickListener(view -> mSettings.resetCellularDataQuota());
         
-        findViewById(R.id.headroom_reset).setOnClickListener(new OnClickListener(){
-
-			@Override
-			public void onClick(View arg0) {
-				mSettings.resetHeadroom().save();
-			}});
+        findViewById(R.id.headroom_reset).setOnClickListener(view -> mSettings.resetHeadroom());
         
-        findViewById(R.id.maxstorage_reset).setOnClickListener(new OnClickListener(){
-
-			@Override
-			public void onClick(View arg0) {
-				mSettings.resetMaxStorageAllowed().save();
-			}});
+        findViewById(R.id.maxstorage_reset).setOnClickListener(view -> mSettings.resetMaxStorageAllowed());
         
-        findViewById(R.id.destination_reset).setOnClickListener(new OnClickListener(){
-
-			@Override
-			public void onClick(View arg0) {
-				mSettings.resetDestinationPath();
-			}});
+        findViewById(R.id.destination_reset).setOnClickListener(view -> mSettings.resetDestinationPath());
         
-        mEnablement = (TextView) findViewById(R.id.download_enabled_value);
-        mEnable = (Button)findViewById(R.id.enable_disable);
-        mEnable.setOnClickListener(new OnClickListener(){
-        	@Override
-			public void onClick(View arg0) {
-        		try {
-					mBackplane.changeDownloadEnablement(!mBackplaneSettings.getDownloadEnabled());
-				} catch (BackplaneException e) {
-					e.printStackTrace();
-				}
-        	}
-			
-        });
+        mEnablement = findViewById(R.id.download_enabled_value);
+        mEnable = findViewById(R.id.enable_disable);
+        mEnable.setOnClickListener(view -> {
+			try {
+				mBackplane.changeDownloadEnablement(!mBackplaneSettings.getDownloadEnabled());
+			} catch (BackplaneException e) {
+				e.printStackTrace();
+			}
+		});
         mEnable.setEnabled(false);
 
-        mAlwaysRequestPermissions = (ToggleButton) findViewById(R.id.always_req_perm_toggle);
+        mAlwaysRequestPermissions = findViewById(R.id.always_req_perm_toggle);
         mAlwaysRequestPermissions.setChecked(mSettings.alwaysRequestPermission());
-        mAlwaysRequestPermissions.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                try {
-                    mSettings.setAlwaysRequestPermission(mAlwaysRequestPermissions.isChecked()).save();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
+        mAlwaysRequestPermissions.setOnClickListener(v -> {
+			try {
+				mSettings.setAlwaysRequestPermission(mAlwaysRequestPermissions.isChecked());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		});
         mAlwaysRequestPermissions.setEnabled(true);
 
         mCodecs = findViewById(R.id.sdk_allowed_video_codecs);
-        findViewById(R.id.sdk_allowed_codecs_reset).setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				mSettings.resetAudioCodecsToDownload().save();
+        findViewById(R.id.sdk_allowed_codecs_reset).setOnClickListener(v -> mSettings.resetAudioCodecsToDownload());
+
+        mBackgroundOnPause = findViewById(R.id.background_on_pause_toggle);
+        mBackgroundOnPause.setChecked(mSettings.getRemoveNotificationOnPause());
+        mBackgroundOnPause.setEnabled(true);
+        mBackgroundOnPause.setOnClickListener(v -> {
+			try {
+				mSettings.setRemoveNotificationOnPause(mBackgroundOnPause.isChecked());
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
 		});
 
-        mBackgroundOnPause = (ToggleButton) findViewById(R.id.background_on_pause_toggle);
-        mBackgroundOnPause.setChecked(mSettings.getRemoveNotificationOnPause());
-        mBackgroundOnPause.setEnabled(true);
-        mBackgroundOnPause.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                try {
-                    mSettings.setRemoveNotificationOnPause(mBackgroundOnPause.isChecked()).save();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-
-		mAutoRenewDrmLicenses = (ToggleButton) findViewById(R.id.auto_renew_drm_licenses);
+		mAutoRenewDrmLicenses =  findViewById(R.id.auto_renew_drm_licenses);
 		mAutoRenewDrmLicenses.setChecked(mSettings.isAutomaticDrmLicenseRenewalEnabled());
 		mAutoRenewDrmLicenses.setEnabled(true);
-		mAutoRenewDrmLicenses.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				try {
-					mSettings.setAutomaticDrmLicenseRenewalEnabled(mAutoRenewDrmLicenses.isChecked()).save();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
+		mAutoRenewDrmLicenses.setOnClickListener(v -> {
+			try {
+				mSettings.setAutomaticDrmLicenseRenewalEnabled(mAutoRenewDrmLicenses.isChecked());
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
 		});
 
 		this.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-		findViewById(R.id.configure_mime_settings).setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				onConfigureMime();
-			}
-		});
+		findViewById(R.id.configure_mime_settings).setOnClickListener(v -> onConfigureMime());
 
-		findViewById(R.id.reset_mime_settings).setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				mSettings.resetMimeTypeSettings().save();
-			}
-		});
+		findViewById(R.id.reset_mime_settings).setOnClickListener(v -> mSettings.resetMimeTypeSettings());
 
 		iHandler.post(iUpdater);	
     }
@@ -392,23 +323,14 @@ public class SettingsActivity extends SdkDemoBaseActivity implements MimeTypeSet
 		mVirtuoso.addObserver(mEngineObserver);
 	}
 		
-	private IBackplaneObserver mBackplaneObserver = new IBackplaneObserver(){
+	private IBackplaneObserver mBackplaneObserver = (callbackType, result, errorMessage) -> {
+		iHandler.post(iUpdater);
 
-		@Override
-		public void requestComplete(int callbackType, int result, final String errorMessage) {
-			iHandler.post(iUpdater);
-
-			if (callbackType == Common.BackplaneCallbackType.DOWNLOAD_ENABLEMENT_CHANGE &&
-					result == Common.BackplaneResult.MAXIMUM_ENABLEMENT_REACHED) {
-				// Show a warning message - in this case we show the server response directly,
-				// but this would not be the case in a production application.
-				iHandler.post(new Runnable() {
-					@Override
-					public void run() {
-						Toast.makeText(SettingsActivity.this, errorMessage, Toast.LENGTH_LONG).show();
-					}
-				});
-			}
+		if (callbackType == Common.BackplaneCallbackType.DOWNLOAD_ENABLEMENT_CHANGE &&
+				result == Common.BackplaneResult.MAXIMUM_ENABLEMENT_REACHED) {
+			// Show a warning message - in this case we show the server response directly,
+			// but this would not be the case in a production application.
+			iHandler.post(() -> Toast.makeText(SettingsActivity.this, errorMessage, Toast.LENGTH_LONG).show());
 		}
 	};
 	
@@ -436,45 +358,40 @@ public class SettingsActivity extends SdkDemoBaseActivity implements MimeTypeSet
 					.setHTTPSocketTimeout(Integer.parseInt(mSocketTimeout.getText().toString()))
 					.setSegmentErrorHttpCode(Integer.parseInt(mProxySegmentErrorHttpCode.getText().toString()))
 					.setMaxPermittedSegmentErrors(Integer.parseInt(mPermittedSegmentErrors.getText().toString()))
-					.setAudioCodecsToDownload(mCodecs.getText().toString().length() > 0 ? mCodecs.getText().toString().split(",") : null)
-					.save();
+					.setAudioCodecsToDownload(!TextUtils.isEmpty(mCodecs.getText().toString()) ? mCodecs.getText().toString().split(",") : null);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 		
 	public void onFragmentProgressRateReset(View view) {
-		mSettings.resetProgressUpdatesPerSegment().save();
+		mSettings.resetProgressUpdatesPerSegment();
 	}
 	
 	public void onConnectionTimeoutReset(View view) {
-		mSettings.resetHTTPConnectionTimeout().save();	
+		mSettings.resetHTTPConnectionTimeout();
 	}
 	
 	public void onSocketTimeoutReset(View view) {
-		mSettings.resetHTTPSocketTimeout().save();
+		mSettings.resetHTTPSocketTimeout();
 	}
 	
 	public void onProgressPercentReset(View view) {
-		mSettings.resetProgressUpdateByPercent().save();
+		mSettings.resetProgressUpdateByPercent();
 	}
 	
 	public void onProgressTimedReset(View view) {
-		mSettings.resetProgressUpdateByTime().save();
+		mSettings.resetProgressUpdateByTime();
 	}
 
 	public void onAllowedVideoCodecsReset(View view){
-		mSettings.resetAudioCodecsToDownload().save();
+		mSettings.resetAudioCodecsToDownload();
 	}
 
 	@Override
-	public MimeTypeSettings initialSettings() {
+	public IMimeTypeSettings initialSettings() {
 		return mSettings.getMimeTypeSettings();
 	}
-	@Override
-	public void complete(MimeTypeSettings settings) {
-		mSettings.setMimeTypeSettings(settings).save();
 
-	}
 
 }

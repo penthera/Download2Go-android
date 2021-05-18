@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<!-- NewPage -->
+<html lang="en" class="fancy">
+<head>
+<meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="../../../../stylesheet2.css" title="Style">
+<script type="text/javascript" src="../../../../doc2.js"></script>
+<script type="text/javascript">var pathSeparator = "/";
+var rootPath = "../../../../";
+var currentPackage = "com.penthera.virtuososdk.client";
+var currentClass = "IBackgroundProcessingManager";
+</script>
+<script type="text/javascript" src="package-contents.js"></script>
+</head>
+<body class="contentPage classPage">
+<div id="innerBody">
+<script type="text/javascript"><!--
+    if (location.href.indexOf('is-external=true') == -1) {
+        parent.document.title="IBackgroundProcessingManager (Download2Go Android SDK)";
+    }
+//-->
+</script>
+<noscript>
+<div>This web site requires JavaScript for proper operation. JavaScript is disabled on your browser.</div>
+</noscript>
+<!-- ========= START OF TOP NAVBAR ======= -->
+<div class="navBar hidden" id="topNavBar">
+<div class="navigationLine1">
+<div class="navigationLinks">
+<div class="navBarButton active"><a href="../../../../overview-summary.html">Overview</a></div>
+<div class="navBarButton active"><a href="package-summary.html">Package</a></div>
+<div class="navBarButton inactive selected"><a href>Class</a></div>
+<div class="navBarButton active"><a href="package-tree.html">Tree</a></div>
+<div class="navBarButton active"><a href="../../../../deprecated-list.html">Deprecated</a></div>
+<div class="navBarButton active"><a href="../../../../index-all.html">Index</a></div>
+<div class="navBarButton active"><a href="../../../../allclasses-noframe.html">All Classes</a></div>
+<div class="navBarButton active"><a href="../../../../help-doc.html">Help</a></div>
+</div>
+<div class="pageControls">
+<div class="navBarButton active"><a href="IAssetProvider.html"><span class="strong">Prev Class</span></a></div>
+<div class="navBarButton active"><a href="IBackplane.html"><span class="strong">Next Class</span></a></div>
+</div>
+<select id="packageSelector">
+<option value>packages...</option>
+<option value>com.penthera</option>
+<option value>com.penthera.virtuoso.net.security.client</option>
+<option value>com.penthera.virtuososdk</option>
+<option value>com.penthera.virtuososdk.autodownload</option>
+<option value>com.penthera.virtuososdk.client</option>
+<option value>com.penthera.virtuososdk.client.ads</option>
+<option value>com.penthera.virtuososdk.client.autodownload</option>
+<option value>com.penthera.virtuososdk.client.builders</option>
+<option value>com.penthera.virtuososdk.client.database</option>
+<option value>com.penthera.virtuososdk.client.drm</option>
+<option value>com.penthera.virtuososdk.client.drm.castlabs</option>
+<option value>com.penthera.virtuososdk.client.push</option>
+<option value>com.penthera.virtuososdk.database.impl.provider</option>
+<option value>com.penthera.virtuososdk.service</option>
+</select>
+<select id="packageClassSelector">
+<option value selected="selected">classes...</option>
+</select>
+</div>
+<div class="pageTitle"><span>Interface <span class="packagePrefix">com.penthera.virtuososdk.client</span>.IBackgroundProcessingManager</span></div>
+<div class="navigationLine2">
+<div class="inheritedMembersSelector">Inherited members: <span class="radioButton" id="showInheritedMembersSelector" onclick="setInheritedVisible(true)">Show</span><span class="radioButton" id="hideInheritedMembersSelector" onclick="setInheritedVisible(false)">Hide</span></div>
+<div class="deprecatedSelector">Deprecated: <span class="radioButton" id="showDeprecatedSelector" onclick="setDeprecatedVisible(true)">Show</span><span class="radioButton" id="hideDeprecatedSelector" onclick="setDeprecatedVisible(false)">Hide</span></div>
+<span class="accessViewSelectors">View: <span class="radioButton" id="clientViewSelector" onclick="showClientView();">Client</span><span class="radioButton" id="subclassViewSelector" onclick="showSubclassView();">Subclass</span><span class="radioButton" id="packageViewSelector" onclick="showPackageView();">Package</span><span class="radioButton" id="implementationViewSelector" onclick="showImplementationView();">Implementation</span></span>
+<div class="entitySelectors">
+<select id="classSelector">
+<option value selected="selected">classes...</option>
+</select>
+<select id="enumConstantSelector">
+<option value selected="selected">enum constants...</option>
+</select>
+<select id="fieldSelector">
+<option value selected="selected">fields...</option>
+</select>
+<select id="staticMethodSelector">
+<option value selected="selected">static methods...</option>
+</select>
+<select id="constructorSelector">
+<option value selected="selected">constructors...</option>
+</select>
+<select id="methodSelector">
+<option value selected="selected">methods...</option>
+</select>
+<select id="propertySelector">
+<option value selected="selected">properties...</option>
+</select>
+</div>
+</div>
+</div>
+<!-- ========= END OF TOP NAVBAR ========= -->
+<div id="dataArea" class="hidden">
+<div id="content">
+<!-- ======== START OF CLASS DATA ======== -->
+<div class="header">
+<div class="subTitle">com.penthera.virtuososdk.client</div>
+<h2 title="Interface IBackgroundProcessingManager" class="title">Interface IBackgroundProcessingManager</h2>
+</div>
+<div class="contentContainer">
+<div class="description">
+<ul class="blockList">
+<li class="blockList">
+<div class="classSignature">public interface <span class="strong">IBackgroundProcessingManager</span></div>
+<div class="block">Interface which should be implemented to provide registration of background processing functions
+ to the SDK. The class implementing this interface will be created within the SDK service process
+ and may be used while the application is in the background.</div>
+<dl class="tagSection"><dt><span class="strong">Since:</span></dt>
+  <dd>3.15.14</dd></dl>
+</li>
+</ul>
+</div>
+<div class="summary">
+<ul class="blockList">
+<li class="blockList">
+<!-- ========== METHOD SUMMARY =========== -->
+<ul class="blockList">
+<li class="blockList"><a name="method_summary">
+<!--   -->
+</a>
+<table class="overviewSummary summaryTable memberSummary methodElementList" border="0" cellpadding="3" cellspacing="0" summary="Method Summary table, listing methods, and an explanation">
+<caption class="tableHeader"><span>Methods</span><span class="tabEnd">&nbsp;</span></caption>
+<tr class="columnHeaders">
+<th class="colFirst" scope="col"> </th>
+<th scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tr class="member method public">
+<td class="memberMarker colFirst"><img src="../../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="getClientSideAdsParserProvider()" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">getClientSideAdsParserProvider</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>abstract <a class="code" href="ads/IClientSideAdsParserProvider.html" title="interface in com.penthera.virtuososdk.client.ads">IClientSideAdsParserProvider</a>&nbsp;</code><span class="itemTitle">getClientSideAdsParserProvider</span>()</div>
+<div class="block">&nbsp;</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature"><a class="code" href="ads/IClientSideAdsParserProvider.html" title="interface in com.penthera.virtuososdk.client.ads">IClientSideAdsParserProvider</a>&nbsp;<span class="itemTitle">getClientSideAdsParserProvider</span>()</div>
+</div>
+</td>
+</tr>
+<tr class="member method public">
+<td class="memberMarker colFirst"><img src="../../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="getManifestParserObserver()" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">getManifestParserObserver</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>abstract <a class="code" href="IManifestParserObserver.html" title="interface in com.penthera.virtuososdk.client">IManifestParserObserver</a>&nbsp;</code><span class="itemTitle">getManifestParserObserver</span>()</div>
+<div class="block">Return a manifest parser observer, to detect and manipulate segments during parsing</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature"><a class="code" href="IManifestParserObserver.html" title="interface in com.penthera.virtuososdk.client">IManifestParserObserver</a>&nbsp;<span class="itemTitle">getManifestParserObserver</span>()</div>
+<dl>
+<dd>
+<div class="block">Return a manifest parser observer, to detect and manipulate segments during parsing</div>
+<dl class="tagSection"><dt><span class="strong">Returns:</span></dt><dd>An implementation of a manifest parser observer, or null otherwise.</dd><dt><span class="strong">See Also:</span></dt><dd><a class="code" href="IManifestParserObserver.html" title="interface in com.penthera.virtuososdk.client"><code>IManifestParserObserver</code></a></dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member method public">
+<td class="memberMarker colFirst"><img src="../../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="getPlaylistProvider()" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">getPlaylistProvider</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>abstract <a class="code" href="autodownload/IPlaylistAssetProvider.html" title="interface in com.penthera.virtuososdk.client.autodownload">IPlaylistAssetProvider</a>&nbsp;</code><span class="itemTitle">getPlaylistProvider</span>()</div>
+<div class="block">&nbsp;</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature"><a class="code" href="autodownload/IPlaylistAssetProvider.html" title="interface in com.penthera.virtuososdk.client.autodownload">IPlaylistAssetProvider</a>&nbsp;<span class="itemTitle">getPlaylistProvider</span>()</div>
+</div>
+</td>
+</tr>
+<tr class="member method public">
+<td class="memberMarker colFirst"><img src="../../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="getSegmentPrepareObserver()" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">getSegmentPrepareObserver</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>abstract <a class="code" href="IPrepareURLObserver.html" title="interface in com.penthera.virtuososdk.client">IPrepareURLObserver</a>&nbsp;</code><span class="itemTitle">getSegmentPrepareObserver</span>()</div>
+<div class="block">&nbsp;</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature"><a class="code" href="IPrepareURLObserver.html" title="interface in com.penthera.virtuososdk.client">IPrepareURLObserver</a>&nbsp;<span class="itemTitle">getSegmentPrepareObserver</span>()</div>
+</div>
+</td>
+</tr>
+</table>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<!-- ========= END OF CLASS DATA ========= -->
+<!-- ======= START OF BOTTOM NAVBAR ====== -->
+<!-- ======== END OF BOTTOM NAVBAR ======= -->
+</div>
+</div>
+</div>
+</body>
+</html>

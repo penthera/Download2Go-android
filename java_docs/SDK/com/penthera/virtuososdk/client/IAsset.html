@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+<!-- NewPage -->
+<html lang="en" class="fancy">
+<head>
+<meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="../../../../stylesheet2.css" title="Style">
+<script type="text/javascript" src="../../../../doc2.js"></script>
+<script type="text/javascript">var pathSeparator = "/";
+var rootPath = "../../../../";
+var currentPackage = "com.penthera.virtuososdk.client";
+var currentClass = "IAsset";
+</script>
+<script type="text/javascript" src="package-contents.js"></script>
+</head>
+<body class="contentPage classPage">
+<div id="innerBody">
+<script type="text/javascript"><!--
+    if (location.href.indexOf('is-external=true') == -1) {
+        parent.document.title="IAsset (Download2Go Android SDK)";
+    }
+//-->
+</script>
+<noscript>
+<div>This web site requires JavaScript for proper operation. JavaScript is disabled on your browser.</div>
+</noscript>
+<!-- ========= START OF TOP NAVBAR ======= -->
+<div class="navBar hidden" id="topNavBar">
+<div class="navigationLine1">
+<div class="navigationLinks">
+<div class="navBarButton active"><a href="../../../../overview-summary.html">Overview</a></div>
+<div class="navBarButton active"><a href="package-summary.html">Package</a></div>
+<div class="navBarButton inactive selected"><a href>Class</a></div>
+<div class="navBarButton active"><a href="package-tree.html">Tree</a></div>
+<div class="navBarButton active"><a href="../../../../deprecated-list.html">Deprecated</a></div>
+<div class="navBarButton active"><a href="../../../../index-all.html">Index</a></div>
+<div class="navBarButton active"><a href="../../../../allclasses-noframe.html">All Classes</a></div>
+<div class="navBarButton active"><a href="../../../../help-doc.html">Help</a></div>
+</div>
+<div class="pageControls">
+<div class="navBarButton active"><a href="EngineObserver.html"><span class="strong">Prev Class</span></a></div>
+<div class="navBarButton active"><a href="IAssetManager.html"><span class="strong">Next Class</span></a></div>
+</div>
+<select id="packageSelector">
+<option value>packages...</option>
+<option value>com.penthera</option>
+<option value>com.penthera.virtuoso.net.security.client</option>
+<option value>com.penthera.virtuososdk</option>
+<option value>com.penthera.virtuososdk.autodownload</option>
+<option value>com.penthera.virtuososdk.client</option>
+<option value>com.penthera.virtuososdk.client.ads</option>
+<option value>com.penthera.virtuososdk.client.autodownload</option>
+<option value>com.penthera.virtuososdk.client.builders</option>
+<option value>com.penthera.virtuososdk.client.database</option>
+<option value>com.penthera.virtuososdk.client.drm</option>
+<option value>com.penthera.virtuososdk.client.drm.castlabs</option>
+<option value>com.penthera.virtuososdk.client.push</option>
+<option value>com.penthera.virtuososdk.database.impl.provider</option>
+<option value>com.penthera.virtuososdk.service</option>
+</select>
+<select id="packageClassSelector">
+<option value selected="selected">classes...</option>
+</select>
+</div>
+<div class="pageTitle"><span>Interface <span class="packagePrefix">com.penthera.virtuososdk.client</span>.IAsset</span></div>
+<div class="navigationLine2">
+<div class="inheritedMembersSelector">Inherited members: <span class="radioButton" id="showInheritedMembersSelector" onclick="setInheritedVisible(true)">Show</span><span class="radioButton" id="hideInheritedMembersSelector" onclick="setInheritedVisible(false)">Hide</span></div>
+<div class="deprecatedSelector">Deprecated: <span class="radioButton" id="showDeprecatedSelector" onclick="setDeprecatedVisible(true)">Show</span><span class="radioButton" id="hideDeprecatedSelector" onclick="setDeprecatedVisible(false)">Hide</span></div>
+<span class="accessViewSelectors">View: <span class="radioButton" id="clientViewSelector" onclick="showClientView();">Client</span><span class="radioButton" id="subclassViewSelector" onclick="showSubclassView();">Subclass</span><span class="radioButton" id="packageViewSelector" onclick="showPackageView();">Package</span><span class="radioButton" id="implementationViewSelector" onclick="showImplementationView();">Implementation</span></span>
+<div class="entitySelectors">
+<select id="classSelector">
+<option value selected="selected">classes...</option>
+</select>
+<select id="enumConstantSelector">
+<option value selected="selected">enum constants...</option>
+</select>
+<select id="fieldSelector">
+<option value selected="selected">fields...</option>
+</select>
+<select id="staticMethodSelector">
+<option value selected="selected">static methods...</option>
+</select>
+<select id="constructorSelector">
+<option value selected="selected">constructors...</option>
+</select>
+<select id="methodSelector">
+<option value selected="selected">methods...</option>
+</select>
+<select id="propertySelector">
+<option value selected="selected">properties...</option>
+</select>
+</div>
+</div>
+</div>
+<!-- ========= END OF TOP NAVBAR ========= -->
+<div id="dataArea" class="hidden">
+<div id="content">
+<!-- ======== START OF CLASS DATA ======== -->
+<div class="header">
+<div class="subTitle">com.penthera.virtuososdk.client</div>
+<h2 title="Interface IAsset" class="title">Interface IAsset</h2>
+</div>
+<div class="contentContainer">
+<div class="description">
+<ul class="blockList">
+<li class="blockList">
+<dl>
+<dt>All Superinterfaces:</dt>
+<dd><a class="code" href="IIdentifier.html" title="interface in com.penthera.virtuososdk.client">IIdentifier</a>, android.os.Parcelable</dd>
+</dl>
+<dl>
+<dt>All Known Subinterfaces:</dt>
+<dd><a class="code" href="IFile.html" title="interface in com.penthera.virtuososdk.client">IFile</a>, <a class="code" href="ISegmentedAsset.html" title="interface in com.penthera.virtuososdk.client">ISegmentedAsset</a></dd>
+</dl>
+<div class="classSignature">public interface <span class="strong">IAsset</span>
+extends <a class="code" href="IIdentifier.html" title="interface in com.penthera.virtuososdk.client">IIdentifier</a></div>
+<div class="block">Base interface for all the assets you can download.
+ <p>
+ An asset may be a single file, or consist of multiple files.
+ <p>
+ This interface provides access to all the attributes common to the specialized interfaces.</div>
+</li>
+</ul>
+</div>
+<div class="summary">
+<ul class="blockList">
+<li class="blockList">
+<!-- ======== NESTED CLASS SUMMARY ======== -->
+<ul class="blockList">
+<li class="blockList"><a name="nested_class_summary">
+<!--   -->
+</a>
+<table class="overviewSummary summaryTable memberSummary classElementList" border="0" cellpadding="3" cellspacing="0" summary="Nested Class Summary table, listing nested classes, and an explanation">
+<caption class="tableHeader"><span>Nested Classes</span><span class="tabEnd">&nbsp;</span></caption>
+<tr class="columnHeaders">
+<th class="colFirst" scope="col"> </th>
+<th scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Interface and Description</th>
+</tr>
+<tr class="member interface inherited public">
+<td class="memberMarker colFirst"><img src="../../../../resources/inheritedMember.gif" width="11" height="13" alt="Inherited member indicator" class="inheritedMember"></td>
+<td class="itemNameCell"><a name="Parcelable.ClassLoaderCreator" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);" class="inheritedMemberName" title="member defined in android.os.Parcelable">os.Parcelable.ClassLoaderCreator&lt;T&gt;&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>static interface&nbsp;</code>os.Parcelable.ClassLoaderCreator&lt;T&gt;</div>
+<div class="block">&nbsp;</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature"><code>static interface&nbsp;</code>os.Parcelable.ClassLoaderCreator&lt;T&gt;</div>
+</div>
+</td>
+</tr>
+<tr class="member interface inherited public">
+<td class="memberMarker colFirst"><img src="../../../../resources/inheritedMember.gif" width="11" height="13" alt="Inherited member indicator" class="inheritedMember"></td>
+<td class="itemNameCell"><a name="Parcelable.Creator" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);" class="inheritedMemberName" title="member defined in android.os.Parcelable">os.Parcelable.Creator&lt;T&gt;&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>static interface&nbsp;</code>os.Parcelable.Creator&lt;T&gt;</div>
+<div class="block">&nbsp;</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature"><code>static interface&nbsp;</code>os.Parcelable.Creator&lt;T&gt;</div>
+</div>
+</td>
+</tr>
+</table>
+</li>
+</ul>
+<!-- =========== FIELD SUMMARY =========== -->
+<ul class="blockList">
+<li class="blockList"><a name="field_summary">
+<!--   -->
+</a>
+<table class="overviewSummary summaryTable memberSummary fieldElementList" border="0" cellpadding="3" cellspacing="0" summary="Field Summary table, listing fields, and an explanation">
+<caption class="tableHeader"><span>Fields</span><span class="tabEnd">&nbsp;</span></caption>
+<tr class="columnHeaders">
+<th class="colFirst" scope="col"> </th>
+<th scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Field and Description</th>
+</tr>
+<tr class="member field inherited public">
+<td class="memberMarker colFirst"><img src="../../../../resources/inheritedMember.gif" width="11" height="13" alt="Inherited member indicator" class="inheritedMember"></td>
+<td class="itemNameCell"><a name="CONTENTS_FILE_DESCRIPTOR" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);" class="inheritedMemberName" title="field defined in android.os.Parcelable">CONTENTS_FILE_DESCRIPTOR&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>static int&nbsp;</code><span class="itemTitle">CONTENTS_FILE_DESCRIPTOR</span></div>
+<div class="block">&nbsp;</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">static final&nbsp;int CONTENTS_FILE_DESCRIPTOR</div>
+</div>
+</td>
+</tr>
+<tr class="member field inherited public">
+<td class="memberMarker colFirst"><img src="../../../../resources/inheritedMember.gif" width="11" height="13" alt="Inherited member indicator" class="inheritedMember"></td>
+<td class="itemNameCell"><a name="CREATOR" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);" class="inheritedMemberName" title="field defined in com.penthera.virtuososdk.client.IIdentifier"><a class="itemTitle" href="IIdentifier.html#CREATOR">CREATOR</a>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>static android.os.Parcelable.Creator&lt;<a class="code" href="IIdentifier.html" title="interface in com.penthera.virtuososdk.client">IIdentifier</a>&gt;&nbsp;</code><span class="itemTitle">CREATOR</span></div>
+<div class="block">&nbsp;</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">static final&nbsp;android.os.Parcelable.Creator&lt;<a class="code" href="IIdentifier.html" title="interface in com.penthera.virtuososdk.client">IIdentifier</a>&gt; CREATOR</div>
+</div>
+</td>
+</tr>
+<tr class="member field inherited public">
+<td class="memberMarker colFirst"><img src="../../../../resources/inheritedMember.gif" width="11" height="13" alt="Inherited member indicator" class="inheritedMember"></td>
+<td class="itemNameCell"><a name="PARCELABLE_WRITE_RETURN_VALUE" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);" class="inheritedMemberName" title="field defined in android.os.Parcelable">PARCELABLE_WRITE_RETURN_VALUE&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>static int&nbsp;</code><span class="itemTitle">PARCELABLE_WRITE_RETURN_VALUE</span></div>
+<div class="block">&nbsp;</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">static final&nbsp;int PARCELABLE_WRITE_RETURN_VALUE</div>
+</div>
+</td>
+</tr>
+</table>
+</li>
+</ul>
+<!-- ========== METHOD SUMMARY =========== -->
+<ul class="blockList">
+<li class="blockList"><a name="method_summary">
+<!--   -->
+</a>
+<table class="overviewSummary summaryTable memberSummary methodElementList" border="0" cellpadding="3" cellspacing="0" summary="Method Summary table, listing methods, and an explanation">
+<caption class="tableHeader"><span>Methods</span><span class="tabEnd">&nbsp;</span></caption>
+<tr class="columnHeaders">
+<th class="colFirst" scope="col"> </th>
+<th scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tr class="member method public">
+<td class="memberMarker colFirst"><img src="../../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="adSupport()" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">adSupport</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>abstract int&nbsp;</code><span class="itemTitle">adSupport</span>()</div>
+<div class="block">Check if the asset supports advertising, and if so which type</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">int&nbsp;<span class="itemTitle">adSupport</span>()</div>
+<dl>
+<dd>
+<div class="block">Check if the asset supports advertising, and if so which type</div>
+<dl class="tagSection"><dt><span class="strong">Returns:</span></dt><dd>the type of ad support, which indicates if ads should be managed, either using client
+  insertion or server insertion during offline playback.</dd><dt><span class="strong">See Also:</span></dt><dd><a class="code" href="../../../../com/penthera/virtuososdk/Common.AdSupportType.html" title="class in com.penthera.virtuososdk"><code>Common.AdSupportType</code></a></dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member method inherited public">
+<td class="memberMarker colFirst"><img src="../../../../resources/inheritedMember.gif" width="11" height="13" alt="Inherited member indicator" class="inheritedMember"></td>
+<td class="itemNameCell"><a name="describeContents()" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);" class="inheritedMemberName" title="method defined in android.os.Parcelable">describeContents&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>abstract int&nbsp;</code><span class="itemTitle">describeContents</span>()</div>
+<div class="block">&nbsp;</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">int&nbsp;<span class="itemTitle">describeContents</span>()</div>
+</div>
+</td>
+</tr>
+<tr class="member method public">
+<td class="memberMarker colFirst"><img src="../../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="fastPlayReady()" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">fastPlayReady</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>abstract boolean&nbsp;</code><span class="itemTitle">fastPlayReady</span>()</div>
+<div class="block">Check if the asset is available for fastplay.</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">boolean&nbsp;<span class="itemTitle">fastPlayReady</span>()</div>
+<dl>
+<dd>
+<div class="block">Check if the asset is available for fastplay.</div>
+<dl class="tagSection"><dt><span class="strong">Returns:</span></dt><dd>true if the asset is ready to play with cached segments.</dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member method public">
+<td class="memberMarker colFirst"><img src="../../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="getAdsURL()" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">getAdsURL</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>abstract java.net.URL&nbsp;</code><span class="itemTitle">getAdsURL</span>()</div>
+<div class="block">URL that can be used to request ad package information from the HTTP proxy</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">java.net.URL&nbsp;<span class="itemTitle">getAdsURL</span>()
+                       throws java.net.MalformedURLException</div>
+<dl>
+<dd>
+<div class="block">URL that can be used to request ad package information from the HTTP proxy</div>
+<dl class="tagSection"><dt><span class="strong">Throws:</span></dt>
+<dd><code>java.net.MalformedURLException</code></dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member method public">
+<td class="memberMarker colFirst"><img src="../../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="getAssetDownloadLimit()" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">getAssetDownloadLimit</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>abstract int&nbsp;</code><span class="itemTitle">getAssetDownloadLimit</span>()</div>
+<div class="block">Asset download limit.</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">int&nbsp;<span class="itemTitle">getAssetDownloadLimit</span>()</div>
+<dl>
+<dd>
+<div class="block">Asset download limit. The maximum number of times this asset may be downloaded onto a device.
+ Get the current limit for this asset.</div>
+<dl class="tagSection"><dt><span class="strong">Returns:</span></dt><dd>The maximum number of downloads permitted.</dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member method public">
+<td class="memberMarker colFirst"><img src="../../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="getAssetId()" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">getAssetId</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>abstract java.lang.String&nbsp;</code><span class="itemTitle">getAssetId</span>()</div>
+<div class="block">ID that you supplied for this asset.</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">java.lang.String&nbsp;<span class="itemTitle">getAssetId</span>()</div>
+<dl>
+<dd>
+<div class="block">ID that you supplied for this asset. This will be considered as unique for business logic rules.
+ See <a class="code" href="IAssetManager.html" title="interface in com.penthera.virtuososdk.client"><code>IAssetManager</code></a> summary for more details.</div>
+<dl class="tagSection"><dt><span class="strong">Returns:</span></dt><dd>The asset id.</dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member method public">
+<td class="memberMarker colFirst"><img src="../../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="getAssetURL()" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">getAssetURL</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>abstract java.lang.String&nbsp;</code><span class="itemTitle">getAssetURL</span>()</div>
+<div class="block">Remote URL where the asset is being (will be) downloaded from.</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">java.lang.String&nbsp;<span class="itemTitle">getAssetURL</span>()</div>
+<dl>
+<dd>
+<div class="block">Remote URL where the asset is being (will be) downloaded from.</div>
+<dl class="tagSection"><dt><span class="strong">Returns:</span></dt><dd>The location of the asset on the Internet.</dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member method public">
+<td class="memberMarker colFirst"><img src="../../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="getCompletionTime()" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">getCompletionTime</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>abstract long&nbsp;</code><span class="itemTitle">getCompletionTime</span>()</div>
+<div class="block">When this asset was marked as completed download, represented as seconds after the unix epoch</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">long&nbsp;<span class="itemTitle">getCompletionTime</span>()</div>
+<dl>
+<dd>
+<div class="block">When this asset was marked as completed download, represented as seconds after the unix epoch</div>
+<dl class="tagSection"><dt><span class="strong">Returns:</span></dt><dd>When the asset completed downloading, in seconds since epoch.</dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member method public">
+<td class="memberMarker colFirst"><img src="../../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="getContentLength()" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">getContentLength</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>abstract double&nbsp;</code><span class="itemTitle">getContentLength</span>()</div>
+<div class="block">Content length value provided by the server when download begins.</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">double&nbsp;<span class="itemTitle">getContentLength</span>()</div>
+<dl>
+<dd>
+<div class="block">Content length value provided by the server when download begins.  
+ If not yet retrieved, returns -1.</div>
+<dl class="tagSection"><dt><span class="strong">Returns:</span></dt><dd>Content length value as advertised by the remote HTTP server, or -1 if not yet fetched</dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member method public">
+<td class="memberMarker colFirst"><img src="../../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="getCurrentSize()" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">getCurrentSize</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>abstract double&nbsp;</code><span class="itemTitle">getCurrentSize</span>()</div>
+<div class="block">Current size of this asset on disk (the amount downloaded).</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">double&nbsp;<span class="itemTitle">getCurrentSize</span>()</div>
+<dl>
+<dd>
+<div class="block">Current size of this asset on disk (the amount downloaded).</div>
+<dl class="tagSection"><dt><span class="strong">Returns:</span></dt><dd>Current size of the asset, in bytes.</dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member method public">
+<td class="memberMarker colFirst"><img src="../../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="getCustomHeaders()" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">getCustomHeaders</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>abstract android.os.Bundle&nbsp;</code><span class="itemTitle">getCustomHeaders</span>()</div>
+<div class="block">Custom HTTP headers you previously set for this asset</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">android.os.Bundle&nbsp;<span class="itemTitle">getCustomHeaders</span>()</div>
+<dl>
+<dd>
+<div class="block">Custom HTTP headers you previously set for this asset</div>
+<dl class="tagSection"><dt><span class="strong">Returns:</span></dt><dd>The custom HTTP headers, or null if none have been set.</dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member method public">
+<td class="memberMarker colFirst"><img src="../../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="getDownloadRetryCount()" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">getDownloadRetryCount</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>abstract int&nbsp;</code><span class="itemTitle">getDownloadRetryCount</span>()</div>
+<div class="block">Number of times the SDK encountered an error during download of this asset and scheduled a retry.</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">int&nbsp;<span class="itemTitle">getDownloadRetryCount</span>()</div>
+<dl>
+<dd>
+<div class="block">Number of times the SDK encountered an error during download of this asset and scheduled a retry.
+ The retry may not yet have been completed.
+ Once this value reaches the retry limit specified at <a class="code" href="IAsset.html#getDownloadRetryLimit()" title="method defined in com.penthera.virtuososdk.client.IAsset"><code>getDownloadRetryLimit()</code></a>, the SDK will stop attempting to download the asset.
+ <p>
+ The retries may be reset if the maximum retries have been exceeded using <a class="code" href="IQueue.html#clearRetryCount(int)" title="method defined in com.penthera.virtuososdk.client.IQueue"><code>IQueue.clearRetryCount(int)</code></a>.</div>
+<dl class="tagSection"><dt><span class="strong">Returns:</span></dt><dd>The error count</dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member method public">
+<td class="memberMarker colFirst"><img src="../../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="getDownloadRetryLimit()" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">getDownloadRetryLimit</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>abstract int&nbsp;</code><span class="itemTitle">getDownloadRetryLimit</span>()</div>
+<div class="block">Returns the fixed limit for the number of times the SDK will retry a failed download.</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">int&nbsp;<span class="itemTitle">getDownloadRetryLimit</span>()</div>
+<dl>
+<dd>
+<div class="block">Returns the fixed limit for the number of times the SDK will retry a failed download. The SDK
+ will not reattempt a download once this limit is reached, unless the retry count is reset.</div>
+<dl class="tagSection"><dt><span class="strong">Returns:</span></dt><dd>The retry limit.</dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member method public">
+<td class="memberMarker colFirst"><img src="../../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="getDownloadStatus()" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">getDownloadStatus</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>abstract int&nbsp;</code><span class="itemTitle">getDownloadStatus</span>()</div>
+<div class="block">Current download state: downloading, pending, blocked, etc.</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">int&nbsp;<span class="itemTitle">getDownloadStatus</span>()</div>
+<dl>
+<dd>
+<div class="block">Current download state: downloading, pending, blocked, etc.</div>
+<dl class="tagSection"><dt><span class="strong">Returns:</span></dt><dd>Current status of the asset</dd><dt><span class="strong">See Also:</span></dt><dd><a class="code" href="../../../../com/penthera/virtuososdk/Common.AssetStatus.html" title="class in com.penthera.virtuososdk"><code>Common.AssetStatus</code></a></dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member method public">
+<td class="memberMarker colFirst"><img src="../../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="getEad()" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">getEad</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>abstract long&nbsp;</code><span class="itemTitle">getEad</span>()</div>
+<div class="block">(Expiry After Download or 'EAD') Duration this asset will remain available to the user after it has completed downloading.</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">long&nbsp;<span class="itemTitle">getEad</span>()</div>
+<dl>
+<dd>
+<div class="block">(Expiry After Download or 'EAD') Duration this asset will remain available to the user after it has completed downloading. 
+ As soon as possible after EAD has elapsed, Virtuoso will delete the asset.</div>
+<dl class="tagSection"><dt><span class="strong">Returns:</span></dt><dd>Amount of time (in seconds) the asset is to be available after download completes.</dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member method public">
+<td class="memberMarker colFirst"><img src="../../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="getEap()" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">getEap</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>abstract long&nbsp;</code><span class="itemTitle">getEap</span>()</div>
+<div class="block">(Expiry After Play or 'EAP') Amount of time this asset will remain available to the user after it has been first played.</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">long&nbsp;<span class="itemTitle">getEap</span>()</div>
+<dl>
+<dd>
+<div class="block">(Expiry After Play or 'EAP') Amount of time this asset will remain available to the user after it has been first played. 
+ As soon as possible after EAP has elapsed, Virtuoso will delete this asset. 
+ Note: For EAP windowing to work, Virtuoso must know when the asset is first played.
+ It's your responsibility to register a play-start Event with Virtuoso.</div>
+<dl class="tagSection"><dt><span class="strong">Returns:</span></dt><dd>Amount of time (in seconds) the asset is to be available after first playout.</dd><dt><span class="strong">See Also:</span></dt><dd><a class="code" href="../../../../com/penthera/virtuososdk/Common.Events.html#addPlayStartEvent(android.content.Context%2C%20java.lang.String%2C%20java.lang.String)" title="method defined in com.penthera.virtuososdk.Common.Events"><code>Common.Events.addPlayStartEvent(android.content.Context, java.lang.String, java.lang.String)</code></a></dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member method public">
+<td class="memberMarker colFirst"><img src="../../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="getEndWindow()" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">getEndWindow</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>abstract long&nbsp;</code><span class="itemTitle">getEndWindow</span>()</div>
+<div class="block">Current end window applied to this asset</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">long&nbsp;<span class="itemTitle">getEndWindow</span>()</div>
+<dl>
+<dd>
+<div class="block">Current end window applied to this asset</div>
+<dl class="tagSection"><dt><span class="strong">Returns:</span></dt><dd>A timestamp, represented as the number of seconds since the unix epoch. 
+ Returns Long.MAX_VALUE if an end window has not been set.</dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member method public">
+<td class="memberMarker colFirst"><img src="../../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="getErrorCount()" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">getErrorCount</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>abstract long&nbsp;</code><span class="itemTitle">getErrorCount</span>()</div>
+<div class="block">Number of errors encountered during download of this asset.</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">long&nbsp;<span class="itemTitle">getErrorCount</span>()</div>
+<dl>
+<dd>
+<div class="block">Number of errors encountered during download of this asset. This count is reset if the retry count is reset.</div>
+<dl class="tagSection"><dt><span class="strong">Returns:</span></dt><dd>The error count</dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member method public">
+<td class="memberMarker colFirst"><img src="../../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="getExpectedSize()" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">getExpectedSize</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>abstract double&nbsp;</code><span class="itemTitle">getExpectedSize</span>()</div>
+<div class="block">Expected size of this asset</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">double&nbsp;<span class="itemTitle">getExpectedSize</span>()</div>
+<dl>
+<dd>
+<div class="block">Expected size of this asset</div>
+<dl class="tagSection"><dt><span class="strong">Returns:</span></dt><dd>Expected size of the asset, in bytes.</dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member method public">
+<td class="memberMarker colFirst"><img src="../../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="getFirstPlayTime()" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">getFirstPlayTime</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>abstract long&nbsp;</code><span class="itemTitle">getFirstPlayTime</span>()</div>
+<div class="block">When this asset was first played.</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">long&nbsp;<span class="itemTitle">getFirstPlayTime</span>()</div>
+<dl>
+<dd>
+<div class="block">When this asset was first played.
+ Note: It is your responsibility to register a play-start event with Virtuoso;  otherwise the returned value will be 0.</div>
+<dl class="tagSection"><dt><span class="strong">Returns:</span></dt><dd>When the asset was first played</dd><dt><span class="strong">See Also:</span></dt><dd><a class="code" href="../../../../com/penthera/virtuososdk/Common.Events.html#addPlayStartEvent(android.content.Context%2C%20java.lang.String%2C%20java.lang.String)" title="method defined in com.penthera.virtuososdk.Common.Events"><code>Common.Events.addPlayStartEvent(android.content.Context, java.lang.String, java.lang.String)</code></a></dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member method public">
+<td class="memberMarker colFirst"><img src="../../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="getFractionComplete()" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">getFractionComplete</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>abstract double&nbsp;</code><span class="itemTitle">getFractionComplete</span>()</div>
+<div class="block">Current download progress, expressed as a fraction [0...1] where 0 is not started and 1 is complete.</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">double&nbsp;<span class="itemTitle">getFractionComplete</span>()</div>
+<dl>
+<dd>
+<div class="block">Current download progress, expressed as a fraction [0...1] where 0 is not started and 1 is complete.</div>
+<dl class="tagSection"><dt><span class="strong">Returns:</span></dt><dd>fraction complete of download</dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member method inherited public">
+<td class="memberMarker colFirst"><img src="../../../../resources/inheritedMember.gif" width="11" height="13" alt="Inherited member indicator" class="inheritedMember"></td>
+<td class="itemNameCell"><a name="getId()" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);" class="inheritedMemberName" title="method defined in com.penthera.virtuososdk.client.IIdentifier"><a class="itemTitle" href="IIdentifier.html#getId()">getId</a>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>abstract int&nbsp;</code><span class="itemTitle">getId</span>()</div>
+<div class="block">An integer id for the asset</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">int&nbsp;<span class="itemTitle">getId</span>()</div>
+<dl>
+<dd>
+<div class="block"><strong>Description copied from interface:&nbsp;<code><a class="code" href="IIdentifier.html#getId()" title="method defined in com.penthera.virtuososdk.client.IIdentifier">IIdentifier</a></code></strong></div>
+<div class="block">An integer id for the asset
+<p>
+ This id is only valid once the asset has actually been added to the Service.</div>
+<dl class="tagSection"><dt><span class="strong">Returns:</span></dt><dd>The id of this asset or -1 if it has not yet been added</dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member method public">
+<td class="memberMarker colFirst"><img src="../../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="getLastPermissionResponse()" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">getLastPermissionResponse</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>abstract <a class="code" href="IAssetPermission.html" title="interface in com.penthera.virtuososdk.client">IAssetPermission</a>&nbsp;</code><span class="itemTitle">getLastPermissionResponse</span>()</div>
+<div class="block">Permission response from Backplane.</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature"><a class="code" href="IAssetPermission.html" title="interface in com.penthera.virtuososdk.client">IAssetPermission</a>&nbsp;<span class="itemTitle">getLastPermissionResponse</span>()</div>
+<dl>
+<dd>
+<div class="block">Permission response from Backplane. <p>
+ The permissions are requested from the backplane if the Max Account Downloads, Max Asset Downloads, or Max Asset Copies settings have been configured. They are
+ also requested if Always Check Permissions setting is configured.<p>
+ The permission is evaluated when added to the queue. If configured and the permission check is not required at time of queuing then the permission code in the
+ the IAssetPermission permission code will be set to <a class="code" href="IAssetPermission.PermissionCode.html#PERMISSION_AWAITING_PERMISSI0N" title="field defined in com.penthera.virtuososdk.client.IAssetPermission.PermissionCode"><code>PERMISSION_AWAITING_PERMISSI0N</code></a>
+ until the permission is checked at time of download.</div>
+<dl class="tagSection"><dt><span class="strong">Returns:</span></dt><dd>The IAssetPermission or null if not yet added to queue.</dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member method public">
+<td class="memberMarker colFirst"><img src="../../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="getLastStatusCode()" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">getLastStatusCode</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>abstract int&nbsp;</code><span class="itemTitle">getLastStatusCode</span>()</div>
+<div class="block">Last known HTTP status code from the download of this asset</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">int&nbsp;<span class="itemTitle">getLastStatusCode</span>()</div>
+<dl>
+<dd>
+<div class="block">Last known HTTP status code from the download of this asset</div>
+<dl class="tagSection"><dt><span class="strong">Returns:</span></dt><dd>The last response code or 0.</dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member method public">
+<td class="memberMarker colFirst"><img src="../../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="getMetadata()" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">getMetadata</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>abstract java.lang.String&nbsp;</code><span class="itemTitle">getMetadata</span>()</div>
+<div class="block">Metadata that you set for this asset.</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">java.lang.String&nbsp;<span class="itemTitle">getMetadata</span>()</div>
+<dl>
+<dd>
+<div class="block">Metadata that you set for this asset. Typically a JSON string.</div>
+<dl class="tagSection"><dt><span class="strong">Returns:</span></dt><dd>Metadata that you previously set for this asset.</dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member method public">
+<td class="memberMarker colFirst"><img src="../../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="getPlaybackURL()" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">getPlaybackURL</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>abstract java.net.URL&nbsp;</code><span class="itemTitle">getPlaybackURL</span>()</div>
+<div class="block">URL suitable for sending to the player.</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">java.net.URL&nbsp;<span class="itemTitle">getPlaybackURL</span>()
+                            throws java.net.MalformedURLException</div>
+<dl>
+<dd>
+<div class="block">URL suitable for sending to the player.
+ The returned playback URL will point at the <code>VirtuosoClientHTTPService</code>.
+ The service must be running for the player to use it.
+ <p>
+ To ensure the service is running, be sure to include the service and metadata declarations in the Android Manifest:
+
+ <pre>
+ <code>
+ &lt;meta-data android:name="com.penthera.virtuososdk.clienthttpservice.enabled" android:value="true" /&gt;
+
+ &lt;service android:name="com.penthera.virtuososdk.service.VirtuosoClientHTTPService"
+            android:label="VirtuosoClientHTTPService"
+            android:exported="false"
+            android:process=":vservice" &gt;
+    &lt;intent-filter&gt;
+        &lt;action android:name="virtuoso.intent.action.START_VIRTUOSO_CLIENT_HTTP_SERVICE" /&gt;
+    &lt;/intent-filter&gt;
+ &lt;/service&gt;
+
+ </code>
+ </pre>
+
+ For a segmented asset this will be the URL for a manifest. For a flat file it will be the link to
+ the file itself via the HTTP proxy.</div>
+<dl class="tagSection"><dt><span class="strong">Returns:</span></dt><dd>URL of the manifest / file, or null if outside of the <a class="code" href="IAsset.html" title="interface in com.penthera.virtuososdk.client"><code>availability window</code></a></dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code>java.net.MalformedURLException</code></dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member method public">
+<td class="memberMarker colFirst"><img src="../../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="getProcessingStatus()" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">getProcessingStatus</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>abstract int&nbsp;</code><span class="itemTitle">getProcessingStatus</span>()</div>
+<div class="block">Current processing state: ok, deleting, expiring.</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">int&nbsp;<span class="itemTitle">getProcessingStatus</span>()</div>
+<dl>
+<dd>
+<div class="block">Current processing state: ok, deleting, expiring.
+ This method indicates if the SDK is currently performing a local action on the asset which will
+ cause it to shortly be removed. Assets which display a state of deleting or expiring will not appear
+ in a list from <a class="code" href="IAssetProvider.html" title="interface in com.penthera.virtuososdk.client"><code>IAssetProvider</code></a>.</div>
+<dl class="tagSection"><dt><span class="strong">Returns:</span></dt><dd>The current processing state.</dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member method public">
+<td class="memberMarker colFirst"><img src="../../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="getStartWindow()" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">getStartWindow</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>abstract long&nbsp;</code><span class="itemTitle">getStartWindow</span>()</div>
+<div class="block">Current start window applied to this asset</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">long&nbsp;<span class="itemTitle">getStartWindow</span>()</div>
+<dl>
+<dd>
+<div class="block">Current start window applied to this asset</div>
+<dl class="tagSection"><dt><span class="strong">Returns:</span></dt><dd>A timestamp, represented as the number of seconds since the unix epoch.  
+ 0 if a start window has not been set.</dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member method inherited public">
+<td class="memberMarker colFirst"><img src="../../../../resources/inheritedMember.gif" width="11" height="13" alt="Inherited member indicator" class="inheritedMember"></td>
+<td class="itemNameCell"><a name="getType()" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);" class="inheritedMemberName" title="method defined in com.penthera.virtuososdk.client.IIdentifier"><a class="itemTitle" href="IIdentifier.html#getType()">getType</a>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>abstract int&nbsp;</code><span class="itemTitle">getType</span>()</div>
+<div class="block">Retrieve the type of asset.</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">int&nbsp;<span class="itemTitle">getType</span>()</div>
+<dl>
+<dd>
+<div class="block"><strong>Description copied from interface:&nbsp;<code><a class="code" href="IIdentifier.html#getType()" title="method defined in com.penthera.virtuososdk.client.IIdentifier">IIdentifier</a></code></strong></div>
+<div class="block">Retrieve the type of asset.</div>
+<dl class="tagSection"><dt><span class="strong">Returns:</span></dt><dd>An integer representing the type of asset</dd><dt><span class="strong">See Also:</span></dt><dd><a class="code" href="../../../../com/penthera/virtuososdk/Common.AssetIdentifierType.html" title="class in com.penthera.virtuososdk"><code>Common.AssetIdentifierType</code></a></dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member method inherited public">
+<td class="memberMarker colFirst"><img src="../../../../resources/inheritedMember.gif" width="11" height="13" alt="Inherited member indicator" class="inheritedMember"></td>
+<td class="itemNameCell"><a name="getUuid()" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);" class="inheritedMemberName" title="method defined in com.penthera.virtuososdk.client.IIdentifier"><a class="itemTitle" href="IIdentifier.html#getUuid()">getUuid</a>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>abstract java.lang.String&nbsp;</code><span class="itemTitle">getUuid</span>()</div>
+<div class="block">Retrieve the system-generated uuid for this descriptor</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">java.lang.String&nbsp;<span class="itemTitle">getUuid</span>()</div>
+<dl>
+<dd>
+<div class="block"><strong>Description copied from interface:&nbsp;<code><a class="code" href="IIdentifier.html#getUuid()" title="method defined in com.penthera.virtuososdk.client.IIdentifier">IIdentifier</a></code></strong></div>
+<div class="block">Retrieve the system-generated uuid for this descriptor</div>
+<dl class="tagSection"><dt><span class="strong">Returns:</span></dt><dd>UUID value generated by the system</dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member method public">
+<td class="memberMarker colFirst"><img src="../../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="isExpired()" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">isExpired</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>abstract boolean&nbsp;</code><span class="itemTitle">isExpired</span>()</div>
+<div class="block">Return true if the asset is expired.</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">boolean&nbsp;<span class="itemTitle">isExpired</span>()</div>
+<dl>
+<dd>
+<div class="block">Return true if the asset is expired.</div>
+<dl class="tagSection"><dt><span class="strong">Returns:</span></dt><dd>true if expired, false otherwise.</dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member method public">
+<td class="memberMarker colFirst"><img src="../../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="isPlayable()" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">isPlayable</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>abstract boolean&nbsp;</code><span class="itemTitle">isPlayable</span>()</div>
+<div class="block">Checks if the asset may be played at the current time.</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">boolean&nbsp;<span class="itemTitle">isPlayable</span>()</div>
+<dl>
+<dd>
+<div class="block">Checks if the asset may be played at the current time. If not then calling <a class="code" href="IAsset.html#getPlaybackURL()" title="method defined in com.penthera.virtuososdk.client.IAsset"><code>getPlaybackURL()</code></a>
+ will return a null URL.
+ <br>
+ Reasons for the asset not being available to play include:
+ <ul>
+     <li>Clock outside publish and expiry date windows</li>
+     <li>SDK offline time exceeded</li>
+     <li>Parsing not completed</li>
+     <li>Client side ads are being processed</li>
+ </ul></div>
+<dl class="tagSection"><dt><span class="strong">Returns:</span></dt><dd>true if the asset can be played, false otherwise.</dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member method public">
+<td class="memberMarker colFirst"><img src="../../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="isWithinWindow()" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">isWithinWindow</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>abstract boolean&nbsp;</code><span class="itemTitle">isWithinWindow</span>()</div>
+<div class="block">Report if the asset is within the start and end playback window and will be able to play.</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">boolean&nbsp;<span class="itemTitle">isWithinWindow</span>()</div>
+<dl>
+<dd>
+<div class="block">Report if the asset is within the start and end playback window and will be able to play.
+ If this method returns false then <a class="code" href="IAsset.html#getPlaybackURL()" title="method defined in com.penthera.virtuososdk.client.IAsset"><code>getPlaybackURL()</code></a> will return null.</div>
+<dl class="tagSection"><dt><span class="strong">Returns:</span></dt><dd>true if the asset is within the playback window and will play, false otherwise.</dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member method public">
+<td class="memberMarker colFirst"><img src="../../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="maximumRetriesExceeded()" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">maximumRetriesExceeded</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>abstract boolean&nbsp;</code><span class="itemTitle">maximumRetriesExceeded</span>()</div>
+<div class="block">Indicates if this asset has exceeded the maximum number of SDK download retries.</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">boolean&nbsp;<span class="itemTitle">maximumRetriesExceeded</span>()</div>
+<dl>
+<dd>
+<div class="block">Indicates if this asset has exceeded the maximum number of SDK download retries. In this state the
+ SDK will not retry the download unless the retry count for the asset is reset on the queue using <a class="code" href="IQueue.html#clearRetryCount(int)" title="method defined in com.penthera.virtuososdk.client.IQueue"><code>IQueue.clearRetryCount(int)</code></a>.</div>
+<dl class="tagSection"><dt><span class="strong">Returns:</span></dt><dd>true if the maximum retries have been exceeded, false otherwise</dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member method public">
+<td class="memberMarker colFirst"><img src="../../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="setAssetDownloadLimit(int)" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">setAssetDownloadLimit</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>abstract void&nbsp;</code><span class="itemTitle">setAssetDownloadLimit</span>(int&nbsp;assetDownloadLimit)</div>
+<div class="block">Asset download limit.</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">void&nbsp;<span class="itemTitle">setAssetDownloadLimit</span>(int&nbsp;assetDownloadLimit)</div>
+<dl>
+<dd>
+<div class="block">Asset download limit. The maximum number of times this asset may be downloaded onto a device.
+ Set the limit for this asset.</div>
+<dl class="tagSection"><dt><span class="strong">Parameters:</span></dt><dd><code>assetDownloadLimit</code> - The maximum number of downloads permitted.</dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member method public">
+<td class="memberMarker colFirst"><img src="../../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="setAssetUrl(java.lang.String)" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">setAssetUrl</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>abstract void&nbsp;</code><span class="itemTitle">setAssetUrl</span>(java.lang.String&nbsp;aAssetUrl)</div>
+<div class="block">Set the URL where the asset is to be downloaded from.</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">void&nbsp;<span class="itemTitle">setAssetUrl</span>(java.lang.String&nbsp;aAssetUrl)</div>
+<dl>
+<dd>
+<div class="block">Set the URL where the asset is to be downloaded from.</div>
+<dl class="tagSection"><dt><span class="strong">Parameters:</span></dt><dd><code>aAssetUrl</code> - Remote URL where the asset lives on the Internet.</dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member method public">
+<td class="memberMarker colFirst"><img src="../../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="setClientSideAdSupport(boolean)" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">setClientSideAdSupport</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>abstract void&nbsp;</code><span class="itemTitle">setClientSideAdSupport</span>(boolean&nbsp;adSupport)</div>
+<div class="block">Set if this asset supports advertising through client side ad insertion.</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">void&nbsp;<span class="itemTitle">setClientSideAdSupport</span>(boolean&nbsp;adSupport)</div>
+<dl>
+<dd>
+<div class="block">Set if this asset supports advertising through client side ad insertion.</div>
+<dl class="tagSection"><dt><span class="strong">Parameters:</span></dt><dd><code>adSupport</code> - true if ad templates should be downloaded and used with this asset during offline playback.</dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member method public">
+<td class="memberMarker colFirst"><img src="../../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="setCustomHeaders(android.os.Bundle)" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">setCustomHeaders</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>abstract void&nbsp;</code><span class="itemTitle">setCustomHeaders</span>(android.os.Bundle&nbsp;headers)</div>
+<div class="block">Set custom HTTP headers for this asset.</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">void&nbsp;<span class="itemTitle">setCustomHeaders</span>(android.os.Bundle&nbsp;headers)</div>
+<dl>
+<dd>
+<div class="block">Set custom HTTP headers for this asset.
+ <p>
+ Virtuoso includes these headers as part of the HTTP GET request when downloading this asset.
+ Virtuoso includes these headers after the default headers, and thus these take precedence.</div>
+<dl class="tagSection"><dt><span class="strong">Parameters:</span></dt><dd><code>headers</code> - A bundle specifying the headers to be applied for this asset (key/value pairs).</dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member method public">
+<td class="memberMarker colFirst"><img src="../../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="setEad(long)" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">setEad</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>abstract void&nbsp;</code><span class="itemTitle">setEad</span>(long&nbsp;ead)</div>
+<div class="block">(Expiry After Download or 'EAD') Set the duration this asset will remain available after it has completed downloading.</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">void&nbsp;<span class="itemTitle">setEad</span>(long&nbsp;ead)</div>
+<dl>
+<dd>
+<div class="block">(Expiry After Download or 'EAD') Set the duration this asset will remain available after it has completed downloading.</div>
+<dl class="tagSection"><dt><span class="strong">Parameters:</span></dt><dd><code>ead</code> - Amount of time (in seconds) the asset is to remain available after download completes.</dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member method public">
+<td class="memberMarker colFirst"><img src="../../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="setEap(long)" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">setEap</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>abstract void&nbsp;</code><span class="itemTitle">setEap</span>(long&nbsp;eap)</div>
+<div class="block">(Expiry After Play or 'EAP') Set the duration this asset will remain available after it has been first played.</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">void&nbsp;<span class="itemTitle">setEap</span>(long&nbsp;eap)</div>
+<dl>
+<dd>
+<div class="block">(Expiry After Play or 'EAP') Set the duration this asset will remain available after it has been first played.</div>
+<dl class="tagSection"><dt><span class="strong">Parameters:</span></dt><dd><code>eap</code> - Amount of time (in seconds) the asset is to remain available after first playout.</dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member method public">
+<td class="memberMarker colFirst"><img src="../../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="setEndWindow(long)" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">setEndWindow</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>abstract void&nbsp;</code><span class="itemTitle">setEndWindow</span>(long&nbsp;end)</div>
+<div class="block">Set the end window for playback.</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">void&nbsp;<span class="itemTitle">setEndWindow</span>(long&nbsp;end)</div>
+<dl>
+<dd>
+<div class="block">Set the end window for playback. 
+ <p>
+ After this time, the asset will no longer be available for playback through Virtuoso. 
+ Any attempt to retrieve the location of this asset on disk, through a Virtuoso API, will return null.
+ <p>
+ After this time, Virtuoso will delete this asset from disk as soon as possible.</div>
+<dl class="tagSection"><dt><span class="strong">Parameters:</span></dt><dd><code>end</code> - A timestamp, represented as the number of seconds since the unix epoch.</dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member method public">
+<td class="memberMarker colFirst"><img src="../../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="setMetadata(java.lang.String)" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">setMetadata</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>abstract void&nbsp;</code><span class="itemTitle">setMetadata</span>(java.lang.String&nbsp;aMetaData)</div>
+<div class="block">A convenience method allowing you to persist metadata with an asset.</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">void&nbsp;<span class="itemTitle">setMetadata</span>(java.lang.String&nbsp;aMetaData)</div>
+<dl>
+<dd>
+<div class="block">A convenience method allowing you to persist metadata with an asset.</div>
+<dl class="tagSection"><dt><span class="strong">Parameters:</span></dt><dd><code>aMetaData</code> - The metadata to be persisted along with the asset. Typically a JSON String.</dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member method public">
+<td class="memberMarker colFirst"><img src="../../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="setStartWindow(long)" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">setStartWindow</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>abstract void&nbsp;</code><span class="itemTitle">setStartWindow</span>(long&nbsp;start)</div>
+<div class="block">Set the start window for playback.</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">void&nbsp;<span class="itemTitle">setStartWindow</span>(long&nbsp;start)</div>
+<dl>
+<dd>
+<div class="block">Set the start window for playback. 
+ <p>
+ Attempts to access or play this asset through a Virtuoso API will return null until this time has passed.
+ <p>
+ A newly-created asset defaults to having a start window of 'now'.</div>
+<dl class="tagSection"><dt><span class="strong">Parameters:</span></dt><dd><code>start</code> - A timestamp, represented as the number of seconds since the unix epoch.</dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member method public">
+<td class="memberMarker colFirst"><img src="../../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="usesFastPlay()" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">usesFastPlay</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>abstract boolean&nbsp;</code><span class="itemTitle">usesFastPlay</span>()</div>
+<div class="block">Check if the asset supports the fastplay feature.</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">boolean&nbsp;<span class="itemTitle">usesFastPlay</span>()</div>
+<dl>
+<dd>
+<div class="block">Check if the asset supports the fastplay feature.</div>
+<dl class="tagSection"><dt><span class="strong">Returns:</span></dt><dd>true if fastplay is supported</dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member method inherited public">
+<td class="memberMarker colFirst"><img src="../../../../resources/inheritedMember.gif" width="11" height="13" alt="Inherited member indicator" class="inheritedMember"></td>
+<td class="itemNameCell"><a name="writeToParcel(android.os.Parcel, int)" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);" class="inheritedMemberName" title="method defined in android.os.Parcelable">writeToParcel&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>abstract void&nbsp;</code><span class="itemTitle">writeToParcel</span>(android.os.Parcel&nbsp;arg0,
+             int&nbsp;arg1)</div>
+<div class="block">&nbsp;</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">void&nbsp;<span class="itemTitle">writeToParcel</span>(android.os.Parcel&nbsp;arg0,
+                 int&nbsp;arg1)</div>
+</div>
+</td>
+</tr>
+</table>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<!-- ========= END OF CLASS DATA ========= -->
+<!-- ======= START OF BOTTOM NAVBAR ====== -->
+<!-- ======== END OF BOTTOM NAVBAR ======= -->
+</div>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<!-- NewPage -->
+<html lang="en" class="fancy">
+<head>
+<meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="../../../../../stylesheet2.css" title="Style">
+<script type="text/javascript" src="../../../../../doc2.js"></script>
+<script type="text/javascript">var pathSeparator = "/";
+var rootPath = "../../../../../";
+var currentPackage = "com.penthera.virtuososdk.client.bitmovin";
+var currentPackage = "com.penthera.virtuososdk.client.bitmovin";
+var currentClass = "BitmovinSourceManager";
+</script>
+<script type="text/javascript" src="package-contents.js"></script>
+</head>
+<body class="contentPage classPage">
+<div id="innerBody">
+<script type="text/javascript"><!--
+    if (location.href.indexOf('is-external=true') == -1) {
+        parent.document.title="BitmovinSourceManager (Download2Go Android Bitmovin Support Library)";
+    }
+//-->
+</script>
+<noscript>
+<div>This web site requires JavaScript for proper operation. JavaScript is disabled on your browser.</div>
+</noscript>
+<!-- ========= START OF TOP NAVBAR ======= -->
+<div class="navBar hidden" id="topNavBar">
+<div class="navigationLine1">
+<div class="navigationLinks">
+<div class="navBarButton active"><a href="../../../../../com/penthera/virtuososdk/client/bitmovin/package-summary.html">Package</a></div>
+<div class="navBarButton inactive selected"><a href>Class</a></div>
+<div class="navBarButton active"><a href="package-tree.html">Tree</a></div>
+<div class="navBarButton active"><a href="../../../../../deprecated-list.html">Deprecated</a></div>
+<div class="navBarButton active"><a href="../../../../../index-all.html">Index</a></div>
+<div class="navBarButton active"><a href="../../../../../allclasses-noframe.html">All Classes</a></div>
+<div class="navBarButton active"><a href="../../../../../help-doc.html">Help</a></div>
+</div>
+<div class="pageControls">
+<div class="navBarButton inactive"><a href>Prev Class</a></div>
+<div class="navBarButton inactive"><a href>Next Class</a></div>
+</div>
+<select id="packageClassSelector">
+<option value selected="selected">classes...</option>
+</select>
+</div>
+<div class="pageTitle"><span>Class <span class="packagePrefix">com.penthera.virtuososdk.client.bitmovin</span>.BitmovinSourceManager</span></div>
+<div class="navigationLine2">
+<div class="inheritedMembersSelector">Inherited members: <span class="radioButton" id="showInheritedMembersSelector" onclick="setInheritedVisible(true)">Show</span><span class="radioButton" id="hideInheritedMembersSelector" onclick="setInheritedVisible(false)">Hide</span></div>
+<div class="deprecatedSelector">Deprecated: <span class="radioButton" id="showDeprecatedSelector" onclick="setDeprecatedVisible(true)">Show</span><span class="radioButton" id="hideDeprecatedSelector" onclick="setDeprecatedVisible(false)">Hide</span></div>
+<span class="accessViewSelectors">View: <span class="radioButton" id="clientViewSelector" onclick="showClientView();">Client</span><span class="radioButton" id="subclassViewSelector" onclick="showSubclassView();">Subclass</span><span class="radioButton" id="packageViewSelector" onclick="showPackageView();">Package</span><span class="radioButton" id="implementationViewSelector" onclick="showImplementationView();">Implementation</span></span>
+<div class="entitySelectors">
+<select id="classSelector">
+<option value selected="selected">classes...</option>
+</select>
+<select id="enumConstantSelector">
+<option value selected="selected">enum constants...</option>
+</select>
+<select id="fieldSelector">
+<option value selected="selected">fields...</option>
+</select>
+<select id="staticMethodSelector">
+<option value selected="selected">static methods...</option>
+</select>
+<select id="constructorSelector">
+<option value selected="selected">constructors...</option>
+</select>
+<select id="methodSelector">
+<option value selected="selected">methods...</option>
+</select>
+<select id="propertySelector">
+<option value selected="selected">properties...</option>
+</select>
+</div>
+</div>
+</div>
+<!-- ========= END OF TOP NAVBAR ========= -->
+<div id="dataArea" class="hidden">
+<div id="content">
+<!-- ======== START OF CLASS DATA ======== -->
+<div class="header">
+<div class="subTitle">com.penthera.virtuososdk.client.bitmovin</div>
+<h2 title="Class BitmovinSourceManager" class="title">Class BitmovinSourceManager</h2>
+</div>
+<div class="contentContainer">
+<div class="classInheritance">
+<ul class="inheritance">
+<li>java.lang.Object</li>
+<li>
+<ul class="inheritance">
+<li>com.penthera.virtuososdk.client.bitmovin.BitmovinSourceManager</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="description">
+<ul class="blockList">
+<li class="blockList">
+<div class="classSignature">public class <span class="strong">BitmovinSourceManager</span>
+extends java.lang.Object</div>
+<div class="block">This utility class helps to create and work with the bitmovin player when streaming content from
+ the Penthera D2G SDK.
+
+ To use this helper:
+ 1) first create an instance of the class and keep it in the activity with the player.
+ 2) Call getBitmovinSourceItem() to fetch the bitmovin source object that can be passed to the player.
+    Do not do this on the main thread, as it may block while checking the DRM license is still valid.
+    If the source cannot be generated, for instance if the license is not valid and cannot be renewed then
+    the method returns null.
+ 3) When using DRM protected assets, call startMonitoring() when the player starts and in onResume().
+ 4) When using DRM protected assets, call stopMonitoring() in onPause().
+ 5) When using DRM protected assets, call cleanup() when playback has finished, such as in onDestroy().</div>
+</li>
+</ul>
+</div>
+<div class="summary">
+<ul class="blockList">
+<li class="blockList">
+<!-- ======== CONSTRUCTOR SUMMARY ======== -->
+<ul class="blockList">
+<li class="blockList"><a name="constructor_summary">
+<!--   -->
+</a>
+<table class="overviewSummary summaryTable memberSummary constructorElementList" border="0" cellpadding="3" cellspacing="0" summary="Constructor Summary table, listing constructors, and an explanation">
+<caption class="tableHeader"><span>Constructors</span><span class="tabEnd">&nbsp;</span></caption>
+<tr class="columnHeaders">
+<th class="colFirst" scope="col"> </th>
+<th class="colLast" scope="col">Constructor and Description</th>
+</tr>
+<tr class="member constructor public">
+<td class="memberMarker colFirst"><img src="../../../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="BitmovinSourceManager(android.content.Context, com.penthera.virtuososdk.client.ISegmentedAsset)" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">BitmovinSourceManager</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><span class="itemTitle">BitmovinSourceManager</span>(android.content.Context&nbsp;context,
+                     com.penthera.virtuososdk.client.ISegmentedAsset&nbsp;asset)</div>
+<div class="block">Construct a new source manager for each asset that will be played.</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">public&nbsp;<span class="itemTitle">BitmovinSourceManager</span>(android.content.Context&nbsp;context,
+                     com.penthera.virtuososdk.client.ISegmentedAsset&nbsp;asset)</div>
+<dl>
+<dd>
+<div class="block">Construct a new source manager for each asset that will be played. This provides the source
+ object for the bitmovin player, checks drm licenses are valid for playback for that asset, and
+ ensures that any resources created on disk by the bitmovin player are cleaned up.</div>
+<dl class="tagSection"><dt><span class="strong">Parameters:</span></dt><dd><code>context</code> - The current activity context</dd><dd><code>asset</code> - The asset to be played</dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+</table>
+</li>
+</ul>
+<!-- ========== METHOD SUMMARY =========== -->
+<ul class="blockList">
+<li class="blockList"><a name="method_summary">
+<!--   -->
+</a>
+<table class="overviewSummary summaryTable memberSummary methodElementList" border="0" cellpadding="3" cellspacing="0" summary="Method Summary table, listing methods, and an explanation">
+<caption class="tableHeader"><span>Methods</span><span class="tabEnd">&nbsp;</span></caption>
+<tr class="columnHeaders">
+<th class="colFirst" scope="col"> </th>
+<th scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tr class="member method public">
+<td class="memberMarker colFirst"><img src="../../../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="cleanup()" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">cleanup</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>void&nbsp;</code><span class="itemTitle">cleanup</span>()</div>
+<div class="block">Cleanup resources once playback is complete</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">public&nbsp;void&nbsp;<span class="itemTitle">cleanup</span>()</div>
+<dl>
+<dd>
+<div class="block">Cleanup resources once playback is complete</div>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member method public">
+<td class="memberMarker colFirst"><img src="../../../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="getBitmovinFastplaySourceItem()" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">getBitmovinFastplaySourceItem</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>com.bitmovin.player.config.media.SourceItem&nbsp;</code><span class="itemTitle">getBitmovinFastplaySourceItem</span>()</div>
+<div class="block">This method will return a SourceItem object that can be passed into Bitmovin for fastplay playback, or
+ null if the asset is currently not valid for playback.</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">public&nbsp;com.bitmovin.player.config.media.SourceItem&nbsp;<span class="itemTitle">getBitmovinFastplaySourceItem</span>()</div>
+<dl>
+<dd>
+<div class="block">This method will return a SourceItem object that can be passed into Bitmovin for fastplay playback, or
+ null if the asset is currently not valid for playback.</div>
+<dl class="tagSection"><dt><span class="strong">Returns:</span></dt><dd>The bitmovin source item for playback</dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member method public">
+<td class="memberMarker colFirst"><img src="../../../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="getBitmovinSourceItem()" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">getBitmovinSourceItem</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>com.bitmovin.player.config.media.SourceItem&nbsp;</code><span class="itemTitle">getBitmovinSourceItem</span>()</div>
+<div class="block">This method will return a SourceItem object that can be passed into Bitmovin for playback, or
+ null if the asset is currently not valid for playback.</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">public&nbsp;com.bitmovin.player.config.media.SourceItem&nbsp;<span class="itemTitle">getBitmovinSourceItem</span>()</div>
+<dl>
+<dd>
+<div class="block">This method will return a SourceItem object that can be passed into Bitmovin for playback, or
+ null if the asset is currently not valid for playback.</div>
+<dl class="tagSection"><dt><span class="strong">Returns:</span></dt><dd>The bitmovin source item for playback</dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member method public">
+<td class="memberMarker colFirst"><img src="../../../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="hasValidDRM()" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">hasValidDRM</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>boolean&nbsp;</code><span class="itemTitle">hasValidDRM</span>()</div>
+<div class="block">Indicates if the current asset has a valid drm license for playback.</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">public&nbsp;boolean&nbsp;<span class="itemTitle">hasValidDRM</span>()</div>
+<dl>
+<dd>
+<div class="block">Indicates if the current asset has a valid drm license for playback. Result is valid only
+ after calling <a class="code" href="BitmovinSourceManager.html#getBitmovinSourceItem()" title="method defined in com.penthera.virtuososdk.client.bitmovin.BitmovinSourceManager"><code>getBitmovinSourceItem()</code></a></div>
+<dl class="tagSection"><dt><span class="strong">Returns:</span></dt><dd>true if license is valid for playback, false otherwise</dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member method public">
+<td class="memberMarker colFirst"><img src="../../../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="startMonitoring()" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">startMonitoring</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>void&nbsp;</code><span class="itemTitle">startMonitoring</span>()</div>
+<div class="block">startMonitoring should be called when playback commences of a DRM protected asset, to ensure
+ that additional files created in the player cache are cleaned up in a timely fashion to prevent
+ consuming large volumes of disk storage during playback.</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">public&nbsp;void&nbsp;<span class="itemTitle">startMonitoring</span>()</div>
+<dl>
+<dd>
+<div class="block">startMonitoring should be called when playback commences of a DRM protected asset, to ensure
+ that additional files created in the player cache are cleaned up in a timely fashion to prevent
+ consuming large volumes of disk storage during playback. Call this in your onResume() or a
+ similar place in the lifecycle.
+
+ <a class="code" href="BitmovinSourceManager.html#stopMonitoring()" title="method defined in com.penthera.virtuososdk.client.bitmovin.BitmovinSourceManager"><code>stopMonitoring()</code></a> should be called in a pair with this method when the playback has ceased.</div>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member method public">
+<td class="memberMarker colFirst"><img src="../../../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="stopMonitoring()" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">stopMonitoring</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>void&nbsp;</code><span class="itemTitle">stopMonitoring</span>()</div>
+<div class="block">Stop monitoring must be called after playback is stopped if <a class="code" href="BitmovinSourceManager.html#startMonitoring()" title="method defined in com.penthera.virtuososdk.client.bitmovin.BitmovinSourceManager"><code>startMonitoring()</code></a> was
+ called when it was started for an asset which uses DRM.</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">public&nbsp;void&nbsp;<span class="itemTitle">stopMonitoring</span>()</div>
+<dl>
+<dd>
+<div class="block">Stop monitoring must be called after playback is stopped if <a class="code" href="BitmovinSourceManager.html#startMonitoring()" title="method defined in com.penthera.virtuososdk.client.bitmovin.BitmovinSourceManager"><code>startMonitoring()</code></a> was
+ called when it was started for an asset which uses DRM. Place this in your onPause().
+ It is safe to call this method multiple times.</div>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+</table>
+<ul class="blockList">
+<li class="blockList inheritedMemberSummary summaryTable"><a name="methods_inherited_from_class_java.lang.Object">
+<!--   -->
+</a>
+<h3 class="tableHeader">Methods inherited from class&nbsp;java.lang.Object</h3>
+<code>clone, equals, finalize, getClass, hashCode, notify, notifyAll, toString, wait, wait, wait</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<!-- ========= END OF CLASS DATA ========= -->
+<!-- ======= START OF BOTTOM NAVBAR ====== -->
+<!-- ======== END OF BOTTOM NAVBAR ======= -->
+</div>
+</div>
+</div>
+</body>
+</html>

@@ -59,7 +59,7 @@ import com.penthera.virtuososdk.client.IAsset;
 import com.penthera.virtuososdk.client.ISegmentedAsset;
 import com.penthera.virtuososdk.client.Virtuoso;
 import com.penthera.virtuososdk.client.drm.UnsupportedDrmException;
-import com.penthera.virtuososdk.client.drm.VirtuosoDrmSessionManager;
+import com.penthera.virtuososdk.support.exoplayer211.drm.SupportDrmSessionManager;
 
 import java.net.CookieHandler;
 import java.net.CookieManager;
@@ -423,7 +423,7 @@ public class VideoPlayerActivity extends AppCompatActivity implements PlaybackPr
 
     // Observer class from the Download2Go session manager which enables the client to be informed of
     // events for when keys are loaded or an error occurs with fetching a license.
-    private static class DrmListener implements VirtuosoDrmSessionManager.EventListener {
+    private static class DrmListener implements SupportDrmSessionManager.EventListener {
 
         private VideoPlayerActivity mActivity;
 

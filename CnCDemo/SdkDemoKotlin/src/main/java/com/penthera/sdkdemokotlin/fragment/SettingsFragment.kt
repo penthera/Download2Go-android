@@ -1,7 +1,6 @@
 package com.penthera.sdkdemokotlin.fragment
 
 
-import android.content.Context
 import android.os.Bundle
 import android.os.Handler
 import android.text.TextUtils
@@ -67,7 +66,7 @@ class SettingsFragment : Fragment() {
             override fun onProgressChanged(seekBar: SeekBar, progress: Int,
                                            fromUser: Boolean) {
                 if (fromUser) {
-                    batteryLabel.setText(getString(R.string.battery_threshold, progress))
+                    batteryLabel.text = getString(R.string.battery_threshold, progress)
                 }
             }
 
@@ -77,31 +76,31 @@ class SettingsFragment : Fragment() {
         }
         battery.setOnSeekBarChangeListener(seekChangeListener)
 
-        btnEnableDisable.setOnClickListener(View.OnClickListener {
+        btnEnableDisable.setOnClickListener {
             try {
-                var downloadEnabled = backplaneSettings?.value?.downloadEnabled ?: false
+                val downloadEnabled = backplaneSettings?.value?.downloadEnabled ?: false
                 backplane?.changeDownloadEnablement(!downloadEnabled)
             } catch (e: BackplaneException) {
                 e.printStackTrace()
             }
-        })
+        }
 
-        btnMaxstorageReset.setOnClickListener(View.OnClickListener { settings?.value?.resetMaxStorageAllowed()?.save(); })
-        btnHeadroomReset.setOnClickListener(View.OnClickListener { settings?.value?.resetHeadroom()?.save() })
-        btnBatteryReset.setOnClickListener(View.OnClickListener { settings?.value?.resetBatteryThreshold()?.save() })
-        btnDestinationReset.setOnClickListener(View.OnClickListener { settings?.value?.resetDestinationPath()?.save() })
-        btnCellquotaReset.setOnClickListener(View.OnClickListener { settings?.value?.resetCellularDataQuota()?.save() })
-        btnCellquotaDateReset.setOnClickListener(View.OnClickListener { settings?.value?.resetCellularDataQuotaStart()?.save() })
-        btnProgressPercentReset.setOnClickListener(View.OnClickListener { settings?.value?.resetProgressUpdateByPercent()?.save() })
-        btnProgressTimedReset.setOnClickListener(View.OnClickListener { settings?.value?.resetProgressUpdateByTime()?.save() })
-        btnConnectionTimeoutReset.setOnClickListener(View.OnClickListener { settings?.value?.resetHTTPConnectionTimeout()?.save() })
-        btnSocketTimeoutReset.setOnClickListener(View.OnClickListener { settings?.value?.resetHTTPSocketTimeout()?.save() })
-        btnSdkAllowedCodecsReset.setOnClickListener(View.OnClickListener { settings?.value?.resetAudioCodecsToDownload() })
-        btnAlwaysRequestPerm.setOnClickListener(View.OnClickListener { settings?.value?.setAlwaysRequestPermission(btnAlwaysRequestPerm.isChecked)?.save() })
-        btnBackgroundOnPause.setOnClickListener(View.OnClickListener { settings?.value?.setRemoveNotificationOnPause(btnBackgroundOnPause.isChecked)?.save() })
-        btnAutorenewDrmLicenses.setOnClickListener(View.OnClickListener { settings?.value?.setAutomaticDrmLicenseRenewalEnabled(btnAutorenewDrmLicenses.isChecked)?.save() })
-        btnSdkAllowedCodecsReset.setOnClickListener(View.OnClickListener { settings?.value?.resetAudioCodecsToDownload()?.save() })
-        btnApply.setOnClickListener(View.OnClickListener { save() })
+        btnMaxstorageReset.setOnClickListener { settings?.value?.resetMaxStorageAllowed(); }
+        btnHeadroomReset.setOnClickListener { settings?.value?.resetHeadroom() }
+        btnBatteryReset.setOnClickListener { settings?.value?.resetBatteryThreshold() }
+        btnDestinationReset.setOnClickListener { settings?.value?.resetDestinationPath() }
+        btnCellquotaReset.setOnClickListener { settings?.value?.resetCellularDataQuota() }
+        btnCellquotaDateReset.setOnClickListener { settings?.value?.resetCellularDataQuotaStart() }
+        btnProgressPercentReset.setOnClickListener { settings?.value?.resetProgressUpdateByPercent() }
+        btnProgressTimedReset.setOnClickListener { settings?.value?.resetProgressUpdateByTime() }
+        btnConnectionTimeoutReset.setOnClickListener { settings?.value?.resetHTTPConnectionTimeout() }
+        btnSocketTimeoutReset.setOnClickListener { settings?.value?.resetHTTPSocketTimeout() }
+        btnSdkAllowedCodecsReset.setOnClickListener { settings?.value?.resetAudioCodecsToDownload() }
+        btnAlwaysRequestPerm.setOnClickListener { settings?.value?.setAlwaysRequestPermission(btnAlwaysRequestPerm.isChecked) }
+        btnBackgroundOnPause.setOnClickListener { settings?.value?.removeNotificationOnPause = btnBackgroundOnPause.isChecked }
+        btnAutorenewDrmLicenses.setOnClickListener { settings?.value?.isAutomaticDrmLicenseRenewalEnabled = btnAutorenewDrmLicenses.isChecked }
+        btnSdkAllowedCodecsReset.setOnClickListener { settings?.value?.resetAudioCodecsToDownload() }
+        btnApply.setOnClickListener { save() }
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -110,9 +109,9 @@ class SettingsFragment : Fragment() {
         val offlineVideoProvider = activity as OfflineVideoProvider
         backplane = offlineVideoProvider.getOfflineEngine().getVirtuoso().backplane
         settings = offlineVideoProvider.getOfflineEngine().getSettings()
-        settings?.observe(this, androidx.lifecycle.Observer { handler.post(valuesUpdater) })
+        settings?.observe(viewLifecycleOwner, androidx.lifecycle.Observer { handler.post(valuesUpdater) })
         backplaneSettings = offlineVideoProvider.getOfflineEngine().getBackplaneSettings()
-        backplaneSettings?.observe(this, androidx.lifecycle.Observer{ handler.post(valuesUpdater)})
+        backplaneSettings?.observe(viewLifecycleOwner, androidx.lifecycle.Observer{ handler.post(valuesUpdater)})
         handler.post(valuesUpdater)
         offlineVideoProvider.getOfflineEngine().getVirtuoso().addObserver(backplaneObserver)
     }
@@ -126,20 +125,20 @@ class SettingsFragment : Fragment() {
 
     private val valuesUpdater = Runnable {
         settings?.value?.let {
-            val quotaStart = it.getCellularDataQuotaStart()
+            val quotaStart = it.cellularDataQuotaStart
 
             val d = Date(quotaStart * 1000)
             cellquotaStartDate.text = sdf.format(d)
 
-            var batteryLevel = (it.getBatteryThreshold() * 100).toInt()
+            var batteryLevel = (it.batteryThreshold * 100).toInt()
             batteryLevel = if (batteryLevel < 0) 0 else if (batteryLevel > 100) 100 else batteryLevel
 
             battery.progress = batteryLevel
             batteryLabel.text = getString(R.string.battery_threshold, batteryLevel)
             maxstorage.setText(it.maxStorageAllowed.toString())
-            headroom.setText(it.headroom.toString())
+            headroomValue.setText(it.headroom.toString())
             cellquota.setText(it.cellularDataQuota.toString())
-            destinationPath.setText(it.destinationPath)
+            destinationPathValue.setText(it.destinationPath)
 
             progressPercentBar.progress = it.progressUpdateByPercent
             progressPercentLabel.text = getString(R.string.report_progress_setting, it.progressUpdateByPercent)
@@ -148,35 +147,34 @@ class SettingsFragment : Fragment() {
             proxySegmentErrorCode.setText(it.segmentErrorHttpCode.toString())
             connectionTimeout.setText(it.httpConnectionTimeout.toString())
             socketTimeout.setText(it.httpSocketTimeout.toString())
-            btnAlwaysRequestPerm.setChecked(it.alwaysRequestPermission())
-            btnBackgroundOnPause.setChecked(it.removeNotificationOnPause)
-            btnAutorenewDrmLicenses.setChecked(it.isAutomaticDrmLicenseRenewalEnabled())
-            sdkAllowedCodecs.setText(if (it.getAudioCodecsToDownload() != null) TextUtils.join(",", it.getAudioCodecsToDownload()) else "")
+            btnAlwaysRequestPerm.isChecked = it.alwaysRequestPermission()
+            btnBackgroundOnPause.isChecked = it.removeNotificationOnPause
+            btnAutorenewDrmLicenses.isChecked = it.isAutomaticDrmLicenseRenewalEnabled
+            sdkAllowedCodecs.setText(if (it.audioCodecsToDownload != null) TextUtils.join(",", it.audioCodecsToDownload) else "")
         }
 
         backplaneSettings?.value?.let {
-            btnEnableDisable.setText(getString(if (it.getDownloadEnabled()) R.string.disable else R.string.enable))
-            btnEnableDisable.setEnabled(backplane?.getAuthenticationStatus() != Common.AuthenticationStatus.NOT_AUTHENTICATED)
-            downloadEnabledText.setText("" + it.getDownloadEnabled())
+            btnEnableDisable.text = getString(if (it.downloadEnabled) R.string.disable else R.string.enable)
+            btnEnableDisable.isEnabled = backplane?.authenticationStatus != Common.AuthenticationStatus.NOT_AUTHENTICATED
+            downloadEnabledText.text =  it.downloadEnabled.toString()
         }
     }
 
     private fun save() {
         try {
-            settings?.value?.let {
-                it.setProgressUpdateByTime(java.lang.Long.parseLong(progressTimed.getText().toString()))
-                        .setProgressUpdateByPercent(progressPercentBar.getProgress())
-                        .setBatteryThreshold(battery.getProgress().toFloat() / 100)
-                        .setDestinationPath(destinationPath.getText().toString().trim({ it <= ' ' }))
-                        .setCellularDataQuota(java.lang.Long.parseLong(cellquota.getText().toString()))
-                        .setHeadroom(java.lang.Long.parseLong(headroom.getText().toString()))
-                        .setMaxStorageAllowed(java.lang.Long.parseLong(maxstorage.getText().toString()))
-                        .setHTTPConnectionTimeout(Integer.parseInt(connectionTimeout.getText().toString()))
-                        .setHTTPSocketTimeout(Integer.parseInt(socketTimeout.getText().toString()))
-                        .setSegmentErrorHttpCode(Integer.parseInt(proxySegmentErrorCode.getText().toString()))
-                        .setMaxPermittedSegmentErrors(Integer.parseInt(maxSegmentErrors.getText().toString()))
-                        .setAudioCodecsToDownload(if (sdkAllowedCodecs.getText().toString().length > 0) sdkAllowedCodecs.getText().toString().split(",".toRegex()).dropLastWhile({ it.isEmpty() }).toTypedArray() else null)
-                        .save()
+            settings?.value?.apply {
+                progressUpdateByTime = progressTimed.text.toString().toLong()
+                progressUpdateByPercent = progressPercentBar.progress
+                batteryThreshold = (battery.progress.toFloat() / 100)
+                destinationPath = (destinationPathValue.text.toString().trim { it <= ' ' })
+                cellularDataQuota = cellquota.text.toString().toLong()
+                headroom = headroomValue.text.toString().toLong()
+                maxStorageAllowed = maxstorage.text.toString().toLong()
+                httpConnectionTimeout =connectionTimeout.text.toString().toInt()
+                httpSocketTimeout = socketTimeout.text.toString().toInt()
+                segmentErrorHttpCode =  proxySegmentErrorCode.text.toString().toInt()
+                maxPermittedSegmentErrors = maxSegmentErrors.text.toString().toInt()
+                audioCodecsToDownload = if (sdkAllowedCodecs.text.toString().isNotEmpty()) sdkAllowedCodecs.text.toString().split(",".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray() else null
             }
         } catch (e: Exception) {
             e.printStackTrace()
@@ -189,7 +187,7 @@ class SettingsFragment : Fragment() {
         if (callbackType == Common.BackplaneCallbackType.DOWNLOAD_ENABLEMENT_CHANGE && result == Common.BackplaneResult.MAXIMUM_ENABLEMENT_REACHED) {
             // Show a warning message - in this case we show the server response directly,
             // but this would not be the case in a production application.
-            handler.post(Runnable { Toast.makeText(context, errorMessage, Toast.LENGTH_LONG).show() })
+            handler.post { Toast.makeText(context, errorMessage, Toast.LENGTH_LONG).show() }
         }
     }
 }

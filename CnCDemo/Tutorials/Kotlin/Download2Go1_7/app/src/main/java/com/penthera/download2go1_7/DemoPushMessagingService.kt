@@ -1,7 +1,7 @@
 package com.penthera.download2go1_7
 
 import com.google.firebase.messaging.RemoteMessage
-import com.penthera.virtuososdk.client.subscriptions.FcmMessagingService
+import com.penthera.virtuososdk.client.push.FcmMessagingService
 
 
 /**

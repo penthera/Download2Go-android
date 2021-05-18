@@ -452,7 +452,7 @@ class MainActivity : AppCompatActivity() {
         // Important: Asset ID should be unique across your video catalog
         const val ASSET_ID : String = "TEST_ASSET_ID"
         const val ASSET_TITLE : String = "TEST ASSET"
-        const val ASSET_URL: String = "http://hls-vbcp.s3.amazonaws.com/normal/small/im2_rel.m3u8"
+        const val ASSET_URL: String = "https://hls-vbcp.s3.amazonaws.com/normal/small/im2_rel.m3u8"
 
         const val BACKPLANE_URL = "https://demo.penthera.com"
         const val BACKPLANE_PUBLIC_KEY =  

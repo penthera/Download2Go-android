@@ -41,7 +41,7 @@ import com.penthera.virtuososdk.Common
 import com.penthera.virtuososdk.client.IAsset
 import com.penthera.virtuososdk.client.ISegmentedAsset
 import com.penthera.virtuososdk.client.drm.UnsupportedDrmException
-import com.penthera.virtuososdk.client.drm.VirtuosoDrmSessionManager
+import com.penthera.virtuososdk.support.exoplayer211.drm.SupportDrmSessionManager
 import com.penthera.virtuososdk.utility.CommonUtil.Identifier.FILE_IDENTIFIER
 import java.net.CookieHandler
 import java.net.CookieManager
@@ -403,7 +403,7 @@ class VideoPlayerActivity : Activity(),  PlaybackPreparer {
     // Observer class from the Download2Go session manager which enables the client to be informed of
     // events for when keys are loaded or an error occurs with fetching a license.
     private class DrmListener(private val mActivity: VideoPlayerActivity) :
-        VirtuosoDrmSessionManager.EventListener {
+        SupportDrmSessionManager.EventListener {
         override fun onDrmKeysLoaded() {
             if (mActivity.player != null) {
                 mActivity.player!!.analyticsCollector.onDrmKeysLoaded()

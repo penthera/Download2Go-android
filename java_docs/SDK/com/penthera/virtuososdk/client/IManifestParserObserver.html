@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<!-- NewPage -->
+<html lang="en" class="fancy">
+<head>
+<meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="../../../../stylesheet2.css" title="Style">
+<script type="text/javascript" src="../../../../doc2.js"></script>
+<script type="text/javascript">var pathSeparator = "/";
+var rootPath = "../../../../";
+var currentPackage = "com.penthera.virtuososdk.client";
+var currentClass = "IManifestParserObserver";
+</script>
+<script type="text/javascript" src="package-contents.js"></script>
+</head>
+<body class="contentPage classPage">
+<div id="innerBody">
+<script type="text/javascript"><!--
+    if (location.href.indexOf('is-external=true') == -1) {
+        parent.document.title="IManifestParserObserver (Download2Go Android SDK)";
+    }
+//-->
+</script>
+<noscript>
+<div>This web site requires JavaScript for proper operation. JavaScript is disabled on your browser.</div>
+</noscript>
+<!-- ========= START OF TOP NAVBAR ======= -->
+<div class="navBar hidden" id="topNavBar">
+<div class="navigationLine1">
+<div class="navigationLinks">
+<div class="navBarButton active"><a href="../../../../overview-summary.html">Overview</a></div>
+<div class="navBarButton active"><a href="package-summary.html">Package</a></div>
+<div class="navBarButton inactive selected"><a href>Class</a></div>
+<div class="navBarButton active"><a href="package-tree.html">Tree</a></div>
+<div class="navBarButton active"><a href="../../../../deprecated-list.html">Deprecated</a></div>
+<div class="navBarButton active"><a href="../../../../index-all.html">Index</a></div>
+<div class="navBarButton active"><a href="../../../../allclasses-noframe.html">All Classes</a></div>
+<div class="navBarButton active"><a href="../../../../help-doc.html">Help</a></div>
+</div>
+<div class="pageControls">
+<div class="navBarButton active"><a href="ILanguageSettings.html"><span class="strong">Prev Class</span></a></div>
+<div class="navBarButton active"><a href="IMimeTypeSettings.html"><span class="strong">Next Class</span></a></div>
+</div>
+<select id="packageSelector">
+<option value>packages...</option>
+<option value>com.penthera</option>
+<option value>com.penthera.virtuoso.net.security.client</option>
+<option value>com.penthera.virtuososdk</option>
+<option value>com.penthera.virtuososdk.autodownload</option>
+<option value>com.penthera.virtuososdk.client</option>
+<option value>com.penthera.virtuososdk.client.ads</option>
+<option value>com.penthera.virtuososdk.client.autodownload</option>
+<option value>com.penthera.virtuososdk.client.builders</option>
+<option value>com.penthera.virtuososdk.client.database</option>
+<option value>com.penthera.virtuososdk.client.drm</option>
+<option value>com.penthera.virtuososdk.client.drm.castlabs</option>
+<option value>com.penthera.virtuososdk.client.push</option>
+<option value>com.penthera.virtuososdk.database.impl.provider</option>
+<option value>com.penthera.virtuososdk.service</option>
+</select>
+<select id="packageClassSelector">
+<option value selected="selected">classes...</option>
+</select>
+</div>
+<div class="pageTitle"><span>Interface <span class="packagePrefix">com.penthera.virtuososdk.client</span>.IManifestParserObserver</span></div>
+<div class="navigationLine2">
+<div class="inheritedMembersSelector">Inherited members: <span class="radioButton" id="showInheritedMembersSelector" onclick="setInheritedVisible(true)">Show</span><span class="radioButton" id="hideInheritedMembersSelector" onclick="setInheritedVisible(false)">Hide</span></div>
+<div class="deprecatedSelector">Deprecated: <span class="radioButton" id="showDeprecatedSelector" onclick="setDeprecatedVisible(true)">Show</span><span class="radioButton" id="hideDeprecatedSelector" onclick="setDeprecatedVisible(false)">Hide</span></div>
+<span class="accessViewSelectors">View: <span class="radioButton" id="clientViewSelector" onclick="showClientView();">Client</span><span class="radioButton" id="subclassViewSelector" onclick="showSubclassView();">Subclass</span><span class="radioButton" id="packageViewSelector" onclick="showPackageView();">Package</span><span class="radioButton" id="implementationViewSelector" onclick="showImplementationView();">Implementation</span></span>
+<div class="entitySelectors">
+<select id="classSelector">
+<option value selected="selected">classes...</option>
+</select>
+<select id="enumConstantSelector">
+<option value selected="selected">enum constants...</option>
+</select>
+<select id="fieldSelector">
+<option value selected="selected">fields...</option>
+</select>
+<select id="staticMethodSelector">
+<option value selected="selected">static methods...</option>
+</select>
+<select id="constructorSelector">
+<option value selected="selected">constructors...</option>
+</select>
+<select id="methodSelector">
+<option value selected="selected">methods...</option>
+</select>
+<select id="propertySelector">
+<option value selected="selected">properties...</option>
+</select>
+</div>
+</div>
+</div>
+<!-- ========= END OF TOP NAVBAR ========= -->
+<div id="dataArea" class="hidden">
+<div id="content">
+<!-- ======== START OF CLASS DATA ======== -->
+<div class="header">
+<div class="subTitle">com.penthera.virtuososdk.client</div>
+<h2 title="Interface IManifestParserObserver" class="title">Interface IManifestParserObserver</h2>
+</div>
+<div class="contentContainer">
+<div class="description">
+<ul class="blockList">
+<li class="blockList">
+<div class="classSignature">public interface <span class="strong">IManifestParserObserver</span></div>
+<div class="block">This interface provides a configurable mechanism for altering the output of the manifest parser
+ before the Download 2 Go SDK begins downloading an asset. It provides methods to alter the URLs
+ of each segment within the manifest, and update the asset properties prior to the asset being added
+ to the queue.
+
+ The class implementing IManifestParserObserver is instantiated within the service process of the
+ SDK and is called directly within the parsing process. It may be called when the app is in the
+ background as the result of manifest parsing continuing after the app is backgrounded.
+ It will only be called when the SDK determines that the device is online.
+
+ The IManifestParserObserver is provided to the engine through the <a class="code" href="IBackgroundProcessingManager.html" title="interface in com.penthera.virtuososdk.client"><code>IBackgroundProcessingManager</code></a>
+ interface, which itself is registered via the Android manifest.</div>
+</li>
+</ul>
+</div>
+<div class="summary">
+<ul class="blockList">
+<li class="blockList">
+<!-- ========== METHOD SUMMARY =========== -->
+<ul class="blockList">
+<li class="blockList"><a name="method_summary">
+<!--   -->
+</a>
+<table class="overviewSummary summaryTable memberSummary methodElementList" border="0" cellpadding="3" cellspacing="0" summary="Method Summary table, listing methods, and an explanation">
+<caption class="tableHeader"><span>Methods</span><span class="tabEnd">&nbsp;</span></caption>
+<tr class="columnHeaders">
+<th class="colFirst" scope="col"> </th>
+<th scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tr class="member method public">
+<td class="memberMarker colFirst"><img src="../../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="didParseSegment(com.penthera.virtuososdk.client.ISegmentedAsset, com.penthera.virtuososdk.client.ISegment)" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">didParseSegment</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>abstract java.lang.String&nbsp;</code><span class="itemTitle">didParseSegment</span>(ISegmentedAsset&nbsp;asset,
+               ISegment&nbsp;segment)</div>
+<div class="block">The SDK has parsed a segment for download.</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">java.lang.String&nbsp;<span class="itemTitle">didParseSegment</span>(<a class="code" href="ISegmentedAsset.html" title="interface in com.penthera.virtuososdk.client">ISegmentedAsset</a>&nbsp;asset,
+                               <a class="code" href="ISegment.html" title="interface in com.penthera.virtuososdk.client">ISegment</a>&nbsp;segment)</div>
+<dl>
+<dd>
+<div class="block">The SDK has parsed a segment for download.  This method gives the enclosing application a chance
+ to modify the download URL prior to it being queued for download.  This allows you to append custom security tokens to
+ the URL, or make any other manipulations that may be required prior to download.  If you do not need to make any changes
+ to the URL, you should return the unmodified URL from the segment's getRemotePath() method.</div>
+<dl class="tagSection"><dt><span class="strong">Parameters:</span></dt><dd><code>asset</code> - The asset from which the segment is parsed.</dd><dd><code>segment</code> - The asset segment parsed from download.</dd>
+<dt><span class="strong">Returns:</span></dt><dd>The modified URL to download for this segment.</dd><dt><span class="strong">See Also:</span></dt><dd><a class="code" href="ISegment.html" title="interface in com.penthera.virtuososdk.client"><code>ISegment</code></a></dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member method public">
+<td class="memberMarker colFirst"><img src="../../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="willAddToQueue(com.penthera.virtuososdk.client.ISegmentedAsset, com.penthera.virtuososdk.client.IAssetManager, android.content.Context)" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">willAddToQueue</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>abstract void&nbsp;</code><span class="itemTitle">willAddToQueue</span>(ISegmentedAsset&nbsp;segmentedAsset,
+              IAssetManager&nbsp;assetManager,
+              android.content.Context&nbsp;context)</div>
+<div class="block">The SDK has finished parsing the asset and is about to add the asset to the download queue.</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">void&nbsp;<span class="itemTitle">willAddToQueue</span>(<a class="code" href="ISegmentedAsset.html" title="interface in com.penthera.virtuososdk.client">ISegmentedAsset</a>&nbsp;segmentedAsset,
+                  <a class="code" href="IAssetManager.html" title="interface in com.penthera.virtuososdk.client">IAssetManager</a>&nbsp;assetManager,
+                  android.content.Context&nbsp;context)</div>
+<dl>
+<dd>
+<div class="block">The SDK has finished parsing the asset and is about to add the asset to the download queue.  This method gives the
+ enclosing application a chance to modify the asset's configuration options (E.G. start window, end window, asset download limit)
+ before the asset is added to the download queue and downloading begins.</div>
+<dl class="tagSection"><dt><span class="strong">Parameters:</span></dt><dd><code>segmentedAsset</code> - Generated segmented asset.</dd><dd><code>assetManager</code> - An asset manager instance which can be used for saving any changes</dd><dd><code>context</code> - A context that can be useful when fetching resources to process the add to queue action</dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+</table>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<!-- ========= END OF CLASS DATA ========= -->
+<!-- ======= START OF BOTTOM NAVBAR ====== -->
+<!-- ======== END OF BOTTOM NAVBAR ======= -->
+</div>
+</div>
+</div>
+</body>
+</html>

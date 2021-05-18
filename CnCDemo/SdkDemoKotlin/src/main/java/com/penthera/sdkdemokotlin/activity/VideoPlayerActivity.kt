@@ -42,11 +42,12 @@ import com.penthera.sdkdemokotlin.R
 import com.penthera.sdkdemokotlin.catalog.CatalogItemType
 import com.penthera.sdkdemokotlin.catalog.ExampleCatalogItem
 import com.penthera.sdkdemokotlin.dialog.TrackSelectionDialog
-import com.penthera.sdkdemokotlin.drm.DrmSessionManagerWrapper
 import com.penthera.virtuososdk.Common
 import com.penthera.virtuososdk.client.*
 import com.penthera.virtuososdk.client.drm.UnsupportedDrmException
-import com.penthera.virtuososdk.client.drm.VirtuosoDrmSessionManager
+import com.penthera.virtuososdk.support.exoplayer212.drm.ExoplayerDrmSessionManager
+import com.penthera.virtuososdk.support.exoplayer212.drm.SupportDrmSessionManager
+
 import com.penthera.virtuososdk.utility.CommonUtil.Identifier.*
 import java.net.CookieHandler
 import java.net.CookieManager
@@ -72,8 +73,8 @@ class VideoPlayerActivity : AppCompatActivity(), View.OnClickListener, PlaybackP
     private var mediaDataSourceFactory: DataSource.Factory? = null
     private var player: SimpleExoPlayer? = null
     private var mediaSource: MediaSource? = null
-    private var drmSessionManager: DrmSessionManager<FrameworkMediaCrypto>? = null
-    private var trackSelector: DefaultTrackSelector? = null
+    private var drmSessionManager: DrmSessionManager? = null
+    private var mTrackSelector: DefaultTrackSelector? = null
     private var trackSelectorParameters: DefaultTrackSelector.Parameters? = null
     private var lastSeenTrackGroupArray: TrackGroupArray? = null
 
@@ -176,7 +177,7 @@ class VideoPlayerActivity : AppCompatActivity(), View.OnClickListener, PlaybackP
     // OnClickListener methods
 
     override fun onClick(view: View) {
-        trackSelector?.let {
+        mTrackSelector?.let {
             if (view === selectTracksButton
                     && !isShowingTrackSelectionDialog
                     && TrackSelectionDialog.willHaveContent(it)) {
@@ -213,8 +214,8 @@ class VideoPlayerActivity : AppCompatActivity(), View.OnClickListener, PlaybackP
         }
 
         val adaptiveTrackSelectionFactory: TrackSelection.Factory = AdaptiveTrackSelection.Factory()
-        trackSelector = DefaultTrackSelector(this, adaptiveTrackSelectionFactory)
-        trackSelector?.parameters = trackSelectorParameters!!
+        mTrackSelector = DefaultTrackSelector(this, adaptiveTrackSelectionFactory)
+        mTrackSelector?.parameters = trackSelectorParameters!!
         lastSeenTrackGroupArray = null
 
         if (player == null) {
@@ -254,11 +255,11 @@ class VideoPlayerActivity : AppCompatActivity(), View.OnClickListener, PlaybackP
             renderersFactory.setExtensionRendererMode(extensionRendererMode)
 
             player = SimpleExoPlayer.Builder(this, renderersFactory).apply {
-                setTrackSelector(trackSelector!!)
-                setBandwidthMeter(BANDWIDTH_METER)
+                setTrackSelector(mTrackSelector!!)
+                setBandwidthMeter(DefaultBandwidthMeter.getSingletonInstance(this@VideoPlayerActivity))
             }.build().apply {
                 addListener(PlayerEventListener())
-                addAnalyticsListener(EventLogger(trackSelector))
+                addAnalyticsListener(EventLogger(mTrackSelector))
                 playWhenReady = shouldAutoPlay
             }
 
@@ -309,7 +310,7 @@ class VideoPlayerActivity : AppCompatActivity(), View.OnClickListener, PlaybackP
                 }
                 ret = factory.createMediaSource(uri!!)
             }
-            Common.AssetIdentifierType.FILE_IDENTIFIER -> ret = ProgressiveMediaSource.Factory(mediaDataSourceFactory).createMediaSource(uri)
+            Common.AssetIdentifierType.FILE_IDENTIFIER -> ret = ProgressiveMediaSource.Factory(mediaDataSourceFactory!!).createMediaSource(uri!!)
             else -> {
                 throw IllegalStateException("Unsupported type: $type")
             }
@@ -320,15 +321,15 @@ class VideoPlayerActivity : AppCompatActivity(), View.OnClickListener, PlaybackP
 
     @Throws(UnsupportedDrmException::class)
     private fun buildDrmSessionManager(uuid: UUID,
-                                       asset: ISegmentedAsset?): DrmSessionManager<FrameworkMediaCrypto>? {
+                                       asset: ISegmentedAsset?): DrmSessionManager? {
 
         val keyRequestPropertiesMap: HashMap<String, String> = HashMap()
         val drmListener = DrmListener(this)
         val mediaDrmOnEventListener: MediaDrmOnEventListener = MediaDrmOnEventListener()
 
         return asset?.let{
-            DrmSessionManagerWrapper(applicationContext, uuid,
-                    asset, keyRequestPropertiesMap, drmListener, mediaDrmOnEventListener)
+            ExoplayerDrmSessionManager(applicationContext, uuid,
+                    asset, keyRequestPropertiesMap, drmListener, mediaDrmOnEventListener, IntArray(0), true)
         }
     }
 
@@ -340,13 +341,13 @@ class VideoPlayerActivity : AppCompatActivity(), View.OnClickListener, PlaybackP
             updateStartPosition()
             player?.release()
             player = null
-            trackSelector = null
+            mTrackSelector = null
             trackSelectorParameters = null
         }
     }
 
     private fun updateTrackSelectorParameters() {
-        trackSelector?.let {
+        mTrackSelector?.let {
             trackSelectorParameters = it.parameters
         }
     }
@@ -373,7 +374,7 @@ class VideoPlayerActivity : AppCompatActivity(), View.OnClickListener, PlaybackP
      * @return A new DataSource factory.
      */
     private fun buildDataSourceFactory(useBandwidthMeter: Boolean): DataSource.Factory {
-        return DefaultDataSourceFactory(applicationContext, if (useBandwidthMeter) BANDWIDTH_METER else null,
+        return DefaultDataSourceFactory(applicationContext, if (useBandwidthMeter) DefaultBandwidthMeter.getSingletonInstance(this) else null,
                 buildHttpDataSourceFactory(useBandwidthMeter))
     }
 
@@ -385,13 +386,13 @@ class VideoPlayerActivity : AppCompatActivity(), View.OnClickListener, PlaybackP
      * @return A new HttpDataSource factory.
      */
     private fun buildHttpDataSourceFactory(useBandwidthMeter: Boolean): HttpDataSource.Factory {
-        return DefaultHttpDataSourceFactory("virtuoso-sdk", if (useBandwidthMeter) BANDWIDTH_METER else null)
+        return DefaultHttpDataSourceFactory("virtuoso-sdk", if (useBandwidthMeter) DefaultBandwidthMeter.getSingletonInstance(this) else null)
     }
 
     // User controls
 
     private fun updateButtonVisibilities() {
-        trackSelector?.let {
+        mTrackSelector?.let {
             selectTracksButton!!.isEnabled = player != null && TrackSelectionDialog.willHaveContent(it)
         }
     }
@@ -430,7 +431,7 @@ class VideoPlayerActivity : AppCompatActivity(), View.OnClickListener, PlaybackP
         override fun onTracksChanged(trackGroups: TrackGroupArray, trackSelections: TrackSelectionArray) {
             updateButtonVisibilities()
             if (trackGroups !== lastSeenTrackGroupArray) {
-                val mappedTrackInfo = trackSelector!!.currentMappedTrackInfo
+                val mappedTrackInfo = mTrackSelector!!.currentMappedTrackInfo
                 if (mappedTrackInfo != null) {
                     if (mappedTrackInfo.getTypeSupport(C.TRACK_TYPE_VIDEO) == MappingTrackSelector.MappedTrackInfo.RENDERER_SUPPORT_UNSUPPORTED_TRACKS) {
                         showToast(R.string.error_unsupported_video)
@@ -487,7 +488,6 @@ class VideoPlayerActivity : AppCompatActivity(), View.OnClickListener, PlaybackP
         private const val KEY_POSITION = "position"
         private const val KEY_AUTO_PLAY = "auto_play"
 
-        private val BANDWIDTH_METER = DefaultBandwidthMeter.Builder(null).build()
         private val DEFAULT_COOKIE_MANAGER: CookieManager = CookieManager()
 
         init {
@@ -565,15 +565,15 @@ class VideoPlayerActivity : AppCompatActivity(), View.OnClickListener, PlaybackP
      * enables the client to be informed of events for when keys are loaded or an error occurs
      * with fetching a license.
      */
-    private class DrmListener(private val activity: VideoPlayerActivity) : VirtuosoDrmSessionManager.EventListener {
+    private class DrmListener(private val activity: VideoPlayerActivity) : SupportDrmSessionManager.EventListener {
 
         override fun onDrmKeysLoaded() {
-            activity.player?.analyticsCollector?.onDrmKeysLoaded()
+           // activity.player?.analyticsCollector?.onDrmKeysLoaded()
         }
 
         override fun onDrmSessionManagerError(e: java.lang.Exception) { // Can't complete playback
             activity.handleDrmLicenseNotAvailable()
-            activity.player?.analyticsCollector?.onDrmSessionManagerError(e)
+            //activity.player?.analyticsCollector?.onDrmSessionManagerError(e)
         }
 
     }

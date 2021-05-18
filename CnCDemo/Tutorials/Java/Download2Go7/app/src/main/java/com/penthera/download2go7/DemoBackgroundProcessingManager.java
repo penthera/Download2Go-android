@@ -12,6 +12,7 @@ import com.penthera.virtuososdk.client.IAssetManager;
 import com.penthera.virtuososdk.client.IBackgroundProcessingManager;
 import com.penthera.virtuososdk.client.IIdentifier;
 import com.penthera.virtuososdk.client.IManifestParserObserver;
+import com.penthera.virtuososdk.client.IPrepareURLObserver;
 import com.penthera.virtuososdk.client.ISegment;
 import com.penthera.virtuososdk.client.ISegmentedAsset;
 import com.penthera.virtuososdk.client.ads.IClientSideAdsParserProvider;
