@@ -15,6 +15,7 @@ var classSelectorHTML = '\
 		<option value="com.penthera.virtuososdk/Common.EngineBlockedReason">Common.EngineBlockedReason</option>\
 		<option value="com.penthera.virtuososdk/Common.EngineStatus">Common.EngineStatus</option>\
 		<option value="com.penthera.virtuososdk/Common.Events">Common.Events</option>\
+		<option value="com.penthera.virtuososdk/Common.Events.Category">Common.Events.Category</option>\
 		<option value="com.penthera.virtuososdk/Common.FileSegmentType">Common.FileSegmentType</option>\
 		<option value="com.penthera.virtuososdk/Common.LicenseError">Common.LicenseError</option>\
 		<option value="com.penthera.virtuososdk/Common.LogLevelHelper">Common.LogLevelHelper</option>\

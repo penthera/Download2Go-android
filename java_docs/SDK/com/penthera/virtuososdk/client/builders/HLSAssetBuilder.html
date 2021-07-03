@@ -415,6 +415,19 @@ extends java.lang.Object</div>
 </tr>
 <tr class="member field inherited subclass">
 <td class="memberMarker colFirst"><img src="../../../../../resources/inheritedMember.gif" width="11" height="13" alt="Inherited member indicator" class="inheritedMember"></td>
+<td class="itemNameCell"><a name="rf" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);" class="inheritedMemberName" title="field defined in com.penthera.virtuososdk.client.builders.AssetBuilder">rf&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>protected java.util.Set&lt;java.lang.String&gt;&nbsp;</code><span class="itemTitle">rf</span></div>
+<div class="block">&nbsp;</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">protected&nbsp;java.util.Set&lt;java.lang.String&gt; rf</div>
+</div>
+</td>
+</tr>
+<tr class="member field inherited subclass">
+<td class="memberMarker colFirst"><img src="../../../../../resources/inheritedMember.gif" width="11" height="13" alt="Inherited member indicator" class="inheritedMember"></td>
 <td class="itemNameCell"><a name="sw" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);" class="inheritedMemberName" title="field defined in com.penthera.virtuososdk.client.builders.AssetBuilder">sw&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
 <td class="descriptionContainer colLast">
 <div class="descriptionOverview">
@@ -692,6 +705,19 @@ extends java.lang.Object</div>
 </div>
 </td>
 </tr>
+<tr class="member method inherited subclass">
+<td class="memberMarker colFirst"><img src="../../../../../resources/inheritedMember.gif" width="11" height="13" alt="Inherited member indicator" class="inheritedMember"></td>
+<td class="itemNameCell"><a name="validateResolutionFilters()" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);" class="inheritedMemberName" title="method defined in com.penthera.virtuososdk.client.builders.AssetBuilder">validateResolutionFilters&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>protected boolean&nbsp;</code><span class="itemTitle">validateResolutionFilters</span>()</div>
+<div class="block">&nbsp;</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">protected&nbsp;boolean&nbsp;<span class="itemTitle">validateResolutionFilters</span>()</div>
+</div>
+</td>
+</tr>
 <tr class="member method public">
 <td class="memberMarker colFirst"><img src="../../../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
 <td class="itemNameCell"><a name="withAncillaryFiles(java.util.List)" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">withAncillaryFiles</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
@@ -845,6 +871,31 @@ extends java.lang.Object</div>
 </div>
 <div class="descriptionDetail hidden">
 <div class="signature">public&nbsp;<a class="code" href="HLSAssetBuilder.html" title="class in com.penthera.virtuososdk.client.builders">HLSAssetBuilder</a>&nbsp;<span class="itemTitle">withPlaylistName</span>(java.lang.String&nbsp;val)</div>
+</div>
+</td>
+</tr>
+<tr class="member method public">
+<td class="memberMarker colFirst"><img src="../../../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="withResolutionFilter(java.util.Set)" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">withResolutionFilter</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code><a class="code" href="HLSAssetBuilder.html" title="class in com.penthera.virtuososdk.client.builders">HLSAssetBuilder</a>&nbsp;</code><span class="itemTitle">withResolutionFilter</span>(java.util.Set&lt;java.lang.String&gt;&nbsp;resolutions)</div>
+<div class="block">Set resolution filters to be applied when selecting video tracks for this manifest.</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">public&nbsp;<a class="code" href="HLSAssetBuilder.html" title="class in com.penthera.virtuososdk.client.builders">HLSAssetBuilder</a>&nbsp;<span class="itemTitle">withResolutionFilter</span>(java.util.Set&lt;java.lang.String&gt;&nbsp;resolutions)
+                                     throws java.lang.IllegalArgumentException</div>
+<dl>
+<dd>
+<div class="block">Set resolution filters to be applied when selecting video tracks for this manifest. Multiple
+ filter values may be set and if multiple tracks match then the bandwidth rules will be applied.
+ Resolution filters are defined as strings of the form "<width>x<height>"</div>
+<dl class="tagSection"><dt><span class="strong">Parameters:</span></dt><dd><code>resolutions</code> - A set of strings containing resolution filters for the video track.</dd>
+<dt><span class="strong">Returns:</span></dt><dd>The asset builder for chaining.</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code>java.lang.IllegalArgumentException</code></dd><dt><span class="strong">See Also:</span></dt><dd><a class="code" href="HLSAssetBuilder.html#desiredVideoBitrate(int)" title="method defined in com.penthera.virtuososdk.client.builders.HLSAssetBuilder"><code>desiredVideoBitrate(int)</code></a></dd></dl>
+</dd>
+</dl>
 </div>
 </td>
 </tr>

@@ -327,7 +327,7 @@ implements <a class="code" href="IAssetParams.html" title="interface in com.pent
 </tr>
 <tr class="member constructor subclass">
 <td class="memberMarker colFirst"><img src="../../../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
-<td class="itemNameCell"><a name="AssetParams(com.penthera.virtuososdk.client.builders.AssetBuilder.AssetParamsType, java.lang.String, java.lang.String, java.lang.String, boolean, java.net.URL, int, int, boolean, int, com.penthera.virtuososdk.client.ISegmentedAssetFromParserObserver, com.penthera.virtuososdk.client.IQueue.IQueuedAssetPermissionObserver, java.util.ArrayList, boolean, long, long, long, long, int)" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">AssetParams</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="itemNameCell"><a name="AssetParams(com.penthera.virtuososdk.client.builders.AssetBuilder.AssetParamsType, java.lang.String, java.lang.String, java.lang.String, boolean, java.net.URL, int, int, java.util.Set, boolean, int, com.penthera.virtuososdk.client.ISegmentedAssetFromParserObserver, com.penthera.virtuososdk.client.IQueue.IQueuedAssetPermissionObserver, java.util.ArrayList, boolean, long, long, long, long, int)" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">AssetParams</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
 <td class="descriptionContainer colLast">
 <div class="descriptionOverview">
 <div class="signature hidden rollover"><code>protected </code><span class="itemTitle">AssetParams</span>(com.penthera.virtuososdk.client.builders.AssetBuilder.AssetParamsType&nbsp;type,
@@ -338,6 +338,7 @@ implements <a class="code" href="IAssetParams.html" title="interface in com.pent
            java.net.URL&nbsp;manifestUrl,
            int&nbsp;desiredVideoBitrate,
            int&nbsp;desiredAudioBitrate,
+           java.util.Set&lt;java.lang.String&gt;&nbsp;resolutionFilters,
            boolean&nbsp;useFastPlay,
            int&nbsp;adSupport,
            ISegmentedAssetFromParserObserver&nbsp;observer,
@@ -360,6 +361,7 @@ implements <a class="code" href="IAssetParams.html" title="interface in com.pent
            java.net.URL&nbsp;manifestUrl,
            int&nbsp;desiredVideoBitrate,
            int&nbsp;desiredAudioBitrate,
+           java.util.Set&lt;java.lang.String&gt;&nbsp;resolutionFilters,
            boolean&nbsp;useFastPlay,
            int&nbsp;adSupport,
            <a class="code" href="../../../../../com/penthera/virtuososdk/client/ISegmentedAssetFromParserObserver.html" title="interface in com.penthera.virtuososdk.client">ISegmentedAssetFromParserObserver</a>&nbsp;observer,
@@ -376,7 +378,7 @@ implements <a class="code" href="IAssetParams.html" title="interface in com.pent
 </tr>
 <tr class="member constructor subclass">
 <td class="memberMarker colFirst"><img src="../../../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
-<td class="itemNameCell"><a name="AssetParams(com.penthera.virtuososdk.client.builders.AssetBuilder.AssetParamsType, java.lang.String, java.lang.String, java.lang.String, boolean, java.net.URL, int, int, boolean, int, com.penthera.virtuososdk.client.ISegmentedAssetFromParserObserver, com.penthera.virtuososdk.client.IQueue.IQueuedAssetPermissionObserver, java.util.ArrayList, long, long, long, long, int)" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">AssetParams</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="itemNameCell"><a name="AssetParams(com.penthera.virtuososdk.client.builders.AssetBuilder.AssetParamsType, java.lang.String, java.lang.String, java.lang.String, boolean, java.net.URL, int, int, java.util.Set, boolean, int, com.penthera.virtuososdk.client.ISegmentedAssetFromParserObserver, com.penthera.virtuososdk.client.IQueue.IQueuedAssetPermissionObserver, java.util.ArrayList, long, long, long, long, int)" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">AssetParams</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
 <td class="descriptionContainer colLast">
 <div class="descriptionOverview">
 <div class="signature hidden rollover"><code>protected </code><span class="itemTitle">AssetParams</span>(com.penthera.virtuososdk.client.builders.AssetBuilder.AssetParamsType&nbsp;type,
@@ -387,6 +389,7 @@ implements <a class="code" href="IAssetParams.html" title="interface in com.pent
            java.net.URL&nbsp;manifestUrl,
            int&nbsp;desiredVideoBitrate,
            int&nbsp;desiredAudioBitrate,
+           java.util.Set&lt;java.lang.String&gt;&nbsp;resolutionFilters,
            boolean&nbsp;useFastPlay,
            int&nbsp;adSupport,
            ISegmentedAssetFromParserObserver&nbsp;observer,
@@ -408,6 +411,7 @@ implements <a class="code" href="IAssetParams.html" title="interface in com.pent
            java.net.URL&nbsp;manifestUrl,
            int&nbsp;desiredVideoBitrate,
            int&nbsp;desiredAudioBitrate,
+           java.util.Set&lt;java.lang.String&gt;&nbsp;resolutionFilters,
            boolean&nbsp;useFastPlay,
            int&nbsp;adSupport,
            <a class="code" href="../../../../../com/penthera/virtuososdk/client/ISegmentedAssetFromParserObserver.html" title="interface in com.penthera.virtuososdk.client">ISegmentedAssetFromParserObserver</a>&nbsp;observer,
@@ -769,6 +773,29 @@ implements <a class="code" href="IAssetParams.html" title="interface in com.pent
 <dl class="tagSection">
 <dt><strong>Specified by:</strong></dt>
 <dd><code><a class="code" href="IAssetParams.html#getPlaylistName()" title="method defined in com.penthera.virtuososdk.client.builders.IAssetParams">getPlaylistName</a></code>&nbsp;in interface&nbsp;<code><a class="code" href="IAssetParams.html" title="interface in com.penthera.virtuososdk.client.builders">IAssetParams</a></code></dd>
+</dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member method public">
+<td class="memberMarker colFirst"><img src="../../../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="getResolutionFilters()" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">getResolutionFilters</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>java.util.Set&lt;java.lang.String&gt;&nbsp;</code><span class="itemTitle">getResolutionFilters</span>()</div>
+<div class="block">The desired resolution filters</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">public&nbsp;java.util.Set&lt;java.lang.String&gt;&nbsp;<span class="itemTitle">getResolutionFilters</span>()</div>
+<dl>
+<dd>
+<div class="block"><strong>Description copied from interface:&nbsp;<code><a class="code" href="IAssetParams.html#getResolutionFilters()" title="method defined in com.penthera.virtuososdk.client.builders.IAssetParams">IAssetParams</a></code></strong></div>
+<div class="block">The desired resolution filters</div>
+<dl class="tagSection">
+<dt><strong>Specified by:</strong></dt>
+<dd><code><a class="code" href="IAssetParams.html#getResolutionFilters()" title="method defined in com.penthera.virtuososdk.client.builders.IAssetParams">getResolutionFilters</a></code>&nbsp;in interface&nbsp;<code><a class="code" href="IAssetParams.html" title="interface in com.penthera.virtuososdk.client.builders">IAssetParams</a></code></dd>
 </dl>
 </dd>
 </dl>
