@@ -57,7 +57,7 @@ dependencies {
     
     implementation 'androidx.recyclerview:recyclerview:1.2.0'
 
-    implementation 'com.penthera:cnc-android-sdk-debug:4.0.0-ressupport'
+    implementation 'com.penthera:cnc-android-sdk-debug:4.0.0-ressupport2'
     implementation 'com.penthera:cnc-exoplayer-2_11-support-debug:4.0.0'
 
     implementation 'com.google.android.exoplayer:exoplayer:2.11.3'

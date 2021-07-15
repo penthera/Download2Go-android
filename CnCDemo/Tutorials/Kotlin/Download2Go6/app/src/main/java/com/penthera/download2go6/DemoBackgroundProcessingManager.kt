@@ -20,6 +20,14 @@ class DemoBackgroundProcessingManager :
     override fun getManifestParserObserver(): IManifestParserObserver? {
         return null
     }
+	
+	override fun getDASHManifestRenditionSelector(): IDASHManifestRenditionSelector? {
+		return null
+	}
+	
+	override fun getHLSManifestRenditionSelector(): IHLSManifestRenditionSelector? {
+		return null
+	}
 
     override fun getClientSideAdsParserProvider(): IClientSideAdsParserProvider {
         return DemoClientAdsProvider.getInstance()

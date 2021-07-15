@@ -129,6 +129,34 @@ var currentClass = "ISettings";
 <div class="summary">
 <ul class="blockList">
 <li class="blockList">
+<!-- =========== FIELD SUMMARY =========== -->
+<ul class="blockList">
+<li class="blockList"><a name="field_summary">
+<!--   -->
+</a>
+<table class="overviewSummary summaryTable memberSummary fieldElementList" border="0" cellpadding="3" cellspacing="0" summary="Field Summary table, listing fields, and an explanation">
+<caption class="tableHeader"><span>Fields</span><span class="tabEnd">&nbsp;</span></caption>
+<tr class="columnHeaders">
+<th class="colFirst" scope="col"> </th>
+<th scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Field and Description</th>
+</tr>
+<tr class="member field public">
+<td class="memberMarker colFirst"><img src="../../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="NOT_SET" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">NOT_SET</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>static int&nbsp;</code><span class="itemTitle">NOT_SET</span></div>
+<div class="block">&nbsp;</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">static final&nbsp;int NOT_SET</div>
+</div>
+</td>
+</tr>
+</table>
+</li>
+</ul>
 <!-- ========== METHOD SUMMARY =========== -->
 <ul class="blockList">
 <li class="blockList categoryList"><a name="method_summary">
@@ -1680,6 +1708,28 @@ var currentClass = "ISettings";
 </tr>
 <tr class="member method public">
 <td class="memberMarker colFirst"><img src="../../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="getDrmSecurityLevel()" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">getDrmSecurityLevel</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>abstract int&nbsp;</code><span class="itemTitle">getDrmSecurityLevel</span>()</div>
+<div class="block">Gets the requested security level the SDK will use when opening all <code>MediaDrm</code> sessions.</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">int&nbsp;<span class="itemTitle">getDrmSecurityLevel</span>()</div>
+<dl>
+<dd>
+<div class="block">Gets the requested security level the SDK will use when opening all <code>MediaDrm</code> sessions.
+ This is only applicable to devices running API28+. If this setting is set to <code>NOT_SET</code> then the session
+ is opened with the default level. Default setting is not set.
+ <br> The new setting is applied automatically after being set. <br></div>
+<dl class="tagSection"><dt><span class="strong">Returns:</span></dt><dd>The current security level that will be requested.</dd><dt><span class="strong">See Also:</span></dt><dd><code>MediaDrm.openSession(int)</code></dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member method public">
+<td class="memberMarker colFirst"><img src="../../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
 <td class="itemNameCell"><a name="getFastPlaySegmentCount()" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">getFastPlaySegmentCount</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
 <td class="descriptionContainer colLast">
 <div class="descriptionOverview">
@@ -1692,6 +1742,28 @@ var currentClass = "ISettings";
 <dd>
 <div class="block">The setting for how many segments to download for Fast Play assets.</div>
 <dl class="tagSection"><dt><span class="strong">Returns:</span></dt><dd>The number of segments to download</dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member method public">
+<td class="memberMarker colFirst"><img src="../../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="getPlatformDRMProperties()" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">getPlatformDRMProperties</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>abstract java.util.Map&lt;java.lang.String,java.lang.String&gt;&nbsp;</code><span class="itemTitle">getPlatformDRMProperties</span>()</div>
+<div class="block">It is possible to optionally set properties that can be assigned to the platform <code>MediaDrm</code>
+ wherever it is used within the SDK.</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">java.util.Map&lt;java.lang.String,java.lang.String&gt;&nbsp;<span class="itemTitle">getPlatformDRMProperties</span>()</div>
+<dl>
+<dd>
+<div class="block">It is possible to optionally set properties that can be assigned to the platform <code>MediaDrm</code>
+ wherever it is used within the SDK. The properties will be set using <code>MediaDrm.setPropertyString(String, String)</code>
+ on the MediaDRM instance prior to fetching keys or loading them in a DRM session for playback.</div>
+<dl class="tagSection"><dt><span class="strong">Returns:</span></dt><dd>The currently set DRM String properties, or an empty map if none are set.</dd></dl>
 </dd>
 </dl>
 </div>
@@ -1718,6 +1790,27 @@ var currentClass = "ISettings";
 </tr>
 <tr class="member method public">
 <td class="memberMarker colFirst"><img src="../../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="resetDrmSecurityLevel()" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">resetDrmSecurityLevel</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>abstract <a class="code" href="ISettings.html" title="interface in com.penthera.virtuososdk.client">ISettings</a>&nbsp;</code><span class="itemTitle">resetDrmSecurityLevel</span>()</div>
+<div class="block">Resets the DRM security level, which will be used when requesting sessions from the platform MediaDrm
+ on devices with API 28+.</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature"><a class="code" href="ISettings.html" title="interface in com.penthera.virtuososdk.client">ISettings</a>&nbsp;<span class="itemTitle">resetDrmSecurityLevel</span>()</div>
+<dl>
+<dd>
+<div class="block">Resets the DRM security level, which will be used when requesting sessions from the platform MediaDrm
+ on devices with API 28+.</div>
+<dl class="tagSection"><dt><span class="strong">Returns:</span></dt><dd>The current settings object, to allow for call chaining.</dd><dt><span class="strong">See Also:</span></dt><dd><a class="code" href="ISettings.html#setDrmSecurityLevel(int)" title="method defined in com.penthera.virtuososdk.client.ISettings"><code>setDrmSecurityLevel(int)</code></a></dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member method public">
+<td class="memberMarker colFirst"><img src="../../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
 <td class="itemNameCell"><a name="resetFastPlaySegmentCount()" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">resetFastPlaySegmentCount</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
 <td class="descriptionContainer colLast">
 <div class="descriptionOverview">
@@ -1730,6 +1823,28 @@ var currentClass = "ISettings";
 <dd>
 <div class="block">Resets the segment count to use for fastplay assets</div>
 <dl class="tagSection"><dt><span class="strong">Returns:</span></dt><dd>The current settings object, to allow for call chaining.</dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member method public">
+<td class="memberMarker colFirst"><img src="../../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="resetPlatformDRMProperties()" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">resetPlatformDRMProperties</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>abstract <a class="code" href="ISettings.html" title="interface in com.penthera.virtuososdk.client">ISettings</a>&nbsp;</code><span class="itemTitle">resetPlatformDRMProperties</span>()</div>
+<div class="block">Resets the current setting for String properties to be set on the DRM instances in the SDK before use.</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature"><a class="code" href="ISettings.html" title="interface in com.penthera.virtuososdk.client">ISettings</a>&nbsp;<span class="itemTitle">resetPlatformDRMProperties</span>()</div>
+<dl>
+<dd>
+<div class="block">Resets the current setting for String properties to be set on the DRM instances in the SDK before use.
+ It is possible to optionally set properties that can be assigned to the platform <code>MediaDrm</code>
+ wherever it is used within the SDK. The properties will be set using <code>MediaDrm.setPropertyString(String, String)</code>
+ on the MediaDRM instance prior to fetching keys or loading them in a DRM session for playback.</div>
+<dl class="tagSection"><dt><span class="strong">Returns:</span></dt><dd>The current settings object, to allow for call chaining.</dd><dt><span class="strong">See Also:</span></dt><dd><a class="code" href="ISettings.html#setPlatformDRMProperties(java.util.Map)" title="method defined in com.penthera.virtuososdk.client.ISettings"><code>setPlatformDRMProperties(Map)</code></a></dd></dl>
 </dd>
 </dl>
 </div>
@@ -1761,6 +1876,31 @@ var currentClass = "ISettings";
 </tr>
 <tr class="member method public">
 <td class="memberMarker colFirst"><img src="../../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="setDrmSecurityLevel(int)" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">setDrmSecurityLevel</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>abstract <a class="code" href="ISettings.html" title="interface in com.penthera.virtuososdk.client">ISettings</a>&nbsp;</code><span class="itemTitle">setDrmSecurityLevel</span>(int&nbsp;securityLevel)</div>
+<div class="block">Sets the requested security level when opening all <code>MediaDrm</code> sessions.</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature"><a class="code" href="ISettings.html" title="interface in com.penthera.virtuososdk.client">ISettings</a>&nbsp;<span class="itemTitle">setDrmSecurityLevel</span>(int&nbsp;securityLevel)</div>
+<dl>
+<dd>
+<div class="block">Sets the requested security level when opening all <code>MediaDrm</code> sessions.
+ If this is set then the SDK will open all sessions with the specified level.
+ If this setting is set to <a class="code" href="ISettings.html#NOT_SET" title="field defined in com.penthera.virtuososdk.client.ISettings"><code>NOT_SET</code></a> then the session is opened with the default level.
+ Default setting is not set.
+ This is only applicable to devices running API28+.
+ <br> The new setting is applied automatically after being set. <br></div>
+<dl class="tagSection"><dt><span class="strong">Parameters:</span></dt><dd><code>securityLevel</code> - The requested security level.</dd>
+<dt><span class="strong">Returns:</span></dt><dd>The current settings object, to allow for call chaining.</dd><dt><span class="strong">See Also:</span></dt><dd><code>MediaDrm.openSession(int)</code></dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member method public">
+<td class="memberMarker colFirst"><img src="../../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
 <td class="itemNameCell"><a name="setFastPlaySegmentCount(int)" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">setFastPlaySegmentCount</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
 <td class="descriptionContainer colLast">
 <div class="descriptionOverview">
@@ -1778,6 +1918,32 @@ var currentClass = "ISettings";
  Flags reported through that API are:
  <a class="code" href="../../../../com/penthera/virtuososdk/Common.SettingFlag.html#SETTING_FASTPLAY_COUNT" title="field defined in com.penthera.virtuososdk.Common.SettingFlag"><code>Common.SettingFlag.SETTING_FASTPLAY_COUNT</code></a></div>
 <dl class="tagSection"><dt><span class="strong">Parameters:</span></dt><dd><code>count</code> - The number of segments to download for Fast Play assets.</dd>
+<dt><span class="strong">Returns:</span></dt><dd>The current settings object, to allow for call chaining.</dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member method public">
+<td class="memberMarker colFirst"><img src="../../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="setPlatformDRMProperties(java.util.Map)" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">setPlatformDRMProperties</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>abstract <a class="code" href="ISettings.html" title="interface in com.penthera.virtuososdk.client">ISettings</a>&nbsp;</code><span class="itemTitle">setPlatformDRMProperties</span>(java.util.Map&lt;java.lang.String,java.lang.String&gt;&nbsp;properties)</div>
+<div class="block">It is possible to optionally set properties that can be assigned to the platform <code>MediaDrm</code>
+ wherever it is used within the SDK.</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature"><a class="code" href="ISettings.html" title="interface in com.penthera.virtuososdk.client">ISettings</a>&nbsp;<span class="itemTitle">setPlatformDRMProperties</span>(java.util.Map&lt;java.lang.String,java.lang.String&gt;&nbsp;properties)</div>
+<dl>
+<dd>
+<div class="block">It is possible to optionally set properties that can be assigned to the platform <code>MediaDrm</code>
+ wherever it is used within the SDK. The properties will be set using <code>MediaDrm.setPropertyString(String, String)</code>
+ on the MediaDRM instance prior to fetching keys or loading them in a DRM session for playback.
+ Set the properties provided and replace any previous properties. This will take effect on all DRM instances
+ created after the settings are stored.
+ <br> The new setting is applied automatically after being set. <br></div>
+<dl class="tagSection"><dt><span class="strong">Parameters:</span></dt><dd><code>properties</code> - New String properties to set on the MediaDRM instances.</dd>
 <dt><span class="strong">Returns:</span></dt><dd>The current settings object, to allow for call chaining.</dd></dl>
 </dd>
 </dl>

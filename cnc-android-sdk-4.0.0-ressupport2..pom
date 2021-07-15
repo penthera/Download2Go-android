@@ -4,7 +4,7 @@
 <title>Error 404 Resource does not exist</title>
 </head>
 <body><h2>HTTP ERROR 404</h2>
-<p>Problem accessing /repository/releases/com/penthera/cnc-android-sdk-debug/4.0.0-ressupport./cnc-android-sdk-debug-4.0.0-ressupport..pom. Reason:
+<p>Problem accessing /repository/releases/com/penthera/cnc-android-sdk/4.0.0-ressupport2./cnc-android-sdk-4.0.0-ressupport2..pom. Reason:
 <pre>    Resource does not exist</pre></p><hr /><i><small>Powered by Jetty://</small></i><br/>                                                
 <br/>                                                
 <br/>                                                

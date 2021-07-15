@@ -48,7 +48,7 @@ allprojects {
 
 dependencies {
 
-    implementation 'com.penthera:cnc-android-sdk-debug:4.0.0-ressupport'
+    implementation 'com.penthera:cnc-android-sdk-debug:4.0.0-ressupport2'
     implementation 'com.penthera:cnc-android-bitmovin-support:3.17.0.1'
 
     implementation 'com.bitmovin.player:playercore:2.60.0'

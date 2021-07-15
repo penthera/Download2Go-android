@@ -33,6 +33,16 @@ public class DemoBackgroundProcessingManager implements IBackgroundProcessingMan
         return new DemoManifestParserObserver();
     }
 
+	 @Override
+    public IDASHManifestRenditionSelector getDASHManifestRenditionSelector() {
+        return null;
+    }
+
+    @Override
+    public IHLSManifestRenditionSelector getHLSManifestRenditionSelector() {
+        return null;
+    }
+	
     @Override
     public IClientSideAdsParserProvider getClientSideAdsParserProvider() {
         return new DemoAdsParserProvider();
