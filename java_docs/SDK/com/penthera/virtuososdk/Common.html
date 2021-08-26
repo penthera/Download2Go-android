@@ -903,29 +903,6 @@ extends java.lang.Object</div>
 </tr>
 <tr class="member method public">
 <td class="memberMarker colFirst"><img src="../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
-<td class="itemNameCell"><a name="getAppProcessName(android.content.Context)" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">getAppProcessName</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
-<td class="descriptionContainer colLast">
-<div class="descriptionOverview">
-<div class="signature hidden rollover"><code>static java.lang.String&nbsp;</code><span class="itemTitle">getAppProcessName</span>(android.content.Context&nbsp;context)</div>
-<div class="block">A convenience helper method that provides the process name of the main process for this application.</div>
-</div>
-<div class="descriptionDetail hidden">
-<div class="signature">public static&nbsp;java.lang.String&nbsp;<span class="itemTitle">getAppProcessName</span>(android.content.Context&nbsp;context)</div>
-<dl>
-<dd>
-<div class="block">A convenience helper method that provides the process name of the main process for this application.
- This is required when providing a custom configuration for WorkManager, either through <code>Configuration.Provider</code>
- or a custom workmanager initializer. The configuration requires the addition of a default process name <code>Configuration.Builder.setDefaultProcessName(String)</code>.
- This method assumes that the main client process of the application will be the default process for WorkManager. The SDK assumes the same configuration.</div>
-<dl class="tagSection"><dt><span class="strong">Parameters:</span></dt><dd><code>context</code> - A context to use to fetch the process details</dd>
-<dt><span class="strong">Returns:</span></dt><dd>the application process name, or null in the case of an unrecoverable error.</dd></dl>
-</dd>
-</dl>
-</div>
-</td>
-</tr>
-<tr class="member method public">
-<td class="memberMarker colFirst"><img src="../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
 <td class="itemNameCell"><a name="verifyLicense()" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">verifyLicense</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
 <td class="descriptionContainer colLast">
 <div class="descriptionOverview">

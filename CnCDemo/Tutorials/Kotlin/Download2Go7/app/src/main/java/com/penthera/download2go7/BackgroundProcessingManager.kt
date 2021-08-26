@@ -17,14 +17,6 @@ class BackgroundProcessingManager : IBackgroundProcessingManager {
         return ManifestParseObserver()
     }
 
-	override fun getDASHManifestRenditionSelector(): IDASHManifestRenditionSelector? {
-		return null
-	}
-	
-	override fun getHLSManifestRenditionSelector(): IHLSManifestRenditionSelector? {
-		return null
-	}
-	
     override fun getClientSideAdsParserProvider(): IClientSideAdsParserProvider {
         return AdsProvider();
     }

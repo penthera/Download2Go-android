@@ -1,8 +1,6 @@
 package com.penthera.sdkdemo.backgroundService;
 
 import com.penthera.virtuososdk.client.IBackgroundProcessingManager;
-import com.penthera.virtuososdk.client.IDASHManifestRenditionSelector;
-import com.penthera.virtuososdk.client.IHLSManifestRenditionSelector;
 import com.penthera.virtuososdk.client.IManifestParserObserver;
 import com.penthera.virtuososdk.client.IPrepareURLObserver;
 import com.penthera.virtuososdk.client.autodownload.IPlaylistAssetProvider;
@@ -15,16 +13,6 @@ public class DemoBackgroundProcessingManager implements IBackgroundProcessingMan
     @Override
     public IManifestParserObserver getManifestParserObserver() {
         return new DemoManifestParserObserver();
-    }
-
-    @Override
-    public IDASHManifestRenditionSelector getDASHManifestRenditionSelector() {
-        return null;
-    }
-
-    @Override
-    public IHLSManifestRenditionSelector getHLSManifestRenditionSelector() {
-        return null;
     }
 
     @Override
