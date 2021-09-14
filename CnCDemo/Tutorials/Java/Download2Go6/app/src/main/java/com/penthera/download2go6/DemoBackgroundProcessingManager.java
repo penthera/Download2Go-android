@@ -21,6 +21,16 @@ public class DemoBackgroundProcessingManager implements IBackgroundProcessingMan
         return null;
     }
 
+	 @Override
+    public IDASHManifestRenditionSelector getDASHManifestRenditionSelector() {
+        return null;
+    }
+
+    @Override
+    public IHLSManifestRenditionSelector getHLSManifestRenditionSelector() {
+        return null;
+    }
+	
     @Override
     public IClientSideAdsParserProvider getClientSideAdsParserProvider() {
         return DemoClientAdsProvider.getInstance();

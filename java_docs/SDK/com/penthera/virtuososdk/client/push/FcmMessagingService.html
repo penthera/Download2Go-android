@@ -114,7 +114,7 @@ var currentClass = "FcmMessagingService";
 <li>android.app.Service</li>
 <li>
 <ul class="inheritance">
-<li>com.google.firebase.messaging.zzc</li>
+<li>com.google.firebase.messaging.EnhancedIntentService</li>
 <li>
 <ul class="inheritance">
 <li>com.google.firebase.messaging.FirebaseMessagingService</li>
@@ -187,6 +187,20 @@ extends com.google.firebase.messaging.FirebaseMessagingService</div>
 </div>
 <div class="descriptionDetail hidden">
 <div class="signature">public static final&nbsp;java.lang.String ACCOUNT_SERVICE</div>
+</div>
+</td>
+</tr>
+<tr class="member field inherited public">
+<td class="memberMarker colFirst"><img src="../../../../../resources/inheritedMember.gif" width="11" height="13" alt="Inherited member indicator" class="inheritedMember"></td>
+<td class="itemNameCell"><a name="ACTION_DIRECT_BOOT_REMOTE_INTENT" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);" class="inheritedMemberName" title="field defined in com.google.firebase.messaging.FirebaseMessagingService">ACTION_DIRECT_BOOT_REMOTE_INTENT&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>static java.lang.String&nbsp;</code><span class="itemTitle">ACTION_DIRECT_BOOT_REMOTE_INTENT</span></div>
+<div class="block">&nbsp;</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature"><span class="annotation">@NonNull
+</span>public static final&nbsp;java.lang.String ACTION_DIRECT_BOOT_REMOTE_INTENT</div>
 </div>
 </td>
 </tr>
@@ -2677,6 +2691,20 @@ extends com.google.firebase.messaging.FirebaseMessagingService</div>
 </div>
 </td>
 </tr>
+<tr class="member method inherited subclass">
+<td class="memberMarker colFirst"><img src="../../../../../resources/inheritedMember.gif" width="11" height="13" alt="Inherited member indicator" class="inheritedMember"></td>
+<td class="itemNameCell"><a name="getStartCommandIntent(android.content.Intent)" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);" class="inheritedMemberName" title="method defined in com.google.firebase.messaging.FirebaseMessagingService">getStartCommandIntent&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>protected android.content.Intent&nbsp;</code><span class="itemTitle">getStartCommandIntent</span>(android.content.Intent&nbsp;arg0)</div>
+<div class="block">&nbsp;</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature"><span class="annotation">@NonNull
+</span>protected&nbsp;android.content.Intent&nbsp;<span class="itemTitle">getStartCommandIntent</span>(<span class="annotation">@NonNull</span>&nbsp;android.content.Intent&nbsp;arg0)</div>
+</div>
+</td>
+</tr>
 <tr class="member method inherited public">
 <td class="memberMarker colFirst"><img src="../../../../../resources/inheritedMember.gif" width="11" height="13" alt="Inherited member indicator" class="inheritedMember"></td>
 <td class="itemNameCell"><a name="getString(int)" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);" class="inheritedMemberName" title="method defined in android.content.Context">getString&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
@@ -2831,6 +2859,32 @@ extends com.google.firebase.messaging.FirebaseMessagingService</div>
 </tr>
 <tr class="member method inherited public">
 <td class="memberMarker colFirst"><img src="../../../../../resources/inheritedMember.gif" width="11" height="13" alt="Inherited member indicator" class="inheritedMember"></td>
+<td class="itemNameCell"><a name="handleIntent(android.content.Intent)" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);" class="inheritedMemberName" title="method defined in com.google.firebase.messaging.FirebaseMessagingService">handleIntent&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>void&nbsp;</code><span class="itemTitle">handleIntent</span>(android.content.Intent&nbsp;arg0)</div>
+<div class="block">&nbsp;</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">public&nbsp;void&nbsp;<span class="itemTitle">handleIntent</span>(<span class="annotation">@NonNull</span>&nbsp;android.content.Intent&nbsp;arg0)</div>
+</div>
+</td>
+</tr>
+<tr class="member method inherited public">
+<td class="memberMarker colFirst"><img src="../../../../../resources/inheritedMember.gif" width="11" height="13" alt="Inherited member indicator" class="inheritedMember"></td>
+<td class="itemNameCell"><a name="handleIntentOnMainThread(android.content.Intent)" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);" class="inheritedMemberName" title="method defined in com.google.firebase.messaging.EnhancedIntentService">handleIntentOnMainThread&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>boolean&nbsp;</code><span class="itemTitle">handleIntentOnMainThread</span>(android.content.Intent&nbsp;arg0)</div>
+<div class="block">&nbsp;</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">public&nbsp;boolean&nbsp;<span class="itemTitle">handleIntentOnMainThread</span>(<span class="annotation">@NonNull</span>&nbsp;android.content.Intent&nbsp;arg0)</div>
+</div>
+</td>
+</tr>
+<tr class="member method inherited public">
+<td class="memberMarker colFirst"><img src="../../../../../resources/inheritedMember.gif" width="11" height="13" alt="Inherited member indicator" class="inheritedMember"></td>
 <td class="itemNameCell"><a name="isDeviceProtectedStorage()" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);" class="inheritedMemberName" title="method defined in android.content.ContextWrapper">isDeviceProtectedStorage&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
 <td class="descriptionContainer colLast">
 <div class="descriptionOverview">
@@ -2950,14 +3004,15 @@ extends com.google.firebase.messaging.FirebaseMessagingService</div>
 </tr>
 <tr class="member method inherited public">
 <td class="memberMarker colFirst"><img src="../../../../../resources/inheritedMember.gif" width="11" height="13" alt="Inherited member indicator" class="inheritedMember"></td>
-<td class="itemNameCell"><a name="onBind(android.content.Intent)" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);" class="inheritedMemberName" title="method defined in com.google.firebase.messaging.zzc">onBind&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="itemNameCell"><a name="onBind(android.content.Intent)" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);" class="inheritedMemberName" title="method defined in com.google.firebase.messaging.EnhancedIntentService">onBind&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
 <td class="descriptionContainer colLast">
 <div class="descriptionOverview">
 <div class="signature hidden rollover"><code>android.os.IBinder&nbsp;</code><span class="itemTitle">onBind</span>(android.content.Intent&nbsp;arg0)</div>
 <div class="block">&nbsp;</div>
 </div>
 <div class="descriptionDetail hidden">
-<div class="signature">public final&nbsp;android.os.IBinder&nbsp;<span class="itemTitle">onBind</span>(android.content.Intent&nbsp;arg0)</div>
+<div class="signature"><span class="annotation">@NonNull
+</span>public final&nbsp;android.os.IBinder&nbsp;<span class="itemTitle">onBind</span>(<span class="annotation">@NonNull</span>&nbsp;android.content.Intent&nbsp;arg0)</div>
 </div>
 </td>
 </tr>
@@ -3003,7 +3058,7 @@ extends com.google.firebase.messaging.FirebaseMessagingService</div>
 </tr>
 <tr class="member method inherited public">
 <td class="memberMarker colFirst"><img src="../../../../../resources/inheritedMember.gif" width="11" height="13" alt="Inherited member indicator" class="inheritedMember"></td>
-<td class="itemNameCell"><a name="onDestroy()" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);" class="inheritedMemberName" title="method defined in com.google.firebase.messaging.zzc">onDestroy&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="itemNameCell"><a name="onDestroy()" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);" class="inheritedMemberName" title="method defined in com.google.firebase.messaging.EnhancedIntentService">onDestroy&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
 <td class="descriptionContainer colLast">
 <div class="descriptionOverview">
 <div class="signature hidden rollover"><code>void&nbsp;</code><span class="itemTitle">onDestroy</span>()</div>
@@ -3059,7 +3114,7 @@ extends com.google.firebase.messaging.FirebaseMessagingService</div>
 </div>
 <div class="descriptionDetail hidden">
 <div class="signature"><span class="annotation">@WorkerThread
-</span>public&nbsp;void&nbsp;<span class="itemTitle">onMessageSent</span>(java.lang.String&nbsp;arg0)</div>
+</span>public&nbsp;void&nbsp;<span class="itemTitle">onMessageSent</span>(<span class="annotation">@NonNull</span>&nbsp;java.lang.String&nbsp;arg0)</div>
 </div>
 </td>
 </tr>
@@ -3108,8 +3163,8 @@ extends com.google.firebase.messaging.FirebaseMessagingService</div>
 </div>
 <div class="descriptionDetail hidden">
 <div class="signature"><span class="annotation">@WorkerThread
-</span>public&nbsp;void&nbsp;<span class="itemTitle">onSendError</span>(java.lang.String&nbsp;arg0,
-                            java.lang.Exception&nbsp;arg1)</div>
+</span>public&nbsp;void&nbsp;<span class="itemTitle">onSendError</span>(<span class="annotation">@NonNull</span>&nbsp;java.lang.String&nbsp;arg0,
+                            <span class="annotation">@NonNull</span>&nbsp;java.lang.Exception&nbsp;arg1)</div>
 </div>
 </td>
 </tr>
@@ -3131,7 +3186,7 @@ extends com.google.firebase.messaging.FirebaseMessagingService</div>
 </tr>
 <tr class="member method inherited public">
 <td class="memberMarker colFirst"><img src="../../../../../resources/inheritedMember.gif" width="11" height="13" alt="Inherited member indicator" class="inheritedMember"></td>
-<td class="itemNameCell"><a name="onStartCommand(android.content.Intent, int, int)" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);" class="inheritedMemberName" title="method defined in com.google.firebase.messaging.zzc">onStartCommand&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="itemNameCell"><a name="onStartCommand(android.content.Intent, int, int)" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);" class="inheritedMemberName" title="method defined in com.google.firebase.messaging.EnhancedIntentService">onStartCommand&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
 <td class="descriptionContainer colLast">
 <div class="descriptionOverview">
 <div class="signature hidden rollover"><code>int&nbsp;</code><span class="itemTitle">onStartCommand</span>(android.content.Intent&nbsp;arg0,
@@ -3140,7 +3195,7 @@ extends com.google.firebase.messaging.FirebaseMessagingService</div>
 <div class="block">&nbsp;</div>
 </div>
 <div class="descriptionDetail hidden">
-<div class="signature">public final&nbsp;int&nbsp;<span class="itemTitle">onStartCommand</span>(android.content.Intent&nbsp;arg0,
+<div class="signature">public final&nbsp;int&nbsp;<span class="itemTitle">onStartCommand</span>(<span class="annotation">@NonNull</span>&nbsp;android.content.Intent&nbsp;arg0,
                  int&nbsp;arg1,
                  int&nbsp;arg2)</div>
 </div>
@@ -4041,45 +4096,6 @@ extends com.google.firebase.messaging.FirebaseMessagingService</div>
 <div class="signature">public&nbsp;void&nbsp;<span class="itemTitle">updateServiceGroup</span>(android.content.ServiceConnection&nbsp;arg0,
                       int&nbsp;arg1,
                       int&nbsp;arg2)</div>
-</div>
-</td>
-</tr>
-<tr class="member method inherited subclass">
-<td class="memberMarker colFirst"><img src="../../../../../resources/inheritedMember.gif" width="11" height="13" alt="Inherited member indicator" class="inheritedMember"></td>
-<td class="itemNameCell"><a name="zza(android.content.Intent)" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);" class="inheritedMemberName" title="method defined in com.google.firebase.messaging.FirebaseMessagingService">zza&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
-<td class="descriptionContainer colLast">
-<div class="descriptionOverview">
-<div class="signature hidden rollover"><code>protected android.content.Intent&nbsp;</code><span class="itemTitle">zza</span>(android.content.Intent&nbsp;arg0)</div>
-<div class="block">&nbsp;</div>
-</div>
-<div class="descriptionDetail hidden">
-<div class="signature">protected final&nbsp;android.content.Intent&nbsp;<span class="itemTitle">zza</span>(android.content.Intent&nbsp;arg0)</div>
-</div>
-</td>
-</tr>
-<tr class="member method inherited public">
-<td class="memberMarker colFirst"><img src="../../../../../resources/inheritedMember.gif" width="11" height="13" alt="Inherited member indicator" class="inheritedMember"></td>
-<td class="itemNameCell"><a name="zzb(android.content.Intent)" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);" class="inheritedMemberName" title="method defined in com.google.firebase.messaging.FirebaseMessagingService">zzb&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
-<td class="descriptionContainer colLast">
-<div class="descriptionOverview">
-<div class="signature hidden rollover"><code>boolean&nbsp;</code><span class="itemTitle">zzb</span>(android.content.Intent&nbsp;arg0)</div>
-<div class="block">&nbsp;</div>
-</div>
-<div class="descriptionDetail hidden">
-<div class="signature">public final&nbsp;boolean&nbsp;<span class="itemTitle">zzb</span>(android.content.Intent&nbsp;arg0)</div>
-</div>
-</td>
-</tr>
-<tr class="member method inherited public">
-<td class="memberMarker colFirst"><img src="../../../../../resources/inheritedMember.gif" width="11" height="13" alt="Inherited member indicator" class="inheritedMember"></td>
-<td class="itemNameCell"><a name="zzc(android.content.Intent)" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);" class="inheritedMemberName" title="method defined in com.google.firebase.messaging.FirebaseMessagingService">zzc&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
-<td class="descriptionContainer colLast">
-<div class="descriptionOverview">
-<div class="signature hidden rollover"><code>void&nbsp;</code><span class="itemTitle">zzc</span>(android.content.Intent&nbsp;arg0)</div>
-<div class="block">&nbsp;</div>
-</div>
-<div class="descriptionDetail hidden">
-<div class="signature">public final&nbsp;void&nbsp;<span class="itemTitle">zzc</span>(android.content.Intent&nbsp;arg0)</div>
 </div>
 </td>
 </tr>

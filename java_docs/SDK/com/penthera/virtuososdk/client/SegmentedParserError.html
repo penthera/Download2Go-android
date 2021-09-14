@@ -156,6 +156,27 @@ extends java.lang.Object</div>
 </tr>
 <tr class="member field public">
 <td class="memberMarker colFirst"><img src="../../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="CODEC_FILTER_ERROR" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">CODEC_FILTER_ERROR</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>static int&nbsp;</code><span class="itemTitle">CODEC_FILTER_ERROR</span></div>
+<div class="block">Asset creation requested an audio codec filter, but no audio renditions matched the
+ requested codecs.</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">public static final&nbsp;int CODEC_FILTER_ERROR</div>
+<dl>
+<dd>
+<div class="block">Asset creation requested an audio codec filter, but no audio renditions matched the
+ requested codecs.</div>
+<dl class="tagSection"><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../constant-values.html#com.penthera.virtuososdk.client.SegmentedParserError.CODEC_FILTER_ERROR">Constant Field Values</a></dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member field public">
+<td class="memberMarker colFirst"><img src="../../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
 <td class="itemNameCell"><a name="CONTENT_ERROR" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">CONTENT_ERROR</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
 <td class="descriptionContainer colLast">
 <div class="descriptionOverview">
@@ -202,15 +223,99 @@ extends java.lang.Object</div>
 <div class="descriptionOverview">
 <div class="signature hidden rollover"><code>static int&nbsp;</code><span class="itemTitle">DUPLICATE_ASSET_ID_ERROR</span></div>
 <div class="block">Duplicate asset id error
- User tried to creat a new asset that has the same asset id as an existing asset.</div>
+ User tried to create a new asset that has the same asset id as an existing asset.</div>
 </div>
 <div class="descriptionDetail hidden">
 <div class="signature">public static final&nbsp;int DUPLICATE_ASSET_ID_ERROR</div>
 <dl>
 <dd>
 <div class="block">Duplicate asset id error
- User tried to creat a new asset that has the same asset id as an existing asset.</div>
+ User tried to create a new asset that has the same asset id as an existing asset.</div>
 <dl class="tagSection"><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../constant-values.html#com.penthera.virtuososdk.client.SegmentedParserError.DUPLICATE_ASSET_ID_ERROR">Constant Field Values</a></dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member field public">
+<td class="memberMarker colFirst"><img src="../../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="FILTER_ERROR_CODEC_NOT_RESOLUTION" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">FILTER_ERROR_CODEC_NOT_RESOLUTION</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>static int&nbsp;</code><span class="itemTitle">FILTER_ERROR_CODEC_NOT_RESOLUTION</span></div>
+<div class="block">Asset creation request included both resolution filter and audio codec filter,
+ renditions matched the resolution filter but did not match the codec.</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">public static final&nbsp;int FILTER_ERROR_CODEC_NOT_RESOLUTION</div>
+<dl>
+<dd>
+<div class="block">Asset creation request included both resolution filter and audio codec filter,
+ renditions matched the resolution filter but did not match the codec.</div>
+<dl class="tagSection"><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../constant-values.html#com.penthera.virtuososdk.client.SegmentedParserError.FILTER_ERROR_CODEC_NOT_RESOLUTION">Constant Field Values</a></dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member field public">
+<td class="memberMarker colFirst"><img src="../../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="FILTER_ERROR_RESOLUTION_AND_CODEC" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">FILTER_ERROR_RESOLUTION_AND_CODEC</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>static int&nbsp;</code><span class="itemTitle">FILTER_ERROR_RESOLUTION_AND_CODEC</span></div>
+<div class="block">Asset creation request included both resolution filter and audio codec filter, but
+ no renditions matched both the requested resolution and codec.</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">public static final&nbsp;int FILTER_ERROR_RESOLUTION_AND_CODEC</div>
+<dl>
+<dd>
+<div class="block">Asset creation request included both resolution filter and audio codec filter, but
+ no renditions matched both the requested resolution and codec.</div>
+<dl class="tagSection"><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../constant-values.html#com.penthera.virtuososdk.client.SegmentedParserError.FILTER_ERROR_RESOLUTION_AND_CODEC">Constant Field Values</a></dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member field public">
+<td class="memberMarker colFirst"><img src="../../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="FILTER_ERROR_RESOLUTION_NOT_CODEC" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">FILTER_ERROR_RESOLUTION_NOT_CODEC</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>static int&nbsp;</code><span class="itemTitle">FILTER_ERROR_RESOLUTION_NOT_CODEC</span></div>
+<div class="block">Asset creation request included both resolution filter and audio codec filter,
+ renditions matched the codec filter but did not match the resolution.</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">public static final&nbsp;int FILTER_ERROR_RESOLUTION_NOT_CODEC</div>
+<dl>
+<dd>
+<div class="block">Asset creation request included both resolution filter and audio codec filter,
+ renditions matched the codec filter but did not match the resolution.</div>
+<dl class="tagSection"><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../constant-values.html#com.penthera.virtuososdk.client.SegmentedParserError.FILTER_ERROR_RESOLUTION_NOT_CODEC">Constant Field Values</a></dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member field public">
+<td class="memberMarker colFirst"><img src="../../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="FILTER_ERROR_RESOLUTION_OR_CODEC" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">FILTER_ERROR_RESOLUTION_OR_CODEC</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>static int&nbsp;</code><span class="itemTitle">FILTER_ERROR_RESOLUTION_OR_CODEC</span></div>
+<div class="block">Asset creation request included both resolution filter and audio codec filter,
+ renditions did not match either filter.</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">public static final&nbsp;int FILTER_ERROR_RESOLUTION_OR_CODEC</div>
+<dl>
+<dd>
+<div class="block">Asset creation request included both resolution filter and audio codec filter,
+ renditions did not match either filter.</div>
+<dl class="tagSection"><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../constant-values.html#com.penthera.virtuososdk.client.SegmentedParserError.FILTER_ERROR_RESOLUTION_OR_CODEC">Constant Field Values</a></dd></dl>
 </dd>
 </dl>
 </div>
@@ -287,6 +392,27 @@ extends java.lang.Object</div>
 <dd>
 <div class="block">An error occurred while parsing the file. It is not to spec.</div>
 <dl class="tagSection"><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../constant-values.html#com.penthera.virtuososdk.client.SegmentedParserError.PARSE_ERROR">Constant Field Values</a></dd></dl>
+</dd>
+</dl>
+</div>
+</td>
+</tr>
+<tr class="member field public">
+<td class="memberMarker colFirst"><img src="../../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
+<td class="itemNameCell"><a name="RESOLUTION_FILTER_ERROR" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">RESOLUTION_FILTER_ERROR</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="descriptionContainer colLast">
+<div class="descriptionOverview">
+<div class="signature hidden rollover"><code>static int&nbsp;</code><span class="itemTitle">RESOLUTION_FILTER_ERROR</span></div>
+<div class="block">Resolution filter parsing error
+ Resolution filters resulted in no video tracks being available for download.</div>
+</div>
+<div class="descriptionDetail hidden">
+<div class="signature">public static final&nbsp;int RESOLUTION_FILTER_ERROR</div>
+<dl>
+<dd>
+<div class="block">Resolution filter parsing error
+ Resolution filters resulted in no video tracks being available for download.</div>
+<dl class="tagSection"><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../constant-values.html#com.penthera.virtuososdk.client.SegmentedParserError.RESOLUTION_FILTER_ERROR">Constant Field Values</a></dd></dl>
 </dd>
 </dl>
 </div>
