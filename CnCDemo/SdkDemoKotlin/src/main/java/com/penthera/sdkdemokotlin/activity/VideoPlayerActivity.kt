@@ -31,7 +31,7 @@ import com.google.android.exoplayer2.source.dash.DefaultDashChunkSource
 import com.google.android.exoplayer2.source.hls.HlsMediaSource
 import com.google.android.exoplayer2.trackselection.*
 import com.google.android.exoplayer2.trackselection.DefaultTrackSelector.ParametersBuilder
-import com.google.android.exoplayer2.ui.DebugTextViewHelper
+import com.google.android.exoplayer2.util.DebugTextViewHelper
 import com.google.android.exoplayer2.ui.PlayerControlView
 import com.google.android.exoplayer2.ui.PlayerView
 import com.google.android.exoplayer2.upstream.*
@@ -45,8 +45,9 @@ import com.penthera.sdkdemokotlin.dialog.TrackSelectionDialog
 import com.penthera.virtuososdk.Common
 import com.penthera.virtuososdk.client.*
 import com.penthera.virtuososdk.client.drm.UnsupportedDrmException
-import com.penthera.virtuososdk.support.exoplayer212.drm.ExoplayerDrmSessionManager
-import com.penthera.virtuososdk.support.exoplayer212.drm.SupportDrmSessionManager
+import com.penthera.virtuososdk.support.exoplayer215.ExoplayerUtils
+import com.penthera.virtuososdk.support.exoplayer215.drm.ExoplayerDrmSessionManager
+import com.penthera.virtuososdk.support.exoplayer215.drm.SupportDrmSessionManager
 
 import com.penthera.virtuososdk.utility.CommonUtil.Identifier.*
 import java.net.CookieHandler
@@ -58,7 +59,7 @@ import kotlin.collections.HashMap
 /**
  * Created by Penthera on 17/01/2019.
  */
-class VideoPlayerActivity : AppCompatActivity(), View.OnClickListener, PlaybackPreparer, PlayerControlView.VisibilityListener {
+class VideoPlayerActivity : AppCompatActivity(), View.OnClickListener, PlayerControlView.VisibilityListener {
 
     // Best practice is to ensure we have a Virtuoso instance available while playing segmented assets
     // as this will guarantee the proxy service remains available throughout.
@@ -71,7 +72,7 @@ class VideoPlayerActivity : AppCompatActivity(), View.OnClickListener, PlaybackP
     private var isShowingTrackSelectionDialog = false
 
     private var mediaDataSourceFactory: DataSource.Factory? = null
-    private var player: SimpleExoPlayer? = null
+    private var player: Player? = null
     private var mediaSource: MediaSource? = null
     private var drmSessionManager: DrmSessionManager? = null
     private var mTrackSelector: DefaultTrackSelector? = null
@@ -107,7 +108,7 @@ class VideoPlayerActivity : AppCompatActivity(), View.OnClickListener, PlaybackP
 
         playerView = findViewById<PlayerView>(R.id.player_view).apply{
             setControllerVisibilityListener(this@VideoPlayerActivity)
-            setErrorMessageProvider(PlayerErrorMessageProvider(this@VideoPlayerActivity))
+            setErrorMessageProvider(PlayerErrorMessageProvider())
             requestFocus()
 
         }
@@ -190,14 +191,7 @@ class VideoPlayerActivity : AppCompatActivity(), View.OnClickListener, PlaybackP
         }
     }
 
-    // PlaybackControlView.PlaybackPreparer implementation
-
-    override fun preparePlayback() {
-        player?.retry()
-    }
-
     // PlaybackControlView.VisibilityListener implementation
-
     override fun onVisibilityChange(visibility: Int) {
         debugRootView?.visibility = visibility
     }
@@ -213,12 +207,34 @@ class VideoPlayerActivity : AppCompatActivity(), View.OnClickListener, PlaybackP
             segmentedAsset = asset
         }
 
-        val adaptiveTrackSelectionFactory: TrackSelection.Factory = AdaptiveTrackSelection.Factory()
+        val adaptiveTrackSelectionFactory: ExoTrackSelection.Factory = AdaptiveTrackSelection.Factory()
         mTrackSelector = DefaultTrackSelector(this, adaptiveTrackSelectionFactory)
         mTrackSelector?.parameters = trackSelectorParameters!!
         lastSeenTrackGroupArray = null
 
         if (player == null) {
+
+            @DefaultRenderersFactory.ExtensionRendererMode val extensionRendererMode = DefaultRenderersFactory.EXTENSION_RENDERER_MODE_OFF
+
+            val renderersFactory = DefaultRenderersFactory(this)
+            renderersFactory.setExtensionRendererMode(extensionRendererMode)
+            val eventLogger = EventLogger(mTrackSelector)
+
+            val builder = ExoplayerUtils.PlayerConfigOptions.Builder(this)
+            //builder
+
+
+            player = SimpleExoPlayer.Builder(this, renderersFactory).apply {
+                setTrackSelector(mTrackSelector!!)
+                setBandwidthMeter(DefaultBandwidthMeter.getSingletonInstance(this@VideoPlayerActivity))
+            }.build().apply {
+                addListener(PlayerEventListener())
+                addAnalyticsListener(EventLogger(mTrackSelector))
+                playWhenReady = shouldAutoPlay
+            }
+
+
+            player = ExoplayerUtils.setupPlayer(playerView!!, mVirtuoso!!,asset!!,false,builder.build())
 
             if (segmentedAsset != null && segmentedAsset.isContentProtected()) {
                 val drmUuid = segmentedAsset.contentProtectionUuid()
@@ -247,27 +263,14 @@ class VideoPlayerActivity : AppCompatActivity(), View.OnClickListener, PlaybackP
                 }
             }
 
-            @DefaultRenderersFactory.ExtensionRendererMode val extensionRendererMode =
-                    if (BuildConfig.FLAVOR == "withExtensions") DefaultRenderersFactory.EXTENSION_RENDERER_MODE_ON
-                    else DefaultRenderersFactory.EXTENSION_RENDERER_MODE_OFF
 
-            val renderersFactory = DefaultRenderersFactory(this)
-            renderersFactory.setExtensionRendererMode(extensionRendererMode)
-
-            player = SimpleExoPlayer.Builder(this, renderersFactory).apply {
-                setTrackSelector(mTrackSelector!!)
-                setBandwidthMeter(DefaultBandwidthMeter.getSingletonInstance(this@VideoPlayerActivity))
-            }.build().apply {
-                addListener(PlayerEventListener())
-                addAnalyticsListener(EventLogger(mTrackSelector))
-                playWhenReady = shouldAutoPlay
-            }
 
 
             playerView?.player = player
-            playerView?.setPlaybackPreparer(this)
-            debugViewHelper = DebugTextViewHelper(player!!, debugTextView!!)
-            debugViewHelper?.start()
+            if(player is SimpleExoPlayer) {
+                debugViewHelper = DebugTextViewHelper(player as SimpleExoPlayer, debugTextView!!)
+                debugViewHelper?.start()
+            }
 
             val action = intent.action
 
@@ -286,7 +289,7 @@ class VideoPlayerActivity : AppCompatActivity(), View.OnClickListener, PlaybackP
         if (haveResumePosition) {
             player?.seekTo(startWindow, startPosition)
         }
-        player?.prepare(mediaSource!!, !haveResumePosition, false)
+       // player?.prepare(mediaSource!!, !haveResumePosition, false)
         updateButtonVisibilities()
     }
 
@@ -417,9 +420,9 @@ class VideoPlayerActivity : AppCompatActivity(), View.OnClickListener, PlaybackP
             }
         }
 
-        override fun onPlayerError(e: ExoPlaybackException) {
+        override fun onPlayerError(e: PlaybackException) {
             inErrorState = true
-            if (isBehindLiveWindow(e)) {
+            if (e.errorCode == PlaybackException.ERROR_CODE_BEHIND_LIVE_WINDOW) {
                 clearStartPosition()
                 initializePlayer()
             } else {
@@ -603,33 +606,74 @@ class VideoPlayerActivity : AppCompatActivity(), View.OnClickListener, PlaybackP
         }
     }
 
-    /**
-     * From ExoPlayer demo: a message provide generates human readable error messages for internal error states.
-     */
-    private class PlayerErrorMessageProvider(private val context: Context) : ErrorMessageProvider<ExoPlaybackException> {
-        override fun getErrorMessage(e: ExoPlaybackException): Pair<Int, String> {
-            var errorString: String = context.getString(R.string.error_generic)
-            if (e.type == ExoPlaybackException.TYPE_RENDERER) {
-                val cause = e.rendererException
-                if (cause is DecoderInitializationException) { // Special case for decoder initialization failures.
-                    val decoderInitializationException = cause
-                    if (decoderInitializationException.codecInfo == null) {
-                        if (decoderInitializationException.cause is DecoderQueryException) {
-                            errorString = context.getString(R.string.error_querying_decoders)
-                        } else if (decoderInitializationException.secureDecoderRequired) {
-                            errorString = context.getString(
-                                    R.string.error_no_secure_decoder, decoderInitializationException.mimeType)
-                        } else {
-                            errorString = context.getString(R.string.error_no_decoder, decoderInitializationException.mimeType)
-                        }
+
+    private inner class PlayerErrorMessageProvider :
+            ErrorMessageProvider<PlaybackException> {
+        override fun getErrorMessage(e: PlaybackException): Pair<Int, String> {
+            var errorString: String = getString(R.string.error_generic)
+            val cause = e.cause
+            if (cause is DecoderInitializationException) {
+                // Special case for decoder initialization failures.
+                val decoderInitializationException =
+                        cause
+                if (decoderInitializationException.codecInfo == null) {
+                    if (decoderInitializationException.cause is DecoderQueryException) {
+                        errorString = getString(R.string.error_querying_decoders)
+                    } else if (decoderInitializationException.secureDecoderRequired) {
+                        errorString = getString(
+                                R.string.error_no_secure_decoder,
+                                decoderInitializationException.mimeType
+                        )
                     } else {
-                        errorString = context.getString(
-                                R.string.error_instantiating_decoder,
-                                decoderInitializationException.codecInfo!!.name)
+                        errorString = getString(
+                                R.string.error_no_decoder,
+                                decoderInitializationException.mimeType
+                        )
                     }
+                } else {
+                    errorString = getString(
+                            R.string.error_instantiating_decoder,
+                            decoderInitializationException.codecInfo!!.name
+                    )
                 }
             }
             return Pair.create(0, errorString)
         }
     }
+    /**
+     * From ExoPlayer demo: a message provide generates human readable error messages for internal error states.
+
+    private inner class PlayerErrorMessageProvider :
+            ErrorMessageProvider<PlaybackException> {
+        override fun getErrorMessage(e: PlaybackException): Pair<Int, String> {
+            var errorString: String = getString(R.string.error_generic)
+            val cause = e.cause
+            if (cause is DecoderInitializationException) {
+                // Special case for decoder initialization failures.
+                val decoderInitializationException =
+                        cause
+                if (decoderInitializationException.codecInfo == null) {
+                    if (decoderInitializationException.cause is DecoderQueryException) {
+                        errorString = getString(R.string.error_querying_decoders)
+                    } else if (decoderInitializationException.secureDecoderRequired) {
+                        errorString = getString(
+                                R.string.error_no_secure_decoder,
+                                decoderInitializationException.mimeType
+                        )
+                    } else {
+                        errorString = getString(
+                                R.string.error_no_decoder,
+                                decoderInitializationException.mimeType
+                        )
+                    }
+                } else {
+                    errorString = getString(
+                            R.string.error_instantiating_decoder,
+                            decoderInitializationException.codecInfo!!.name
+                    )
+                }
+            }
+            return Pair.create(0, errorString)
+        }
+    }*/
 }

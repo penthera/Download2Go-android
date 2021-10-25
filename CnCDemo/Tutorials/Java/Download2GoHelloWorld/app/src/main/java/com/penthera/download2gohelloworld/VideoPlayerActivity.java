@@ -39,7 +39,7 @@ import com.google.android.exoplayer2.util.ErrorMessageProvider;
 import com.google.android.exoplayer2.util.EventLogger;
 import com.penthera.virtuososdk.client.IAsset;
 import com.penthera.virtuososdk.client.Virtuoso;
-import com.penthera.virtuososdk.support.exoplayer211.ExoplayerUtils;
+import com.penthera.virtuososdk.support.exoplayer214.ExoplayerUtils;
 
 import java.net.CookieHandler;
 import java.net.CookieManager;

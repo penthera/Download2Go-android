@@ -57,10 +57,10 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
     //add dependency to latest Download2Go SDK version
-    implementation 'com.penthera:cnc-android-sdk-debug:4.0.0'
-    implementation 'com.penthera:cnc-exoplayer-2_11-support-debug:4.0.0'
-	implementation 'com.penthera:cnc-android-androidx-extensions:4.0.0'
+    implementation 'com.penthera:cnc-android-sdk-debug:4.0.2'
+    implementation 'com.penthera:cnc-exoplayer-2_14-support-debug:4.0.2'
+	implementation 'com.penthera:cnc-android-androidx-extensions:4.0.2'
 
     // Player
-    implementation 'com.google.android.exoplayer:exoplayer:2.11.3'
+    implementation 'com.google.android.exoplayer:exoplayer:2.14.0'
 }

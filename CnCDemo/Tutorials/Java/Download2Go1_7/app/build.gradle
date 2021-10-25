@@ -46,10 +46,10 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
 
-    implementation 'com.penthera:cnc-android-sdk-debug:4.0.2'
-    implementation 'com.penthera:cnc-exoplayer-2_11-support-debug:4.0.0'
+    implementation 'com.penthera:cnc-android-sdk-debug:4.0.3'
+    implementation 'com.penthera:cnc-exoplayer-2_14-support-debug:4.0.2'
 
-    implementation 'com.google.android.exoplayer:exoplayer:2.11.3'
+    implementation 'com.google.android.exoplayer:exoplayer:2.14.0'
 
     implementation 'com.google.firebase:firebase-messaging:20.2.0'
     implementation 'com.google.firebase:firebase-core:17.4.3'

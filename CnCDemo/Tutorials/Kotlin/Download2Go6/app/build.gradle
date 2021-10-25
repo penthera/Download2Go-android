@@ -56,13 +56,14 @@ dependencies {
 
     implementation 'androidx.recyclerview:recyclerview:1.2.0'
 
-    implementation 'com.penthera:cnc-android-sdk-debug:4.0.2'
-	implementation 'com.penthera:cnc-exoplayer-2_11-support-debug:4.0.0'
+    implementation 'com.penthera:cnc-android-sdk-debug:4.0.3'
+	implementation 'com.penthera:cnc-exoplayer-2_14-support-debug:4.0.2'
+    implementation 'com.penthera:cnc-exoplayer-ima-support-debug:4.0.2'
 
-    implementation 'com.google.android.exoplayer:exoplayer:2.11.3'
+    implementation 'com.google.android.exoplayer:exoplayer:2.14.0'
     // The ima exoplayer extension is required for client side ad insertion in order to interpret and play the
     // adverts from the VAST/VMAP document.
-    implementation "com.google.android.exoplayer:extension-ima:2.11.3"
+    implementation "com.google.android.exoplayer:extension-ima:2.14.0"
 
 
     testImplementation 'junit:junit:4.12'

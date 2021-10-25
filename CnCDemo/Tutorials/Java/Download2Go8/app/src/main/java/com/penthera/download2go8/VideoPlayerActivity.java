@@ -14,7 +14,6 @@ import android.content.Intent;
 import android.media.MediaDrm;
 import android.net.Uri;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.util.Log;
 import android.util.Pair;
 import android.view.KeyEvent;
@@ -27,53 +26,37 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.DefaultRenderersFactory;
 import com.google.android.exoplayer2.ExoPlaybackException;
-import com.google.android.exoplayer2.PlaybackPreparer;
 import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.RenderersFactory;
 import com.google.android.exoplayer2.SimpleExoPlayer;
-import com.google.android.exoplayer2.drm.DrmSessionManager;
-import com.google.android.exoplayer2.drm.FrameworkMediaCrypto;
 import com.google.android.exoplayer2.mediacodec.MediaCodecRenderer;
 import com.google.android.exoplayer2.mediacodec.MediaCodecUtil;
 import com.google.android.exoplayer2.source.BehindLiveWindowException;
-import com.google.android.exoplayer2.source.MediaSource;
-import com.google.android.exoplayer2.source.ProgressiveMediaSource;
 import com.google.android.exoplayer2.source.TrackGroupArray;
-import com.google.android.exoplayer2.source.dash.DashMediaSource;
-import com.google.android.exoplayer2.source.dash.DefaultDashChunkSource;
-import com.google.android.exoplayer2.source.hls.HlsMediaSource;
 import com.google.android.exoplayer2.trackselection.AdaptiveTrackSelection;
 import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
+import com.google.android.exoplayer2.trackselection.ExoTrackSelection;
 import com.google.android.exoplayer2.trackselection.MappingTrackSelector;
-import com.google.android.exoplayer2.trackselection.TrackSelection;
 import com.google.android.exoplayer2.trackselection.TrackSelectionArray;
 import com.google.android.exoplayer2.ui.PlayerView;
-import com.google.android.exoplayer2.upstream.DataSource;
-import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
-import com.google.android.exoplayer2.upstream.DefaultHttpDataSourceFactory;
 import com.google.android.exoplayer2.util.ErrorMessageProvider;
 import com.google.android.exoplayer2.util.EventLogger;
-import com.google.android.exoplayer2.util.Util;
-import com.penthera.virtuososdk.Common;
 import com.penthera.virtuososdk.client.IAsset;
-import com.penthera.virtuososdk.client.ISegmentedAsset;
 import com.penthera.virtuososdk.client.Virtuoso;
-import com.penthera.virtuososdk.client.drm.UnsupportedDrmException;
-import com.penthera.virtuososdk.support.exoplayer211.drm.SupportDrmSessionManager;
+import com.penthera.virtuososdk.support.exoplayer214.ExoplayerUtils;
+import com.penthera.virtuososdk.support.exoplayer214.drm.SupportDrmSessionManager;
 
 import java.net.CookieHandler;
 import java.net.CookieManager;
 import java.net.CookiePolicy;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.UUID;
 
-import static com.penthera.virtuososdk.Common.AssetIdentifierType.FILE_IDENTIFIER;
 
 /**
  * An activity that plays media using {@link SimpleExoPlayer}.
  */
-public class VideoPlayerActivity extends AppCompatActivity implements PlaybackPreparer {
+public class VideoPlayerActivity extends AppCompatActivity {
 
     // Saved instance state keys.
     private static final String KEY_TRACK_SELECTOR_PARAMETERS = "track_selector_parameters";
@@ -99,14 +82,10 @@ public class VideoPlayerActivity extends AppCompatActivity implements PlaybackPr
 
     private PlayerView playerView;
 
-    private DataSource.Factory dataSourceFactory;
     private SimpleExoPlayer player;
-    private MediaSource mediaSource;
     private DefaultTrackSelector trackSelector;
     private DefaultTrackSelector.Parameters trackSelectorParameters;
     private TrackGroupArray lastSeenTrackGroupArray;
-
-    private DrmSessionManager<FrameworkMediaCrypto> drmSessionManager = null;
 
     private boolean startAutoPlay;
     private int startWindow;
@@ -138,8 +117,6 @@ public class VideoPlayerActivity extends AppCompatActivity implements PlaybackPr
         super.onCreate(savedInstanceState);
 
         mVirtuoso = new Virtuoso(getApplicationContext());
-
-        dataSourceFactory = buildDataSourceFactory();
 
         if (CookieHandler.getDefault() != DEFAULT_COOKIE_MANAGER) {
             CookieHandler.setDefault(DEFAULT_COOKIE_MANAGER);
@@ -227,11 +204,6 @@ public class VideoPlayerActivity extends AppCompatActivity implements PlaybackPr
         return playerView.dispatchKeyEvent(event) || super.dispatchKeyEvent(event);
     }
 
-    @Override
-    public void preparePlayback() {
-        player.retry();
-    }
-
     private void initializePlayer() {
         if (player == null) {
             Intent intent = getIntent();
@@ -244,44 +216,9 @@ public class VideoPlayerActivity extends AppCompatActivity implements PlaybackPr
 
             Uri uri = intent.getData();
             IAsset asset = intent.getParcelableExtra(VIRTUOSO_ASSET);
-            ISegmentedAsset segmentedAsset = asset instanceof ISegmentedAsset ? (ISegmentedAsset) asset : null;
-            int type = segmentedAsset != null ? segmentedAsset.segmentedFileType() : FILE_IDENTIFIER;
 
-            if (segmentedAsset != null && segmentedAsset.isContentProtected()) {
 
-                String drmUuid = segmentedAsset.contentProtectionUuid();
-                if (drmUuid != null) {
-                    int errorStringId = R.string.error_drm_unknown;
-                    try {
-                        UUID drmSchemeUuid = null;
-                        if (!TextUtils.isEmpty(drmUuid))
-                            drmSchemeUuid = Util.getDrmUuid(drmUuid);
-
-                        if (drmSchemeUuid != null) {
-                            DrmListener drmListener = new DrmListener(this);
-                            MediaDrmOnEventListener mediaDrmOnEventListener = new MediaDrmOnEventListener();
-
-                            drmSessionManager = new DemoDrmSessionManager(getApplicationContext(), drmSchemeUuid, segmentedAsset, null, drmListener, mediaDrmOnEventListener);
-                        } else {
-                            errorStringId = R.string.error_drm_unsupported_scheme;
-                        }
-                    } catch (UnsupportedDrmException e) {
-                        errorStringId = e.reason == UnsupportedDrmException.REASON_UNSUPPORTED_SCHEME
-                                ? R.string.error_drm_unsupported_scheme : R.string.error_drm_unknown;
-                    }
-                    if (drmSessionManager == null) {
-                        showToast(errorStringId);
-                        return;
-                    }
-                }
-            }
-
-            mediaSource = buildMediaSource(uri, type);
-            if (mediaSource == null) {
-                return;
-            }
-
-            TrackSelection.Factory trackSelectionFactory = new AdaptiveTrackSelection.Factory();
+            ExoTrackSelection.Factory trackSelectionFactory = new AdaptiveTrackSelection.Factory();
             trackSelector = new DefaultTrackSelector(this, trackSelectionFactory);
             trackSelector.setParameters(trackSelectorParameters);
             lastSeenTrackGroupArray = null;
@@ -289,51 +226,31 @@ public class VideoPlayerActivity extends AppCompatActivity implements PlaybackPr
             RenderersFactory renderersFactory = new DefaultRenderersFactory(this)
                     .setExtensionRendererMode(DefaultRenderersFactory.EXTENSION_RENDERER_MODE_OFF);
 
-            player = new SimpleExoPlayer.Builder(this, renderersFactory)
-                    .setTrackSelector(trackSelector)
-                    .build();
-            player.addListener(new PlayerEventListener());
-            player.setPlayWhenReady(startAutoPlay);
-            player.addAnalyticsListener(new EventLogger(trackSelector));
-            playerView.setPlayer(player);
-            playerView.setPlaybackPreparer(this);
+            ExoplayerUtils.PlayerConfigOptions.Builder builder = new ExoplayerUtils.PlayerConfigOptions.Builder(this);
+            builder.userRenderersFactory(renderersFactory)
+                    .withTrackSelector(trackSelector)
+                    .withAnalyticsListener(new EventLogger(trackSelector))
+                    .withPlayerEventListener(new PlayerEventListener())
+                    .playerWhenReady(startAutoPlay)
+                    .mediaSourceOptions().useTransferListener(true).withUserAgent("virtuoso-sdk");
+
+            builder.drmOptions()
+                    .withDrmSessionManagerEventListener(new DrmListener(this))
+                    .withMediaDrmEventListener(new MediaDrmOnEventListener());
+
+            boolean haveStartPosition = startWindow != C.INDEX_UNSET;
+            if (haveStartPosition) {
+                builder.withSeekToPosition(startWindow, startPosition);
+            }
+
+            try {
+                player = ExoplayerUtils.setupPlayer(playerView, mVirtuoso, asset, false, builder.build());
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
+
         }
-        boolean haveStartPosition = startWindow != C.INDEX_UNSET;
-        if (haveStartPosition) {
-            player.seekTo(startWindow, startPosition);
-        }
-        player.prepare(mediaSource, !haveStartPosition, false);
         updateButtonVisibility();
-    }
-
-
-    private MediaSource buildMediaSource(Uri uri, int type) {
-        switch (type) {
-            case ISegmentedAsset.SEG_FILE_TYPE_MPD: {
-                DashMediaSource.Factory factory = new DashMediaSource.Factory(
-                        new DefaultDashChunkSource.Factory(dataSourceFactory),
-                        buildDataSourceFactory());
-                // If we have a drm session manager then provide it here to the media source factory
-                if (drmSessionManager != null) {
-                    factory.setDrmSessionManager(drmSessionManager);
-                }
-                return factory.createMediaSource(uri);
-            }
-            case ISegmentedAsset.SEG_FILE_TYPE_HLS: {
-                HlsMediaSource.Factory factory = new HlsMediaSource.Factory(dataSourceFactory);
-                // If we have a drm session manager then provide it here to the media source factory
-                if (drmSessionManager != null) {
-                    factory.setDrmSessionManager(drmSessionManager);
-                }
-                return factory.createMediaSource(uri);
-            }
-            case Common.AssetIdentifierType.FILE_IDENTIFIER:
-                return new ProgressiveMediaSource.Factory(dataSourceFactory)
-                        .createMediaSource(uri);
-            default: {
-                throw new IllegalStateException("Unsupported type: " + type);
-            }
-        }
     }
 
     private void releasePlayer() {
@@ -342,7 +259,6 @@ public class VideoPlayerActivity extends AppCompatActivity implements PlaybackPr
             updateStartPosition();
             player.release();
             player = null;
-            mediaSource = null;
             trackSelector = null;
         }
     }
@@ -366,13 +282,6 @@ public class VideoPlayerActivity extends AppCompatActivity implements PlaybackPr
         startAutoPlay = true;
         startWindow = C.INDEX_UNSET;
         startPosition = C.TIME_UNSET;
-    }
-
-    /**
-     * Returns an exoplayer {@link DataSource.Factory}.
-     */
-    private DataSource.Factory buildDataSourceFactory() {
-        return new DefaultDataSourceFactory(getApplicationContext(), new DefaultHttpDataSourceFactory("download2gohelloworld"));
     }
 
     // User controls
@@ -425,7 +334,7 @@ public class VideoPlayerActivity extends AppCompatActivity implements PlaybackPr
     // events for when keys are loaded or an error occurs with fetching a license.
     private static class DrmListener implements SupportDrmSessionManager.EventListener {
 
-        private VideoPlayerActivity mActivity;
+        private final VideoPlayerActivity mActivity;
 
         public DrmListener(VideoPlayerActivity activity) {
             mActivity = activity;
@@ -433,9 +342,7 @@ public class VideoPlayerActivity extends AppCompatActivity implements PlaybackPr
 
         @Override
         public void onDrmKeysLoaded() {
-            if (mActivity.player != null) {
-                mActivity.player.getAnalyticsCollector().onDrmKeysLoaded();
-            }
+
         }
 
         @Override
@@ -443,9 +350,7 @@ public class VideoPlayerActivity extends AppCompatActivity implements PlaybackPr
             // Can't complete playback
             mActivity.handleDrmLicenseNotAvailable();
 
-            if (mActivity.player != null) {
-                mActivity.player.getAnalyticsCollector().onDrmSessionManagerError(e);
-            }
+
         }
     }
 
@@ -461,7 +366,7 @@ public class VideoPlayerActivity extends AppCompatActivity implements PlaybackPr
     }
 
     // This inner class is taken directly from the Exoplayer demo. It provides the player listener interface for updating overlay buttons.
-    private class PlayerEventListener implements Player.EventListener {
+    private class PlayerEventListener implements Player.Listener {
 
         @Override
         public void onPlayerStateChanged(boolean playWhenReady, @Player.State int playbackState) {
@@ -472,7 +377,7 @@ public class VideoPlayerActivity extends AppCompatActivity implements PlaybackPr
         }
 
         @Override
-        public void onPlayerError(ExoPlaybackException e) {
+        public void onPlayerError(@NonNull ExoPlaybackException e) {
             if (isBehindLiveWindow(e)) {
                 clearStartPosition();
                 initializePlayer();
@@ -484,7 +389,7 @@ public class VideoPlayerActivity extends AppCompatActivity implements PlaybackPr
 
         @Override
         @SuppressWarnings("ReferenceEquality")
-        public void onTracksChanged(TrackGroupArray trackGroups, TrackSelectionArray trackSelections) {
+        public void onTracksChanged(@NonNull TrackGroupArray trackGroups, @NonNull TrackSelectionArray trackSelections) {
             updateButtonVisibility();
             if (trackGroups != lastSeenTrackGroupArray) {
                 MappingTrackSelector.MappedTrackInfo mappedTrackInfo = trackSelector.getCurrentMappedTrackInfo();

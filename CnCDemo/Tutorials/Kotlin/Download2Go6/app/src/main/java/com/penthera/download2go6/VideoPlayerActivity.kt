@@ -5,50 +5,43 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.util.Pair
 import android.view.KeyEvent
 import android.widget.Toast
-import com.google.ads.interactivemedia.v3.api.ImaSdkFactory
 import com.google.android.exoplayer2.*
-import com.google.android.exoplayer2.ext.ima.ImaAdsLoader
 import com.google.android.exoplayer2.mediacodec.MediaCodecRenderer
 import com.google.android.exoplayer2.mediacodec.MediaCodecUtil
-import com.google.android.exoplayer2.source.*
-import com.google.android.exoplayer2.source.ads.AdsMediaSource
-import com.google.android.exoplayer2.source.dash.DashMediaSource
-import com.google.android.exoplayer2.source.dash.DefaultDashChunkSource
-import com.google.android.exoplayer2.source.hls.HlsMediaSource
-import com.google.android.exoplayer2.source.smoothstreaming.DefaultSsChunkSource
-import com.google.android.exoplayer2.source.smoothstreaming.SsMediaSource
-import com.google.android.exoplayer2.trackselection.*
-import com.google.android.exoplayer2.ui.*
-import com.google.android.exoplayer2.upstream.*
+import com.google.android.exoplayer2.source.BehindLiveWindowException
+import com.google.android.exoplayer2.source.TrackGroupArray
+import com.google.android.exoplayer2.trackselection.AdaptiveTrackSelection
+import com.google.android.exoplayer2.trackselection.DefaultTrackSelector
+import com.google.android.exoplayer2.trackselection.MappingTrackSelector
+import com.google.android.exoplayer2.trackselection.TrackSelectionArray
+import com.google.android.exoplayer2.ui.PlayerView
 import com.google.android.exoplayer2.util.ErrorMessageProvider
 import com.google.android.exoplayer2.util.EventLogger
-import com.google.android.exoplayer2.util.Util
-import com.penthera.virtuososdk.Common
 import com.penthera.virtuososdk.client.IAsset
-import com.penthera.virtuososdk.client.ISegmentedAsset
 import com.penthera.virtuososdk.client.Virtuoso
-import com.penthera.virtuososdk.client.ads.IVideoAdPackage
-import com.penthera.virtuososdk.utility.CommonUtil.Identifier.FILE_IDENTIFIER
-import java.net.CookieHandler
+import com.penthera.virtuososdk.support.exoplayer214.ExoplayerUtils
+
 import java.net.CookieManager
 import java.net.CookiePolicy
+import java.net.MalformedURLException
 import kotlin.math.max
 
 /**
  * An activity that plays media using {@link SimpleExoPlayer}.
  */
-class VideoPlayerActivity : Activity(),  PlaybackPreparer {
+class VideoPlayerActivity : Activity() {
 
+    // IMPORTANT - Best practice is to ensure we have a Virtuoso instance available while playing segmented assets
+    // as this will guarantee the proxy service remains available throughout. We can do this in the activity or store
+    // a singleton for the whole application. But this should not be instantiated in an application onCreate().
+    private lateinit var mVirtuoso: Virtuoso
     private var playerView: PlayerView? = null
 
-    private var mediaDataSourceFactory: DataSource.Factory? = null
     private var player: SimpleExoPlayer? = null
-    private var mediaSource : MediaSource? = null
     private var trackSelector: DefaultTrackSelector? = null
     private var trackSelectorParameters: DefaultTrackSelector.Parameters? = null
     private var inErrorState: Boolean = false
@@ -57,23 +50,15 @@ class VideoPlayerActivity : Activity(),  PlaybackPreparer {
     private var shouldAutoPlay: Boolean = false
     private var resumeWindow: Int = 0
     private var resumePosition: Long = 0
-    
-    // Required for advert playback - Exoplayer extension
-    private var adsLoader: ImaAdsLoader? = null
-    private lateinit var virtuoso : Virtuoso
 
     // Activity lifecycle
+
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        virtuoso = Virtuoso(this)
+        mVirtuoso = Virtuoso(this)
         shouldAutoPlay = true
         clearResumePosition()
-
-        mediaDataSourceFactory = buildDataSourceFactory()
-        if (CookieHandler.getDefault() !== DEFAULT_COOKIE_MANAGER) {
-            CookieHandler.setDefault(DEFAULT_COOKIE_MANAGER)
-        }
 
         setContentView(R.layout.player_activity)
 
@@ -132,10 +117,6 @@ class VideoPlayerActivity : Activity(),  PlaybackPreparer {
         return super.dispatchKeyEvent(event) || playerView!!.dispatchMediaKeyEvent(event)
     }
 
-    // PlaybackControlView.PlaybackPreparer implementation
-    override fun preparePlayback() {
-        initializePlayer()
-    }
 
     // Internal methods
     private fun initializePlayer() {
@@ -148,22 +129,7 @@ class VideoPlayerActivity : Activity(),  PlaybackPreparer {
             return
         }
 
-        val uri = intent.data
         val asset: IAsset? = intent.getParcelableExtra(VIRTUOSO_ASSET)
-        val type = if (asset is ISegmentedAsset) {
-            asset.segmentedFileType()
-        } else {
-            FILE_IDENTIFIER
-        }
-
-
-        // All our files are stored in the app private space so no need to check permissions after kitkat
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
-            if (Util.maybeRequestReadExternalStoragePermission(this, uri!!)) {
-                // The player will be reinitialized if the permission is granted.
-                return
-            }
-        }
 
         if (player == null) {
 
@@ -173,80 +139,38 @@ class VideoPlayerActivity : Activity(),  PlaybackPreparer {
             lastSeenTrackGroupArray = null
 
 
-            mediaSource = buildMediaSource(uri!!, type)
-
             val renderersFactory = DefaultRenderersFactory(this)
             renderersFactory.setExtensionRendererMode(DefaultRenderersFactory.EXTENSION_RENDERER_MODE_OFF)
 
-            player = SimpleExoPlayer.Builder(this,renderersFactory)
-                .setTrackSelector(trackSelector!!)
-                .setLoadControl(DefaultLoadControl())
-                .build()
-                .apply {
-                    addListener(PlayerEventListener())
-                    playWhenReady = shouldAutoPlay
-                    addAnalyticsListener(EventLogger(trackSelector))
-                }
 
-            playerView?.let {
-                it.player = player
-                it.setPlaybackPreparer(this)
+            val builder = ExoplayerUtils.PlayerConfigOptions.Builder(this).apply {
+                userRenderersFactory(renderersFactory)
+                withTrackSelector(trackSelector)
+                withAnalyticsListener(EventLogger(trackSelector))
+                withPlayerEventListener(PlayerEventListener())
+                if(resumeWindow != C.INDEX_UNSET)
+                    withSeekToPosition(resumeWindow,resumePosition)
+                mediaSourceOptions().useTransferListener(true)
+                    .withUserAgent("virtuoso-sdk")
             }
-            asset?.let{
-                if(it is ISegmentedAsset && it.adSupport() == Common.AdSupportType.CLIENT_ADS){
-                    var adsResponse: String? = null
 
-                    val adsPackage: IVideoAdPackage? = virtuoso.assetManager.adManager.fetchAdsForAsset(it)
-                    adsPackage?.let{ ad_package ->
-                        adsResponse = ad_package.inlineAdResponse
-                    }
 
-                    adsResponse?.let{response->
-                        if(response.isNotEmpty()){
-                            val builder = ImaAdsLoader.Builder(this)
-                            val settings =
-                                ImaSdkFactory.getInstance().createImaSdkSettings()
-                            settings.isDebugMode = true
-                            builder.setImaSdkSettings(settings)
-                            adsLoader = builder.buildForAdsResponse(response)
-                            adsLoader!!.setPlayer(player)
-                            val mediaSourceWithAds = AdsMediaSource(mediaSource, mediaDataSourceFactory, adsLoader, playerView)
-                            mediaSource = mediaSourceWithAds
-                        }
-                    }
-                }
+            try {
+
+                ExoplayerUtils.setupPlayer(
+                        playerView!!,
+                       mVirtuoso,
+                        asset!!,
+                        false,
+                        builder.build()
+                )
+                inErrorState = false
+            }catch (e : MalformedURLException){
+                inErrorState = true
             }
         }
-
-        val haveResumePosition = resumeWindow != C.INDEX_UNSET
-        if (haveResumePosition) {
-            player!!.seekTo(resumeWindow, resumePosition)
-        }
-        player!!.prepare(mediaSource!!, !haveResumePosition, false)
-        inErrorState = false
     }
 
-    private fun buildMediaSource(uri: Uri, type: Int): MediaSource {
-
-        val ret : MediaSource
-        when (type) {
-            ISegmentedAsset.SEG_FILE_TYPE_HSS -> ret =  SsMediaSource.Factory(
-                DefaultSsChunkSource.Factory(mediaDataSourceFactory!!),
-                buildDataSourceFactory())
-                .createMediaSource(uri)
-            ISegmentedAsset.SEG_FILE_TYPE_MPD -> ret =  DashMediaSource.Factory(
-                DefaultDashChunkSource.Factory(mediaDataSourceFactory!!),
-                buildDataSourceFactory())
-                .createMediaSource(uri)
-            ISegmentedAsset.SEG_FILE_TYPE_HLS -> ret = HlsMediaSource.Factory(mediaDataSourceFactory!!)
-                .createMediaSource(uri)
-            Common.AssetIdentifierType.FILE_IDENTIFIER -> ret = ProgressiveMediaSource.Factory(mediaDataSourceFactory).createMediaSource(uri)
-            else -> {
-                throw IllegalStateException("Unsupported type: $type")
-            }
-        }
-        return ret
-    }
 
 
     private fun releasePlayer() {
@@ -257,6 +181,7 @@ class VideoPlayerActivity : Activity(),  PlaybackPreparer {
             it.release()
             player = null
             trackSelector = null
+            trackSelectorParameters = null
         }
     }
 
@@ -270,17 +195,7 @@ class VideoPlayerActivity : Activity(),  PlaybackPreparer {
         resumePosition = C.TIME_UNSET
     }
 
-    /**
-     * Returns a new DataSource factory.
-     *
-     * @return A new DataSource factory.
-     */
-    private fun buildDataSourceFactory(): DataSource.Factory =
-        DefaultDataSourceFactory(applicationContext, DefaultHttpDataSourceFactory("download2go6"))
-
-
-
-    private inner class PlayerEventListener : Player.EventListener {
+    private inner class PlayerEventListener : Player.Listener {
 
         override fun onPlayerStateChanged(playWhenReady: Boolean, playbackState: Int) {}
 
@@ -330,7 +245,8 @@ class VideoPlayerActivity : Activity(),  PlaybackPreparer {
                 if (cause is MediaCodecRenderer.DecoderInitializationException) {
                     // Special case for decoder initialization failures.
                     if (cause.codecInfo != null) {
-                        errorString = getString(R.string.error_instantiating_decoder,
+                        errorString = getString(
+                            R.string.error_instantiating_decoder,
                             cause.codecInfo!!.name
                         )
                     } else {

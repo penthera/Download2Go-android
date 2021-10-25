@@ -6,8 +6,8 @@ android {
 
     defaultConfig {
         applicationId "com.penthera.sdkdemo"
-        versionCode = 40002
-        versionName = "4.0.2"
+        versionCode = 40003
+        versionName = "4.0.3"
         minSdkVersion 16
         targetSdkVersion 29
         multiDexEnabled true
@@ -43,8 +43,8 @@ allprojects {
 
 dependencies {
 
-    implementation  'com.penthera:cnc-android-sdk-debug:4.0.2'
-    Implementation 'com.penthera:cnc-exoplayer-2_11-support:4.0.2'
+    implementation  'com.penthera:cnc-android-sdk-debug:4.0.3'
+    Implementation 'com.penthera:cnc-exoplayer-2_11-support:4.0.3'
 
     def google_exoplayer_version = "2.11.3"
     implementation "com.google.android.exoplayer:exoplayer:$google_exoplayer_version"

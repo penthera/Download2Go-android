@@ -15,55 +15,48 @@ import android.util.Pair
 import android.view.KeyEvent
 import android.widget.Toast
 import com.google.android.exoplayer2.*
-import com.google.android.exoplayer2.drm.DrmSessionManager
-import com.google.android.exoplayer2.drm.FrameworkMediaCrypto
 import com.google.android.exoplayer2.mediacodec.MediaCodecRenderer
 import com.google.android.exoplayer2.mediacodec.MediaCodecUtil
 import com.google.android.exoplayer2.source.BehindLiveWindowException
-import com.google.android.exoplayer2.source.MediaSource
-import com.google.android.exoplayer2.source.ProgressiveMediaSource
 import com.google.android.exoplayer2.source.TrackGroupArray
-import com.google.android.exoplayer2.source.dash.DashMediaSource
-import com.google.android.exoplayer2.source.dash.DefaultDashChunkSource
-import com.google.android.exoplayer2.source.hls.HlsMediaSource
 import com.google.android.exoplayer2.trackselection.AdaptiveTrackSelection
 import com.google.android.exoplayer2.trackselection.DefaultTrackSelector
 import com.google.android.exoplayer2.trackselection.MappingTrackSelector
 import com.google.android.exoplayer2.trackselection.TrackSelectionArray
 import com.google.android.exoplayer2.ui.PlayerView
-import com.google.android.exoplayer2.upstream.DataSource
-import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
-import com.google.android.exoplayer2.upstream.DefaultHttpDataSourceFactory
 import com.google.android.exoplayer2.util.ErrorMessageProvider
 import com.google.android.exoplayer2.util.EventLogger
 import com.google.android.exoplayer2.util.Util
-import com.penthera.virtuososdk.Common
 import com.penthera.virtuososdk.client.IAsset
-import com.penthera.virtuososdk.client.ISegmentedAsset
-import com.penthera.virtuososdk.client.drm.UnsupportedDrmException
-import com.penthera.virtuososdk.support.exoplayer211.drm.SupportDrmSessionManager
-import com.penthera.virtuososdk.utility.CommonUtil.Identifier.FILE_IDENTIFIER
-import java.net.CookieHandler
+import com.penthera.virtuososdk.client.Virtuoso
+import com.penthera.virtuososdk.support.exoplayer214.ExoplayerUtils
+import com.penthera.virtuososdk.support.exoplayer214.drm.SupportDrmSessionManager
+
+
+
 import java.net.CookieManager
 import java.net.CookiePolicy
-import java.util.*
+import java.net.MalformedURLException
+
 import kotlin.math.max
 
 /**
  * An activity that plays media using {@link SimpleExoPlayer}.
  */
-class VideoPlayerActivity : Activity(),  PlaybackPreparer {
+class VideoPlayerActivity : Activity(){
 
+    // IMPORTANT - Best practice is to ensure we have a Virtuoso instance available while playing segmented assets
+    // as this will guarantee the proxy service remains available throughout. We can do this in the activity or store
+    // a singleton for the whole application. But this should not be instantiated in an application onCreate().
+    private lateinit var mVirtuoso: Virtuoso
     private var playerView: PlayerView? = null
 
-    private var mediaDataSourceFactory: DataSource.Factory? = null
     private var player: SimpleExoPlayer? = null
     private var trackSelector: DefaultTrackSelector? = null
     private var trackSelectorParameters: DefaultTrackSelector.Parameters? = null
     private var inErrorState: Boolean = false
     private var lastSeenTrackGroupArray: TrackGroupArray? = null
 
-    private var drmSessionManager : DrmSessionManager<FrameworkMediaCrypto>? = null
 
     private var shouldAutoPlay: Boolean = false
     private var resumeWindow: Int = 0
@@ -76,11 +69,6 @@ class VideoPlayerActivity : Activity(),  PlaybackPreparer {
 
         shouldAutoPlay = true
         clearResumePosition()
-
-        mediaDataSourceFactory = buildDataSourceFactory()
-        if (CookieHandler.getDefault() !== DEFAULT_COOKIE_MANAGER) {
-            CookieHandler.setDefault(DEFAULT_COOKIE_MANAGER)
-        }
 
         setContentView(R.layout.player_activity)
 
@@ -139,11 +127,6 @@ class VideoPlayerActivity : Activity(),  PlaybackPreparer {
         return super.dispatchKeyEvent(event) || playerView!!.dispatchMediaKeyEvent(event)
     }
 
-    // PlaybackControlView.PlaybackPreparer implementation
-    override fun preparePlayback() {
-        initializePlayer()
-    }
-
     // Internal methods
     private fun initializePlayer() {
         val intent = intent
@@ -156,42 +139,7 @@ class VideoPlayerActivity : Activity(),  PlaybackPreparer {
         }
 
         val uri = intent.data
-        var type : Int = FILE_IDENTIFIER
         val asset: IAsset? = intent.getParcelableExtra(VIRTUOSO_ASSET)
-
-        asset?.let{
-            if( asset is ISegmentedAsset){
-                type = asset.segmentedFileType()
-
-                if(asset.isContentProtected){
-                    val drmUuid = asset.contentProtectionUuid()
-
-                    if(!drmUuid.isNullOrEmpty()){
-                        var errorStringId = R.string.error_drm_unknown
-                        try {
-                            val drmSchemeUuid: UUID? = Util.getDrmUuid(drmUuid)
-
-                            if (drmSchemeUuid != null) {
-                                val drmListener = DrmListener(this)
-                                val mediaDrmOnEventListener = MediaDrmOnEventListener()
-                                drmSessionManager = DemoDrmSessionManager(applicationContext, drmSchemeUuid, asset,
-                                    null, drmListener, mediaDrmOnEventListener)
-                            } else {
-                                errorStringId = R.string.error_drm_unsupported_scheme
-                            }
-                        } catch (e: UnsupportedDrmException) {
-                            errorStringId =
-                                if (e.reason == UnsupportedDrmException.REASON_UNSUPPORTED_SCHEME) R.string.error_drm_unsupported_scheme else R.string.error_drm_unknown
-                        }
-                        if (drmSessionManager == null) {
-                            showToast(errorStringId)
-                            return
-                        }
-
-                    }
-                }
-            }
-        }
 
 
         // All our files are stored in the app private space so no need to check permissions after kitkat
@@ -213,60 +161,44 @@ class VideoPlayerActivity : Activity(),  PlaybackPreparer {
 
             val renderersFactory = DefaultRenderersFactory(this)
             renderersFactory.setExtensionRendererMode(DefaultRenderersFactory.EXTENSION_RENDERER_MODE_OFF)
-
-            player = SimpleExoPlayer.Builder(this,renderersFactory)
-                .setTrackSelector(trackSelector!!)
-                .setLoadControl(DefaultLoadControl())
-                .build()
-                .apply {
-                    addListener(PlayerEventListener())
-                    playWhenReady = shouldAutoPlay
-                    addAnalyticsListener(EventLogger(trackSelector))
+            
+            
+            val builder = ExoplayerUtils.PlayerConfigOptions.Builder(this).apply{
+                withTrackSelector(trackSelector)
+                withPlayerEventListener(PlayerEventListener())
+                withAnalyticsListener(EventLogger(trackSelector))
+                userRenderersFactory(renderersFactory)
+                if(resumeWindow != C.INDEX_UNSET) withSeekToPosition(resumeWindow, resumePosition)
+                playerWhenReady(shouldAutoPlay)
+                
+                mediaSourceOptions().apply {
+                    useTransferListener(true)
+                    withUserAgent("virtuoso-sdk")
                 }
 
-            playerView?.let {
-                it.player = player
-                it.setPlaybackPreparer(this)
+                drmOptions().apply {
+                    withDrmSessionManagerEventListener(DrmListener(this@VideoPlayerActivity))
+                    withMediaDrmEventListener(MediaDrmOnEventListener())
+                }
+                    
             }
 
 
-            val mediaSource = buildMediaSource(uri!!, type)
-            val haveResumePosition = resumeWindow != C.INDEX_UNSET
-            if (haveResumePosition) {
-                player!!.seekTo(resumeWindow, resumePosition)
-            }
-            player!!.prepare(mediaSource, !haveResumePosition, false)
-            inErrorState = false
-        }
-    }
 
-    private fun buildMediaSource(uri: Uri, type: Int): MediaSource {
+            try {
 
-        val ret : MediaSource
-        when (type) {
-            ISegmentedAsset.SEG_FILE_TYPE_MPD -> {
-
-                val factory = DashMediaSource.Factory(
-                    DefaultDashChunkSource.Factory(mediaDataSourceFactory!!), buildDataSourceFactory())
-                drmSessionManager?.let{
-                    factory.setDrmSessionManager(it)
-                }
-
-                ret = factory.createMediaSource(uri)
-            }
-            ISegmentedAsset.SEG_FILE_TYPE_HLS -> {
-                val factory = HlsMediaSource.Factory(mediaDataSourceFactory!!)
-                drmSessionManager?.let{
-                    factory.setDrmSessionManager(it)
-                }
-                ret = factory.createMediaSource(uri)
-             }
-            Common.AssetIdentifierType.FILE_IDENTIFIER -> ret = ProgressiveMediaSource.Factory(mediaDataSourceFactory).createMediaSource(uri)
-            else -> {
-                throw IllegalStateException("Unsupported type: $type")
+                ExoplayerUtils.setupPlayer(
+                        playerView!!,
+                        mVirtuoso,
+                        asset!!,
+                        false,
+                        builder.build()
+                )
+                inErrorState = false
+            }catch (e : MalformedURLException){
+                inErrorState = true
             }
         }
-        return ret
     }
 
     private fun clearStartPosition() {
@@ -312,17 +244,8 @@ class VideoPlayerActivity : Activity(),  PlaybackPreparer {
         resumePosition = C.TIME_UNSET
     }
 
-    /**
-     * Returns a new DataSource factory.
-     *
-     * @return A new DataSource factory.
-     */
-    private fun buildDataSourceFactory(): DataSource.Factory =
-        DefaultDataSourceFactory(applicationContext, DefaultHttpDataSourceFactory("download2gohelloworld"))
 
-
-
-    private inner class PlayerEventListener : Player.EventListener {
+    private inner class PlayerEventListener : Player.Listener {
 
         override fun onPlayerStateChanged(playWhenReady: Boolean, playbackState: Int) {}
 
@@ -405,17 +328,10 @@ class VideoPlayerActivity : Activity(),  PlaybackPreparer {
     private class DrmListener(private val mActivity: VideoPlayerActivity) :
         SupportDrmSessionManager.EventListener {
         override fun onDrmKeysLoaded() {
-            if (mActivity.player != null) {
-                mActivity.player!!.analyticsCollector.onDrmKeysLoaded()
-            }
         }
 
         override fun onDrmSessionManagerError(e: Exception) {
-            // Can't complete playback
             mActivity.handleDrmLicenseNotAvailable()
-            if (mActivity.player != null) {
-                mActivity.player!!.analyticsCollector.onDrmSessionManagerError(e)
-            }
         }
 
     }

@@ -13,7 +13,6 @@ import android.util.Log
 import androidx.core.app.NotificationCompat
 import com.penthera.virtuososdk.Common
 import com.penthera.virtuososdk.client.IAsset
-import com.penthera.virtuososdk.client.IAssetManager
 import com.penthera.virtuososdk.client.IEvent
 import com.penthera.virtuososdk.client.Virtuoso
 
@@ -33,8 +32,6 @@ class NotificationFactory(private val applicationName: String) {
         private var notificationChannel : NotificationChannel? = null
         private var compatNotificationBuilder: NotificationCompat.Builder? = null
     }
-
-    private var assetManager: IAssetManager? = null
 
 
     /** Internal list of types of notifications in this factory */
@@ -89,14 +86,6 @@ class NotificationFactory(private val applicationName: String) {
 
             Log.d(TAG, "Got event named(" + event?.name() + ") asset(" + event?.assetId() + " data(" + event?.numericData() + ")")
             return null
-        }
-
-        // The other broadcasts are notification broadcasts specifically sent for (optional) status bar notification delivery.
-        // Determine which action we are handling and create a notification for it.
-        if (assetManager == null) synchronized(this) {
-            if (assetManager == null) {
-                assetManager = Virtuoso(context).assetManager
-            }
         }
 
         val notificationType : Int

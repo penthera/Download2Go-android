@@ -61,6 +61,7 @@ import com.google.android.exoplayer2.source.BehindLiveWindowException;
 import com.google.android.exoplayer2.source.TrackGroupArray;
 import com.google.android.exoplayer2.trackselection.AdaptiveTrackSelection;
 import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
+import com.google.android.exoplayer2.trackselection.ExoTrackSelection;
 import com.google.android.exoplayer2.trackselection.MappingTrackSelector.MappedTrackInfo;
 import com.google.android.exoplayer2.trackselection.TrackSelection;
 import com.google.android.exoplayer2.trackselection.TrackSelectionArray;
@@ -74,8 +75,8 @@ import com.penthera.sdkdemo.R;
 import com.penthera.virtuososdk.client.EngineObserver;
 import com.penthera.virtuososdk.client.IAsset;
 import com.penthera.virtuososdk.client.Virtuoso;
-import com.penthera.virtuososdk.support.exoplayer211.drm.SupportDrmSessionManager;
-import com.penthera.virtuososdk.support.exoplayer211.ExoplayerUtils;
+import com.penthera.virtuososdk.support.exoplayer213.drm.SupportDrmSessionManager;
+import com.penthera.virtuososdk.support.exoplayer213.ExoplayerUtils;
 
 import java.net.CookieHandler;
 import java.net.CookieManager;
@@ -297,7 +298,7 @@ public class PlayerActivity extends AppCompatActivity implements OnClickListener
 
         IAsset asset = intent.getParcelableExtra(VIRTUOSO_ASSET);
 
-        TrackSelection.Factory adaptiveTrackSelectionFactory =
+        ExoTrackSelection.Factory adaptiveTrackSelectionFactory =
                 new AdaptiveTrackSelection.Factory();
         trackSelector = new DefaultTrackSelector(this, adaptiveTrackSelectionFactory);
         trackSelector.setParameters(trackSelectorParameters);
@@ -314,7 +315,6 @@ public class PlayerActivity extends AppCompatActivity implements OnClickListener
                     .withTrackSelector(trackSelector)
                     .withPlayerEventListener(new PlayerEventListener())
                     .withAnalyticsListener(new EventLogger(trackSelector))
-                    .withPlaybackPreparer(this)
                     .playerWhenReady(true);
 
             //set drm options
@@ -495,9 +495,9 @@ public class PlayerActivity extends AppCompatActivity implements OnClickListener
 
         @Override
         public void onDrmKeysLoaded() {
-            if (mActivity.player != null) {
+            /*if (mActivity.player != null) {
                 mActivity.player.getAnalyticsCollector().onDrmKeysLoaded();
-            }
+            }*/
         }
 
         @Override
@@ -505,9 +505,9 @@ public class PlayerActivity extends AppCompatActivity implements OnClickListener
             // Can't complete playback
             mActivity.handleDrmLicenseNotAvailable();
 
-            if (mActivity.player != null) {
+            /*if (mActivity.player != null) {
                 mActivity.player.getAnalyticsCollector().onDrmSessionManagerError(e);
-            }
+            }*/
         }
     }
 

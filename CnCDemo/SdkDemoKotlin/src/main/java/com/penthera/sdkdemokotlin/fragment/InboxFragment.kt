@@ -8,7 +8,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.MergeAdapter
+import androidx.recyclerview.widget.ConcatAdapter
 import com.penthera.sdkdemokotlin.R
 import com.penthera.sdkdemokotlin.activity.NavigationListener
 import com.penthera.sdkdemokotlin.activity.OfflineVideoProvider
@@ -48,7 +48,7 @@ class InboxFragment : Fragment(), AssetsRecyclerAdapter.AssetInboxActionListener
     private lateinit var linearLayoutManager: LinearLayoutManager
 
     /** Merge adapter - combines the three adapters for the different queues plus headers */
-    private var mergeAdapter : MergeAdapter? = null
+    private var mergeAdapter : ConcatAdapter? = null
 
     /** Adapters for the three queues: downloaded, queued, and expired */
     private var downloadedAdapter: AssetsRecyclerAdapter? = null
@@ -149,13 +149,15 @@ class InboxFragment : Fragment(), AssetsRecyclerAdapter.AssetInboxActionListener
 
         emptyAdapter = EmptyRecyclerAdapter(getString(R.string.no_download), adaptersList)
 
-        mergeAdapter = MergeAdapter()
+        mergeAdapter = ConcatAdapter()
         mergeAdapter?.addAdapter(downloadedHeaderAdapter!!)
         mergeAdapter?.addAdapter(downloadedAdapter!!)
         mergeAdapter?.addAdapter(queuedHeaderAdapter!!)
         mergeAdapter?.addAdapter(queuedAdapter!!)
         mergeAdapter?.addAdapter(expiredHeaderAdapter!!)
         mergeAdapter?.addAdapter(expiredAdapter!!)
+
+
         mergeAdapter?.addAdapter(emptyAdapter!!)
 
         inboxList.adapter = mergeAdapter

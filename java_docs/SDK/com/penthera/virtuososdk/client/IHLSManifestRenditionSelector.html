@@ -167,22 +167,24 @@ var currentClass = "IHLSManifestRenditionSelector";
 </tr>
 <tr class="member method public">
 <td class="memberMarker colFirst"><img src="../../../../resources/ordinaryMember.gif" width="11" height="13" alt="Ordinary member indicator" class="ordinaryMember"></td>
-<td class="itemNameCell"><a name="selectRendition(java.util.List)" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">selectRendition</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
+<td class="itemNameCell"><a name="selectRendition(com.penthera.virtuososdk.client.ISegmentedAsset, java.util.List)" class="memberAnchor"></a><span onmouseover="overItemName(this, true);" onmouseout="overItemName(this, false);"><span class="itemTitle">selectRendition</span>&nbsp;<span onclick="toggleFullDescription(this);return false;"><img src="../../../../resources/collapsed.gif" width="9" height="9" alt="Reveal Detail" class="revealDetail"><img src="../../../../resources/expanded.gif" width="9" height="9" alt="Hide Detail" class="hideDetail"></span></span></td>
 <td class="descriptionContainer colLast">
 <div class="descriptionOverview">
-<div class="signature hidden rollover"><code>abstract <a class="code" href="IHLSManifestRenditionSelector.IHLSVideoRendition.html" title="interface in com.penthera.virtuososdk.client">IHLSManifestRenditionSelector.IHLSVideoRendition</a>&nbsp;</code><span class="itemTitle">selectRendition</span>(java.util.List&lt;IHLSManifestRenditionSelector.IHLSVideoRendition&gt;&nbsp;availableRenditions)</div>
+<div class="signature hidden rollover"><code>abstract <a class="code" href="IHLSManifestRenditionSelector.IHLSVideoRendition.html" title="interface in com.penthera.virtuososdk.client">IHLSManifestRenditionSelector.IHLSVideoRendition</a>&nbsp;</code><span class="itemTitle">selectRendition</span>(ISegmentedAsset&nbsp;asset,
+               java.util.List&lt;IHLSManifestRenditionSelector.IHLSVideoRendition&gt;&nbsp;availableRenditions)</div>
 <div class="block">Given a list of all the available video streams within an HLS top level manifest, return the
  required rendition for download.</div>
 </div>
 <div class="descriptionDetail hidden">
-<div class="signature"><a class="code" href="IHLSManifestRenditionSelector.IHLSVideoRendition.html" title="interface in com.penthera.virtuososdk.client">IHLSManifestRenditionSelector.IHLSVideoRendition</a>&nbsp;<span class="itemTitle">selectRendition</span>(java.util.List&lt;<a class="code" href="IHLSManifestRenditionSelector.IHLSVideoRendition.html" title="interface in com.penthera.virtuososdk.client">IHLSManifestRenditionSelector.IHLSVideoRendition</a>&gt;&nbsp;availableRenditions)</div>
+<div class="signature"><a class="code" href="IHLSManifestRenditionSelector.IHLSVideoRendition.html" title="interface in com.penthera.virtuososdk.client">IHLSManifestRenditionSelector.IHLSVideoRendition</a>&nbsp;<span class="itemTitle">selectRendition</span>(<a class="code" href="ISegmentedAsset.html" title="interface in com.penthera.virtuososdk.client">ISegmentedAsset</a>&nbsp;asset,
+                                                               java.util.List&lt;<a class="code" href="IHLSManifestRenditionSelector.IHLSVideoRendition.html" title="interface in com.penthera.virtuososdk.client">IHLSManifestRenditionSelector.IHLSVideoRendition</a>&gt;&nbsp;availableRenditions)</div>
 <dl>
 <dd>
 <div class="block">Given a list of all the available video streams within an HLS top level manifest, return the
  required rendition for download. The method should be implemented to return one of the values
  from within the list. If another object, or null is returned then the video will be
  removed from the asset and the asset will fail parsing.</div>
-<dl class="tagSection"><dt><span class="strong">Parameters:</span></dt><dd><code>availableRenditions</code> - A list of the available renditions, with details from the HLS Stream.</dd>
+<dl class="tagSection"><dt><span class="strong">Parameters:</span></dt><dd><code>asset</code> - The asset for which renditions are being selected</dd><dd><code>availableRenditions</code> - A list of the available renditions, with details from the HLS Stream.</dd>
 <dt><span class="strong">Returns:</span></dt><dd>One of the values from the list, representing the rendition to be downloaded for the asset.</dd></dl>
 </dd>
 </dl>

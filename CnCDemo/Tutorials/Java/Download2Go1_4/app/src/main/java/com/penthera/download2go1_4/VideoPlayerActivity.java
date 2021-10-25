@@ -21,7 +21,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.DefaultRenderersFactory;
 import com.google.android.exoplayer2.ExoPlaybackException;
-import com.google.android.exoplayer2.PlaybackPreparer;
 import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.RenderersFactory;
 import com.google.android.exoplayer2.SimpleExoPlayer;
@@ -31,15 +30,15 @@ import com.google.android.exoplayer2.source.BehindLiveWindowException;
 import com.google.android.exoplayer2.source.TrackGroupArray;
 import com.google.android.exoplayer2.trackselection.AdaptiveTrackSelection;
 import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
+import com.google.android.exoplayer2.trackselection.ExoTrackSelection;
 import com.google.android.exoplayer2.trackselection.MappingTrackSelector;
-import com.google.android.exoplayer2.trackselection.TrackSelection;
 import com.google.android.exoplayer2.trackselection.TrackSelectionArray;
 import com.google.android.exoplayer2.ui.PlayerView;
 import com.google.android.exoplayer2.util.ErrorMessageProvider;
 import com.google.android.exoplayer2.util.EventLogger;
 import com.penthera.virtuososdk.client.IAsset;
 import com.penthera.virtuososdk.client.Virtuoso;
-import com.penthera.virtuososdk.support.exoplayer211.ExoplayerUtils;
+import com.penthera.virtuososdk.support.exoplayer214.ExoplayerUtils;
 
 import java.net.CookieHandler;
 import java.net.CookieManager;
@@ -51,7 +50,7 @@ import java.net.URL;
 /**
  * An activity that plays media using {@link SimpleExoPlayer}.
  */
-public class VideoPlayerActivity extends AppCompatActivity implements PlaybackPreparer {
+public class VideoPlayerActivity extends AppCompatActivity {
 
     // Saved instance state keys.
     private static final String KEY_TRACK_SELECTOR_PARAMETERS = "track_selector_parameters";
@@ -199,11 +198,6 @@ public class VideoPlayerActivity extends AppCompatActivity implements PlaybackPr
         return playerView.dispatchKeyEvent(event) || super.dispatchKeyEvent(event);
     }
 
-    @Override
-    public void preparePlayback() {
-        player.retry();
-    }
-
     private void initializePlayer() {
         if (player == null) {
             Intent intent = getIntent();
@@ -216,7 +210,7 @@ public class VideoPlayerActivity extends AppCompatActivity implements PlaybackPr
 
             IAsset asset = intent.getParcelableExtra(VIRTUOSO_ASSET);
 
-            TrackSelection.Factory trackSelectionFactory = new AdaptiveTrackSelection.Factory();
+            ExoTrackSelection.Factory trackSelectionFactory = new AdaptiveTrackSelection.Factory();
             trackSelector = new DefaultTrackSelector(this, trackSelectionFactory);
             trackSelector.setParameters(trackSelectorParameters);
             lastSeenTrackGroupArray = null;
@@ -229,7 +223,6 @@ public class VideoPlayerActivity extends AppCompatActivity implements PlaybackPr
                     .withTrackSelector(trackSelector)
                     .withPlayerEventListener(new PlayerEventListener())
                     .withAnalyticsListener(new EventLogger(trackSelector))
-                    .withPlaybackPreparer(this)
                     .playerWhenReady(true);
 
             builder.mediaSourceOptions().useTransferListener(true)
@@ -317,7 +310,7 @@ public class VideoPlayerActivity extends AppCompatActivity implements PlaybackPr
     }
 
     // This inner class is taken directly from the Exoplayer demo. It provides the player listener interface for updating overlay buttons.
-    private class PlayerEventListener implements Player.EventListener {
+    private class PlayerEventListener implements Player.Listener {
 
         @Override
         public void onPlayerStateChanged(boolean playWhenReady, @Player.State int playbackState) {
