@@ -1,13 +1,11 @@
 package com.penthera.sdkdemokotlin.view
 
 
-import android.view.View
+import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.penthera.sdkdemokotlin.R
+import com.penthera.sdkdemokotlin.databinding.ListrowHeaderBinding
 import com.penthera.sdkdemokotlin.engine.AssetsRecyclerAdapter
-import com.penthera.sdkdemokotlin.util.inflate
-import kotlinx.android.synthetic.main.listrow_header.view.*
 
 /**
  * A simple header adapter for use within the merge adapter. Shows a header row only in the
@@ -20,8 +18,8 @@ open class HeaderRecyclerAdapter(headerTitle: String, adapter: AssetsRecyclerAda
     private val adapter: AssetsRecyclerAdapter = adapter
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HeaderRecyclerAdapter.HeaderHolder {
-        val inflatedView = parent.inflate(R.layout.listrow_header, false)
-        return HeaderHolder(inflatedView, title)
+        val itemBinding = ListrowHeaderBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return HeaderHolder(itemBinding, title)
     }
 
     override fun getItemCount(): Int = if(adapter.itemCount > 0) 1 else 0
@@ -33,14 +31,10 @@ open class HeaderRecyclerAdapter(headerTitle: String, adapter: AssetsRecyclerAda
     /**
      * ViewHolder for catalog item view
      */
-    class HeaderHolder(v: View, title: String) : RecyclerView.ViewHolder(v) {
-
-        private var view: View = v
-
-        private val title: String = title
+    class HeaderHolder(private val itemBinding: ListrowHeaderBinding, private val title: String) : RecyclerView.ViewHolder(itemBinding.root) {
 
         fun bindItem() {
-            view.headerText.text = title
+            itemBinding.headerText.text = title
         }
 
     }

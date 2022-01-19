@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.ConcatAdapter
 import com.penthera.sdkdemokotlin.R
 import com.penthera.sdkdemokotlin.activity.NavigationListener
 import com.penthera.sdkdemokotlin.activity.OfflineVideoProvider
+import com.penthera.sdkdemokotlin.databinding.FragmentInboxBinding
 import com.penthera.sdkdemokotlin.engine.AssetsRecyclerAdapter
 import com.penthera.sdkdemokotlin.engine.AssetsRecyclerAdapter.Companion.DOWNLOADED
 import com.penthera.sdkdemokotlin.engine.AssetsRecyclerAdapter.Companion.EXPIRED
@@ -22,7 +23,6 @@ import com.penthera.sdkdemokotlin.view.EmptyRecyclerAdapter
 import com.penthera.sdkdemokotlin.view.HeaderRecyclerAdapter
 import com.penthera.virtuososdk.client.IAsset
 import com.penthera.virtuososdk.client.ISegmentedAsset
-import kotlinx.android.synthetic.main.fragment_inbox.*
 
 /**
  * A single inbox fragment displays some of the different queues available from the SDK for:
@@ -68,18 +68,28 @@ class InboxFragment : Fragment(), AssetsRecyclerAdapter.AssetInboxActionListener
     /** Action mode  */
     private var actionMode: ActionMode? = null
 
+    private var _binding: FragmentInboxBinding? = null
+
+    private val binding get() = _binding!!
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_inbox, container, false)
+        _binding = FragmentInboxBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         linearLayoutManager = LinearLayoutManager(context)
-        inboxList.layoutManager = linearLayoutManager
-        val itemDecoration = DividerItemDecoration(inboxList.context, linearLayoutManager.orientation)
-        inboxList.addItemDecoration(itemDecoration)
+        binding.inboxList.layoutManager = linearLayoutManager
+        val itemDecoration = DividerItemDecoration(binding.inboxList.context, linearLayoutManager.orientation)
+        binding.inboxList.addItemDecoration(itemDecoration)
         mergeAdapter?.let{
-            inboxList.adapter = it
+            binding.inboxList.adapter = it
             setFooter()
         }
 
@@ -97,7 +107,7 @@ class InboxFragment : Fragment(), AssetsRecyclerAdapter.AssetInboxActionListener
                     .get(VirtuosoQueuesViewModel::class.java)
             queuesViewModel?.combinedQueuesLiveData?.observe(viewLifecycleOwner, Observer<List<Cursor?>> {
                 it?.let {
-                    if (inboxList.adapter != null) {
+                    if (binding.inboxList.adapter != null) {
                         it[0]?.let {
                             downloadedAdapter?.cursor = it
                             downloadedAdapter?.notifyDataSetChanged()
@@ -160,20 +170,20 @@ class InboxFragment : Fragment(), AssetsRecyclerAdapter.AssetInboxActionListener
 
         mergeAdapter?.addAdapter(emptyAdapter!!)
 
-        inboxList.adapter = mergeAdapter
+        binding.inboxList.adapter = mergeAdapter
     }
 
     private fun setFooter() {
         if (queuedAdapter!!.itemCount > 0 || downloadedAdapter!!.itemCount > 0 || expiredAdapter!!.itemCount > 0) {
-            inboxFooter.setVisibility(View.VISIBLE)
+            binding.inboxFooter.visibility = View.VISIBLE
         } else {
-            inboxFooter.setVisibility(View.GONE)
+            binding.inboxFooter.visibility = View.GONE
         }
     }
 
     override fun openDetailView(assetId: Int) {
-        val asset: IAsset? = offlineVideoProvider?.getOfflineEngine()?.getVirtuoso()?.assetManager?.get(assetId) as IAsset
-        asset?.let{ navigationListener?.showInboxDetailsView(asset)}
+        val asset: IAsset = offlineVideoProvider?.getOfflineEngine()?.getVirtuoso()?.assetManager?.get(assetId) as IAsset
+        navigationListener?.showInboxDetailsView(asset)
     }
 
     override fun moveUpInQueue(assetId: Int, currentPosition: Int) {

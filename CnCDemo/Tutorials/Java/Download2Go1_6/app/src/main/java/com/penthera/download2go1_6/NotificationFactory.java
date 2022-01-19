@@ -237,7 +237,7 @@ public class NotificationFactory {
                 break;
         }
 
-        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, createIntent(context), PendingIntent.FLAG_CANCEL_CURRENT);
+        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, createIntent(context), PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_CANCEL_CURRENT);
 
         Notification notification;
         if (compatNotificationBuilder == null) {

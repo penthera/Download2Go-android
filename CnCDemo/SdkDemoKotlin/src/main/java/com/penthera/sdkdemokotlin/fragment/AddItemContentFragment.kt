@@ -7,18 +7,27 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import com.penthera.sdkdemokotlin.R
-import kotlinx.android.synthetic.main.fragment_add_catalog_content.view.*
+import com.penthera.sdkdemokotlin.databinding.FragmentAddCatalogContentBinding
 
 class AddItemContentFragment : Fragment() {
 
+    private var _binding: FragmentAddCatalogContentBinding? = null
+
+    val binding get() = _binding!!
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val ret : View =  inflater.inflate(R.layout.fragment_add_catalog_content, container, false)
 
+        _binding = FragmentAddCatalogContentBinding.inflate(inflater, container, false)
 
-        val adapter = ArrayAdapter.createFromResource(context!!, R.array.add_item_content_type, android.R.layout.simple_spinner_item)
+        val adapter = ArrayAdapter.createFromResource(requireContext(), R.array.add_item_content_type, android.R.layout.simple_spinner_item)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        ret.spinner_item_type.adapter = adapter
+        binding.spinnerItemType.adapter = adapter
 
-        return ret
+        return binding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

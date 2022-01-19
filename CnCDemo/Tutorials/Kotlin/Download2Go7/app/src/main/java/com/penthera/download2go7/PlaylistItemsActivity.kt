@@ -1,5 +1,6 @@
 package com.penthera.download2go7
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.database.Cursor
@@ -14,6 +15,9 @@ import androidx.cursoradapter.widget.CursorAdapter
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
+import androidx.viewbinding.ViewBinding
+import com.penthera.download2go7.databinding.PlaylistActivityBinding
+import com.penthera.download2go7.databinding.PlaylistitemRowBinding
 import com.penthera.virtuososdk.client.Virtuoso
 import com.penthera.virtuososdk.client.autodownload.IPlaylistManager
 import com.penthera.virtuososdk.client.database.PlaylistItemColumns
@@ -36,6 +40,7 @@ class PlaylistItemsActivity : AppCompatActivity(), LoaderManager.LoaderCallbacks
 
     private val LOADER_ID = 1
 
+    private lateinit var binding : PlaylistActivityBinding
     private var playlistAdapter: PlaylistItemAdapter? = null
     var mVirtuoso: Virtuoso? = null
 
@@ -46,14 +51,17 @@ class PlaylistItemsActivity : AppCompatActivity(), LoaderManager.LoaderCallbacks
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.playlist_activity)
+
+        binding = PlaylistActivityBinding.inflate(layoutInflater)
+
+        setContentView(binding.root)
 
         mVirtuoso = Virtuoso(this)
         playlistAdapter = PlaylistItemAdapter(this, null)
 
-        mEmptyView = findViewById(R.id.empty_list)
-        findViewById<ListView>(R.id.playlists).apply{
-            setEmptyView(mEmptyView)
+
+        binding.playlists .apply{
+            setEmptyView(binding.emptyList)
             setAdapter(playlistAdapter)
         }
 
@@ -109,6 +117,7 @@ class PlaylistItemsActivity : AppCompatActivity(), LoaderManager.LoaderCallbacks
         private val mInflater: LayoutInflater
         private val playlistManager: IPlaylistManager
         private val dateFormat: SimpleDateFormat
+        @SuppressLint("Range")
         override fun bindView(
             view: View,
             context: Context,
@@ -129,23 +138,17 @@ class PlaylistItemsActivity : AppCompatActivity(), LoaderManager.LoaderCallbacks
                 cursor.getInt(cursor.getColumnIndex(PlaylistItemColumns.PENDING)) > 0
             val lastPending =
                 cursor.getLong(cursor.getColumnIndex(PlaylistItemColumns.LAST_PENDING))
-            val nameTxt = view.findViewById<TextView>(R.id.playlistitem_name)
-            nameTxt.text = assetId
-            val statusTxt = view.findViewById<TextView>(R.id.playlistitem_status)
-            statusTxt.text = playlistManager.PlaylistItemStatusAsString(status)
-            val downloadedTxt = view.findViewById<TextView>(R.id.playlistitem_downloaded)
-            downloadedTxt.text = formattedStringFromTimestamp(downloadedTimestamp, true)
-            val deletedTxt = view.findViewById<TextView>(R.id.playlistitem_deleted)
-            deletedTxt.text = if (deleted) "yes" else "no"
-            val expiredTxt = view.findViewById<TextView>(R.id.playlistitem_expired)
-            expiredTxt.text = if (expired) "yes" else "no"
-            val playbackTxt = view.findViewById<TextView>(R.id.playlistitem_playback)
-            playbackTxt.text = formattedStringFromTimestamp(playedBackTimestamp, true)
-            val pendingTxt = view.findViewById<TextView>(R.id.playlistitem_pending)
-            pendingTxt.text = if (pending) "yes" else "no"
-            val lastPendingTxt =
-                view.findViewById<TextView>(R.id.playlistitem_lastpending)
-            lastPendingTxt.text = formattedStringFromTimestamp(lastPending, false)
+
+            val itemBinding : PlaylistitemRowBinding= view.tag as PlaylistitemRowBinding
+
+            itemBinding.playlistitemName.text = assetId
+            itemBinding.playlistitemStatus.text = playlistManager.PlaylistItemStatusAsString(status)
+            itemBinding.playlistitemDownloaded.text = formattedStringFromTimestamp(downloadedTimestamp, true)
+            itemBinding.playlistitemDeleted.text = if (deleted) "yes" else "no"
+            itemBinding.playlistitemExpired.text = if (expired) "yes" else "no"
+            itemBinding.playlistitemPlayback.text = formattedStringFromTimestamp(playedBackTimestamp, true)
+            itemBinding.playlistitemPending.text = if (pending) "yes" else "no"
+            itemBinding.playlistitemLastpending.text = formattedStringFromTimestamp(lastPending, false)
         }
 
         private fun formattedStringFromTimestamp(
@@ -160,7 +163,9 @@ class PlaylistItemsActivity : AppCompatActivity(), LoaderManager.LoaderCallbacks
         }
 
         override fun newView(context: Context, cursor: Cursor, parent: ViewGroup): View {
-            return mInflater.inflate(R.layout.playlistitem_row, parent, false)
+            val itemBinding =  PlaylistitemRowBinding.inflate(mInflater, parent, false)
+            itemBinding.root.tag = itemBinding
+            return itemBinding.root
         }
 
         init {

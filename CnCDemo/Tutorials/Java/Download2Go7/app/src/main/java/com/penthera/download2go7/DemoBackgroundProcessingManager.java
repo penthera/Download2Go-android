@@ -10,6 +10,8 @@ import com.penthera.virtuososdk.Common;
 import com.penthera.virtuososdk.client.AssetNoLongerAvailableException;
 import com.penthera.virtuososdk.client.IAssetManager;
 import com.penthera.virtuososdk.client.IBackgroundProcessingManager;
+import com.penthera.virtuososdk.client.IDASHManifestRenditionSelector;
+import com.penthera.virtuososdk.client.IHLSManifestRenditionSelector;
 import com.penthera.virtuososdk.client.IIdentifier;
 import com.penthera.virtuososdk.client.IManifestParserObserver;
 import com.penthera.virtuososdk.client.IPrepareURLObserver;

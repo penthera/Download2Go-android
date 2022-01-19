@@ -246,11 +246,13 @@ public class MainActivity extends AppCompatActivity {
             if (fileList != null && fileList.size() > 0) {
                 String fileLocalPath = fileList.get(0).localPath;
 
-                File imgFile = new File(fileLocalPath);
-                if (imgFile.exists()) {
-                    ancillaryImage.setImageURI(Uri.fromFile(imgFile));
-                    ancillaryImage.setVisibility(View.VISIBLE);
-                }
+				if (fileLocalPath != null) {
+					File imgFile = new File(fileLocalPath);
+					if (imgFile.exists()) {
+						ancillaryImage.setImageURI(Uri.fromFile(imgFile));
+						ancillaryImage.setVisibility(View.VISIBLE);
+					}
+				}
             }
         }
     }

@@ -11,6 +11,7 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.penthera.bitmovindemo.databinding.ActivityMainBinding
 
 import com.penthera.virtuososdk.Common
 import com.penthera.virtuososdk.client.*
@@ -21,28 +22,26 @@ import java.net.URL
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var binding : ActivityMainBinding
     private lateinit var  virtuoso : Virtuoso
     var asset : IAsset? =  null
     private lateinit var queueObserver: AssetQueueObserver
     private lateinit var licenseObserver: LicenseObserver
-    private lateinit var dlBtn : Button
-    private lateinit var plBtn : Button
-    private lateinit var delBtn : Button
+
 
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         initVirtuosoSDK(savedInstanceState)
 
-        dlBtn = findViewById(R.id.download)
-        dlBtn.setOnClickListener { downloadAsset() }
-        plBtn= findViewById(R.id.play)
-        plBtn.setOnClickListener { playAsset()}
-        delBtn = findViewById(R.id.delete)
-        delBtn.setOnClickListener { deleteAsset() }
+        binding.download.setOnClickListener { downloadAsset() }
+        binding.play.setOnClickListener { playAsset()}
+        binding.delete.setOnClickListener { deleteAsset() }
 
         updateUI()
     }
@@ -123,12 +122,12 @@ class MainActivity : AppCompatActivity() {
 
     fun updateUI() {
 
-        dlBtn.isEnabled = asset == null
-        plBtn.isEnabled = asset != null
-        delBtn.isEnabled = asset != null
+        binding.download.isEnabled = asset == null
+        binding.play.isEnabled = asset != null
+        binding.delete.isEnabled = asset != null
 
         if(asset == null){
-            findViewById<TextView>(R.id.textView).text = ""
+            binding.textView.text = ""
         }
     }
 
@@ -280,7 +279,7 @@ class MainActivity : AppCompatActivity() {
 
 
                         mActivity.updateUI()
-                        val tv = mActivity.findViewById(R.id.textView) as TextView
+                        val tv = mActivity.binding.textView
                         tv.visibility = View.VISIBLE
                         tv.text = String.format(mActivity.getString(R.string.asset_status), assetStatus, asset.errorCount, value)
 
@@ -289,7 +288,7 @@ class MainActivity : AppCompatActivity() {
                         if (progress == 0) progress = 1
 
                         // Progress Bar
-                        val pb = mActivity.findViewById(R.id.progressBar) as ProgressBar
+                        val pb = mActivity.binding.progressBar
                         if (progress in 1..99) {
                             pb.progress = progress
                             pb.visibility = View.VISIBLE

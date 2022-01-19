@@ -5,8 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
-import com.penthera.sdkdemokotlin.R
-import kotlinx.android.synthetic.main.dialog_progress.view.*
+import com.penthera.sdkdemokotlin.databinding.DialogProgressBinding
 
 /**
  *
@@ -19,6 +18,8 @@ class CancellableProgressDialog : DialogFragment() {
 
     private var listener: CancelDialogListener? = null
     private lateinit var title: String
+
+    private var _binding: DialogProgressBinding? = null
 
     companion object {
         fun newInstance(listener: CancelDialogListener?, title: String): CancellableProgressDialog {
@@ -35,13 +36,18 @@ class CancellableProgressDialog : DialogFragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.dialog_progress, container, false)
-        view.progressTitle.text = title
-        view.btnCancelProgress.setOnClickListener {
+        _binding = DialogProgressBinding.inflate(inflater, container, false)
+        val binding = _binding!!
+        binding.progressTitle.text = title
+        binding.btnCancelProgress.setOnClickListener {
             listener?.cancel()
             dismiss()
         }
-        return view;
+        return binding.root;
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }

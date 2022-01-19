@@ -4,7 +4,7 @@ pluginManagement {
             url "https://clientbuilds.penthera.com/repository/releases"
         }
         google()
-        jcenter()
+		mavenCentral()
     }
 }
 include ':app'

@@ -199,7 +199,7 @@ class NotificationFactory(private val applicationName: String) {
             FAILED_NOTIFICATION -> title += " asset could not be queued"
         }
 
-        val pendingIntent = PendingIntent.getActivity(context, 0, createIntent(context), PendingIntent.FLAG_CANCEL_CURRENT)
+        val pendingIntent = PendingIntent.getActivity(context, 0, createIntent(context), PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_CANCEL_CURRENT)
 
         if(compatNotificationBuilder == null) {
             synchronized(this) {

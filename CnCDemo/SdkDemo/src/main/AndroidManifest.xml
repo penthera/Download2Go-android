@@ -32,7 +32,8 @@
         <activity
             android:name="com.penthera.sdkdemo.activity.SplashActivity"
         	android:noHistory="true"
-			android:screenOrientation="portrait">
+			android:screenOrientation="portrait"
+			android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -44,7 +45,8 @@
 			android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|smallestScreenSize|uiMode"
 			android:launchMode="singleTop"
 			android:label="Player"
-			android:theme="@style/PlayerTheme">
+			android:theme="@style/PlayerTheme"
+			android:exported="false">
 			<intent-filter>
 				<action android:name="com.penthera.sdkdemo.exoplayer.action.VIEW"/>
 				<category android:name="android.intent.category.DEFAULT"/>
@@ -59,32 +61,38 @@
         <!-- Main -->
         <activity
         	android:name="com.penthera.sdkdemo.activity.MainActivity"
-			android:screenOrientation="portrait"/>
+			android:screenOrientation="portrait"
+			android:exported="false"/>
 
         <!-- About -->
         <activity
         	android:name="com.penthera.sdkdemo.activity.AboutActivity"
-			android:screenOrientation="portrait"/>
+			android:screenOrientation="portrait"
+			android:exported="false"/>
 
         <!-- Catalog Details -->
 		<activity
 			android:name="com.penthera.sdkdemo.activity.CatalogDetailActivity"
-			android:screenOrientation="portrait"/>
+			android:screenOrientation="portrait"
+			android:exported="false"/>
 
         <!-- Diagnostics -->
 		<activity
 			android:name="com.penthera.sdkdemo.activity.DiagnosticsActivity"
-			android:screenOrientation="portrait"/>
+			android:screenOrientation="portrait"
+			android:exported="false"/>
 
         <!-- Devices -->
 		<activity
 			android:name="com.penthera.sdkdemo.activity.DevicesActivity"
-			android:screenOrientation="portrait"/>
+			android:screenOrientation="portrait"
+			android:exported="false"/>
 
         <!-- Settings -->
 		<activity
 			android:name="com.penthera.sdkdemo.activity.SettingsActivity"
-			android:screenOrientation="portrait"/>
+			android:screenOrientation="portrait"
+			android:exported="false"/>
 
 		<!-- Meta Data -->
         <meta-data android:name="com.penthera.virtuososdk.client.pckg" android:value="@string/client_package" />
@@ -95,6 +103,7 @@
 		<!-- Service Starter -->
 		<receiver android:name="com.penthera.sdkdemo.SDKDemoServiceStarter"
 			android:enabled="true"
+			android:exported="true"
 			android:label="SDKDemoServiceStarter"
 			android:directBootAware="true">
 			<intent-filter>
@@ -123,6 +132,7 @@
 		<!-- Notification Receiver -->
         <receiver android:name="com.penthera.sdkdemo.notification.NotificationReceiver"
 	    	android:enabled="true"
+			android:exported="false"
 	    	android:label="NotificationReceiver">
 	    	<intent-filter>
 	    		<action android:name="com.penthera.virtuososdk.provider.sdkdemo.NOTIFICATION_DOWNLOAD_START"/>
@@ -153,7 +163,8 @@
 	    </receiver>
 
 		<service
-			android:name="com.penthera.sdkdemo.push.DemoFCMService">
+			android:name="com.penthera.sdkdemo.push.DemoFCMService"
+			android:exported="false">
 			<intent-filter>
 				<action android:name="com.google.firebase.MESSAGING_EVENT" />
 			</intent-filter>
@@ -169,7 +180,8 @@
 
 		<receiver
 			android:name="com.penthera.sdkdemo.push.DemoADMReceiver"
-			android:permission="com.amazon.device.messaging.permission.SEND" >
+			android:permission="com.amazon.device.messaging.permission.SEND"
+			android:exported="true">
 
 			<!-- To interact with ADM, your app must listen for the following intents. -->
 			<intent-filter>

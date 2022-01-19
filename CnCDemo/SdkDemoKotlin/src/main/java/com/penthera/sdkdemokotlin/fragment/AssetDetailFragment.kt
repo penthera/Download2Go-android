@@ -27,6 +27,7 @@ import com.penthera.sdkdemokotlin.catalog.CatalogItemType
 import com.penthera.sdkdemokotlin.catalog.ExampleCatalog
 import com.penthera.sdkdemokotlin.catalog.ExampleCatalogItem
 import com.penthera.sdkdemokotlin.catalog.ExampleMetaData
+import com.penthera.sdkdemokotlin.databinding.FragmentAssetDetailBinding
 import com.penthera.sdkdemokotlin.engine.OfflineVideoEngine
 import com.penthera.virtuososdk.Common
 import com.penthera.virtuososdk.client.*
@@ -35,7 +36,6 @@ import com.penthera.virtuososdk.client.builders.MPDAssetBuilder
 import com.penthera.virtuososdk.client.database.AssetColumns
 import com.squareup.picasso.Picasso
 import com.squareup.picasso.Target
-import kotlinx.android.synthetic.main.fragment_asset_detail.*
 import org.ocpsoft.prettytime.PrettyTime
 import java.lang.Long.MAX_VALUE
 import java.net.URL
@@ -76,16 +76,22 @@ class AssetDetailFragment : Fragment()  {
     private lateinit var exampleCatalog : ExampleCatalog
     private lateinit var queueObserver : AssetQueueObserver
 
-    private lateinit var rootView : View
-    //private lateinit var progressBar: ProgressBar
+    private var _binding: FragmentAssetDetailBinding? = null
 
-
+    private val binding get() = _binding!!
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        rootView = inflater.inflate(R.layout.fragment_asset_detail, container, false)
 
-        return rootView
+        _binding = FragmentAssetDetailBinding.inflate(inflater, container, false)
+
+        return binding.root
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
@@ -101,7 +107,7 @@ class AssetDetailFragment : Fragment()  {
 
         val offlineVideoProvider = activity as OfflineVideoProvider
         offlineVideoEngine = offlineVideoProvider.getOfflineEngine()
-        exampleCatalog = ExampleCatalog(context!!)
+        exampleCatalog = ExampleCatalog(requireContext())
         queueObserver = AssetQueueObserver(activity)
 
 
@@ -161,10 +167,10 @@ class AssetDetailFragment : Fragment()  {
             activity?.onBackPressed()
         }
 
-        txt_title.text = catalogItem?.title
+        binding.txtTitle.text = catalogItem?.title
 
         if(!catalogItem?.contentRating.isNullOrEmpty()){
-            txt_parental_rating.text = catalogItem?.contentRating
+            binding.txtParentalRating.text = catalogItem?.contentRating
         }
 
         Picasso.get()
@@ -183,24 +189,24 @@ class AssetDetailFragment : Fragment()  {
                         val colour = 88 and 0xFF shl 24
                         canvas.drawColor(colour, PorterDuff.Mode.DST_IN)
 
-                        detail_bg_img.background = BitmapDrawable(context?.resources,mutableBitmap)
+                        binding.detailBgImg.background = BitmapDrawable(context?.resources,mutableBitmap)
                     }
 
                 })
 
 
-        txt_description.text = catalogItem?.description
-        txt_duration.text = getDurationString(catalogItem!!.durationSeconds)
+        binding.txtDescription.text = catalogItem?.description
+        binding.txtDuration.text = getDurationString(catalogItem!!.durationSeconds)
 
-        txt_expiry.text = makePretty(getExpiry(), "Never")
-        txt_available.visibility = View.GONE
-        txt_description.text = catalogItem?.description
+        binding.txtExpiry.text = makePretty(getExpiry(), "Never")
+        binding.txtAvailable.visibility = View.GONE
+        binding.txtDescription.text = catalogItem?.description
 
         val assetId : String  = catalogItem!!.exampleAssetId
 
-        btn_download.text = if (isDownloaded(assetId) || isQ(assetId) || isExpired(assetId) ) "Delete " else  "Download"
+        binding.btnDownload.text = if (isDownloaded(assetId) || isQ(assetId) || isExpired(assetId) ) "Delete " else  "Download"
 
-        btn_download.setOnClickListener {
+        binding.btnDownload.setOnClickListener {
             if(isDownloaded(assetId) || isQ(assetId) || isExpired(assetId) ){
                 showDeleteDialog()
             }
@@ -209,7 +215,7 @@ class AssetDetailFragment : Fragment()  {
             }
         }
 
-        btn_watch.setOnClickListener {
+        binding.btnWatch.setOnClickListener {
             watchItem()
         }
     }
@@ -242,7 +248,7 @@ class AssetDetailFragment : Fragment()  {
         val endWindow = asset.endWindow
         // Not downloaded
 
-        var ret : Long
+        val ret : Long
         when(completionTime) {
             0L -> ret = when (endWindow) {
                 MAX_VALUE -> -1
@@ -257,7 +263,7 @@ class AssetDetailFragment : Fragment()  {
 
     private fun getExpiration(completionTime: Long, endWindow: Long, firstPlayTime: Long, expiryAfterPlay: Long, expiryAfterDownload: Long): Long {
 
-        var ret : Long
+        val ret : Long
 
         when(completionTime){
 
@@ -312,7 +318,7 @@ class AssetDetailFragment : Fragment()  {
      * @return true, item is in Q
      */
     private fun isQ(assetId: String): Boolean {
-        var ret: Boolean
+        val ret: Boolean
 
         var c: Cursor? = null
         try {
@@ -333,7 +339,7 @@ class AssetDetailFragment : Fragment()  {
      */
     private fun isDownloaded(assetId: String): Boolean {
 
-        var ret: Boolean
+        val ret: Boolean
 
         var c: Cursor? = null
         try {
@@ -354,7 +360,7 @@ class AssetDetailFragment : Fragment()  {
      */
     private fun isExpired(assetId: String): Boolean {
 
-        var ret :Boolean
+        val ret :Boolean
 
         var c: Cursor? = null
         try {
@@ -412,7 +418,7 @@ class AssetDetailFragment : Fragment()  {
 
         offlineVideoEngine?.getVirtuoso()?.assetManager?.delete(asset)
         activity?.runOnUiThread{
-            btn_download.text = if (isDownloaded(assetId) || isQ(assetId) || isExpired(assetId) ) "Delete " else  "Download"
+            binding.btnDownload.text = if (isDownloaded(assetId) || isQ(assetId) || isExpired(assetId) ) "Delete " else  "Download"
         }
     }
 
@@ -469,10 +475,10 @@ class AssetDetailFragment : Fragment()  {
     private fun watchItem(){
 
         if(asset == null){
-            VideoPlayerActivity.playVideoStream(catalogItem!!, context!!)
+            VideoPlayerActivity.playVideoStream(catalogItem!!, requireContext())
         }
         else{
-            VideoPlayerActivity.playVideoDownload(asset!!,context!!)
+            VideoPlayerActivity.playVideoDownload(asset!!,requireContext())
         }
 
     }
@@ -602,11 +608,11 @@ class AssetDetailFragment : Fragment()  {
                             checkRetryState = true
                         }
                     }
-                    val tv = parent.rootView.findViewById(R.id.txt_assetstatus) as TextView
+                    val tv = parent.binding.txtAssetstatus
                     tv.visibility = View.VISIBLE
                     tv.text = String.format(parent.getString(R.string.asset_status), assetStatus, asset.errorCount, value)
 
-                    val retryTv = parent.rootView.findViewById(R.id.txt_retrystatus) as TextView
+                    val retryTv = parent.binding.txtRetrystatus
                     var showRetryState = false
                     if (checkRetryState) {
                         if (parent.asset?.maximumRetriesExceeded() == true) {
@@ -621,7 +627,7 @@ class AssetDetailFragment : Fragment()  {
                     if (progress == 0) progress = 1
 
                     // Progress Bar
-                    val pb = parent.rootView.findViewById(R.id.prg) as ProgressBar
+                    val pb = parent.binding.prg
                     if (progress in 1..99) {
                         pb.progress = progress
                         pb.visibility = View.VISIBLE

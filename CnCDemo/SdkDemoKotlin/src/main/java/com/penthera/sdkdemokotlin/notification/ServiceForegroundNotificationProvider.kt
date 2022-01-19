@@ -69,7 +69,7 @@ class ServiceForegroundNotificationProvider : IForegroundNotificationProvider{
             channelId = notificationChannel?.id
         }
 
-        currentNotification = NotificationFactory("SdkKotlinDemo").getNotification(context!!, reasonIntent )
+        currentNotification = NotificationFactory("SdkKotlinDemo").getNotification(context!!, reasonIntent)
 
         return currentNotification!!
     }

@@ -9,24 +9,23 @@ import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import com.penthera.download2go6.databinding.ActivityMainBinding
 
 import com.penthera.virtuososdk.Common
 import com.penthera.virtuososdk.client.*
 import com.penthera.virtuososdk.client.IService.IConnectionObserver
 import com.penthera.virtuososdk.client.Observers.IEngineObserver
 import com.penthera.virtuososdk.client.builders.MPDAssetBuilder
+
 import java.net.URL
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivityMainBinding
     private lateinit var  virtuoso : Virtuoso
     var asset : IAsset? =  null
     private lateinit var queueObserver: AssetQueueObserver
-    private lateinit var dlBtn : Button
-    private lateinit var plBtn : Button
-    private lateinit var delBtn : Button
-    private lateinit var pauseAsset : Switch
-    private lateinit var pauseEngine : Switch
+
     private var internalUpdate : Boolean = false
     //local reference to the Download2Go service
     private var download2GoService : IService? = null
@@ -45,7 +44,7 @@ class MainActivity : AppCompatActivity() {
 
                     try{
                         internalUpdate = true
-                        pauseEngine.isChecked = it.status == Common.EngineStatus.PAUSED
+                        binding.pauseEngine.isChecked = it.status == Common.EngineStatus.PAUSED
                         internalUpdate = false
                     } catch (se: ServiceException) {
                         Log.d(MainActivity::class.java.name, "Service Exception on getting service status")
@@ -72,20 +71,17 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
         initVirtuosoSDK(savedInstanceState)
 
-        dlBtn = findViewById(R.id.download)
-        dlBtn.setOnClickListener { downloadAsset() }
-        plBtn= findViewById(R.id.play)
-        plBtn.setOnClickListener { playAsset()}
-        delBtn = findViewById(R.id.delete)
-        delBtn.setOnClickListener { deleteAsset() }
-        pauseAsset = findViewById(R.id.pauseAsset)
-        pauseAsset.setOnCheckedChangeListener {  _, isChecked ->  pauseAsset(isChecked) }
-        pauseEngine = findViewById(R.id.pauseEngine)
-        pauseEngine.setOnCheckedChangeListener { _, isChecked -> pauseEngine(isChecked) }
+        binding.download.setOnClickListener { downloadAsset() }
+        binding.play.setOnClickListener { playAsset() }
+        binding.delete.setOnClickListener { deleteAsset() }
+        binding.pauseAsset.setOnCheckedChangeListener {  _, isChecked ->  pauseAsset(isChecked) }
+        binding.pauseEngine.setOnCheckedChangeListener { _, isChecked -> pauseEngine(isChecked) }
 
         updateUI()
     }
@@ -202,20 +198,16 @@ class MainActivity : AppCompatActivity() {
 
     fun updateUI() {
 
-        dlBtn.isEnabled = asset == null
-        plBtn.isEnabled = asset != null
-        delBtn.isEnabled = asset != null
-
-        dlBtn.isEnabled = asset == null
-        plBtn.isEnabled = asset != null
-        delBtn.isEnabled = asset != null
+        binding.download.isEnabled = asset == null
+        binding.play.isEnabled = asset != null
+        binding.delete .isEnabled = asset != null
 
         if( asset == null){
-            findViewById<TextView>(R.id.textView).text = ""
-            pauseAsset.isEnabled = false
+            binding.textView.text = ""
+            binding.pauseAsset.isEnabled = false
         }
         else{
-            pauseAsset.isEnabled = true
+            binding.pauseAsset.isEnabled = true
         }
     }
 
@@ -292,10 +284,8 @@ class MainActivity : AppCompatActivity() {
             if (queued == 0) {
                 // The asset has been deleted or downloaded
                 mActivity.runOnUiThread {
-                    val tv = mActivity.findViewById(R.id.textView) as TextView
-                    tv.text = if (downloaded == 0) "Asset Deleted" else "Asset Downloaded"
-                    val pb = mActivity.findViewById(R.id.progressBar) as ProgressBar
-                    pb.visibility = View.GONE
+                    mActivity.binding.textView.text = if (downloaded == 0) "Asset Deleted" else "Asset Downloaded"
+                    mActivity.binding.progressBar.visibility= View.GONE
                 }
             }
         }
@@ -382,16 +372,15 @@ class MainActivity : AppCompatActivity() {
 
 
                         mActivity.updateUI()
-                        val tv = mActivity.findViewById(R.id.textView) as TextView
-                        tv.visibility = View.VISIBLE
-                        tv.text = String.format(mActivity.getString(R.string.asset_status), assetStatus, asset.errorCount, value)
+                        mActivity.binding.textView.visibility = View.VISIBLE
+                        mActivity.binding.textView.text = String.format(mActivity.getString(R.string.asset_status), assetStatus, asset.errorCount, value)
 
                         lastProgress = progress
                         // Tiny Progress
                         if (progress == 0) progress = 1
 
                         // Progress Bar
-                        val pb = mActivity.findViewById(R.id.progressBar) as ProgressBar
+                        val pb = mActivity.binding.progressBar
                         if (progress in 1..99) {
                             pb.progress = progress
                             pb.visibility = View.VISIBLE

@@ -5,8 +5,7 @@ import androidx.fragment.app.DialogFragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.penthera.sdkdemokotlin.R
-import kotlinx.android.synthetic.main.dialog_text_input.*
+import com.penthera.sdkdemokotlin.databinding.DialogTextInputBinding
 
 class TextInputDialog : DialogFragment() {
 
@@ -18,6 +17,9 @@ class TextInputDialog : DialogFragment() {
     private lateinit var value : String
     private lateinit var observer: TextInputObserver
 
+    private var _binding: DialogTextInputBinding? = null
+
+    private val binding get() = _binding!!
 
     companion object {
         fun newInstance(observer: TextInputObserver , value : String, hint : String) : TextInputDialog{
@@ -31,17 +33,23 @@ class TextInputDialog : DialogFragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.dialog_text_input, container, false)
+        _binding = DialogTextInputBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        txt_input_value.hint = hint
-        txt_input_value.editText?.setText( value)
+        binding.txtInputValue.hint = hint
+        binding.txtInputValue.editText?.setText( value)
 
-        input_btn_done.setOnClickListener() {
-            value = txt_input_value.editText?.editableText.toString()
+        binding.inputBtnDone.setOnClickListener() {
+            value = binding.txtInputValue.editText?.editableText.toString()
             observer.complete(value)
             dismiss()
         }

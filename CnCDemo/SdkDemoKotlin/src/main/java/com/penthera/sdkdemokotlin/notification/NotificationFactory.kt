@@ -35,8 +35,6 @@ class NotificationFactory(private val applicationName: String) {
         private var compatNotificationBuilder: NotificationCompat.Builder? = null
     }
 
-    private var assetManager: IAssetManager? = null
-
     private val PROGRESS_NOTIFICATION = 0
     private val COMPLETED_NOTIFICATION = 1
     private val STOPPED_NOTIFICATION = 2
@@ -95,12 +93,6 @@ class NotificationFactory(private val applicationName: String) {
 
         // The other broadcasts are notification broadcasts specifically sent for (optional) status bar notification delivery.
         // Determine which action we are handling and create a notification for it.
-        if (assetManager == null) synchronized(this) {
-            if (assetManager == null) {
-                assetManager = Virtuoso(context).assetManager
-            }
-        }
-
         var notificationType : Int
         var file: IAsset? = null
 
@@ -211,7 +203,7 @@ class NotificationFactory(private val applicationName: String) {
             FAILED_NOTIFICATION -> title += " asset could not be queued"
         }
 
-        val pendingIntent = PendingIntent.getActivity(context, 0, createIntent(context), PendingIntent.FLAG_CANCEL_CURRENT)
+        val pendingIntent = PendingIntent.getActivity(context, 0, createIntent(context), PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_CANCEL_CURRENT)
 
         if(compatNotificationBuilder == null) {
             synchronized(this) {

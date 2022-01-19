@@ -13,7 +13,10 @@
         android:networkSecurityConfig="@xml/network_security_config"
         tools:ignore="GoogleAppIndexingWarning">
 
-        <activity android:name=".MainActivity">
+         <meta-data android:name="com.penthera.virtuososdk.notification.provider.impl" android:value="com.penthera.download2go1_7.ServiceForegroundNotificationProvider" />
+
+        <activity android:name=".MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -26,7 +29,7 @@
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|smallestScreenSize|uiMode"
             android:launchMode="singleTop"
             android:label="Harness Player"
-            >
+            android:exported="true">
             <intent-filter>
                 <action android:name="com.penthera.harness.exoplayer.action.VIEW"/>
                 <category android:name="android.intent.category.DEFAULT"/>
@@ -40,6 +43,7 @@
 
         <!-- Service Starter -->
         <receiver android:name=".ServiceStarter"
+            android:exported="true"
             android:enabled="true"
             android:label="SDKDemo Service Starter"
             android:directBootAware="true">
@@ -58,7 +62,8 @@
         </receiver>
 
         <service
-            android:name=".DemoPushMessagingService">
+            android:name=".DemoPushMessagingService"
+            android:exported="false" >
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
@@ -69,7 +74,8 @@
        components without subclassing a Virtuoso SDK class.
 
        <service
-           android:name=".DemoCustomPushMessagingService">
+           android:name=".DemoCustomPushMessagingService"
+           android:exported="false">
            <intent-filter>
                <action android:name="com.google.firebase.MESSAGING_EVENT" />
            </intent-filter>

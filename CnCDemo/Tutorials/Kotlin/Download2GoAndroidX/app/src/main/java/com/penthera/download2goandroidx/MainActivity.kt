@@ -3,13 +3,10 @@ package com.penthera.download2goandroidx
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
-import android.widget.ProgressBar
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.Observer
+import com.penthera.download2goandroidx.databinding.ActivityMainBinding
 import com.penthera.virtuososdk.Common
 import com.penthera.virtuososdk.androidxsupport.SegmentedAssetLiveData
 import com.penthera.virtuososdk.androidxsupport.VirtuosoLiveDataFactory
@@ -19,33 +16,23 @@ import java.net.URL
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var binding : ActivityMainBinding
     private lateinit var virtuosoLiveDataFactory: VirtuosoLiveDataFactory
     private lateinit var  virtuoso : Virtuoso
-    var asset : IAsset? =  null
-    var segmentedAssetLiveData : SegmentedAssetLiveData? = null
+    private var asset : IAsset? =  null
+    private var segmentedAssetLiveData : SegmentedAssetLiveData? = null
 
-    private lateinit var dlBtn : Button
-    private lateinit var plBtn : Button
-    private lateinit var delBtn : Button
 
-    private lateinit var textView: TextView
-    private lateinit var statusView: TextView;
-    private lateinit var progressBar: ProgressBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
-        dlBtn = findViewById(R.id.download)
-        dlBtn.setOnClickListener { downloadAsset() }
-        plBtn= findViewById(R.id.play)
-        plBtn.setOnClickListener { playAsset()}
-        delBtn = findViewById(R.id.delete)
-        delBtn.setOnClickListener { deleteAsset() }
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        textView = findViewById(R.id.textView)
-        statusView = findViewById(R.id.engineStatusView)
-        progressBar = findViewById(R.id.progressBar)
+        binding.download.setOnClickListener { downloadAsset() }
+        binding.play.setOnClickListener { playAsset()}
+        binding.delete.setOnClickListener { deleteAsset() }
 
         initVirtuosoSDK(savedInstanceState)
 
@@ -59,13 +46,13 @@ class MainActivity : AppCompatActivity() {
 
         val engineStatus: LiveData<Int> = virtuosoLiveDataFactory.engineStatus
         engineStatus.observe(this,
-            Observer { statusVal: Int? ->
-                statusView.setText(
+            { statusVal: Int? ->
+                binding.engineStatusView.text =
                     getString(
                         R.string.engine_status, getStatusString(
                             statusVal!!
                         )
-                    )
+
                 )
             })
 
@@ -95,18 +82,18 @@ class MainActivity : AppCompatActivity() {
     private fun loadAsset() {
         segmentedAssetLiveData?.removeObservers(this)
         segmentedAssetLiveData = virtuosoLiveDataFactory.getAssetStatus(ASSET_ID)
-        segmentedAssetLiveData?.observe(this, Observer { updatedAssetVal: ISegmentedAsset? ->
+        segmentedAssetLiveData?.observe(this, { updatedAssetVal: ISegmentedAsset? ->
             asset = updatedAssetVal
             updateAssetUI()
         })
     }
 
-    fun updateUI() {
-        dlBtn.isEnabled = asset == null
-        plBtn.isEnabled = asset != null
-        delBtn.isEnabled = asset != null
+    private fun updateUI() {
+        binding.download.isEnabled = asset == null
+        binding.play.isEnabled = asset != null
+        binding.delete.isEnabled = asset != null
         if (asset == null) {
-            textView.text = ""
+            binding.textView.text = ""
         }
     }
 
@@ -210,18 +197,18 @@ class MainActivity : AppCompatActivity() {
 
         updateUI()
 
-        textView.visibility = View.VISIBLE
-        textView.text = getString(R.string.asset_status, assetStatus, errorCount, value)
+        binding.textView.visibility = View.VISIBLE
+        binding.textView.text = getString(R.string.asset_status, assetStatus, errorCount, value)
 
         // Tiny Progress
         if (progress == 0) progress = 1
 
         // Progress Bar
         if (progress in 1..99) {
-            progressBar.progress = progress
-            progressBar.visibility = View.VISIBLE
+            binding.progressBar.progress = progress
+            binding.progressBar.visibility = View.VISIBLE
         } else {
-            progressBar.visibility = View.GONE
+            binding.progressBar.visibility = View.GONE
         }
     }
 

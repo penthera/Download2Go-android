@@ -10,20 +10,19 @@ import android.util.Pair
 import android.view.KeyEvent
 import android.widget.Toast
 import com.google.android.exoplayer2.*
-import com.google.android.exoplayer2.mediacodec.MediaCodecRenderer
-import com.google.android.exoplayer2.mediacodec.MediaCodecUtil
-import com.google.android.exoplayer2.source.BehindLiveWindowException
+import com.google.android.exoplayer2.mediacodec.MediaCodecRenderer.DecoderInitializationException
+import com.google.android.exoplayer2.mediacodec.MediaCodecUtil.DecoderQueryException
 import com.google.android.exoplayer2.source.TrackGroupArray
 import com.google.android.exoplayer2.trackselection.AdaptiveTrackSelection
 import com.google.android.exoplayer2.trackselection.DefaultTrackSelector
 import com.google.android.exoplayer2.trackselection.MappingTrackSelector
 import com.google.android.exoplayer2.trackselection.TrackSelectionArray
-import com.google.android.exoplayer2.ui.PlayerView
+import com.google.android.exoplayer2.ui.StyledPlayerView
 import com.google.android.exoplayer2.util.ErrorMessageProvider
 import com.google.android.exoplayer2.util.EventLogger
 import com.penthera.virtuososdk.client.IAsset
 import com.penthera.virtuososdk.client.Virtuoso
-import com.penthera.virtuososdk.support.exoplayer214.ExoplayerUtils
+import com.penthera.virtuososdk.support.exoplayer215.ExoplayerUtils
 
 import java.net.CookieManager
 import java.net.CookiePolicy
@@ -31,7 +30,7 @@ import java.net.MalformedURLException
 import kotlin.math.max
 
 /**
- * An activity that plays media using {@link SimpleExoPlayer}.
+ * An activity that plays media using {@link Player}.
  */
 class VideoPlayerActivity : Activity() {
 
@@ -39,9 +38,9 @@ class VideoPlayerActivity : Activity() {
     // as this will guarantee the proxy service remains available throughout. We can do this in the activity or store
     // a singleton for the whole application. But this should not be instantiated in an application onCreate().
     private lateinit var mVirtuoso: Virtuoso
-    private var playerView: PlayerView? = null
+    private var playerView: StyledPlayerView? = null
 
-    private var player: SimpleExoPlayer? = null
+    private var player: Player? = null
     private var trackSelector: DefaultTrackSelector? = null
     private var trackSelectorParameters: DefaultTrackSelector.Parameters? = null
     private var inErrorState: Boolean = false
@@ -56,12 +55,14 @@ class VideoPlayerActivity : Activity() {
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        mVirtuoso = Virtuoso(applicationContext)
+
         shouldAutoPlay = true
         clearResumePosition()
 
         setContentView(R.layout.player_activity)
 
-        playerView = findViewById<PlayerView>(R.id.player_view).apply {
+        playerView = findViewById<StyledPlayerView>(R.id.player_view).apply {
             setErrorMessageProvider(PlayerErrorMessageProvider())
             requestFocus()
         }
@@ -84,14 +85,15 @@ class VideoPlayerActivity : Activity() {
 
     public override fun onResume() {
         super.onResume()
-        if (player == null) {
+        mVirtuoso.onResume()
+        if (playerView == null) {
             initializePlayer()
         }
     }
 
     public override fun onPause() {
         super.onPause()
-
+        mVirtuoso.onPause()
     }
 
     public override fun onStop() {
@@ -144,24 +146,25 @@ class VideoPlayerActivity : Activity() {
 
             val builder = ExoplayerUtils.PlayerConfigOptions.Builder(this).apply {
                 userRenderersFactory(renderersFactory)
+                playerWhenReady(true)
                 withTrackSelector(trackSelector)
                 withAnalyticsListener(EventLogger(trackSelector))
-                withPlayerEventListener(PlayerEventListener())
+                withPlayerListener(PlayerEventListener())
                 if(resumeWindow != C.INDEX_UNSET)
                     withSeekToPosition(resumeWindow,resumePosition)
                 mediaSourceOptions().useTransferListener(true)
-                        .withUserAgent("virtuoso-sdk")
+                    .withUserAgent("virtuoso-sdk")
             }
 
 
             try {
 
-                ExoplayerUtils.setupPlayer(
-                        playerView!!,
-                        mVirtuoso,
-                        asset!!,
-                        false,
-                        builder.build()
+                player = ExoplayerUtils.setupPlayer(
+                    playerView!!,
+                    mVirtuoso,
+                    asset!!,
+                    false,
+                    builder.build()
                 )
                 inErrorState = false
             }catch (e : MalformedURLException){
@@ -200,9 +203,9 @@ class VideoPlayerActivity : Activity() {
 
         override fun onPlayerStateChanged(playWhenReady: Boolean, playbackState: Int) {}
 
-        override fun onPlayerError(e: ExoPlaybackException) {
+        override fun onPlayerError(e: PlaybackException) {
 
-            if (isBehindLiveWindow(e)) {
+            if (e.errorCode == PlaybackException.ERROR_CODE_BEHIND_LIVE_WINDOW) {
                 clearResumePosition()
                 initializePlayer()
             } else {
@@ -238,36 +241,35 @@ class VideoPlayerActivity : Activity() {
 
     // This inner class is taken directly from the Exoplayer demo. It provides human readable error messages for exoplayer errors.
     private inner class PlayerErrorMessageProvider :
-            ErrorMessageProvider<ExoPlaybackException> {
-        override fun getErrorMessage(e: ExoPlaybackException): Pair<Int, String> {
-            var errorString: String = getString(R.string.error_generic)
-            if (e.type == ExoPlaybackException.TYPE_RENDERER) {
-                val cause = e.rendererException
-                if (cause is MediaCodecRenderer.DecoderInitializationException) {
-                    // Special case for decoder initialization failures.
-                    if (cause.codecInfo != null) {
-                        errorString = getString(R.string.error_instantiating_decoder,
-                                cause.codecInfo!!.name
-                        )
-                    } else {
-                        errorString = when {
-                            cause.cause is MediaCodecUtil.DecoderQueryException -> {
-                                getString(R.string.error_querying_decoders)
-                            }
-                            cause.secureDecoderRequired -> {
-                                getString(
-                                        R.string.error_no_secure_decoder,
-                                        cause.mimeType
-                                )
-                            }
-                            else -> {
-                                getString(
-                                        R.string.error_no_decoder,
-                                        cause.mimeType
-                                )
-                            }
+        ErrorMessageProvider<PlaybackException> {
+        override fun getErrorMessage(e: PlaybackException): Pair<Int, String> {
+            var errorString = getString(R.string.error_generic)
+            val cause = e.cause
+            if (cause is DecoderInitializationException) {
+                // Special case for decoder initialization failures.
+                errorString = if (cause.codecInfo == null) {
+                    when {
+                        cause.cause is DecoderQueryException -> {
+                            getString(R.string.error_querying_decoders)
+                        }
+                        cause.secureDecoderRequired -> {
+                            getString(
+                                R.string.error_no_secure_decoder,
+                                cause.mimeType
+                            )
+                        }
+                        else -> {
+                            getString(
+                                R.string.error_no_decoder,
+                                cause.mimeType
+                            )
                         }
                     }
+                } else {
+                    getString(
+                        R.string.error_instantiating_decoder,
+                        cause.codecInfo!!.name
+                    )
                 }
             }
             return Pair.create(0, errorString)
@@ -282,20 +284,6 @@ class VideoPlayerActivity : Activity() {
 
         init {
             DEFAULT_COOKIE_MANAGER.setCookiePolicy(CookiePolicy.ACCEPT_ORIGINAL_SERVER)
-        }
-
-        private fun isBehindLiveWindow(e: ExoPlaybackException): Boolean {
-            if (e.type != ExoPlaybackException.TYPE_SOURCE) {
-                return false
-            }
-            var cause: Throwable? = e.sourceException
-            while (cause != null) {
-                if (cause is BehindLiveWindowException) {
-                    return true
-                }
-                cause = cause.cause
-            }
-            return false
         }
 
         fun playVideoDownload(asset: IAsset , context: Context){

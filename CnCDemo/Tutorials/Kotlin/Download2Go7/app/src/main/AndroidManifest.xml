@@ -14,7 +14,10 @@
         tools:ignore="GoogleAppIndexingWarning">
 
 
-        <activity android:name=".MainActivity">
+         <meta-data android:name="com.penthera.virtuososdk.notification.provider.impl" android:value="com.penthera.download2go7.ServiceForegroundNotificationProvider" />
+
+        <activity android:name=".MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -29,7 +32,7 @@
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|smallestScreenSize|uiMode"
             android:launchMode="singleTop"
             android:label="Download@Go7 Player"
-            >
+            android:exported="true">
             <intent-filter>
                 <action android:name="com.penthera.harness.exoplayer.action.VIEW"/>
                 <category android:name="android.intent.category.DEFAULT"/>
@@ -51,7 +54,8 @@
         <receiver android:name="com.penthera.download2go7.ServiceStarter"
             android:enabled="true"
             android:label="Download2go7 Service Starter"
-            android:directBootAware="true">
+            android:directBootAware="true"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED"/>
                 <action android:name="android.intent.action.QUICKBOOT_POWERON"/>

@@ -1,19 +1,25 @@
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'com.penthera.virtuoso-sdk-configuration' version '1.0.0'
+}
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion "30.0.2"
+    compileSdkVersion 31
+    buildToolsVersion "31.0.0"
 
     defaultConfig {
         applicationId "com.penthera.bitmovindemo"
         minSdkVersion 21
-        targetSdkVersion 30
+        targetSdkVersion 31
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildFeatures {
+        viewBinding true
     }
 
     compileOptions {
@@ -37,21 +43,22 @@ allprojects {
 
     repositories {
         google()
-        // jcenter is required for exoPlayer, not for the Download2Go SDK
-        jcenter()
+
+
         // Penthera Maven repository is required for the SDK
-        maven{ url "http://clientbuilds.penthera.com:8081/repository/releases/" }
+        maven{ url "https://clientbuilds.penthera.com/repository/releases/" }
         // Bitmovin Maven repository for the bitmovin Player SDK
-        maven { url 'http://bitmovin.bintray.com/maven' }
+        maven { url 'https://artifacts.bitmovin.com/artifactory/public-releases' }
+
     }
 }
 
 dependencies {
 
-    implementation 'com.penthera:cnc-android-sdk-debug:4.0.3'
-    implementation 'com.penthera:cnc-android-bitmovin-support:4.0.2'
+    implementation 'com.penthera:cnc-android-sdk-debug:5.0.0'
+    implementation 'com.penthera:cnc-android-bitmovin-support:5.0.0'
 
-    implementation 'com.bitmovin.player:playercore:2.60.0'
+    implementation 'com.bitmovin.player:playercore:2.70.0'
     implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.0.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 

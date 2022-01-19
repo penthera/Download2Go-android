@@ -18,17 +18,16 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.penthera.sdkdemokotlin.R
 import com.penthera.sdkdemokotlin.activity.OfflineVideoProvider
+import com.penthera.sdkdemokotlin.databinding.DeviceRowBinding
+import com.penthera.sdkdemokotlin.databinding.FragmentDevicesBinding
 import com.penthera.sdkdemokotlin.dialog.CancellableProgressDialog
 import com.penthera.sdkdemokotlin.dialog.ChangeNicknameDialogFragment
 import com.penthera.sdkdemokotlin.engine.OfflineVideoEngine
-import com.penthera.sdkdemokotlin.util.inflate
 import com.penthera.virtuososdk.Common
 import com.penthera.virtuososdk.client.BackplaneException
 import com.penthera.virtuososdk.client.IBackplane
 import com.penthera.virtuososdk.client.IBackplaneDevice
 import com.penthera.virtuososdk.client.Observers
-import kotlinx.android.synthetic.main.device_row.view.*
-import kotlinx.android.synthetic.main.fragment_devices.*
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -51,18 +50,28 @@ class DevicesFragment : Fragment(), CancellableProgressDialog.CancelDialogListen
 
     private var progressDialog: CancellableProgressDialog? = null
 
+    private var _binding: FragmentDevicesBinding? = null
+
+    private val binding get() = _binding!!
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_devices, container, false)
+        _binding = FragmentDevicesBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         linearLayoutManager = LinearLayoutManager(context)
-        deviceList.layoutManager = linearLayoutManager
-        itemDecoration = DividerItemDecoration(deviceList.context, linearLayoutManager.orientation)
-        deviceList.addItemDecoration(itemDecoration)
-        deviceList.adapter = DevicesRecyclerAdapter(context, this)
+        binding.deviceList.layoutManager = linearLayoutManager
+        itemDecoration = DividerItemDecoration(binding.deviceList.context, linearLayoutManager.orientation)
+        binding.deviceList.addItemDecoration(itemDecoration)
+        binding.deviceList.adapter = DevicesRecyclerAdapter(context, this)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -89,14 +98,14 @@ class DevicesFragment : Fragment(), CancellableProgressDialog.CancelDialogListen
             dismissProgressDialog()
             showProgressDialog(getString(R.string.fetching_devices))
             devices = offlineVideoEngine?.getBackplaneDevices()
-            devices?.observe(this, androidx.lifecycle.Observer<Array<IBackplaneDevice>> {
+            devices?.observe(viewLifecycleOwner, androidx.lifecycle.Observer<Array<IBackplaneDevice>> {
                 dismissProgressDialog()
                 if (it?.size == 0){
                     // warn error
                     Toast.makeText(context, R.string.fetching_devices_failed, Toast.LENGTH_SHORT).show()
                     Log.w(TAG, "Devices call failed: unable to retrive devices from server")
                 }
-                val adapter = deviceList.adapter as DevicesRecyclerAdapter
+                val adapter = binding.deviceList.adapter as DevicesRecyclerAdapter
                 adapter.devices = it?: arrayOf()
                 adapter.notifyDataSetChanged()
             })
@@ -198,8 +207,8 @@ class DevicesFragment : Fragment(), CancellableProgressDialog.CancelDialogListen
         var devices : Array<IBackplaneDevice> = arrayOf()
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DeviceViewHolder {
-            val inflatedView = parent.inflate(R.layout.device_row, false)
-            return DeviceViewHolder(inflatedView, context, fragment)
+            val itemBinding = DeviceRowBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            return DeviceViewHolder(itemBinding, context, fragment)
         }
 
         override fun getItemCount(): Int = devices.size
@@ -208,26 +217,26 @@ class DevicesFragment : Fragment(), CancellableProgressDialog.CancelDialogListen
             holder.bind(devices[position])
         }
 
-        class DeviceViewHolder(private val v: View, private val context: Context?, private val fragment: DevicesFragment) : RecyclerView.ViewHolder(v), View.OnClickListener {
+        class DeviceViewHolder(private val itemBinding: DeviceRowBinding, private val context: Context?, private val fragment: DevicesFragment) : RecyclerView.ViewHolder(itemBinding.root), View.OnClickListener {
 
             private var device: IBackplaneDevice? = null
 
             init {
-                v.btnChangeNickname.setOnClickListener(this)
-                v.btnEnableDisable.setOnClickListener(this)
-                v.btnDeregister.setOnClickListener(this)
+                itemBinding.btnChangeNickname.setOnClickListener(this)
+                itemBinding.btnEnableDisable.setOnClickListener(this)
+                itemBinding.btnDeregister.setOnClickListener(this)
             }
 
             fun bind(device : IBackplaneDevice) {
                 this.device = device
 
-                v.deviceId.text = device.id()
-                v.deviceNickname.text = device.nickname()
-                v.currentDevice.text =  context?.getString(if (device.isCurrentDevice) R.string.yes else R.string.no)
-                v.lastSync.text = device.lastSync()?.let{ sdf.format(it) } ?: context?.getString(R.string.no_sync)
-                v.lastModified.text = device.lastModified()?.let{ sdf.format(it) } ?: context?.getString(R.string.no_sync)
-                v.btnEnableDisable.text = (context?.getString(if (device.downloadEnabled()) R.string.disable else R.string.enable))
-                v.btnDeregister.isEnabled = !device.isCurrentDevice
+                itemBinding.deviceId.text = device.id()
+                itemBinding.deviceNickname.text = device.nickname()
+                itemBinding.currentDevice.text =  context?.getString(if (device.isCurrentDevice) R.string.yes else R.string.no)
+                itemBinding.lastSync.text = device.lastSync()?.let{ sdf.format(it) } ?: context?.getString(R.string.no_sync)
+                itemBinding.lastModified.text = device.lastModified()?.let{ sdf.format(it) } ?: context?.getString(R.string.no_sync)
+                itemBinding.btnEnableDisable.text = (context?.getString(if (device.downloadEnabled()) R.string.disable else R.string.enable))
+                itemBinding.btnDeregister.isEnabled = !device.isCurrentDevice
             }
 
             override fun onClick(v: View?) {

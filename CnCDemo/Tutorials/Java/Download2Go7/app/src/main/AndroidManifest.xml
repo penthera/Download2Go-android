@@ -13,8 +13,11 @@
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
 
+        <!-- Foreground Notification Provider declaration -->
+		<meta-data android:name="com.penthera.virtuososdk.notification.provider.impl" android:value="com.penthera.download2go7.ServiceForegroundNotificationProvider" />
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -26,6 +29,7 @@
 
         <!-- Player -->
         <activity android:name="com.penthera.download2go7.VideoPlayerActivity"
+            android:exported="true"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|smallestScreenSize|uiMode"
             android:launchMode="singleTop"
             android:label="Download@Go7 Player"
@@ -49,6 +53,7 @@
         <!-- Service Starter -->
         <receiver android:name="com.penthera.download2go7.ServiceStarter"
             android:enabled="true"
+            android:exported="true"
             android:label="Download2go7 Service Starter"
             android:directBootAware="true">
             <intent-filter>

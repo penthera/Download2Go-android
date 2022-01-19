@@ -309,7 +309,7 @@ public final class NotificationFactory {
 
 		RemoteViews view = getNotificationView(aContext, title, queued, progress);
 		Intent intent = createIntent(aContext);
-		PendingIntent pIntent = PendingIntent.getActivity(aContext, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+		PendingIntent pIntent = PendingIntent.getActivity(aContext, 0, intent, PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_CANCEL_CURRENT);
 
 		Notification notification = null;
 		if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && aNotificationChannelID != null && aNotificationChannelID.length() > 0) {

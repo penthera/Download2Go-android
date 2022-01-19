@@ -14,7 +14,11 @@
         android:networkSecurityConfig="@xml/network_security_config"
         tools:ignore="GoogleAppIndexingWarning">
 
-        <activity android:name=".MainActivity">
+		<!-- Foreground Notification Provider declaration -->
+		<meta-data android:name="com.penthera.virtuososdk.notification.provider.impl" android:value="com.penthera.download2gohelloworld.ServiceForegroundNotificationProvider" />
+		
+        <activity android:name=".MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,6 +28,7 @@
 
         <!-- Player -->
         <activity android:name=".VideoPlayerActivity"
+            android:exported="true"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|smallestScreenSize|uiMode"
             android:launchMode="singleTop"
             android:label="Harness Player"
@@ -42,6 +47,7 @@
         <!-- Service Starter -->
         <receiver android:name=".ServiceStarter"
             android:enabled="true"
+            android:exported="true"
             android:label="SDKDemo Service Starter"
             android:directBootAware="true">
             <intent-filter>

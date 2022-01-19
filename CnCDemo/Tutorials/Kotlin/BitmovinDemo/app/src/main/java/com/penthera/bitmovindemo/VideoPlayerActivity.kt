@@ -9,10 +9,9 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import com.bitmovin.player.BitmovinPlayer
+import com.bitmovin.player.BitmovinPlayerView
 import com.penthera.virtuososdk.client.*
 import com.penthera.virtuososdk.client.bitmovin.BitmovinSourceManager
-import kotlinx.android.synthetic.main.player_activity.*
-
 
 /**
  * An activity that plays media using {@link SimpleExoPlayer}.
@@ -27,6 +26,7 @@ class VideoPlayerActivity : Activity() {
 
     private var asset: ISegmentedAsset? = null
 
+    private lateinit var playerView: BitmovinPlayerView
     // Activity lifecycle
 
     public override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,6 +36,7 @@ class VideoPlayerActivity : Activity() {
 
         this.virtuoso = Virtuoso(this)
 
+        playerView =  findViewById(R.id.playerView)
         this.bitmovinPlayer = playerView.player
 
         var playerConfig = bitmovinPlayer?.config

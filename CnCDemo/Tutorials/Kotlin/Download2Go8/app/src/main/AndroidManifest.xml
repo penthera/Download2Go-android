@@ -13,7 +13,10 @@
         android:networkSecurityConfig="@xml/network_security_config"
         tools:ignore="GoogleAppIndexingWarning">
 
-        <activity android:name=".MainActivity">
+         <meta-data android:name="com.penthera.virtuososdk.notification.provider.impl" android:value="com.penthera.download2go8.ServiceForegroundNotificationProvider" />
+
+        <activity android:name=".MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -26,7 +29,7 @@
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|smallestScreenSize|uiMode"
             android:launchMode="singleTop"
             android:label="Harness Player"
-            >
+            android:exported="true">
             <intent-filter>
                 <action android:name="com.penthera.harness.exoplayer.action.VIEW"/>
                 <category android:name="android.intent.category.DEFAULT"/>
@@ -45,7 +48,8 @@
         <receiver android:name=".ServiceStarter"
             android:enabled="true"
             android:label="SDKDemo Service Starter"
-            android:directBootAware="true">
+            android:directBootAware="true"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED"/>
                 <action android:name="android.intent.action.QUICKBOOT_POWERON"/>

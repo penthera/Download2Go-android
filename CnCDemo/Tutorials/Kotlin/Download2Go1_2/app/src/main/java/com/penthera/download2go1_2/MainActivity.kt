@@ -465,6 +465,5 @@ class MainActivity : AppCompatActivity() {
         const val BACKPLANE_PUBLIC_KEY =  
         const val BACKPLANE_PRIVATE_KEY = 
 
-
     }
 }

@@ -51,4 +51,8 @@
     <string name="status_pending">Queued</string>
     <string name="status_expired">Expired</string>
     <string name="asset_status">File %1$s with %2$d errors, current state: %3$s</string>
+    <string name="pause_download_engine">Pause Download engine</string>
+    <string name="pause_asset_download">Pause Asset Download</string>
+    <string name="download">Download</string>
+    <string name="play">Play</string>
 </resources>

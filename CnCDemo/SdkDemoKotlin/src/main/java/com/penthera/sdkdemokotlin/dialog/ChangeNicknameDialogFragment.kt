@@ -5,9 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
-import com.penthera.sdkdemokotlin.R
+import com.penthera.sdkdemokotlin.databinding.DialogNicknameBinding
 import com.penthera.virtuososdk.client.IBackplaneDevice
-import kotlinx.android.synthetic.main.dialog_nickname.view.*
 
 /**
  * A simple dialog which enables editing a string field and applying or cancelling.
@@ -20,6 +19,8 @@ class ChangeNicknameDialogFragment : DialogFragment() {
 
     private lateinit var listener: ChangeNicknameObserver
     private lateinit var device: IBackplaneDevice
+
+    private var _binding: DialogNicknameBinding? = null
 
     companion object {
         fun newInstance(listener: ChangeNicknameObserver, device: IBackplaneDevice) : ChangeNicknameDialogFragment {
@@ -36,15 +37,21 @@ class ChangeNicknameDialogFragment : DialogFragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.dialog_nickname, container, false)
+        _binding = DialogNicknameBinding.inflate(inflater, container, false)
+        val binding = _binding!!
 
-        view.nickname.setText(device.nickname())
-        view.btnCancel.setOnClickListener { dismiss() }
-        view.btnApply.setOnClickListener {
-            listener.onChanged(device, view.nickname.text.toString())
+        binding.nickname.setText(device.nickname())
+        binding.btnCancel.setOnClickListener { dismiss() }
+        binding.btnApply.setOnClickListener {
+            listener.onChanged(device, binding.nickname.text.toString())
             dismiss()
         }
 
-        return view
+        return binding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

@@ -1,22 +1,25 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
-    id 'kotlin-android-extensions'
     id 'com.penthera.virtuoso-sdk-configuration' version '1.0.0'
 }
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion "30.0.2"
+    compileSdkVersion 31
+    buildToolsVersion "31.0.0"
 
     defaultConfig {
         applicationId "com.penthera.download2go6"
         minSdkVersion 24
-        targetSdkVersion 30
+        targetSdkVersion 31
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildFeatures {
+        viewBinding true
     }
 
     buildTypes {
@@ -24,6 +27,10 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+    }
+
+    packagingOptions {
+        exclude 'META-INF/annotation-experimental_release.kotlin_module'
     }
 
     // These compileOptions are required for exoPlayer, not for the Download2Go SDK
@@ -38,12 +45,13 @@ allprojects {
 
     repositories {
         google()
-        // jcenter is required for exoPlayer, not for the Download2Go SDK
-        jcenter()
+
         // Penthera Maven repository is required for the SDK
         maven {
-            url "http://clientbuilds.penthera.com:8081/repository/releases/"
+            url "https://clientbuilds.penthera.com/repository/releases/"
         }
+
+
     }
 }
 
@@ -56,14 +64,13 @@ dependencies {
 
     implementation 'androidx.recyclerview:recyclerview:1.2.0'
 
-    implementation 'com.penthera:cnc-android-sdk-debug:4.0.3'
-	implementation 'com.penthera:cnc-exoplayer-2_14-support-debug:4.0.2'
-    implementation 'com.penthera:cnc-exoplayer-ima-support-debug:4.0.2'
+    implementation 'com.penthera:cnc-android-sdk-debug:5.0.0'
+	implementation 'com.penthera:cnc-exoplayer-2_15-support-debug:5.0.0'
 
-    implementation 'com.google.android.exoplayer:exoplayer:2.14.0'
+    implementation 'com.google.android.exoplayer:exoplayer:2.15.1'
     // The ima exoplayer extension is required for client side ad insertion in order to interpret and play the
     // adverts from the VAST/VMAP document.
-    implementation "com.google.android.exoplayer:extension-ima:2.14.0"
+    implementation "com.google.android.exoplayer:extension-ima:2.15.1"
 
 
     testImplementation 'junit:junit:4.12'

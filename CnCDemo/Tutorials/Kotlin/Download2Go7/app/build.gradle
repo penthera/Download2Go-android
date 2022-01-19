@@ -1,22 +1,25 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
-    id 'kotlin-android-extensions'
     id 'com.penthera.virtuoso-sdk-configuration' version '1.0.0'
 }
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion "30.0.2"
+    compileSdkVersion 31
+    buildToolsVersion "31.0.0"
 
     defaultConfig {
         applicationId "com.penthera.download2go7"
         minSdkVersion 24
-        targetSdkVersion 30
+        targetSdkVersion 31
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildFeatures {
+        viewBinding true
     }
 
     buildTypes {
@@ -37,12 +40,13 @@ allprojects {
 
     repositories {
         google()
-        // jcenter is required for exoPlayer, not for the Download2Go SDK
-        jcenter()
+        mavenCentral()
+
         // Penthera Maven repository is required for the SDK
         maven{
             url "https://clientbuilds.penthera.com/repository/releases/"
         }
+
     }
 
 
@@ -57,10 +61,10 @@ dependencies {
 
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
 
-    implementation 'com.penthera:cnc-android-sdk-debug:4.0.3'
-    implementation 'com.penthera:cnc-exoplayer-2_14-support-debug:4.0.2'
+    implementation 'com.penthera:cnc-android-sdk-debug:5.0.0'
+    implementation 'com.penthera:cnc-exoplayer-2_15-support-debug:5.0.0'
 
-    implementation 'com.google.android.exoplayer:exoplayer:2.14.0'
+    implementation 'com.google.android.exoplayer:exoplayer:2.15.1'
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'

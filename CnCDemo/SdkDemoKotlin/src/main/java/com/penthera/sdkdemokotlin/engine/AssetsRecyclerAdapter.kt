@@ -2,6 +2,7 @@ package com.penthera.sdkdemokotlin.engine
 
 import android.content.Context
 import android.database.Cursor
+import android.view.LayoutInflater
 import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
@@ -9,12 +10,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.penthera.sdkdemokotlin.R
 import com.penthera.sdkdemokotlin.catalog.ExampleMetaData
+import com.penthera.sdkdemokotlin.databinding.ListrowInboxBinding
 import com.penthera.sdkdemokotlin.util.TextUtils
-import com.penthera.sdkdemokotlin.util.inflate
 import com.penthera.virtuososdk.Common
 import com.penthera.virtuososdk.client.database.AssetColumns
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.listrow_inbox.view.*
 import java.util.*
 
 /**
@@ -39,8 +39,8 @@ class AssetsRecyclerAdapter (private val context: Context, var cursor: Cursor, p
     val checked : Hashtable<Int, Int> = Hashtable()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AssetHolder {
-        val inflatedView = parent.inflate(R.layout.listrow_inbox, false)
-        return AssetHolder(inflatedView, type, listener, this, context)
+        val itemBinding = ListrowInboxBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return AssetHolder(itemBinding, type, listener, this, context)
     }
 
     override fun getItemCount(): Int = cursor.count
@@ -63,11 +63,9 @@ class AssetsRecyclerAdapter (private val context: Context, var cursor: Cursor, p
     /**
      * ViewHolder for catalog item view
      */
-    class AssetHolder(v: View, private val type: Int, private val listener: AssetInboxActionListener,
+    class AssetHolder(private val itemBinding: ListrowInboxBinding, private val type: Int, private val listener: AssetInboxActionListener,
                       private val adapter: AssetsRecyclerAdapter, private val context: Context) :
-                        RecyclerView.ViewHolder(v), View.OnClickListener, View.OnLongClickListener {
-
-        private var view: View = v
+                        RecyclerView.ViewHolder(itemBinding.root), View.OnClickListener, View.OnLongClickListener {
 
         private var metaData: ExampleMetaData? = null
 
@@ -78,23 +76,23 @@ class AssetsRecyclerAdapter (private val context: Context, var cursor: Cursor, p
         private var uuid: String? = null
 
         init {
-            v.setOnClickListener(this)
-            v.btnUp.setOnClickListener(this)
-            v.btnDown.setOnClickListener(this)
-            v.setOnLongClickListener(this)
+            itemBinding.root.setOnClickListener(this)
+            itemBinding.btnUp.setOnClickListener(this)
+            itemBinding.btnDown.setOnClickListener(this)
+            itemBinding.root.setOnLongClickListener(this)
         }
 
         fun bindItem(cursor: Cursor, position: Int) {
 
             this.position = position
 
-            virtuosoId = cursor.getInt(cursor.getColumnIndex(AssetColumns._ID))
-            uuid = cursor.getString(cursor.getColumnIndex(AssetColumns.UUID))
-            assetId = cursor.getString(cursor.getColumnIndex(AssetColumns.ASSET_ID))
+            virtuosoId = cursor.getInt(cursor.getColumnIndexOrThrow(AssetColumns._ID))
+            uuid = cursor.getString(cursor.getColumnIndexOrThrow(AssetColumns.UUID))
+            assetId = cursor.getString(cursor.getColumnIndexOrThrow(AssetColumns.ASSET_ID))
 
-            metaData = ExampleMetaData().fromJson(cursor.getString(cursor.getColumnIndex(AssetColumns.METADATA)))
+            metaData = ExampleMetaData().fromJson(cursor.getString(cursor.getColumnIndexOrThrow(AssetColumns.METADATA)))
 
-            view.title.text = metaData?.title
+            itemBinding.title.text = metaData?.title
 
             metaData?.thumbnailUri?.let {
                 if(it.isNotEmpty()) {
@@ -102,7 +100,7 @@ class AssetsRecyclerAdapter (private val context: Context, var cursor: Cursor, p
                             .load(it)
                             .placeholder(R.drawable.cloud)
                             .error(R.drawable.no_image)
-                            .into(view.img)
+                            .into(itemBinding.img)
                 }
             }
 
@@ -115,15 +113,15 @@ class AssetsRecyclerAdapter (private val context: Context, var cursor: Cursor, p
 
             // Update the check-marks for the CAB
             val checked = adapter.checked.containsKey(virtuosoId)
-            view.background.alpha = if (checked) 255 else 0
+            itemBinding.root.background.alpha = if (checked) 255 else 0
         }
 
         private fun bindDownloaded(cursor: Cursor) {
-            view.btnUp.visibility = GONE
-            view.btnDown.visibility = GONE
-            view.downloadStatus.text = context.getString(R.string.downloaded)
-            view.rowErrorCount.visibility = VISIBLE
-            view.errorCount.text = cursor.getInt(cursor.getColumnIndex(AssetColumns.ERROR_COUNT)).toString()
+            itemBinding.btnUp.visibility = GONE
+            itemBinding.btnDown.visibility = GONE
+            itemBinding.downloadStatus.text = context.getString(R.string.downloaded)
+            itemBinding.rowErrorCount.visibility = VISIBLE
+            itemBinding.errorCount.text = cursor.getInt(cursor.getColumnIndexOrThrow(AssetColumns.ERROR_COUNT)).toString()
             updateExpiry(cursor)
         }
 
@@ -133,64 +131,64 @@ class AssetsRecyclerAdapter (private val context: Context, var cursor: Cursor, p
 
             // Up
             if (showUp(count, position!!)) {
-                view.btnUp.visibility = VISIBLE
+                itemBinding.btnUp.visibility = VISIBLE
             } else {
-                view.btnUp.visibility = GONE
+                itemBinding.btnUp.visibility = GONE
             }
 
             // Down
             if (showDown(count, position!!)) {
-                view.btnDown.visibility = VISIBLE
+                itemBinding.btnDown.visibility = VISIBLE
             } else {
-                view.btnDown.visibility = GONE
+                itemBinding.btnDown.visibility = GONE
             }
 
             // Download status and error count
-            val downloadStatus = cursor.getInt(cursor.getColumnIndex(AssetColumns.DOWNLOAD_STATUS))
-            view.downloadStatus.text = TextUtils().getAssetStatusDescription(downloadStatus)
-            view.rowErrorCount.visibility = VISIBLE
-            val errors = cursor.getInt(cursor.getColumnIndex(AssetColumns.ERROR_COUNT))
+            val downloadStatus = cursor.getInt(cursor.getColumnIndexOrThrow(AssetColumns.DOWNLOAD_STATUS))
+            itemBinding.downloadStatus.text = TextUtils().getAssetStatusDescription(downloadStatus)
+            itemBinding.rowErrorCount.visibility = VISIBLE
+            val errors = cursor.getInt(cursor.getColumnIndexOrThrow(AssetColumns.ERROR_COUNT))
             var retryString = ""
             if (errors >= Common.ASSET_RETRY_ERROR_LIMIT) {
                 retryString = " " + context.getString(R.string.no_retry)
             }
-            view.errorCount.text = String.format(context.getString(R.string.error_count_value), errors, retryString)
+            itemBinding.errorCount.text = String.format(context.getString(R.string.error_count_value), errors, retryString)
 
             // Progress bar if downloading
             if (downloadStatus == Common.AssetStatus.DOWNLOADING || downloadStatus == Common.AssetStatus.EARLY_DOWNLOADING) {
-                view.downloadProgress.visibility = VISIBLE
+                itemBinding.downloadProgress.visibility = VISIBLE
                 val fraction = cursor.getDouble(12)
                 val percent = (fraction * 100).toInt()
-                view.downloadProgress.progress = percent
+                itemBinding.downloadProgress.progress = percent
             } else {
-                view.downloadProgress.visibility = GONE
+                itemBinding.downloadProgress.visibility = GONE
             }
 
             updateExpiry(cursor)
         }
 
         private fun bindExpired() {
-            view.btnUp.visibility = GONE
-            view.btnDown.visibility = GONE
-            view.downloadStatus.text = context.getString(R.string.expired)
-            view.rowErrorCount.visibility = GONE
-            view.rowExpiration.visibility = GONE
+            itemBinding.btnUp.visibility = GONE
+            itemBinding.btnDown.visibility = GONE
+            itemBinding.downloadStatus.text = context.getString(R.string.expired)
+            itemBinding.rowErrorCount.visibility = GONE
+            itemBinding.rowExpiration.visibility = GONE
         }
 
         private fun updateExpiry(cursor: Cursor) {
-            val completionTime = cursor.getLong(cursor.getColumnIndex(AssetColumns.COMPLETION_TIME))
-            val endWindow = cursor.getLong(cursor.getColumnIndex(AssetColumns.END_WINDOW))
-            val firstPlayTime = cursor.getLong(cursor.getColumnIndex(AssetColumns.FIRST_PLAY_TIME))
-            val eap = cursor.getLong(cursor.getColumnIndex(AssetColumns.EAP))
-            val ead = cursor.getLong(cursor.getColumnIndex(AssetColumns.EAD))
+            val completionTime = cursor.getLong(cursor.getColumnIndexOrThrow(AssetColumns.COMPLETION_TIME))
+            val endWindow = cursor.getLong(cursor.getColumnIndexOrThrow(AssetColumns.END_WINDOW))
+            val firstPlayTime = cursor.getLong(cursor.getColumnIndexOrThrow(AssetColumns.FIRST_PLAY_TIME))
+            val eap = cursor.getLong(cursor.getColumnIndexOrThrow(AssetColumns.EAP))
+            val ead = cursor.getLong(cursor.getColumnIndexOrThrow(AssetColumns.EAD))
 
             val date = TextUtils().getExpirationString(completionTime, endWindow, firstPlayTime, eap, ead)
 
             if (!android.text.TextUtils.isEmpty(date)) {
-                view.rowExpiration.visibility = VISIBLE
-                view.expiration.text = date
+                itemBinding.rowExpiration.visibility = VISIBLE
+                itemBinding.expiration.text = date
             } else {
-                view.rowExpiration.visibility = GONE
+                itemBinding.rowExpiration.visibility = GONE
             }
         }
 

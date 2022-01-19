@@ -5,29 +5,37 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.penthera.sdkdemokotlin.R
+import com.penthera.sdkdemokotlin.databinding.FragmentAddCatalogMetaBinding
 import com.penthera.sdkdemokotlin.dialog.TextInputDialog
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.fragment_add_catalog_meta.*
 
 class AddItemMetadataFragment : Fragment() {
 
+    private var _binding: FragmentAddCatalogMetaBinding? = null
+
     public var imgUrl :String? = null
 
+    val binding get() = _binding!!
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_add_catalog_meta, container, false)
+        _binding = FragmentAddCatalogMetaBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        img_item_tap_prompt.setOnClickListener {
+        binding.imgItemTapPrompt.setOnClickListener {
             TextInputDialog.newInstance(object : TextInputDialog.TextInputObserver{
                 override fun complete(value: String) {
                     imgUrl = value;
 
-                    img_item_tap_prompt.visibility = View.GONE
+                    binding.imgItemTapPrompt.visibility = View.GONE
                     loadImage()
                 }
 
@@ -36,6 +44,6 @@ class AddItemMetadataFragment : Fragment() {
     }
 
     fun loadImage(){
-        Picasso.get().load(imgUrl).error(android.R.drawable.ic_menu_help).into(img_item_thumbnail)
+        Picasso.get().load(imgUrl).error(android.R.drawable.ic_menu_help).into(binding.imgItemThumbnail)
     }
 }

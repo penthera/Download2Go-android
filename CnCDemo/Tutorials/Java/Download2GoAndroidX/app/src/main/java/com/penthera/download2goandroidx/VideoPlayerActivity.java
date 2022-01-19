@@ -21,16 +21,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.DefaultRenderersFactory;
 import com.google.android.exoplayer2.ExoPlaybackException;
+import com.google.android.exoplayer2.PlaybackException;
 import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.RenderersFactory;
-import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.mediacodec.MediaCodecRenderer;
 import com.google.android.exoplayer2.mediacodec.MediaCodecUtil;
 import com.google.android.exoplayer2.source.BehindLiveWindowException;
 import com.google.android.exoplayer2.source.TrackGroupArray;
 import com.google.android.exoplayer2.trackselection.AdaptiveTrackSelection;
 import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
-import com.google.android.exoplayer2.trackselection.ExoTrackSelection;
 import com.google.android.exoplayer2.trackselection.MappingTrackSelector;
 import com.google.android.exoplayer2.trackselection.TrackSelectionArray;
 import com.google.android.exoplayer2.ui.PlayerView;
@@ -38,7 +37,7 @@ import com.google.android.exoplayer2.util.ErrorMessageProvider;
 import com.google.android.exoplayer2.util.EventLogger;
 import com.penthera.virtuososdk.client.IAsset;
 import com.penthera.virtuososdk.client.Virtuoso;
-import com.penthera.virtuososdk.support.exoplayer214.ExoplayerUtils;
+import com.penthera.virtuososdk.support.exoplayer215.ExoplayerUtils;
 
 import java.net.CookieHandler;
 import java.net.CookieManager;
@@ -48,7 +47,7 @@ import java.net.URL;
 
 
 /**
- * An activity that plays media using {@link SimpleExoPlayer}.
+ * An activity that plays media using {@link Player}.
  */
 public class VideoPlayerActivity extends AppCompatActivity {
 
@@ -75,8 +74,7 @@ public class VideoPlayerActivity extends AppCompatActivity {
 
     private PlayerView playerView;
 
-
-    private SimpleExoPlayer player;
+    private Player player;
     private DefaultTrackSelector trackSelector;
     private DefaultTrackSelector.Parameters trackSelectorParameters;
     private TrackGroupArray lastSeenTrackGroupArray;
@@ -148,14 +146,12 @@ public class VideoPlayerActivity extends AppCompatActivity {
     public void onStart() {
         super.onStart();
         initializePlayer();
-        if (playerView != null) {
-            playerView.onResume();
-        }
     }
 
     @Override
     public void onResume() {
         super.onResume();
+        mVirtuoso.onResume();
         if ( player == null) {
             initializePlayer();
         }
@@ -164,21 +160,14 @@ public class VideoPlayerActivity extends AppCompatActivity {
     @Override
     public void onPause() {
         super.onPause();
+        mVirtuoso.onPause();
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        if (playerView != null) {
-            playerView.onPause();
-        }
         releasePlayer();
     }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-     }
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
@@ -199,7 +188,6 @@ public class VideoPlayerActivity extends AppCompatActivity {
         return playerView.dispatchKeyEvent(event) || super.dispatchKeyEvent(event);
     }
 
-
     private void initializePlayer() {
         if (player == null) {
             Intent intent = getIntent();
@@ -210,11 +198,9 @@ public class VideoPlayerActivity extends AppCompatActivity {
                 return;
             }
 
-            Uri uri = intent.getData();
             IAsset asset = intent.getParcelableExtra(VIRTUOSO_ASSET);
 
-
-            ExoTrackSelection.Factory trackSelectionFactory = new AdaptiveTrackSelection.Factory();
+            AdaptiveTrackSelection.Factory trackSelectionFactory = new AdaptiveTrackSelection.Factory();
             trackSelector = new DefaultTrackSelector(this, trackSelectionFactory);
             trackSelector.setParameters(trackSelectorParameters);
             lastSeenTrackGroupArray = null;
@@ -222,25 +208,29 @@ public class VideoPlayerActivity extends AppCompatActivity {
             RenderersFactory renderersFactory = new DefaultRenderersFactory(this)
                     .setExtensionRendererMode(DefaultRenderersFactory.EXTENSION_RENDERER_MODE_OFF);
 
-
-            ExoplayerUtils.PlayerConfigOptions.Builder builder = new ExoplayerUtils.PlayerConfigOptions.Builder(this);
-            builder.userRenderersFactory(renderersFactory)
+            ExoplayerUtils.PlayerConfigOptions.Builder builder = new ExoplayerUtils.PlayerConfigOptions.Builder(this)
+                    .userRenderersFactory(renderersFactory)
                     .withTrackSelector(trackSelector)
+                    .withPlayerListener(new PlayerEventListener())
                     .withAnalyticsListener(new EventLogger(trackSelector))
-                    .withPlayerEventListener(new PlayerEventListener())
-                    .playerWhenReady(startAutoPlay)
-                    .mediaSourceOptions().useTransferListener(true).withUserAgent("virtuoso-sdk");
+                    .playerWhenReady(true);
 
-            boolean haveStartPosition = startWindow != C.INDEX_UNSET;
-            if (haveStartPosition) {
-               builder.withSeekToPosition(startWindow, startPosition);
+            builder.mediaSourceOptions().useTransferListener(true)
+                    .withUserAgent("virtuoso-sdk");
+
+
+            boolean haveResumePosition = startWindow != C.INDEX_UNSET;
+            if (haveResumePosition) {
+                builder.withSeekToPosition(startWindow, startPosition);
             }
 
             try {
                 player = ExoplayerUtils.setupPlayer(playerView, mVirtuoso, asset, false, builder.build());
             } catch (MalformedURLException e) {
                 e.printStackTrace();
+                return;
             }
+
         }
         updateButtonVisibility();
     }
@@ -312,7 +302,7 @@ public class VideoPlayerActivity extends AppCompatActivity {
     private class PlayerEventListener implements Player.Listener {
 
         @Override
-        public void onPlayerStateChanged(boolean playWhenReady, @Player.State int playbackState) {
+        public void onPlaybackStateChanged(int playbackState) {
             if (playbackState == Player.STATE_ENDED) {
                 showControls();
             }
@@ -320,8 +310,8 @@ public class VideoPlayerActivity extends AppCompatActivity {
         }
 
         @Override
-        public void onPlayerError(@NonNull ExoPlaybackException e) {
-            if (isBehindLiveWindow(e)) {
+        public void onPlayerError(@NonNull PlaybackException e) {
+            if (e.errorCode == PlaybackException.ERROR_CODE_BEHIND_LIVE_WINDOW) {
                 clearStartPosition();
                 initializePlayer();
             } else {
@@ -351,37 +341,36 @@ public class VideoPlayerActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * From ExoPlayer demo: a message provide generates human readable error messages for internal error states.
+     */
+    private class PlayerErrorMessageProvider implements ErrorMessageProvider<PlaybackException> {
 
-    // This inner class is taken directly from the Exoplayer demo. It provides human readable error messages for exoplayer errors.
-    private class PlayerErrorMessageProvider implements ErrorMessageProvider<ExoPlaybackException> {
-
-        @NonNull
         @Override
-        public Pair<Integer, String> getErrorMessage(ExoPlaybackException e) {
+        @NonNull
+        public Pair<Integer, String> getErrorMessage(@NonNull PlaybackException e) {
             String errorString = getString(R.string.error_generic);
-            if (e.type == ExoPlaybackException.TYPE_RENDERER) {
-                Exception cause = e.getRendererException();
-                if (cause instanceof MediaCodecRenderer.DecoderInitializationException) {
-                    // Special case for decoder initialization failures.
-                    MediaCodecRenderer.DecoderInitializationException decoderInitializationException =
-                            (MediaCodecRenderer.DecoderInitializationException) cause;
-                    if (decoderInitializationException.codecInfo == null) {
-                        if (decoderInitializationException.getCause() instanceof MediaCodecUtil.DecoderQueryException) {
-                            errorString = getString(R.string.error_querying_decoders);
-                        } else if (decoderInitializationException.secureDecoderRequired) {
-                            errorString =
-                                    getString(
-                                            R.string.error_no_secure_decoder, decoderInitializationException.mimeType);
-                        } else {
-                            errorString =
-                                    getString(R.string.error_no_decoder, decoderInitializationException.mimeType);
-                        }
-                    } else {
+            Throwable cause = e.getCause();
+            if (cause instanceof MediaCodecRenderer.DecoderInitializationException) {
+                // Special case for decoder initialization failures.
+                MediaCodecRenderer.DecoderInitializationException decoderInitializationException =
+                        (MediaCodecRenderer.DecoderInitializationException) cause;
+                if (decoderInitializationException.codecInfo == null) {
+                    if (decoderInitializationException.getCause() instanceof MediaCodecUtil.DecoderQueryException) {
+                        errorString = getString(R.string.error_querying_decoders);
+                    } else if (decoderInitializationException.secureDecoderRequired) {
                         errorString =
                                 getString(
-                                        R.string.error_instantiating_decoder,
-                                        decoderInitializationException.codecInfo.name);
+                                        R.string.error_no_secure_decoder, decoderInitializationException.mimeType);
+                    } else {
+                        errorString =
+                                getString(R.string.error_no_decoder, decoderInitializationException.mimeType);
                     }
+                } else {
+                    errorString =
+                            getString(
+                                    R.string.error_instantiating_decoder,
+                                    decoderInitializationException.codecInfo.name);
                 }
             }
             return Pair.create(0, errorString);

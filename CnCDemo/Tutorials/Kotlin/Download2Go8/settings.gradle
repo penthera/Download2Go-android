@@ -1,10 +1,17 @@
 pluginManagement {
     repositories {
         maven {
-            url "https://clientbuilds.penthera.com/repository/releases"
+
+            credentials {
+                username "jhorgan"
+                password "P3nther@jjh"
+            }
+            url "https://clientbuilds.penthera.com/repository/internal/"
         }
         google()
-        jcenter()
+        mavenCentral()
+
+
     }
 }
 include ':app'

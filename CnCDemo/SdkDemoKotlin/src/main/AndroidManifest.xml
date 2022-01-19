@@ -17,7 +17,8 @@
         tools:ignore="GoogleAppIndexingWarning">
 
         <!-- Main activity for Demo UI -->
-        <activity android:name=".activity.MainActivity">
+        <activity android:name=".activity.MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -29,6 +30,7 @@
         <activity android:name=".activity.VideoPlayerActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|smallestScreenSize|uiMode"
             android:launchMode="singleTop"
+            android:exported="false"
             android:label="Player"
             > <!--  Need theme? android:theme="@style/PlayerTheme"  -->
             <intent-filter>
@@ -49,6 +51,7 @@
         <!-- Service Starter -->
         <receiver android:name=".ServiceStarter"
             android:enabled="true"
+            android:exported="true"
             android:label="SDKDemo Service Starter"
             android:directBootAware="true">
             <intent-filter>
@@ -109,7 +112,8 @@
 
 
         <service
-            android:name="com.penthera.sdkdemokotlin.push.DemoFCMService">
+            android:name="com.penthera.sdkdemokotlin.push.DemoFCMService"
+            android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
@@ -125,7 +129,8 @@
 
         <receiver
             android:name="com.penthera.sdkdemo.push.DemoADMReceiver"
-            android:permission="com.amazon.device.messaging.permission.SEND" >
+            android:permission="com.amazon.device.messaging.permission.SEND"
+            android:exported="true">
 
             <!-- To interact with ADM, your app must listen for the following intents. -->
             <intent-filter>

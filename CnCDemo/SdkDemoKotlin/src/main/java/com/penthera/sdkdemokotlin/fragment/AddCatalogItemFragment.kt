@@ -7,41 +7,42 @@ import android.view.ViewGroup
 import com.penthera.sdkdemokotlin.R
 import com.penthera.sdkdemokotlin.catalog.ExampleCatalog
 import com.penthera.sdkdemokotlin.catalog.ExampleCatalogItem
-import kotlinx.android.synthetic.main.fragment_add_catalog_item.*
-import android.R.array
-import android.app.DatePickerDialog
 import android.content.Context
-import android.widget.ArrayAdapter
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.penthera.sdkdemokotlin.catalog.CatalogItemType
-import com.penthera.sdkdemokotlin.dialog.DateTimeDialogFragment
-import kotlinx.android.synthetic.main.datetime_dialog.*
-import kotlinx.android.synthetic.main.fragment_add_catalog_content.*
-import kotlinx.android.synthetic.main.fragment_add_catalog_meta.*
-import kotlinx.android.synthetic.main.fragment_asset_detail.*
+import com.penthera.sdkdemokotlin.databinding.FragmentAddCatalogItemBinding
 import java.lang.NumberFormatException
 
 
 class AddCatalogItemFragment : Fragment(){
 
+    private var _binding: FragmentAddCatalogItemBinding? = null
+
     private lateinit var imgUrl : String
 
     private lateinit var adapter : AddItemPagerAdapter;
 
+    private val binding get() = _binding!!
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_add_catalog_item, container, false)
+        _binding = FragmentAddCatalogItemBinding.inflate(inflater, container, false);
+        return binding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         adapter = AddItemPagerAdapter(childFragmentManager, context)
-        add_item_pager.adapter = adapter
-        add_item_pager.offscreenPageLimit = 2
-        add_item_tabs.setupWithViewPager(add_item_pager)
+        binding.addItemPager.adapter = adapter
+        binding.addItemPager.offscreenPageLimit = 2
+        binding.addItemTabs.setupWithViewPager(binding.addItemPager)
 
 
         /*
@@ -55,7 +56,7 @@ class AddCatalogItemFragment : Fragment(){
                 }
             },expirationDate, "Asset Expiration Date")
         }*/
-        add_item_save.setOnClickListener {
+        binding.addItemSave.setOnClickListener {
 
             val newItem  = ExampleCatalogItem(adapter.assetId(),
                                             adapter.title(),
@@ -67,7 +68,7 @@ class AddCatalogItemFragment : Fragment(){
                                             adapter.rating(),
                                             adapter.durationSeconds(),
                                     adapter.imgUrl() ?: "")
-            ExampleCatalog.getInstance(context!!).addAndStore(newItem)
+            ExampleCatalog.getInstance(requireContext()).addAndStore(newItem)
 
             activity?.onBackPressed()
         }
@@ -112,7 +113,7 @@ class AddCatalogItemFragment : Fragment(){
 
 
         fun catalogItemType() : CatalogItemType{
-            return when(content.spinner_item_type.selectedItemPosition){
+            return when(content.binding.spinnerItemType.selectedItemPosition){
                 0 -> CatalogItemType.FILE
                 1 -> CatalogItemType.HLS_MANIFEST
                 2 -> CatalogItemType.DASH_MANIFEST
@@ -122,29 +123,29 @@ class AddCatalogItemFragment : Fragment(){
 
         }
         fun title() : String{
-            return meta.title_input_layout.editText?.editableText.toString()
+            return meta.binding.titleInputLayout.editText?.editableText.toString()
         }
 
         fun description() : String{
-            return meta.text_input_item_desc.editText?.editableText.toString()
+            return meta.binding.textInputItemDesc.editText?.editableText.toString()
         }
 
         fun contentUrl(): String{
-            return content.text_input_url.editText?.editableText.toString()
+            return content.binding.textInputUrl.editText?.editableText.toString()
         }
 
         fun assetId() :String{
-            return content.text_input_asset_id.editText?.editableText.toString()
+            return content.binding.textInputAssetId.editText?.editableText.toString()
         }
 
         fun mimeType() : String{
-            return content.txt_input_item_mime_type.editText?.editableText.toString()
+            return content.binding.txtInputItemMimeType.editText?.editableText.toString()
         }
 
         fun durationSeconds() : Int{
             var ret = 1000;
             try {
-                ret = content.txt_input_item_duration.editText?.editableText.toString().toInt()
+                ret = content.binding.txtInputItemDuration.editText?.editableText.toString().toInt()
             }
             catch (e : NumberFormatException){
 
@@ -153,7 +154,7 @@ class AddCatalogItemFragment : Fragment(){
         }
 
         fun rating() : String{
-            return meta.text_input_item_rating.editText?.editableText.toString()
+            return meta.binding.textInputItemRating.editText?.editableText.toString()
         }
 
         fun imgUrl() : String? {

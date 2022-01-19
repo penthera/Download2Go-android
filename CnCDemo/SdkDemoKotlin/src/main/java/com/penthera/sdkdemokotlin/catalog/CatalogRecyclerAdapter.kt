@@ -1,15 +1,16 @@
 package com.penthera.sdkdemokotlin.catalog
 
 import android.content.Context
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.penthera.sdkdemokotlin.R
 import com.penthera.sdkdemokotlin.activity.NavigationListener
+import com.penthera.sdkdemokotlin.databinding.ListrowCatalogBinding
 import com.penthera.sdkdemokotlin.util.TextUtils
 import com.penthera.sdkdemokotlin.util.inflate
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.listrow_catalog.view.*
 
 /**
  *
@@ -25,8 +26,8 @@ class CatalogRecyclerAdapter(context: Context) : RecyclerView.Adapter<CatalogRec
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CatalogItemHolder {
-        val inflatedView = parent.inflate(R.layout.listrow_catalog, false)
-        return CatalogItemHolder(inflatedView)
+        val itemBinding = ListrowCatalogBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return CatalogItemHolder(itemBinding)
     }
 
     override fun getItemCount(): Int = catalog.currentCatalog.size
@@ -38,16 +39,14 @@ class CatalogRecyclerAdapter(context: Context) : RecyclerView.Adapter<CatalogRec
     /**
      * ViewHolder for catalog item view
      */
-    class CatalogItemHolder(v: View) : RecyclerView.ViewHolder(v), View.OnClickListener {
-
-        private var view: View = v
+    class CatalogItemHolder(private val itemBinding: ListrowCatalogBinding) : RecyclerView.ViewHolder(itemBinding.root), View.OnClickListener {
 
         private var catalogItem: ExampleCatalogItem? = null
 
         private var navigationListener: NavigationListener? = null;
 
         init {
-            v.setOnClickListener(this)
+            itemBinding.root.setOnClickListener(this)
         }
 
         fun bindItem(catalogItem: ExampleCatalogItem, navigationListener: NavigationListener?) {
@@ -59,11 +58,11 @@ class CatalogRecyclerAdapter(context: Context) : RecyclerView.Adapter<CatalogRec
                         .load(catalogItem.imageUri)
                         .placeholder(R.drawable.cloud)
                         .error(R.drawable.no_image)
-                        .into(view.catalogImage)
+                        .into(itemBinding.catalogImage)
             }
-            view.catalogTitle.text = catalogItem.title
-            view.catalogRating.text = catalogItem.contentRating
-            view.catalogDuration.text = TextUtils().getDurationString(catalogItem.durationSeconds)
+            itemBinding.catalogTitle.text = catalogItem.title
+            itemBinding.catalogRating.text = catalogItem.contentRating
+            itemBinding.catalogDuration.text = TextUtils().getDurationString(catalogItem.durationSeconds)
         }
 
         override fun onClick(v: View?) {

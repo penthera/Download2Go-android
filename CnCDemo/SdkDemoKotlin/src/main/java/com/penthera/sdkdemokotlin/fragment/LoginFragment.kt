@@ -14,10 +14,10 @@ import com.penthera.sdkdemokotlin.Config
 import com.penthera.sdkdemokotlin.R
 import com.penthera.sdkdemokotlin.activity.NavigationListener
 import com.penthera.sdkdemokotlin.activity.OfflineVideoProvider
+import com.penthera.sdkdemokotlin.databinding.FragmentLoginBinding
 import com.penthera.virtuososdk.Common
 import com.penthera.virtuososdk.client.IAssetManager
 import com.penthera.virtuososdk.client.Observers
-import kotlinx.android.synthetic.main.fragment_login.*
 import java.lang.IllegalArgumentException
 import java.net.MalformedURLException
 import java.net.URL
@@ -35,17 +35,27 @@ class LoginFragment : Fragment(), View.OnClickListener {
     private var offlineVideoProvider: OfflineVideoProvider? = null
     private var assetManager: IAssetManager? = null
 
+    private var _binding: FragmentLoginBinding? = null
+
+    private val binding get() = _binding!!
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_login, container, false)
+        _binding = FragmentLoginBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        continueButton.setOnClickListener(this)
+        binding.continueButton.setOnClickListener(this)
 
         val identifier = offlineVideoProvider?.getOfflineEngine()?.getVirtuoso()?.backplane?.settings?.deviceId
 
-        edt_user.setText(identifier)
-        edt_url.setText(Config.BACKPLANE_URL)
+        binding.edtUser.setText(identifier)
+        binding.edtUrl.setText(Config.BACKPLANE_URL)
 
         super.onViewCreated(view, savedInstanceState)
     }
@@ -96,7 +106,7 @@ class LoginFragment : Fragment(), View.OnClickListener {
      */
     @Throws(MalformedURLException::class)
     private fun getUrl(): URL {
-        var url = edt_url.text.toString()
+        var url = binding.edtUrl.text.toString()
         if (TextUtils.isEmpty(url)) {
             url = Config.BACKPLANE_URL
         }
@@ -109,7 +119,7 @@ class LoginFragment : Fragment(), View.OnClickListener {
      * @return
      */
     private fun getUser(): String {
-        var user = edt_user.text.toString()
+        var user = binding.edtUser.text.toString()
         if (TextUtils.isEmpty(user)) {
             user = offlineVideoProvider?.getOfflineEngine()?.getVirtuoso()?.backplane?.settings?.deviceId
                     ?: ""

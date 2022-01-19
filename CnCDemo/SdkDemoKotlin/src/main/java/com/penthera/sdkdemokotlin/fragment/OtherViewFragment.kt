@@ -12,9 +12,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.penthera.sdkdemokotlin.R
 import com.penthera.sdkdemokotlin.activity.NavigationListener
-import com.penthera.sdkdemokotlin.util.inflate
-import kotlinx.android.synthetic.main.basic_listrow.view.*
-import kotlinx.android.synthetic.main.fragment_other.*
+import com.penthera.sdkdemokotlin.databinding.BasicListrowBinding
+import com.penthera.sdkdemokotlin.databinding.FragmentOtherBinding
 
 /**
  *
@@ -26,19 +25,29 @@ class OtherViewFragment : Fragment(), View.OnClickListener {
     private lateinit var adapter: MenuRecyclerAdapter
     private lateinit var navigationListener: NavigationListener
 
+    private var _binding: FragmentOtherBinding? = null
+
+    private val binding get() = _binding!!
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_other, container, false)
+        _binding = FragmentOtherBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         linearLayoutManager = LinearLayoutManager(context)
-        optionsList.layoutManager = linearLayoutManager
-        optionsList.hasFixedSize()
-        itemDecoration = DividerItemDecoration(optionsList.context, linearLayoutManager.orientation)
-        optionsList.addItemDecoration(itemDecoration)
+        binding.optionsList.layoutManager = linearLayoutManager
+        binding.optionsList.hasFixedSize()
+        itemDecoration = DividerItemDecoration(binding.optionsList.context, linearLayoutManager.orientation)
+        binding.optionsList.addItemDecoration(itemDecoration)
         adapter = MenuRecyclerAdapter(resources.getStringArray(R.array.other_menu), this)
-        optionsList.adapter = adapter
+        binding.optionsList.adapter = adapter
     }
 
     override fun onAttach(context: Context) {
@@ -59,8 +68,8 @@ class OtherViewFragment : Fragment(), View.OnClickListener {
     class MenuRecyclerAdapter(private val items : Array<String>, private val listener: View.OnClickListener) : RecyclerView.Adapter<MenuRecyclerAdapter.MenuItemViewHolder>() {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MenuItemViewHolder {
-            val inflatedView = parent.inflate(R.layout.basic_listrow, false)
-            return MenuItemViewHolder(inflatedView)
+            val itemBinding = BasicListrowBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            return MenuItemViewHolder(itemBinding)
         }
 
         override fun onBindViewHolder(holder: MenuItemViewHolder, position: Int) {
@@ -71,8 +80,8 @@ class OtherViewFragment : Fragment(), View.OnClickListener {
 
         override fun getItemCount(): Int  = items.size
 
-        class MenuItemViewHolder(v: View) : RecyclerView.ViewHolder(v) {
-            val textView: TextView = v.rowText
+        class MenuItemViewHolder(itemBinding: BasicListrowBinding) : RecyclerView.ViewHolder(itemBinding.root) {
+            val textView: TextView = itemBinding.rowText
         }
     }
 }

@@ -12,6 +12,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.penthera.sdkdemokotlin.R
 import com.penthera.sdkdemokotlin.catalog.ExampleCatalogItem
+import com.penthera.sdkdemokotlin.databinding.ActivityMainBinding
 import com.penthera.sdkdemokotlin.engine.OfflineVideoEngine
 import com.penthera.sdkdemokotlin.engine.VirtuosoEngineState
 import com.penthera.sdkdemokotlin.engine.VirtuosoServiceModelFactory
@@ -22,7 +23,6 @@ import com.penthera.sdkdemokotlin.fragment.LoginFragment
 import com.penthera.sdkdemokotlin.fragment.MainTabsFragment
 import com.penthera.virtuososdk.Common
 import com.penthera.virtuososdk.client.IAsset
-import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), NavigationListener, OfflineVideoProvider {
 
@@ -35,6 +35,8 @@ class MainActivity : AppCompatActivity(), NavigationListener, OfflineVideoProvid
 
     private var downloadStatus: Int = Common.EngineStatus.IDLE
 
+    private lateinit var binding: ActivityMainBinding
+
     private var mainTabs: MainTabsFragment? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,8 +48,10 @@ class MainActivity : AppCompatActivity(), NavigationListener, OfflineVideoProvid
 
         getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
 
-        setContentView(R.layout.activity_main)
-        setSupportActionBar(toolbar)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+
+        setContentView(binding.root)
+        setSupportActionBar(binding.toolbar)
 
         if (savedInstanceState == null) {
             val status =  offlineEngine.getVirtuoso().backplane?.authenticationStatus;
@@ -56,21 +60,21 @@ class MainActivity : AppCompatActivity(), NavigationListener, OfflineVideoProvid
             } else {
                 supportFragmentManager
                         .beginTransaction()
-                        .add(R.id.main_container, MainTabsFragment.newInstance(), "topTabs")
+                        .add(binding.mainContainer.id, MainTabsFragment.newInstance(), "topTabs")
                         .commit()
             }
         }
 
         serviceViewModel =  ViewModelProvider(this, VirtuosoServiceModelFactory(offlineEngine)).get(VirtuosoServiceViewModel::class.java)
         serviceViewModel.getEngineState().observe(this, Observer<VirtuosoEngineState>{
-            downloadStatusTxt.text = serviceViewModel.getCurrentEngineStatusString()
+            binding.downloadStatusTxt.text = serviceViewModel.getCurrentEngineStatusString()
             if (it != null) {
                 updateThroughput(it.overallThroughput, it.currentThroughput)
                 downloadStatus = it.downloadStatusInt
             }
             invalidateOptionsMenu()
         })
-        downloadStatusTxt.text = serviceViewModel.getCurrentEngineStatusString()
+        binding.downloadStatusTxt.text = serviceViewModel.getCurrentEngineStatusString()
         downloadStatus = serviceViewModel.getEngineState().value?.downloadStatusInt ?: Common.EngineStatus.IDLE
     }
 
@@ -154,7 +158,7 @@ class MainActivity : AppCompatActivity(), NavigationListener, OfflineVideoProvid
     override fun showInboxDetailsView(asset: IAsset) {
         supportFragmentManager
                 .beginTransaction()
-                .add(R.id.main_container, AssetDetailFragment.newInstance(asset), "detailView")
+                .add(binding.mainContainer.id, AssetDetailFragment.newInstance(asset), "detailView")
                 .addToBackStack("inbox_detail_view")
                 .commit()
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -163,7 +167,7 @@ class MainActivity : AppCompatActivity(), NavigationListener, OfflineVideoProvid
     override fun showCatalogDetailView(item: ExampleCatalogItem) {
         supportFragmentManager
                 .beginTransaction()
-                .add(R.id.main_container, AssetDetailFragment.newInstance(item), "catalog_detail_view")
+                .add(binding.mainContainer.id, AssetDetailFragment.newInstance(item), "catalog_detail_view")
                 .addToBackStack("catalog_detail_view")
                 .commit()
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -172,7 +176,7 @@ class MainActivity : AppCompatActivity(), NavigationListener, OfflineVideoProvid
     override fun addFragment(fragment: Fragment, backStackName: String) {
         supportFragmentManager
                 .beginTransaction()
-                .add(R.id.main_container, fragment, backStackName)
+                .add(binding.mainContainer.id, fragment, backStackName)
                 .addToBackStack(backStackName)
                 .commit()
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -186,19 +190,19 @@ class MainActivity : AppCompatActivity(), NavigationListener, OfflineVideoProvid
         mainTabs?.let {
             supportFragmentManager
                     .beginTransaction()
-                    .replace(R.id.main_container, it, "login")
+                    .replace(binding.mainContainer.id, it, "login")
                     .commit()
         }
-        statusView.visibility = View.VISIBLE
+        binding.statusView.visibility = View.VISIBLE
         supportActionBar?.show()
     }
 
     fun showLogin() {
         supportFragmentManager
                 .beginTransaction()
-                .add(R.id.main_container, LoginFragment(), "login")
+                .add(binding.mainContainer.id, LoginFragment(), "login")
                 .commit()
-        statusView.visibility = View.GONE
+        binding.statusView.visibility = View.GONE
         supportActionBar?.hide()
     }
 
@@ -206,7 +210,7 @@ class MainActivity : AppCompatActivity(), NavigationListener, OfflineVideoProvid
 
         addFragment(AddCatalogItemFragment(), "add catalog_item")
 
-        statusView.visibility = View.GONE
+        binding.statusView.visibility = View.GONE
         supportActionBar?.title = "Add item to catalog"
 
     }
@@ -214,7 +218,7 @@ class MainActivity : AppCompatActivity(), NavigationListener, OfflineVideoProvid
     override fun getOfflineEngine(): OfflineVideoEngine = offlineEngine
 
     fun updateThroughput(overallThroughput: Double, currentThroughput: Double) {
-        overallThroughputTxt.text = String.format("%.2f", overallThroughput)
-        currentThroughputTxt.text = String.format("%.2f", currentThroughput)
+        binding.overallThroughputTxt.text = String.format("%.2f", overallThroughput)
+        binding.currentThroughputTxt.text = String.format("%.2f", currentThroughput)
     }
 }
