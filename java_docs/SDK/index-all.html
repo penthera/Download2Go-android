@@ -764,7 +764,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </dd>
 <dt><a href="com/penthera/virtuososdk/Common.BackplaneResult.html" title="class in com.penthera.virtuososdk"><span class="typeNameLink">Common.BackplaneResult</span></a> - Class in <a href="com/penthera/virtuososdk/package-summary.html">com.penthera.virtuososdk</a></dt>
 <dd>
-<div class="block">Used in the <code>IBackplaneObserver</code> and <code>ISubscriptionObserver</code>.</div>
+<div class="block">Used in the <code>IBackplaneObserver</code>.</div>
 </dd>
 <dt><a href="com/penthera/virtuososdk/Common.BackplaneSettingFlag.html" title="class in com.penthera.virtuososdk"><span class="typeNameLink">Common.BackplaneSettingFlag</span></a> - Class in <a href="com/penthera/virtuososdk/package-summary.html">com.penthera.virtuososdk</a></dt>
 <dd>
@@ -3947,8 +3947,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
  
  Virtuoso's download engine (<a href="com/penthera/virtuososdk/client/Observers.IEngineObserver.html" title="interface in com.penthera.virtuososdk.client"><code>Observers.IEngineObserver</code></a>), 
   the communication with the Download2Go Backplane (<a href="com/penthera/virtuososdk/client/Observers.IBackplaneObserver.html" title="interface in com.penthera.virtuososdk.client"><code>Observers.IBackplaneObserver</code></a>),
-  changes to the Download Queue (<a href="com/penthera/virtuososdk/client/Observers.IQueueObserver.html" title="interface in com.penthera.virtuososdk.client"><code>Observers.IQueueObserver</code></a>),
-  Subscriptions (<a href="com/penthera/virtuososdk/client/Observers.ISubscriptionObserver.html" title="interface in com.penthera.virtuososdk.client"><code>Observers.ISubscriptionObserver</code></a>) and
+  changes to the Download Queue (<a href="com/penthera/virtuososdk/client/Observers.IQueueObserver.html" title="interface in com.penthera.virtuososdk.client"><code>Observers.IQueueObserver</code></a>) and
   SDK monitored connectivity (<a href="com/penthera/virtuososdk/client/Observers.IConnectivityObserver.html" title="interface in com.penthera.virtuososdk.client"><code>Observers.IConnectivityObserver</code></a>)
  </div>
 </dd>
@@ -3972,12 +3971,6 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dt><a href="com/penthera/virtuososdk/client/Observers.IQueueObserver.html" title="interface in com.penthera.virtuososdk.client"><span class="typeNameLink">Observers.IQueueObserver</span></a> - Interface in <a href="com/penthera/virtuososdk/client/package-summary.html">com.penthera.virtuososdk.client</a></dt>
 <dd>
 <div class="block">Callbacks about changes in the download queue</div>
-</dd>
-<dt><a href="com/penthera/virtuososdk/client/Observers.ISubscriptionObserver.html" title="interface in com.penthera.virtuososdk.client"><span class="typeNameLink">Observers.ISubscriptionObserver</span></a> - Interface in <a href="com/penthera/virtuososdk/client/package-summary.html">com.penthera.virtuososdk.client</a></dt>
-<dd>
-<div class="deprecationBlock"><span class="deprecatedLabel">Deprecated.</span>
-<div class="deprecationComment">subscriptions are no longer supported</div>
-</div>
 </dd>
 <dt><span class="memberNameLink"><a href="com/penthera/virtuososdk/Common.AdmPushServiceAvailability.html#OK">OK</a></span> - Static variable in class com.penthera.virtuososdk.<a href="com/penthera/virtuososdk/Common.AdmPushServiceAvailability.html" title="class in com.penthera.virtuososdk">Common.AdmPushServiceAvailability</a></dt>
 <dd>
@@ -4025,24 +4018,6 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dt><span class="memberNameLink"><a href="com/penthera/virtuososdk/client/IPushRegistrationObserver.html#onServiceAvailabilityResponse(int,int)">onServiceAvailabilityResponse(int, int)</a></span> - Method in interface com.penthera.virtuososdk.client.<a href="com/penthera/virtuososdk/client/IPushRegistrationObserver.html" title="interface in com.penthera.virtuososdk.client">IPushRegistrationObserver</a></dt>
 <dd>
 <div class="block">Called to indicate whether the Push service is available.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="com/penthera/virtuososdk/client/Observers.ISubscriptionObserver.html#onSubscribe(int,java.lang.String)">onSubscribe(int, String)</a></span> - Method in interface com.penthera.virtuososdk.client.<a href="com/penthera/virtuososdk/client/Observers.ISubscriptionObserver.html" title="interface in com.penthera.virtuososdk.client">Observers.ISubscriptionObserver</a></dt>
-<dd>
-<div class="deprecationBlock"><span class="deprecatedLabel">Deprecated.</span>
-<div class="deprecationComment">subscriptions are no longer supported</div>
-</div>
-</dd>
-<dt><span class="memberNameLink"><a href="com/penthera/virtuososdk/client/Observers.ISubscriptionObserver.html#onSubscriptions(int,java.lang.String%5B%5D)">onSubscriptions(int, String[])</a></span> - Method in interface com.penthera.virtuososdk.client.<a href="com/penthera/virtuososdk/client/Observers.ISubscriptionObserver.html" title="interface in com.penthera.virtuososdk.client">Observers.ISubscriptionObserver</a></dt>
-<dd>
-<div class="deprecationBlock"><span class="deprecatedLabel">Deprecated.</span>
-<div class="deprecationComment">subscriptions are no longer supported</div>
-</div>
-</dd>
-<dt><span class="memberNameLink"><a href="com/penthera/virtuososdk/client/Observers.ISubscriptionObserver.html#onUnsubscribe(int,java.lang.String)">onUnsubscribe(int, String)</a></span> - Method in interface com.penthera.virtuososdk.client.<a href="com/penthera/virtuososdk/client/Observers.ISubscriptionObserver.html" title="interface in com.penthera.virtuososdk.client">Observers.ISubscriptionObserver</a></dt>
-<dd>
-<div class="deprecationBlock"><span class="deprecatedLabel">Deprecated.</span>
-<div class="deprecationComment">subscriptions are no longer supported</div>
-</div>
 </dd>
 <dt><span class="memberNameLink"><a href="com/penthera/virtuososdk/client/autodownload/VirtuosoPlaylistAssetItem.html#option">option</a></span> - Variable in class com.penthera.virtuososdk.client.autodownload.<a href="com/penthera/virtuososdk/client/autodownload/VirtuosoPlaylistAssetItem.html" title="class in com.penthera.virtuososdk.client.autodownload">VirtuosoPlaylistAssetItem</a></dt>
 <dd>
