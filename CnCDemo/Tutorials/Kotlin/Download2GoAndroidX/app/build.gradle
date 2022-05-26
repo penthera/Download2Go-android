@@ -19,10 +19,6 @@ android {
     buildFeatures{
         viewBinding = true
     }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
     buildTypes {
         release {
             minifyEnabled false
@@ -37,7 +33,7 @@ allprojects {
         mavenCentral()
 
         //add the Download2Go SDK repository
-        maven{
+        maven {
             url "https://clientbuilds.penthera.com/repository/releases/"
         }
     }
@@ -54,10 +50,10 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
     //add dependency to latest Download2Go SDK version
-    implementation 'com.penthera:cnc-android-sdk-debug:5.0.0'
-    implementation 'com.penthera:cnc-exoplayer-2_15-support-debug:5.0.0'
-	implementation 'com.penthera:cnc-android-androidx-extensions:5.0.0'
+    implementation 'com.penthera:cnc-android-sdk-debug:5.0.2'
+    implementation 'com.penthera:cnc-exoplayer-2_17-support-debug:5.0.2'
+	implementation 'com.penthera:cnc-android-androidx-extensions:5.0.2'
 
     // Player
-    implementation 'com.google.android.exoplayer:exoplayer:2.15.1'
+    implementation 'com.google.android.exoplayer:exoplayer:2.17.1'
 }

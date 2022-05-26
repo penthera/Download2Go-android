@@ -63,10 +63,9 @@ public class SDKDemoServiceStarter extends VirtuosoServiceStarter {
 
     @Override
     public Class getForegroundServiceNotificationProvider(){
-	    // Returning this class definition causes the service to instantiate and use the class
-        // from within the service process to generate all notifications relating to asset downloads.
-        // Returning null results in the classic SDK behaviour where all notifications are generated
-        // and delivered to the service via the service starter.
+	    // This method is deprecated. The class used from within the service process to generate
+        // all notifications relating to asset downloads should be registered in the Android Manifest
+        // using the meta-data name "com.penthera.virtuososdk.notification.provider.impl"
         return ServiceForegroundNotificationProvider.class;
     }
 

@@ -95,9 +95,8 @@
 			android:exported="false"/>
 
 		<!-- Meta Data -->
-        <meta-data android:name="com.penthera.virtuososdk.client.pckg" android:value="@string/client_package" />
+		<meta-data android:name="com.penthera.virtuososdk.notification.provider.impl" android:value="com.penthera.sdkdemo.notification.ServiceForegroundNotificationProvider" />
 		<meta-data tools:replace="android:value" android:name="com.penthera.virtuososdk.license.manager.impl" android:value="com.penthera.sdkdemo.drm.DemoLicenseManager"/>
-		<meta-data android:name="com.penthera.virtuososdk.subscriptions.enabled" android:value="true" />
 		<meta-data android:name="com.penthera.virtuososdk.background.manager.impl" android:value="com.penthera.sdkdemo.backgroundService.DemoBackgroundProcessingManager" />
 
 		<!-- Service Starter -->
@@ -124,10 +123,6 @@
         <provider android:name="com.penthera.sdkdemo.catalog.CatalogContentProvider"
  			android:authorities="com.penthera.sdkdemo.catalog"
 			android:permission="com.penthera.sdkdemo.permission.CATALOG"/>
-
-        <provider android:name="com.penthera.sdkdemo.provider.SdkDemoContentProvider"
-			android:authorities="@string/client_package"
-			android:process=":provider"/>
 
 		<!-- Notification Receiver -->
         <receiver android:name="com.penthera.sdkdemo.notification.NotificationReceiver"

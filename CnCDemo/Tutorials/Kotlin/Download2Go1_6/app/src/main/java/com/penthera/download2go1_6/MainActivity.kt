@@ -26,6 +26,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.VERTICAL
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import com.penthera.download2go1_6.databinding.ActivityMainBinding
 import com.penthera.virtuososdk.Common
 import com.penthera.virtuososdk.client.ISegmentedAsset
 import com.penthera.virtuososdk.client.ISegmentedAssetFromParserObserver
@@ -40,16 +41,14 @@ class MainActivity : AppCompatActivity() ,
 
     private lateinit var  virtuoso : Virtuoso
 
-    private lateinit var dlBtn1 : Button
-    private lateinit var dlBtn2 : Button
-    private lateinit var dlBtn3 : Button
+    private lateinit var binding: ActivityMainBinding
 
-    private lateinit var recyclerView : RecyclerView
     private lateinit var assetAdapter : AssetRecyclerAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         initVirtuosoSDK(savedInstanceState)
 
@@ -57,18 +56,12 @@ class MainActivity : AppCompatActivity() ,
         ASSET_TITLE_2 = getString(R.string.download2_name)
         ASSET_TITLE_3 = getString(R.string.download3_name)
 
+        binding.download1.setOnClickListener{downloadAsset(0)}
+        binding.download2.setOnClickListener{downloadAsset(1)}
+        binding.download3.setOnClickListener{downloadAsset(2)}
 
-        dlBtn1 = findViewById(R.id.download_1)
-        dlBtn2= findViewById(R.id.download_2)
-        dlBtn3 = findViewById(R.id.download_3)
-
-        dlBtn1.setOnClickListener{downloadAsset(0)}
-        dlBtn2.setOnClickListener{downloadAsset(1)}
-        dlBtn3.setOnClickListener{downloadAsset(2)}
-
-        recyclerView = findViewById(R.id.downloads_list)
         assetAdapter = AssetRecyclerAdapter(this)
-        recyclerView.apply {
+        binding.downloadsList.apply {
             adapter = assetAdapter
             layoutManager = LinearLayoutManager(this@MainActivity, VERTICAL, false)
             addItemDecoration(DividerItemDecoration(this@MainActivity, VERTICAL))

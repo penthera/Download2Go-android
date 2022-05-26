@@ -11,6 +11,7 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.penthera.download2gohelloworld.databinding.ActivityMainBinding
 
 import com.penthera.virtuososdk.Common
 import com.penthera.virtuososdk.client.*
@@ -23,24 +24,21 @@ class MainActivity : AppCompatActivity() {
     private lateinit var  virtuoso : Virtuoso
     var asset : IAsset? =  null
     private lateinit var queueObserver: AssetQueueObserver
-    private lateinit var dlBtn : Button
-    private lateinit var plBtn : Button
-    private lateinit var delBtn : Button
-
+    private lateinit var binding: ActivityMainBinding
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         initVirtuosoSDK(savedInstanceState)
 
-        dlBtn = findViewById(R.id.download)
-        dlBtn.setOnClickListener { downloadAsset() }
-        plBtn= findViewById(R.id.play)
-        plBtn.setOnClickListener { playAsset()}
-        delBtn = findViewById(R.id.delete)
-        delBtn.setOnClickListener { deleteAsset() }
+
+        binding.download.setOnClickListener { downloadAsset() }
+        binding.play.setOnClickListener { playAsset()}
+        binding.delete.setOnClickListener { deleteAsset() }
 
         updateUI()
     }
@@ -119,9 +117,9 @@ class MainActivity : AppCompatActivity() {
 
     fun updateUI() {
 
-        dlBtn.isEnabled = asset == null
-        plBtn.isEnabled = asset != null
-        delBtn.isEnabled = asset != null
+        binding.download.isEnabled = asset == null
+        binding.play.isEnabled = asset != null
+        binding.delete.isEnabled = asset != null
 
         if(asset == null){
             findViewById<TextView>(R.id.textView).text = ""

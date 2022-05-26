@@ -1,2 +1,12 @@
+pluginManagement {
+    repositories {
+        maven {
+            url "https://clientbuilds.penthera.com/repository/releases"
+        }
+        google()
+        mavenCentral()
+    }
+}
+
 include ':SdkDemo'
 include ':SdkDemoKotlin'

@@ -1,16 +1,13 @@
 package com.penthera.download2go8
 
-import android.annotation.TargetApi
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.media.MediaDrm
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.util.Pair
 import android.view.KeyEvent
 import android.widget.Toast
@@ -28,8 +25,8 @@ import com.google.android.exoplayer2.util.EventLogger
 import com.google.android.exoplayer2.util.Util
 import com.penthera.virtuososdk.client.IAsset
 import com.penthera.virtuososdk.client.Virtuoso
-import com.penthera.virtuososdk.support.exoplayer215.ExoplayerUtils
-import com.penthera.virtuososdk.support.exoplayer215.drm.SupportDrmSessionManager
+import com.penthera.virtuososdk.support.exoplayer217.ExoplayerUtils
+import com.penthera.virtuososdk.support.exoplayer217.drm.ExoplayerDrmSessionManager
 
 
 
@@ -172,7 +169,7 @@ class VideoPlayerActivity : Activity() {
                 withAnalyticsListener(EventLogger(trackSelector))
                 userRenderersFactory(renderersFactory)
                 if(resumeWindow != C.INDEX_UNSET) withSeekToPosition(resumeWindow, resumePosition)
-                playerWhenReady(shouldAutoPlay)
+                playWhenReady(shouldAutoPlay)
                 
                 mediaSourceOptions().apply {
                     useTransferListener(true)
@@ -181,7 +178,6 @@ class VideoPlayerActivity : Activity() {
 
                 drmOptions().apply {
                     withDrmSessionManagerEventListener(DrmListener(this@VideoPlayerActivity))
-                    withMediaDrmEventListener(MediaDrmOnEventListener())
                 }
                     
             }
@@ -192,7 +188,7 @@ class VideoPlayerActivity : Activity() {
 
                 player = ExoplayerUtils.setupPlayer(
                     playerView!!,
-                    mVirtuoso,
+                    mVirtuoso.assetManager,
                     asset!!,
                     false,
                     builder.build()
@@ -328,7 +324,7 @@ class VideoPlayerActivity : Activity() {
     // Observer class from the Download2Go session manager which enables the client to be informed of
     // events for when keys are loaded or an error occurs with fetching a license.
     private class DrmListener(private val mActivity: VideoPlayerActivity) :
-        SupportDrmSessionManager.EventListener {
+        ExoplayerDrmSessionManager.EventListener {
         override fun onDrmKeysLoaded() {
         }
 
@@ -338,15 +334,6 @@ class VideoPlayerActivity : Activity() {
 
     }
 
-    /**
-     * Demonstrates how to view media drm events directly, which can be used for logging
-     */
-    @TargetApi(18)
-    private class MediaDrmOnEventListener : MediaDrm.OnEventListener {
-        override fun onEvent(md: MediaDrm, sessionId: ByteArray?, event: Int, extra: Int, data: ByteArray?) {
-            Log.d("MediaDrm", "MediaDrm event: $event")
-        }
-    }
 
     companion object {
         private const val VIRTUOSO_ASSET = "asset"

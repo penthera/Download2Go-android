@@ -37,13 +37,13 @@ import com.google.android.exoplayer2.trackselection.AdaptiveTrackSelection;
 import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
 import com.google.android.exoplayer2.trackselection.MappingTrackSelector;
 import com.google.android.exoplayer2.trackselection.TrackSelectionArray;
-import com.google.android.exoplayer2.ui.PlayerView;
+import com.google.android.exoplayer2.ui.StyledPlayerView;
 import com.google.android.exoplayer2.util.ErrorMessageProvider;
 import com.google.android.exoplayer2.util.EventLogger;
 import com.penthera.virtuososdk.client.IAsset;
 import com.penthera.virtuososdk.client.Virtuoso;
-import com.penthera.virtuososdk.support.exoplayer215.ExoplayerUtils;
-import com.penthera.virtuososdk.support.exoplayer215.drm.SupportDrmSessionManager;
+import com.penthera.virtuososdk.support.exoplayer217.ExoplayerUtils;
+import com.penthera.virtuososdk.support.exoplayer217.drm.ExoplayerDrmSessionManager;
 
 import java.net.CookieHandler;
 import java.net.CookieManager;
@@ -79,7 +79,7 @@ public class VideoPlayerActivity extends AppCompatActivity {
     // a singleton for the whole application. But this should not be instantiated in an application onCreate().
     private Virtuoso mVirtuoso;
 
-    private PlayerView playerView;
+    private StyledPlayerView playerView;
 
     private Player player;
     private DefaultTrackSelector trackSelector;
@@ -180,7 +180,7 @@ public class VideoPlayerActivity extends AppCompatActivity {
         super.onSaveInstanceState(outState);
         updateTrackSelectorParameters();
         updateStartPosition();
-        outState.putParcelable(KEY_TRACK_SELECTOR_PARAMETERS, trackSelectorParameters);
+        outState.putBundle(KEY_TRACK_SELECTOR_PARAMETERS, trackSelectorParameters.toBundle());
         outState.putBoolean(KEY_AUTO_PLAY, startAutoPlay);
         outState.putInt(KEY_WINDOW, startWindow);
         outState.putLong(KEY_POSITION, startPosition);
@@ -219,14 +219,13 @@ public class VideoPlayerActivity extends AppCompatActivity {
                     .withTrackSelector(trackSelector)
                     .withPlayerListener(new PlayerEventListener())
                     .withAnalyticsListener(new EventLogger(trackSelector))
-                    .playerWhenReady(true);
+                    .playWhenReady(true);
 
             builder.mediaSourceOptions().useTransferListener(true)
                     .withUserAgent("virtuoso-sdk");
 
             builder.drmOptions()
-                    .withDrmSessionManagerEventListener(new DrmListener(this))
-                    .withMediaDrmEventListener(new MediaDrmOnEventListener());
+                    .withDrmSessionManagerEventListener(new DrmListener(this));
 
             boolean haveResumePosition = startWindow != C.INDEX_UNSET;
             if (haveResumePosition) {
@@ -234,7 +233,7 @@ public class VideoPlayerActivity extends AppCompatActivity {
             }
 
             try {
-                player = ExoplayerUtils.setupPlayer(playerView, mVirtuoso, asset, false, builder.build());
+                player = ExoplayerUtils.setupPlayer(playerView, mVirtuoso.getAssetManager(), asset, false, builder.build());
             } catch (MalformedURLException e) {
                 e.printStackTrace();
                 return;
@@ -323,7 +322,7 @@ public class VideoPlayerActivity extends AppCompatActivity {
 
     // Observer class from the Download2Go session manager which enables the client to be informed of
     // events for when keys are loaded or an error occurs with fetching a license.
-    private static class DrmListener implements SupportDrmSessionManager.EventListener {
+    private static class DrmListener implements ExoplayerDrmSessionManager.EventListener {
 
         private final VideoPlayerActivity mActivity;
 
@@ -342,17 +341,6 @@ public class VideoPlayerActivity extends AppCompatActivity {
             mActivity.handleDrmLicenseNotAvailable();
 
 
-        }
-    }
-
-    /**
-     * Demonstrates how to view media drm events directly, which can be used for logging
-     */
-    @TargetApi(18)
-    private static class MediaDrmOnEventListener implements MediaDrm.OnEventListener {
-        @Override
-        public void onEvent(@NonNull MediaDrm md, @Nullable byte[] sessionId, int event, int extra, @Nullable byte[] data) {
-            Log.d("MediaDrm", "MediaDrm event: " + event);
         }
     }
 

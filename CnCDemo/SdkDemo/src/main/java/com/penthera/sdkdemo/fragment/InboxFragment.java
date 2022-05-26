@@ -50,6 +50,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import androidx.annotation.NonNull;
 import androidx.cursoradapter.widget.CursorAdapter;
 import androidx.fragment.app.ListFragment;
 import androidx.loader.app.LoaderManager;
@@ -270,6 +271,20 @@ public class InboxFragment extends ListFragment implements LoaderManager.LoaderC
 			mConnectedService = mService.getService();
 		else
 			mConnectedService = null;
+	}
+
+	@Override
+	public void onAttach(@NonNull Context context) {
+		super.onAttach(context);
+
+
+		if (mService == null){
+			if(context instanceof VirtuosoUtil.VirtuosoProvider){
+				mService = ((VirtuosoUtil.VirtuosoProvider)context).getVirtuosoService();
+				mAssetManager = mService.getAssetManager();
+				mConnectedService = mService.getService();
+			}
+		}
 	}
 
 	// onResume

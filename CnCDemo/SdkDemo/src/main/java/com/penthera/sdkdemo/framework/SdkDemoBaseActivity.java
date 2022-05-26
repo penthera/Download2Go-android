@@ -33,6 +33,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.penthera.sdkdemo.Config;
 import com.penthera.sdkdemo.R;
 import com.penthera.sdkdemo.Util;
+import com.penthera.sdkdemo.VirtuosoUtil;
 import com.penthera.sdkdemo.activity.SplashActivity;
 import com.penthera.sdkdemo.dialog.PermissionsExplanationDialog;
 import com.penthera.virtuososdk.Common;
@@ -51,7 +52,7 @@ import com.penthera.virtuososdk.client.Observers.IBackplaneObserver;
 /**
  * Base activity for the all activities connection to the Virtuoso service
  */
-public abstract class SdkDemoBaseActivity extends AppCompatActivity {
+public abstract class SdkDemoBaseActivity extends AppCompatActivity implements VirtuosoUtil.VirtuosoProvider {
 
     private static final String LOG_TAG = SdkDemoBaseActivity.class.getSimpleName();
 
@@ -140,10 +141,13 @@ public abstract class SdkDemoBaseActivity extends AppCompatActivity {
 	// onCreate
 	@Override
 	protected void onCreate(Bundle arg0) {
-		super.onCreate(arg0);
 
 		mVirtuoso = new Virtuoso(getApplicationContext());
-        mConnectedService = mVirtuoso.getService();
+		mConnectedService = mVirtuoso.getService();
+
+		super.onCreate(arg0);
+
+
         doPermissionsCheck(false);
 	}
 
@@ -353,6 +357,8 @@ public abstract class SdkDemoBaseActivity extends AppCompatActivity {
 	@Override
 	public void onRequestPermissionsResult(int requestCode,
 										   String permissions[], int[] grantResults) {
+
+    	super.onRequestPermissionsResult(requestCode,permissions,grantResults);
 		switch (requestCode) {
 			case PERMISSION_REQUEST: {
 				// If request is cancelled, the result arrays are empty.
@@ -385,5 +391,10 @@ public abstract class SdkDemoBaseActivity extends AppCompatActivity {
 			}
 
 		}
+	}
+
+	@Override
+	public Virtuoso getVirtuosoService() {
+		return mVirtuoso;
 	}
 }

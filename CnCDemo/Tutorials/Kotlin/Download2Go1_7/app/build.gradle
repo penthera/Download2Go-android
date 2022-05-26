@@ -1,7 +1,6 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
-    id 'kotlin-android-extensions'
     id 'com.penthera.virtuoso-sdk-configuration' version '1.0.0'
 }
 
@@ -19,17 +18,15 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+	buildFeatures {
+        viewBinding true
+    }
+	
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
-    }
-
-    // These compileOptions are required for exoPlayer, not for the Download2Go SDK
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
     }
 
 }
@@ -41,7 +38,7 @@ allprojects {
 
 
         // Penthera Maven repository is required for the SDK
-        maven{
+        maven {
             url "https://clientbuilds.penthera.com/repository/releases/"
         }
     }
@@ -56,10 +53,10 @@ dependencies {
 
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
 
-    implementation 'com.penthera:cnc-android-sdk-debug:5.0.1'
-    implementation 'com.penthera:cnc-exoplayer-2_15-support-debug:5.0.0'
+    implementation 'com.penthera:cnc-android-sdk-debug:5.0.2'
+    implementation 'com.penthera:cnc-exoplayer-2_17-support-debug:5.0.2'
 
-    implementation 'com.google.android.exoplayer:exoplayer:2.15.1'
+    implementation 'com.google.android.exoplayer:exoplayer:2.17.1'
 
     implementation 'com.google.firebase:firebase-messaging:20.2.0'
     implementation 'com.google.firebase:firebase-core:17.4.3'

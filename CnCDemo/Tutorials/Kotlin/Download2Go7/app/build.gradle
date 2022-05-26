@@ -29,11 +29,6 @@ android {
         }
     }
 
-    // These compileOptions are required for exoPlayer, not for the Download2Go SDK
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
 }
 
 allprojects {
@@ -43,12 +38,10 @@ allprojects {
         mavenCentral()
 
         // Penthera Maven repository is required for the SDK
-        maven{
+        maven {
             url "https://clientbuilds.penthera.com/repository/releases/"
         }
-
     }
-
 
 }
 
@@ -61,10 +54,10 @@ dependencies {
 
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
 
-    implementation 'com.penthera:cnc-android-sdk-debug:5.0.1'
-    implementation 'com.penthera:cnc-exoplayer-2_15-support-debug:5.0.0'
+    implementation 'com.penthera:cnc-android-sdk-debug:5.0.2'
+    implementation 'com.penthera:cnc-exoplayer-2_17-support-debug:5.0.2'
 
-    implementation 'com.google.android.exoplayer:exoplayer:2.15.1'
+    implementation 'com.google.android.exoplayer:exoplayer:2.17.1'
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'

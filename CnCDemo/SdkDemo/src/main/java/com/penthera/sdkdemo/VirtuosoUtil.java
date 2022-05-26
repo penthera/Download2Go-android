@@ -658,4 +658,8 @@ public class VirtuosoUtil {
         	return expiry == Long.MAX_VALUE ? -1: expiry;
         }
     }
+
+    public interface VirtuosoProvider {
+    	Virtuoso getVirtuosoService();
+	}
 }

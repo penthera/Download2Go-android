@@ -45,14 +45,14 @@
         </activity>
 
         <!-- Meta Data -->
-        <meta-data android:name="com.penthera.virtuososdk.client.pckg" android:value="@string/client_package" />
+        <meta-data android:name="com.penthera.virtuososdk.notification.provider.impl" android:value="com.penthera.sdkdemokotlin.notification.ServiceForegroundNotificationProvider" />
         <meta-data tools:replace="android:value" android:name="com.penthera.virtuososdk.license.manager.impl" android:value="com.penthera.sdkdemokotlin.drm.DemoLicenseManager"/>
 
         <!-- Service Starter -->
         <receiver android:name=".ServiceStarter"
             android:enabled="true"
             android:exported="true"
-            android:label="SDKDemo Service Starter"
+            android:label="SDKDemoKotlin Service Starter"
             android:directBootAware="true">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED"/>
@@ -67,12 +67,6 @@
             </intent-filter>
 
         </receiver>
-
-        <!-- Content Provider -->
-        <provider android:name=".provider.DemoContentProvider"
-            android:authorities="@string/client_package"
-            android:exported="false"
-            android:process=":provider"/>
 
         <!-- Notification Receiver -->
         <receiver android:name=".notification.NotificationReceiver"
@@ -128,7 +122,7 @@
             android:exported="false" />
 
         <receiver
-            android:name="com.penthera.sdkdemo.push.DemoADMReceiver"
+            android:name="com.penthera.sdkdemokotlin.push.DemoADMReceiver"
             android:permission="com.amazon.device.messaging.permission.SEND"
             android:exported="true">
 

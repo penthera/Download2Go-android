@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.penthera.download2go1_6.databinding.DetailActivityBinding
 import com.penthera.virtuososdk.client.IIdentifier
 import com.penthera.virtuososdk.client.ISegmentedAsset
 import com.penthera.virtuososdk.client.Observers.IQueueObserver
@@ -19,35 +20,15 @@ class AssetDetailActivity : AppCompatActivity() {
     private var assetQueueObserver: AssetQueueObserver? = null
     var asset: ISegmentedAsset? = null
     var assetId: String? = null
-    private var titleView: TextView? = null
-    private var uuidView: TextView? = null
-    private var idView: TextView? = null
-    private var fileTypeView: TextView? = null
-    private var expectedSizeView: TextView? = null
-    private var currentSizeView: TextView? = null
-    private var durationView: TextView? = null
-    private var statusView: TextView? = null
-    private var pathView: TextView? = null
-    private var playbackView: TextView? = null
-    private var segmentCountView: TextView? = null
-    private var firstPlayView: TextView? = null
+
+    private lateinit var binding: DetailActivityBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.detail_activity)
-        titleView = findViewById(R.id.assetTitleValue)
-        uuidView = findViewById(R.id.uuidValue)
-        idView = findViewById(R.id.idValue)
-        fileTypeView = findViewById(R.id.fileTypeValue)
-        expectedSizeView = findViewById(R.id.expectedSizeValue)
-        currentSizeView = findViewById(R.id.currentSizeValue)
-        durationView = findViewById(R.id.durationValue)
-        statusView = findViewById(R.id.statusValue)
-        pathView = findViewById(R.id.pathValue)
-        playbackView = findViewById(R.id.playbackValue)
-        segmentCountView = findViewById(R.id.segmentCountValue)
-        firstPlayView = findViewById(R.id.firstPlayValue)
-        findViewById<View>(R.id.btn_play).setOnClickListener { playAsset() }
-        findViewById<View>(R.id.btn_delete).setOnClickListener {
+        binding = DetailActivityBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        binding.btnPlay.setOnClickListener { playAsset() }
+        binding.btnDelete.setOnClickListener {
             if (asset != null) {
                 virtuoso.assetManager.delete(asset)
             }
@@ -117,31 +98,31 @@ class AssetDetailActivity : AppCompatActivity() {
     private fun updateUI() {
         
         asset?.let{
-            titleView!!.text = it.metadata
-            uuidView!!.text = it.uuid
-            idView!!.text = it.assetId
-            fileTypeView!!.text = fileTypeFromId(it.segmentedFileType())
-            expectedSizeView!!.text = String.format("%.2f MB", it.expectedSize / 1048576.00)
-            currentSizeView!!.text = String.format("%.2f MB", it.currentSize / 1048576.00)
-            durationView!!.text = String.format("%d seconds", it.duration)
-            statusView?.text = MainActivity.getStatusText(this, it.downloadStatus)
-            pathView!!.text = it.localBaseDir
+            binding.assetTitleValue.text = it.metadata
+            binding.uuidValue.text = it.uuid
+            binding.idValue.text = it.assetId
+            binding.fileTypeValue.text = fileTypeFromId(it.segmentedFileType())
+            binding.expectedSizeValue.text = String.format("%.2f MB", it.expectedSize / 1048576.00)
+            binding.currentSizeValue.text = String.format("%.2f MB", it.currentSize / 1048576.00)
+            binding.durationValue.text = String.format("%d seconds", it.duration)
+            binding.statusValue.text = MainActivity.getStatusText(this, it.downloadStatus)
+            binding.pathValue.text = it.localBaseDir
             try {
                 val url = it.playbackURL
                 if (url != null) {
-                    playbackView!!.text = url.toString()
+                    binding.playbackValue.text = url.toString()
                 } else {
-                    playbackView!!.setText(R.string.unavailable)
+                    binding.playbackValue!!.setText(R.string.unavailable)
                 }
             } catch (mue: MalformedURLException) {
-                playbackView!!.setText(R.string.unavailable)
+                binding.playbackValue!!.setText(R.string.unavailable)
             }
-            segmentCountView!!.text = it.totalSegments.toString()
+            binding.segmentCountValue.text = it.totalSegments.toString()
             val firstPlayTime = it.firstPlayTime
             if (firstPlayTime > 0) {
-                firstPlayView!!.text = dateFormatter.format(Date(firstPlayTime * 1000))
+                binding.firstPlayValue.text = dateFormatter.format(Date(firstPlayTime * 1000))
             } else {
-                firstPlayView!!.setText(R.string.not_yet_played)
+                binding.firstPlayValue.setText(R.string.not_yet_played)
             }
         }
     }

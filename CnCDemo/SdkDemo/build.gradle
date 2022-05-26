@@ -1,4 +1,7 @@
-apply plugin: 'com.android.application'
+plugins {
+    id 'com.android.application'
+    id 'com.penthera.virtuoso-sdk-configuration' version '1.0.0'
+}
 
 android {
     compileSdkVersion 31
@@ -6,8 +9,8 @@ android {
 
     defaultConfig {
         applicationId "com.penthera.sdkdemo"
-        versionCode = 50001
-        versionName = "5.0.1"
+        versionCode = 50002
+        versionName = "5.0.2"
         minSdkVersion 16
         targetSdkVersion 31
         multiDexEnabled true
@@ -36,17 +39,17 @@ allprojects {
 
         mavenCentral()
         maven{
-            url "http://clientbuilds.penthera.com:8081/repository/releases/"
+            url "https://clientbuilds.penthera.com/repository/releases/"
         }
     }
 }
 
 dependencies {
 
-    implementation  'com.penthera:cnc-android-sdk-debug:5.0.1'
-    Implementation 'com.penthera:cnc-exoplayer-2_13-support:5.0.1'
+    implementation  'com.penthera:cnc-android-sdk-debug:5.0.2'
+    implementation 'com.penthera:cnc-exoplayer-2_17-support:5.0.2'
 
-    def google_exoplayer_version = "2.13.3"
+    def google_exoplayer_version = "2.17.1"
     implementation "com.google.android.exoplayer:exoplayer:$google_exoplayer_version"
     implementation "com.google.android.exoplayer:extension-ima:$google_exoplayer_version"
 

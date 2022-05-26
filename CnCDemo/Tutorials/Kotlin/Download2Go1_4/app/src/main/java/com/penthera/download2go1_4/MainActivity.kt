@@ -13,6 +13,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import com.penthera.download2go1_4.databinding.ActivityMainBinding
 
 import com.penthera.virtuososdk.Common
 import com.penthera.virtuososdk.client.*
@@ -28,12 +29,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var  virtuoso : Virtuoso
     var asset : IAsset? =  null
     private lateinit var queueObserver: AssetQueueObserver
-    private lateinit var dlBtn : Button
-    private lateinit var plBtn : Button
-    private lateinit var delBtn : Button
-    private lateinit var pauseAsset : Switch
-    private lateinit var pauseEngine : Switch
-    private lateinit var ancillaryImage : ImageView
+
+    private lateinit var binding: ActivityMainBinding
 
     private var internalUpdate : Boolean = false
     //local reference to the Download2Go service
@@ -52,7 +49,7 @@ class MainActivity : AppCompatActivity() {
                 if(it.isBound){
                     try {
                         internalUpdate = true
-                        pauseEngine.isChecked = it.status == Common.EngineStatus.PAUSED
+                        binding.pauseEngine.isChecked = it.status == Common.EngineStatus.PAUSED
                         internalUpdate = false
                     } catch (se: ServiceException) {
                         Log.d(
@@ -82,19 +79,16 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
-        dlBtn = findViewById(R.id.download)
-        dlBtn.setOnClickListener { downloadAsset() }
-        plBtn= findViewById(R.id.play)
-        plBtn.setOnClickListener { playAsset()}
-        delBtn = findViewById(R.id.delete)
-        delBtn.setOnClickListener { deleteAsset() }
-        pauseAsset = findViewById(R.id.pauseAsset)
-        pauseAsset.setOnCheckedChangeListener { _, isChecked ->  pauseAsset(isChecked) }
-        pauseEngine = findViewById(R.id.pauseEngine)
-        pauseEngine.setOnCheckedChangeListener { _, isChecked -> pauseEngine(isChecked) }
-        ancillaryImage = findViewById(R.id.ancillaryImage)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+
+        setContentView(binding.root)
+
+        binding.download.setOnClickListener { downloadAsset() }
+        binding.play.setOnClickListener { playAsset()}
+        binding.delete.setOnClickListener { deleteAsset() }
+        binding.pauseAsset.setOnCheckedChangeListener { _, isChecked ->  pauseAsset(isChecked) }
+        binding.pauseEngine.setOnCheckedChangeListener { _, isChecked -> pauseEngine(isChecked) }
 
         initVirtuosoSDK(savedInstanceState)
         updateUI()
@@ -244,23 +238,23 @@ class MainActivity : AppCompatActivity() {
 
     fun updateUI() {
 
-        dlBtn.isEnabled = asset == null
-        plBtn.isEnabled = asset != null
-        delBtn.isEnabled = asset != null
+        binding.download.isEnabled = asset == null
+        binding.play.isEnabled = asset != null
+        binding.delete.isEnabled = asset != null
 
         if(asset == null){
             findViewById<TextView>(R.id.textView).text = ""
-            pauseAsset.isEnabled = false
-            ancillaryImage.visibility = View.INVISIBLE
+            binding.pauseAsset.isEnabled = false
+            binding.ancillaryImage.visibility = View.INVISIBLE
         }
         else{
             internalUpdate = true
-            if(pauseAsset.isChecked != (asset?.downloadStatus == Common.AssetStatus.DOWNLOAD_PAUSED)){
-                pauseAsset.isChecked = true
+            if(binding.pauseAsset.isChecked != (asset?.downloadStatus == Common.AssetStatus.DOWNLOAD_PAUSED)){
+                binding.pauseAsset.isChecked = true
             }
             internalUpdate = false
 
-            pauseAsset.isEnabled = true
+            binding.pauseAsset.isEnabled = true
         }
 
         showAncillaryImage(asset)
@@ -278,8 +272,10 @@ class MainActivity : AppCompatActivity() {
                     fileLocalPath?.let{filepath ->
                         val imgFile = File(filepath)
                         if (imgFile.exists()) {
-                            ancillaryImage.setImageURI(Uri.fromFile(imgFile))
-                            ancillaryImage.visibility = View.VISIBLE
+                            binding.ancillaryImage.apply {
+                                setImageURI(Uri.fromFile(imgFile))
+                                visibility = View.VISIBLE
+                            }
                         }
                     }
 

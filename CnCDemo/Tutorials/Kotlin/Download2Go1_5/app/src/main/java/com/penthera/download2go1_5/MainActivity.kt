@@ -11,6 +11,7 @@ import android.widget.*
 import android.widget.AdapterView.OnItemSelectedListener
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatSpinner
+import com.penthera.download2go1_5.databinding.ActivityMainBinding
 
 import com.penthera.virtuososdk.Common
 import com.penthera.virtuososdk.client.*
@@ -24,13 +25,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var  virtuoso : Virtuoso
     var asset : IAsset? =  null
     private lateinit var queueObserver: AssetQueueObserver
-    private lateinit var dlBtn : Button
-    private lateinit var plBtn : Button
-    private lateinit var delBtn : Button
-    
-    private lateinit var pauseAsset : Switch
-    private lateinit var pauseEngine : Switch
-    private lateinit var logLevelSpinner : AppCompatSpinner
+
+    private lateinit var binding: ActivityMainBinding
 
     private var internalUpdate : Boolean = false
     //local reference to the Download2Go service
@@ -49,7 +45,7 @@ class MainActivity : AppCompatActivity() {
                     try {
                         val status = it.status
                         internalUpdate = true
-                        pauseEngine.isChecked = status == Common.EngineStatus.PAUSED
+                        binding.pauseEngine.isChecked = status == Common.EngineStatus.PAUSED
                         internalUpdate = false
                     } catch (se: ServiceException) {
                         Log.d(
@@ -79,36 +75,28 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
 
         initVirtuosoSDK(savedInstanceState)
 
-        dlBtn = findViewById(R.id.download)
-        dlBtn.setOnClickListener { downloadAsset() }
-        plBtn= findViewById(R.id.play)
-        plBtn.setOnClickListener { playAsset()}
-        delBtn = findViewById(R.id.delete)
-        delBtn.setOnClickListener { deleteAsset() }
-        
-        
-        pauseAsset = findViewById(R.id.pauseAsset)
-        pauseAsset.setOnCheckedChangeListener { _, isChecked ->  pauseAsset(isChecked) }
-        pauseEngine = findViewById(R.id.pauseEngine)
-        pauseEngine.setOnCheckedChangeListener { _, isChecked -> pauseEngine(isChecked) }
+        binding.download.setOnClickListener { downloadAsset() }
+        binding.play.setOnClickListener { playAsset()}
+        binding.delete.setOnClickListener { deleteAsset() }
 
-        logLevelSpinner = findViewById(R.id.logLevelSpinner)
-
+        binding.pauseAsset.setOnCheckedChangeListener { _, isChecked ->  pauseAsset(isChecked) }
+        binding.pauseEngine.setOnCheckedChangeListener { _, isChecked -> pauseEngine(isChecked) }
 
         val adapter = ArrayAdapter.createFromResource(
             this,
             R.array.log_levels_array, android.R.layout.simple_spinner_item
         )
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        logLevelSpinner.adapter = adapter
+        binding.logLevelSpinner.adapter = adapter
 
 
-        logLevelSpinner.onItemSelectedListener = object : OnItemSelectedListener {
+        binding.logLevelSpinner.onItemSelectedListener = object : OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View, position: Int, id: Long) {
                 val sdkLogLevel: Int = when (position) {
                     0 -> Common.LogLevels.LOG_LEVEL_DEBUG
@@ -247,16 +235,16 @@ class MainActivity : AppCompatActivity() {
 
     fun updateUI() {
 
-        dlBtn.isEnabled = asset == null
-        plBtn.isEnabled = asset != null
-        delBtn.isEnabled = asset != null
+        binding.download.isEnabled = asset == null
+        binding.play.isEnabled = asset != null
+        binding.delete.isEnabled = asset != null
 
         if( asset == null){
             findViewById<TextView>(R.id.textView).text = ""
-            pauseAsset.isEnabled = false
+            binding.pauseAsset.isEnabled = false
         }
         else{
-            pauseAsset.isEnabled = true
+            binding.pauseAsset.isEnabled = true
         }
     }
 

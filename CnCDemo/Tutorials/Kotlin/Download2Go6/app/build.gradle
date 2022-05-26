@@ -33,12 +33,6 @@ android {
         exclude 'META-INF/annotation-experimental_release.kotlin_module'
     }
 
-    // These compileOptions are required for exoPlayer, not for the Download2Go SDK
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-
 }
 
 allprojects {
@@ -50,8 +44,6 @@ allprojects {
         maven {
             url "https://clientbuilds.penthera.com/repository/releases/"
         }
-
-
     }
 }
 
@@ -64,13 +56,13 @@ dependencies {
 
     implementation 'androidx.recyclerview:recyclerview:1.2.0'
 
-    implementation 'com.penthera:cnc-android-sdk-debug:5.0.1'
-	implementation 'com.penthera:cnc-exoplayer-2_15-support-debug:5.0.0'
+    implementation 'com.penthera:cnc-android-sdk-debug:5.0.2'
+	implementation 'com.penthera:cnc-exoplayer-2_17-support-debug:5.0.2'
 
-    implementation 'com.google.android.exoplayer:exoplayer:2.15.1'
+    implementation 'com.google.android.exoplayer:exoplayer:2.17.1'
     // The ima exoplayer extension is required for client side ad insertion in order to interpret and play the
     // adverts from the VAST/VMAP document.
-    implementation "com.google.android.exoplayer:extension-ima:2.15.1"
+    implementation "com.google.android.exoplayer:extension-ima:2.17.1"
 
 
     testImplementation 'junit:junit:4.12'

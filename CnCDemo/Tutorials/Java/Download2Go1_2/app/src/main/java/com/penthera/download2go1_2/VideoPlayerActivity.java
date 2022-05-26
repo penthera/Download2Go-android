@@ -32,12 +32,12 @@ import com.google.android.exoplayer2.trackselection.AdaptiveTrackSelection;
 import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
 import com.google.android.exoplayer2.trackselection.MappingTrackSelector;
 import com.google.android.exoplayer2.trackselection.TrackSelectionArray;
-import com.google.android.exoplayer2.ui.PlayerView;
+import com.google.android.exoplayer2.ui.StyledPlayerView;
 import com.google.android.exoplayer2.util.ErrorMessageProvider;
 import com.google.android.exoplayer2.util.EventLogger;
 import com.penthera.virtuososdk.client.IAsset;
 import com.penthera.virtuososdk.client.Virtuoso;
-import com.penthera.virtuososdk.support.exoplayer215.ExoplayerUtils;
+import com.penthera.virtuososdk.support.exoplayer217.ExoplayerUtils;
 
 import java.net.CookieHandler;
 import java.net.CookieManager;
@@ -72,7 +72,7 @@ public class VideoPlayerActivity extends AppCompatActivity {
     // a singleton for the whole application. But this should not be instantiated in an application onCreate().
     private Virtuoso mVirtuoso;
 
-    private PlayerView playerView;
+    private StyledPlayerView playerView;
 
     private Player player;
     private DefaultTrackSelector trackSelector;
@@ -122,7 +122,8 @@ public class VideoPlayerActivity extends AppCompatActivity {
         playerView.requestFocus();
 
         if (savedInstanceState != null) {
-            trackSelectorParameters = savedInstanceState.getParcelable(KEY_TRACK_SELECTOR_PARAMETERS);
+            trackSelectorParameters = DefaultTrackSelector.Parameters.CREATOR.fromBundle(
+                    savedInstanceState.getBundle(KEY_TRACK_SELECTOR_PARAMETERS));
             startAutoPlay = savedInstanceState.getBoolean(KEY_AUTO_PLAY);
             startWindow = savedInstanceState.getInt(KEY_WINDOW);
             startPosition = savedInstanceState.getLong(KEY_POSITION);
@@ -174,7 +175,7 @@ public class VideoPlayerActivity extends AppCompatActivity {
         super.onSaveInstanceState(outState);
         updateTrackSelectorParameters();
         updateStartPosition();
-        outState.putParcelable(KEY_TRACK_SELECTOR_PARAMETERS, trackSelectorParameters);
+        outState.putBundle(KEY_TRACK_SELECTOR_PARAMETERS, trackSelectorParameters.toBundle());
         outState.putBoolean(KEY_AUTO_PLAY, startAutoPlay);
         outState.putInt(KEY_WINDOW, startWindow);
         outState.putLong(KEY_POSITION, startPosition);
@@ -213,7 +214,7 @@ public class VideoPlayerActivity extends AppCompatActivity {
                     .withTrackSelector(trackSelector)
                     .withPlayerListener(new PlayerEventListener())
                     .withAnalyticsListener(new EventLogger(trackSelector))
-                    .playerWhenReady(true);
+                    .playWhenReady(true);
 
             builder.mediaSourceOptions().useTransferListener(true)
                     .withUserAgent("virtuoso-sdk");
@@ -225,7 +226,7 @@ public class VideoPlayerActivity extends AppCompatActivity {
             }
 
             try {
-                player = ExoplayerUtils.setupPlayer(playerView, mVirtuoso, asset, false, builder.build());
+                player = ExoplayerUtils.setupPlayer(playerView, mVirtuoso.getAssetManager(), asset, false, builder.build());
             } catch (MalformedURLException e) {
                 e.printStackTrace();
                 return;

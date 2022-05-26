@@ -14,26 +14,14 @@
  * limitations under the License.
  */
 package com.penthera.sdkdemo.exoplayer;
-/*
- * Copyright (C) 2016 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 
-import android.annotation.TargetApi;
 import android.app.AlertDialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
-import android.media.MediaDrm;
+import android.content.IntentFilter;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Pair;
@@ -46,37 +34,34 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.DefaultRenderersFactory;
-import com.google.android.exoplayer2.ExoPlaybackException;
-import com.google.android.exoplayer2.PlaybackPreparer;
+import com.google.android.exoplayer2.ExoPlayer;
+import com.google.android.exoplayer2.MediaItem;
+import com.google.android.exoplayer2.PlaybackException;
 import com.google.android.exoplayer2.Player;
-import com.google.android.exoplayer2.SimpleExoPlayer;
+import com.google.android.exoplayer2.TracksInfo;
 import com.google.android.exoplayer2.mediacodec.MediaCodecRenderer.DecoderInitializationException;
 import com.google.android.exoplayer2.mediacodec.MediaCodecUtil.DecoderQueryException;
-import com.google.android.exoplayer2.source.BehindLiveWindowException;
-import com.google.android.exoplayer2.source.TrackGroupArray;
 import com.google.android.exoplayer2.trackselection.AdaptiveTrackSelection;
 import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
 import com.google.android.exoplayer2.trackselection.ExoTrackSelection;
-import com.google.android.exoplayer2.trackselection.MappingTrackSelector.MappedTrackInfo;
-import com.google.android.exoplayer2.trackselection.TrackSelection;
-import com.google.android.exoplayer2.trackselection.TrackSelectionArray;
-import com.google.android.exoplayer2.ui.DebugTextViewHelper;
-import com.google.android.exoplayer2.ui.PlayerControlView;
-import com.google.android.exoplayer2.ui.PlayerView;
+import com.google.android.exoplayer2.ui.StyledPlayerControlView;
+import com.google.android.exoplayer2.ui.StyledPlayerView;
+import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter;
+import com.google.android.exoplayer2.util.DebugTextViewHelper;
 import com.google.android.exoplayer2.util.ErrorMessageProvider;
 import com.google.android.exoplayer2.util.EventLogger;
 import com.google.android.exoplayer2.util.Util;
 import com.penthera.sdkdemo.R;
-import com.penthera.virtuososdk.client.EngineObserver;
+import com.penthera.virtuososdk.Common;
 import com.penthera.virtuososdk.client.IAsset;
 import com.penthera.virtuososdk.client.Virtuoso;
-import com.penthera.virtuososdk.support.exoplayer213.drm.SupportDrmSessionManager;
-import com.penthera.virtuososdk.support.exoplayer213.ExoplayerUtils;
+import com.penthera.virtuososdk.support.exoplayer217.ExoplayerUtils;
+import com.penthera.virtuososdk.support.exoplayer217.drm.ExoplayerDrmSessionManager;
+import com.penthera.virtuososdk.utility.CommonUtil;
 
 import java.net.CookieHandler;
 import java.net.CookieManager;
@@ -84,16 +69,19 @@ import java.net.CookiePolicy;
 import java.net.MalformedURLException;
 
 
+
 /**
- * An activity that plays media using {@link SimpleExoPlayer}.
+ * An activity that plays media using {@link ExoPlayer}.
  */
-public class PlayerActivity extends AppCompatActivity implements OnClickListener, PlaybackPreparer,
-        PlayerControlView.VisibilityListener {
+public class PlayerActivity extends AppCompatActivity implements OnClickListener,
+        StyledPlayerControlView.VisibilityListener {
 
 
     // Best practice is to ensure we have a Virtuoso instance available while playing segmented assets
     // as this will guarantee the proxy service remains available throughout.
     private Virtuoso mVirtuoso;
+
+    private ProxyUpdateListener receiver;
 
     public static final String VIRTUOSO_CONTENT_TYPE = "asset_type";
     public static final String VIRTUOSO_ASSET = "asset";
@@ -114,16 +102,16 @@ public class PlayerActivity extends AppCompatActivity implements OnClickListener
         DEFAULT_COOKIE_MANAGER.setCookiePolicy(CookiePolicy.ACCEPT_ORIGINAL_SERVER);
     }
 
-    private PlayerView playerView;
+    private StyledPlayerView playerView;
     private LinearLayout debugRootView;
     private Button selectTracksButton;
     private TextView debugTextView;
     private boolean isShowingTrackSelectionDialog;
 
-    private SimpleExoPlayer player;
+    private Player player;
     private DefaultTrackSelector trackSelector;
     private DefaultTrackSelector.Parameters trackSelectorParameters;
-    private TrackGroupArray lastSeenTrackGroupArray;
+    private TracksInfo lastSeenTracksInfo;
 
     private DebugTextViewHelper debugViewHelper;
     private boolean inErrorState;
@@ -158,7 +146,8 @@ public class PlayerActivity extends AppCompatActivity implements OnClickListener
         playerView.requestFocus();
 
         if (savedInstanceState != null) {
-            trackSelectorParameters = savedInstanceState.getParcelable(KEY_TRACK_SELECTOR_PARAMETERS);
+            trackSelectorParameters = DefaultTrackSelector.Parameters.CREATOR.fromBundle(
+                    savedInstanceState.getBundle(KEY_TRACK_SELECTOR_PARAMETERS));
             shouldAutoPlay = savedInstanceState.getBoolean(KEY_AUTO_PLAY);
             startWindow = savedInstanceState.getInt(KEY_WINDOW);
             startPosition = savedInstanceState.getLong(KEY_POSITION);
@@ -167,6 +156,7 @@ public class PlayerActivity extends AppCompatActivity implements OnClickListener
             clearStartPosition();
         }
 
+        receiver = new ProxyUpdateListener();
     }
 
     @Override
@@ -193,22 +183,10 @@ public class PlayerActivity extends AppCompatActivity implements OnClickListener
     public void onResume() {
         super.onResume();
         mVirtuoso.onResume();  // best to ensure we have bound to ensure proxy remains available
-        mVirtuoso.addObserver(new EngineObserver(){
-            @Override
-            public void proxyPortUpdated(){
-                /*
-                 * The proxy update occurs if the proxy needs to change port after a restart,
-                 * which can occur if the app is placed in the background and then brought back to the foreground.
-                 * In this case the player needs to be set back up to get the new base url.
-                 */
-                runOnUiThread(() -> {
-                    Log.w(PlayerActivity.class.getSimpleName(), "Received warning about change in port, restarting player");
-                    releasePlayer();
-                    shouldAutoPlay = true;
-                    initializePlayer();
-                });
-            }
-        });
+        String auth = CommonUtil.getAuthority(this);
+        IntentFilter filter = new IntentFilter(auth + Common.Notifications.INTENT_PROXY_UPDATE);
+        registerReceiver(receiver, filter);
+
         if ((Util.SDK_INT <= 23 || player == null)) {
             initializePlayer();
             if (playerView != null) {
@@ -221,6 +199,7 @@ public class PlayerActivity extends AppCompatActivity implements OnClickListener
     public void onPause() {
         super.onPause();
         mVirtuoso.onPause();
+        unregisterReceiver(receiver);
         if (Util.SDK_INT <= 23) {
             if (playerView != null) {
                 playerView.onPause();
@@ -245,7 +224,7 @@ public class PlayerActivity extends AppCompatActivity implements OnClickListener
         super.onSaveInstanceState(outState);
         updateTrackSelectorParameters();
         updateStartPosition();
-        outState.putParcelable(KEY_TRACK_SELECTOR_PARAMETERS, trackSelectorParameters);
+        outState.putBundle(KEY_TRACK_SELECTOR_PARAMETERS, trackSelectorParameters.toBundle());
         outState.putBoolean(KEY_AUTO_PLAY, shouldAutoPlay);
         outState.putInt(KEY_WINDOW, startWindow);
         outState.putLong(KEY_POSITION, startPosition);
@@ -277,15 +256,7 @@ public class PlayerActivity extends AppCompatActivity implements OnClickListener
         }
     }
 
-    // PlaybackControlView.PlaybackPreparer implementation
-
-    @Override
-    public void preparePlayback() {
-        player.retry();
-    }
-
     // PlaybackControlView.VisibilityListener implementation
-
     @Override
     public void onVisibilityChange(int visibility) {
         debugRootView.setVisibility(visibility);
@@ -296,46 +267,88 @@ public class PlayerActivity extends AppCompatActivity implements OnClickListener
     private void initializePlayer() {
         Intent intent = getIntent();
 
+        String action = intent.getAction();
+
+        Uri uri = intent.getData();
+
         IAsset asset = intent.getParcelableExtra(VIRTUOSO_ASSET);
+
+        // All our files are stored in the app private space so no need to check permissions after kitkat
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
+            if (Util.maybeRequestReadExternalStoragePermission(this, uri)) {
+                // The player will be reinitialized if the permission is granted.
+                return;
+            }
+        }
 
         ExoTrackSelection.Factory adaptiveTrackSelectionFactory =
                 new AdaptiveTrackSelection.Factory();
         trackSelector = new DefaultTrackSelector(this, adaptiveTrackSelectionFactory);
         trackSelector.setParameters(trackSelectorParameters);
-        lastSeenTrackGroupArray = null;
-
-
-        DefaultRenderersFactory renderersFactory = new DefaultRenderersFactory(this);
-
+        lastSeenTracksInfo = TracksInfo.EMPTY;
 
         if (player == null) {
 
+            EventLogger eventLogger = new EventLogger(trackSelector);
+
+            @DefaultRenderersFactory.ExtensionRendererMode int extensionRendererMode = DefaultRenderersFactory.EXTENSION_RENDERER_MODE_OFF;
+            DefaultRenderersFactory renderersFactory = new DefaultRenderersFactory(this)
+                    .setExtensionRendererMode(extensionRendererMode);
+
             ExoplayerUtils.PlayerConfigOptions.Builder builder = new ExoplayerUtils.PlayerConfigOptions.Builder(this)
-                    .userRenderersFactory(renderersFactory)
+                    .playWhenReady(true)
+                    .withBandwidthMeter(DefaultBandwidthMeter.getSingletonInstance(this))
                     .withTrackSelector(trackSelector)
-                    .withPlayerEventListener(new PlayerEventListener())
-                    .withAnalyticsListener(new EventLogger(trackSelector))
-                    .playerWhenReady(true);
+                    .withAnalyticsListener(eventLogger)
+                    .userRenderersFactory(renderersFactory)
+                    .withPlayerListener(new PlayerEventListener());
 
-            //set drm options
-            builder.drmOptions().withDrmSessionManagerEventListener(new DrmListener(this))
-                .withMediaDrmEventListener(new MediaDrmOnEventListener());
-
-            builder.mediaSourceOptions().useTransferListener(true)
+            builder.mediaSourceOptions()
+                    .withTransferListener(DefaultBandwidthMeter.getSingletonInstance(this))
                     .withUserAgent("virtuoso-sdk");
 
+            builder.drmOptions()
+                    .withDrmSessionManagerEventListener(new DrmListener(this));
 
-            boolean haveResumePosition = startWindow != C.INDEX_UNSET;
-            if (haveResumePosition) {
+            if (startWindow != C.INDEX_UNSET) {
                 builder.withSeekToPosition(startWindow, startPosition);
             }
 
             try {
-
-                player = ExoplayerUtils.setupPlayer(playerView, mVirtuoso, asset, false, builder.build());
+                if (asset != null) {
+                    player = ExoplayerUtils.setupPlayer(playerView, mVirtuoso.getAssetManager(), asset, false, builder.build());
+                } else {
+                    // Streaming, not download
+                    ExoPlayer.Builder exoBuilder =
+                            new ExoPlayer.Builder(this, renderersFactory);
+                    exoBuilder.setTrackSelector(trackSelector);
+                    ExoPlayer exoplayer = exoBuilder.build();
+                    MediaItem.Builder mediaBuilder = new MediaItem.Builder().setUri(uri);
+                    exoplayer.setMediaItem(mediaBuilder.build());
+                    player = exoplayer;
+                    playerView.setPlayer(player);
+                    player.setPlayWhenReady(true);
+                }
+                if (player == null) {
+                    runOnUiThread(() -> {
+                        AlertDialog alertDialog = new AlertDialog.Builder(PlayerActivity.this).create();
+                        alertDialog.setTitle("Asset unavailable");
+                        alertDialog.setMessage("Could not initialize player for asset. Playback unavailable.");
+                        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK", (dialog, which) -> {
+                            dialog.dismiss();
+                            PlayerActivity.this.finish();
+                        });
+                        alertDialog.show();
+                    });
+                }
             } catch (MalformedURLException e) {
                 e.printStackTrace();
                 return;
+            }
+
+            if (player != null && player instanceof ExoPlayer) {
+                debugViewHelper = new DebugTextViewHelper((ExoPlayer) player, debugTextView);
+                debugViewHelper.start();
             }
         }
         updateButtonVisibilities();
@@ -379,27 +392,14 @@ public class PlayerActivity extends AppCompatActivity implements OnClickListener
         selectTracksButton.setEnabled(player != null && TrackSelectionDialog.willHaveContent(trackSelector));
     }
 
-    private static boolean isBehindLiveWindow(ExoPlaybackException e) {
-        if (e.type != ExoPlaybackException.TYPE_SOURCE) {
-            return false;
-        }
-        Throwable cause = e.getSourceException();
-        while (cause != null) {
-            if (cause instanceof BehindLiveWindowException) {
-                return true;
-            }
-            cause = cause.getCause();
-        }
-        return false;
-    }
 
     /**
      * Simple example of Exoplayer EventListener, taken from ExoPlayer Demo.
      */
-    private class PlayerEventListener implements Player.EventListener {
+    private class PlayerEventListener implements Player.Listener {
 
         @Override
-        public void onPlayerStateChanged(boolean playWhenReady, int playbackState) {
+        public void onPlaybackStateChanged(int playbackState) {
             if (playbackState == Player.STATE_ENDED) {
                 showControls();
             }
@@ -409,7 +409,7 @@ public class PlayerActivity extends AppCompatActivity implements OnClickListener
         // Error handling
 
         @Override
-        public void onPositionDiscontinuity(@Player.DiscontinuityReason int reason) {
+        public void onPositionDiscontinuity(Player.PositionInfo oldPosition, Player.PositionInfo newPosition, int reason) {
             if (inErrorState) {
                 // This will only occur if the user has performed a seek whilst in the error state. Update
                 // the resume position so that if the user then retries, playback will resume from the
@@ -419,9 +419,9 @@ public class PlayerActivity extends AppCompatActivity implements OnClickListener
         }
 
         @Override
-        public void onPlayerError(@NonNull ExoPlaybackException e) {
+        public void onPlayerError(@NonNull PlaybackException e) {
             inErrorState = true;
-            if (isBehindLiveWindow(e)) {
+            if (e.errorCode == PlaybackException.ERROR_CODE_BEHIND_LIVE_WINDOW) {
                 clearStartPosition();
                 initializePlayer();
             } else {
@@ -432,22 +432,18 @@ public class PlayerActivity extends AppCompatActivity implements OnClickListener
 
         @Override
         @SuppressWarnings("ReferenceEquality")
-        public void onTracksChanged(@NonNull TrackGroupArray trackGroups, @NonNull TrackSelectionArray trackSelections) {
+        public void onTracksInfoChanged(TracksInfo tracksInfo) {
             updateButtonVisibilities();
-            if (trackGroups != lastSeenTrackGroupArray) {
-                MappedTrackInfo mappedTrackInfo = trackSelector.getCurrentMappedTrackInfo();
-                if (mappedTrackInfo != null) {
-                    if (mappedTrackInfo.getTypeSupport(C.TRACK_TYPE_VIDEO)
-                            == MappedTrackInfo.RENDERER_SUPPORT_UNSUPPORTED_TRACKS) {
-                        showToast(R.string.error_unsupported_video);
-                    }
-                    if (mappedTrackInfo.getTypeSupport(C.TRACK_TYPE_AUDIO)
-                            == MappedTrackInfo.RENDERER_SUPPORT_UNSUPPORTED_TRACKS) {
-                        showToast(R.string.error_unsupported_audio);
-                    }
-                }
-                lastSeenTrackGroupArray = trackGroups;
+            if (tracksInfo == lastSeenTracksInfo) {
+                return;
             }
+            if (!tracksInfo.isTypeSupportedOrEmpty(C.TRACK_TYPE_VIDEO)) {
+                showToast(R.string.error_unsupported_video);
+            }
+            if (!tracksInfo.isTypeSupportedOrEmpty(C.TRACK_TYPE_AUDIO)) {
+                showToast(R.string.error_unsupported_audio);
+            }
+            lastSeenTracksInfo = tracksInfo;
         }
     }
 
@@ -485,7 +481,7 @@ public class PlayerActivity extends AppCompatActivity implements OnClickListener
      * enables the client to be informed of events for when keys are loaded or an error occurs
      * with fetching a license.
      */
-    private static class DrmListener implements SupportDrmSessionManager.EventListener {
+    private static class DrmListener implements ExoplayerDrmSessionManager.EventListener {
 
         private final PlayerActivity mActivity;
 
@@ -495,9 +491,7 @@ public class PlayerActivity extends AppCompatActivity implements OnClickListener
 
         @Override
         public void onDrmKeysLoaded() {
-            /*if (mActivity.player != null) {
-                mActivity.player.getAnalyticsCollector().onDrmKeysLoaded();
-            }*/
+            Toast.makeText(mActivity, "DRM keys loaded", Toast.LENGTH_SHORT).show();
         }
 
         @Override
@@ -505,55 +499,55 @@ public class PlayerActivity extends AppCompatActivity implements OnClickListener
             // Can't complete playback
             mActivity.handleDrmLicenseNotAvailable();
 
-            /*if (mActivity.player != null) {
-                mActivity.player.getAnalyticsCollector().onDrmSessionManagerError(e);
-            }*/
         }
     }
 
     /**
-     * Demonstrates how to view media drm events directly, which we use for logging
+     * The proxy update listener receives broadcasts if the proxy needs to change port after a restart,
+     * which can occur if the app is placed in the background and then brought back to the foreground.
+     * In this case the player needs to be set back up to get the new base url.
      */
-    @TargetApi(18)
-    private static class MediaDrmOnEventListener implements MediaDrm.OnEventListener {
+    private class ProxyUpdateListener extends BroadcastReceiver {
+
         @Override
-        public void onEvent(@NonNull MediaDrm md, @Nullable byte[] sessionId, int event, int extra, @Nullable byte[] data) {
-            Log.d("MediaDrm", "MediaDrm event: " + event);
+        public void onReceive(Context context, Intent intent) {
+            Log.w(PlayerActivity.class.getSimpleName(), "Received warning about change in port, restarting player");
+            releasePlayer();
+            shouldAutoPlay = true;
+            initializePlayer();
         }
     }
 
     /**
      * From ExoPlayer demo: a message provide generates human readable error messages for internal error states.
      */
-    private class PlayerErrorMessageProvider implements ErrorMessageProvider<ExoPlaybackException> {
+    private class PlayerErrorMessageProvider implements ErrorMessageProvider<PlaybackException> {
 
         @NonNull
         @Override
-        public Pair<Integer, String> getErrorMessage(ExoPlaybackException e) {
+        public Pair<Integer, String> getErrorMessage(@NonNull PlaybackException e) {
             String errorString = getString(R.string.error_generic);
-            if (e.type == ExoPlaybackException.TYPE_RENDERER) {
-                Exception cause = e.getRendererException();
-                if (cause instanceof DecoderInitializationException) {
-                    // Special case for decoder initialization failures.
-                    DecoderInitializationException decoderInitializationException =
-                            (DecoderInitializationException) cause;
-                    if (decoderInitializationException.codecInfo == null) {
-                        if (decoderInitializationException.getCause() instanceof DecoderQueryException) {
-                            errorString = getString(R.string.error_querying_decoders);
-                        } else if (decoderInitializationException.secureDecoderRequired) {
-                            errorString =
-                                    getString(
-                                            R.string.error_no_secure_decoder, decoderInitializationException.mimeType);
-                        } else {
-                            errorString =
-                                    getString(R.string.error_no_decoder, decoderInitializationException.mimeType);
-                        }
-                    } else {
+            Throwable cause = e.getCause();
+            if (cause instanceof DecoderInitializationException) {
+                // Special case for decoder initialization failures.
+                DecoderInitializationException decoderInitializationException =
+                        (DecoderInitializationException) cause;
+                if (decoderInitializationException.codecInfo == null) {
+                    if (decoderInitializationException.getCause() instanceof DecoderQueryException) {
+                        errorString = getString(R.string.error_querying_decoders);
+                    } else if (decoderInitializationException.secureDecoderRequired) {
                         errorString =
                                 getString(
-                                        R.string.error_instantiating_decoder,
-                                        decoderInitializationException.codecInfo.name);
+                                        R.string.error_no_secure_decoder, decoderInitializationException.mimeType);
+                    } else {
+                        errorString =
+                                getString(R.string.error_no_decoder, decoderInitializationException.mimeType);
                     }
+                } else {
+                    errorString =
+                            getString(
+                                    R.string.error_instantiating_decoder,
+                                    decoderInitializationException.codecInfo.name);
                 }
             }
             return Pair.create(0, errorString);

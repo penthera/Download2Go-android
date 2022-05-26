@@ -10,6 +10,7 @@ import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.common.GoogleApiAvailability
+import com.penthera.download2go1_7.databinding.ActivityMainBinding
 import com.penthera.virtuososdk.Common
 import com.penthera.virtuososdk.client.*
 import com.penthera.virtuososdk.client.Observers.IBackplaneObserver
@@ -22,18 +23,10 @@ class MainActivity : AppCompatActivity() {
     private lateinit var  virtuoso : Virtuoso
     var asset : IAsset? =  null
     private lateinit var queueObserver: AssetQueueObserver
-    private lateinit var dlBtn : Button
-    private lateinit var plBtn : Button
-    private lateinit var delBtn : Button
+
+    private lateinit var binding: ActivityMainBinding
 
     private var registering: Boolean = false
-
-    private lateinit var registerBtn : Button
-    private lateinit var unregisterBtn : Button
-    private lateinit var accountName : EditText
-
-    private lateinit var progress : ProgressBar
-    private lateinit var text : TextView
 
     // Observe backplane request changes, enabling the UI to react to actions such as SDK startup and unregister.
     private val backplaneObserver =
@@ -64,24 +57,16 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         initVirtuosoSDK()
 
-        dlBtn = findViewById(R.id.download)
-        dlBtn.setOnClickListener { downloadAsset() }
-        plBtn= findViewById(R.id.play)
-        plBtn.setOnClickListener { playAsset()}
-        delBtn = findViewById(R.id.delete)
-        delBtn.setOnClickListener { deleteAsset() }
-        registerBtn = findViewById(R.id.register)
-        registerBtn.setOnClickListener { if(!registering)register(false) }
-        unregisterBtn = findViewById(R.id.unregister)
-        unregisterBtn.setOnClickListener { unregister() }
-        accountName = findViewById(R.id.account_name)
-
-        text = findViewById(R.id.textView)
-        progress = findViewById(R.id.progressBar)
+        binding.download.setOnClickListener { downloadAsset() }
+        binding.play.setOnClickListener { playAsset()}
+        binding.delete.setOnClickListener { deleteAsset() }
+        binding.register.setOnClickListener { if(!registering)register(false) }
+        binding.unregister.setOnClickListener { unregister() }
 
         updateUI()
     }
@@ -104,11 +89,11 @@ class MainActivity : AppCompatActivity() {
     private fun updateRegisterButtons() {
 
         if (virtuoso.backplane.authenticationStatus == Common.AuthenticationStatus.NOT_AUTHENTICATED) { // If not authenticated then execute sdk startup
-            registerBtn.isEnabled = true
+            binding.register.isEnabled = true
         } else {
-            registerBtn.isEnabled = false
+            binding.register.isEnabled = false
             val registeredUserId = virtuoso.backplane.settings.userId
-            accountName.setText(registeredUserId)
+            binding.accountName.setText(registeredUserId)
         }
     }
 
@@ -148,7 +133,7 @@ class MainActivity : AppCompatActivity() {
     private fun register(retry : Boolean){
 
         if (virtuoso.backplane.authenticationStatus == Common.AuthenticationStatus.NOT_AUTHENTICATED) { // If not authenticated then execute sdk startup
-            val name = accountName.text.toString()
+            val name = binding.accountName.text.toString()
             if (name.isNotEmpty()) {// Here we use the simplest login with hard coded values
                 val backplaneUrl: URL?
                 backplaneUrl = try {
@@ -204,7 +189,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun unregister(){
 
-        unregisterBtn.isEnabled = false
+        binding.unregister.isEnabled = false
 
         // Set up request to get account devices
         if (virtuoso.backplane.authenticationStatus == Common.AuthenticationStatus.AUTHENTICATED) {
@@ -234,7 +219,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        unregisterBtn.isEnabled = true
+        binding.unregister.isEnabled = true
 
     }
     private fun playAsset() {
@@ -252,12 +237,12 @@ class MainActivity : AppCompatActivity() {
 
     fun updateUI() {
 
-        dlBtn.isEnabled = asset == null
-        plBtn.isEnabled = asset != null
-        delBtn.isEnabled = asset != null
+        binding.download.isEnabled = asset == null
+        binding.play.isEnabled = asset != null
+        binding.delete.isEnabled = asset != null
 
         if(asset == null){
-            text.text = ""
+            binding.textView.text = ""
         }
 
         updateRegisterButtons()

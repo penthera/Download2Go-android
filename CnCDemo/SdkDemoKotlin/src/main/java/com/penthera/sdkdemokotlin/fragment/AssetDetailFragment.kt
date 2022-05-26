@@ -475,7 +475,11 @@ class AssetDetailFragment : Fragment()  {
     private fun watchItem(){
 
         if(asset == null){
-            VideoPlayerActivity.playVideoStream(catalogItem!!, requireContext())
+            var drmUrl: String? = null
+            if (catalogItem?.exampleAssetId?.endsWith("WV") == true) {
+                drmUrl = "https://proxy.uat.widevine.com/proxy"
+            }
+            VideoPlayerActivity.playVideoStream(catalogItem!!, requireContext(), drmUrl)
         }
         else{
             VideoPlayerActivity.playVideoDownload(asset!!,requireContext())

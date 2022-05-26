@@ -22,7 +22,7 @@ import com.google.android.exoplayer2.util.ErrorMessageProvider
 import com.google.android.exoplayer2.util.EventLogger
 import com.penthera.virtuososdk.client.IAsset
 import com.penthera.virtuososdk.client.Virtuoso
-import com.penthera.virtuososdk.support.exoplayer215.ExoplayerUtils
+import com.penthera.virtuososdk.support.exoplayer217.ExoplayerUtils
 
 import java.net.CookieManager
 import java.net.CookiePolicy
@@ -146,7 +146,7 @@ class VideoPlayerActivity : Activity() {
 
             val builder = ExoplayerUtils.PlayerConfigOptions.Builder(this).apply {
                 userRenderersFactory(renderersFactory)
-                playerWhenReady(true)
+                playWhenReady(true)
                 withTrackSelector(trackSelector)
                 withAnalyticsListener(EventLogger(trackSelector))
                 withPlayerListener(PlayerEventListener())
@@ -161,7 +161,7 @@ class VideoPlayerActivity : Activity() {
 
                 player = ExoplayerUtils.setupPlayer(
                     playerView!!,
-                    mVirtuoso,
+                    mVirtuoso.assetManager,
                     asset!!,
                     false,
                     builder.build()
