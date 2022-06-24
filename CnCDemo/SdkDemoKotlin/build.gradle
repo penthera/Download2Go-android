@@ -11,8 +11,8 @@ android {
         applicationId "com.penthera.sdkdemokotlin"
         minSdkVersion 24
         targetSdkVersion 31
-        versionCode = 50003
-        versionName = "5.0.3"
+        versionCode = 50004
+        versionName = "5.0.4"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -56,8 +56,8 @@ allprojects {
 def lifecycle_version = "2.2.0"
 
 dependencies {
-    implementation  'com.penthera:cnc-android-sdk-debug:5.0.3'
-    implementation 'com.penthera:cnc-exoplayer-2_17-support:5.0.3'
+    implementation  'com.penthera:cnc-android-sdk-debug:5.0.4'
+    implementation 'com.penthera:cnc-exoplayer-2_17-support:5.0.4'
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.1.0'
