@@ -43,7 +43,7 @@ public class AssetWrapper {
     }
 
     public String getProgressString() {
-        return String.format(Locale.US,"(%.2f)", segmentedAsset.getFractionComplete());
+        return String.format(Locale.getDefault(),"(%.2f)", segmentedAsset.getFractionComplete());
     }
 
     public int getProgressPercentage() {
@@ -51,7 +51,7 @@ public class AssetWrapper {
     }
 
     public String getSize(){
-        return context.getString(R.string.asset_size, String.format(Locale.US,"%.2f MB", segmentedAsset.getCurrentSize()/1048576.00), String.format(Locale.US,"%.2f MB", segmentedAsset.getExpectedSize()/1048576.00));
+        return context.getString(R.string.asset_size, String.format(Locale.getDefault(),"%.2f MB", segmentedAsset.getCurrentSize()/1048576.00), String.format(Locale.getDefault(),"%.2f MB", segmentedAsset.getExpectedSize()/1048576.00));
     }
 
     public int getStatus() {

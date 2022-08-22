@@ -151,9 +151,9 @@ public class AssetDetailActivity extends AppCompatActivity {
             uuidView.setText(asset.getUuid());
             idView.setText(asset.getAssetId());
             fileTypeView.setText(fileTypeFromId(asset.segmentedFileType()));
-            expectedSizeView.setText(String.format(Locale.US,"%.2f MB", asset.getExpectedSize()/1048576.00));
-            currentSizeView.setText(String.format(Locale.US,"%.2f MB", asset.getCurrentSize()/1048576.00));
-            durationView.setText(String.format(Locale.US,"%d seconds", asset.getDuration()));
+            expectedSizeView.setText(String.format(Locale.getDefault(),"%.2f MB", asset.getExpectedSize()/1048576.00));
+            currentSizeView.setText(String.format(Locale.getDefault(),"%.2f MB", asset.getCurrentSize()/1048576.00));
+            durationView.setText(String.format(Locale.getDefault(),"%d seconds", asset.getDuration()));
             statusView.setText(MainActivity.getStatusText(this,asset.getDownloadStatus()));
             pathView.setText(asset.getLocalBaseDir());
             try {

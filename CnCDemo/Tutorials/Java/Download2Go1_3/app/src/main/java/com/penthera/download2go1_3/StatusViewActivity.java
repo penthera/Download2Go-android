@@ -216,19 +216,19 @@ public class StatusViewActivity extends AppCompatActivity {
         statusValues.get(5).value = getOkBlockedString(virtuoso.isCellularDataQuotaOK());
 
         // 6. Disk Usage
-        statusValues.get(6).value = String.format("%d MB", virtuoso.getStorageUsed());
+        statusValues.get(6).value = String.format(Locale.getDefault(),"%d MB", virtuoso.getStorageUsed());
 
         // 7. Available Storage
-        statusValues.get(7).value = String.format("%d MB", virtuoso.getAllowableStorageRemaining());
+        statusValues.get(7).value = String.format(Locale.getDefault(),"%d MB", virtuoso.getAllowableStorageRemaining());
 
         // 8. Authentication Status
         statusValues.get(8).value = authenticationString(virtuoso.getBackplane().getAuthenticationStatus());
 
         // 9. Current Throughput
-        statusValues.get(9).value = String.format("%.2f" ,currentThroughput);
+        statusValues.get(9).value = String.format(Locale.getDefault(),"%.2f" ,currentThroughput);
 
         // 10. Overall Throughput
-        statusValues.get(10).value = String.format("%.2f" ,overallThroughput);
+        statusValues.get(10).value = String.format(Locale.getDefault(),"%.2f" ,overallThroughput);
 
         // 11. Secure Time
         statusValues.get(11).value = dateFormatter.format(virtuoso.getCurrentVirtuosoTime());
@@ -244,10 +244,10 @@ public class StatusViewActivity extends AppCompatActivity {
         }
 
         // 9. Current Throughput
-        statusValues.get(9).value = String.format(Locale.US,"%.2f" ,currentThroughput);
+        statusValues.get(9).value = String.format(Locale.getDefault(),"%.2f" ,currentThroughput);
 
         // 10. Overall Throughput
-        statusValues.get(10).value = String.format(Locale.US,"%.2f" ,overallThroughput);
+        statusValues.get(10).value = String.format(Locale.getDefault(),"%.2f" ,overallThroughput);
 
         statusArrayAdapter.notifyItemRangeChanged(9, 2);
     }

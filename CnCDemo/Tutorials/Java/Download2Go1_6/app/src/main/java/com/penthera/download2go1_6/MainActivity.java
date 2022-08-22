@@ -389,10 +389,10 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
                 long currentSize = cursor.getLong(currentSizeIndex);
                 long expectedSize = cursor.getLong(estimatedSizeIndex);
-                sizeTextView.setText(context.getString(R.string.asset_size, String.format(Locale.US,"%.2f MB", currentSize/1048576.00), String.format(Locale.US,"%.2f MB", expectedSize/1048576.00)));
+                sizeTextView.setText(context.getString(R.string.asset_size, String.format(Locale.getDefault(),"%.2f MB", currentSize/1048576.00), String.format(Locale.getDefault(),"%.2f MB", expectedSize/1048576.00)));
 
                 double progressPercent = cursor.getDouble(progressIndex);
-                progressTextView.setText(String.format(Locale.US,"(%.2f)", progressPercent));
+                progressTextView.setText(String.format(Locale.getDefault(),"(%.2f)", progressPercent));
 
                 progressBar.setProgress((int)(progressPercent * 100));
             }

@@ -84,11 +84,11 @@ public class AssetViewModel extends AndroidViewModel {
     }
 
     public String formatMBSize(double size) {
-        return String.format(Locale.US,"%.2f MB", size/1048576.00);
+        return String.format(Locale.getDefault(),"%.2f MB", size/1048576.00);
     }
 
     public String formatDuration(long duration) {
-        return String.format(Locale.US,"%d seconds", duration);
+        return String.format(Locale.getDefault(),"%d seconds", duration);
     }
 
     public String getFirstPlayTime(long firstPlayTime) {

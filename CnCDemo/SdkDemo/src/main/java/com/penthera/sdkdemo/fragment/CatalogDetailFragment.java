@@ -19,6 +19,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import org.ocpsoft.pretty.time.PrettyTime;
 
@@ -805,7 +806,7 @@ public class CatalogDetailFragment extends Fragment implements LoaderManager.Loa
 				}
 				TextView tv = mLayout.findViewById(R.id.txt_assetstatus);
 				tv.setVisibility(View.VISIBLE);
-				tv.setText(String.format(getString(R.string.asset_status), assetStatus,mAsset.getErrorCount(),value));
+				tv.setText(String.format(Locale.US,getString(R.string.asset_status), assetStatus,mAsset.getErrorCount(),value));
 				TextView retryTv = mLayout.findViewById(R.id.txt_retrystatus);
 				boolean showRetryState = false;
 				if (checkRetryingState) {

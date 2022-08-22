@@ -23,8 +23,8 @@ allprojects {
         maven {
 
             credentials {
-                username "jhorgan"
-                password "P3nther@jjh"
+                username "android"
+                password "P3nth3r@!"
             }
             url "https://clientbuilds.penthera.com/repository/internal/"
         }

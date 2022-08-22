@@ -216,10 +216,10 @@ public class StatusViewActivity extends AppCompatActivity {
         statusValues.get(5).value = getOkBlockedString(virtuoso.isCellularDataQuotaOK());
 
         // 6. Disk Usage
-        statusValues.get(6).value = String.format("%d MB", virtuoso.getStorageUsed());
+        statusValues.get(6).value = String.format(Locale.getDefault(), "%d MB", virtuoso.getStorageUsed());
 
         // 7. Available Storage
-        statusValues.get(7).value = String.format("%d MB", virtuoso.getAllowableStorageRemaining());
+        statusValues.get(7).value = String.format(Locale.getDefault(), "%d MB", virtuoso.getAllowableStorageRemaining());
 
         // 8. Authentication Status
         statusValues.get(8).value = authenticationString(virtuoso.getBackplane().getAuthenticationStatus());

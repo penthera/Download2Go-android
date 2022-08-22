@@ -1,14 +1,14 @@
 
 
 ext{
-    publishUsername="jhorgan"
-    publishPassword="P3nther@jjh"
+    publishUsername="android"
+    publishPassword="P3nth3r@!"
     publishReleaseUrl="https://clientbuilds.penthera.com/repository/releases"
 
     publishUrl="https://clientbuilds.penthera.com/repository/internal"
 
-    repoUser="jhorgan"
-    repoPassword="P3nther@jjh"
+    repoUser="android"
+    repoPassword="P3nth3r@!"
     repoUrl="https://clientbuilds.penthera.com/repository/releases"
     internalrepoUrl="https://clientbuilds.penthera.com/repository/internal"
 
