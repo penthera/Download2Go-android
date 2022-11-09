@@ -2754,6 +2754,12 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>
 <div class="block">Get the current value for requiring permission checks when queueing an Asset.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="com/penthera/virtuososdk/client/ISettings.html#getResetOnContentSizeChange()">getResetOnContentSizeChange()</a></span> - Method in interface com.penthera.virtuososdk.client.<a href="com/penthera/virtuososdk/client/ISettings.html" title="interface in com.penthera.virtuososdk.client">ISettings</a></dt>
+<dd>
+<div class="block">This setting controls whether when making multiple requests during the download of a segment or file
+ and upon encountering a difference in the reported size on subsequent requests the SDK should
+ fail the download or delete the existing downloaded content and retry from the start.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/penthera/virtuososdk/client/IHLSManifestRenditionSelector.IHLSVideoRendition.html#getResolution()">getResolution()</a></span> - Method in interface com.penthera.virtuososdk.client.<a href="com/penthera/virtuososdk/client/IHLSManifestRenditionSelector.IHLSVideoRendition.html" title="interface in com.penthera.virtuososdk.client">IHLSManifestRenditionSelector.IHLSVideoRendition</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/penthera/virtuososdk/client/ISegmentedAsset.html#getResolution()">getResolution()</a></span> - Method in interface com.penthera.virtuososdk.client.<a href="com/penthera/virtuososdk/client/ISegmentedAsset.html" title="interface in com.penthera.virtuososdk.client">ISegmentedAsset</a></dt>
@@ -4424,6 +4430,12 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>
 <div class="block">Resets the remove notification on pause to the default configuration, which is to remove it.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="com/penthera/virtuososdk/client/ISettings.html#resetResetOnContentSizeChange()">resetResetOnContentSizeChange()</a></span> - Method in interface com.penthera.virtuososdk.client.<a href="com/penthera/virtuososdk/client/ISettings.html" title="interface in com.penthera.virtuososdk.client">ISettings</a></dt>
+<dd>
+<div class="block">This setting controls whether when making multiple requests during the download of a segment or file
+ and upon encountering a difference in the reported size on subsequent requests the SDK should
+ fail the download or delete the existing downloaded content and retry from the start.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/penthera/virtuososdk/client/ISettings.html#resetSegmentErrorHttpCode()">resetSegmentErrorHttpCode()</a></span> - Method in interface com.penthera.virtuososdk.client.<a href="com/penthera/virtuososdk/client/ISettings.html" title="interface in com.penthera.virtuososdk.client">ISettings</a></dt>
 <dd>
 <div class="block">Resets the HTTP code that is returned by the proxy when segments (for assets that have completed)
@@ -4789,6 +4801,12 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>
 <div class="block">Sets the service to leave foreground mode and hide the notification when the engine is paused.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="com/penthera/virtuososdk/client/ISettings.html#setResetOnContentSizeChange(boolean)">setResetOnContentSizeChange(boolean)</a></span> - Method in interface com.penthera.virtuososdk.client.<a href="com/penthera/virtuososdk/client/ISettings.html" title="interface in com.penthera.virtuososdk.client">ISettings</a></dt>
+<dd>
+<div class="block">This setting controls whether when making multiple requests during the download of a segment or file
+ and upon encountering a difference in the reported size on subsequent requests the SDK should
+ fail the download or delete the existing downloaded content and retry from the start.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/penthera/virtuososdk/client/ISettings.html#setSegmentErrorHttpCode(int)">setSegmentErrorHttpCode(int)</a></span> - Method in interface com.penthera.virtuososdk.client.<a href="com/penthera/virtuososdk/client/ISettings.html" title="interface in com.penthera.virtuososdk.client">ISettings</a></dt>
 <dd>
 <div class="block">Change the HTTP code that is returned by the proxy when segments (for assets that have completed) are missing or have errors.</div>
@@ -4840,7 +4858,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </dd>
 <dt><span class="memberNameLink"><a href="com/penthera/virtuososdk/Common.SettingFlag.html#SETTING_DRM_SECURITY_LEVEL">SETTING_DRM_SECURITY_LEVEL</a></span> - Static variable in class com.penthera.virtuososdk.<a href="com/penthera/virtuososdk/Common.SettingFlag.html" title="class in com.penthera.virtuososdk">Common.SettingFlag</a></dt>
 <dd>
-<div class="block">Flat for updates to security level requested when opening MediaDrm sessions.</div>
+<div class="block">Flag for updates to security level requested when opening MediaDrm sessions.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="com/penthera/virtuososdk/Common.SettingFlag.html#SETTING_DRM_STRING_PROPERTIES">SETTING_DRM_STRING_PROPERTIES</a></span> - Static variable in class com.penthera.virtuososdk.<a href="com/penthera/virtuososdk/Common.SettingFlag.html" title="class in com.penthera.virtuososdk">Common.SettingFlag</a></dt>
 <dd>
@@ -4965,6 +4983,10 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dt><span class="memberNameLink"><a href="com/penthera/virtuososdk/Common.BackplaneSettingFlag.html#SETTING_REQUIRE_PERMISSION_ON_QUEUED">SETTING_REQUIRE_PERMISSION_ON_QUEUED</a></span> - Static variable in class com.penthera.virtuososdk.<a href="com/penthera/virtuososdk/Common.BackplaneSettingFlag.html" title="class in com.penthera.virtuososdk">Common.BackplaneSettingFlag</a></dt>
 <dd>
 <div class="block">value = 0x100; Flag for the Require Permission on Queued Setting.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/penthera/virtuososdk/Common.SettingFlag.html#SETTING_RESET_ON_RESIZE">SETTING_RESET_ON_RESIZE</a></span> - Static variable in class com.penthera.virtuososdk.<a href="com/penthera/virtuososdk/Common.SettingFlag.html" title="class in com.penthera.virtuososdk">Common.SettingFlag</a></dt>
+<dd>
+<div class="block">Flag for updates to reset on resize setting.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="com/penthera/virtuososdk/Common.SettingFlag.html#SETTING_SEGMENT_RATE">SETTING_SEGMENT_RATE</a></span> - Static variable in class com.penthera.virtuososdk.<a href="com/penthera/virtuososdk/Common.SettingFlag.html" title="class in com.penthera.virtuososdk">Common.SettingFlag</a></dt>
 <dd>

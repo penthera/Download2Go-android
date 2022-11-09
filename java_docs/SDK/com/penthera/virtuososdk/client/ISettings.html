@@ -26,7 +26,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":6,"i1":6,"i2":6,"i3":6,"i4":6,"i5":6,"i6":6,"i7":6,"i8":6,"i9":6,"i10":6,"i11":6,"i12":6,"i13":6,"i14":6,"i15":6,"i16":6,"i17":6,"i18":6,"i19":6,"i20":6,"i21":6,"i22":38,"i23":6,"i24":6,"i25":6,"i26":6,"i27":6,"i28":6,"i29":6,"i30":6,"i31":6,"i32":6,"i33":6,"i34":6,"i35":6,"i36":6,"i37":6,"i38":6,"i39":6,"i40":6,"i41":6,"i42":6,"i43":6,"i44":6,"i45":6,"i46":6,"i47":6,"i48":6,"i49":6,"i50":38,"i51":6,"i52":6,"i53":6,"i54":6,"i55":6,"i56":6,"i57":6,"i58":6,"i59":6,"i60":6,"i61":6,"i62":6,"i63":6,"i64":6,"i65":38,"i66":6,"i67":6,"i68":6,"i69":38,"i70":6,"i71":6,"i72":6,"i73":38,"i74":6,"i75":6};
+var data = {"i0":6,"i1":6,"i2":6,"i3":6,"i4":6,"i5":6,"i6":6,"i7":6,"i8":6,"i9":6,"i10":6,"i11":6,"i12":6,"i13":6,"i14":6,"i15":6,"i16":6,"i17":6,"i18":6,"i19":6,"i20":6,"i21":6,"i22":38,"i23":6,"i24":6,"i25":6,"i26":6,"i27":6,"i28":6,"i29":6,"i30":6,"i31":6,"i32":6,"i33":6,"i34":6,"i35":6,"i36":6,"i37":6,"i38":6,"i39":6,"i40":6,"i41":6,"i42":6,"i43":6,"i44":6,"i45":6,"i46":6,"i47":6,"i48":6,"i49":6,"i50":6,"i51":6,"i52":38,"i53":6,"i54":6,"i55":6,"i56":6,"i57":6,"i58":6,"i59":6,"i60":6,"i61":6,"i62":6,"i63":6,"i64":6,"i65":6,"i66":6,"i67":38,"i68":6,"i69":6,"i70":6,"i71":38,"i72":6,"i73":6,"i74":6,"i75":38,"i76":6,"i77":6,"i78":6};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"],32:["t6","Deprecated Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -364,62 +364,71 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </td>
 </tr>
 <tr id="i24" class="altColor">
+<td class="colFirst"><code>boolean</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getResetOnContentSizeChange()">getResetOnContentSizeChange</a></span>()</code></th>
+<td class="colLast">
+<div class="block">This setting controls whether when making multiple requests during the download of a segment or file
+ and upon encountering a difference in the reported size on subsequent requests the SDK should
+ fail the download or delete the existing downloaded content and retry from the start.</div>
+</td>
+</tr>
+<tr id="i25" class="rowColor">
 <td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getSegmentErrorHttpCode()">getSegmentErrorHttpCode</a></span>()</code></th>
 <td class="colLast">
 <div class="block">The setting for the HTTP code used on segments (for assets that have completed) that are missing or have errors during playback.</div>
 </td>
 </tr>
-<tr id="i25" class="rowColor">
+<tr id="i26" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isAutomaticDrmLicenseRenewalEnabled()">isAutomaticDrmLicenseRenewalEnabled</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Is automatic renewal of DRM licenses enabled.</div>
 </td>
 </tr>
-<tr id="i26" class="altColor">
+<tr id="i27" class="rowColor">
 <td class="colFirst"><code><a href="ISettings.html" title="interface in com.penthera.virtuososdk.client">ISettings</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#resetAudioCodecsToDownload()">resetAudioCodecsToDownload</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Resets the audio codecs to download  to the default configuration, which is all codecs</div>
 </td>
 </tr>
-<tr id="i27" class="rowColor">
+<tr id="i28" class="altColor">
 <td class="colFirst"><code><a href="ISettings.html" title="interface in com.penthera.virtuososdk.client">ISettings</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#resetAutomaticDRMLicenseRenewalEnabled()">resetAutomaticDRMLicenseRenewalEnabled</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Reset the automatic DRM license renewal to its default configutation, with is enabled</div>
 </td>
 </tr>
-<tr id="i28" class="altColor">
+<tr id="i29" class="rowColor">
 <td class="colFirst"><code><a href="ISettings.html" title="interface in com.penthera.virtuososdk.client">ISettings</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#resetBatteryThreshold()">resetBatteryThreshold</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Resets the battery threshold setting to the Virtuoso default configuration of 0.5.</div>
 </td>
 </tr>
-<tr id="i29" class="rowColor">
+<tr id="i30" class="altColor">
 <td class="colFirst"><code><a href="ISettings.html" title="interface in com.penthera.virtuososdk.client">ISettings</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#resetCellularDataQuota()">resetCellularDataQuota</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Resets the cellular data quota setting to the Virtuoso default configuration of 100 MB.</div>
 </td>
 </tr>
-<tr id="i30" class="altColor">
+<tr id="i31" class="rowColor">
 <td class="colFirst"><code><a href="ISettings.html" title="interface in com.penthera.virtuososdk.client">ISettings</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#resetCellularDataQuotaStart()">resetCellularDataQuotaStart</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Resets the cellular data quota start to be the current time and zeroes out the current cell usage.</div>
 </td>
 </tr>
-<tr id="i31" class="rowColor">
+<tr id="i32" class="altColor">
 <td class="colFirst"><code><a href="ISettings.html" title="interface in com.penthera.virtuososdk.client">ISettings</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#resetDestinationPath()">resetDestinationPath</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Resets the destination path setting to the Virtuoso default configuration.</div>
 </td>
 </tr>
-<tr id="i32" class="altColor">
+<tr id="i33" class="rowColor">
 <td class="colFirst"><code><a href="ISettings.html" title="interface in com.penthera.virtuososdk.client">ISettings</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#resetDrmSecurityLevel()">resetDrmSecurityLevel</a></span>()</code></th>
 <td class="colLast">
@@ -427,7 +436,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
  on devices with API 28+.</div>
 </td>
 </tr>
-<tr id="i33" class="rowColor">
+<tr id="i34" class="altColor">
 <td class="colFirst"><code><a href="ISettings.html" title="interface in com.penthera.virtuososdk.client">ISettings</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#resetErrorAssetOnDRMFail()">resetErrorAssetOnDRMFail</a></span>()</code></th>
 <td class="colLast">
@@ -435,112 +444,121 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
  asset to be marked as failed, which will prevent further download.</div>
 </td>
 </tr>
-<tr id="i34" class="altColor">
+<tr id="i35" class="rowColor">
 <td class="colFirst"><code><a href="ISettings.html" title="interface in com.penthera.virtuososdk.client">ISettings</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#resetFastPlaySegmentCount()">resetFastPlaySegmentCount</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Resets the segment count to use for fastplay assets</div>
 </td>
 </tr>
-<tr id="i35" class="rowColor">
+<tr id="i36" class="altColor">
 <td class="colFirst"><code><a href="ISettings.html" title="interface in com.penthera.virtuososdk.client">ISettings</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#resetGlobalRequestHeaders()">resetGlobalRequestHeaders</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Removes the custom HTTP headers.</div>
 </td>
 </tr>
-<tr id="i36" class="altColor">
+<tr id="i37" class="rowColor">
 <td class="colFirst"><code><a href="ISettings.html" title="interface in com.penthera.virtuososdk.client">ISettings</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#resetHeadroom()">resetHeadroom</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Resets the headroom setting to the Virtuoso default configuration of 1 GB.</div>
 </td>
 </tr>
-<tr id="i37" class="rowColor">
+<tr id="i38" class="altColor">
 <td class="colFirst"><code><a href="ISettings.html" title="interface in com.penthera.virtuososdk.client">ISettings</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#resetHTTPConnectionTimeout()">resetHTTPConnectionTimeout</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Resets the HTTP connection timeout to the Virtuoso default configuration.</div>
 </td>
 </tr>
-<tr id="i38" class="altColor">
+<tr id="i39" class="rowColor">
 <td class="colFirst"><code><a href="ISettings.html" title="interface in com.penthera.virtuososdk.client">ISettings</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#resetHTTPSocketTimeout()">resetHTTPSocketTimeout</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Resets the HTTP socket timeout to the Virtuoso default configuration.</div>
 </td>
 </tr>
-<tr id="i39" class="rowColor">
+<tr id="i40" class="altColor">
 <td class="colFirst"><code><a href="ISettings.html" title="interface in com.penthera.virtuososdk.client">ISettings</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#resetLanguagesSettings()">resetLanguagesSettings</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Resets the languages settings to the default configuration, which is all languages</div>
 </td>
 </tr>
-<tr id="i40" class="altColor">
+<tr id="i41" class="rowColor">
 <td class="colFirst"><code><a href="ISettings.html" title="interface in com.penthera.virtuososdk.client">ISettings</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#resetMaxDownloadConnections()">resetMaxDownloadConnections</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Resets the max permissible concurrent network connections in the downloader to the default configuration.</div>
 </td>
 </tr>
-<tr id="i41" class="rowColor">
+<tr id="i42" class="altColor">
 <td class="colFirst"><code><a href="ISettings.html" title="interface in com.penthera.virtuososdk.client">ISettings</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#resetMaxPermittedSegmentErrors()">resetMaxPermittedSegmentErrors</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Resets the max permissible download errors on segments.</div>
 </td>
 </tr>
-<tr id="i42" class="altColor">
+<tr id="i43" class="rowColor">
 <td class="colFirst"><code><a href="ISettings.html" title="interface in com.penthera.virtuososdk.client">ISettings</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#resetMaxStorageAllowed()">resetMaxStorageAllowed</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Resets the max storage setting to the Virtuoso default configuration of 5 GB.</div>
 </td>
 </tr>
-<tr id="i43" class="rowColor">
+<tr id="i44" class="altColor">
 <td class="colFirst"><code><a href="ISettings.html" title="interface in com.penthera.virtuososdk.client">ISettings</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#resetMimeTypeSettings()">resetMimeTypeSettings</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Resets the custom mime type settings</div>
 </td>
 </tr>
-<tr id="i44" class="altColor">
+<tr id="i45" class="rowColor">
 <td class="colFirst"><code><a href="ISettings.html" title="interface in com.penthera.virtuososdk.client">ISettings</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#resetPlatformDRMProperties()">resetPlatformDRMProperties</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Resets the current setting for String properties to be set on the DRM instances in the SDK before use.</div>
 </td>
 </tr>
-<tr id="i45" class="rowColor">
+<tr id="i46" class="altColor">
 <td class="colFirst"><code><a href="ISettings.html" title="interface in com.penthera.virtuososdk.client">ISettings</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#resetProgressUpdateByPercent()">resetProgressUpdateByPercent</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Resets the progress update percent interval to the Virtuoso default configuration of 1%.</div>
 </td>
 </tr>
-<tr id="i46" class="altColor">
+<tr id="i47" class="rowColor">
 <td class="colFirst"><code><a href="ISettings.html" title="interface in com.penthera.virtuososdk.client">ISettings</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#resetProgressUpdateByTime()">resetProgressUpdateByTime</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Resets the progress update time interval to the Virtuoso default configuration of 5000 ms.</div>
 </td>
 </tr>
-<tr id="i47" class="rowColor">
+<tr id="i48" class="altColor">
 <td class="colFirst"><code><a href="ISettings.html" title="interface in com.penthera.virtuososdk.client">ISettings</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#resetProgressUpdatesPerSegment()">resetProgressUpdatesPerSegment</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Resets the progress update segment completion interval to the Virtuoso default configuration of 10.</div>
 </td>
 </tr>
-<tr id="i48" class="altColor">
+<tr id="i49" class="rowColor">
 <td class="colFirst"><code><a href="ISettings.html" title="interface in com.penthera.virtuososdk.client">ISettings</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#resetRemoveNotificationOnPause()">resetRemoveNotificationOnPause</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Resets the remove notification on pause to the default configuration, which is to remove it.</div>
 </td>
 </tr>
-<tr id="i49" class="rowColor">
+<tr id="i50" class="altColor">
+<td class="colFirst"><code><a href="ISettings.html" title="interface in com.penthera.virtuososdk.client">ISettings</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#resetResetOnContentSizeChange()">resetResetOnContentSizeChange</a></span>()</code></th>
+<td class="colLast">
+<div class="block">This setting controls whether when making multiple requests during the download of a segment or file
+ and upon encountering a difference in the reported size on subsequent requests the SDK should
+ fail the download or delete the existing downloaded content and retry from the start.</div>
+</td>
+</tr>
+<tr id="i51" class="rowColor">
 <td class="colFirst"><code><a href="ISettings.html" title="interface in com.penthera.virtuososdk.client">ISettings</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#resetSegmentErrorHttpCode()">resetSegmentErrorHttpCode</a></span>()</code></th>
 <td class="colLast">
@@ -548,7 +566,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
  are missing or have errors.</div>
 </td>
 </tr>
-<tr id="i50" class="altColor">
+<tr id="i52" class="altColor">
 <td class="colFirst"><code><a href="ISettings.html" title="interface in com.penthera.virtuososdk.client">ISettings</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#save()">save</a></span>()</code></th>
 <td class="colLast">
@@ -557,14 +575,14 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </div>
 </td>
 </tr>
-<tr id="i51" class="rowColor">
+<tr id="i53" class="rowColor">
 <td class="colFirst"><code><a href="ISettings.html" title="interface in com.penthera.virtuososdk.client">ISettings</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setAlwaysRequestPermission(boolean)">setAlwaysRequestPermission</a></span>&#8203;(boolean&nbsp;aValue)</code></th>
 <td class="colLast">
 <div class="block">Always request permission.</div>
 </td>
 </tr>
-<tr id="i52" class="altColor">
+<tr id="i54" class="altColor">
 <td class="colFirst"><code><a href="ISettings.html" title="interface in com.penthera.virtuososdk.client">ISettings</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setAudioCodecsToDownload(java.lang.String%5B%5D)">setAudioCodecsToDownload</a></span>&#8203;(<a href="https://developer.android.com/reference/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a>[]&nbsp;codecs)</code></th>
 <td class="colLast">
@@ -572,7 +590,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
  <br> The new setting is applied automatically after being set.</div>
 </td>
 </tr>
-<tr id="i53" class="rowColor">
+<tr id="i55" class="rowColor">
 <td class="colFirst"><code><a href="ISettings.html" title="interface in com.penthera.virtuososdk.client">ISettings</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setAuthenticationErrorAsExternalLock(boolean)">setAuthenticationErrorAsExternalLock</a></span>&#8203;(boolean&nbsp;val)</code></th>
 <td class="colLast">
@@ -580,7 +598,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
  external lock.</div>
 </td>
 </tr>
-<tr id="i54" class="altColor">
+<tr id="i56" class="altColor">
 <td class="colFirst"><code><a href="ISettings.html" title="interface in com.penthera.virtuososdk.client">ISettings</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setAutomaticDrmLicenseRenewalEnabled(boolean)">setAutomaticDrmLicenseRenewalEnabled</a></span>&#8203;(boolean&nbsp;enabled)</code></th>
 <td class="colLast">
@@ -588,35 +606,35 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
  <br> The new setting is applied automatically after being set.</div>
 </td>
 </tr>
-<tr id="i55" class="rowColor">
+<tr id="i57" class="rowColor">
 <td class="colFirst"><code><a href="ISettings.html" title="interface in com.penthera.virtuososdk.client">ISettings</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setBatteryThreshold(float)">setBatteryThreshold</a></span>&#8203;(float&nbsp;aThreshold)</code></th>
 <td class="colLast">
 <div class="block">Change the setting for battery threshold.</div>
 </td>
 </tr>
-<tr id="i56" class="altColor">
+<tr id="i58" class="altColor">
 <td class="colFirst"><code><a href="ISettings.html" title="interface in com.penthera.virtuososdk.client">ISettings</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setCellularDataQuota(long)">setCellularDataQuota</a></span>&#8203;(long&nbsp;aQuota)</code></th>
 <td class="colLast">
 <div class="block">Change the setting for cellular quota.</div>
 </td>
 </tr>
-<tr id="i57" class="rowColor">
+<tr id="i59" class="rowColor">
 <td class="colFirst"><code><a href="ISettings.html" title="interface in com.penthera.virtuososdk.client">ISettings</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setDestinationPath(java.lang.String)">setDestinationPath</a></span>&#8203;(<a href="https://developer.android.com/reference/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a>&nbsp;aBasePath)</code></th>
 <td class="colLast">
 <div class="block">Change the setting for destination path.</div>
 </td>
 </tr>
-<tr id="i58" class="altColor">
+<tr id="i60" class="altColor">
 <td class="colFirst"><code><a href="ISettings.html" title="interface in com.penthera.virtuososdk.client">ISettings</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setDrmSecurityLevel(int)">setDrmSecurityLevel</a></span>&#8203;(int&nbsp;securityLevel)</code></th>
 <td class="colLast">
 <div class="block">Sets the requested security level when opening all <a href="https://developer.android.com/reference/android/media/MediaDrm.html?is-external=true" title="class or interface in android.media" class="externalLink"><code>MediaDrm</code></a> sessions.</div>
 </td>
 </tr>
-<tr id="i59" class="rowColor">
+<tr id="i61" class="rowColor">
 <td class="colFirst"><code><a href="ISettings.html" title="interface in com.penthera.virtuososdk.client">ISettings</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setErrorAssetOnDRMFail(boolean)">setErrorAssetOnDRMFail</a></span>&#8203;(boolean&nbsp;failOnDrm)</code></th>
 <td class="colLast">
@@ -624,42 +642,42 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
  asset to be marked as failed, which will prevent further download.</div>
 </td>
 </tr>
-<tr id="i60" class="altColor">
+<tr id="i62" class="altColor">
 <td class="colFirst"><code><a href="ISettings.html" title="interface in com.penthera.virtuososdk.client">ISettings</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setFastPlaySegmentCount(int)">setFastPlaySegmentCount</a></span>&#8203;(int&nbsp;count)</code></th>
 <td class="colLast">
 <div class="block">Sets the count for the number of segments to download for Fast Play assets.</div>
 </td>
 </tr>
-<tr id="i61" class="rowColor">
+<tr id="i63" class="rowColor">
 <td class="colFirst"><code><a href="ISettings.html" title="interface in com.penthera.virtuososdk.client">ISettings</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setGlobalRequestHeaders(android.os.Bundle)">setGlobalRequestHeaders</a></span>&#8203;(<a href="https://developer.android.com/reference/android/os/Bundle.html?is-external=true" title="class or interface in android.os" class="externalLink">Bundle</a>&nbsp;aHeaders)</code></th>
 <td class="colLast">
 <div class="block">With this method, clients can configure the HTTP headers Virtuoso uses when making GET requests to download remote assets.</div>
 </td>
 </tr>
-<tr id="i62" class="altColor">
+<tr id="i64" class="altColor">
 <td class="colFirst"><code><a href="ISettings.html" title="interface in com.penthera.virtuososdk.client">ISettings</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setHeadroom(long)">setHeadroom</a></span>&#8203;(long&nbsp;aHeadroom)</code></th>
 <td class="colLast">
 <div class="block">Change the setting for headroom.</div>
 </td>
 </tr>
-<tr id="i63" class="rowColor">
+<tr id="i65" class="rowColor">
 <td class="colFirst"><code><a href="ISettings.html" title="interface in com.penthera.virtuososdk.client">ISettings</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setHTTPConnectionTimeout(int)">setHTTPConnectionTimeout</a></span>&#8203;(int&nbsp;aTimeout)</code></th>
 <td class="colLast">
 <div class="block">Change the HTTP connection timeout value Virtuoso uses during download.</div>
 </td>
 </tr>
-<tr id="i64" class="altColor">
+<tr id="i66" class="altColor">
 <td class="colFirst"><code><a href="ISettings.html" title="interface in com.penthera.virtuososdk.client">ISettings</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setHTTPSocketTimeout(int)">setHTTPSocketTimeout</a></span>&#8203;(int&nbsp;aTimeout)</code></th>
 <td class="colLast">
 <div class="block">Change the HTTP socket timeout value Virtuoso uses during download.</div>
 </td>
 </tr>
-<tr id="i65" class="rowColor">
+<tr id="i67" class="rowColor">
 <td class="colFirst"><code><a href="ISettings.html" title="interface in com.penthera.virtuososdk.client">ISettings</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setLanguagesSettings(com.penthera.virtuososdk.client.ILanguageSettings)">setLanguagesSettings</a></span>&#8203;(<a href="ILanguageSettings.html" title="interface in com.penthera.virtuososdk.client">ILanguageSettings</a>&nbsp;settings)</code></th>
 <td class="colLast">
@@ -668,28 +686,28 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </div>
 </td>
 </tr>
-<tr id="i66" class="altColor">
+<tr id="i68" class="altColor">
 <td class="colFirst"><code><a href="ISettings.html" title="interface in com.penthera.virtuososdk.client">ISettings</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setMaxDownloadConnections(int)">setMaxDownloadConnections</a></span>&#8203;(int&nbsp;aMax)</code></th>
 <td class="colLast">
 <div class="block">Sets the max permissible concurrent network connections in the downloader.</div>
 </td>
 </tr>
-<tr id="i67" class="rowColor">
+<tr id="i69" class="rowColor">
 <td class="colFirst"><code><a href="ISettings.html" title="interface in com.penthera.virtuososdk.client">ISettings</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setMaxPermittedSegmentErrors(int)">setMaxPermittedSegmentErrors</a></span>&#8203;(int&nbsp;max)</code></th>
 <td class="colLast">
 <div class="block">Change the setting for max permissible download errors on segments.</div>
 </td>
 </tr>
-<tr id="i68" class="altColor">
+<tr id="i70" class="altColor">
 <td class="colFirst"><code><a href="ISettings.html" title="interface in com.penthera.virtuososdk.client">ISettings</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setMaxStorageAllowed(long)">setMaxStorageAllowed</a></span>&#8203;(long&nbsp;aMaxStorage)</code></th>
 <td class="colLast">
 <div class="block">Change the setting for max storage.</div>
 </td>
 </tr>
-<tr id="i69" class="rowColor">
+<tr id="i71" class="rowColor">
 <td class="colFirst"><code><a href="ISettings.html" title="interface in com.penthera.virtuososdk.client">ISettings</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setMimeTypeSettings(com.penthera.virtuososdk.client.IMimeTypeSettings)">setMimeTypeSettings</a></span>&#8203;(<a href="IMimeTypeSettings.html" title="interface in com.penthera.virtuososdk.client">IMimeTypeSettings</a>&nbsp;settings)</code></th>
 <td class="colLast">
@@ -698,7 +716,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </div>
 </td>
 </tr>
-<tr id="i70" class="altColor">
+<tr id="i72" class="altColor">
 <td class="colFirst"><code><a href="ISettings.html" title="interface in com.penthera.virtuososdk.client">ISettings</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setPlatformDRMProperties(java.util.Map)">setPlatformDRMProperties</a></span>&#8203;(<a href="https://developer.android.com/reference/java/util/Map.html?is-external=true" title="class or interface in java.util" class="externalLink">Map</a>&lt;<a href="https://developer.android.com/reference/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a>,&#8203;<a href="https://developer.android.com/reference/java/lang/String.html?is-external=true" title="class or interface in java.lang" class="externalLink">String</a>&gt;&nbsp;properties)</code></th>
 <td class="colLast">
@@ -706,21 +724,21 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
  wherever it is used within the SDK.</div>
 </td>
 </tr>
-<tr id="i71" class="rowColor">
+<tr id="i73" class="rowColor">
 <td class="colFirst"><code><a href="ISettings.html" title="interface in com.penthera.virtuososdk.client">ISettings</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setProgressUpdateByPercent(int)">setProgressUpdateByPercent</a></span>&#8203;(int&nbsp;aPercent)</code></th>
 <td class="colLast">
 <div class="block">Configure the frequency of progress updates during a download.</div>
 </td>
 </tr>
-<tr id="i72" class="altColor">
+<tr id="i74" class="altColor">
 <td class="colFirst"><code><a href="ISettings.html" title="interface in com.penthera.virtuososdk.client">ISettings</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setProgressUpdateByTime(long)">setProgressUpdateByTime</a></span>&#8203;(long&nbsp;aMilliseconds)</code></th>
 <td class="colLast">
 <div class="block">Configure the frequency of progress updates during a download.</div>
 </td>
 </tr>
-<tr id="i73" class="rowColor">
+<tr id="i75" class="rowColor">
 <td class="colFirst"><code><a href="ISettings.html" title="interface in com.penthera.virtuososdk.client">ISettings</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setProgressUpdatesPerSegment(int)">setProgressUpdatesPerSegment</a></span>&#8203;(int&nbsp;aNumberOfSegments)</code></th>
 <td class="colLast">
@@ -729,14 +747,23 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </div>
 </td>
 </tr>
-<tr id="i74" class="altColor">
+<tr id="i76" class="altColor">
 <td class="colFirst"><code><a href="ISettings.html" title="interface in com.penthera.virtuososdk.client">ISettings</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setRemoveNotificationOnPause(boolean)">setRemoveNotificationOnPause</a></span>&#8203;(boolean&nbsp;remove)</code></th>
 <td class="colLast">
 <div class="block">Sets the service to leave foreground mode and hide the notification when the engine is paused.</div>
 </td>
 </tr>
-<tr id="i75" class="rowColor">
+<tr id="i77" class="rowColor">
+<td class="colFirst"><code><a href="ISettings.html" title="interface in com.penthera.virtuososdk.client">ISettings</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setResetOnContentSizeChange(boolean)">setResetOnContentSizeChange</a></span>&#8203;(boolean&nbsp;reset)</code></th>
+<td class="colLast">
+<div class="block">This setting controls whether when making multiple requests during the download of a segment or file
+ and upon encountering a difference in the reported size on subsequent requests the SDK should
+ fail the download or delete the existing downloaded content and retry from the start.</div>
+</td>
+</tr>
+<tr id="i78" class="altColor">
 <td class="colFirst"><code><a href="ISettings.html" title="interface in com.penthera.virtuososdk.client">ISettings</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setSegmentErrorHttpCode(int)">setSegmentErrorHttpCode</a></span>&#8203;(int&nbsp;code)</code></th>
 <td class="colLast">
@@ -1057,6 +1084,25 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>The value being used for max concurrent network connections.</dd>
 <dt><span class="simpleTagLabel">Category:</span></dt>
 <dd>006_config</dd>
+</dl>
+</li>
+</ul>
+<a id="getResetOnContentSizeChange()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getResetOnContentSizeChange</h4>
+<pre class="methodSignature">boolean&nbsp;getResetOnContentSizeChange()</pre>
+<div class="block">This setting controls whether when making multiple requests during the download of a segment or file
+ and upon encountering a difference in the reported size on subsequent requests the SDK should
+ fail the download or delete the existing downloaded content and retry from the start.
+ <br><br>This value will default to false. The default behaviour is to fail the asset with status
+ indicating failure due to size. If set true then the SDK will accept the size is changed, delete
+ any existing downloaded content for the specific file or segment and start again.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>Returns true if the SDK will delete existing content and retry upon size change.</dd>
 </dl>
 </li>
 </ul>
@@ -1731,6 +1777,22 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </dl>
 </li>
 </ul>
+<a id="setResetOnContentSizeChange(boolean)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setResetOnContentSizeChange</h4>
+<pre class="methodSignature"><a href="ISettings.html" title="interface in com.penthera.virtuososdk.client">ISettings</a>&nbsp;setResetOnContentSizeChange&#8203;(boolean&nbsp;reset)</pre>
+<div class="block">This setting controls whether when making multiple requests during the download of a segment or file
+ and upon encountering a difference in the reported size on subsequent requests the SDK should
+ fail the download or delete the existing downloaded content and retry from the start.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>reset</code> - Set true to cause the SDK to reset and retry upon encountering changes in reported size.</dd>
+</dl>
+</li>
+</ul>
 <a id="alwaysRequestPermission()">
 <!--   -->
 </a>
@@ -2247,6 +2309,19 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dt><span class="simpleTagLabel">Category:</span></dt>
 <dd>006_config</dd>
 </dl>
+</li>
+</ul>
+<a id="resetResetOnContentSizeChange()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>resetResetOnContentSizeChange</h4>
+<pre class="methodSignature"><a href="ISettings.html" title="interface in com.penthera.virtuososdk.client">ISettings</a>&nbsp;resetResetOnContentSizeChange()</pre>
+<div class="block">This setting controls whether when making multiple requests during the download of a segment or file
+ and upon encountering a difference in the reported size on subsequent requests the SDK should
+ fail the download or delete the existing downloaded content and retry from the start.
+ Reset to the default state, which is false.</div>
 </li>
 </ul>
 <a id="resetLanguagesSettings()">

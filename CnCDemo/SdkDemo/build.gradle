@@ -9,8 +9,8 @@ android {
 
     defaultConfig {
         applicationId "com.penthera.sdkdemo"
-        versionCode = 50006
-        versionName = "5.0.6"
+        versionCode = 50007
+        versionName = "5.0.7"
         minSdkVersion 16
         targetSdkVersion 31
         multiDexEnabled true
@@ -38,16 +38,21 @@ allprojects {
         }
 
         mavenCentral()
-        maven{
-            url "https://clientbuilds.penthera.com/repository/releases/"
-        }
+       maven {
+
+                   credentials {
+                       username "android"
+                       password "P3nth3r@!"
+                   }
+                   url "https://clientbuilds.penthera.com/repository/external/"
+               }
     }
 }
 
 dependencies {
 
-    implementation  'com.penthera:cnc-android-sdk-debug:5.0.6'
-    implementation 'com.penthera:cnc-exoplayer-2_17-support:5.0.6'
+    implementation  'com.penthera:cnc-android-sdk-debug:5.0.7'
+    implementation 'com.penthera:cnc-exoplayer-2_17-support:5.0.7'
 
     def google_exoplayer_version = "2.17.1"
     implementation "com.google.android.exoplayer:exoplayer:$google_exoplayer_version"
