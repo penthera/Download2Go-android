@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>IManifestParserObserver</title>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">
+    <script>var pathToRoot = "../../../";</script>    <script>const storage = localStorage.getItem("dokka-dark-mode")
+const savedDarkMode = storage ? JSON.parse(storage) : false
+if(savedDarkMode === true){
+    document.getElementsByTagName("html")[0].classList.add("theme-dark")
+}</script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/jetbrains-mono.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async></script></head>
+<body>
+<div class="navigation-wrapper" id="navigation-wrapper">
+    <div id="leftToggler"><span class="icon-toggler"></span></div>
+    <div class="library-name">
+<a href="../../../index.html">
+<span>TMP</span>            </a>    </div>
+    <div>
+    </div>
+    <div class="pull-right d-flex">
+        <button id="theme-toggle-button"><span id="theme-toggle"></span></button>
+        <div id="searchBar"></div>
+    </div>
+</div>
+<div id="container">
+    <div id="leftColumn">
+        <div id="sideMenu"></div>
+    </div>
+    <div id="main">
+<div class="main-content" id="content" pageids="Download2Go Android SDK::com.penthera.virtuososdk.client/IManifestParserObserver///PointingToDeclaration//1607690379">
+  <div class="breadcrumbs"><a href="../../index.html">Download2Go Android SDK</a><span class="delimiter">/</span><a href="../index.html">com.penthera.virtuososdk.client</a><span class="delimiter">/</span><a href="index.html">IManifestParserObserver</a></div>
+  <div class="cover ">
+    <h1 class="cover"><span>IManifest</span><wbr><span>Parser</span><wbr><span><span>Observer</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">interface </span><a href="index.html">IManifestParserObserver</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><p class="paragraph">This interface provides a configurable mechanism for altering the output of the manifest parser before the Download 2 Go SDK begins downloading an asset. It provides methods to alter the URLs of each segment within the manifest, and update the asset properties prior to the asset being added to the queue. The class implementing IManifestParserObserver is instantiated within the service process of the SDK and is called directly within the parsing process. It may be called when the app is in the background as the result of manifest parsing continuing after the app is backgrounded. It will only be called when the SDK determines that the device is online. The IManifestParserObserver is provided to the engine through the <a href="../-i-background-processing-manager/index.html">IBackgroundProcessingManager</a> interface, which itself is registered via the Android manifest.</p></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="Functions">Functions</button></div>
+    <div class="tabs-section-body">
+      <h2 class="">Functions</h2>
+      <div class="table" data-togglable="Functions"><a data-name="-1617505935%2FFunctions%2F1607690379" anchor-label="didParseSegment" id="-1617505935%2FFunctions%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="did-parse-segment.html"><span>did</span><wbr><span>Parse</span><wbr><span><span>Segment</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1617505935%2FFunctions%2F1607690379"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="did-parse-segment.html"><span class="token function">didParseSegment</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">asset<span class="token operator">: </span><a href="../../../penthera-common/com.penthera.virtuososdk.client/-i-segmented-asset/index.html">ISegmentedAsset</a><span class="token punctuation">, </span></span><span class="parameter ">segment<span class="token operator">: </span><a href="../../../penthera-common/com.penthera.virtuososdk.client/-i-segment/index.html">ISegment</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">The SDK has parsed a segment for download.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-539874709%2FFunctions%2F1607690379" anchor-label="willAddToQueue" id="-539874709%2FFunctions%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="will-add-to-queue.html"><span>will</span><wbr><span>Add</span><wbr><span>To</span><wbr><span><span>Queue</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-539874709%2FFunctions%2F1607690379"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="will-add-to-queue.html"><span class="token function">willAddToQueue</span></a><span class="token punctuation">(</span><span class="parameters wrapped"><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;segmentedAsset<span class="token operator">: </span><a href="../../../penthera-common/com.penthera.virtuososdk.client/-i-segmented-asset/index.html">ISegmentedAsset</a><span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;assetManager<span class="token operator">: </span><a href="../-i-asset-manager/index.html">IAssetManager</a><span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;context<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/android/content/Context.html">Context</a></span></span><span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">The SDK has finished parsing the asset and is about to add the asset to the download queue.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        <div class="footer"><span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2022 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+        </div>
+    </div>
+</div>
+
+</body></html>
+

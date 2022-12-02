@@ -1,0 +1,138 @@
+<!doctype html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>ExoplayerDrmSessionManager</title>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">
+    <script>var pathToRoot = "../../../";</script>    <script>const storage = localStorage.getItem("dokka-dark-mode")
+const savedDarkMode = storage ? JSON.parse(storage) : false
+if(savedDarkMode === true){
+    document.getElementsByTagName("html")[0].classList.add("theme-dark")
+}</script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/jetbrains-mono.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async></script></head>
+<body>
+<div class="navigation-wrapper" id="navigation-wrapper">
+    <div id="leftToggler"><span class="icon-toggler"></span></div>
+    <div class="library-name">
+<a href="../../../index.html">
+<span>TMP</span>            </a>    </div>
+    <div>
+    </div>
+    <div class="pull-right d-flex">
+        <button id="theme-toggle-button"><span id="theme-toggle"></span></button>
+        <div id="searchBar"></div>
+    </div>
+</div>
+<div id="container">
+    <div id="leftColumn">
+        <div id="sideMenu"></div>
+    </div>
+    <div id="main">
+<div class="main-content" id="content" pageids="Download2Go Android ExoPlayer 2.14.* Support Library::com.penthera.virtuososdk.support.exoplayer214.drm/ExoplayerDrmSessionManager///PointingToDeclaration//-748164">
+  <div class="breadcrumbs"><a href="../../index.html">Download2Go Android ExoPlayer 2.14.* Support Library</a><span class="delimiter">/</span><a href="../index.html">com.penthera.virtuososdk.support.exoplayer214.drm</a><span class="delimiter">/</span><a href="index.html">ExoplayerDrmSessionManager</a></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Exoplayer</span><wbr><span>Drm</span><wbr><span>Session</span><wbr><span><span>Manager</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":cnc-exoplayer-2_14-support:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">class </span><a href="index.html">ExoplayerDrmSessionManager</a> : <span data-unresolved-link="com.google.android.exoplayer2.drm/DrmSessionManager///PointingToDeclaration/">DrmSessionManager</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><p class="paragraph">Wraps the VirtuosoDrmSessionManager Provides a DRM session manager which is specific to a single downloaded asset. Relies upon the knowing of the single asset to be processed at the point of instantiation.</p></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="Constructors">Constructors</button><button class="section-tab" data-togglable="Functions">Functions</button></div>
+    <div class="tabs-section-body">
+      <h2 class="tabbedcontent">Constructors</h2>
+      <div class="table" data-togglable="Constructors"><a data-name="484467654%2FConstructors%2F-748164" anchor-label="ExoplayerDrmSessionManager" id="484467654%2FConstructors%2F-748164" data-filterable-set=":cnc-exoplayer-2_14-support:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":cnc-exoplayer-2_14-support:dokkaHtmlPartial/release" data-filterable-set=":cnc-exoplayer-2_14-support:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue TabbedContent">
+            <div class=""><span class="inline-flex">
+                <div><a href="-exoplayer-drm-session-manager.html"><span>Exoplayer</span><wbr><span>Drm</span><wbr><span>Session</span><wbr><span><span>Manager</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="484467654%2FConstructors%2F-748164"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":cnc-exoplayer-2_14-support:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="-exoplayer-drm-session-manager.html"><span class="token function">ExoplayerDrmSessionManager</span></a><span class="token punctuation">(</span><span class="parameters wrapped"><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;context<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/android/content/Context.html">Context</a><span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;uuid<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/util/UUID.html">UUID</a><span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;asset<span class="token operator">: </span><a href="../../../penthera-common/com.penthera.virtuososdk.client/-i-asset/index.html">IAsset</a><span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;optionalKeyRequestParameters<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/util/HashMap.html">HashMap</a><span class="token operator">&lt;</span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token punctuation">, </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;eventListener<span class="token operator">: </span><a href="../-support-drm-session-manager/-event-listener/index.html">SupportDrmSessionManager.EventListener</a><span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;onEventListener<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/android/media/MediaDrm.OnEventListener.html">MediaDrm.OnEventListener</a><span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;useDrmSessionsForClearContentTrackTypes<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html">Array</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;playClearSamplesWithoutKeys<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></span></span><span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Creates a custom DRM Session Manager for use with the Download SDK and a specified Asset</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h2 class="">Functions</h2>
+      <div class="table" data-togglable="Functions"><a data-name="-1482488533%2FFunctions%2F-748164" anchor-label="acquireSession" id="-1482488533%2FFunctions%2F-748164" data-filterable-set=":cnc-exoplayer-2_14-support:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":cnc-exoplayer-2_14-support:dokkaHtmlPartial/release" data-filterable-set=":cnc-exoplayer-2_14-support:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="acquire-session.html"><span>acquire</span><wbr><span><span>Session</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1482488533%2FFunctions%2F-748164"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":cnc-exoplayer-2_14-support:dokkaHtmlPartial/release"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/Nullable.html"><span class="token annotation">Nullable</span></a></div></div><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="acquire-session.html"><span class="token function">acquireSession</span></a><span class="token punctuation">(</span><span class="parameters wrapped"><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;playbackLooper<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/android/os/Looper.html">Looper</a><span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span><span class="token annotation">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/Nullable.html"><span class="token annotation">Nullable</span></a>&nbsp;</span>eventDispatcher<span class="token operator">: </span><span data-unresolved-link="com.google.android.exoplayer2.drm/DrmSessionEventListener.EventDispatcher///PointingToDeclaration/">DrmSessionEventListener.EventDispatcher</span><span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;format<span class="token operator">: </span><span data-unresolved-link="com.google.android.exoplayer2/Format///PointingToDeclaration/">Format</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="com.google.android.exoplayer2.drm/DrmSession///PointingToDeclaration/">DrmSession</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Returns a <span data-unresolved-link="com.google.android.exoplayer2.drm/DrmSession///PointingToDeclaration/">DrmSession</span> for the specified <span data-unresolved-link="com.google.android.exoplayer2/Format///PointingToDeclaration/">Format</span>, with an incremented reference count.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-687868957%2FFunctions%2F-748164" anchor-label="getExoMediaCryptoType" id="-687868957%2FFunctions%2F-748164" data-filterable-set=":cnc-exoplayer-2_14-support:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":cnc-exoplayer-2_14-support:dokkaHtmlPartial/release" data-filterable-set=":cnc-exoplayer-2_14-support:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="get-exo-media-crypto-type.html"><span>get</span><wbr><span>Exo</span><wbr><span>Media</span><wbr><span>Crypto</span><wbr><span><span>Type</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-687868957%2FFunctions%2F-748164"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":cnc-exoplayer-2_14-support:dokkaHtmlPartial/release"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/Nullable.html"><span class="token annotation">Nullable</span></a></div></div><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-exo-media-crypto-type.html"><span class="token function">getExoMediaCryptoType</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">format<span class="token operator">: </span><span data-unresolved-link="com.google.android.exoplayer2/Format///PointingToDeclaration/">Format</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/Class.html">Class</a><span class="token operator">&lt;</span><span class="token keyword">out </span><span data-unresolved-link="com.google.android.exoplayer2.drm/ExoMediaCrypto///PointingToDeclaration/">ExoMediaCrypto</span><span class="token operator">&gt;</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Returns the <span data-unresolved-link="com.google.android.exoplayer2.drm/ExoMediaCrypto///PointingToDeclaration/">ExoMediaCrypto</span> type associated to sessions acquired for the given .</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1207242498%2FFunctions%2F-748164" anchor-label="prepare" id="-1207242498%2FFunctions%2F-748164" data-filterable-set=":cnc-exoplayer-2_14-support:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":cnc-exoplayer-2_14-support:dokkaHtmlPartial/release" data-filterable-set=":cnc-exoplayer-2_14-support:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="prepare.html"><span><span>prepare</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1207242498%2FFunctions%2F-748164"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":cnc-exoplayer-2_14-support:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="prepare.html"><span class="token function">prepare</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Acquires any required resources.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="808728062%2FFunctions%2F-748164" anchor-label="release" id="808728062%2FFunctions%2F-748164" data-filterable-set=":cnc-exoplayer-2_14-support:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":cnc-exoplayer-2_14-support:dokkaHtmlPartial/release" data-filterable-set=":cnc-exoplayer-2_14-support:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="release.html"><span><span>release</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="808728062%2FFunctions%2F-748164"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":cnc-exoplayer-2_14-support:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="release.html"><span class="token function">release</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Releases any acquired resources.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        <div class="footer"><span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2022 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+        </div>
+    </div>
+</div>
+
+</body></html>
+

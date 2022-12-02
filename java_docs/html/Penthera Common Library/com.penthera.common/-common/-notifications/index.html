@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>Notifications</title>
+<!--[+]cmd:{"@class":"org.jetbrains.dokka.base.templating.PathToRootSubstitutionCommand","pattern":"###","default":"../../../"}-->    <link href="###images/logo-icon.svg" rel="icon" type="image/svg">
+    <script>var pathToRoot = "###";</script>
+<!--[-]cmd-->    <script>const storage = localStorage.getItem("dokka-dark-mode")
+const savedDarkMode = storage ? JSON.parse(storage) : false
+if(savedDarkMode === true){
+    document.getElementsByTagName("html")[0].classList.add("theme-dark")
+}</script>
+<!--[+]cmd:{"@class":"org.jetbrains.dokka.base.templating.PathToRootSubstitutionCommand","pattern":"###","default":"../../../"}--><script type="text/javascript" src="###scripts/sourceset_dependencies.js" async="async"></script>
+<link href="###styles/style.css" rel="Stylesheet">
+<link href="###styles/jetbrains-mono.css" rel="Stylesheet">
+<link href="###styles/main.css" rel="Stylesheet">
+<link href="###styles/prism.css" rel="Stylesheet">
+<link href="###styles/logo-styles.css" rel="Stylesheet">
+<script type="text/javascript" src="###scripts/clipboard.js" async="async"></script>
+<script type="text/javascript" src="###scripts/navigation-loader.js" async="async"></script>
+<script type="text/javascript" src="###scripts/platform-content-handler.js" async="async"></script>
+<script type="text/javascript" src="###scripts/main.js" defer="defer"></script>
+<script type="text/javascript" src="###scripts/prism.js" async="async"></script>
+<!--[-]cmd--></head>
+<body>
+<div class="navigation-wrapper" id="navigation-wrapper">
+    <div id="leftToggler"><span class="icon-toggler"></span></div>
+    <div class="library-name">
+<!--[+]cmd:{"@class":"org.jetbrains.dokka.base.templating.PathToRootSubstitutionCommand","pattern":"###","default":"../../../"}-->            <a href="###index.html">
+<!--[+]cmd:{"@class":"org.jetbrains.dokka.base.templating.ProjectNameSubstitutionCommand","pattern":"###","default":"Penthera Common Library"}-->                    <span>###</span>
+<!--[-]cmd-->            </a>
+<!--[-]cmd-->    </div>
+    <div>
+<dokka-template-command data="{&quot;@class&quot;:&quot;org.jetbrains.dokka.base.templating.ReplaceVersionsCommand&quot;,&quot;location&quot;:&quot;com.penthera.common/-common/-notifications/index.html&quot;}"></dokka-template-command>    </div>
+    <div class="pull-right d-flex">
+        <button id="theme-toggle-button"><span id="theme-toggle"></span></button>
+        <div id="searchBar"></div>
+    </div>
+</div>
+<div id="container">
+    <div id="leftColumn">
+        <div id="sideMenu"></div>
+    </div>
+    <div id="main">
+<div class="main-content" id="content" pageIds="Penthera Common Library::com.penthera.common/Common.Notifications///PointingToDeclaration//-25591989">
+  <div class="breadcrumbs"><a href="../../../index.html">Penthera Common Library</a><span class="delimiter">/</span><a href="../../index.html">com.penthera.common</a><span class="delimiter">/</span><a href="../index.html">Common</a><span class="delimiter">/</span><a href="index.html">Notifications</a></div>
+  <div class="cover ">
+    <h1 class="cover"><span><span>Notifications</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":penthera-common:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="index.html">Notifications</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><p class="paragraph">Encapsulates the Extras and Intents used for notifications</p></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="Properties">Properties</button></div>
+    <div class="tabs-section-body">
+      <h2 class="">Properties</h2>
+      <div class="table" data-togglable="Properties"><a data-name="1565626376%2FProperties%2F-25591989" anchor-label="EXTRA_NOTIFICATION_EVENT" id="1565626376%2FProperties%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":penthera-common:dokkaHtmlPartial/main" data-filterable-set=":penthera-common:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-e-x-t-r-a_-n-o-t-i-f-i-c-a-t-i-o-n_-e-v-e-n-t.html">EXTRA_NOTIFICATION_EVENT</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1565626376%2FProperties%2F-25591989"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":penthera-common:dokkaHtmlPartial/main"><a data-name="1565626376%2FProperties%2F-25591989" anchor-label="EXTRA_NOTIFICATION_EVENT" id="1565626376%2FProperties%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-e-x-t-r-a_-n-o-t-i-f-i-c-a-t-i-o-n_-e-v-e-n-t.html">EXTRA_NOTIFICATION_EVENT</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="1565626376%2FProperties%2F-25591989" anchor-label="EXTRA_NOTIFICATION_EVENT" id="1565626376%2FProperties%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a>Additional info in the bundle of extras for any Event Log Intent.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="1567167303%2FProperties%2F-25591989" anchor-label="INTENT_EVENT_ADD_FASTPLAY" id="1567167303%2FProperties%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":penthera-common:dokkaHtmlPartial/main" data-filterable-set=":penthera-common:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-i-n-t-e-n-t_-e-v-e-n-t_-a-d-d_-f-a-s-t-p-l-a-y.html">INTENT_EVENT_ADD_FASTPLAY</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1567167303%2FProperties%2F-25591989"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":penthera-common:dokkaHtmlPartial/main"><a data-name="1567167303%2FProperties%2F-25591989" anchor-label="INTENT_EVENT_ADD_FASTPLAY" id="1567167303%2FProperties%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-i-n-t-e-n-t_-e-v-e-n-t_-a-d-d_-f-a-s-t-p-l-a-y.html">INTENT_EVENT_ADD_FASTPLAY</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="1567167303%2FProperties%2F-25591989" anchor-label="INTENT_EVENT_ADD_FASTPLAY" id="1567167303%2FProperties%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a>Broadcast when the user has added a fastplay file to be processed.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1767219580%2FProperties%2F-25591989" anchor-label="INTENT_EVENT_APP_LAUNCH" id="-1767219580%2FProperties%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":penthera-common:dokkaHtmlPartial/main" data-filterable-set=":penthera-common:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-i-n-t-e-n-t_-e-v-e-n-t_-a-p-p_-l-a-u-n-c-h.html">INTENT_EVENT_APP_LAUNCH</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1767219580%2FProperties%2F-25591989"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":penthera-common:dokkaHtmlPartial/main"><a data-name="-1767219580%2FProperties%2F-25591989" anchor-label="INTENT_EVENT_APP_LAUNCH" id="-1767219580%2FProperties%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-i-n-t-e-n-t_-e-v-e-n-t_-a-p-p_-l-a-u-n-c-h.html">INTENT_EVENT_APP_LAUNCH</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-1767219580%2FProperties%2F-25591989" anchor-label="INTENT_EVENT_APP_LAUNCH" id="-1767219580%2FProperties%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a>Broadcast when a fresh application launch is detected  This is appended to the value defined for the <code class="lang-kotlin">com.penthera.virtuososdk.client.pckg</code> metadata in the application's manifest.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-24245989%2FProperties%2F-25591989" anchor-label="INTENT_EVENT_ASSET_DELETED" id="-24245989%2FProperties%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":penthera-common:dokkaHtmlPartial/main" data-filterable-set=":penthera-common:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-i-n-t-e-n-t_-e-v-e-n-t_-a-s-s-e-t_-d-e-l-e-t-e-d.html">INTENT_EVENT_ASSET_DELETED</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-24245989%2FProperties%2F-25591989"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":penthera-common:dokkaHtmlPartial/main"><a data-name="-24245989%2FProperties%2F-25591989" anchor-label="INTENT_EVENT_ASSET_DELETED" id="-24245989%2FProperties%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-i-n-t-e-n-t_-e-v-e-n-t_-a-s-s-e-t_-d-e-l-e-t-e-d.html">INTENT_EVENT_ASSET_DELETED</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-24245989%2FProperties%2F-25591989" anchor-label="INTENT_EVENT_ASSET_DELETED" id="-24245989%2FProperties%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a>Broadcast when the user deletes a file.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1963542169%2FProperties%2F-25591989" anchor-label="INTENT_EVENT_ASSET_EXPIRE" id="-1963542169%2FProperties%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":penthera-common:dokkaHtmlPartial/main" data-filterable-set=":penthera-common:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-i-n-t-e-n-t_-e-v-e-n-t_-a-s-s-e-t_-e-x-p-i-r-e.html">INTENT_EVENT_ASSET_EXPIRE</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1963542169%2FProperties%2F-25591989"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":penthera-common:dokkaHtmlPartial/main"><a data-name="-1963542169%2FProperties%2F-25591989" anchor-label="INTENT_EVENT_ASSET_EXPIRE" id="-1963542169%2FProperties%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-i-n-t-e-n-t_-e-v-e-n-t_-a-s-s-e-t_-e-x-p-i-r-e.html">INTENT_EVENT_ASSET_EXPIRE</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-1963542169%2FProperties%2F-25591989" anchor-label="INTENT_EVENT_ASSET_EXPIRE" id="-1963542169%2FProperties%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a>Broadcast when an asset is determined to be expired.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1818607861%2FProperties%2F-25591989" anchor-label="INTENT_EVENT_ASSET_REMOVED_FROM_QUEUE" id="-1818607861%2FProperties%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":penthera-common:dokkaHtmlPartial/main" data-filterable-set=":penthera-common:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-i-n-t-e-n-t_-e-v-e-n-t_-a-s-s-e-t_-r-e-m-o-v-e-d_-f-r-o-m_-q-u-e-u-e.html">INTENT_EVENT_ASSET_REMOVED_FROM_QUEUE</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1818607861%2FProperties%2F-25591989"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":penthera-common:dokkaHtmlPartial/main"><a data-name="-1818607861%2FProperties%2F-25591989" anchor-label="INTENT_EVENT_ASSET_REMOVED_FROM_QUEUE" id="-1818607861%2FProperties%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-i-n-t-e-n-t_-e-v-e-n-t_-a-s-s-e-t_-r-e-m-o-v-e-d_-f-r-o-m_-q-u-e-u-e.html">INTENT_EVENT_ASSET_REMOVED_FROM_QUEUE</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-1818607861%2FProperties%2F-25591989" anchor-label="INTENT_EVENT_ASSET_REMOVED_FROM_QUEUE" id="-1818607861%2FProperties%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a>Broadcast when the SDK has removed a file from the download queue.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1629754795%2FProperties%2F-25591989" anchor-label="INTENT_EVENT_DOWNLOAD_COMPLETE" id="-1629754795%2FProperties%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":penthera-common:dokkaHtmlPartial/main" data-filterable-set=":penthera-common:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-i-n-t-e-n-t_-e-v-e-n-t_-d-o-w-n-l-o-a-d_-c-o-m-p-l-e-t-e.html">INTENT_EVENT_DOWNLOAD_COMPLETE</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1629754795%2FProperties%2F-25591989"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":penthera-common:dokkaHtmlPartial/main"><a data-name="-1629754795%2FProperties%2F-25591989" anchor-label="INTENT_EVENT_DOWNLOAD_COMPLETE" id="-1629754795%2FProperties%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-i-n-t-e-n-t_-e-v-e-n-t_-d-o-w-n-l-o-a-d_-c-o-m-p-l-e-t-e.html">INTENT_EVENT_DOWNLOAD_COMPLETE</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-1629754795%2FProperties%2F-25591989" anchor-label="INTENT_EVENT_DOWNLOAD_COMPLETE" id="-1629754795%2FProperties%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a>Broadcast when a file download completes.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="258064068%2FProperties%2F-25591989" anchor-label="INTENT_EVENT_DOWNLOAD_ERROR" id="258064068%2FProperties%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":penthera-common:dokkaHtmlPartial/main" data-filterable-set=":penthera-common:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-i-n-t-e-n-t_-e-v-e-n-t_-d-o-w-n-l-o-a-d_-e-r-r-o-r.html">INTENT_EVENT_DOWNLOAD_ERROR</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="258064068%2FProperties%2F-25591989"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":penthera-common:dokkaHtmlPartial/main"><a data-name="258064068%2FProperties%2F-25591989" anchor-label="INTENT_EVENT_DOWNLOAD_ERROR" id="258064068%2FProperties%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-i-n-t-e-n-t_-e-v-e-n-t_-d-o-w-n-l-o-a-d_-e-r-r-o-r.html">INTENT_EVENT_DOWNLOAD_ERROR</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="258064068%2FProperties%2F-25591989" anchor-label="INTENT_EVENT_DOWNLOAD_ERROR" id="258064068%2FProperties%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a>Broadcast when a file has stopped downloading due to errors.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1952460834%2FProperties%2F-25591989" anchor-label="INTENT_EVENT_DOWNLOAD_LIMIT_REACHED" id="-1952460834%2FProperties%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":penthera-common:dokkaHtmlPartial/main" data-filterable-set=":penthera-common:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-i-n-t-e-n-t_-e-v-e-n-t_-d-o-w-n-l-o-a-d_-l-i-m-i-t_-r-e-a-c-h-e-d.html">INTENT_EVENT_DOWNLOAD_LIMIT_REACHED</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1952460834%2FProperties%2F-25591989"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":penthera-common:dokkaHtmlPartial/main"><a data-name="-1952460834%2FProperties%2F-25591989" anchor-label="INTENT_EVENT_DOWNLOAD_LIMIT_REACHED" id="-1952460834%2FProperties%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-i-n-t-e-n-t_-e-v-e-n-t_-d-o-w-n-l-o-a-d_-l-i-m-i-t_-r-e-a-c-h-e-d.html">INTENT_EVENT_DOWNLOAD_LIMIT_REACHED</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-1952460834%2FProperties%2F-25591989" anchor-label="INTENT_EVENT_DOWNLOAD_LIMIT_REACHED" id="-1952460834%2FProperties%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a>Broadcast when downloads are no longer possible due to reaching the limist set by the Max Account Downloads rule and the Max Downloads Per Asset rule.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1267195746%2FProperties%2F-25591989" anchor-label="INTENT_EVENT_DOWNLOAD_REQUESTED" id="-1267195746%2FProperties%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":penthera-common:dokkaHtmlPartial/main" data-filterable-set=":penthera-common:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-i-n-t-e-n-t_-e-v-e-n-t_-d-o-w-n-l-o-a-d_-r-e-q-u-e-s-t-e-d.html">INTENT_EVENT_DOWNLOAD_REQUESTED</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1267195746%2FProperties%2F-25591989"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":penthera-common:dokkaHtmlPartial/main"><a data-name="-1267195746%2FProperties%2F-25591989" anchor-label="INTENT_EVENT_DOWNLOAD_REQUESTED" id="-1267195746%2FProperties%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-i-n-t-e-n-t_-e-v-e-n-t_-d-o-w-n-l-o-a-d_-r-e-q-u-e-s-t-e-d.html">INTENT_EVENT_DOWNLOAD_REQUESTED</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-1267195746%2FProperties%2F-25591989" anchor-label="INTENT_EVENT_DOWNLOAD_REQUESTED" id="-1267195746%2FProperties%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a>Broadcast when the SDK registers a new asset has been requested for download.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="490161578%2FProperties%2F-25591989" anchor-label="INTENT_EVENT_DOWNLOAD_START" id="490161578%2FProperties%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":penthera-common:dokkaHtmlPartial/main" data-filterable-set=":penthera-common:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-i-n-t-e-n-t_-e-v-e-n-t_-d-o-w-n-l-o-a-d_-s-t-a-r-t.html">INTENT_EVENT_DOWNLOAD_START</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="490161578%2FProperties%2F-25591989"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":penthera-common:dokkaHtmlPartial/main"><a data-name="490161578%2FProperties%2F-25591989" anchor-label="INTENT_EVENT_DOWNLOAD_START" id="490161578%2FProperties%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-i-n-t-e-n-t_-e-v-e-n-t_-d-o-w-n-l-o-a-d_-s-t-a-r-t.html">INTENT_EVENT_DOWNLOAD_START</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="490161578%2FProperties%2F-25591989" anchor-label="INTENT_EVENT_DOWNLOAD_START" id="490161578%2FProperties%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a>Broadcast when a file begins to download.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="1585859568%2FProperties%2F-25591989" anchor-label="INTENT_EVENT_DOWNLOAD_WARNING" id="1585859568%2FProperties%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":penthera-common:dokkaHtmlPartial/main" data-filterable-set=":penthera-common:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-i-n-t-e-n-t_-e-v-e-n-t_-d-o-w-n-l-o-a-d_-w-a-r-n-i-n-g.html">INTENT_EVENT_DOWNLOAD_WARNING</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1585859568%2FProperties%2F-25591989"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":penthera-common:dokkaHtmlPartial/main"><a data-name="1585859568%2FProperties%2F-25591989" anchor-label="INTENT_EVENT_DOWNLOAD_WARNING" id="1585859568%2FProperties%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-i-n-t-e-n-t_-e-v-e-n-t_-d-o-w-n-l-o-a-d_-w-a-r-n-i-n-g.html">INTENT_EVENT_DOWNLOAD_WARNING</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="1585859568%2FProperties%2F-25591989" anchor-label="INTENT_EVENT_DOWNLOAD_WARNING" id="1585859568%2FProperties%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a>Broadcast when a file has a non-blocking error during downloading.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="399579107%2FProperties%2F-25591989" anchor-label="INTENT_EVENT_FASTPLAY_ENABLED" id="399579107%2FProperties%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":penthera-common:dokkaHtmlPartial/main" data-filterable-set=":penthera-common:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-i-n-t-e-n-t_-e-v-e-n-t_-f-a-s-t-p-l-a-y_-e-n-a-b-l-e-d.html">INTENT_EVENT_FASTPLAY_ENABLED</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="399579107%2FProperties%2F-25591989"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":penthera-common:dokkaHtmlPartial/main"><a data-name="399579107%2FProperties%2F-25591989" anchor-label="INTENT_EVENT_FASTPLAY_ENABLED" id="399579107%2FProperties%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-i-n-t-e-n-t_-e-v-e-n-t_-f-a-s-t-p-l-a-y_-e-n-a-b-l-e-d.html">INTENT_EVENT_FASTPLAY_ENABLED</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="399579107%2FProperties%2F-25591989" anchor-label="INTENT_EVENT_FASTPLAY_ENABLED" id="399579107%2FProperties%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a>Broadcast when a fastplay asset is enabled ready for playback.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-2080226375%2FProperties%2F-25591989" anchor-label="INTENT_EVENT_FASTPLAY_INITIATED" id="-2080226375%2FProperties%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":penthera-common:dokkaHtmlPartial/main" data-filterable-set=":penthera-common:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-i-n-t-e-n-t_-e-v-e-n-t_-f-a-s-t-p-l-a-y_-i-n-i-t-i-a-t-e-d.html">INTENT_EVENT_FASTPLAY_INITIATED</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2080226375%2FProperties%2F-25591989"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":penthera-common:dokkaHtmlPartial/main"><a data-name="-2080226375%2FProperties%2F-25591989" anchor-label="INTENT_EVENT_FASTPLAY_INITIATED" id="-2080226375%2FProperties%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-i-n-t-e-n-t_-e-v-e-n-t_-f-a-s-t-p-l-a-y_-i-n-i-t-i-a-t-e-d.html">INTENT_EVENT_FASTPLAY_INITIATED</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-2080226375%2FProperties%2F-25591989" anchor-label="INTENT_EVENT_FASTPLAY_INITIATED" id="-2080226375%2FProperties%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a>Broadcast when a player plays a fastplay asset.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="185063775%2FProperties%2F-25591989" anchor-label="INTENT_EVENT_MAX_ERRORS_RESET" id="185063775%2FProperties%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":penthera-common:dokkaHtmlPartial/main" data-filterable-set=":penthera-common:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-i-n-t-e-n-t_-e-v-e-n-t_-m-a-x_-e-r-r-o-r-s_-r-e-s-e-t.html">INTENT_EVENT_MAX_ERRORS_RESET</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="185063775%2FProperties%2F-25591989"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":penthera-common:dokkaHtmlPartial/main"><a data-name="185063775%2FProperties%2F-25591989" anchor-label="INTENT_EVENT_MAX_ERRORS_RESET" id="185063775%2FProperties%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-i-n-t-e-n-t_-e-v-e-n-t_-m-a-x_-e-r-r-o-r-s_-r-e-s-e-t.html">INTENT_EVENT_MAX_ERRORS_RESET</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="185063775%2FProperties%2F-25591989" anchor-label="INTENT_EVENT_MAX_ERRORS_RESET" id="185063775%2FProperties%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a>Broadcast when a file was blocked due to errors and has now had the error condition reset for downloading to continue.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1081699970%2FProperties%2F-25591989" anchor-label="INTENT_EVENT_PLAY_START" id="-1081699970%2FProperties%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":penthera-common:dokkaHtmlPartial/main" data-filterable-set=":penthera-common:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-i-n-t-e-n-t_-e-v-e-n-t_-p-l-a-y_-s-t-a-r-t.html">INTENT_EVENT_PLAY_START</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1081699970%2FProperties%2F-25591989"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":penthera-common:dokkaHtmlPartial/main"><a data-name="-1081699970%2FProperties%2F-25591989" anchor-label="INTENT_EVENT_PLAY_START" id="-1081699970%2FProperties%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-i-n-t-e-n-t_-e-v-e-n-t_-p-l-a-y_-s-t-a-r-t.html">INTENT_EVENT_PLAY_START</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-1081699970%2FProperties%2F-25591989" anchor-label="INTENT_EVENT_PLAY_START" id="-1081699970%2FProperties%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a>Broadcast when a player has begun local playback of the asset.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="1015445976%2FProperties%2F-25591989" anchor-label="INTENT_EVENT_PLAY_STOP" id="1015445976%2FProperties%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":penthera-common:dokkaHtmlPartial/main" data-filterable-set=":penthera-common:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-i-n-t-e-n-t_-e-v-e-n-t_-p-l-a-y_-s-t-o-p.html">INTENT_EVENT_PLAY_STOP</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1015445976%2FProperties%2F-25591989"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":penthera-common:dokkaHtmlPartial/main"><a data-name="1015445976%2FProperties%2F-25591989" anchor-label="INTENT_EVENT_PLAY_STOP" id="1015445976%2FProperties%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-i-n-t-e-n-t_-e-v-e-n-t_-p-l-a-y_-s-t-o-p.html">INTENT_EVENT_PLAY_STOP</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="1015445976%2FProperties%2F-25591989" anchor-label="INTENT_EVENT_PLAY_STOP" id="1015445976%2FProperties%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a>Broadcast when a player has stopped local playback of the asset.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="964484942%2FProperties%2F-25591989" anchor-label="INTENT_EVENT_PLAYBACK_INITIATED" id="964484942%2FProperties%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":penthera-common:dokkaHtmlPartial/main" data-filterable-set=":penthera-common:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-i-n-t-e-n-t_-e-v-e-n-t_-p-l-a-y-b-a-c-k_-i-n-i-t-i-a-t-e-d.html">INTENT_EVENT_PLAYBACK_INITIATED</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="964484942%2FProperties%2F-25591989"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":penthera-common:dokkaHtmlPartial/main"><a data-name="964484942%2FProperties%2F-25591989" anchor-label="INTENT_EVENT_PLAYBACK_INITIATED" id="964484942%2FProperties%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-i-n-t-e-n-t_-e-v-e-n-t_-p-l-a-y-b-a-c-k_-i-n-i-t-i-a-t-e-d.html">INTENT_EVENT_PLAYBACK_INITIATED</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="964484942%2FProperties%2F-25591989" anchor-label="INTENT_EVENT_PLAYBACK_INITIATED" id="964484942%2FProperties%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a>Broadcast when a player first begins playback of the asset.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="2100040730%2FProperties%2F-25591989" anchor-label="INTENT_EVENT_PLAYBACK_STATS" id="2100040730%2FProperties%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":penthera-common:dokkaHtmlPartial/main" data-filterable-set=":penthera-common:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-i-n-t-e-n-t_-e-v-e-n-t_-p-l-a-y-b-a-c-k_-s-t-a-t-s.html">INTENT_EVENT_PLAYBACK_STATS</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2100040730%2FProperties%2F-25591989"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":penthera-common:dokkaHtmlPartial/main"><a data-name="2100040730%2FProperties%2F-25591989" anchor-label="INTENT_EVENT_PLAYBACK_STATS" id="2100040730%2FProperties%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-i-n-t-e-n-t_-e-v-e-n-t_-p-l-a-y-b-a-c-k_-s-t-a-t-s.html">INTENT_EVENT_PLAYBACK_STATS</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="2100040730%2FProperties%2F-25591989" anchor-label="INTENT_EVENT_PLAYBACK_STATS" id="2100040730%2FProperties%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a>Broadcast when a playback finishes, contains statistics regarding the playback.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1013443927%2FProperties%2F-25591989" anchor-label="INTENT_EVENT_QUEUE_FOR_DOWNLOAD" id="-1013443927%2FProperties%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":penthera-common:dokkaHtmlPartial/main" data-filterable-set=":penthera-common:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-i-n-t-e-n-t_-e-v-e-n-t_-q-u-e-u-e_-f-o-r_-d-o-w-n-l-o-a-d.html">INTENT_EVENT_QUEUE_FOR_DOWNLOAD</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1013443927%2FProperties%2F-25591989"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":penthera-common:dokkaHtmlPartial/main"><a data-name="-1013443927%2FProperties%2F-25591989" anchor-label="INTENT_EVENT_QUEUE_FOR_DOWNLOAD" id="-1013443927%2FProperties%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-i-n-t-e-n-t_-e-v-e-n-t_-q-u-e-u-e_-f-o-r_-d-o-w-n-l-o-a-d.html">INTENT_EVENT_QUEUE_FOR_DOWNLOAD</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-1013443927%2FProperties%2F-25591989" anchor-label="INTENT_EVENT_QUEUE_FOR_DOWNLOAD" id="-1013443927%2FProperties%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a>Broadcast when the user has added a file to the download queue.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="846202134%2FProperties%2F-25591989" anchor-label="INTENT_EVENT_RESET" id="846202134%2FProperties%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":penthera-common:dokkaHtmlPartial/main" data-filterable-set=":penthera-common:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-i-n-t-e-n-t_-e-v-e-n-t_-r-e-s-e-t.html">INTENT_EVENT_RESET</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="846202134%2FProperties%2F-25591989"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":penthera-common:dokkaHtmlPartial/main"><a data-name="846202134%2FProperties%2F-25591989" anchor-label="INTENT_EVENT_RESET" id="846202134%2FProperties%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-i-n-t-e-n-t_-e-v-e-n-t_-r-e-s-e-t.html">INTENT_EVENT_RESET</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="846202134%2FProperties%2F-25591989" anchor-label="INTENT_EVENT_RESET" id="846202134%2FProperties%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a>Broadcast after the SDK has handled a remote kill or detected a reinstall of the client app.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1684929905%2FProperties%2F-25591989" anchor-label="INTENT_EVENT_STREAM_PLAY_START" id="-1684929905%2FProperties%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":penthera-common:dokkaHtmlPartial/main" data-filterable-set=":penthera-common:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-i-n-t-e-n-t_-e-v-e-n-t_-s-t-r-e-a-m_-p-l-a-y_-s-t-a-r-t.html">INTENT_EVENT_STREAM_PLAY_START</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1684929905%2FProperties%2F-25591989"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":penthera-common:dokkaHtmlPartial/main"><a data-name="-1684929905%2FProperties%2F-25591989" anchor-label="INTENT_EVENT_STREAM_PLAY_START" id="-1684929905%2FProperties%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-i-n-t-e-n-t_-e-v-e-n-t_-s-t-r-e-a-m_-p-l-a-y_-s-t-a-r-t.html">INTENT_EVENT_STREAM_PLAY_START</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-1684929905%2FProperties%2F-25591989" anchor-label="INTENT_EVENT_STREAM_PLAY_START" id="-1684929905%2FProperties%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a>Broadcast when a player has begun streamed playback of the asset.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-2052054361%2FProperties%2F-25591989" anchor-label="INTENT_EVENT_STREAM_PLAY_STOP" id="-2052054361%2FProperties%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":penthera-common:dokkaHtmlPartial/main" data-filterable-set=":penthera-common:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-i-n-t-e-n-t_-e-v-e-n-t_-s-t-r-e-a-m_-p-l-a-y_-s-t-o-p.html">INTENT_EVENT_STREAM_PLAY_STOP</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2052054361%2FProperties%2F-25591989"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":penthera-common:dokkaHtmlPartial/main"><a data-name="-2052054361%2FProperties%2F-25591989" anchor-label="INTENT_EVENT_STREAM_PLAY_STOP" id="-2052054361%2FProperties%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-i-n-t-e-n-t_-e-v-e-n-t_-s-t-r-e-a-m_-p-l-a-y_-s-t-o-p.html">INTENT_EVENT_STREAM_PLAY_STOP</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-2052054361%2FProperties%2F-25591989" anchor-label="INTENT_EVENT_STREAM_PLAY_STOP" id="-2052054361%2FProperties%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a>Broadcast when a player has stopped streamed playback of the asset.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1690891652%2FProperties%2F-25591989" anchor-label="NOTIFICATION_EVENT_TAG" id="-1690891652%2FProperties%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":penthera-common:dokkaHtmlPartial/main" data-filterable-set=":penthera-common:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-n-o-t-i-f-i-c-a-t-i-o-n_-e-v-e-n-t_-t-a-g.html">NOTIFICATION_EVENT_TAG</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1690891652%2FProperties%2F-25591989"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":penthera-common:dokkaHtmlPartial/main"><a data-name="-1690891652%2FProperties%2F-25591989" anchor-label="NOTIFICATION_EVENT_TAG" id="-1690891652%2FProperties%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-n-o-t-i-f-i-c-a-t-i-o-n_-e-v-e-n-t_-t-a-g.html">NOTIFICATION_EVENT_TAG</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-1690891652%2FProperties%2F-25591989" anchor-label="NOTIFICATION_EVENT_TAG" id="-1690891652%2FProperties%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a>Used to identify event-related notifications in a broadcast receiver</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        <div class="footer"><span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2022 Copyright</span><span
+                class="pull-right"><span>Generated by </span><a
+                href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+        </div>
+    </div>
+</div>
+</body>
+</html>

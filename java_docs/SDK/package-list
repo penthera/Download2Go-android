@@ -1,0 +1,13 @@
+$dokka.format:html-v1
+$dokka.linkExtension:html
+
+com.penthera
+com.penthera.virtuososdk
+com.penthera.virtuososdk.client
+com.penthera.virtuososdk.client.autodownload
+com.penthera.virtuososdk.client.builders
+com.penthera.virtuososdk.client.drm
+com.penthera.virtuososdk.client.drm.castlabs
+com.penthera.virtuososdk.client.push
+com.penthera.virtuososdk.service
+

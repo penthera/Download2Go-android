@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>PlayAssureManager</title>
+<!--[+]cmd:{"@class":"org.jetbrains.dokka.base.templating.PathToRootSubstitutionCommand","pattern":"###","default":"../../"}-->    <link href="###images/logo-icon.svg" rel="icon" type="image/svg">
+    <script>var pathToRoot = "###";</script>
+<!--[-]cmd-->    <script>const storage = localStorage.getItem("dokka-dark-mode")
+const savedDarkMode = storage ? JSON.parse(storage) : false
+if(savedDarkMode === true){
+    document.getElementsByTagName("html")[0].classList.add("theme-dark")
+}</script>
+<!--[+]cmd:{"@class":"org.jetbrains.dokka.base.templating.PathToRootSubstitutionCommand","pattern":"###","default":"../../"}--><script type="text/javascript" src="###scripts/sourceset_dependencies.js" async="async"></script>
+<link href="###styles/style.css" rel="Stylesheet">
+<link href="###styles/jetbrains-mono.css" rel="Stylesheet">
+<link href="###styles/main.css" rel="Stylesheet">
+<link href="###styles/prism.css" rel="Stylesheet">
+<link href="###styles/logo-styles.css" rel="Stylesheet">
+<script type="text/javascript" src="###scripts/clipboard.js" async="async"></script>
+<script type="text/javascript" src="###scripts/navigation-loader.js" async="async"></script>
+<script type="text/javascript" src="###scripts/platform-content-handler.js" async="async"></script>
+<script type="text/javascript" src="###scripts/main.js" defer="defer"></script>
+<script type="text/javascript" src="###scripts/prism.js" async="async"></script>
+<!--[-]cmd--></head>
+<body>
+<div class="navigation-wrapper" id="navigation-wrapper">
+    <div id="leftToggler"><span class="icon-toggler"></span></div>
+    <div class="library-name">
+<!--[+]cmd:{"@class":"org.jetbrains.dokka.base.templating.PathToRootSubstitutionCommand","pattern":"###","default":"../../"}-->            <a href="###index.html">
+<!--[+]cmd:{"@class":"org.jetbrains.dokka.base.templating.ProjectNameSubstitutionCommand","pattern":"###","default":"PlayAssure SDK Library"}-->                    <span>###</span>
+<!--[-]cmd-->            </a>
+<!--[-]cmd-->    </div>
+    <div>
+<dokka-template-command data="{&quot;@class&quot;:&quot;org.jetbrains.dokka.base.templating.ReplaceVersionsCommand&quot;,&quot;location&quot;:&quot;com.penthera.playassure/-play-assure-manager/index.html&quot;}"></dokka-template-command>    </div>
+    <div class="pull-right d-flex">
+        <button id="theme-toggle-button"><span id="theme-toggle"></span></button>
+        <div id="searchBar"></div>
+    </div>
+</div>
+<div id="container">
+    <div id="leftColumn">
+        <div id="sideMenu"></div>
+    </div>
+    <div id="main">
+<div class="main-content" id="content" pageIds="PlayAssure SDK Library::com.penthera.playassure/PlayAssureManager///PointingToDeclaration//-292256866">
+  <div class="breadcrumbs"><a href="../../index.html">PlayAssure SDK Library</a><span class="delimiter">/</span><a href="../index.html">com.penthera.playassure</a><span class="delimiter">/</span><a href="index.html">PlayAssureManager</a></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Play</span><wbr></wbr><span>Assure</span><wbr></wbr><span><span>Manager</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="index.html">PlayAssureManager</a><span class="token punctuation">(</span><span class="parameters wrapped"><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span class="token keyword">val </span>context<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/android/content/Context.html">Context</a><span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span class="token keyword">val </span>sourceURL<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span class="token keyword">val </span>config<span class="token operator">: </span><a href="../-play-assure-config/index.html">PlayAssureConfig</a></span></span><span class="token punctuation">)</span> : <dokka-template-command data="{&quot;@class&quot;:&quot;org.jetbrains.dokka.base.templating.ResolveLinkCommand&quot;,&quot;dri&quot;:{&quot;packageName&quot;:&quot;com.penthera.common.data.events.data&quot;,&quot;classNames&quot;:&quot;PlayStatsEventData.PlayStatsEventDataReporter&quot;,&quot;callable&quot;:null,&quot;target&quot;:{&quot;@class&quot;:&quot;org.jetbrains.dokka.links.PointingToDeclaration&quot;},&quot;extra&quot;:null}}">PlayStatsEventData.PlayStatsEventDataReporter</dokka-template-command><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><p class="paragraph">The PlayAssure SDK entry point. Create a PlayAssureConfig to pass in when constructing the manager. Create the PlayAssureManager for an asset and fetch the URL to  pass to the player to begin playback.</p></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="Types">Types</button><button class="section-tab" data-togglable="Constructors">Constructors</button><button class="section-tab" data-togglable="Functions">Functions</button><button class="section-tab" data-togglable="Properties">Properties</button></div>
+    <div class="tabs-section-body">
+      <h2 class="tabbedcontent">Constructors</h2>
+      <div class="table" data-togglable="Constructors"><a data-name="-529679932%2FConstructors%2F-292256866" anchor-label="PlayAssureManager" id="-529679932%2FConstructors%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue TabbedContent">
+            <div class=""><span class="inline-flex">
+                <div><a href="-play-assure-manager.html"><span>Play</span><wbr></wbr><span>Assure</span><wbr></wbr><span><span>Manager</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-529679932%2FConstructors%2F-292256866"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="-play-assure-manager.html"><span class="token function">PlayAssureManager</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">context<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/android/content/Context.html">Context</a><span class="token punctuation">, </span></span><span class="parameter ">config<span class="token operator">: </span><a href="../-play-assure-config/index.html">PlayAssureConfig</a></span></span><span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Constructor to allow initialization</p></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="691403583%2FConstructors%2F-292256866" anchor-label="PlayAssureManager" id="691403583%2FConstructors%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue TabbedContent">
+            <div class=""><span class="inline-flex">
+                <div><a href="-play-assure-manager.html"><span>Play</span><wbr></wbr><span>Assure</span><wbr></wbr><span><span>Manager</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="691403583%2FConstructors%2F-292256866"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="-play-assure-manager.html"><span class="token function">PlayAssureManager</span></a><span class="token punctuation">(</span><span class="parameters wrapped"><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;context<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/android/content/Context.html">Context</a><span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;sourceURL<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;config<span class="token operator">: </span><a href="../-play-assure-config/index.html">PlayAssureConfig</a></span></span><span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h2 class="">Types</h2>
+      <div class="table" data-togglable="Types"><a data-name="-688776293%2FClasslikes%2F-292256866" anchor-label="Companion" id="-688776293%2FClasslikes%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-companion/index.html"><span><span>Companion</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-688776293%2FClasslikes%2F-292256866"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">object </span><a href="-companion/index.html">Companion</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h2 class="">Functions</h2>
+      <div class="table" data-togglable="Functions"><a data-name="691554315%2FFunctions%2F-292256866" anchor-label="findSourceURL" id="691554315%2FFunctions%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="find-source-u-r-l.html"><span>find</span><wbr></wbr><span>Source</span><wbr></wbr><span><span>URL</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="691554315%2FFunctions%2F-292256866"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="find-source-u-r-l.html"><span class="token function">findSourceURL</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">url<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="1070848906%2FFunctions%2F-292256866" anchor-label="findStreamItem" id="1070848906%2FFunctions%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="find-stream-item.html"><span>find</span><wbr></wbr><span>Stream</span><wbr></wbr><span><span>Item</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1070848906%2FFunctions%2F-292256866"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation">@</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.time/-experimental-time/index.html"><span class="token annotation">ExperimentalTime</span></a></div></div><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="find-stream-item.html"><span class="token function">findStreamItem</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">url<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><dokka-template-command data="{&quot;@class&quot;:&quot;org.jetbrains.dokka.base.templating.ResolveLinkCommand&quot;,&quot;dri&quot;:{&quot;packageName&quot;:&quot;com.penthera.playassure.internal.manifeststream&quot;,&quot;classNames&quot;:&quot;StreamItem&quot;,&quot;callable&quot;:null,&quot;target&quot;:{&quot;@class&quot;:&quot;org.jetbrains.dokka.links.PointingToDeclaration&quot;},&quot;extra&quot;:null}}">StreamItem</dokka-template-command><span class="token operator">?</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="424241891%2FFunctions%2F-292256866" anchor-label="processLastStreamTypeTypeSet" id="424241891%2FFunctions%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="process-last-stream-type-type-set.html"><span>process</span><wbr></wbr><span>Last</span><wbr></wbr><span>Stream</span><wbr></wbr><span>Type</span><wbr></wbr><span>Type</span><wbr></wbr><span><span>Set</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="424241891%2FFunctions%2F-292256866"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="process-last-stream-type-type-set.html"><span class="token function">processLastStreamTypeTypeSet</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">streamItem<span class="token operator">: </span><dokka-template-command data="{&quot;@class&quot;:&quot;org.jetbrains.dokka.base.templating.ResolveLinkCommand&quot;,&quot;dri&quot;:{&quot;packageName&quot;:&quot;com.penthera.playassure.internal.manifeststream&quot;,&quot;classNames&quot;:&quot;StreamItem&quot;,&quot;callable&quot;:null,&quot;target&quot;:{&quot;@class&quot;:&quot;org.jetbrains.dokka.links.PointingToDeclaration&quot;},&quot;extra&quot;:null}}">StreamItem</dokka-template-command></span></span><span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="736922066%2FFunctions%2F-292256866" anchor-label="report" id="736922066%2FFunctions%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="report.html"><span><span>report</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="736922066%2FFunctions%2F-292256866"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="report.html"><span class="token function">report</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-map/index.html">Map</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token operator">?</span><span class="token operator">&gt;</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-538164568%2FFunctions%2F-292256866" anchor-label="setLastStreamType" id="-538164568%2FFunctions%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="set-last-stream-type.html"><span>set</span><wbr></wbr><span>Last</span><wbr></wbr><span>Stream</span><wbr></wbr><span><span>Type</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-538164568%2FFunctions%2F-292256866"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="set-last-stream-type.html"><span class="token function">setLastStreamType</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">streamItem<span class="token operator">: </span><dokka-template-command data="{&quot;@class&quot;:&quot;org.jetbrains.dokka.base.templating.ResolveLinkCommand&quot;,&quot;dri&quot;:{&quot;packageName&quot;:&quot;com.penthera.playassure.internal.manifeststream&quot;,&quot;classNames&quot;:&quot;StreamItem&quot;,&quot;callable&quot;:null,&quot;target&quot;:{&quot;@class&quot;:&quot;org.jetbrains.dokka.links.PointingToDeclaration&quot;},&quot;extra&quot;:null}}">StreamItem</dokka-template-command></span></span><span class="token punctuation">)</span><span class="token operator">: </span><dokka-template-command data="{&quot;@class&quot;:&quot;org.jetbrains.dokka.base.templating.ResolveLinkCommand&quot;,&quot;dri&quot;:{&quot;packageName&quot;:&quot;kotlinx.coroutines&quot;,&quot;classNames&quot;:&quot;Job&quot;,&quot;callable&quot;:null,&quot;target&quot;:{&quot;@class&quot;:&quot;org.jetbrains.dokka.links.PointingToDeclaration&quot;},&quot;extra&quot;:null}}">Job</dokka-template-command><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-163842896%2FFunctions%2F-292256866" anchor-label="shutdown" id="-163842896%2FFunctions%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="shutdown.html"><span><span>shutdown</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-163842896%2FFunctions%2F-292256866"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="shutdown.html"><span class="token function">shutdown</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Shutdown and stop PlayAssure playback.</p></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="680013013%2FFunctions%2F-292256866" anchor-label="shutdownSync" id="680013013%2FFunctions%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="shutdown-sync.html"><span>shutdown</span><wbr></wbr><span><span>Sync</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="680013013%2FFunctions%2F-292256866"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="shutdown-sync.html"><span class="token function">shutdownSync</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">A synchronous shutdown method available to Java implementers. Do not call from the main thread.</p></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1879676620%2FFunctions%2F-292256866" anchor-label="startupSDK" id="-1879676620%2FFunctions%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="startup-s-d-k.html"><span>startup</span><wbr></wbr><span><span>SDK</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1879676620%2FFunctions%2F-292256866"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="startup-s-d-k.html"><span class="token function">startupSDK</span></a><span class="token punctuation">(</span><span class="parameters wrapped"><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;serverUrl<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;publicKey<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;privateKey<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;userId<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;externalDeviceId<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span></span></span><span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h2 class="">Properties</h2>
+      <div class="table" data-togglable="Properties"><a data-name="1305919277%2FProperties%2F-292256866" anchor-label="complete" id="1305919277%2FProperties%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="complete.html">complete</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1305919277%2FProperties%2F-292256866"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><a data-name="1305919277%2FProperties%2F-292256866" anchor-label="complete" id="1305919277%2FProperties%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="complete.html">complete</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="1305919277%2FProperties%2F-292256866" anchor-label="complete" id="1305919277%2FProperties%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a><p class="paragraph">Flag indicating PlayAssure has downloaded all segments necessary for a complete playback session.</p></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="321628036%2FProperties%2F-292256866" anchor-label="config" id="321628036%2FProperties%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="config.html">config</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="321628036%2FProperties%2F-292256866"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><a data-name="321628036%2FProperties%2F-292256866" anchor-label="config" id="321628036%2FProperties%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="config.html">config</a><span class="token operator">: </span><a href="../-play-assure-config/index.html">PlayAssureConfig</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="321628036%2FProperties%2F-292256866" anchor-label="config" id="321628036%2FProperties%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a><p class="paragraph">Configures the options for PlayAssure</p></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-17153723%2FProperties%2F-292256866" anchor-label="context" id="-17153723%2FProperties%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="context.html">context</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-17153723%2FProperties%2F-292256866"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><a data-name="-17153723%2FProperties%2F-292256866" anchor-label="context" id="-17153723%2FProperties%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="context.html">context</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/android/content/Context.html">Context</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-17153723%2FProperties%2F-292256866" anchor-label="context" id="-17153723%2FProperties%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a><p class="paragraph">The android context to use for accessing system resources</p></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="2005842802%2FProperties%2F-292256866" anchor-label="engineStatus" id="2005842802%2FProperties%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="engine-status.html">engineStatus</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2005842802%2FProperties%2F-292256866"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><a data-name="2005842802%2FProperties%2F-292256866" anchor-label="engineStatus" id="2005842802%2FProperties%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="engine-status.html">engineStatus</a><span class="token operator">: </span><a href="../-play-assure-engine-state/index.html">PlayAssureEngineState</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1631665493%2FProperties%2F-292256866" anchor-label="networkUnacceptable" id="-1631665493%2FProperties%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="network-unacceptable.html">networkUnacceptable</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1631665493%2FProperties%2F-292256866"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><a data-name="-1631665493%2FProperties%2F-292256866" anchor-label="networkUnacceptable" id="-1631665493%2FProperties%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="network-unacceptable.html">networkUnacceptable</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="448658745%2FProperties%2F-292256866" anchor-label="playAssureSession" id="448658745%2FProperties%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="play-assure-session.html">playAssureSession</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="448658745%2FProperties%2F-292256866"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><a data-name="448658745%2FProperties%2F-292256866" anchor-label="playAssureSession" id="448658745%2FProperties%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">var </span><a href="play-assure-session.html">playAssureSession</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">false</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="1328171392%2FProperties%2F-292256866" anchor-label="sourceURL" id="1328171392%2FProperties%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="source-u-r-l.html">sourceURL</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1328171392%2FProperties%2F-292256866"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><a data-name="1328171392%2FProperties%2F-292256866" anchor-label="sourceURL" id="1328171392%2FProperties%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="source-u-r-l.html">sourceURL</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="1328171392%2FProperties%2F-292256866" anchor-label="sourceURL" id="1328171392%2FProperties%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a><p class="paragraph">The source URL from which the asset will stream</p></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="1983278265%2FProperties%2F-292256866" anchor-label="streamingUrl" id="1983278265%2FProperties%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a>
+        <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="streaming-url.html">streamingUrl</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1983278265%2FProperties%2F-292256866"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><a data-name="1983278265%2FProperties%2F-292256866" anchor-label="streamingUrl" id="1983278265%2FProperties%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="streaming-url.html">streamingUrl</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="1983278265%2FProperties%2F-292256866" anchor-label="streamingUrl" id="1983278265%2FProperties%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a><p class="paragraph">URL that the player should use to stream the asset.</p></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        <div class="footer"><span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2022 Copyright</span><span
+                class="pull-right"><span>Generated by </span><a
+                href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+        </div>
+    </div>
+</div>
+</body>
+</html>

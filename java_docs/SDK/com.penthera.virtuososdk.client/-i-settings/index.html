@@ -1,0 +1,1355 @@
+<!doctype html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>ISettings</title>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">
+    <script>var pathToRoot = "../../../";</script>    <script>const storage = localStorage.getItem("dokka-dark-mode")
+const savedDarkMode = storage ? JSON.parse(storage) : false
+if(savedDarkMode === true){
+    document.getElementsByTagName("html")[0].classList.add("theme-dark")
+}</script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/jetbrains-mono.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async></script></head>
+<body>
+<div class="navigation-wrapper" id="navigation-wrapper">
+    <div id="leftToggler"><span class="icon-toggler"></span></div>
+    <div class="library-name">
+<a href="../../../index.html">
+<span>TMP</span>            </a>    </div>
+    <div>
+    </div>
+    <div class="pull-right d-flex">
+        <button id="theme-toggle-button"><span id="theme-toggle"></span></button>
+        <div id="searchBar"></div>
+    </div>
+</div>
+<div id="container">
+    <div id="leftColumn">
+        <div id="sideMenu"></div>
+    </div>
+    <div id="main">
+<div class="main-content" id="content" pageids="Download2Go Android SDK::com.penthera.virtuososdk.client/ISettings///PointingToDeclaration//1607690379">
+  <div class="breadcrumbs"><a href="../../index.html">Download2Go Android SDK</a><span class="delimiter">/</span><a href="../index.html">com.penthera.virtuososdk.client</a><span class="delimiter">/</span><a href="index.html">ISettings</a></div>
+  <div class="cover ">
+    <h1 class="cover"><span><span>ISettings</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">interface </span><a href="index.html">ISettings</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><p class="paragraph">Provides access to the settings which can be configured by the client. The Settings can be accessed through the <a href="../-virtuoso/get-settings.html">getSettings</a> call in Virtuoso. Modified settings are automatically saved and there is no need to call the save() method Modifications are buffered when multiple settings values are changed in close succession This allows you to chain modifications together and have the changes persisted in one operation, e.g: </p><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">
+    ISettings settings = Virtuoso.getSettings().setHeadroom(1024).setMaxStorageAllowed(10240);
+</code></pre><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div> Applications can listen for changes to these configuration values by implementing the <a href="../-observers/-i-engine-observer/setting-changed.html">settingChanged</a> method in <a href="../-observers/-i-engine-observer/index.html">IEngineObserver</a>. Flags reported through that API are detailed in: <a href="../../com.penthera.virtuososdk/-common/-setting-flag/index.html">SettingFlag</a> Get methods in this class return the current setting. If this has just been changed then the new value may not have propagated throughout the SDK, resulting in the old value being returned until the setting is committed and the settingChanged call has been received.<div class="block"></div></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="Functions">Functions</button><button class="section-tab" data-togglable="Properties">Properties</button></div>
+    <div class="tabs-section-body">
+      <h2 class="">Functions</h2>
+      <div class="table" data-togglable="Functions"><a data-name="1118441564%2FFunctions%2F1607690379" anchor-label="alwaysRequestPermission" id="1118441564%2FFunctions%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="always-request-permission.html"><span>always</span><wbr><span>Request</span><wbr><span><span>Permission</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1118441564%2FFunctions%2F1607690379"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="always-request-permission.html"><span class="token function">alwaysRequestPermission</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Always request permission.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-966602001%2FFunctions%2F1607690379" anchor-label="getAudioCodecsToDownload" id="-966602001%2FFunctions%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="get-audio-codecs-to-download.html"><span>get</span><wbr><span>Audio</span><wbr><span>Codecs</span><wbr><span>To</span><wbr><span><span>Download</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-966602001%2FFunctions%2F1607690379"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-audio-codecs-to-download.html"><span class="token function">getAudioCodecsToDownload</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html">Array</a><span class="token operator">&lt;</span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token operator">&gt;</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">The setting for limiting which types of audio codecs will be included in content downloads</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-357010227%2FFunctions%2F1607690379" anchor-label="getAuthenticationErrorAsExternalLock" id="-357010227%2FFunctions%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="get-authentication-error-as-external-lock.html"><span>get</span><wbr><span>Authentication</span><wbr><span>Error</span><wbr><span>As</span><wbr><span>External</span><wbr><span><span>Lock</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-357010227%2FFunctions%2F1607690379"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-authentication-error-as-external-lock.html"><span class="token function">getAuthenticationErrorAsExternalLock</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Get the current setting for if an HTTP authentication error is marked as an external lock status.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-529528086%2FFunctions%2F1607690379" anchor-label="getAutomaticDeleteEnabled" id="-529528086%2FFunctions%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="get-automatic-delete-enabled.html"><span>get</span><wbr><span>Automatic</span><wbr><span>Delete</span><wbr><span><span>Enabled</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-529528086%2FFunctions%2F1607690379"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-automatic-delete-enabled.html"><span class="token function">getAutomaticDeleteEnabled</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Get the current setting for if automatic delete is enabled.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="1316268298%2FFunctions%2F1607690379" anchor-label="getAutomaticDeleteInterval" id="1316268298%2FFunctions%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="get-automatic-delete-interval.html"><span>get</span><wbr><span>Automatic</span><wbr><span>Delete</span><wbr><span><span>Interval</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1316268298%2FFunctions%2F1607690379"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-automatic-delete-interval.html"><span class="token function">getAutomaticDeleteInterval</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">The interval used to delete failed downloads</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="386732567%2FFunctions%2F1607690379" anchor-label="getBatteryThreshold" id="386732567%2FFunctions%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="get-battery-threshold.html"><span>get</span><wbr><span>Battery</span><wbr><span><span>Threshold</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="386732567%2FFunctions%2F1607690379"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-battery-threshold.html"><span class="token function">getBatteryThreshold</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Current value for battery threshold.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-455749855%2FFunctions%2F1607690379" anchor-label="getCellularDataQuota" id="-455749855%2FFunctions%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="get-cellular-data-quota.html"><span>get</span><wbr><span>Cellular</span><wbr><span>Data</span><wbr><span><span>Quota</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-455749855%2FFunctions%2F1607690379"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-cellular-data-quota.html"><span class="token function">getCellularDataQuota</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Current value for cellular data quota.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1533603625%2FFunctions%2F1607690379" anchor-label="getCellularDataQuotaStart" id="-1533603625%2FFunctions%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="get-cellular-data-quota-start.html"><span>get</span><wbr><span>Cellular</span><wbr><span>Data</span><wbr><span>Quota</span><wbr><span><span>Start</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1533603625%2FFunctions%2F1607690379"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-cellular-data-quota-start.html"><span class="token function">getCellularDataQuotaStart</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Timestamp of when the current cell quota cycle began, in seconds since epoch.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1909942958%2FFunctions%2F1607690379" anchor-label="getDestinationPath" id="-1909942958%2FFunctions%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="get-destination-path.html"><span>get</span><wbr><span>Destination</span><wbr><span><span>Path</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1909942958%2FFunctions%2F1607690379"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-destination-path.html"><span class="token function">getDestinationPath</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Current value for destination path.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="1521715216%2FFunctions%2F1607690379" anchor-label="getDrmSecurityLevel" id="1521715216%2FFunctions%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="get-drm-security-level.html"><span>get</span><wbr><span>Drm</span><wbr><span>Security</span><wbr><span><span>Level</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1521715216%2FFunctions%2F1607690379"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-drm-security-level.html"><span class="token function">getDrmSecurityLevel</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Gets the requested security level the SDK will use when opening all <a href="https://developer.android.com/reference/kotlin/android/media/MediaDrm.html">android.media.MediaDrm</a> sessions.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="1783586415%2FFunctions%2F1607690379" anchor-label="getErrorAssetOnDRMFail" id="1783586415%2FFunctions%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="get-error-asset-on-d-r-m-fail.html"><span>get</span><wbr><span>Error</span><wbr><span>Asset</span><wbr><span>On</span><wbr><span><span>DRMFail</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1783586415%2FFunctions%2F1607690379"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-error-asset-on-d-r-m-fail.html"><span class="token function">getErrorAssetOnDRMFail</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Get the current setting for whether a DRM failure at the start of download should cause the asset to be marked as failed, which will prevent further download.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1935743159%2FFunctions%2F1607690379" anchor-label="getFastPlaySegmentCount" id="-1935743159%2FFunctions%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="get-fast-play-segment-count.html"><span>get</span><wbr><span>Fast</span><wbr><span>Play</span><wbr><span>Segment</span><wbr><span><span>Count</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1935743159%2FFunctions%2F1607690379"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-fast-play-segment-count.html"><span class="token function">getFastPlaySegmentCount</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">The setting for how many segments to download for Fast Play assets.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1475422725%2FFunctions%2F1607690379" anchor-label="getGlobalRequestHeaders" id="-1475422725%2FFunctions%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="get-global-request-headers.html"><span>get</span><wbr><span>Global</span><wbr><span>Request</span><wbr><span><span>Headers</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1475422725%2FFunctions%2F1607690379"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-global-request-headers.html"><span class="token function">getGlobalRequestHeaders</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/android/os/Bundle.html">Bundle</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">With this method, clients can retrieve the custom HTTP headers Virtuoso uses when making GET requests to download remote assets.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="288056026%2FFunctions%2F1607690379" anchor-label="getHeadroom" id="288056026%2FFunctions%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="get-headroom.html"><span>get</span><wbr><span><span>Headroom</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="288056026%2FFunctions%2F1607690379"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-headroom.html"><span class="token function">getHeadroom</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Current value for headroom.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="1048241290%2FFunctions%2F1607690379" anchor-label="getHTTPConnectionTimeout" id="1048241290%2FFunctions%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="get-h-t-t-p-connection-timeout.html"><span>get</span><wbr><span>HTTPConnection</span><wbr><span><span>Timeout</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1048241290%2FFunctions%2F1607690379"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-h-t-t-p-connection-timeout.html"><span class="token function">getHTTPConnectionTimeout</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">The connection timeout used when making GET requests to download Assets.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1501333217%2FFunctions%2F1607690379" anchor-label="getHTTPSocketTimeout" id="-1501333217%2FFunctions%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="get-h-t-t-p-socket-timeout.html"><span>get</span><wbr><span>HTTPSocket</span><wbr><span><span>Timeout</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1501333217%2FFunctions%2F1607690379"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-h-t-t-p-socket-timeout.html"><span class="token function">getHTTPSocketTimeout</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">The socket timeout used when making GET requests to download Assets.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="1997548026%2FFunctions%2F1607690379" anchor-label="getLanguageSettings" id="1997548026%2FFunctions%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="get-language-settings.html"><span>get</span><wbr><span>Language</span><wbr><span><span>Settings</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1997548026%2FFunctions%2F1607690379"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-language-settings.html"><span class="token function">getLanguageSettings</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-i-language-settings/index.html">ILanguageSettings</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">The setting for limiting which types of languages will be included in content downloads To configure Language settings, use the object returned by getLanguageSettings</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1150533716%2FFunctions%2F1607690379" anchor-label="getMaxDownloadConnections" id="-1150533716%2FFunctions%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="get-max-download-connections.html"><span>get</span><wbr><span>Max</span><wbr><span>Download</span><wbr><span><span>Connections</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1150533716%2FFunctions%2F1607690379"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-max-download-connections.html"><span class="token function">getMaxDownloadConnections</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">The setting for max permissible concurrent network connections in the downloader.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-605534021%2FFunctions%2F1607690379" anchor-label="getMaxPermittedSegmentErrors" id="-605534021%2FFunctions%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="get-max-permitted-segment-errors.html"><span>get</span><wbr><span>Max</span><wbr><span>Permitted</span><wbr><span>Segment</span><wbr><span><span>Errors</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-605534021%2FFunctions%2F1607690379"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-max-permitted-segment-errors.html"><span class="token function">getMaxPermittedSegmentErrors</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">The setting for max permissible download errors on segments.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1882139340%2FFunctions%2F1607690379" anchor-label="getMaxStorageAllowed" id="-1882139340%2FFunctions%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="get-max-storage-allowed.html"><span>get</span><wbr><span>Max</span><wbr><span>Storage</span><wbr><span><span>Allowed</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1882139340%2FFunctions%2F1607690379"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-max-storage-allowed.html"><span class="token function">getMaxStorageAllowed</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Current value for max storage allowed.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="736325252%2FFunctions%2F1607690379" anchor-label="getMimeTypeSettings" id="736325252%2FFunctions%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="get-mime-type-settings.html"><span>get</span><wbr><span>Mime</span><wbr><span>Type</span><wbr><span><span>Settings</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="736325252%2FFunctions%2F1607690379"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-mime-type-settings.html"><span class="token function">getMimeTypeSettings</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-i-mime-type-settings/index.html">IMimeTypeSettings</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">The setting for controlling mime type validation for segmented asset downloads To configure Mime type settings, use the object returned by getMimeTypeSettings</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1572072538%2FFunctions%2F1607690379" anchor-label="getPlatformDRMProperties" id="-1572072538%2FFunctions%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="get-platform-d-r-m-properties.html"><span>get</span><wbr><span>Platform</span><wbr><span><span>DRMProperties</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1572072538%2FFunctions%2F1607690379"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-platform-d-r-m-properties.html"><span class="token function">getPlatformDRMProperties</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/util/Map.html">Map</a><span class="token operator">&lt;</span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token punctuation">, </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token operator">&gt;</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">It is possible to optionally set properties that can be assigned to the platform <a href="https://developer.android.com/reference/kotlin/android/media/MediaDrm.html">android.media.MediaDrm</a> wherever it is used within the SDK.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1275638003%2FFunctions%2F1607690379" anchor-label="getProgressUpdateByPercent" id="-1275638003%2FFunctions%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="get-progress-update-by-percent.html"><span>get</span><wbr><span>Progress</span><wbr><span>Update</span><wbr><span>By</span><wbr><span><span>Percent</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1275638003%2FFunctions%2F1607690379"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-progress-update-by-percent.html"><span class="token function">getProgressUpdateByPercent</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Current value for the frequency of progress updates based on a percent interval.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="2007369147%2FFunctions%2F1607690379" anchor-label="getProgressUpdateByTime" id="2007369147%2FFunctions%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="get-progress-update-by-time.html"><span>get</span><wbr><span>Progress</span><wbr><span>Update</span><wbr><span>By</span><wbr><span><span>Time</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2007369147%2FFunctions%2F1607690379"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-progress-update-by-time.html"><span class="token function">getProgressUpdateByTime</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Current value for the frequency of progress updates based on elapsed time interval.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1195432046%2FFunctions%2F1607690379" anchor-label="getProgressUpdatesPerSegment" id="-1195432046%2FFunctions%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="get-progress-updates-per-segment.html"><span>get</span><wbr><span>Progress</span><wbr><span>Updates</span><wbr><span>Per</span><wbr><span><span>Segment</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1195432046%2FFunctions%2F1607690379"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-progress-updates-per-segment.html"><span class="token function">getProgressUpdatesPerSegment</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Current value for the frequency of progress updates based on the number of segments downloaded in a Segmented Asset.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-731547267%2FFunctions%2F1607690379" anchor-label="getRemoveNotificationOnPause" id="-731547267%2FFunctions%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="get-remove-notification-on-pause.html"><span>get</span><wbr><span>Remove</span><wbr><span>Notification</span><wbr><span>On</span><wbr><span><span>Pause</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-731547267%2FFunctions%2F1607690379"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-remove-notification-on-pause.html"><span class="token function">getRemoveNotificationOnPause</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Get the current setting for backgrounding the service and removing the notification when paused.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="1746351673%2FFunctions%2F1607690379" anchor-label="getResetOnContentSizeChange" id="1746351673%2FFunctions%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="get-reset-on-content-size-change.html"><span>get</span><wbr><span>Reset</span><wbr><span>On</span><wbr><span>Content</span><wbr><span>Size</span><wbr><span><span>Change</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1746351673%2FFunctions%2F1607690379"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-reset-on-content-size-change.html"><span class="token function">getResetOnContentSizeChange</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">This setting controls whether when making multiple requests during the download of a segment or file and upon encountering a difference in the reported size on subsequent requests the SDK should fail the download or delete the existing downloaded content and retry from the start.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-2067829717%2FFunctions%2F1607690379" anchor-label="getSegmentErrorHttpCode" id="-2067829717%2FFunctions%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="get-segment-error-http-code.html"><span>get</span><wbr><span>Segment</span><wbr><span>Error</span><wbr><span>Http</span><wbr><span><span>Code</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2067829717%2FFunctions%2F1607690379"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-segment-error-http-code.html"><span class="token function">getSegmentErrorHttpCode</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">The setting for the HTTP code used on segments (for assets that have completed) that are missing or have errors during playback.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-945722049%2FFunctions%2F1607690379" anchor-label="isAutomaticDrmLicenseRenewalEnabled" id="-945722049%2FFunctions%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="is-automatic-drm-license-renewal-enabled.html"><span>is</span><wbr><span>Automatic</span><wbr><span>Drm</span><wbr><span>License</span><wbr><span>Renewal</span><wbr><span><span>Enabled</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-945722049%2FFunctions%2F1607690379"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="is-automatic-drm-license-renewal-enabled.html"><span class="token function">isAutomaticDrmLicenseRenewalEnabled</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Is automatic renewal of DRM licenses enabled.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-59246424%2FFunctions%2F1607690379" anchor-label="resetAudioCodecsToDownload" id="-59246424%2FFunctions%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="reset-audio-codecs-to-download.html"><span>reset</span><wbr><span>Audio</span><wbr><span>Codecs</span><wbr><span>To</span><wbr><span><span>Download</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-59246424%2FFunctions%2F1607690379"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="reset-audio-codecs-to-download.html"><span class="token function">resetAudioCodecsToDownload</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">ISettings</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Resets the audio codecs to download to the default configuration, which is all codecs</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="1828691025%2FFunctions%2F1607690379" anchor-label="resetAutomaticDeleteEnabled" id="1828691025%2FFunctions%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="reset-automatic-delete-enabled.html"><span>reset</span><wbr><span>Automatic</span><wbr><span>Delete</span><wbr><span><span>Enabled</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1828691025%2FFunctions%2F1607690379"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="reset-automatic-delete-enabled.html"><span class="token function">resetAutomaticDeleteEnabled</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">ISettings</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Reset the automatic delete to its default configuration, which is enabled</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="1406616707%2FFunctions%2F1607690379" anchor-label="resetAutomaticDeleteInterval" id="1406616707%2FFunctions%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="reset-automatic-delete-interval.html"><span>reset</span><wbr><span>Automatic</span><wbr><span>Delete</span><wbr><span><span>Interval</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1406616707%2FFunctions%2F1607690379"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="reset-automatic-delete-interval.html"><span class="token function">resetAutomaticDeleteInterval</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">ISettings</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Resets the automatic delete interval to default value of 30, which will be used when deleting the failed downloads for that interval</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-267556344%2FFunctions%2F1607690379" anchor-label="resetAutomaticDRMLicenseRenewalEnabled" id="-267556344%2FFunctions%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="reset-automatic-d-r-m-license-renewal-enabled.html"><span>reset</span><wbr><span>Automatic</span><wbr><span>DRMLicense</span><wbr><span>Renewal</span><wbr><span><span>Enabled</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-267556344%2FFunctions%2F1607690379"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="reset-automatic-d-r-m-license-renewal-enabled.html"><span class="token function">resetAutomaticDRMLicenseRenewalEnabled</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">ISettings</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Reset the automatic DRM license renewal to its default configutation, with is enabled</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="1701018814%2FFunctions%2F1607690379" anchor-label="resetBatteryThreshold" id="1701018814%2FFunctions%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="reset-battery-threshold.html"><span>reset</span><wbr><span>Battery</span><wbr><span><span>Threshold</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1701018814%2FFunctions%2F1607690379"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="reset-battery-threshold.html"><span class="token function">resetBatteryThreshold</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">ISettings</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Resets the battery threshold setting to the Virtuoso default configuration of 0.5.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="1632418138%2FFunctions%2F1607690379" anchor-label="resetCellularDataQuota" id="1632418138%2FFunctions%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="reset-cellular-data-quota.html"><span>reset</span><wbr><span>Cellular</span><wbr><span>Data</span><wbr><span><span>Quota</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1632418138%2FFunctions%2F1607690379"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="reset-cellular-data-quota.html"><span class="token function">resetCellularDataQuota</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">ISettings</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Resets the cellular data quota setting to the Virtuoso default configuration of 100 MB.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="824615486%2FFunctions%2F1607690379" anchor-label="resetCellularDataQuotaStart" id="824615486%2FFunctions%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="reset-cellular-data-quota-start.html"><span>reset</span><wbr><span>Cellular</span><wbr><span>Data</span><wbr><span>Quota</span><wbr><span><span>Start</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="824615486%2FFunctions%2F1607690379"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="reset-cellular-data-quota-start.html"><span class="token function">resetCellularDataQuotaStart</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">ISettings</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Resets the cellular data quota start to be the current time and zeroes out the current cell usage.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="764852683%2FFunctions%2F1607690379" anchor-label="resetDestinationPath" id="764852683%2FFunctions%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="reset-destination-path.html"><span>reset</span><wbr><span>Destination</span><wbr><span><span>Path</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="764852683%2FFunctions%2F1607690379"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="reset-destination-path.html"><span class="token function">resetDestinationPath</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">ISettings</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Resets the destination path setting to the Virtuoso default configuration.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1458965833%2FFunctions%2F1607690379" anchor-label="resetDrmSecurityLevel" id="-1458965833%2FFunctions%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="reset-drm-security-level.html"><span>reset</span><wbr><span>Drm</span><wbr><span>Security</span><wbr><span><span>Level</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1458965833%2FFunctions%2F1607690379"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="reset-drm-security-level.html"><span class="token function">resetDrmSecurityLevel</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">ISettings</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Resets the DRM security level, which will be used when requesting sessions from the platform MediaDrm on devices with API 28+.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1531666840%2FFunctions%2F1607690379" anchor-label="resetErrorAssetOnDRMFail" id="-1531666840%2FFunctions%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="reset-error-asset-on-d-r-m-fail.html"><span>reset</span><wbr><span>Error</span><wbr><span>Asset</span><wbr><span>On</span><wbr><span><span>DRMFail</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1531666840%2FFunctions%2F1607690379"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="reset-error-asset-on-d-r-m-fail.html"><span class="token function">resetErrorAssetOnDRMFail</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">ISettings</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Resets the current setting for whether a DRM failure at the start of download should cause the asset to be marked as failed, which will prevent further download.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1629378960%2FFunctions%2F1607690379" anchor-label="resetFastPlaySegmentCount" id="-1629378960%2FFunctions%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="reset-fast-play-segment-count.html"><span>reset</span><wbr><span>Fast</span><wbr><span>Play</span><wbr><span>Segment</span><wbr><span><span>Count</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1629378960%2FFunctions%2F1607690379"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="reset-fast-play-segment-count.html"><span class="token function">resetFastPlaySegmentCount</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">ISettings</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Resets the segment count to use for fastplay assets</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1169058526%2FFunctions%2F1607690379" anchor-label="resetGlobalRequestHeaders" id="-1169058526%2FFunctions%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="reset-global-request-headers.html"><span>reset</span><wbr><span>Global</span><wbr><span>Request</span><wbr><span><span>Headers</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1169058526%2FFunctions%2F1607690379"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="reset-global-request-headers.html"><span class="token function">resetGlobalRequestHeaders</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">ISettings</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Removes the custom HTTP headers.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="1433298049%2FFunctions%2F1607690379" anchor-label="resetHeadroom" id="1433298049%2FFunctions%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="reset-headroom.html"><span>reset</span><wbr><span><span>Headroom</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1433298049%2FFunctions%2F1607690379"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="reset-headroom.html"><span class="token function">resetHeadroom</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">ISettings</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Resets the headroom setting to the Virtuoso default configuration of 1 GB.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="1955596867%2FFunctions%2F1607690379" anchor-label="resetHTTPConnectionTimeout" id="1955596867%2FFunctions%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="reset-h-t-t-p-connection-timeout.html"><span>reset</span><wbr><span>HTTPConnection</span><wbr><span><span>Timeout</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1955596867%2FFunctions%2F1607690379"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="reset-h-t-t-p-connection-timeout.html"><span class="token function">resetHTTPConnectionTimeout</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">ISettings</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Resets the HTTP connection timeout to the Virtuoso default configuration.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="586834776%2FFunctions%2F1607690379" anchor-label="resetHTTPSocketTimeout" id="586834776%2FFunctions%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="reset-h-t-t-p-socket-timeout.html"><span>reset</span><wbr><span>HTTPSocket</span><wbr><span><span>Timeout</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="586834776%2FFunctions%2F1607690379"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="reset-h-t-t-p-socket-timeout.html"><span class="token function">resetHTTPSocketTimeout</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">ISettings</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Resets the HTTP socket timeout to the Virtuoso default configuration.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="864487392%2FFunctions%2F1607690379" anchor-label="resetLanguagesSettings" id="864487392%2FFunctions%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="reset-languages-settings.html"><span>reset</span><wbr><span>Languages</span><wbr><span><span>Settings</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="864487392%2FFunctions%2F1607690379"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="reset-languages-settings.html"><span class="token function">resetLanguagesSettings</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">ISettings</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Resets the languages settings to the default configuration, which is all languages</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="1207685395%2FFunctions%2F1607690379" anchor-label="resetMaxDownloadConnections" id="1207685395%2FFunctions%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="reset-max-download-connections.html"><span>reset</span><wbr><span>Max</span><wbr><span>Download</span><wbr><span><span>Connections</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1207685395%2FFunctions%2F1607690379"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="reset-max-download-connections.html"><span class="token function">resetMaxDownloadConnections</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">ISettings</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Resets the max permissible concurrent network connections in the downloader to the default configuration.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="319941108%2FFunctions%2F1607690379" anchor-label="resetMaxPermittedSegmentErrors" id="319941108%2FFunctions%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="reset-max-permitted-segment-errors.html"><span>reset</span><wbr><span>Max</span><wbr><span>Permitted</span><wbr><span>Segment</span><wbr><span><span>Errors</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="319941108%2FFunctions%2F1607690379"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="reset-max-permitted-segment-errors.html"><span class="token function">resetMaxPermittedSegmentErrors</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">ISettings</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Resets the max permissible download errors on segments.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="206028653%2FFunctions%2F1607690379" anchor-label="resetMaxStorageAllowed" id="206028653%2FFunctions%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="reset-max-storage-allowed.html"><span>reset</span><wbr><span>Max</span><wbr><span>Storage</span><wbr><span><span>Allowed</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="206028653%2FFunctions%2F1607690379"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="reset-max-storage-allowed.html"><span class="token function">resetMaxStorageAllowed</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">ISettings</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Resets the max storage setting to the Virtuoso default configuration of 5 GB.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="2050611499%2FFunctions%2F1607690379" anchor-label="resetMimeTypeSettings" id="2050611499%2FFunctions%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="reset-mime-type-settings.html"><span>reset</span><wbr><span>Mime</span><wbr><span>Type</span><wbr><span><span>Settings</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2050611499%2FFunctions%2F1607690379"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="reset-mime-type-settings.html"><span class="token function">resetMimeTypeSettings</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">ISettings</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Resets the custom mime type settings</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-664716961%2FFunctions%2F1607690379" anchor-label="resetPlatformDRMProperties" id="-664716961%2FFunctions%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="reset-platform-d-r-m-properties.html"><span>reset</span><wbr><span>Platform</span><wbr><span><span>DRMProperties</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-664716961%2FFunctions%2F1607690379"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="reset-platform-d-r-m-properties.html"><span class="token function">resetPlatformDRMProperties</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">ISettings</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Resets the current setting for String properties to be set on the DRM instances in the SDK before use.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1185289594%2FFunctions%2F1607690379" anchor-label="resetProgressUpdateByPercent" id="-1185289594%2FFunctions%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="reset-progress-update-by-percent.html"><span>reset</span><wbr><span>Progress</span><wbr><span>Update</span><wbr><span>By</span><wbr><span><span>Percent</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1185289594%2FFunctions%2F1607690379"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="reset-progress-update-by-percent.html"><span class="token function">resetProgressUpdateByPercent</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">ISettings</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Resets the progress update percent interval to the Virtuoso default configuration of 1%.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1981233950%2FFunctions%2F1607690379" anchor-label="resetProgressUpdateByTime" id="-1981233950%2FFunctions%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="reset-progress-update-by-time.html"><span>reset</span><wbr><span>Progress</span><wbr><span>Update</span><wbr><span>By</span><wbr><span><span>Time</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1981233950%2FFunctions%2F1607690379"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="reset-progress-update-by-time.html"><span class="token function">resetProgressUpdateByTime</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">ISettings</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Resets the progress update time interval to the Virtuoso default configuration of 5000 ms.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-269956917%2FFunctions%2F1607690379" anchor-label="resetProgressUpdatesPerSegment" id="-269956917%2FFunctions%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="reset-progress-updates-per-segment.html"><span>reset</span><wbr><span>Progress</span><wbr><span>Updates</span><wbr><span>Per</span><wbr><span><span>Segment</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-269956917%2FFunctions%2F1607690379"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="reset-progress-updates-per-segment.html"><span class="token function">resetProgressUpdatesPerSegment</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">ISettings</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Resets the progress update segment completion interval to the Virtuoso default configuration of 10.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="193927862%2FFunctions%2F1607690379" anchor-label="resetRemoveNotificationOnPause" id="193927862%2FFunctions%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="reset-remove-notification-on-pause.html"><span>reset</span><wbr><span>Remove</span><wbr><span>Notification</span><wbr><span>On</span><wbr><span><span>Pause</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="193927862%2FFunctions%2F1607690379"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="reset-remove-notification-on-pause.html"><span class="token function">resetRemoveNotificationOnPause</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">ISettings</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Resets the remove notification on pause to the default configuration, which is to remove it.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="252185056%2FFunctions%2F1607690379" anchor-label="resetResetOnContentSizeChange" id="252185056%2FFunctions%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="reset-reset-on-content-size-change.html"><span>reset</span><wbr><span>Reset</span><wbr><span>On</span><wbr><span>Content</span><wbr><span>Size</span><wbr><span><span>Change</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="252185056%2FFunctions%2F1607690379"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="reset-reset-on-content-size-change.html"><span class="token function">resetResetOnContentSizeChange</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">ISettings</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">This setting controls whether when making multiple requests during the download of a segment or file and upon encountering a difference in the reported size on subsequent requests the SDK should fail the download or delete the existing downloaded content and retry from the start.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1761465518%2FFunctions%2F1607690379" anchor-label="resetSegmentErrorHttpCode" id="-1761465518%2FFunctions%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="reset-segment-error-http-code.html"><span>reset</span><wbr><span>Segment</span><wbr><span>Error</span><wbr><span>Http</span><wbr><span><span>Code</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1761465518%2FFunctions%2F1607690379"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="reset-segment-error-http-code.html"><span class="token function">resetSegmentErrorHttpCode</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">ISettings</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Resets the HTTP code that is returned by the proxy when segments (for assets that have completed) are missing or have errors.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="425500274%2FFunctions%2F1607690379" anchor-label="save" id="425500274%2FFunctions%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="save.html"><span><span>save</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="425500274%2FFunctions%2F1607690379"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace strikethrough"><div class="block"><div class="block"><span class="token annotation">@</span><a href="https://developer.android.com/reference/kotlin/java/lang/Deprecated.html"><span class="token annotation">Deprecated</span></a></div></div><strike><span class="token keyword">abstract </span></strike><strike><span class="token keyword"></span></strike><strike><span class="token keyword">fun </span></strike><a href="save.html"><strike><span class="token function">save</span></strike></a><strike><span class="token punctuation">(</span></strike><strike><span class="token punctuation">)</span></strike><strike><span class="token operator">: </span></strike><a href="index.html">ISettings</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">DEPRECATED - settings will now auto save on any change.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1949373928%2FFunctions%2F1607690379" anchor-label="setAlwaysRequestPermission" id="-1949373928%2FFunctions%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="set-always-request-permission.html"><span>set</span><wbr><span>Always</span><wbr><span>Request</span><wbr><span><span>Permission</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1949373928%2FFunctions%2F1607690379"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="set-always-request-permission.html"><span class="token function">setAlwaysRequestPermission</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">aValue<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">ISettings</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Always request permission.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-784891884%2FFunctions%2F1607690379" anchor-label="setAudioCodecsToDownload" id="-784891884%2FFunctions%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="set-audio-codecs-to-download.html"><span>set</span><wbr><span>Audio</span><wbr><span>Codecs</span><wbr><span>To</span><wbr><span><span>Download</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-784891884%2FFunctions%2F1607690379"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="set-audio-codecs-to-download.html"><span class="token function">setAudioCodecsToDownload</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">codecs<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html">Array</a><span class="token operator">&lt;</span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">ISettings</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Sets the audio codec formats allowed for content downloads  The new setting is applied automatically after being set.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-944231647%2FFunctions%2F1607690379" anchor-label="setAuthenticationErrorAsExternalLock" id="-944231647%2FFunctions%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="set-authentication-error-as-external-lock.html"><span>set</span><wbr><span>Authentication</span><wbr><span>Error</span><wbr><span>As</span><wbr><span>External</span><wbr><span><span>Lock</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-944231647%2FFunctions%2F1607690379"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="set-authentication-error-as-external-lock.html"><span class="token function">setAuthenticationErrorAsExternalLock</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">val<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">ISettings</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Sets the engine to consider an HTTP authentication error as a blocking error caused by an external lock.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="1756791292%2FFunctions%2F1607690379" anchor-label="setAutomaticDeleteEnabled" id="1756791292%2FFunctions%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="set-automatic-delete-enabled.html"><span>set</span><wbr><span>Automatic</span><wbr><span>Delete</span><wbr><span><span>Enabled</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1756791292%2FFunctions%2F1607690379"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="set-automatic-delete-enabled.html"><span class="token function">setAutomaticDeleteEnabled</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">enabled<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">ISettings</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Sets the enabled state of automatic delete Flags reported through that API are: <a href="../../com.penthera.virtuososdk/-common/-setting-flag/-s-e-t-t-i-n-g_-a-u-t-o-d-e-l-e-t-e_-e-n-a-b-l-e-d.html">SETTING_AUTODELETE_ENABLED</a></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1563995363%2FFunctions%2F1607690379" anchor-label="setAutomaticDeleteInterval" id="-1563995363%2FFunctions%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="set-automatic-delete-interval.html"><span>set</span><wbr><span>Automatic</span><wbr><span>Delete</span><wbr><span><span>Interval</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1563995363%2FFunctions%2F1607690379"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="set-automatic-delete-interval.html"><span class="token function">setAutomaticDeleteInterval</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">days<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">ISettings</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Sets the interval for failed downloads delete Flags reported through that API are: <a href="../../com.penthera.virtuososdk/-common/-setting-flag/-s-e-t-t-i-n-g_-a-u-t-o-d-e-l-e-t-e_-i-n-t-e-r-v-a-l.html">SETTING_AUTODELETE_INTERVAL</a></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="1392165855%2FFunctions%2F1607690379" anchor-label="setAutomaticDrmLicenseRenewalEnabled" id="1392165855%2FFunctions%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="set-automatic-drm-license-renewal-enabled.html"><span>set</span><wbr><span>Automatic</span><wbr><span>Drm</span><wbr><span>License</span><wbr><span>Renewal</span><wbr><span><span>Enabled</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1392165855%2FFunctions%2F1607690379"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="set-automatic-drm-license-renewal-enabled.html"><span class="token function">setAutomaticDrmLicenseRenewalEnabled</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">enabled<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">ISettings</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Sets the enabled state of automatic drm license renewals  The new setting is applied automatically after being set.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="824336379%2FFunctions%2F1607690379" anchor-label="setBatteryThreshold" id="824336379%2FFunctions%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="set-battery-threshold.html"><span>set</span><wbr><span>Battery</span><wbr><span><span>Threshold</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="824336379%2FFunctions%2F1607690379"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="set-battery-threshold.html"><span class="token function">setBatteryThreshold</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">aThreshold<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-float/index.html">Float</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">ISettings</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Change the setting for battery threshold.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1984516815%2FFunctions%2F1607690379" anchor-label="setCellularDataQuota" id="-1984516815%2FFunctions%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="set-cellular-data-quota.html"><span>set</span><wbr><span>Cellular</span><wbr><span>Data</span><wbr><span><span>Quota</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1984516815%2FFunctions%2F1607690379"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="set-cellular-data-quota.html"><span class="token function">setCellularDataQuota</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">aQuota<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">ISettings</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Change the setting for cellular quota.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-927468455%2FFunctions%2F1607690379" anchor-label="setDestinationPath" id="-927468455%2FFunctions%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="set-destination-path.html"><span>set</span><wbr><span>Destination</span><wbr><span><span>Path</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-927468455%2FFunctions%2F1607690379"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="set-destination-path.html"><span class="token function">setDestinationPath</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">aBasePath<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">ISettings</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Change the setting for destination path.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-207967761%2FFunctions%2F1607690379" anchor-label="setDrmSecurityLevel" id="-207967761%2FFunctions%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="set-drm-security-level.html"><span>set</span><wbr><span>Drm</span><wbr><span>Security</span><wbr><span><span>Level</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-207967761%2FFunctions%2F1607690379"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="set-drm-security-level.html"><span class="token function">setDrmSecurityLevel</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">securityLevel<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">ISettings</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Sets the requested security level when opening all <a href="https://developer.android.com/reference/kotlin/android/media/MediaDrm.html">android.media.MediaDrm</a> sessions.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="1171890751%2FFunctions%2F1607690379" anchor-label="setErrorAssetOnDRMFail" id="1171890751%2FFunctions%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="set-error-asset-on-d-r-m-fail.html"><span>set</span><wbr><span>Error</span><wbr><span>Asset</span><wbr><span>On</span><wbr><span><span>DRMFail</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1171890751%2FFunctions%2F1607690379"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="set-error-asset-on-d-r-m-fail.html"><span class="token function">setErrorAssetOnDRMFail</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">failOnDrm<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">ISettings</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Set the current setting for whether a DRM failure at the start of download should cause the asset to be marked as failed, which will prevent further download.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-907776490%2FFunctions%2F1607690379" anchor-label="setFastPlaySegmentCount" id="-907776490%2FFunctions%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="set-fast-play-segment-count.html"><span>set</span><wbr><span>Fast</span><wbr><span>Play</span><wbr><span>Segment</span><wbr><span><span>Count</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-907776490%2FFunctions%2F1607690379"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="set-fast-play-segment-count.html"><span class="token function">setFastPlaySegmentCount</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">count<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">ISettings</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Sets the count for the number of segments to download for Fast Play assets.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="368882086%2FFunctions%2F1607690379" anchor-label="setGlobalRequestHeaders" id="368882086%2FFunctions%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="set-global-request-headers.html"><span>set</span><wbr><span>Global</span><wbr><span>Request</span><wbr><span><span>Headers</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="368882086%2FFunctions%2F1607690379"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="set-global-request-headers.html"><span class="token function">setGlobalRequestHeaders</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">aHeaders<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/android/os/Bundle.html">Bundle</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">ISettings</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">With this method, clients can configure the HTTP headers Virtuoso uses when making GET requests to download remote assets.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1070739758%2FFunctions%2F1607690379" anchor-label="setHeadroom" id="-1070739758%2FFunctions%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="set-headroom.html"><span>set</span><wbr><span><span>Headroom</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1070739758%2FFunctions%2F1607690379"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="set-headroom.html"><span class="token function">setHeadroom</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">aHeadroom<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">ISettings</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Change the setting for headroom.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="1961538717%2FFunctions%2F1607690379" anchor-label="setHTTPConnectionTimeout" id="1961538717%2FFunctions%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="set-h-t-t-p-connection-timeout.html"><span>set</span><wbr><span>HTTPConnection</span><wbr><span><span>Timeout</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1961538717%2FFunctions%2F1607690379"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="set-h-t-t-p-connection-timeout.html"><span class="token function">setHTTPConnectionTimeout</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">aTimeout<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">ISettings</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Change the HTTP connection timeout value Virtuoso uses during download.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-2100972056%2FFunctions%2F1607690379" anchor-label="setHTTPSocketTimeout" id="-2100972056%2FFunctions%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="set-h-t-t-p-socket-timeout.html"><span>set</span><wbr><span>HTTPSocket</span><wbr><span><span>Timeout</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2100972056%2FFunctions%2F1607690379"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="set-h-t-t-p-socket-timeout.html"><span class="token function">setHTTPSocketTimeout</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">aTimeout<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">ISettings</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Change the HTTP socket timeout value Virtuoso uses during download.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-389170955%2FFunctions%2F1607690379" anchor-label="setLanguagesSettings" id="-389170955%2FFunctions%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="set-languages-settings.html"><span>set</span><wbr><span>Languages</span><wbr><span><span>Settings</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-389170955%2FFunctions%2F1607690379"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace strikethrough"><div class="block"><div class="block"><span class="token annotation">@</span><a href="https://developer.android.com/reference/kotlin/java/lang/Deprecated.html"><span class="token annotation">Deprecated</span></a></div></div><strike><span class="token keyword">abstract </span></strike><strike><span class="token keyword"></span></strike><strike><span class="token keyword">fun </span></strike><a href="set-languages-settings.html"><strike><span class="token function">setLanguagesSettings</span></strike></a><strike><span class="token punctuation">(</span></strike><span class="parameters "><span class="parameter ">settings<span class="token operator">: </span><a href="../-i-language-settings/index.html">ILanguageSettings</a></span></span><strike><span class="token punctuation">)</span></strike><strike><span class="token operator">: </span></strike><a href="index.html">ISettings</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Sets the languages allowed for content downloads  The new setting is applied automatically after being set.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1470102573%2FFunctions%2F1607690379" anchor-label="setMaxDownloadConnections" id="-1470102573%2FFunctions%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="set-max-download-connections.html"><span>set</span><wbr><span>Max</span><wbr><span>Download</span><wbr><span><span>Connections</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1470102573%2FFunctions%2F1607690379"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="set-max-download-connections.html"><span class="token function">setMaxDownloadConnections</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">aMax<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">ISettings</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Sets the max permissible concurrent network connections in the downloader.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="1515044044%2FFunctions%2F1607690379" anchor-label="setMaxPermittedSegmentErrors" id="1515044044%2FFunctions%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="set-max-permitted-segment-errors.html"><span>set</span><wbr><span>Max</span><wbr><span>Permitted</span><wbr><span>Segment</span><wbr><span><span>Errors</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1515044044%2FFunctions%2F1607690379"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="set-max-permitted-segment-errors.html"><span class="token function">setMaxPermittedSegmentErrors</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">max<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">ISettings</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Change the setting for max permissible download errors on segments.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1798671932%2FFunctions%2F1607690379" anchor-label="setMaxStorageAllowed" id="-1798671932%2FFunctions%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="set-max-storage-allowed.html"><span>set</span><wbr><span>Max</span><wbr><span>Storage</span><wbr><span><span>Allowed</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1798671932%2FFunctions%2F1607690379"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="set-max-storage-allowed.html"><span class="token function">setMaxStorageAllowed</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">aMaxStorage<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">ISettings</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Change the setting for max storage.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="1204656986%2FFunctions%2F1607690379" anchor-label="setMimeTypeSettings" id="1204656986%2FFunctions%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="set-mime-type-settings.html"><span>set</span><wbr><span>Mime</span><wbr><span>Type</span><wbr><span><span>Settings</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1204656986%2FFunctions%2F1607690379"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace strikethrough"><div class="block"><div class="block"><span class="token annotation">@</span><a href="https://developer.android.com/reference/kotlin/java/lang/Deprecated.html"><span class="token annotation">Deprecated</span></a></div></div><strike><span class="token keyword">abstract </span></strike><strike><span class="token keyword"></span></strike><strike><span class="token keyword">fun </span></strike><a href="set-mime-type-settings.html"><strike><span class="token function">setMimeTypeSettings</span></strike></a><strike><span class="token punctuation">(</span></strike><span class="parameters "><span class="parameter ">settings<span class="token operator">: </span><a href="../-i-mime-type-settings/index.html">IMimeTypeSettings</a></span></span><strike><span class="token punctuation">)</span></strike><strike><span class="token operator">: </span></strike><a href="index.html">ISettings</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Sets the mime type validation settings  The new setting is applied automatically after being set.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="90861152%2FFunctions%2F1607690379" anchor-label="setPlatformDRMProperties" id="90861152%2FFunctions%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="set-platform-d-r-m-properties.html"><span>set</span><wbr><span>Platform</span><wbr><span><span>DRMProperties</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="90861152%2FFunctions%2F1607690379"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="set-platform-d-r-m-properties.html"><span class="token function">setPlatformDRMProperties</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">properties<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/util/Map.html">Map</a><span class="token operator">&lt;</span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token punctuation">, </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">ISettings</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">It is possible to optionally set properties that can be assigned to the platform <a href="https://developer.android.com/reference/kotlin/android/media/MediaDrm.html">android.media.MediaDrm</a> wherever it is used within the SDK.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-2122560966%2FFunctions%2F1607690379" anchor-label="setProgressUpdateByPercent" id="-2122560966%2FFunctions%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="set-progress-update-by-percent.html"><span>set</span><wbr><span>Progress</span><wbr><span>Update</span><wbr><span>By</span><wbr><span><span>Percent</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2122560966%2FFunctions%2F1607690379"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="set-progress-update-by-percent.html"><span class="token function">setProgressUpdateByPercent</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">aPercent<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">ISettings</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Configure the frequency of progress updates during a download.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="1638533939%2FFunctions%2F1607690379" anchor-label="setProgressUpdateByTime" id="1638533939%2FFunctions%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="set-progress-update-by-time.html"><span>set</span><wbr><span>Progress</span><wbr><span>Update</span><wbr><span>By</span><wbr><span><span>Time</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1638533939%2FFunctions%2F1607690379"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="set-progress-update-by-time.html"><span class="token function">setProgressUpdateByTime</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">aMilliseconds<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">ISettings</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Configure the frequency of progress updates during a download.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1425810795%2FFunctions%2F1607690379" anchor-label="setProgressUpdatesPerSegment" id="-1425810795%2FFunctions%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="set-progress-updates-per-segment.html"><span>set</span><wbr><span>Progress</span><wbr><span>Updates</span><wbr><span>Per</span><wbr><span><span>Segment</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1425810795%2FFunctions%2F1607690379"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="set-progress-updates-per-segment.html"><span class="token function">setProgressUpdatesPerSegment</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">aNumberOfSegments<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">ISettings</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Configure the frequency of progress updates for Segmented Assets.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-202165135%2FFunctions%2F1607690379" anchor-label="setRemoveNotificationOnPause" id="-202165135%2FFunctions%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="set-remove-notification-on-pause.html"><span>set</span><wbr><span>Remove</span><wbr><span>Notification</span><wbr><span>On</span><wbr><span><span>Pause</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-202165135%2FFunctions%2F1607690379"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="set-remove-notification-on-pause.html"><span class="token function">setRemoveNotificationOnPause</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">remove<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">ISettings</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Sets the service to leave foreground mode and hide the notification when the engine is paused.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="768277709%2FFunctions%2F1607690379" anchor-label="setResetOnContentSizeChange" id="768277709%2FFunctions%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="set-reset-on-content-size-change.html"><span>set</span><wbr><span>Reset</span><wbr><span>On</span><wbr><span>Content</span><wbr><span>Size</span><wbr><span><span>Change</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="768277709%2FFunctions%2F1607690379"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="set-reset-on-content-size-change.html"><span class="token function">setResetOnContentSizeChange</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">reset<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">ISettings</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">This setting controls whether when making multiple requests during the download of a segment or file and upon encountering a difference in the reported size on subsequent requests the SDK should fail the download or delete the existing downloaded content and retry from the start.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1708382732%2FFunctions%2F1607690379" anchor-label="setSegmentErrorHttpCode" id="-1708382732%2FFunctions%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="set-segment-error-http-code.html"><span>set</span><wbr><span>Segment</span><wbr><span>Error</span><wbr><span>Http</span><wbr><span><span>Code</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1708382732%2FFunctions%2F1607690379"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="set-segment-error-http-code.html"><span class="token function">setSegmentErrorHttpCode</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">code<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">ISettings</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Change the HTTP code that is returned by the proxy when segments (for assets that have completed) are missing or have errors.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h2 class="">Properties</h2>
+      <div class="table" data-togglable="Properties"><a data-name="-1449957131%2FProperties%2F1607690379" anchor-label="NOT_SET" id="-1449957131%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-n-o-t_-s-e-t.html">NOT_SET</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1449957131%2FProperties%2F1607690379"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><a data-name="-1449957131%2FProperties%2F1607690379" anchor-label="NOT_SET" id="-1449957131%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-n-o-t_-s-e-t.html">NOT_SET</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        <div class="footer"><span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2022 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+        </div>
+    </div>
+</div>
+
+</body></html>
+

@@ -1,0 +1,126 @@
+<!doctype html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>VirtuosoServiceStarter</title>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">
+    <script>var pathToRoot = "../../../";</script>    <script>const storage = localStorage.getItem("dokka-dark-mode")
+const savedDarkMode = storage ? JSON.parse(storage) : false
+if(savedDarkMode === true){
+    document.getElementsByTagName("html")[0].classList.add("theme-dark")
+}</script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/jetbrains-mono.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async></script></head>
+<body>
+<div class="navigation-wrapper" id="navigation-wrapper">
+    <div id="leftToggler"><span class="icon-toggler"></span></div>
+    <div class="library-name">
+<a href="../../../index.html">
+<span>TMP</span>            </a>    </div>
+    <div>
+    </div>
+    <div class="pull-right d-flex">
+        <button id="theme-toggle-button"><span id="theme-toggle"></span></button>
+        <div id="searchBar"></div>
+    </div>
+</div>
+<div id="container">
+    <div id="leftColumn">
+        <div id="sideMenu"></div>
+    </div>
+    <div id="main">
+<div class="main-content" id="content" pageids="Download2Go Android SDK::com.penthera.virtuososdk.service/VirtuosoServiceStarter///PointingToDeclaration//1607690379">
+  <div class="breadcrumbs"><a href="../../index.html">Download2Go Android SDK</a><span class="delimiter">/</span><a href="../index.html">com.penthera.virtuososdk.service</a><span class="delimiter">/</span><a href="index.html">VirtuosoServiceStarter</a></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Virtuoso</span><wbr><span>Service</span><wbr><span><span>Starter</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">class </span><a href="index.html">VirtuosoServiceStarter</a> : <a href="../-virtuoso-foreground-service-handler/index.html">VirtuosoForegroundServiceHandler</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><p class="paragraph">This class starts the service. An application must derive from this and register the class as a broadcast receiver in order to provide the notifications for the service to operate as a Foreground Service. Details of the abstract methods that must be overridden can be found in the abstract base class <a href="../-virtuoso-foreground-service-handler/index.html">VirtuosoForegroundServiceHandler</a>. An example of an implementation for this can be found in the demo projects available with Download2Go. The android manifest file will need to contain a definition for the derived service starter class such as: </p><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">
+     &lt;receiver android:name="com.penthera.sdkdemo.SDKDemoServiceStarter"
+			android:enabled="true"
+			android:label="SDKDemoServiceStarter"
+			android:directBootAware="true"&gt;
+			&lt;intent-filter&gt;
+				&lt;action android:name="android.intent.action.BOOT_COMPLETED"/&gt;
+				&lt;action android:name="android.intent.action.QUICKBOOT_POWERON"/&gt;
+				&lt;action android:name="com.htc.intent.action.QUICKBOOT_POWERON"/&gt;
+				&lt;action android:name="android.intent.action.PACKAGE_REMOVED" /&gt;
+				&lt;data android:scheme="package"/&gt;
+			&lt;/intent-filter&gt;
+			&lt;intent-filter&gt;
+				&lt;action android:name="android.intent.action.BOOT_COMPLETED"/&gt;
+				&lt;category android:name="android.intent.category.DEFAULT" /&gt;
+			&lt;/intent-filter&gt;
+
+		&lt;/receiver&gt;
+	</code></pre><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="Constructors">Constructors</button><button class="section-tab" data-togglable="Functions">Functions</button></div>
+    <div class="tabs-section-body">
+      <h2 class="tabbedcontent">Constructors</h2>
+      <div class="table" data-togglable="Constructors"><a data-name="-401557247%2FConstructors%2F1607690379" anchor-label="VirtuosoServiceStarter" id="-401557247%2FConstructors%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue TabbedContent">
+            <div class=""><span class="inline-flex">
+                <div><a href="-virtuoso-service-starter.html"><span>Virtuoso</span><wbr><span>Service</span><wbr><span><span>Starter</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-401557247%2FConstructors%2F1607690379"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="-virtuoso-service-starter.html"><span class="token function">VirtuosoServiceStarter</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Service starter default constructor.</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h2 class="">Functions</h2>
+      <div class="table" data-togglable="Functions"><a data-name="1248059465%2FFunctions%2F1607690379" anchor-label="handleReceivedIntent" id="1248059465%2FFunctions%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="handle-received-intent.html"><span>handle</span><wbr><span>Received</span><wbr><span><span>Intent</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1248059465%2FFunctions%2F1607690379"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="handle-received-intent.html"><span class="token function">handleReceivedIntent</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">context<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/android/content/Context.html">Context</a><span class="token punctuation">, </span></span><span class="parameter ">aIntent<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/android/content/Intent.html">Intent</a></span></span><span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Handle the intents from the broadcast receiver</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1966557967%2FFunctions%2F1607690379" anchor-label="internalStartService" id="-1966557967%2FFunctions%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="internal-start-service.html"><span>internal</span><wbr><span>Start</span><wbr><span><span>Service</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1966557967%2FFunctions%2F1607690379"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="internal-start-service.html"><span class="token function">internalStartService</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">context<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/android/content/Context.html">Context</a></span></span><span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Called from within the SDK when it needs to check the service has been started</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        <div class="footer"><span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2022 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+        </div>
+    </div>
+</div>
+
+</body></html>
+

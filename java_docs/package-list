@@ -1,0 +1,38 @@
+$dokka.format:html-v1
+$dokka.linkExtension:html
+
+module:Download2Go AndroidX Extension Support Library
+com.penthera.virtuososdk.androidxsupport
+module:Download2Go Android ExoPlayer 2.13.* Support Library
+com.penthera.virtuososdk.support.exoplayer213
+com.penthera.virtuososdk.support.exoplayer213.drm
+module:Download2Go Android ExoPlayer 2.14.* Support Library
+com.penthera.virtuososdk.support.exoplayer214
+com.penthera.virtuososdk.support.exoplayer214.drm
+module:Download2Go Android ExoPlayer 2.15.* Support Library
+com.penthera.virtuososdk.support.exoplayer215
+com.penthera.virtuososdk.support.exoplayer215.drm
+module:Download2Go Android ExoPlayer 2.16.* Support Library
+com.penthera.virtuososdk.support.exoplayer216
+com.penthera.virtuososdk.support.exoplayer216.drm
+module:Download2Go Android ExoPlayer 2.17.* Support Library
+com.penthera.virtuososdk.support.exoplayer217
+com.penthera.virtuososdk.support.exoplayer217.drm
+module:Penthera Common Library
+com.penthera
+com.penthera.common
+com.penthera.virtuososdk.client
+com.penthera.virtuososdk.client.ads
+com.penthera.virtuososdk.client.drm
+module:PlayAssure SDK Library
+com.penthera.playassure
+module:Download2Go Android SDK
+com.penthera
+com.penthera.virtuososdk
+com.penthera.virtuososdk.client
+com.penthera.virtuososdk.client.autodownload
+com.penthera.virtuososdk.client.builders
+com.penthera.virtuososdk.client.drm
+com.penthera.virtuososdk.client.drm.castlabs
+com.penthera.virtuososdk.client.push
+com.penthera.virtuososdk.service
