@@ -1,0 +1,48 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'org.jetbrains.kotlin.android'
+    id 'com.penthera.virtuoso-sdk-configuration' version '1.0.0'
+}
+apply from: "$rootDir/constants.gradle"
+
+android {
+    compileSdkVersion project.ext.compileSdkVersion
+    buildToolsVersion project.ext.buildToolsVersion
+    defaultConfig {
+        applicationId "com.penthera.bitmovindemo"
+        minSdkVersion project.ext.minSdkVersion
+        targetSdkVersion project.ext.targetSdkVersion
+        versionCode project.ext.releaseVersionCode
+        versionName project.ext.releaseVersion
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    buildFeatures {
+        viewBinding true
+    }
+}
+
+dependencies {
+
+    // Dependency to latest Download2Go SDK version
+    implementation 'com.penthera:cnc-android-sdk-debug:'+"$project.ext.pentheraSdkVersion"
+    implementation 'com.penthera:cnc-android-bitmovin-support:'+"$project.ext.pentheraSdkVersion"
+
+    // Player
+    implementation 'com.bitmovin.player:playercore:'+"$project.ext.bitmovinPlayerVerion"
+
+    implementation 'androidx.localbroadcastmanager:localbroadcastmanager:'+"$project.ext.localBroadcastVersion"
+    implementation 'androidx.legacy:legacy-support-v4:'+"$project.ext.androidLegacyversion"
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:"+"$project.ext.kotlinVersion"
+    implementation 'androidx.core:core-ktx:'+"$project.ext.ktxVersion"
+    implementation 'androidx.appcompat:appcompat:'+"$project.ext.appcompatVersion"
+    implementation 'androidx.constraintlayout:constraintlayout:'+"$project.ext.constraintLayoutVersion"
+}

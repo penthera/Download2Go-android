@@ -18,6 +18,9 @@ com.penthera.virtuososdk.support.exoplayer216.drm
 module:Download2Go Android ExoPlayer 2.17.* Support Library
 com.penthera.virtuososdk.support.exoplayer217
 com.penthera.virtuososdk.support.exoplayer217.drm
+module:Download2Go Android ExoPlayer 2.18.* Support Library
+com.penthera.virtuososdk.support.exoplayer218
+com.penthera.virtuososdk.support.exoplayer218.drm
 module:Penthera Common Library
 com.penthera
 com.penthera.common

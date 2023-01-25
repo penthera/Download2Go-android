@@ -1,0 +1,63 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">Download2Go1_6</string>
+
+    <string name="assets_title">Assets to download</string>
+    <string name="download">Download</string>
+    <string name="downloads">Downloads</string>
+    <string name="delete">Delete</string>
+    <string name="play">Play</string>
+
+    <string name="download1_name">Tears of Steel</string>
+    <string name="download2_name">Steve Jobs, Stanford</string>
+    <string name="download3_name">College, Buster Keaton</string>
+
+    <!-- Asset Status -->
+    <string name="asset_status_pending">pending</string>
+    <string name="asset_status_downloading">downloading</string>
+    <string name="asset_status_complete">complete</string>
+    <string name="asset_status_paused">paused</string>
+    <string name="asset_status_expired">expired</string>
+    <string name="asset_status_denied_mad">DENIED : MAD</string>
+    <string name="asset_status_denied_mda">DENIED : MDA</string>
+    <string name="asset_status_denied_ext">DENIED : EXT</string>
+    <string name="asset_status_denied_mpd">DENIED : MPD</string>
+    <string name="asset_status_denied_copies">DENIED : COPIES</string>
+    <string name="asset_status_await_permission">AWAITING PERMISSION</string>
+
+    <string name="asset_size">%1$s MB (expected %2$s)</string>
+
+    <string name="asset_details_title">Asset Details</string>
+    <string name="asset_title">Title:</string>
+    <string name="asset_uuid">UUID:</string>
+    <string name="asset_id">AssetID:</string>
+    <string name="asset_filetype">File Type:</string>
+    <string name="expectedSize">Expected Size:</string>
+    <string name="currentSize">Current Size:</string>
+    <string name="duration">Duration (s):</string>
+    <string name="downloadStatus">Download Status:</string>
+    <string name="assetPath">Local File Path:</string>
+    <string name="playback">Playback URL:</string>
+    <string name="segmentCount">Total Segment Count:</string>
+    <string name="firstPlayTime">First Play Time:</string>
+
+    <string name="unknown_type">Unknown</string>
+    <string name="hls_type">HLS</string>
+    <string name="mpd_type">MPG DASH</string>
+    <string name="unavailable">Unavailable</string>
+    <string name="not_yet_played">Not yet played</string>
+
+    <!-- Playback messages -->
+    <string name="error_cannot_play">Cannot play asset</string>
+    <string name="error_invalid_url">Cannot play asset - playback URL issue</string>
+    <string name="unexpected_intent_action">Unexpected intent action: <xliff:g id="action">%1$s</xliff:g></string>
+
+    <!-- Exoplayer error message strings, taken directly from Exoplayer demo -->
+    <string name="error_generic">Playback failed</string>
+    <string name="error_querying_decoders">Unable to query device decoders</string>
+    <string name="error_no_decoder">This device does not provide a decoder for <xliff:g id="mime_type">%1$s</xliff:g></string>
+    <string name="error_no_secure_decoder">This device does not provide a secure decoder for <xliff:g id="mime_type">%1$s</xliff:g></string>
+    <string name="error_instantiating_decoder">Unable to instantiate decoder <xliff:g id="decoder_name">%1$s</xliff:g></string>
+    <string name="error_unsupported_video">Media includes video tracks, but none are playable by this device</string>
+    <string name="error_unsupported_audio">Media includes audio tracks, but none are playable by this device</string>
+
+</resources>

@@ -1,0 +1,58 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">Download2Go1_1</string>
+
+
+    <string name="client_package">com.penthera.virtuososdk.provider.download2go1_1</string>
+
+
+
+
+    <string name="video">Video</string>
+
+    <string name="audio">Audio</string>
+
+    <string name="text">Text</string>
+    <string name="retry">Retry</string>
+    <string name="selection_disabled">Disabled</string>
+
+    <string name="selection_default">Default</string>
+
+    <string name="selection_default_none">Default (none)</string>
+
+    <string name="unexpected_intent_action">Unexpected intent action: <xliff:g id="action">%1$s</xliff:g></string>
+
+    <string name="enable_random_adaptation">Enable random adaptation</string>
+
+    <string name="error_drm_not_supported">Protected content not supported on API levels below 18</string>
+
+    <string name="error_drm_unsupported_scheme">This device does not support the required DRM scheme</string>
+
+    <string name="error_drm_unknown">An unknown DRM error occurred</string>
+
+    <string name="error_no_decoder">This device does not provide a decoder for <xliff:g id="mime_type">%1$s</xliff:g></string>
+
+    <string name="error_no_secure_decoder">This device does not provide a secure decoder for <xliff:g id="mime_type">%1$s</xliff:g></string>
+
+    <string name="error_querying_decoders">Unable to query device decoders</string>
+
+    <string name="error_instantiating_decoder">Unable to instantiate decoder <xliff:g id="decoder_name">%1$s</xliff:g></string>
+
+    <string name="error_unsupported_video">Media includes video tracks, but none are playable by this device</string>
+
+    <string name="error_unsupported_audio">Media includes audio tracks, but none are playable by this device</string>
+
+    <string name="storage_permission_denied">Permission to access storage was denied</string>
+
+    <string name="error_generic">Playback failed</string>
+
+
+    <string name="status_downloading">Downloading</string>
+    <string name="status_downloaded">Downloaded</string>
+    <string name="status_pending">Queued</string>
+    <string name="status_expired">Expired</string>
+    <string name="asset_status">File %1$s with %2$d errors, current state: %3$s</string>
+    <string name="pause_download_engine">Pause Download engine</string>
+    <string name="pause_asset_download">Pause Asset Download</string>
+    <string name="download">Download</string>
+    <string name="play">Play</string>
+</resources>
