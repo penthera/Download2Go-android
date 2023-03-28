@@ -42,7 +42,7 @@ dependencies {
 
     implementation 'androidx.recyclerview:recyclerview:1.2.0'
 
-    implementation 'com.penthera:cnc-android-sdk-debug:5.0.2'
+    implementation 'com.penthera:cnc-android-sdk-debug:5.0.2.1'
     implementation 'com.penthera:cnc-exoplayer-2_17-support-debug:5.0.2'
 
     implementation 'com.google.android.exoplayer:exoplayer:2.17.1'
