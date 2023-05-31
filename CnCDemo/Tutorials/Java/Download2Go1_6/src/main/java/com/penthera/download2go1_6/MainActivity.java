@@ -109,6 +109,10 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         ASSET_TITLE_2 = getString(R.string.download2_name);
         ASSET_TITLE_3 = getString(R.string.download3_name);
 
+        virtuoso = new Virtuoso(this);
+
+        assetManager = virtuoso.getAssetManager();
+
         // Set up the three download buttons
         download1 = findViewById(R.id.download_1);
         download2 = findViewById(R.id.download_2);
@@ -117,9 +121,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         download1.setOnClickListener(v -> downloadAsset(0));
         download2.setOnClickListener(v -> downloadAsset(1));
         download3.setOnClickListener(v -> downloadAsset(2));
-
-        // Initialise the SDK
-        initVirtuosoSDK(savedInstanceState);
 
         // Set up the recyclerview
         recyclerView = findViewById(R.id.downloads_list);
@@ -149,17 +150,11 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     }
 
 
-    public void initVirtuosoSDK(Bundle savedInstanceState) {
-
-        virtuoso = new Virtuoso(this);
-
-        assetManager = virtuoso.getAssetManager();
-
+    public void initVirtuosoSDK() {
         // This is current best practice for initializing the SDK
-        if (savedInstanceState == null) {
             try {
                 int status = virtuoso.getBackplane().getAuthenticationStatus();
-                if (status == AuthenticationStatus.NOT_AUTHENTICATED) { // If not authenticated then execute sdk startup
+                if (status != AuthenticationStatus.AUTHENTICATED) { // If not authenticated then execute sdk startup
 
                     // Here we use the simplest login with hard coded values
                     URL backplaneUrl = new URL(BACKPLANE_URL);
@@ -177,12 +172,12 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             } catch (MalformedURLException mue) {
                 Log.e("MainActivity", "Error with backplane url", mue);
             }
-        }
 
     }
 
 
     private void downloadAsset(int index) {
+        initVirtuosoSDK();
 
         String url;
         String title;

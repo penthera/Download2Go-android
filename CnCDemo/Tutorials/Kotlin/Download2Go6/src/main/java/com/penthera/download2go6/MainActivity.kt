@@ -76,7 +76,10 @@ class MainActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        initVirtuosoSDK(savedInstanceState)
+        virtuoso = Virtuoso(this)
+        queueObserver = AssetQueueObserver(this)
+
+        download2GoService = virtuoso.service
 
         binding.download.setOnClickListener { downloadAsset() }
         binding.play.setOnClickListener { playAsset() }
@@ -115,17 +118,10 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun initVirtuosoSDK(savedInstanceState: Bundle?) {
-
-        virtuoso = Virtuoso(this)
-        queueObserver = AssetQueueObserver(this)
-
-        download2GoService = virtuoso.service
-
+    private fun initVirtuosoSDK() {
         //this is the current best practice for initializing the SDK
-        if(savedInstanceState == null){//initial start of activity will have null saved instance state
             val status = virtuoso.backplane?.authenticationStatus
-            if(status == AuthenticationStatus.NOT_AUTHENTICATED){//if not authenticated execute sdk startup
+            if(status != AuthenticationStatus.AUTHENTICATED){//if not authenticated execute sdk startup
                 //here we use the simplest login with hard coded values
 
                 virtuoso.startup(
@@ -146,7 +142,6 @@ class MainActivity : AppCompatActivity() {
                     }
                 )
             }
-        }
 
         //load asset if it has already been downloaded
         val list : MutableList<IIdentifier>? = virtuoso.assetManager.getByAssetId(ASSET_ID)
@@ -221,6 +216,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun downloadAsset(){
+        initVirtuosoSDK()
 
         val params = MPDAssetBuilder().apply {
             assetId(ASSET_ID)

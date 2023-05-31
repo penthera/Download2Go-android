@@ -109,34 +109,6 @@ public class MainActivity extends AppCompatActivity {
         ASSET_TITLE_2 = getString(R.string.download2_name);
         ASSET_TITLE_3 = getString(R.string.download3_name);
 
-        // Set up the three download buttons
-        download1 = findViewById(R.id.download_1);
-        download2 = findViewById(R.id.download_2);
-        download3 = findViewById(R.id.download_3);
-
-        download1.setOnClickListener(v -> downloadAsset(0));
-        download2.setOnClickListener(v -> downloadAsset(1));
-        download3.setOnClickListener(v -> downloadAsset(2));
-
-        // Initialise the SDK
-        initVirtuosoSDK(savedInstanceState);
-
-        // Set up the recyclerview
-        recyclerView = findViewById(R.id.downloads_list);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
-        recyclerView.addItemDecoration(new DividerItemDecoration(this, RecyclerView.VERTICAL));
-        adapter = new AssetsAdapter(assetCallback);
-        recyclerView.setAdapter(adapter);
-        // This prevents the button on the list items flickering due to the default animation
-        recyclerView.getItemAnimator().setChangeDuration(0);
-    }
-
-    /**
-     * Initialize the Penthera SDK and the ViewModel with SDK LiveData objects
-     * @param savedInstanceState The saved instance state, checked to determine if the activity was already instantiated
-     */
-    public void initVirtuosoSDK(Bundle savedInstanceState) {
-
         // The live data factory must be created and then initialized with a lifecycle.
         virtuosoLiveDataFactory = VirtuosoLiveDataFactory.getInstance();
         virtuoso = virtuosoLiveDataFactory.createVirtuosoWithLifecycle(this, this);
@@ -150,8 +122,30 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // Set up the three download buttons
+        download1 = findViewById(R.id.download_1);
+        download2 = findViewById(R.id.download_2);
+        download3 = findViewById(R.id.download_3);
+
+        download1.setOnClickListener(v -> downloadAsset(0));
+        download2.setOnClickListener(v -> downloadAsset(1));
+        download3.setOnClickListener(v -> downloadAsset(2));
+
+        // Set up the recyclerview
+        recyclerView = findViewById(R.id.downloads_list);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
+        recyclerView.addItemDecoration(new DividerItemDecoration(this, RecyclerView.VERTICAL));
+        adapter = new AssetsAdapter(assetCallback);
+        recyclerView.setAdapter(adapter);
+        // This prevents the button on the list items flickering due to the default animation
+        recyclerView.getItemAnimator().setChangeDuration(0);
+    }
+
+    /**
+     * Initialize the Penthera SDK and the ViewModel with SDK LiveData objects
+     **/
+    public void initVirtuosoSDK() {
         // This is current best practice for starting the SDK
-        if (savedInstanceState == null) {
             try {
                 int status = virtuoso.getBackplane().getAuthenticationStatus();
                 if (status == AuthenticationStatus.NOT_AUTHENTICATED  || status == AuthenticationStatus.SHUTDOWN) { // If not authenticated then execute sdk startup
@@ -172,7 +166,6 @@ public class MainActivity extends AppCompatActivity {
             } catch (MalformedURLException mue) {
                 Log.e("MainActivity", "Error with backplane url", mue);
             }
-        }
     }
 
     /**
@@ -181,6 +174,7 @@ public class MainActivity extends AppCompatActivity {
      * @param index Index of asset to add to the download queue.
      */
     private void downloadAsset(int index) {
+        initVirtuosoSDK();
 
         String url;
         String title;

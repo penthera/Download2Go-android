@@ -149,7 +149,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun register(retry : Boolean){
 
-        if (virtuoso.backplane.authenticationStatus == AuthenticationStatus.NOT_AUTHENTICATED) { // If not authenticated then execute sdk startup
+        if (virtuoso.backplane.authenticationStatus != AuthenticationStatus.AUTHENTICATED) { // If not authenticated then execute sdk startup
             val name = accountName.text.toString()
             if (name.isNotEmpty()) {// Here we use the simplest login with hard coded values
                 val backplaneUrl: URL?

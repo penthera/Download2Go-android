@@ -65,6 +65,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        virtuosoLiveDataFactory = VirtuosoLiveDataFactory.getInstance();
+        virtuoso = virtuosoLiveDataFactory.createVirtuosoWithLifecycle(this, this);
+
+        LiveData<Integer> engineStatus = virtuosoLiveDataFactory.getEngineStatus();
+        engineStatus.observe(this, statusVal -> {
+            statusView.setText(getString(R.string.engine_status, getStatusString(statusVal)));
+        });
+
         dlBtn = findViewById(R.id.download);
         plBtn = findViewById(R.id.play);
         delBtn = findViewById(R.id.delete);
@@ -76,25 +84,14 @@ public class MainActivity extends AppCompatActivity {
         plBtn.setOnClickListener(v -> playAsset());
         delBtn.setOnClickListener(v -> deleteAsset());
 
-        initVirtuosoSDK(savedInstanceState);
         updateUI();
     }
 
-    public void initVirtuosoSDK(Bundle savedInstanceState) {
-
-        virtuosoLiveDataFactory = VirtuosoLiveDataFactory.getInstance();
-        virtuoso = virtuosoLiveDataFactory.createVirtuosoWithLifecycle(this, this);
-
-        LiveData<Integer> engineStatus = virtuosoLiveDataFactory.getEngineStatus();
-        engineStatus.observe(this, statusVal -> {
-            statusView.setText(getString(R.string.engine_status, getStatusString(statusVal)));
-        });
-
+    public void initVirtuosoSDK() {
         // This is current best practice for initializing the SDK
-        if (savedInstanceState == null) {
             try {
                 int status = virtuoso.getBackplane().getAuthenticationStatus();
-                if (status == AuthenticationStatus.NOT_AUTHENTICATED) { // If not authenticated then execute sdk startup
+                if (status != AuthenticationStatus.AUTHENTICATED) { // If not authenticated then execute sdk startup
 
                     // Here we use the simplest login with hard coded values
                     URL backplaneUrl = new URL(BACKPLANE_URL);
@@ -112,7 +109,6 @@ public class MainActivity extends AppCompatActivity {
             } catch (MalformedURLException mue) {
 
             }
-        }
 
         // Load asset if it has already been downloaded
         loadAsset();
@@ -141,6 +137,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void downloadAsset() {
+        initVirtuosoSDK();
 
         URL assetUrl;
         try {

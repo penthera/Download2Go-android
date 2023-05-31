@@ -84,6 +84,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        virtuoso = new Virtuoso(this);
+        // This assigns a new instance of the service client, it is a thin wrapper around an Android service binding.
+        download2GoService = virtuoso.getService();
+
+        queueObserver = new AssetQueueObserver(this);
+
         dlBtn = findViewById(R.id.download);
         plBtn = findViewById(R.id.play);
         delBtn = findViewById(R.id.delete);
@@ -100,7 +106,6 @@ public class MainActivity extends AppCompatActivity {
         pauseAssetSwitch.setOnCheckedChangeListener((v, checked) -> {if(!applyingInternalUpdate) pauseAsset(checked);});
         pauseEngineSwitch.setOnCheckedChangeListener((v, checked) -> {if(!applyingInternalUpdate) pauseEngine(checked);});
 
-        initVirtuosoSDK(savedInstanceState);
         updateUI();
     }
 
@@ -130,19 +135,11 @@ public class MainActivity extends AppCompatActivity {
         virtuoso.onPause();
     }
 
-    public void initVirtuosoSDK(Bundle savedInstanceState) {
-
-        virtuoso = new Virtuoso(this);
-        // This assigns a new instance of the service client, it is a thin wrapper around an Android service binding.
-        download2GoService = virtuoso.getService();
-
-        queueObserver = new AssetQueueObserver(this);
-
+    public void initVirtuosoSDK() {
         // This is current best practice for initializing the SDK
-        if (savedInstanceState == null) {
             try {
                 int status = virtuoso.getBackplane().getAuthenticationStatus();
-                if (status == AuthenticationStatus.NOT_AUTHENTICATED) { // If not authenticated then execute sdk startup
+                if (status != AuthenticationStatus.AUTHENTICATED) { // If not authenticated then execute sdk startup
 
                     // Here we use the simplest login with hard coded values
                     URL backplaneUrl = new URL(BACKPLANE_URL);
@@ -160,7 +157,6 @@ public class MainActivity extends AppCompatActivity {
             } catch (MalformedURLException mue) {
                 Log.e("MainActivity", "Error with backplane url", mue);
             }
-        }
 
         // Load asset if it has already been downloaded
         List<IIdentifier> list = virtuoso.getAssetManager().getByAssetId(ASSET_ID);
@@ -202,6 +198,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void downloadAsset() {
+        initVirtuosoSDK();
 
         URL assetUrl;
         try {

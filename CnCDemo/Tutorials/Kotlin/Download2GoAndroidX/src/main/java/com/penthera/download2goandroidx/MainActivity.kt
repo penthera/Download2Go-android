@@ -33,17 +33,6 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.download.setOnClickListener { downloadAsset() }
-        binding.play.setOnClickListener { playAsset()}
-        binding.delete.setOnClickListener { deleteAsset() }
-
-        initVirtuosoSDK(savedInstanceState)
-
-        updateUI()
-    }
-
-    private fun initVirtuosoSDK(savedInstanceState: Bundle?) {
-
         virtuosoLiveDataFactory = VirtuosoLiveDataFactory.getInstance()
         virtuoso = virtuosoLiveDataFactory.createVirtuosoWithLifecycle(this, this)
 
@@ -56,14 +45,21 @@ class MainActivity : AppCompatActivity() {
                             statusVal!!
                         )
 
-                )
+                    )
             })
 
+        binding.download.setOnClickListener { downloadAsset() }
+        binding.play.setOnClickListener { playAsset()}
+        binding.delete.setOnClickListener { deleteAsset() }
 
+
+        updateUI()
+    }
+
+    private fun initVirtuosoSDK() {
         //this is the current best practice for initializing the SDK
-        if(savedInstanceState == null){//initial start of activity will have null saved instance state
             val status = virtuoso.backplane?.authenticationStatus
-            if(status == AuthenticationStatus.NOT_AUTHENTICATED){//if not authenticated execute sdk startup
+            if(status != AuthenticationStatus.AUTHENTICATED){//if not authenticated execute sdk startup
                 //here we use the simplest login with hard coded values
 
                 virtuoso.startup(
@@ -86,7 +82,6 @@ class MainActivity : AppCompatActivity() {
 
             }
 
-        }
 
         // Load asset if it has already been downloaded
         loadAsset()
@@ -126,6 +121,7 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun downloadAsset(){
+        initVirtuosoSDK()
 
         val params = HLSAssetBuilder().apply {
             assetId(ASSET_ID) //REQUIRED PARAMETER asset ID of the new asset
