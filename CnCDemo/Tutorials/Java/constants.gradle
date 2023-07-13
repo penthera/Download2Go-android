@@ -1,5 +1,5 @@
 project.ext {
-    pentheraSdkVersion = '5.3.5'
+    pentheraSdkVersion = '5.3.6'
 
     minSdkVersion = 14
     exoplayerMinSdkVersion = 16
