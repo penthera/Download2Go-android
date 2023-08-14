@@ -333,10 +333,12 @@ class MainActivity : AppCompatActivity() {
             val downloaded = assetManager.downloaded.cursor.count
             val curAsset = mActivity.asset
             if ( curAsset != null && (queued > 0 || downloaded > 0)) {
-                val asset = assetManager.get(curAsset.id) as IAsset
-                if (asset.downloadStatus != curAsset.downloadStatus) {
-                    mActivity.asset = asset
-                    updateItem(asset, true)
+                assetManager.get(curAsset.id)?.let {
+                    val asset = it as IAsset
+                    if (asset.downloadStatus != curAsset.downloadStatus) {
+                        mActivity.asset = asset
+                        updateItem(asset, true)
+                    }
                 }
             }
             if (queued == 0) {

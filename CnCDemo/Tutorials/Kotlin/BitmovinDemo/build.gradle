@@ -36,7 +36,7 @@ dependencies {
     implementation 'com.penthera:cnc-android-bitmovin-support:'+"$project.ext.pentheraSdkVersion"
 
     // Player
-    implementation 'com.bitmovin.player:playercore:'+"$project.ext.bitmovinPlayerVerion"
+    implementation 'com.bitmovin.player:player:'+"$project.ext.bitmovinPlayerVersion"
 
     implementation 'androidx.localbroadcastmanager:localbroadcastmanager:'+"$project.ext.localBroadcastVersion"
     implementation 'androidx.legacy:legacy-support-v4:'+"$project.ext.androidLegacyversion"

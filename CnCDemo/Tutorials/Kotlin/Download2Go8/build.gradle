@@ -37,8 +37,10 @@ dependencies {
 
     // Dependency to latest Download2Go SDK version
     implementation 'com.penthera:cnc-android-sdk-debug:'+"$project.ext.pentheraSdkVersion"
-    implementation 'com.penthera:cnc-exoplayer-2_18-support-debug:'+"$project.ext.pentheraSdkVersion"
+    implementation "com.penthera:cnc-androidx-media3-1_1-support-debug:$project.ext.pentheraSdkVersion"
 
-    // Player
-    implementation 'com.google.android.exoplayer:exoplayer:'+"$project.ext.exoplayerVersion"
+    //Player
+    implementation "androidx.media3:media3-exoplayer:$project.ext.exoPlayerVersion"
+    implementation "androidx.media3:media3-exoplayer-dash:$project.ext.exoPlayerVersion"
+    implementation "androidx.media3:media3-ui:$project.ext.exoPlayerVersion"
 }

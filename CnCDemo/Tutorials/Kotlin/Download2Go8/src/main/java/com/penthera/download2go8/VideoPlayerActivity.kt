@@ -12,19 +12,19 @@ import android.os.Bundle
 import android.util.Pair
 import android.view.KeyEvent
 import android.widget.Toast
-import com.google.android.exoplayer2.*
-import com.google.android.exoplayer2.mediacodec.MediaCodecRenderer
-import com.google.android.exoplayer2.mediacodec.MediaCodecUtil
-import com.google.android.exoplayer2.trackselection.AdaptiveTrackSelection
-import com.google.android.exoplayer2.trackselection.DefaultTrackSelector
-import com.google.android.exoplayer2.ui.StyledPlayerView
-import com.google.android.exoplayer2.util.ErrorMessageProvider
-import com.google.android.exoplayer2.util.EventLogger
-import com.google.android.exoplayer2.util.Util
+import androidx.media3.common.*
+import androidx.media3.common.util.Util
+import androidx.media3.exoplayer.DefaultRenderersFactory
+import androidx.media3.exoplayer.mediacodec.MediaCodecRenderer
+import androidx.media3.exoplayer.mediacodec.MediaCodecUtil
+import androidx.media3.exoplayer.trackselection.AdaptiveTrackSelection
+import androidx.media3.exoplayer.trackselection.DefaultTrackSelector
+import androidx.media3.exoplayer.util.EventLogger
+import androidx.media3.ui.PlayerView
 import com.penthera.virtuososdk.client.IAsset
 import com.penthera.virtuososdk.client.Virtuoso
-import com.penthera.virtuososdk.support.exoplayer218.ExoplayerUtils
-import com.penthera.virtuososdk.support.exoplayer218.drm.ExoplayerDrmSessionManager
+import com.penthera.virtuososdk.support.androidx.media311.ExoplayerUtils
+import com.penthera.virtuososdk.support.androidx.media311.drm.ExoplayerDrmSessionManager
 import java.net.CookieManager
 import java.net.CookiePolicy
 import java.net.MalformedURLException
@@ -39,7 +39,7 @@ class VideoPlayerActivity : Activity() {
     // as this will guarantee the proxy service remains available throughout. We can do this in the activity or store
     // a singleton for the whole application. But this should not be instantiated in an application onCreate().
     private lateinit var mVirtuoso: Virtuoso
-    private var playerView: StyledPlayerView? = null
+    private var playerView: PlayerView? = null
 
     private var player: Player? = null
     private var trackSelector: DefaultTrackSelector? = null
@@ -64,7 +64,7 @@ class VideoPlayerActivity : Activity() {
 
         setContentView(R.layout.player_activity)
 
-        playerView = findViewById<StyledPlayerView>(R.id.player_view).apply {
+        playerView = findViewById<PlayerView>(R.id.player_view).apply {
             setErrorMessageProvider(PlayerErrorMessageProvider())
             requestFocus()
         }

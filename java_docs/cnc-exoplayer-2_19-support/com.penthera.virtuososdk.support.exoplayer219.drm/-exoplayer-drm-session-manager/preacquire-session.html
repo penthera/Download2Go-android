@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>preacquireSession</title>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">
+    <script>var pathToRoot = "../../../";</script>    <script>const storage = localStorage.getItem("dokka-dark-mode")
+const savedDarkMode = storage ? JSON.parse(storage) : false
+if(savedDarkMode === true){
+    document.getElementsByTagName("html")[0].classList.add("theme-dark")
+}</script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/jetbrains-mono.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async></script></head>
+<body>
+<div class="navigation-wrapper" id="navigation-wrapper">
+    <div id="leftToggler"><span class="icon-toggler"></span></div>
+    <div class="library-name">
+<a href="../../../index.html">
+<span>TMP</span>            </a>    </div>
+    <div>
+    </div>
+    <div class="pull-right d-flex">
+        <button id="theme-toggle-button"><span id="theme-toggle"></span></button>
+        <div id="searchBar"></div>
+    </div>
+</div>
+<div id="container">
+    <div id="leftColumn">
+        <div id="sideMenu"></div>
+    </div>
+    <div id="main">
+<div class="main-content" id="content" pageids="Download2Go Android ExoPlayer 2.19.* Support Library::com.penthera.virtuososdk.support.exoplayer219.drm/ExoplayerDrmSessionManager/preacquireSession/#com.google.android.exoplayer2.drm.DrmSessionEventListener.EventDispatcher#com.google.android.exoplayer2.Format/PointingToDeclaration//236618583">
+  <div class="breadcrumbs"><a href="../../index.html">Download2Go Android ExoPlayer 2.19.* Support Library</a><span class="delimiter">/</span><a href="../index.html">com.penthera.virtuososdk.support.exoplayer219.drm</a><span class="delimiter">/</span><a href="index.html">ExoplayerDrmSessionManager</a><span class="delimiter">/</span><a href="preacquire-session.html">preacquireSession</a></div>
+  <div class="cover ">
+    <h1 class="cover"><span>preacquire</span><wbr><span><span>Session</span></span></h1>
+  </div>
+  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":cnc-exoplayer-2_19-support:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="preacquire-session.html"><span class="token function">preacquireSession</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span><span class="token annotation">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/Nullable.html"><span class="token annotation">Nullable</span></a>&nbsp;</span>eventDispatcher<span class="token operator">: </span><span data-unresolved-link="com.google.android.exoplayer2.drm/DrmSessionEventListener.EventDispatcher///PointingToDeclaration/">DrmSessionEventListener.EventDispatcher</span><span class="token punctuation">, </span></span><span class="parameter ">format<span class="token operator">: </span><span data-unresolved-link="com.google.android.exoplayer2/Format///PointingToDeclaration/">Format</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="com.google.android.exoplayer2.drm/DrmSessionManager.DrmSessionReference///PointingToDeclaration/">DrmSessionManager.DrmSessionReference</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><p class="paragraph">Pre-acquires a DRM session for the specified <span data-unresolved-link="com.google.android.exoplayer2/Format///PointingToDeclaration/">Format</span>. </p><p class="paragraph">This notifies the manager that a subsequent call to <a href="acquire-session.html">acquireSession</a> with the same <span data-unresolved-link="com.google.android.exoplayer2/Format///PointingToDeclaration/">Format</span> is likely, allowing a manager that supports pre-acquisition to get the required <span data-unresolved-link="com.google.android.exoplayer2.drm/DrmSession///PointingToDeclaration/">DrmSession</span> ready in the background. </p><p class="paragraph">The caller must call <span data-unresolved-link="com.google.android.exoplayer2.drm/DrmSessionManager.DrmSessionReference/release/#/PointingToDeclaration/">release</span> on the returned instance when they no longer require the pre-acquisition (i.e. they know they won't be making a matching call to <a href="acquire-session.html">acquireSession</a> in the near future). </p><p class="paragraph">This manager may silently release the underlying session in order to allow another operation to complete. This will result in a subsequent call to <a href="acquire-session.html">acquireSession</a> re-initializing a new session, including repeating key loads and other async initialization steps. </p><p class="paragraph">The caller must separately call <a href="acquire-session.html">acquireSession</a> in order to obtain a session suitable for playback. The pre-acquired <span data-unresolved-link="com.google.android.exoplayer2.drm/DrmSessionManager.DrmSessionReference///PointingToDeclaration/">DrmSessionReference</span> and full <span data-unresolved-link="com.google.android.exoplayer2.drm/DrmSession///PointingToDeclaration/">DrmSession</span> instances are distinct. The caller must release both, and can release the <span data-unresolved-link="com.google.android.exoplayer2.drm/DrmSessionManager.DrmSessionReference///PointingToDeclaration/">DrmSessionReference</span> before the <span data-unresolved-link="com.google.android.exoplayer2.drm/DrmSession///PointingToDeclaration/">DrmSession</span> without affecting playback. </p><p class="paragraph">This can be called from any thread. </p><p class="paragraph">Implementations that do not support pre-acquisition always return an empty  instance.</p><h4 class="">Return</h4><p class="paragraph">A releaser for the pre-acquired session. Guaranteed to be non-null even if the matching <a href="acquire-session.html">acquireSession</a> would return null.</p><h2 class="">See also</h2><div data-togglable="See also"><div class="table" data-togglable="See also"><div class="table-row" data-filterable-current=":cnc-exoplayer-2_19-support:dokkaHtmlPartial/release" data-filterable-set=":cnc-exoplayer-2_19-support:dokkaHtmlPartial/release"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex"><div><span data-unresolved-link="com.google.android.exoplayer2.drm/DrmSessionManager/preacquireSession/#com.google.android.exoplayer2.drm.DrmSessionEventListener.EventDispatcher#com.google.android.exoplayer2.Format/PointingToDeclaration/"><span>com.</span><wbr><span>google.</span><wbr><span>android.</span><wbr><span>exoplayer2.</span><wbr><span>drm.</span><wbr><span>Drm</span><wbr><span>Session</span><wbr><span><span>Manager</span></span></span></div></span></div><div><div class="title"><div data-togglable="See also"></div></div></div></div></div></div></div><h2 class="">Parameters</h2><div data-togglable="Parameters"><div class="table" data-togglable="Parameters"><div class="table-row" data-filterable-current=":cnc-exoplayer-2_19-support:dokkaHtmlPartial/release" data-filterable-set=":cnc-exoplayer-2_19-support:dokkaHtmlPartial/release"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex"><div><span>event</span><wbr><span><span>Dispatcher</span></span></div></span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">The <span data-unresolved-link="com.google.android.exoplayer2.drm/DrmSessionEventListener.EventDispatcher///PointingToDeclaration/">DrmSessionEventListener.EventDispatcher</span> used to distribute events, and passed on to <span data-unresolved-link="com.google.android.exoplayer2.drm/DrmSession/acquire/#com.google.android.exoplayer2.drm.DrmSessionEventListener.EventDispatcher/PointingToDeclaration/">acquire</span>.</p></div></div></div></div></div><div class="table-row" data-filterable-current=":cnc-exoplayer-2_19-support:dokkaHtmlPartial/release" data-filterable-set=":cnc-exoplayer-2_19-support:dokkaHtmlPartial/release"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex"><div><span><span>format</span></span></div></span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">The <span data-unresolved-link="com.google.android.exoplayer2/Format///PointingToDeclaration/">Format</span> for which to pre-acquire a <span data-unresolved-link="com.google.android.exoplayer2.drm/DrmSession///PointingToDeclaration/">DrmSession</span>.</p></div></div></div></div></div></div></div></div></div>
+</div>
+        <div class="footer"><span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2023 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+        </div>
+    </div>
+</div>
+
+</body></html>
+

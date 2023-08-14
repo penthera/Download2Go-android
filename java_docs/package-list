@@ -3,6 +3,9 @@ $dokka.linkExtension:html
 
 module:Download2Go AndroidX Extension Support Library
 com.penthera.virtuososdk.androidxsupport
+module:Download2Go Android ExoPlayer 2.19.* Support Library
+com.penthera.virtuososdk.support.exoplayer219
+com.penthera.virtuososdk.support.exoplayer219.drm
 module:Download2Go Android ExoPlayer 2.13.* Support Library
 com.penthera.virtuososdk.support.exoplayer213
 com.penthera.virtuososdk.support.exoplayer213.drm

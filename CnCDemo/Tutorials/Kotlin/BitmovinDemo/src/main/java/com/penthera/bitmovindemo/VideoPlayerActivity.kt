@@ -8,8 +8,8 @@ import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
-import com.bitmovin.player.BitmovinPlayer
-import com.bitmovin.player.BitmovinPlayerView
+import com.bitmovin.player.PlayerView
+import com.bitmovin.player.api.Player
 import com.penthera.virtuososdk.client.*
 import com.penthera.virtuososdk.client.bitmovin.BitmovinSourceManager
 
@@ -18,7 +18,7 @@ import com.penthera.virtuososdk.client.bitmovin.BitmovinSourceManager
  */
 class VideoPlayerActivity : Activity() {
 
-    private var bitmovinPlayer: BitmovinPlayer? = null
+    private var bitmovinPlayer: Player? = null
 
     private var virtuoso : Virtuoso? = null
 
@@ -26,7 +26,7 @@ class VideoPlayerActivity : Activity() {
 
     private var asset: ISegmentedAsset? = null
 
-    private lateinit var playerView: BitmovinPlayerView
+    private lateinit var playerView: PlayerView
     // Activity lifecycle
 
     public override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,8 +39,7 @@ class VideoPlayerActivity : Activity() {
         playerView =  findViewById(R.id.playerView)
         this.bitmovinPlayer = playerView.player
 
-        var playerConfig = bitmovinPlayer?.config
-        playerConfig?.playbackConfiguration?.autoplayEnabled = true
+        bitmovinPlayer?.config?.playbackConfig?.isAutoplayEnabled = true
 
         this.initializePlayer()
     }
@@ -112,18 +111,17 @@ class VideoPlayerActivity : Activity() {
 
         asset.let {
             sourceManager = BitmovinSourceManager(this, it)
-            var sourceItem = sourceManager?.bitmovinSourceItem
+            val sourceConfig = sourceManager?.bitmovinSourceItem
 
-            if (sourceItem != null) {
-                this.bitmovinPlayer?.load(sourceItem)
-                sourceManager?.startMonitoring()
+            if (sourceConfig != null) {
+                this.bitmovinPlayer?.load(sourceConfig)
             } else {
                 if (sourceManager?.hasValidDRM() == true) {
                     // DRM valid but could not create source item
                     Log.e(VideoPlayerActivity.javaClass.simpleName, "Could not start video despite drm reporting valid")
                     showToast("Could not start video. Reason unknown.")
                 } else {
-
+                    handleDrmLicenseNotAvailable()
                 }
             }
 

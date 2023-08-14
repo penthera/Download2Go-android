@@ -45,7 +45,7 @@
         <!-- BITMOVIN License Data - Enter your license here and update the package to run the demo -->
         <meta-data
             android:name="BITMOVIN_PLAYER_LICENSE_KEY"
-            android:value="d8bff7fb-edd5-4e05-b4f0-b76cb5640e52" />
+            android:value="" />
 
         <!-- Service Starter -->
         <receiver android:name=".ServiceStarter"
