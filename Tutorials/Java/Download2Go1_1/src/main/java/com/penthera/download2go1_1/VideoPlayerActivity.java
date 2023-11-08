@@ -17,28 +17,25 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.media3.common.C;
+import androidx.media3.common.ErrorMessageProvider;
+import androidx.media3.common.PlaybackException;
+import androidx.media3.common.Player;
+import androidx.media3.common.TrackSelectionParameters;
+import androidx.media3.common.Tracks;
+import androidx.media3.exoplayer.DefaultRenderersFactory;
+import androidx.media3.exoplayer.RenderersFactory;
+import androidx.media3.exoplayer.mediacodec.MediaCodecRenderer;
+import androidx.media3.exoplayer.mediacodec.MediaCodecUtil;
+import androidx.media3.exoplayer.trackselection.AdaptiveTrackSelection;
+import androidx.media3.exoplayer.trackselection.DefaultTrackSelector;
+import androidx.media3.exoplayer.util.EventLogger;
+import androidx.media3.ui.PlayerView;
 
-import com.google.android.exoplayer2.C;
-import com.google.android.exoplayer2.DefaultRenderersFactory;
-import com.google.android.exoplayer2.ExoPlaybackException;
-import com.google.android.exoplayer2.PlaybackException;
-import com.google.android.exoplayer2.Player;
-import com.google.android.exoplayer2.RenderersFactory;
-import com.google.android.exoplayer2.TracksInfo;
-import com.google.android.exoplayer2.mediacodec.MediaCodecRenderer;
-import com.google.android.exoplayer2.mediacodec.MediaCodecUtil;
-import com.google.android.exoplayer2.source.BehindLiveWindowException;
-import com.google.android.exoplayer2.source.TrackGroupArray;
-import com.google.android.exoplayer2.trackselection.AdaptiveTrackSelection;
-import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
-import com.google.android.exoplayer2.trackselection.MappingTrackSelector;
-import com.google.android.exoplayer2.trackselection.TrackSelectionArray;
-import com.google.android.exoplayer2.ui.StyledPlayerView;
-import com.google.android.exoplayer2.util.ErrorMessageProvider;
-import com.google.android.exoplayer2.util.EventLogger;
+
 import com.penthera.virtuososdk.client.IAsset;
 import com.penthera.virtuososdk.client.Virtuoso;
-import com.penthera.virtuososdk.support.exoplayer217.ExoplayerUtils;
+import com.penthera.virtuososdk.support.androidx.media311.ExoplayerUtils;
 
 import java.net.CookieHandler;
 import java.net.CookieManager;
@@ -63,6 +60,7 @@ public class VideoPlayerActivity extends AppCompatActivity {
 
 
     private static final CookieManager DEFAULT_COOKIE_MANAGER;
+
     static {
         DEFAULT_COOKIE_MANAGER = new CookieManager();
         DEFAULT_COOKIE_MANAGER.setCookiePolicy(CookiePolicy.ACCEPT_ORIGINAL_SERVER);
@@ -73,12 +71,12 @@ public class VideoPlayerActivity extends AppCompatActivity {
     // a singleton for the whole application. But this should not be instantiated in an application onCreate().
     private Virtuoso mVirtuoso;
 
-    private StyledPlayerView playerView;
+    private PlayerView playerView;
 
     private Player player;
     private DefaultTrackSelector trackSelector;
-    private DefaultTrackSelector.Parameters trackSelectorParameters;
-    private TracksInfo lastSeenTracksInfo;
+    private TrackSelectionParameters trackSelectorParameters;
+    private Tracks lastSeenTracksInfo;
 
     private boolean startAutoPlay;
     private int startWindow;
@@ -123,14 +121,13 @@ public class VideoPlayerActivity extends AppCompatActivity {
         playerView.requestFocus();
 
         if (savedInstanceState != null) {
-            trackSelectorParameters = savedInstanceState.getParcelable(KEY_TRACK_SELECTOR_PARAMETERS);
+            trackSelectorParameters = TrackSelectionParameters.fromBundle(
+                    savedInstanceState.getBundle(KEY_TRACK_SELECTOR_PARAMETERS));
             startAutoPlay = savedInstanceState.getBoolean(KEY_AUTO_PLAY);
             startWindow = savedInstanceState.getInt(KEY_WINDOW);
             startPosition = savedInstanceState.getLong(KEY_POSITION);
         } else {
-            DefaultTrackSelector.ParametersBuilder builder =
-                    new DefaultTrackSelector.ParametersBuilder(/* context= */ this);
-            trackSelectorParameters = builder.build();
+            trackSelectorParameters = new TrackSelectionParameters.Builder(this).build();
             clearStartPosition();
         }
     }
@@ -153,7 +150,7 @@ public class VideoPlayerActivity extends AppCompatActivity {
     public void onResume() {
         super.onResume();
         mVirtuoso.onResume();
-        if ( player == null) {
+        if (player == null) {
             initializePlayer();
         }
     }
@@ -204,7 +201,7 @@ public class VideoPlayerActivity extends AppCompatActivity {
             AdaptiveTrackSelection.Factory trackSelectionFactory = new AdaptiveTrackSelection.Factory();
             trackSelector = new DefaultTrackSelector(this, trackSelectionFactory);
             trackSelector.setParameters(trackSelectorParameters);
-            lastSeenTracksInfo = TracksInfo.EMPTY;
+            lastSeenTracksInfo = Tracks.EMPTY;
 
             RenderersFactory renderersFactory = new DefaultRenderersFactory(this)
                     .setExtensionRendererMode(DefaultRenderersFactory.EXTENSION_RENDERER_MODE_OFF);
@@ -213,7 +210,7 @@ public class VideoPlayerActivity extends AppCompatActivity {
                     .userRenderersFactory(renderersFactory)
                     .withTrackSelector(trackSelector)
                     .withPlayerListener(new PlayerEventListener())
-                    .withAnalyticsListener(new EventLogger(trackSelector))
+                    .withAnalyticsListener(new EventLogger())
                     .playWhenReady(true);
 
             builder.mediaSourceOptions().useTransferListener(true)
@@ -309,19 +306,22 @@ public class VideoPlayerActivity extends AppCompatActivity {
 
         @Override
         @SuppressWarnings("ReferenceEquality")
-        public void onTracksInfoChanged(TracksInfo tracksInfo) {
+        public void onTracksChanged(Tracks tracks) {
             updateButtonVisibility();
-            if (tracksInfo == lastSeenTracksInfo) {
+            if (tracks == lastSeenTracksInfo) {
                 return;
             }
-            if (!tracksInfo.isTypeSupportedOrEmpty(C.TRACK_TYPE_VIDEO)) {
+            if (tracks.containsType(C.TRACK_TYPE_VIDEO)
+                    && !tracks.isTypeSupported(C.TRACK_TYPE_VIDEO, /* allowExceedsCapabilities= */ true)) {
                 showToast(R.string.error_unsupported_video);
             }
-            if (!tracksInfo.isTypeSupportedOrEmpty(C.TRACK_TYPE_AUDIO)) {
+            if (tracks.containsType(C.TRACK_TYPE_AUDIO)
+                    && !tracks.isTypeSupported(C.TRACK_TYPE_AUDIO, /* allowExceedsCapabilities= */ true)) {
                 showToast(R.string.error_unsupported_audio);
             }
-            lastSeenTracksInfo = tracksInfo;
+            lastSeenTracksInfo = tracks;
         }
+
     }
 
     /**

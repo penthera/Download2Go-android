@@ -11,20 +11,18 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import com.google.android.exoplayer2.*
-import com.google.android.exoplayer2.mediacodec.MediaCodecRenderer.DecoderInitializationException
-import com.google.android.exoplayer2.mediacodec.MediaCodecUtil.DecoderQueryException
-import com.google.android.exoplayer2.source.TrackGroupArray
-import com.google.android.exoplayer2.trackselection.AdaptiveTrackSelection
-import com.google.android.exoplayer2.trackselection.DefaultTrackSelector
-import com.google.android.exoplayer2.trackselection.MappingTrackSelector
-import com.google.android.exoplayer2.trackselection.TrackSelectionArray
-import com.google.android.exoplayer2.ui.StyledPlayerView
-import com.google.android.exoplayer2.util.ErrorMessageProvider
+import androidx.media3.common.*
+import androidx.media3.exoplayer.DefaultRenderersFactory
+import androidx.media3.exoplayer.ExoPlayer
+import androidx.media3.exoplayer.mediacodec.MediaCodecRenderer
+import androidx.media3.exoplayer.mediacodec.MediaCodecUtil
+import androidx.media3.exoplayer.trackselection.AdaptiveTrackSelection
+import androidx.media3.exoplayer.trackselection.DefaultTrackSelector
+import androidx.media3.exoplayer.util.EventLogger
+import androidx.media3.ui.PlayerView
 import com.penthera.playassure.*
+import com.penthera.virtuososdk.support.androidx.media311.ExoplayerUtils
 import kotlinx.coroutines.*
-import com.penthera.virtuososdk.support.exoplayer217.ExoplayerUtils
-
 import java.net.CookieManager
 import java.net.CookiePolicy
 import kotlin.math.max
@@ -34,13 +32,13 @@ import kotlin.math.max
  */
 class VideoPlayerActivity : AppCompatActivity() , PlayAssureStatus {
 
-    private var playerView: StyledPlayerView? = null
+    private var playerView: PlayerView? = null
 
     private var player: Player? = null
     private var trackSelector: DefaultTrackSelector? = null
     private var trackSelectorParameters: DefaultTrackSelector.Parameters? = null
     private var inErrorState: Boolean = false
-    private var lastSeenTracksInfo: TracksInfo? = null
+    private var lastSeenTracksInfo: Tracks? = null
 
     private var shouldAutoPlay: Boolean = false
     private var resumeWindow: Int = 0
@@ -60,7 +58,7 @@ class VideoPlayerActivity : AppCompatActivity() , PlayAssureStatus {
 
         setContentView(R.layout.player_activity)
 
-        playerView = findViewById<StyledPlayerView>(R.id.player_view).apply {
+        playerView = findViewById<PlayerView>(R.id.player_view).apply {
             setErrorMessageProvider(PlayerErrorMessageProvider())
             requestFocus()
         }
@@ -152,12 +150,12 @@ class VideoPlayerActivity : AppCompatActivity() , PlayAssureStatus {
             val adaptiveTrackSelectionFactory = AdaptiveTrackSelection.Factory()
             trackSelector = DefaultTrackSelector(this, adaptiveTrackSelectionFactory)
             trackSelector?.parameters = trackSelectorParameters!!
-            lastSeenTracksInfo = TracksInfo.EMPTY
+            lastSeenTracksInfo = Tracks.EMPTY
 
             val renderersFactory = DefaultRenderersFactory(this)
             renderersFactory.setExtensionRendererMode(DefaultRenderersFactory.EXTENSION_RENDERER_MODE_OFF)
 
-            player = SimpleExoPlayer.Builder(this,renderersFactory).apply {
+            player = ExoPlayer.Builder(this,renderersFactory).apply {
                 trackSelector?.let{
                     setTrackSelector(it)
                 }
@@ -237,17 +235,23 @@ class VideoPlayerActivity : AppCompatActivity() , PlayAssureStatus {
             }
         }
 
-        override fun onTracksInfoChanged(tracksInfo: TracksInfo) {
-            if (tracksInfo === lastSeenTracksInfo) {
+        override fun onTracksChanged(tracks: Tracks) {
+            if (tracks === lastSeenTracksInfo) {
                 return
             }
-            if (!tracksInfo.isTypeSupportedOrEmpty(C.TRACK_TYPE_VIDEO)) {
+
+            if (tracks.containsType(C.TRACK_TYPE_VIDEO)
+                && !tracks.isTypeSupported(C.TRACK_TYPE_VIDEO, true)
+            ) {
                 showToast(R.string.error_unsupported_video)
             }
-            if (!tracksInfo.isTypeSupportedOrEmpty(C.TRACK_TYPE_AUDIO)) {
+            if (tracks.containsType(C.TRACK_TYPE_AUDIO)
+                && !tracks.isTypeSupported(C.TRACK_TYPE_AUDIO, true)
+            ) {
                 showToast(R.string.error_unsupported_audio)
             }
-            lastSeenTracksInfo = tracksInfo
+
+            lastSeenTracksInfo = tracks
         }
     }
 
@@ -267,11 +271,11 @@ class VideoPlayerActivity : AppCompatActivity() , PlayAssureStatus {
         override fun getErrorMessage(e: PlaybackException): Pair<Int, String> {
             var errorString = getString(R.string.error_generic)
             val cause = e.cause
-            if (cause is DecoderInitializationException) {
+            if (cause is MediaCodecRenderer.DecoderInitializationException) {
                 // Special case for decoder initialization failures.
                 errorString = if (cause.codecInfo == null) {
                     when {
-                        cause.cause is DecoderQueryException -> {
+                        cause.cause is MediaCodecUtil.DecoderQueryException -> {
                             getString(R.string.error_querying_decoders)
                         }
                         cause.secureDecoderRequired -> {

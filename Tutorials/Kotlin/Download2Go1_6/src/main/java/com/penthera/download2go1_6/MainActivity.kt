@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity() ,
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        initVirtuosoSDK(savedInstanceState)
+        virtuoso = Virtuoso(this)
 
         ASSET_TITLE_1 = getString(R.string.download1_name)
         ASSET_TITLE_2 = getString(R.string.download2_name)
@@ -78,14 +78,10 @@ class MainActivity : AppCompatActivity() ,
         LoaderManager.getInstance(this).initLoader(LOADER_ID,null, this)
     }
 
-    private fun initVirtuosoSDK(savedInstanceState: Bundle?) {
-
-        virtuoso = Virtuoso(this)
-
+    private fun initVirtuosoSDK() {
         //this is the current best practice for initializing the SDK
-        if(savedInstanceState == null){//initial start of activity will have null saved instance state
             val status = virtuoso.backplane?.authenticationStatus
-            if(status == AuthenticationStatus.NOT_AUTHENTICATED){//if not authenticated execute sdk startup
+            if(status != AuthenticationStatus.AUTHENTICATED){//if not authenticated execute sdk startup
                 //here we use the simplest login with hard coded values
 
                 virtuoso.startup(
@@ -106,7 +102,6 @@ class MainActivity : AppCompatActivity() ,
                     }
                 )
             }
-        }
     }
 
     override fun onResume() {
@@ -148,6 +143,8 @@ class MainActivity : AppCompatActivity() ,
     }
 
     private fun downloadAsset(index : Int){
+        initVirtuosoSDK()
+
         val url : String
         val title  :  String
         val id : String

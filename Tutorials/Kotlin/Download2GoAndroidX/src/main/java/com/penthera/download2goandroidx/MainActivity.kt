@@ -33,17 +33,6 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.download.setOnClickListener { downloadAsset() }
-        binding.play.setOnClickListener { playAsset()}
-        binding.delete.setOnClickListener { deleteAsset() }
-
-        initVirtuosoSDK(savedInstanceState)
-
-        updateUI()
-    }
-
-    private fun initVirtuosoSDK(savedInstanceState: Bundle?) {
-
         virtuosoLiveDataFactory = VirtuosoLiveDataFactory.getInstance()
         virtuoso = virtuosoLiveDataFactory.createVirtuosoWithLifecycle(this, this)
 
@@ -56,14 +45,21 @@ class MainActivity : AppCompatActivity() {
                             statusVal!!
                         )
 
-                )
+                    )
             })
 
+        binding.download.setOnClickListener { downloadAsset() }
+        binding.play.setOnClickListener { playAsset()}
+        binding.delete.setOnClickListener { deleteAsset() }
 
+
+        updateUI()
+    }
+
+    private fun initVirtuosoSDK() {
         //this is the current best practice for initializing the SDK
-        if(savedInstanceState == null){//initial start of activity will have null saved instance state
             val status = virtuoso.backplane?.authenticationStatus
-            if(status == AuthenticationStatus.NOT_AUTHENTICATED){//if not authenticated execute sdk startup
+            if(status != AuthenticationStatus.AUTHENTICATED){//if not authenticated execute sdk startup
                 //here we use the simplest login with hard coded values
 
                 virtuoso.startup(
@@ -86,7 +82,6 @@ class MainActivity : AppCompatActivity() {
 
             }
 
-        }
 
         // Load asset if it has already been downloaded
         loadAsset()
@@ -126,6 +121,7 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun downloadAsset(){
+        initVirtuosoSDK()
 
         val params = HLSAssetBuilder().apply {
             assetId(ASSET_ID) //REQUIRED PARAMETER asset ID of the new asset
@@ -268,8 +264,8 @@ class MainActivity : AppCompatActivity() {
         const val ASSET_URL: String = "http://virtuoso-demo-content.s3.amazonaws.com/Steve/steve.m3u8"
 
         const val BACKPLANE_URL = "https://demo.penthera.com"
-        const val BACKPLANE_PUBLIC_KEY =  
-        const val BACKPLANE_PRIVATE_KEY = 
+        const val BACKPLANE_PUBLIC_KEY =  "a382d4a927dee20c21af4442a85adfc8366b99b485547d7364818839509ac7cb"
+        const val BACKPLANE_PRIVATE_KEY = "517ba3db3fb8127d33b342716b69bdbdb030425737a3ade7d2224b86fdf8bf19"
 
     }
 }

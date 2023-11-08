@@ -18,20 +18,22 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.exoplayer2.C;
-import com.google.android.exoplayer2.DefaultRenderersFactory;
-import com.google.android.exoplayer2.MediaItem;
-import com.google.android.exoplayer2.PlaybackException;
-import com.google.android.exoplayer2.Player;
-import com.google.android.exoplayer2.RenderersFactory;
-import com.google.android.exoplayer2.SimpleExoPlayer;
-import com.google.android.exoplayer2.TracksInfo;
-import com.google.android.exoplayer2.mediacodec.MediaCodecRenderer;
-import com.google.android.exoplayer2.mediacodec.MediaCodecUtil;
-import com.google.android.exoplayer2.trackselection.AdaptiveTrackSelection;
-import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
-import com.google.android.exoplayer2.ui.StyledPlayerView;
-import com.google.android.exoplayer2.util.ErrorMessageProvider;
+import androidx.media3.common.C;
+import androidx.media3.common.ErrorMessageProvider;
+import androidx.media3.common.MediaItem;
+import androidx.media3.common.PlaybackException;
+import androidx.media3.common.Player;
+import androidx.media3.common.TrackSelectionParameters;
+import androidx.media3.common.Tracks;
+import androidx.media3.exoplayer.DefaultRenderersFactory;
+import androidx.media3.exoplayer.ExoPlayer;
+import androidx.media3.exoplayer.RenderersFactory;
+import androidx.media3.exoplayer.mediacodec.MediaCodecRenderer;
+import androidx.media3.exoplayer.mediacodec.MediaCodecUtil;
+import androidx.media3.exoplayer.trackselection.AdaptiveTrackSelection;
+import androidx.media3.exoplayer.trackselection.DefaultTrackSelector;
+import androidx.media3.exoplayer.util.EventLogger;
+import androidx.media3.ui.PlayerView;
 import com.penthera.playassure.InitializationResult;
 import com.penthera.playassure.PlayAssureConfig;
 import com.penthera.playassure.PlayAssureEngineState;
@@ -39,7 +41,7 @@ import com.penthera.playassure.PlayAssureError;
 import com.penthera.playassure.PlayAssureManager;
 import com.penthera.playassure.PlayAssureStatus;
 import com.penthera.playassure.PlayAssureStatusInfo;
-import com.penthera.virtuososdk.support.exoplayer215.ExoplayerUtils;
+import com.penthera.virtuososdk.support.androidx.media311.ExoplayerUtils;
 
 import java.net.CookieHandler;
 import java.net.CookieManager;
@@ -66,17 +68,18 @@ public class VideoPlayerActivity extends AppCompatActivity implements PlayAssure
     private static final String USER_ID = "user_id";
 
     private static final CookieManager DEFAULT_COOKIE_MANAGER;
+
     static {
         DEFAULT_COOKIE_MANAGER = new CookieManager();
         DEFAULT_COOKIE_MANAGER.setCookiePolicy(CookiePolicy.ACCEPT_ORIGINAL_SERVER);
     }
 
-    private StyledPlayerView playerView;
+    private PlayerView playerView;
 
     private Player player;
     private DefaultTrackSelector trackSelector;
-    private DefaultTrackSelector.Parameters trackSelectorParameters;
-    private TracksInfo lastSeenTracksInfo;
+    private TrackSelectionParameters trackSelectorParameters;
+    private Tracks lastSeenTracksInfo;
 
     private boolean inErrorState;
     private boolean startAutoPlay;
@@ -125,13 +128,13 @@ public class VideoPlayerActivity extends AppCompatActivity implements PlayAssure
         playerView.requestFocus();
 
         if (savedInstanceState != null) {
-            trackSelectorParameters = DefaultTrackSelector.Parameters.CREATOR.fromBundle(
+            trackSelectorParameters = TrackSelectionParameters.fromBundle(
                     savedInstanceState.getBundle(KEY_TRACK_SELECTOR_PARAMETERS));
             startAutoPlay = savedInstanceState.getBoolean(KEY_AUTO_PLAY);
             startWindow = savedInstanceState.getInt(KEY_WINDOW);
             startPosition = savedInstanceState.getLong(KEY_POSITION);
         } else {
-            trackSelectorParameters = new DefaultTrackSelector.ParametersBuilder(this).build();
+            trackSelectorParameters = new TrackSelectionParameters.Builder(this).build();
             clearStartPosition();
         }
     }
@@ -166,7 +169,7 @@ public class VideoPlayerActivity extends AppCompatActivity implements PlayAssure
     @Override
     public void onResume() {
         super.onResume();
-        if ( player == null) {
+        if (player == null) {
             initializePlayer();
         }
     }
@@ -210,12 +213,12 @@ public class VideoPlayerActivity extends AppCompatActivity implements PlayAssure
             AdaptiveTrackSelection.Factory trackSelectionFactory = new AdaptiveTrackSelection.Factory();
             trackSelector = new DefaultTrackSelector(this, trackSelectionFactory);
             trackSelector.setParameters(trackSelectorParameters);
-            lastSeenTracksInfo = TracksInfo.EMPTY;
+            lastSeenTracksInfo = Tracks.EMPTY;
 
             RenderersFactory renderersFactory = new DefaultRenderersFactory(this)
                     .setExtensionRendererMode(DefaultRenderersFactory.EXTENSION_RENDERER_MODE_OFF);
 
-            player = new SimpleExoPlayer.Builder(this, renderersFactory)
+            player = new ExoPlayer.Builder(this, renderersFactory)
                     .setTrackSelector(trackSelector)
                     .build();
 
@@ -319,17 +322,19 @@ public class VideoPlayerActivity extends AppCompatActivity implements PlayAssure
 
         @Override
         @SuppressWarnings("ReferenceEquality")
-        public void onTracksInfoChanged(TracksInfo tracksInfo) {
-            if (tracksInfo == lastSeenTracksInfo) {
+        public void onTracksChanged(Tracks tracks) {
+            if (tracks == lastSeenTracksInfo) {
                 return;
             }
-            if (!tracksInfo.isTypeSupportedOrEmpty(C.TRACK_TYPE_VIDEO)) {
+            if (tracks.containsType(C.TRACK_TYPE_VIDEO)
+                    && !tracks.isTypeSupported(C.TRACK_TYPE_VIDEO, /* allowExceedsCapabilities= */ true)) {
                 showToast(R.string.error_unsupported_video);
             }
-            if (!tracksInfo.isTypeSupportedOrEmpty(C.TRACK_TYPE_AUDIO)) {
+            if (tracks.containsType(C.TRACK_TYPE_AUDIO)
+                    && !tracks.isTypeSupported(C.TRACK_TYPE_AUDIO, /* allowExceedsCapabilities= */ true)) {
                 showToast(R.string.error_unsupported_audio);
             }
-            lastSeenTracksInfo = tracksInfo;
+            lastSeenTracksInfo = tracks;
         }
     }
 

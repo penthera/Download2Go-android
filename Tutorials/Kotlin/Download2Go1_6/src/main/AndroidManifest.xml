@@ -1,6 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.penthera.download2go1_6">
+	
+	<!-- This permission enables notifications for API 33+ -->
+	<uses-permission android:name="android.permission.POST_NOTIFICATIONS"  />
 
     <!-- The networkSecurityConfig is required to enable playback from the local proxy using http and not https -->
     <application

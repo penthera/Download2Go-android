@@ -146,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
     private void doRegister(boolean retry) {
 
         int status = virtuoso.getBackplane().getAuthenticationStatus();
-        if (status == AuthenticationStatus.NOT_AUTHENTICATED) { // If not authenticated then execute sdk startup
+        if (status != AuthenticationStatus.AUTHENTICATED) { // If not authenticated then execute sdk startup
             String name = accountName.getText().toString();
             if (!TextUtils.isEmpty(name)) {
 

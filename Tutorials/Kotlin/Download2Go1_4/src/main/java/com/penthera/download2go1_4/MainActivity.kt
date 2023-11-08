@@ -85,6 +85,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        virtuoso = Virtuoso(this)
+        queueObserver = AssetQueueObserver(this)
+
+        download2GoService = virtuoso.service
+
         dlBtn = findViewById(R.id.download)
         dlBtn.setOnClickListener { downloadAsset() }
         plBtn= findViewById(R.id.play)
@@ -97,7 +102,6 @@ class MainActivity : AppCompatActivity() {
         pauseEngine.setOnCheckedChangeListener { _, isChecked -> pauseEngine(isChecked) }
         ancillaryImage = findViewById(R.id.ancillaryImage)
 
-        initVirtuosoSDK(savedInstanceState)
         updateUI()
     }
 
@@ -127,17 +131,10 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun initVirtuosoSDK(savedInstanceState: Bundle?) {
-
-        virtuoso = Virtuoso(this)
-        queueObserver = AssetQueueObserver(this)
-
-        download2GoService = virtuoso.service
-
+    private fun initVirtuosoSDK() {
         //this is the current best practice for initializing the SDK
-        if(savedInstanceState == null){//initial start of activity will have null saved instance state
             val status = virtuoso.backplane?.authenticationStatus
-            if(status == AuthenticationStatus.NOT_AUTHENTICATED){//if not authenticated execute sdk startup
+            if(status != AuthenticationStatus.AUTHENTICATED){//if not authenticated execute sdk startup
                 //here we use the simplest login with hard coded values
 
                 virtuoso.startup(
@@ -158,7 +155,6 @@ class MainActivity : AppCompatActivity() {
                     }
                 )
             }
-        }
 
         //load asset if it has already been downloaded
         val list : MutableList<IIdentifier>? = virtuoso.assetManager.getByAssetId(ASSET_ID)
@@ -297,6 +293,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
     private fun downloadAsset(){
+        initVirtuosoSDK()
 
         // One or more tags can be saved with the images
         val tags = arrayOf(ANCILLARY_IMAGE_TAG)
@@ -367,10 +364,12 @@ class MainActivity : AppCompatActivity() {
             val downloaded = assetManager.downloaded.cursor.count
             val curAsset = mActivity.asset
             if ( curAsset != null && (queued > 0 || downloaded > 0)) {
-                val asset = assetManager.get(curAsset.id) as IAsset
-                if (asset.downloadStatus != curAsset.downloadStatus) {
-                    mActivity.asset = asset
-                    updateItem(asset, true)
+                assetManager.get(curAsset.id)?.let {
+                    val asset = it as IAsset
+                    if (asset.downloadStatus != curAsset.downloadStatus) {
+                        mActivity.asset = asset
+                        updateItem(asset, true)
+                    }
                 }
             }
             if (queued == 0) {

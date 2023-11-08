@@ -1,33 +1,27 @@
 project.ext {
-    pentheraSdkVersion = '5.2.1'
+    pentheraSdkVersion = '5.3.9'
 
     releaseVersion = '1.0'
     releaseVersionCode = 1
     minSdkVersion = 24
-    appTargetSdkVersion = 31
-    targetSdkVersion = 31
-    compileSdkVersion = 32
-    buildToolsVersion = '32.0.0'
-    bitMovinMinSdkVersion = 21
+    targetSdkVersion = 33
+    compileSdkVersion = 33
+    buildToolsVersion = '33.0.0'
 
-    junitVersion = '4.12'
-    appcompatVersion = '1.2.0' //1.4.1
-    constraintLayoutVersion = '2.0.4' //'2.1.1'
-    exoPlayerVersion = '2.17.1'
-    androidxTestRunnerVersion = '1.3.0'
-    androidxEspressoVersion = '3.3.0'
+    appcompatVersion = '1.2.0'
+    constraintLayoutVersion = '2.0.4'
     recyclerViewVersion = '1.2.0'
     firebaseMessagingVersion = '20.2.0'
     firebaseCoreVersion = '17.4.3'
 
-    junitExtVersion = '1.1.2'
-    kotlinVersion = '1.5.21' // '1.5.31' - play assure
-    bitMovinPlayerVerion = '2.70.0'
-    localBroadcastVersion = '1.0.0'
+    exoPlayerVersion = '1.1.0'
+    bitmovinPlayerVersion = '3.38.1'
+
+    kotlinVersion = '1.7.10'
+    ktxVersion = '1.7.0'
+    localBroadcastVersion = '1.1.0'
     androidLegacyversion = '1.0.0'
-    ktxVersion = '1.3.2' // '1.7.0'
-    kotlinExoPlayerVersion = '2.17.1'
+
     googleMaterialVersion = '1.6.0'
     runtimeKtxVersion = '2.4.0'
-
 }

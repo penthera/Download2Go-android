@@ -66,6 +66,8 @@ public class MainActivity extends AppCompatActivity {
 
         virtuoso = new Virtuoso(this);
 
+        queueObserver = new AssetQueueObserver(this);
+
         dlBtn = findViewById(R.id.download);
         plBtn = findViewById(R.id.play);
         delBtn = findViewById(R.id.delete);
@@ -76,7 +78,6 @@ public class MainActivity extends AppCompatActivity {
         plBtn.setOnClickListener(v -> playAsset());
         delBtn.setOnClickListener(v -> deleteAsset());
 
-        initVirtuosoSDK(savedInstanceState);
         updateUI();
     }
 
@@ -98,16 +99,11 @@ public class MainActivity extends AppCompatActivity {
         virtuoso.removeObserver(queueObserver);
     }
 
-    public void initVirtuosoSDK(Bundle savedInstanceState) {
-
-
-        queueObserver = new AssetQueueObserver(this);
-
+    public void initVirtuosoSDK() {
         // This is current best practice for initializing the SDK
-        if (savedInstanceState == null) {
             try {
                 int status = virtuoso.getBackplane().getAuthenticationStatus();
-                if (status == AuthenticationStatus.NOT_AUTHENTICATED) { // If not authenticated then execute sdk startup
+                if (status != AuthenticationStatus.AUTHENTICATED) { // If not authenticated then execute sdk startup
 
                     // Here we use the simplest login with hard coded values
                     URL backplaneUrl = new URL(BACKPLANE_URL);
@@ -125,7 +121,6 @@ public class MainActivity extends AppCompatActivity {
             } catch (MalformedURLException mue) {
 
             }
-        }
 
         // Load asset if it has already been downloaded
         List<IIdentifier> list = virtuoso.getAssetManager().getByAssetId(ASSET_ID);
@@ -145,6 +140,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void downloadAsset() {
+        initVirtuosoSDK();
 
         URL assetUrl;
         try {

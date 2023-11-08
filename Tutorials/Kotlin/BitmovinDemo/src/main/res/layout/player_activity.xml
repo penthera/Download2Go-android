@@ -20,7 +20,7 @@
     android:layout_height="match_parent"
     android:keepScreenOn="true">
 
-    <com.bitmovin.player.BitmovinPlayerView
+    <com.bitmovin.player.PlayerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/playerView"/>

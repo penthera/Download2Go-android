@@ -37,8 +37,8 @@ public class MainActivity extends AppCompatActivity {
 
     // DEMO Server details
     private static final String BACKPLANE_URL = "https://demo.penthera.com/";
-    private static final String BACKPLANE_PUBLIC_KEY = ;
-    private static final String BACKPLANE_PRIVATE_KEY = ;
+    private static final String BACKPLANE_PUBLIC_KEY = "a382d4a927dee20c21af4442a85adfc8366b99b485547d7364818839509ac7cb";
+    private static final String BACKPLANE_PRIVATE_KEY = "517ba3db3fb8127d33b342716b69bdbdb030425737a3ade7d2224b86fdf8bf19";
 
     // This is the test asset which will be downloaded
     // Important: Asset ID should be unique across your video catalog
@@ -65,6 +65,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        virtuosoLiveDataFactory = VirtuosoLiveDataFactory.getInstance();
+        virtuoso = virtuosoLiveDataFactory.createVirtuosoWithLifecycle(this, this);
+
+        LiveData<Integer> engineStatus = virtuosoLiveDataFactory.getEngineStatus();
+        engineStatus.observe(this, statusVal -> {
+            statusView.setText(getString(R.string.engine_status, getStatusString(statusVal)));
+        });
+
         dlBtn = findViewById(R.id.download);
         plBtn = findViewById(R.id.play);
         delBtn = findViewById(R.id.delete);
@@ -76,25 +84,14 @@ public class MainActivity extends AppCompatActivity {
         plBtn.setOnClickListener(v -> playAsset());
         delBtn.setOnClickListener(v -> deleteAsset());
 
-        initVirtuosoSDK(savedInstanceState);
         updateUI();
     }
 
-    public void initVirtuosoSDK(Bundle savedInstanceState) {
-
-        virtuosoLiveDataFactory = VirtuosoLiveDataFactory.getInstance();
-        virtuoso = virtuosoLiveDataFactory.createVirtuosoWithLifecycle(this, this);
-
-        LiveData<Integer> engineStatus = virtuosoLiveDataFactory.getEngineStatus();
-        engineStatus.observe(this, statusVal -> {
-            statusView.setText(getString(R.string.engine_status, getStatusString(statusVal)));
-        });
-
+    public void initVirtuosoSDK() {
         // This is current best practice for initializing the SDK
-        if (savedInstanceState == null) {
             try {
                 int status = virtuoso.getBackplane().getAuthenticationStatus();
-                if (status == AuthenticationStatus.NOT_AUTHENTICATED) { // If not authenticated then execute sdk startup
+                if (status != AuthenticationStatus.AUTHENTICATED) { // If not authenticated then execute sdk startup
 
                     // Here we use the simplest login with hard coded values
                     URL backplaneUrl = new URL(BACKPLANE_URL);
@@ -112,7 +109,6 @@ public class MainActivity extends AppCompatActivity {
             } catch (MalformedURLException mue) {
 
             }
-        }
 
         // Load asset if it has already been downloaded
         loadAsset();
@@ -141,6 +137,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void downloadAsset() {
+        initVirtuosoSDK();
 
         URL assetUrl;
         try {

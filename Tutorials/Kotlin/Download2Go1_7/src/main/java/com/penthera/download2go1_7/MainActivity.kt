@@ -149,7 +149,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun register(retry : Boolean){
 
-        if (virtuoso.backplane.authenticationStatus == AuthenticationStatus.NOT_AUTHENTICATED) { // If not authenticated then execute sdk startup
+        if (virtuoso.backplane.authenticationStatus != AuthenticationStatus.AUTHENTICATED) { // If not authenticated then execute sdk startup
             val name = accountName.text.toString()
             if (name.isNotEmpty()) {// Here we use the simplest login with hard coded values
                 val backplaneUrl: URL?
@@ -334,10 +334,12 @@ class MainActivity : AppCompatActivity() {
             val downloaded = assetManager.downloaded.cursor.count
             val curAsset = mActivity.asset
             if ( curAsset != null && (queued > 0 || downloaded > 0)) {
-                val asset = assetManager.get(curAsset.id) as IAsset
-                if (asset.downloadStatus != curAsset.downloadStatus) {
-                    mActivity.asset = asset
-                    updateItem(asset, true)
+                assetManager.get(curAsset.id)?.let {
+                    val asset = it as IAsset
+                    if (asset.downloadStatus != curAsset.downloadStatus) {
+                        mActivity.asset = asset
+                        updateItem(asset, true)
+                    }
                 }
             }
             if (queued == 0) {

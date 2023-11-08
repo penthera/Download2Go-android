@@ -12,22 +12,19 @@ import android.os.Bundle
 import android.util.Pair
 import android.view.KeyEvent
 import android.widget.Toast
-import com.google.android.exoplayer2.*
-import com.google.android.exoplayer2.mediacodec.MediaCodecRenderer
-import com.google.android.exoplayer2.mediacodec.MediaCodecUtil
-import com.google.android.exoplayer2.source.TrackGroupArray
-import com.google.android.exoplayer2.trackselection.AdaptiveTrackSelection
-import com.google.android.exoplayer2.trackselection.DefaultTrackSelector
-import com.google.android.exoplayer2.trackselection.MappingTrackSelector
-import com.google.android.exoplayer2.trackselection.TrackSelectionArray
-import com.google.android.exoplayer2.ui.StyledPlayerView
-import com.google.android.exoplayer2.util.ErrorMessageProvider
-import com.google.android.exoplayer2.util.EventLogger
-import com.google.android.exoplayer2.util.Util
+import androidx.media3.common.*
+import androidx.media3.common.util.Util
+import androidx.media3.exoplayer.DefaultRenderersFactory
+import androidx.media3.exoplayer.mediacodec.MediaCodecRenderer
+import androidx.media3.exoplayer.mediacodec.MediaCodecUtil
+import androidx.media3.exoplayer.trackselection.AdaptiveTrackSelection
+import androidx.media3.exoplayer.trackselection.DefaultTrackSelector
+import androidx.media3.exoplayer.util.EventLogger
+import androidx.media3.ui.PlayerView
 import com.penthera.virtuososdk.client.IAsset
 import com.penthera.virtuososdk.client.Virtuoso
-import com.penthera.virtuososdk.support.exoplayer217.ExoplayerUtils
-import com.penthera.virtuososdk.support.exoplayer217.drm.ExoplayerDrmSessionManager
+import com.penthera.virtuososdk.support.androidx.media311.ExoplayerUtils
+import com.penthera.virtuososdk.support.androidx.media311.drm.ExoplayerDrmSessionManager
 import java.net.CookieManager
 import java.net.CookiePolicy
 import java.net.MalformedURLException
@@ -42,13 +39,13 @@ class VideoPlayerActivity : Activity() {
     // as this will guarantee the proxy service remains available throughout. We can do this in the activity or store
     // a singleton for the whole application. But this should not be instantiated in an application onCreate().
     private lateinit var mVirtuoso: Virtuoso
-    private var playerView: StyledPlayerView? = null
+    private var playerView: PlayerView? = null
 
     private var player: Player? = null
     private var trackSelector: DefaultTrackSelector? = null
     private var trackSelectorParameters: DefaultTrackSelector.Parameters? = null
     private var inErrorState: Boolean = false
-    private var lastSeenTracksInfo: TracksInfo? = null
+    private var lastSeenTracksInfo: Tracks? = null
 
 
     private var shouldAutoPlay: Boolean = false
@@ -67,7 +64,7 @@ class VideoPlayerActivity : Activity() {
 
         setContentView(R.layout.player_activity)
 
-        playerView = findViewById<StyledPlayerView>(R.id.player_view).apply {
+        playerView = findViewById<PlayerView>(R.id.player_view).apply {
             setErrorMessageProvider(PlayerErrorMessageProvider())
             requestFocus()
         }
@@ -152,7 +149,7 @@ class VideoPlayerActivity : Activity() {
             val adaptiveTrackSelectionFactory = AdaptiveTrackSelection.Factory()
             trackSelector = DefaultTrackSelector(this, adaptiveTrackSelectionFactory)
             trackSelector?.parameters = trackSelectorParameters!!
-            lastSeenTracksInfo = TracksInfo.EMPTY
+            lastSeenTracksInfo = Tracks.EMPTY
 
 
             val renderersFactory = DefaultRenderersFactory(this)
@@ -162,7 +159,7 @@ class VideoPlayerActivity : Activity() {
             val builder = ExoplayerUtils.PlayerConfigOptions.Builder(this).apply{
                 withTrackSelector(trackSelector)
                 withPlayerListener(PlayerEventListener())
-                withAnalyticsListener(EventLogger(trackSelector))
+                withAnalyticsListener(EventLogger())
                 userRenderersFactory(renderersFactory)
                 if(resumeWindow != C.INDEX_UNSET) withSeekToPosition(resumeWindow, resumePosition)
                 playWhenReady(shouldAutoPlay)
@@ -254,17 +251,23 @@ class VideoPlayerActivity : Activity() {
             }
         }
 
-        override fun onTracksInfoChanged(tracksInfo: TracksInfo) {
-            if (tracksInfo === lastSeenTracksInfo) {
+        override fun onTracksChanged(tracks: Tracks) {
+            if (tracks === lastSeenTracksInfo) {
                 return
             }
-            if (!tracksInfo.isTypeSupportedOrEmpty(C.TRACK_TYPE_VIDEO)) {
+
+            if (tracks.containsType(C.TRACK_TYPE_VIDEO)
+                && !tracks.isTypeSupported(C.TRACK_TYPE_VIDEO, true)
+            ) {
                 showToast(R.string.error_unsupported_video)
             }
-            if (!tracksInfo.isTypeSupportedOrEmpty(C.TRACK_TYPE_AUDIO)) {
+            if (tracks.containsType(C.TRACK_TYPE_AUDIO)
+                && !tracks.isTypeSupported(C.TRACK_TYPE_AUDIO, true)
+            ) {
                 showToast(R.string.error_unsupported_audio)
             }
-            lastSeenTracksInfo = tracksInfo
+
+            lastSeenTracksInfo = tracks
         }
     }
 

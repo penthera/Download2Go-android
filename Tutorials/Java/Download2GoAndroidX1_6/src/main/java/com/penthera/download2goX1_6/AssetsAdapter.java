@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.penthera.download2goX1_6.databinding.AssetListItemBinding;
-import com.penthera.download2goX1_6.ui.AssetItemCallback;
+
 
 import java.util.List;
 
@@ -21,9 +21,9 @@ public class AssetsAdapter extends RecyclerView.Adapter<AssetsAdapter.AssetViewH
 
     List<AssetWrapper> assetList;
 
-    @NonNull final AssetItemCallback callback;
+    @NonNull final com.penthera.download2goX1_6.ui.AssetItemCallback callback;
 
-    public AssetsAdapter(@NonNull AssetItemCallback callback) {
+    public AssetsAdapter(@NonNull com.penthera.download2goX1_6.ui.AssetItemCallback callback) {
         this.callback = callback;
         setHasStableIds(true);
     }

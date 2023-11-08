@@ -4,6 +4,7 @@ Android Kotlin Tutorials
 #### Kotlin sample code covering the following
 
 * Download2GoHelloWorld - minimal example showing download and offline playback
+* BitmovinDemo - minimal example showing download and offline playback using the Bitmovin player
 * Example1.1 - Pause / resume downloading
 * Example1.2 - Download ancillary files
 * Example1.3 - Engine status

@@ -33,7 +33,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        initVirtuosoSDK(savedInstanceState)
+        virtuoso = Virtuoso(this)
+        queueObserver = AssetQueueObserver(this)
 
         dlBtn = findViewById(R.id.download)
         dlBtn.setOnClickListener { downloadAsset() }
@@ -45,13 +46,8 @@ class MainActivity : AppCompatActivity() {
         updateUI()
     }
 
-    private fun initVirtuosoSDK(savedInstanceState: Bundle?) {
-
-        virtuoso = Virtuoso(this)
-        queueObserver = AssetQueueObserver(this)
-
+    private fun initVirtuosoSDK() {
         //this is the current best practice for initializing the SDK
-        if(savedInstanceState == null){//initial start of activity will have null saved instance state
             val status = virtuoso.backplane?.authenticationStatus
             if(status == AuthenticationStatus.NOT_AUTHENTICATED){//if not authenticated execute sdk startup
                 //here we use the simplest login with hard coded values
@@ -76,7 +72,6 @@ class MainActivity : AppCompatActivity() {
 
             }
 
-        }
 
         //load asset if it has already been downloaded
         val list : MutableList<IIdentifier>? = virtuoso.assetManager.getByAssetId(ASSET_ID)
@@ -139,6 +134,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun downloadAsset(){
+        initVirtuosoSDK()
 
         val params = HLSAssetBuilder().apply {
             assetId(ASSET_ID) //REQUIRED PARAMETER asset ID of the new asset
