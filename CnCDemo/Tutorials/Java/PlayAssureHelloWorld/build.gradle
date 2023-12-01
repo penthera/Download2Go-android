@@ -1,0 +1,38 @@
+plugins {
+    id 'com.android.application'
+}
+
+apply from: "$rootDir/constants.gradle"
+
+android {
+    compileSdkVersion project.ext.compileSdkVersion
+    buildToolsVersion project.ext.buildToolsVersion
+    defaultConfig {
+        applicationId "com.penthera.playassurehelloworld"
+        minSdkVersion project.ext.minSdkVersion
+        targetSdkVersion project.ext.targetSdkVersion
+        versionCode project.ext.releaseVersionCode
+        versionName project.ext.releaseVersion
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+
+    implementation "androidx.appcompat:appcompat:$project.ext.appcompatVersion"
+    implementation "com.google.android.material:material:$project.ext.googleMaterialVersion"
+
+    implementation "com.penthera:playassure-android-sdk-debug:$project.ext.pentheraSdkVersion"
+    implementation "com.penthera:cnc-androidx-media3-1_1-support-debug:$project.ext.pentheraSdkVersion"
+
+    implementation "androidx.media3:media3-exoplayer:$project.ext.exoPlayerVersion"
+    implementation "androidx.media3:media3-exoplayer-hls:$project.ext.exoPlayerVersion"
+    implementation "androidx.media3:media3-ui:$project.ext.exoPlayerVersion"
+}
