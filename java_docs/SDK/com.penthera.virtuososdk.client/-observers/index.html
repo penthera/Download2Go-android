@@ -3,12 +3,19 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
     <title>Observers</title>
-<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">
-    <script>var pathToRoot = "../../../";</script>    <script>const storage = localStorage.getItem("dokka-dark-mode")
-const savedDarkMode = storage ? JSON.parse(storage) : false
-if(savedDarkMode === true){
-    document.getElementsByTagName("html")[0].classList.add("theme-dark")
-}</script>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../";</script>    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
 <script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async></script>
 <link href="../../../styles/style.css" rel="Stylesheet">
 <link href="../../../styles/jetbrains-mono.css" rel="Stylesheet">
@@ -19,7 +26,8 @@ if(savedDarkMode === true){
 <script type="text/javascript" src="../../../scripts/navigation-loader.js" async></script>
 <script type="text/javascript" src="../../../scripts/platform-content-handler.js" async></script>
 <script type="text/javascript" src="../../../scripts/main.js" defer></script>
-<script type="text/javascript" src="../../../scripts/prism.js" async></script></head>
+<script type="text/javascript" src="../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
 <body>
 <div class="navigation-wrapper" id="navigation-wrapper">
     <div id="leftToggler"><span class="icon-toggler"></span></div>
@@ -29,6 +37,9 @@ if(savedDarkMode === true){
     <div>
     </div>
     <div class="pull-right d-flex">
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":SDK:dokkaHtmlPartial/release">androidJvm</button>
+        </div>
         <button id="theme-toggle-button"><span id="theme-toggle"></span></button>
         <div id="searchBar"></div>
     </div>
@@ -38,87 +49,104 @@ if(savedDarkMode === true){
         <div id="sideMenu"></div>
     </div>
     <div id="main">
-<div class="main-content" id="content" pageids="Download2Go Android SDK::com.penthera.virtuososdk.client/Observers///PointingToDeclaration//1607690379">
-  <div class="breadcrumbs"><a href="../../index.html">Download2Go Android SDK</a><span class="delimiter">/</span><a href="../index.html">com.penthera.virtuososdk.client</a><span class="delimiter">/</span><a href="index.html">Observers</a></div>
+<div class="main-content" data-page-type="classlike" id="content" pageids="Download2Go Android SDK::com.penthera.virtuososdk.client/Observers///PointingToDeclaration//1607690379">
+  <div class="breadcrumbs"><a href="../../index.html">Download2Go Android SDK</a><span class="delimiter">/</span><a href="../index.html">com.penthera.virtuososdk.client</a><span class="delimiter">/</span><span class="current">Observers</span></div>
   <div class="cover ">
     <h1 class="cover"><span><span>Observers</span></span></h1>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">class </span><a href="index.html">Observers</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><p class="paragraph">Observers used to receive callbacks concerning </p><ul><li>Virtuoso's download engine (<a href="-i-engine-observer/index.html">IEngineObserver</a>), </li><li> the communication with the Download2Go Backplane (<a href="-i-backplane-observer/index.html">IBackplaneObserver</a>), </li><li> changes to the Download Queue (<a href="-i-queue-observer/index.html">IQueueObserver</a>) and </li><li> SDK monitored connectivity (<a href="-i-connectivity-observer/index.html">IConnectivityObserver</a>)</li></ul></div></div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">class </span><a href="index.html">Observers</a></div><p class="paragraph">Observers used to receive callbacks concerning </p><ul><li>Virtuoso's download engine (<a href="-i-engine-observer/index.html">IEngineObserver</a>), </li><li> the communication with the Download2Go Backplane (<a href="-i-backplane-observer/index.html">IBackplaneObserver</a>), </li><li> changes to the Download Queue (<a href="-i-queue-observer/index.html">IQueueObserver</a>) and </li><li> SDK monitored connectivity (<a href="-i-connectivity-observer/index.html">IConnectivityObserver</a>)</li></ul></div></div>
   </div>
   <div class="tabbedcontent">
-    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="Types">Types</button></div>
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,FUNCTION,PROPERTY">Members</button></div>
     <div class="tabs-section-body">
-      <h2 class="">Types</h2>
-      <div class="table" data-togglable="Types"><a data-name="-969244205%2FClasslikes%2F1607690379" anchor-label="IBackplaneObserver" id="-969244205%2FClasslikes%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
-        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="-i-backplane-observer/index.html"><span>IBackplane</span><wbr><span><span>Observer</span></span></a></div>
+      <div data-togglable="TYPE">
+        <h2 class="">Types</h2>
+        <div class="table"><a data-name="-969244205%2FClasslikes%2F1607690379" anchor-label="IBackplaneObserver" id="-969244205%2FClasslikes%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-i-backplane-observer/index.html"><span>IBackplane</span><wbr><span><span>Observer</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-969244205%2FClasslikes%2F1607690379"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">interface </span><a href="-i-backplane-observer/index.html">IBackplaneObserver</a> : <a href="-i-observer/index.html">Observers.IObserver</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Interface for receiving callbacks concerning the Backplane.</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">interface </span><a href="-i-backplane-observer/index.html">IBackplaneObserver</a> : <a href="-i-observer/index.html">Observers.IObserver</a></div><div class="brief ">Interface for receiving callbacks concerning the Backplane.</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="1357132023%2FClasslikes%2F1607690379" anchor-label="IConnectivityObserver" id="1357132023%2FClasslikes%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
-        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="-i-connectivity-observer/index.html"><span>IConnectivity</span><wbr><span><span>Observer</span></span></a></div>
+          <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-i-connectivity-observer/index.html"><span>IConnectivity</span><wbr><span><span>Observer</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1357132023%2FClasslikes%2F1607690379"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">interface </span><a href="-i-connectivity-observer/index.html">IConnectivityObserver</a> : <a href="-i-observer/index.html">Observers.IObserver</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">The IConnectivityObserver provides a method to observe the connectivity states that the SDK is using to determine when download is possible.</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">interface </span><a href="-i-connectivity-observer/index.html">IConnectivityObserver</a> : <a href="-i-observer/index.html">Observers.IObserver</a></div><div class="brief ">The IConnectivityObserver provides a method to observe the connectivity states that the SDK is using to determine when download is possible.</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="1489778700%2FClasslikes%2F1607690379" anchor-label="IEngineObserver" id="1489778700%2FClasslikes%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
-        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="-i-engine-observer/index.html"><span>IEngine</span><wbr><span><span>Observer</span></span></a></div>
+          <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-i-engine-observer/index.html"><span>IEngine</span><wbr><span><span>Observer</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1489778700%2FClasslikes%2F1607690379"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">interface </span><a href="-i-engine-observer/index.html">IEngineObserver</a> : <a href="-i-observer/index.html">Observers.IObserver</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Interface for receiving callbacks about status and settings.</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">interface </span><a href="-i-engine-observer/index.html">IEngineObserver</a> : <a href="-i-observer/index.html">Observers.IObserver</a></div><div class="brief ">Interface for receiving callbacks about status and settings.</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="-830493586%2FClasslikes%2F1607690379" anchor-label="IObserver" id="-830493586%2FClasslikes%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
-        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="-i-observer/index.html"><span><span>IObserver</span></span></a></div>
+          <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-i-observer/index.html"><span><span>IObserver</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-830493586%2FClasslikes%2F1607690379"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">interface </span><a href="-i-observer/index.html">IObserver</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">The base Virtuoso Observer interface.</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">interface </span><a href="-i-observer/index.html">IObserver</a></div><div class="brief ">The base Virtuoso Observer interface.</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="-315614057%2FClasslikes%2F1607690379" anchor-label="IQueueObserver" id="-315614057%2FClasslikes%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
-        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="-i-queue-observer/index.html"><span>IQueue</span><wbr><span><span>Observer</span></span></a></div>
+          <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-i-queue-observer/index.html"><span>IQueue</span><wbr><span><span>Observer</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-315614057%2FClasslikes%2F1607690379"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">interface </span><a href="-i-queue-observer/index.html">IQueueObserver</a> : <a href="-i-observer/index.html">Observers.IObserver</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Callbacks about changes in the download queue</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">interface </span><a href="-i-queue-observer/index.html">IQueueObserver</a> : <a href="-i-observer/index.html">Observers.IObserver</a></div><div class="brief ">Callbacks about changes in the download queue</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-837934741%2FClasslikes%2F1607690379" anchor-label="IStartupObserver" id="-837934741%2FClasslikes%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-i-startup-observer/index.html"><span>IStartup</span><wbr><span><span>Observer</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-837934741%2FClasslikes%2F1607690379"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">interface </span><a href="-i-startup-observer/index.html">IStartupObserver</a> : <a href="-i-observer/index.html">Observers.IObserver</a></div><div class="brief ">Observer for when the SDK is ready to use.</div></div></div>
+                </div>
               </div>
             </div>
           </div>
@@ -127,10 +155,11 @@ if(savedDarkMode === true){
     </div>
   </div>
 </div>
-        <div class="footer"><span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2023 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
-        </div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2024 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
     </div>
 </div>
-
-</body></html>
+</body>
+</html>
 

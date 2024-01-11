@@ -3,12 +3,19 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
     <title>ISegment</title>
-<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">
-    <script>var pathToRoot = "../../../";</script>    <script>const storage = localStorage.getItem("dokka-dark-mode")
-const savedDarkMode = storage ? JSON.parse(storage) : false
-if(savedDarkMode === true){
-    document.getElementsByTagName("html")[0].classList.add("theme-dark")
-}</script>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../";</script>    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
 <script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async></script>
 <link href="../../../styles/style.css" rel="Stylesheet">
 <link href="../../../styles/jetbrains-mono.css" rel="Stylesheet">
@@ -19,7 +26,8 @@ if(savedDarkMode === true){
 <script type="text/javascript" src="../../../scripts/navigation-loader.js" async></script>
 <script type="text/javascript" src="../../../scripts/platform-content-handler.js" async></script>
 <script type="text/javascript" src="../../../scripts/main.js" defer></script>
-<script type="text/javascript" src="../../../scripts/prism.js" async></script></head>
+<script type="text/javascript" src="../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
 <body>
 <div class="navigation-wrapper" id="navigation-wrapper">
     <div id="leftToggler"><span class="icon-toggler"></span></div>
@@ -29,6 +37,9 @@ if(savedDarkMode === true){
     <div>
     </div>
     <div class="pull-right d-flex">
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":penthera-common:dokkaHtmlPartial/main">Penthera Common Library</button>
+        </div>
         <button id="theme-toggle-button"><span id="theme-toggle"></span></button>
         <div id="searchBar"></div>
     </div>
@@ -38,211 +49,209 @@ if(savedDarkMode === true){
         <div id="sideMenu"></div>
     </div>
     <div id="main">
-<div class="main-content" id="content" pageids="Penthera Common Library::com.penthera.virtuososdk.client/ISegment///PointingToDeclaration//-25591989">
-  <div class="breadcrumbs"><a href="../../index.html">Penthera Common Library</a><span class="delimiter">/</span><a href="../index.html">com.penthera.virtuososdk.client</a><span class="delimiter">/</span><a href="index.html">ISegment</a></div>
+<div class="main-content" data-page-type="classlike" id="content" pageids="Penthera Common Library::com.penthera.virtuososdk.client/ISegment///PointingToDeclaration//-25591989">
+  <div class="breadcrumbs"><a href="../../index.html">Penthera Common Library</a><span class="delimiter">/</span><a href="../index.html">com.penthera.virtuososdk.client</a><span class="delimiter">/</span><span class="current">ISegment</span></div>
   <div class="cover ">
     <h1 class="cover"><span><span>ISegment</span></span></h1>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":penthera-common:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">interface </span><a href="index.html">ISegment</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><p class="paragraph">Interface to individual segments. A segment is one file of a segmented (e.g. HLS, DASH) asset.  For example usage: <a href="../-i-segmented-asset/index.html">ISegmentedAsset</a>.</p></div></div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":penthera-common:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">interface </span><a href="index.html">ISegment</a></div><p class="paragraph">Interface to individual segments. A segment is one file of a segmented (e.g. HLS, DASH) asset.  For example usage: <a href="../-i-segmented-asset/index.html">ISegmentedAsset</a>.</p><h4 class="">See also</h4><div class="table"><div class="table-row" data-filterable-current=":penthera-common:dokkaHtmlPartial/main" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../-i-segmented-asset/index.html"><span>ISegmented</span><wbr><span><span>Asset</span></span></a></div></span></div><div></div></div></div></div></div></div>
   </div>
   <div class="tabbedcontent">
-    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="Functions">Functions</button><button class="section-tab" data-togglable="See also">See also</button></div>
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,FUNCTION,PROPERTY">Members</button></div>
     <div class="tabs-section-body">
-      <h2 class="">See also</h2>
-      <div data-togglable="See also">
-        <div class="platform-hinted WithExtraAttributes" data-platform-hinted="data-platform-hinted" data-togglable="See also"><div class="content sourceset-depenent-content" data-active="" data-togglable=":penthera-common:dokkaHtmlPartial/main"><div data-togglable="See also"><div class="table" data-togglable="See also"><div class="table-row" data-filterable-current=":penthera-common:dokkaHtmlPartial/main" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex"><div><a href="../-i-segmented-asset/index.html"><span>com.</span><wbr><span>penthera.</span><wbr><span>virtuososdk.</span><wbr><span>client.</span><wbr><span>ISegmented</span><wbr><span><span>Asset</span></span></a></div></span></div><div><div class="title"><div data-togglable="See also"></div></div></div></div></div></div></div></div></div>
-      </div>
-      <h2 class="">Functions</h2>
-      <div class="table" data-togglable="Functions"><a data-name="1260029370%2FFunctions%2F-25591989" anchor-label="getContentLength" id="1260029370%2FFunctions%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":penthera-common:dokkaHtmlPartial/main" data-filterable-set=":penthera-common:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="get-content-length.html"><span>get</span><wbr><span>Content</span><wbr><span><span>Length</span></span></a></div>
+      <div data-togglable="FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="1260029370%2FFunctions%2F-25591989" anchor-label="getContentLength" id="1260029370%2FFunctions%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":penthera-common:dokkaHtmlPartial/main" data-filterable-set=":penthera-common:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-content-length.html"><span>get</span><wbr><span>Content</span><wbr><span><span>Length</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1260029370%2FFunctions%2F-25591989"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":penthera-common:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-content-length.html"><span class="token function">getContentLength</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html">Double</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Returns the <code class="lang-kotlin">content-length</code> value provided by the remote server when download begins.</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":penthera-common:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-content-length.html"><span class="token function">getContentLength</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html">Double</a></div><div class="brief ">Returns the <code class="lang-kotlin">content-length</code> value provided by the remote server when download begins.</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="1767999679%2FFunctions%2F-25591989" anchor-label="getCurrentSize" id="1767999679%2FFunctions%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":penthera-common:dokkaHtmlPartial/main" data-filterable-set=":penthera-common:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="get-current-size.html"><span>get</span><wbr><span>Current</span><wbr><span><span>Size</span></span></a></div>
+          <div class="table-row" data-filterable-current=":penthera-common:dokkaHtmlPartial/main" data-filterable-set=":penthera-common:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-current-size.html"><span>get</span><wbr><span>Current</span><wbr><span><span>Size</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1767999679%2FFunctions%2F-25591989"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":penthera-common:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-current-size.html"><span class="token function">getCurrentSize</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html">Double</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Current size of the segment on disk</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":penthera-common:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-current-size.html"><span class="token function">getCurrentSize</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html">Double</a></div><div class="brief ">Current size of the segment on disk</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="-1369645980%2FFunctions%2F-25591989" anchor-label="getCustomHeaders" id="-1369645980%2FFunctions%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":penthera-common:dokkaHtmlPartial/main" data-filterable-set=":penthera-common:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="get-custom-headers.html"><span>get</span><wbr><span>Custom</span><wbr><span><span>Headers</span></span></a></div>
+          <div class="table-row" data-filterable-current=":penthera-common:dokkaHtmlPartial/main" data-filterable-set=":penthera-common:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-custom-headers.html"><span>get</span><wbr><span>Custom</span><wbr><span><span>Headers</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1369645980%2FFunctions%2F-25591989"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":penthera-common:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-custom-headers.html"><span class="token function">getCustomHeaders</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/android/os/Bundle.html">Bundle</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Retrieve the custom HTTP headers registered against this segment.</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":penthera-common:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-custom-headers.html"><span class="token function">getCustomHeaders</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/android/os/Bundle.html">Bundle</a></div><div class="brief ">Retrieve the custom HTTP headers registered against this segment.</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="762963975%2FFunctions%2F-25591989" anchor-label="getDownloadStatus" id="762963975%2FFunctions%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":penthera-common:dokkaHtmlPartial/main" data-filterable-set=":penthera-common:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="get-download-status.html"><span>get</span><wbr><span>Download</span><wbr><span><span>Status</span></span></a></div>
+          <div class="table-row" data-filterable-current=":penthera-common:dokkaHtmlPartial/main" data-filterable-set=":penthera-common:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-download-status.html"><span>get</span><wbr><span>Download</span><wbr><span><span>Status</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="762963975%2FFunctions%2F-25591989"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":penthera-common:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-download-status.html"><span class="token function">getDownloadStatus</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Current download state of the segment</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":penthera-common:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-download-status.html"><span class="token function">getDownloadStatus</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></div><div class="brief ">Current download state of the segment</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="-768346712%2FFunctions%2F-25591989" anchor-label="getExpectedSize" id="-768346712%2FFunctions%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":penthera-common:dokkaHtmlPartial/main" data-filterable-set=":penthera-common:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="get-expected-size.html"><span>get</span><wbr><span>Expected</span><wbr><span><span>Size</span></span></a></div>
+          <div class="table-row" data-filterable-current=":penthera-common:dokkaHtmlPartial/main" data-filterable-set=":penthera-common:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-expected-size.html"><span>get</span><wbr><span>Expected</span><wbr><span><span>Size</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-768346712%2FFunctions%2F-25591989"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":penthera-common:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-expected-size.html"><span class="token function">getExpectedSize</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html">Double</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Expected size of this segment, in bytes  The expected size is initially set to -1.</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":penthera-common:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-expected-size.html"><span class="token function">getExpectedSize</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html">Double</a></div><div class="brief ">Expected size of this segment, in bytes  The expected size is initially set to -1.</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="-1647703104%2FFunctions%2F-25591989" anchor-label="getFilePath" id="-1647703104%2FFunctions%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":penthera-common:dokkaHtmlPartial/main" data-filterable-set=":penthera-common:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="get-file-path.html"><span>get</span><wbr><span>File</span><wbr><span><span>Path</span></span></a></div>
+          <div class="table-row" data-filterable-current=":penthera-common:dokkaHtmlPartial/main" data-filterable-set=":penthera-common:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-file-path.html"><span>get</span><wbr><span>File</span><wbr><span><span>Path</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1647703104%2FFunctions%2F-25591989"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":penthera-common:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-file-path.html"><span class="token function">getFilePath</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Absolute path where this segment lives on disk</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":penthera-common:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-file-path.html"><span class="token function">getFilePath</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a></div><div class="brief ">Absolute path where this segment lives on disk</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="2016006822%2FFunctions%2F-25591989" anchor-label="getId" id="2016006822%2FFunctions%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":penthera-common:dokkaHtmlPartial/main" data-filterable-set=":penthera-common:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="get-id.html"><span>get</span><wbr><span><span>Id</span></span></a></div>
+          <div class="table-row" data-filterable-current=":penthera-common:dokkaHtmlPartial/main" data-filterable-set=":penthera-common:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-id.html"><span>get</span><wbr><span><span>Id</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2016006822%2FFunctions%2F-25591989"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":penthera-common:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-id.html"><span class="token function">getId</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">ID of this segment</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":penthera-common:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-id.html"><span class="token function">getId</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></div><div class="brief ">ID of this segment</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="-1982298420%2FFunctions%2F-25591989" anchor-label="getLastStatusCode" id="-1982298420%2FFunctions%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":penthera-common:dokkaHtmlPartial/main" data-filterable-set=":penthera-common:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="get-last-status-code.html"><span>get</span><wbr><span>Last</span><wbr><span>Status</span><wbr><span><span>Code</span></span></a></div>
+          <div class="table-row" data-filterable-current=":penthera-common:dokkaHtmlPartial/main" data-filterable-set=":penthera-common:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-last-status-code.html"><span>get</span><wbr><span>Last</span><wbr><span>Status</span><wbr><span><span>Code</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1982298420%2FFunctions%2F-25591989"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":penthera-common:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-last-status-code.html"><span class="token function">getLastStatusCode</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Last known HTTP status code from downloading this segment</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":penthera-common:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-last-status-code.html"><span class="token function">getLastStatusCode</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></div><div class="brief ">Last known HTTP status code from downloading this segment</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="1854217084%2FFunctions%2F-25591989" anchor-label="getParentUuid" id="1854217084%2FFunctions%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":penthera-common:dokkaHtmlPartial/main" data-filterable-set=":penthera-common:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="get-parent-uuid.html"><span>get</span><wbr><span>Parent</span><wbr><span><span>Uuid</span></span></a></div>
+          <div class="table-row" data-filterable-current=":penthera-common:dokkaHtmlPartial/main" data-filterable-set=":penthera-common:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-parent-uuid.html"><span>get</span><wbr><span>Parent</span><wbr><span><span>Uuid</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1854217084%2FFunctions%2F-25591989"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":penthera-common:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-parent-uuid.html"><span class="token function">getParentUuid</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">UUID of the parent asset container that owns this segment</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":penthera-common:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-parent-uuid.html"><span class="token function">getParentUuid</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a></div><div class="brief ">UUID of the parent asset container that owns this segment</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="1605704758%2FFunctions%2F-25591989" anchor-label="getRemotePath" id="1605704758%2FFunctions%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":penthera-common:dokkaHtmlPartial/main" data-filterable-set=":penthera-common:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="get-remote-path.html"><span>get</span><wbr><span>Remote</span><wbr><span><span>Path</span></span></a></div>
+          <div class="table-row" data-filterable-current=":penthera-common:dokkaHtmlPartial/main" data-filterable-set=":penthera-common:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-remote-path.html"><span>get</span><wbr><span>Remote</span><wbr><span><span>Path</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1605704758%2FFunctions%2F-25591989"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":penthera-common:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-remote-path.html"><span class="token function">getRemotePath</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Remote URL where this segment is being downloaded from</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":penthera-common:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-remote-path.html"><span class="token function">getRemotePath</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a></div><div class="brief ">Remote URL where this segment is being downloaded from</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="788590513%2FFunctions%2F-25591989" anchor-label="isEncryptionSegment" id="788590513%2FFunctions%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":penthera-common:dokkaHtmlPartial/main" data-filterable-set=":penthera-common:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="is-encryption-segment.html"><span>is</span><wbr><span>Encryption</span><wbr><span><span>Segment</span></span></a></div>
+          <div class="table-row" data-filterable-current=":penthera-common:dokkaHtmlPartial/main" data-filterable-set=":penthera-common:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="is-encryption-segment.html"><span>is</span><wbr><span>Encryption</span><wbr><span><span>Segment</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="788590513%2FFunctions%2F-25591989"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":penthera-common:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="is-encryption-segment.html"><span class="token function">isEncryptionSegment</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Whether this is an encryption segment  Virtuoso treats encryption keys and data just like any other segment.</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":penthera-common:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="is-encryption-segment.html"><span class="token function">isEncryptionSegment</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief ">Whether this is an encryption segment  Virtuoso treats encryption keys and data just like any other segment.</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="1642369834%2FFunctions%2F-25591989" anchor-label="isPending" id="1642369834%2FFunctions%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":penthera-common:dokkaHtmlPartial/main" data-filterable-set=":penthera-common:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="is-pending.html"><span>is</span><wbr><span><span>Pending</span></span></a></div>
+          <div class="table-row" data-filterable-current=":penthera-common:dokkaHtmlPartial/main" data-filterable-set=":penthera-common:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="is-pending.html"><span>is</span><wbr><span><span>Pending</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1642369834%2FFunctions%2F-25591989"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":penthera-common:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="is-pending.html"><span class="token function">isPending</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Whether this segment has completed download.</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":penthera-common:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="is-pending.html"><span class="token function">isPending</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief ">Whether this segment has completed download.</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="-1229676603%2FFunctions%2F-25591989" anchor-label="setCustomHeaders" id="-1229676603%2FFunctions%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":penthera-common:dokkaHtmlPartial/main" data-filterable-set=":penthera-common:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="set-custom-headers.html"><span>set</span><wbr><span>Custom</span><wbr><span><span>Headers</span></span></a></div>
+          <div class="table-row" data-filterable-current=":penthera-common:dokkaHtmlPartial/main" data-filterable-set=":penthera-common:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-custom-headers.html"><span>set</span><wbr><span>Custom</span><wbr><span><span>Headers</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1229676603%2FFunctions%2F-25591989"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":penthera-common:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="set-custom-headers.html"><span class="token function">setCustomHeaders</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">headers<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/android/os/Bundle.html">Bundle</a></span></span><span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Set custom HTTP headers for this segment.</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":penthera-common:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="set-custom-headers.html"><span class="token function">setCustomHeaders</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">headers<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/android/os/Bundle.html">Bundle</a></span></span><span class="token punctuation">)</span></div><div class="brief ">Set custom HTTP headers for this segment.</div></div></div>
+                </div>
               </div>
             </div>
           </div>
@@ -251,10 +260,11 @@ if(savedDarkMode === true){
     </div>
   </div>
 </div>
-        <div class="footer"><span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2023 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
-        </div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2024 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
     </div>
 </div>
-
-</body></html>
+</body>
+</html>
 

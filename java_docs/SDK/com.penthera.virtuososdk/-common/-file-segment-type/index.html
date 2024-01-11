@@ -3,12 +3,19 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
     <title>FileSegmentType</title>
-<link href="../../../../images/logo-icon.svg" rel="icon" type="image/svg">
-    <script>var pathToRoot = "../../../../";</script>    <script>const storage = localStorage.getItem("dokka-dark-mode")
-const savedDarkMode = storage ? JSON.parse(storage) : false
-if(savedDarkMode === true){
-    document.getElementsByTagName("html")[0].classList.add("theme-dark")
-}</script>
+<link href="../../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../../";</script>    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
 <script type="text/javascript" src="../../../../scripts/sourceset_dependencies.js" async></script>
 <link href="../../../../styles/style.css" rel="Stylesheet">
 <link href="../../../../styles/jetbrains-mono.css" rel="Stylesheet">
@@ -19,7 +26,8 @@ if(savedDarkMode === true){
 <script type="text/javascript" src="../../../../scripts/navigation-loader.js" async></script>
 <script type="text/javascript" src="../../../../scripts/platform-content-handler.js" async></script>
 <script type="text/javascript" src="../../../../scripts/main.js" defer></script>
-<script type="text/javascript" src="../../../../scripts/prism.js" async></script></head>
+<script type="text/javascript" src="../../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
 <body>
 <div class="navigation-wrapper" id="navigation-wrapper">
     <div id="leftToggler"><span class="icon-toggler"></span></div>
@@ -29,6 +37,9 @@ if(savedDarkMode === true){
     <div>
     </div>
     <div class="pull-right d-flex">
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":SDK:dokkaHtmlPartial/release">androidJvm</button>
+        </div>
         <button id="theme-toggle-button"><span id="theme-toggle"></span></button>
         <div id="searchBar"></div>
     </div>
@@ -38,132 +49,153 @@ if(savedDarkMode === true){
         <div id="sideMenu"></div>
     </div>
     <div id="main">
-<div class="main-content" id="content" pageids="Download2Go Android SDK::com.penthera.virtuososdk/Common.FileSegmentType///PointingToDeclaration//1607690379">
-  <div class="breadcrumbs"><a href="../../../index.html">Download2Go Android SDK</a><span class="delimiter">/</span><a href="../../index.html">com.penthera.virtuososdk</a><span class="delimiter">/</span><a href="../index.html">Common</a><span class="delimiter">/</span><a href="index.html">FileSegmentType</a></div>
+<div class="main-content" data-page-type="classlike" id="content" pageids="Download2Go Android SDK::com.penthera.virtuososdk/Common.FileSegmentType///PointingToDeclaration//1607690379">
+  <div class="breadcrumbs"><a href="../../../index.html">Download2Go Android SDK</a><span class="delimiter">/</span><a href="../../index.html">com.penthera.virtuososdk</a><span class="delimiter">/</span><a href="../index.html">Common</a><span class="delimiter">/</span><span class="current">FileSegmentType</span></div>
   <div class="cover ">
     <h1 class="cover"><span>File</span><wbr><span>Segment</span><wbr><span><span>Type</span></span></h1>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">class </span><a href="index.html">FileSegmentType</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><p class="paragraph">List of types for the individual segments of a segmented asset </p></div></div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">class </span><a href="index.html">FileSegmentType</a></div><p class="paragraph">List of types for the individual segments of a segmented asset </p></div></div>
   </div>
   <div class="tabbedcontent">
-    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="Properties">Properties</button></div>
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,FUNCTION,PROPERTY">Members</button></div>
     <div class="tabs-section-body">
-      <h2 class="">Properties</h2>
-      <div class="table" data-togglable="Properties"><a data-name="341437349%2FProperties%2F1607690379" anchor-label="FILE_SEGMENT_TYPE_ANCILLARY" id="341437349%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
-        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="-f-i-l-e_-s-e-g-m-e-n-t_-t-y-p-e_-a-n-c-i-l-l-a-r-y.html">FILE_SEGMENT_TYPE_ANCILLARY</a></div>
+      <div data-togglable="CONSTRUCTOR">
+        <h2 class="">Constructors</h2>
+        <div class="table"><a data-name="-1326635533%2FConstructors%2F1607690379" anchor-label="FileSegmentType" id="-1326635533%2FConstructors%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-togglable="CONSTRUCTOR" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-file-segment-type.html"><span>File</span><wbr><span>Segment</span><wbr><span><span>Type</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1326635533%2FConstructors%2F1607690379"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="PROPERTY">
+        <h2 class="">Properties</h2>
+        <div class="table"><a data-name="341437349%2FProperties%2F1607690379" anchor-label="FILE_SEGMENT_TYPE_ANCILLARY" id="341437349%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-f-i-l-e_-s-e-g-m-e-n-t_-t-y-p-e_-a-n-c-i-l-l-a-r-y.html"><span><span>FILE_SEGMENT_TYPE_ANCILLARY</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="341437349%2FProperties%2F1607690379"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><a data-name="341437349%2FProperties%2F1607690379" anchor-label="FILE_SEGMENT_TYPE_ANCILLARY" id="341437349%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-f-i-l-e_-s-e-g-m-e-n-t_-t-y-p-e_-a-n-c-i-l-l-a-r-y.html">FILE_SEGMENT_TYPE_ANCILLARY</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-f-i-l-e_-s-e-g-m-e-n-t_-t-y-p-e_-a-n-c-i-l-l-a-r-y.html">FILE_SEGMENT_TYPE_ANCILLARY</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">9</span></div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="-1615248156%2FProperties%2F1607690379" anchor-label="FILE_SEGMENT_TYPE_AUDIO" id="-1615248156%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
-        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="-f-i-l-e_-s-e-g-m-e-n-t_-t-y-p-e_-a-u-d-i-o.html">FILE_SEGMENT_TYPE_AUDIO</a></div>
+          <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-f-i-l-e_-s-e-g-m-e-n-t_-t-y-p-e_-a-u-d-i-o.html"><span><span>FILE_SEGMENT_TYPE_AUDIO</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1615248156%2FProperties%2F1607690379"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><a data-name="-1615248156%2FProperties%2F1607690379" anchor-label="FILE_SEGMENT_TYPE_AUDIO" id="-1615248156%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-f-i-l-e_-s-e-g-m-e-n-t_-t-y-p-e_-a-u-d-i-o.html">FILE_SEGMENT_TYPE_AUDIO</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-f-i-l-e_-s-e-g-m-e-n-t_-t-y-p-e_-a-u-d-i-o.html">FILE_SEGMENT_TYPE_AUDIO</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">3</span></div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="-1699694496%2FProperties%2F1607690379" anchor-label="FILE_SEGMENT_TYPE_CC" id="-1699694496%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
-        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="-f-i-l-e_-s-e-g-m-e-n-t_-t-y-p-e_-c-c.html">FILE_SEGMENT_TYPE_CC</a></div>
+          <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-f-i-l-e_-s-e-g-m-e-n-t_-t-y-p-e_-c-c.html"><span><span>FILE_SEGMENT_TYPE_CC</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1699694496%2FProperties%2F1607690379"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><a data-name="-1699694496%2FProperties%2F1607690379" anchor-label="FILE_SEGMENT_TYPE_CC" id="-1699694496%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-f-i-l-e_-s-e-g-m-e-n-t_-t-y-p-e_-c-c.html">FILE_SEGMENT_TYPE_CC</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-f-i-l-e_-s-e-g-m-e-n-t_-t-y-p-e_-c-c.html">FILE_SEGMENT_TYPE_CC</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">5</span></div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="1176102172%2FProperties%2F1607690379" anchor-label="FILE_SEGMENT_TYPE_IFRAME" id="1176102172%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
-        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="-f-i-l-e_-s-e-g-m-e-n-t_-t-y-p-e_-i-f-r-a-m-e.html">FILE_SEGMENT_TYPE_IFRAME</a></div>
+          <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-f-i-l-e_-s-e-g-m-e-n-t_-t-y-p-e_-i-f-r-a-m-e.html"><span><span>FILE_SEGMENT_TYPE_IFRAME</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1176102172%2FProperties%2F1607690379"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><a data-name="1176102172%2FProperties%2F1607690379" anchor-label="FILE_SEGMENT_TYPE_IFRAME" id="1176102172%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-f-i-l-e_-s-e-g-m-e-n-t_-t-y-p-e_-i-f-r-a-m-e.html">FILE_SEGMENT_TYPE_IFRAME</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-f-i-l-e_-s-e-g-m-e-n-t_-t-y-p-e_-i-f-r-a-m-e.html">FILE_SEGMENT_TYPE_IFRAME</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">8</span></div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="218486000%2FProperties%2F1607690379" anchor-label="FILE_SEGMENT_TYPE_INIT" id="218486000%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
-        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="-f-i-l-e_-s-e-g-m-e-n-t_-t-y-p-e_-i-n-i-t.html">FILE_SEGMENT_TYPE_INIT</a></div>
+          <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-f-i-l-e_-s-e-g-m-e-n-t_-t-y-p-e_-i-n-i-t.html"><span><span>FILE_SEGMENT_TYPE_INIT</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="218486000%2FProperties%2F1607690379"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><a data-name="218486000%2FProperties%2F1607690379" anchor-label="FILE_SEGMENT_TYPE_INIT" id="218486000%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-f-i-l-e_-s-e-g-m-e-n-t_-t-y-p-e_-i-n-i-t.html">FILE_SEGMENT_TYPE_INIT</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-f-i-l-e_-s-e-g-m-e-n-t_-t-y-p-e_-i-n-i-t.html">FILE_SEGMENT_TYPE_INIT</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">6</span></div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="186483609%2FProperties%2F1607690379" anchor-label="FILE_SEGMENT_TYPE_LICENSE" id="186483609%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
-        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="-f-i-l-e_-s-e-g-m-e-n-t_-t-y-p-e_-l-i-c-e-n-s-e.html">FILE_SEGMENT_TYPE_LICENSE</a></div>
+          <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-f-i-l-e_-s-e-g-m-e-n-t_-t-y-p-e_-l-i-c-e-n-s-e.html"><span><span>FILE_SEGMENT_TYPE_LICENSE</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="186483609%2FProperties%2F1607690379"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><a data-name="186483609%2FProperties%2F1607690379" anchor-label="FILE_SEGMENT_TYPE_LICENSE" id="186483609%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-f-i-l-e_-s-e-g-m-e-n-t_-t-y-p-e_-l-i-c-e-n-s-e.html">FILE_SEGMENT_TYPE_LICENSE</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-f-i-l-e_-s-e-g-m-e-n-t_-t-y-p-e_-l-i-c-e-n-s-e.html">FILE_SEGMENT_TYPE_LICENSE</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">7</span></div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="-594879873%2FProperties%2F1607690379" anchor-label="FILE_SEGMENT_TYPE_SUBTITLES" id="-594879873%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
-        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="-f-i-l-e_-s-e-g-m-e-n-t_-t-y-p-e_-s-u-b-t-i-t-l-e-s.html">FILE_SEGMENT_TYPE_SUBTITLES</a></div>
+          <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-f-i-l-e_-s-e-g-m-e-n-t_-t-y-p-e_-s-u-b-t-i-t-l-e-s.html"><span><span>FILE_SEGMENT_TYPE_SUBTITLES</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-594879873%2FProperties%2F1607690379"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><a data-name="-594879873%2FProperties%2F1607690379" anchor-label="FILE_SEGMENT_TYPE_SUBTITLES" id="-594879873%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-f-i-l-e_-s-e-g-m-e-n-t_-t-y-p-e_-s-u-b-t-i-t-l-e-s.html">FILE_SEGMENT_TYPE_SUBTITLES</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-f-i-l-e_-s-e-g-m-e-n-t_-t-y-p-e_-s-u-b-t-i-t-l-e-s.html">FILE_SEGMENT_TYPE_SUBTITLES</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">4</span></div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="-656384033%2FProperties%2F1607690379" anchor-label="FILE_SEGMENT_TYPE_VIDEO" id="-656384033%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
-        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="-f-i-l-e_-s-e-g-m-e-n-t_-t-y-p-e_-v-i-d-e-o.html">FILE_SEGMENT_TYPE_VIDEO</a></div>
+          <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-f-i-l-e_-s-e-g-m-e-n-t_-t-y-p-e_-v-i-d-e-o.html"><span><span>FILE_SEGMENT_TYPE_VIDEO</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-656384033%2FProperties%2F1607690379"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><a data-name="-656384033%2FProperties%2F1607690379" anchor-label="FILE_SEGMENT_TYPE_VIDEO" id="-656384033%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-f-i-l-e_-s-e-g-m-e-n-t_-t-y-p-e_-v-i-d-e-o.html">FILE_SEGMENT_TYPE_VIDEO</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-f-i-l-e_-s-e-g-m-e-n-t_-t-y-p-e_-v-i-d-e-o.html">FILE_SEGMENT_TYPE_VIDEO</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">2</span></div></div></div>
+                </div>
               </div>
             </div>
           </div>
@@ -172,10 +204,11 @@ if(savedDarkMode === true){
     </div>
   </div>
 </div>
-        <div class="footer"><span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2023 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
-        </div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2024 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
     </div>
 </div>
-
-</body></html>
+</body>
+</html>
 

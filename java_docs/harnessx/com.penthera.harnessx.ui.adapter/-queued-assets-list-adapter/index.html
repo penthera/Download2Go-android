@@ -1,0 +1,574 @@
+<!doctype html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>QueuedAssetsListAdapter</title>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../";</script>    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/jetbrains-mono.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
+<body>
+<div class="navigation-wrapper" id="navigation-wrapper">
+    <div id="leftToggler"><span class="icon-toggler"></span></div>
+    <div class="library-name">
+<a href="../../../index.html">
+<span>TMP</span>            </a>    </div>
+    <div>
+    </div>
+    <div class="pull-right d-flex">
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":harnessx:dokkaHtmlPartial/release">androidJvm</button>
+        </div>
+        <button id="theme-toggle-button"><span id="theme-toggle"></span></button>
+        <div id="searchBar"></div>
+    </div>
+</div>
+<div id="container">
+    <div id="leftColumn">
+        <div id="sideMenu"></div>
+    </div>
+    <div id="main">
+<div class="main-content" data-page-type="classlike" id="content" pageids="harnessx::com.penthera.harnessx.ui.adapter/QueuedAssetsListAdapter///PointingToDeclaration//805669067">
+  <div class="breadcrumbs"><a href="../../index.html">harnessx</a><span class="delimiter">/</span><a href="../index.html">com.penthera.harnessx.ui.adapter</a><span class="delimiter">/</span><span class="current">QueuedAssetsListAdapter</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Queued</span><wbr><span>Assets</span><wbr><span>List</span><wbr><span><span>Adapter</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":harnessx:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">class </span><a href="index.html">QueuedAssetsListAdapter</a> : <a href="https://developer.android.com/reference/kotlin/androidx/recyclerview/widget/RecyclerView.Adapter.html">RecyclerView.Adapter</a><span class="token operator">&lt;</span><a href="https://developer.android.com/reference/kotlin/androidx/recyclerview/widget/RecyclerView.Adapter.html">VH</a><span class="token operator">&gt; </span></div></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,FUNCTION,PROPERTY">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="CONSTRUCTOR">
+        <h2 class="">Constructors</h2>
+        <div class="table"><a data-name="711294628%2FConstructors%2F805669067" anchor-label="QueuedAssetsListAdapter" id="711294628%2FConstructors%2F805669067" data-filterable-set=":harnessx:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-togglable="CONSTRUCTOR" data-filterable-current=":harnessx:dokkaHtmlPartial/release" data-filterable-set=":harnessx:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-queued-assets-list-adapter.html"><span>Queued</span><wbr><span>Assets</span><wbr><span>List</span><wbr><span><span>Adapter</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="711294628%2FConstructors%2F805669067"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":harnessx:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="-1986402451%2FFunctions%2F805669067" anchor-label="bindViewHolder" id="-1986402451%2FFunctions%2F805669067" data-filterable-set=":harnessx:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-filterable-current=":harnessx:dokkaHtmlPartial/release" data-filterable-set=":harnessx:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-playlist-item-adapter/index.html#-1986402451%2FFunctions%2F805669067"><span>bind</span><wbr><span>View</span><wbr><span><span>Holder</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1986402451%2FFunctions%2F805669067"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":harnessx:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="../-playlist-item-adapter/index.html#-1986402451%2FFunctions%2F805669067"><span class="token function">bindViewHolder</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">holder<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/recyclerview/widget/RecyclerView.Adapter.html">VH</a><span class="token punctuation">, </span></span><span class="parameter ">position<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-105982224%2FFunctions%2F805669067" anchor-label="createViewHolder" id="-105982224%2FFunctions%2F805669067" data-filterable-set=":harnessx:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-filterable-current=":harnessx:dokkaHtmlPartial/release" data-filterable-set=":harnessx:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-playlist-item-adapter/index.html#-105982224%2FFunctions%2F805669067"><span>create</span><wbr><span>View</span><wbr><span><span>Holder</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-105982224%2FFunctions%2F805669067"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":harnessx:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="../-playlist-item-adapter/index.html#-105982224%2FFunctions%2F805669067"><span class="token function">createViewHolder</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">parent<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/android/view/ViewGroup.html">ViewGroup</a><span class="token punctuation">, </span></span><span class="parameter ">viewType<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/recyclerview/widget/RecyclerView.Adapter.html">VH</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-185440174%2FFunctions%2F805669067" anchor-label="findRelativeAdapterPositionIn" id="-185440174%2FFunctions%2F805669067" data-filterable-set=":harnessx:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-filterable-current=":harnessx:dokkaHtmlPartial/release" data-filterable-set=":harnessx:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-playlist-item-adapter/index.html#-185440174%2FFunctions%2F805669067"><span>find</span><wbr><span>Relative</span><wbr><span>Adapter</span><wbr><span>Position</span><wbr><span><span>In</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-185440174%2FFunctions%2F805669067"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":harnessx:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="../-playlist-item-adapter/index.html#-185440174%2FFunctions%2F805669067"><span class="token function">findRelativeAdapterPositionIn</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">adapter<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/recyclerview/widget/RecyclerView.Adapter.html">RecyclerView.Adapter</a><span class="token operator">&lt;</span><span class="token keyword">out </span><a href="https://developer.android.com/reference/kotlin/androidx/recyclerview/widget/RecyclerView.ViewHolder.html">RecyclerView.ViewHolder</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">viewHolder<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/recyclerview/widget/RecyclerView.ViewHolder.html">RecyclerView.ViewHolder</a><span class="token punctuation">, </span></span><span class="parameter ">localPosition<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="200325685%2FFunctions%2F805669067" anchor-label="getItemCount" id="200325685%2FFunctions%2F805669067" data-filterable-set=":harnessx:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-filterable-current=":harnessx:dokkaHtmlPartial/release" data-filterable-set=":harnessx:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-item-count.html"><span>get</span><wbr><span>Item</span><wbr><span><span>Count</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="200325685%2FFunctions%2F805669067"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":harnessx:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-item-count.html"><span class="token function">getItemCount</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-709847208%2FFunctions%2F805669067" anchor-label="getItemId" id="-709847208%2FFunctions%2F805669067" data-filterable-set=":harnessx:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-filterable-current=":harnessx:dokkaHtmlPartial/release" data-filterable-set=":harnessx:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-item-id.html"><span>get</span><wbr><span>Item</span><wbr><span><span>Id</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-709847208%2FFunctions%2F805669067"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":harnessx:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-item-id.html"><span class="token function">getItemId</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">position<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-539392806%2FFunctions%2F805669067" anchor-label="getItemViewType" id="-539392806%2FFunctions%2F805669067" data-filterable-set=":harnessx:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-filterable-current=":harnessx:dokkaHtmlPartial/release" data-filterable-set=":harnessx:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-playlist-item-adapter/index.html#-539392806%2FFunctions%2F805669067"><span>get</span><wbr><span>Item</span><wbr><span>View</span><wbr><span><span>Type</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-539392806%2FFunctions%2F805669067"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":harnessx:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="../-playlist-item-adapter/index.html#-539392806%2FFunctions%2F805669067"><span class="token function">getItemViewType</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">position<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1717359980%2FFunctions%2F805669067" anchor-label="getStateRestorationPolicy" id="1717359980%2FFunctions%2F805669067" data-filterable-set=":harnessx:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-filterable-current=":harnessx:dokkaHtmlPartial/release" data-filterable-set=":harnessx:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../com.penthera.harnessx.ui.playassurecatalog/-catalog-fragment/-catalog-adapter/index.html#1717359980%2FFunctions%2F805669067"><span>get</span><wbr><span>State</span><wbr><span>Restoration</span><wbr><span><span>Policy</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1717359980%2FFunctions%2F805669067"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":harnessx:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="../../com.penthera.harnessx.ui.playassurecatalog/-catalog-fragment/-catalog-adapter/index.html#1717359980%2FFunctions%2F805669067"><span class="token function">getStateRestorationPolicy</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/recyclerview/widget/RecyclerView.Adapter.StateRestorationPolicy.html">RecyclerView.Adapter.StateRestorationPolicy</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1092162006%2FFunctions%2F805669067" anchor-label="hasObservers" id="1092162006%2FFunctions%2F805669067" data-filterable-set=":harnessx:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-filterable-current=":harnessx:dokkaHtmlPartial/release" data-filterable-set=":harnessx:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../com.penthera.harnessx.ui.playassurecatalog/-catalog-fragment/-catalog-adapter/index.html#1092162006%2FFunctions%2F805669067"><span>has</span><wbr><span><span>Observers</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1092162006%2FFunctions%2F805669067"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":harnessx:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="../../com.penthera.harnessx.ui.playassurecatalog/-catalog-fragment/-catalog-adapter/index.html#1092162006%2FFunctions%2F805669067"><span class="token function">hasObservers</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="16685238%2FFunctions%2F805669067" anchor-label="hasStableIds" id="16685238%2FFunctions%2F805669067" data-filterable-set=":harnessx:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-filterable-current=":harnessx:dokkaHtmlPartial/release" data-filterable-set=":harnessx:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../com.penthera.harnessx.ui.playassurecatalog/-catalog-fragment/-catalog-adapter/index.html#16685238%2FFunctions%2F805669067"><span>has</span><wbr><span>Stable</span><wbr><span><span>Ids</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="16685238%2FFunctions%2F805669067"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":harnessx:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="../../com.penthera.harnessx.ui.playassurecatalog/-catalog-fragment/-catalog-adapter/index.html#16685238%2FFunctions%2F805669067"><span class="token function">hasStableIds</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1095556076%2FFunctions%2F805669067" anchor-label="notifyDataSetChanged" id="-1095556076%2FFunctions%2F805669067" data-filterable-set=":harnessx:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-filterable-current=":harnessx:dokkaHtmlPartial/release" data-filterable-set=":harnessx:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../com.penthera.harnessx.ui.playassurecatalog/-catalog-fragment/-catalog-adapter/index.html#-1095556076%2FFunctions%2F805669067"><span>notify</span><wbr><span>Data</span><wbr><span>Set</span><wbr><span><span>Changed</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1095556076%2FFunctions%2F805669067"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":harnessx:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="../../com.penthera.harnessx.ui.playassurecatalog/-catalog-fragment/-catalog-adapter/index.html#-1095556076%2FFunctions%2F805669067"><span class="token function">notifyDataSetChanged</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="764461258%2FFunctions%2F805669067" anchor-label="notifyItemChanged" id="764461258%2FFunctions%2F805669067" data-filterable-set=":harnessx:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-filterable-current=":harnessx:dokkaHtmlPartial/release" data-filterable-set=":harnessx:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-playlist-item-adapter/index.html#764461258%2FFunctions%2F805669067"><span>notify</span><wbr><span>Item</span><wbr><span><span>Changed</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="764461258%2FFunctions%2F805669067"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":harnessx:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="../-playlist-item-adapter/index.html#764461258%2FFunctions%2F805669067"><span class="token function">notifyItemChanged</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">position<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="231197998%2FFunctions%2F805669067" anchor-label="notifyItemInserted" id="231197998%2FFunctions%2F805669067" data-filterable-set=":harnessx:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-filterable-current=":harnessx:dokkaHtmlPartial/release" data-filterable-set=":harnessx:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-playlist-item-adapter/index.html#231197998%2FFunctions%2F805669067"><span>notify</span><wbr><span>Item</span><wbr><span><span>Inserted</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="231197998%2FFunctions%2F805669067"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":harnessx:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="../-playlist-item-adapter/index.html#231197998%2FFunctions%2F805669067"><span class="token function">notifyItemInserted</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">position<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1555688995%2FFunctions%2F805669067" anchor-label="notifyItemMoved" id="-1555688995%2FFunctions%2F805669067" data-filterable-set=":harnessx:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-filterable-current=":harnessx:dokkaHtmlPartial/release" data-filterable-set=":harnessx:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-playlist-item-adapter/index.html#-1555688995%2FFunctions%2F805669067"><span>notify</span><wbr><span>Item</span><wbr><span><span>Moved</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1555688995%2FFunctions%2F805669067"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":harnessx:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="../-playlist-item-adapter/index.html#-1555688995%2FFunctions%2F805669067"><span class="token function">notifyItemMoved</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">fromPosition<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter ">toPosition<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1543094815%2FFunctions%2F805669067" anchor-label="notifyItemRangeChanged" id="-1543094815%2FFunctions%2F805669067" data-filterable-set=":harnessx:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-filterable-current=":harnessx:dokkaHtmlPartial/release" data-filterable-set=":harnessx:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-playlist-item-adapter/index.html#-1543094815%2FFunctions%2F805669067"><span>notify</span><wbr><span>Item</span><wbr><span>Range</span><wbr><span><span>Changed</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1543094815%2FFunctions%2F805669067"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":harnessx:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="../-playlist-item-adapter/index.html#-1543094815%2FFunctions%2F805669067"><span class="token function">notifyItemRangeChanged</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">positionStart<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter ">itemCount<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1855364961%2FFunctions%2F805669067" anchor-label="notifyItemRangeInserted" id="-1855364961%2FFunctions%2F805669067" data-filterable-set=":harnessx:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-filterable-current=":harnessx:dokkaHtmlPartial/release" data-filterable-set=":harnessx:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-playlist-item-adapter/index.html#-1855364961%2FFunctions%2F805669067"><span>notify</span><wbr><span>Item</span><wbr><span>Range</span><wbr><span><span>Inserted</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1855364961%2FFunctions%2F805669067"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":harnessx:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="../-playlist-item-adapter/index.html#-1855364961%2FFunctions%2F805669067"><span class="token function">notifyItemRangeInserted</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">positionStart<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter ">itemCount<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1376959603%2FFunctions%2F805669067" anchor-label="notifyItemRangeRemoved" id="-1376959603%2FFunctions%2F805669067" data-filterable-set=":harnessx:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-filterable-current=":harnessx:dokkaHtmlPartial/release" data-filterable-set=":harnessx:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-playlist-item-adapter/index.html#-1376959603%2FFunctions%2F805669067"><span>notify</span><wbr><span>Item</span><wbr><span>Range</span><wbr><span><span>Removed</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1376959603%2FFunctions%2F805669067"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":harnessx:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="../-playlist-item-adapter/index.html#-1376959603%2FFunctions%2F805669067"><span class="token function">notifyItemRangeRemoved</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">positionStart<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter ">itemCount<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="617970806%2FFunctions%2F805669067" anchor-label="notifyItemRemoved" id="617970806%2FFunctions%2F805669067" data-filterable-set=":harnessx:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-filterable-current=":harnessx:dokkaHtmlPartial/release" data-filterable-set=":harnessx:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-playlist-item-adapter/index.html#617970806%2FFunctions%2F805669067"><span>notify</span><wbr><span>Item</span><wbr><span><span>Removed</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="617970806%2FFunctions%2F805669067"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":harnessx:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="../-playlist-item-adapter/index.html#617970806%2FFunctions%2F805669067"><span class="token function">notifyItemRemoved</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">position<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1243461790%2FFunctions%2F805669067" anchor-label="onAttachedToRecyclerView" id="-1243461790%2FFunctions%2F805669067" data-filterable-set=":harnessx:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-filterable-current=":harnessx:dokkaHtmlPartial/release" data-filterable-set=":harnessx:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-playlist-item-adapter/index.html#-1243461790%2FFunctions%2F805669067"><span>on</span><wbr><span>Attached</span><wbr><span>To</span><wbr><span>Recycler</span><wbr><span><span>View</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1243461790%2FFunctions%2F805669067"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":harnessx:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="../-playlist-item-adapter/index.html#-1243461790%2FFunctions%2F805669067"><span class="token function">onAttachedToRecyclerView</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">recyclerView<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/recyclerview/widget/RecyclerView.html">RecyclerView</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1978434475%2FFunctions%2F805669067" anchor-label="onBindViewHolder" id="1978434475%2FFunctions%2F805669067" data-filterable-set=":harnessx:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-filterable-current=":harnessx:dokkaHtmlPartial/release" data-filterable-set=":harnessx:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-bind-view-holder.html"><span>on</span><wbr><span>Bind</span><wbr><span>View</span><wbr><span><span>Holder</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1978434475%2FFunctions%2F805669067"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":harnessx:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="on-bind-view-holder.html"><span class="token function">onBindViewHolder</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/NonNull.html"><span class="token annotation builtin">NonNull</span></a>&nbsp;</span>holder<span class="token operator">: </span><a href="../-queue-asset-view-holder/index.html">QueueAssetViewHolder</a><span class="token punctuation">, </span></span><span class="parameter ">position<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1823245133%2FFunctions%2F805669067" anchor-label="onCreateViewHolder" id="-1823245133%2FFunctions%2F805669067" data-filterable-set=":harnessx:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-filterable-current=":harnessx:dokkaHtmlPartial/release" data-filterable-set=":harnessx:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-create-view-holder.html"><span>on</span><wbr><span>Create</span><wbr><span>View</span><wbr><span><span>Holder</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1823245133%2FFunctions%2F805669067"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":harnessx:dokkaHtmlPartial/release"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/NonNull.html"><span class="token annotation builtin">NonNull</span></a></div></div><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="on-create-view-holder.html"><span class="token function">onCreateViewHolder</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/NonNull.html"><span class="token annotation builtin">NonNull</span></a>&nbsp;</span>parent<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/android/view/ViewGroup.html">ViewGroup</a><span class="token punctuation">, </span></span><span class="parameter ">viewType<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-queue-asset-view-holder/index.html">QueueAssetViewHolder</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1201433889%2FFunctions%2F805669067" anchor-label="onDetachedFromRecyclerView" id="-1201433889%2FFunctions%2F805669067" data-filterable-set=":harnessx:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-filterable-current=":harnessx:dokkaHtmlPartial/release" data-filterable-set=":harnessx:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-playlist-item-adapter/index.html#-1201433889%2FFunctions%2F805669067"><span>on</span><wbr><span>Detached</span><wbr><span>From</span><wbr><span>Recycler</span><wbr><span><span>View</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1201433889%2FFunctions%2F805669067"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":harnessx:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="../-playlist-item-adapter/index.html#-1201433889%2FFunctions%2F805669067"><span class="token function">onDetachedFromRecyclerView</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">recyclerView<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/recyclerview/widget/RecyclerView.html">RecyclerView</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1459462990%2FFunctions%2F805669067" anchor-label="onFailedToRecycleView" id="1459462990%2FFunctions%2F805669067" data-filterable-set=":harnessx:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-filterable-current=":harnessx:dokkaHtmlPartial/release" data-filterable-set=":harnessx:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-playlist-item-adapter/index.html#1459462990%2FFunctions%2F805669067"><span>on</span><wbr><span>Failed</span><wbr><span>To</span><wbr><span>Recycle</span><wbr><span><span>View</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1459462990%2FFunctions%2F805669067"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":harnessx:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="../-playlist-item-adapter/index.html#1459462990%2FFunctions%2F805669067"><span class="token function">onFailedToRecycleView</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">holder<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/recyclerview/widget/RecyclerView.Adapter.html">VH</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="784371252%2FFunctions%2F805669067" anchor-label="onViewAttachedToWindow" id="784371252%2FFunctions%2F805669067" data-filterable-set=":harnessx:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-filterable-current=":harnessx:dokkaHtmlPartial/release" data-filterable-set=":harnessx:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-playlist-item-adapter/index.html#784371252%2FFunctions%2F805669067"><span>on</span><wbr><span>View</span><wbr><span>Attached</span><wbr><span>To</span><wbr><span><span>Window</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="784371252%2FFunctions%2F805669067"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":harnessx:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="../-playlist-item-adapter/index.html#784371252%2FFunctions%2F805669067"><span class="token function">onViewAttachedToWindow</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">holder<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/recyclerview/widget/RecyclerView.Adapter.html">VH</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-966153001%2FFunctions%2F805669067" anchor-label="onViewDetachedFromWindow" id="-966153001%2FFunctions%2F805669067" data-filterable-set=":harnessx:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-filterable-current=":harnessx:dokkaHtmlPartial/release" data-filterable-set=":harnessx:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-playlist-item-adapter/index.html#-966153001%2FFunctions%2F805669067"><span>on</span><wbr><span>View</span><wbr><span>Detached</span><wbr><span>From</span><wbr><span><span>Window</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-966153001%2FFunctions%2F805669067"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":harnessx:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="../-playlist-item-adapter/index.html#-966153001%2FFunctions%2F805669067"><span class="token function">onViewDetachedFromWindow</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">holder<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/recyclerview/widget/RecyclerView.Adapter.html">VH</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1010912466%2FFunctions%2F805669067" anchor-label="onViewRecycled" id="1010912466%2FFunctions%2F805669067" data-filterable-set=":harnessx:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-filterable-current=":harnessx:dokkaHtmlPartial/release" data-filterable-set=":harnessx:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-playlist-item-adapter/index.html#1010912466%2FFunctions%2F805669067"><span>on</span><wbr><span>View</span><wbr><span><span>Recycled</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1010912466%2FFunctions%2F805669067"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":harnessx:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="../-playlist-item-adapter/index.html#1010912466%2FFunctions%2F805669067"><span class="token function">onViewRecycled</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">holder<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/recyclerview/widget/RecyclerView.Adapter.html">VH</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-149943229%2FFunctions%2F805669067" anchor-label="registerAdapterDataObserver" id="-149943229%2FFunctions%2F805669067" data-filterable-set=":harnessx:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-filterable-current=":harnessx:dokkaHtmlPartial/release" data-filterable-set=":harnessx:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-playlist-item-adapter/index.html#-149943229%2FFunctions%2F805669067"><span>register</span><wbr><span>Adapter</span><wbr><span>Data</span><wbr><span><span>Observer</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-149943229%2FFunctions%2F805669067"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":harnessx:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="../-playlist-item-adapter/index.html#-149943229%2FFunctions%2F805669067"><span class="token function">registerAdapterDataObserver</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">observer<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/recyclerview/widget/RecyclerView.AdapterDataObserver.html">RecyclerView.AdapterDataObserver</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-520923832%2FFunctions%2F805669067" anchor-label="setAssetList" id="-520923832%2FFunctions%2F805669067" data-filterable-set=":harnessx:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-filterable-current=":harnessx:dokkaHtmlPartial/release" data-filterable-set=":harnessx:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-asset-list.html"><span>set</span><wbr><span>Asset</span><wbr><span><span>List</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-520923832%2FFunctions%2F805669067"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":harnessx:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="set-asset-list.html"><span class="token function">setAssetList</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">assets<span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html">List</a><span class="token operator">&lt;</span><a href="../../com.penthera.harnessx.ui/-asset-wrapper/index.html">AssetWrapper</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="848072030%2FFunctions%2F805669067" anchor-label="setCallback" id="848072030%2FFunctions%2F805669067" data-filterable-set=":harnessx:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-filterable-current=":harnessx:dokkaHtmlPartial/release" data-filterable-set=":harnessx:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-callback.html"><span>set</span><wbr><span><span>Callback</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="848072030%2FFunctions%2F805669067"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":harnessx:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="set-callback.html"><span class="token function">setCallback</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/NonNull.html"><span class="token annotation builtin">NonNull</span></a>&nbsp;</span>callback<span class="token operator">: </span><a href="../../com.penthera.harnessx.ui/-asset-item-callback/index.html">AssetItemCallback</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="479239134%2FFunctions%2F805669067" anchor-label="setHasStableIds" id="479239134%2FFunctions%2F805669067" data-filterable-set=":harnessx:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-filterable-current=":harnessx:dokkaHtmlPartial/release" data-filterable-set=":harnessx:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-playlist-item-adapter/index.html#479239134%2FFunctions%2F805669067"><span>set</span><wbr><span>Has</span><wbr><span>Stable</span><wbr><span><span>Ids</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="479239134%2FFunctions%2F805669067"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":harnessx:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="../-playlist-item-adapter/index.html#479239134%2FFunctions%2F805669067"><span class="token function">setHasStableIds</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">hasStableIds<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1668572857%2FFunctions%2F805669067" anchor-label="setQueueItemCallback" id="1668572857%2FFunctions%2F805669067" data-filterable-set=":harnessx:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-filterable-current=":harnessx:dokkaHtmlPartial/release" data-filterable-set=":harnessx:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-queue-item-callback.html"><span>set</span><wbr><span>Queue</span><wbr><span>Item</span><wbr><span><span>Callback</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1668572857%2FFunctions%2F805669067"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":harnessx:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="set-queue-item-callback.html"><span class="token function">setQueueItemCallback</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/NonNull.html"><span class="token annotation builtin">NonNull</span></a>&nbsp;</span>callback<span class="token operator">: </span><a href="../../com.penthera.harnessx.ui/-queue-item-callback/index.html">QueueItemCallback</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1439711293%2FFunctions%2F805669067" anchor-label="setStateRestorationPolicy" id="1439711293%2FFunctions%2F805669067" data-filterable-set=":harnessx:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-filterable-current=":harnessx:dokkaHtmlPartial/release" data-filterable-set=":harnessx:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-playlist-item-adapter/index.html#1439711293%2FFunctions%2F805669067"><span>set</span><wbr><span>State</span><wbr><span>Restoration</span><wbr><span><span>Policy</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1439711293%2FFunctions%2F805669067"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":harnessx:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="../-playlist-item-adapter/index.html#1439711293%2FFunctions%2F805669067"><span class="token function">setStateRestorationPolicy</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">strategy<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/recyclerview/widget/RecyclerView.Adapter.StateRestorationPolicy.html">RecyclerView.Adapter.StateRestorationPolicy</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="607934410%2FFunctions%2F805669067" anchor-label="unregisterAdapterDataObserver" id="607934410%2FFunctions%2F805669067" data-filterable-set=":harnessx:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-filterable-current=":harnessx:dokkaHtmlPartial/release" data-filterable-set=":harnessx:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../-playlist-item-adapter/index.html#607934410%2FFunctions%2F805669067"><span>unregister</span><wbr><span>Adapter</span><wbr><span>Data</span><wbr><span><span>Observer</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="607934410%2FFunctions%2F805669067"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":harnessx:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="../-playlist-item-adapter/index.html#607934410%2FFunctions%2F805669067"><span class="token function">unregisterAdapterDataObserver</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">observer<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/recyclerview/widget/RecyclerView.AdapterDataObserver.html">RecyclerView.AdapterDataObserver</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2024 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
+    </div>
+</div>
+</body>
+</html>
+

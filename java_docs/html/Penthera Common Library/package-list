@@ -1,9 +1,0 @@
-$dokka.format:html-v1
-$dokka.linkExtension:html
-
-com.penthera
-com.penthera.common
-com.penthera.virtuososdk.client
-com.penthera.virtuososdk.client.ads
-com.penthera.virtuososdk.client.drm
-

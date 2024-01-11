@@ -3,12 +3,19 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
     <title>DownloadStopReason</title>
-<link href="../../../../../images/logo-icon.svg" rel="icon" type="image/svg">
-    <script>var pathToRoot = "../../../../../";</script>    <script>const storage = localStorage.getItem("dokka-dark-mode")
-const savedDarkMode = storage ? JSON.parse(storage) : false
-if(savedDarkMode === true){
-    document.getElementsByTagName("html")[0].classList.add("theme-dark")
-}</script>
+<link href="../../../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../../../";</script>    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
 <script type="text/javascript" src="../../../../../scripts/sourceset_dependencies.js" async></script>
 <link href="../../../../../styles/style.css" rel="Stylesheet">
 <link href="../../../../../styles/jetbrains-mono.css" rel="Stylesheet">
@@ -19,7 +26,8 @@ if(savedDarkMode === true){
 <script type="text/javascript" src="../../../../../scripts/navigation-loader.js" async></script>
 <script type="text/javascript" src="../../../../../scripts/platform-content-handler.js" async></script>
 <script type="text/javascript" src="../../../../../scripts/main.js" defer></script>
-<script type="text/javascript" src="../../../../../scripts/prism.js" async></script></head>
+<script type="text/javascript" src="../../../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
 <body>
 <div class="navigation-wrapper" id="navigation-wrapper">
     <div id="leftToggler"><span class="icon-toggler"></span></div>
@@ -29,6 +37,9 @@ if(savedDarkMode === true){
     <div>
     </div>
     <div class="pull-right d-flex">
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":SDK:dokkaHtmlPartial/release">androidJvm</button>
+        </div>
         <button id="theme-toggle-button"><span id="theme-toggle"></span></button>
         <div id="searchBar"></div>
     </div>
@@ -38,421 +49,419 @@ if(savedDarkMode === true){
         <div id="sideMenu"></div>
     </div>
     <div id="main">
-<div class="main-content" id="content" pageids="Download2Go Android SDK::com.penthera.virtuososdk/Common.Notifications.DownloadStopReason///PointingToDeclaration//1607690379">
-  <div class="breadcrumbs"><a href="../../../../index.html">Download2Go Android SDK</a><span class="delimiter">/</span><a href="../../../index.html">com.penthera.virtuososdk</a><span class="delimiter">/</span><a href="../../index.html">Common</a><span class="delimiter">/</span><a href="../index.html">Notifications</a><span class="delimiter">/</span><a href="index.html">DownloadStopReason</a></div>
+<div class="main-content" data-page-type="classlike" id="content" pageids="Download2Go Android SDK::com.penthera.virtuososdk/Common.Notifications.DownloadStopReason///PointingToDeclaration//1607690379">
+  <div class="breadcrumbs"><a href="../../../../index.html">Download2Go Android SDK</a><span class="delimiter">/</span><a href="../../../index.html">com.penthera.virtuososdk</a><span class="delimiter">/</span><a href="../../index.html">Common</a><span class="delimiter">/</span><a href="../index.html">Notifications</a><span class="delimiter">/</span><span class="current">DownloadStopReason</span></div>
   <div class="cover ">
     <h1 class="cover"><span>Download</span><wbr><span>Stop</span><wbr><span><span>Reason</span></span></h1>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">class </span><a href="index.html">DownloadStopReason</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><p class="paragraph">Additional info in notifications to explain why Virtuoso stopped downloading  One of these values is sent in the notification Intent for <code class="lang-kotlin">virtuoso.intent.action.NOTIFICATION_DOWNLOAD_STOPPED</code> or <code class="lang-kotlin">virtuoso.intent.action.NOTIFICATION_DOWNLOADS_PAUSED</code>, and can be retrieved from the extras with the key <code class="lang-kotlin">EXTRA_NOTIFICATION_DOWNLOAD_STOP_REASON</code>.</p></div></div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">class </span><a href="index.html">DownloadStopReason</a></div><p class="paragraph">Additional info in notifications to explain why Virtuoso stopped downloading  One of these values is sent in the notification Intent for <code class="lang-kotlin">virtuoso.intent.action.NOTIFICATION_DOWNLOAD_STOPPED</code> or <code class="lang-kotlin">virtuoso.intent.action.NOTIFICATION_DOWNLOADS_PAUSED</code>, and can be retrieved from the extras with the key <code class="lang-kotlin">EXTRA_NOTIFICATION_DOWNLOAD_STOP_REASON</code>.</p><h4 class="">See also</h4><div class="table"><div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../-e-x-t-r-a_-n-o-t-i-f-i-c-a-t-i-o-n_-d-o-w-n-l-o-a-d_-s-t-o-p_-r-e-a-s-o-n.html"><span>Common.</span><wbr><span><span>Notifications</span></span></a></div></span></div><div></div></div></div></div></div></div>
   </div>
   <div class="tabbedcontent">
-    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="Properties">Properties</button><button class="section-tab" data-togglable="See also">See also</button></div>
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,FUNCTION,PROPERTY">Members</button></div>
     <div class="tabs-section-body">
-      <h2 class="">See also</h2>
-      <div data-togglable="See also">
-        <div class="platform-hinted WithExtraAttributes" data-platform-hinted="data-platform-hinted" data-togglable="See also"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div data-togglable="See also"><div class="table" data-togglable="See also"><div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex"><div><a href="../-e-x-t-r-a_-n-o-t-i-f-i-c-a-t-i-o-n_-d-o-w-n-l-o-a-d_-s-t-o-p_-r-e-a-s-o-n.html"><span>com.</span><wbr><span>penthera.</span><wbr><span>virtuososdk.</span><wbr><span>Common.</span><wbr><span><span>Notifications</span></span></a></div></span></div><div><div class="title"><div data-togglable="See also"></div></div></div></div></div></div></div></div></div>
-      </div>
-      <h2 class="">Properties</h2>
-      <div class="table" data-togglable="Properties"><a data-name="1941546176%2FProperties%2F1607690379" anchor-label="BLOCKED_AUTHENTICATION" id="1941546176%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
-        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="-b-l-o-c-k-e-d_-a-u-t-h-e-n-t-i-c-a-t-i-o-n.html">BLOCKED_AUTHENTICATION</a></div>
+      <div data-togglable="PROPERTY">
+        <h2 class="">Properties</h2>
+        <div class="table"><a data-name="1941546176%2FProperties%2F1607690379" anchor-label="BLOCKED_AUTHENTICATION" id="1941546176%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-b-l-o-c-k-e-d_-a-u-t-h-e-n-t-i-c-a-t-i-o-n.html"><span><span>BLOCKED_AUTHENTICATION</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1941546176%2FProperties%2F1607690379"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><a data-name="1941546176%2FProperties%2F1607690379" anchor-label="BLOCKED_AUTHENTICATION" id="1941546176%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-b-l-o-c-k-e-d_-a-u-t-h-e-n-t-i-c-a-t-i-o-n.html">BLOCKED_AUTHENTICATION</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="1941546176%2FProperties%2F1607690379" anchor-label="BLOCKED_AUTHENTICATION" id="1941546176%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>Download engine is blocked: authentication failed with the Backplane</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-b-l-o-c-k-e-d_-a-u-t-h-e-n-t-i-c-a-t-i-o-n.html">BLOCKED_AUTHENTICATION</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">18</span></div><div class="brief ">Download engine is blocked: authentication failed with the Backplane</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="359483712%2FProperties%2F1607690379" anchor-label="BLOCKED_AWAITING_PERMISSION" id="359483712%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
-        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="-b-l-o-c-k-e-d_-a-w-a-i-t-i-n-g_-p-e-r-m-i-s-s-i-o-n.html">BLOCKED_AWAITING_PERMISSION</a></div>
+          <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-b-l-o-c-k-e-d_-a-w-a-i-t-i-n-g_-p-e-r-m-i-s-s-i-o-n.html"><span><span>BLOCKED_AWAITING_PERMISSION</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="359483712%2FProperties%2F1607690379"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><a data-name="359483712%2FProperties%2F1607690379" anchor-label="BLOCKED_AWAITING_PERMISSION" id="359483712%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-b-l-o-c-k-e-d_-a-w-a-i-t-i-n-g_-p-e-r-m-i-s-s-i-o-n.html">BLOCKED_AWAITING_PERMISSION</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="359483712%2FProperties%2F1607690379" anchor-label="BLOCKED_AWAITING_PERMISSION" id="359483712%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>Download has been blocked until permission is retreived for the asset.</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-b-l-o-c-k-e-d_-a-w-a-i-t-i-n-g_-p-e-r-m-i-s-s-i-o-n.html">BLOCKED_AWAITING_PERMISSION</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">22</span></div><div class="brief ">Download has been blocked until permission is retreived for the asset.</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="-351849899%2FProperties%2F1607690379" anchor-label="BLOCKED_BATTERY" id="-351849899%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
-        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="-b-l-o-c-k-e-d_-b-a-t-t-e-r-y.html">BLOCKED_BATTERY</a></div>
+          <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-b-l-o-c-k-e-d_-b-a-t-t-e-r-y.html"><span><span>BLOCKED_BATTERY</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-351849899%2FProperties%2F1607690379"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><a data-name="-351849899%2FProperties%2F1607690379" anchor-label="BLOCKED_BATTERY" id="-351849899%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-b-l-o-c-k-e-d_-b-a-t-t-e-r-y.html">BLOCKED_BATTERY</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-351849899%2FProperties%2F1607690379" anchor-label="BLOCKED_BATTERY" id="-351849899%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>Download engine is blocked because the battery level is too low.</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-b-l-o-c-k-e-d_-b-a-t-t-e-r-y.html">BLOCKED_BATTERY</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">3</span></div><div class="brief ">Download engine is blocked because the battery level is too low.</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="2021290710%2FProperties%2F1607690379" anchor-label="BLOCKED_CELL" id="2021290710%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
-        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="-b-l-o-c-k-e-d_-c-e-l-l.html">BLOCKED_CELL</a></div>
+          <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-b-l-o-c-k-e-d_-c-e-l-l.html"><span><span>BLOCKED_CELL</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2021290710%2FProperties%2F1607690379"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><a data-name="2021290710%2FProperties%2F1607690379" anchor-label="BLOCKED_CELL" id="2021290710%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-b-l-o-c-k-e-d_-c-e-l-l.html">BLOCKED_CELL</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="2021290710%2FProperties%2F1607690379" anchor-label="BLOCKED_CELL" id="2021290710%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>Download engine is blocked because the cell quota has been filled.</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-b-l-o-c-k-e-d_-c-e-l-l.html">BLOCKED_CELL</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">1</span></div><div class="brief ">Download engine is blocked because the cell quota has been filled.</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="-95528776%2FProperties%2F1607690379" anchor-label="BLOCKED_DOWNLOAD_DENIED_COPIES" id="-95528776%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
-        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="-b-l-o-c-k-e-d_-d-o-w-n-l-o-a-d_-d-e-n-i-e-d_-c-o-p-i-e-s.html">BLOCKED_DOWNLOAD_DENIED_COPIES</a></div>
+          <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-b-l-o-c-k-e-d_-d-o-w-n-l-o-a-d_-d-e-n-i-e-d_-c-o-p-i-e-s.html"><span><span>BLOCKED_DOWNLOAD_DENIED_COPIES</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-95528776%2FProperties%2F1607690379"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><a data-name="-95528776%2FProperties%2F1607690379" anchor-label="BLOCKED_DOWNLOAD_DENIED_COPIES" id="-95528776%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-b-l-o-c-k-e-d_-d-o-w-n-l-o-a-d_-d-e-n-i-e-d_-c-o-p-i-e-s.html">BLOCKED_DOWNLOAD_DENIED_COPIES</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-95528776%2FProperties%2F1607690379" anchor-label="BLOCKED_DOWNLOAD_DENIED_COPIES" id="-95528776%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>Current file cannot be downloaded without violating the Max Copies of Asset Rule.</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-b-l-o-c-k-e-d_-d-o-w-n-l-o-a-d_-d-e-n-i-e-d_-c-o-p-i-e-s.html">BLOCKED_DOWNLOAD_DENIED_COPIES</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">24</span></div><div class="brief ">Current file cannot be downloaded without violating the Max Copies of Asset Rule.</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="931304985%2FProperties%2F1607690379" anchor-label="BLOCKED_ERROR_HTTP" id="931304985%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
-        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="-b-l-o-c-k-e-d_-e-r-r-o-r_-h-t-t-p.html">BLOCKED_ERROR_HTTP</a></div>
+          <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-b-l-o-c-k-e-d_-e-r-r-o-r_-h-t-t-p.html"><span><span>BLOCKED_ERROR_HTTP</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="931304985%2FProperties%2F1607690379"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><a data-name="931304985%2FProperties%2F1607690379" anchor-label="BLOCKED_ERROR_HTTP" id="931304985%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-b-l-o-c-k-e-d_-e-r-r-o-r_-h-t-t-p.html">BLOCKED_ERROR_HTTP</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="931304985%2FProperties%2F1607690379" anchor-label="BLOCKED_ERROR_HTTP" id="931304985%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>Download engine is blocked because the current download has encountered too many HTTP errors.</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-b-l-o-c-k-e-d_-e-r-r-o-r_-h-t-t-p.html">BLOCKED_ERROR_HTTP</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">6</span></div><div class="brief ">Download engine is blocked because the current download has encountered too many HTTP errors.</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="-488974841%2FProperties%2F1607690379" anchor-label="BLOCKED_EXTERNAL_SIMULTANEOUS_DOWNLOADS" id="-488974841%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
-        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="-b-l-o-c-k-e-d_-e-x-t-e-r-n-a-l_-s-i-m-u-l-t-a-n-e-o-u-s_-d-o-w-n-l-o-a-d-s.html">BLOCKED_EXTERNAL_SIMULTANEOUS_DOWNLOADS</a></div>
+          <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-b-l-o-c-k-e-d_-e-x-t-e-r-n-a-l_-s-i-m-u-l-t-a-n-e-o-u-s_-d-o-w-n-l-o-a-d-s.html"><span><span>BLOCKED_EXTERNAL_SIMULTANEOUS_DOWNLOADS</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-488974841%2FProperties%2F1607690379"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><a data-name="-488974841%2FProperties%2F1607690379" anchor-label="BLOCKED_EXTERNAL_SIMULTANEOUS_DOWNLOADS" id="-488974841%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-b-l-o-c-k-e-d_-e-x-t-e-r-n-a-l_-s-i-m-u-l-t-a-n-e-o-u-s_-d-o-w-n-l-o-a-d-s.html">BLOCKED_EXTERNAL_SIMULTANEOUS_DOWNLOADS</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-488974841%2FProperties%2F1607690379" anchor-label="BLOCKED_EXTERNAL_SIMULTANEOUS_DOWNLOADS" id="-488974841%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>Current file cannot be downloaded at the present time due to recognised temporary denial from the server via HTTP responses.</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-b-l-o-c-k-e-d_-e-x-t-e-r-n-a-l_-s-i-m-u-l-t-a-n-e-o-u-s_-d-o-w-n-l-o-a-d-s.html">BLOCKED_EXTERNAL_SIMULTANEOUS_DOWNLOADS</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">27</span></div><div class="brief ">Current file cannot be downloaded at the present time due to recognised temporary denial from the server via HTTP responses.</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="304518685%2FProperties%2F1607690379" anchor-label="BLOCKED_HEADROOM" id="304518685%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
-        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="-b-l-o-c-k-e-d_-h-e-a-d-r-o-o-m.html">BLOCKED_HEADROOM</a></div>
+          <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-b-l-o-c-k-e-d_-h-e-a-d-r-o-o-m.html"><span><span>BLOCKED_HEADROOM</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="304518685%2FProperties%2F1607690379"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><a data-name="304518685%2FProperties%2F1607690379" anchor-label="BLOCKED_HEADROOM" id="304518685%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-b-l-o-c-k-e-d_-h-e-a-d-r-o-o-m.html">BLOCKED_HEADROOM</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="304518685%2FProperties%2F1607690379" anchor-label="BLOCKED_HEADROOM" id="304518685%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>Download engine is blocked because of headroom restrictions.</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-b-l-o-c-k-e-d_-h-e-a-d-r-o-o-m.html">BLOCKED_HEADROOM</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">4</span></div><div class="brief ">Download engine is blocked because of headroom restrictions.</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="1797569876%2FProperties%2F1607690379" anchor-label="BLOCKED_NETWORK" id="1797569876%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
-        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="-b-l-o-c-k-e-d_-n-e-t-w-o-r-k.html">BLOCKED_NETWORK</a></div>
+          <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-b-l-o-c-k-e-d_-n-e-t-w-o-r-k.html"><span><span>BLOCKED_NETWORK</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1797569876%2FProperties%2F1607690379"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><a data-name="1797569876%2FProperties%2F1607690379" anchor-label="BLOCKED_NETWORK" id="1797569876%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-b-l-o-c-k-e-d_-n-e-t-w-o-r-k.html">BLOCKED_NETWORK</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="1797569876%2FProperties%2F1607690379" anchor-label="BLOCKED_NETWORK" id="1797569876%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>Download engine is in a blocked state: The current file can't be downloaded because no network connection is available.</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-b-l-o-c-k-e-d_-n-e-t-w-o-r-k.html">BLOCKED_NETWORK</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">7</span></div><div class="brief ">Download engine is in a blocked state: The current file can't be downloaded because no network connection is available.</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="1648124362%2FProperties%2F1607690379" anchor-label="BLOCKED_PAUSED" id="1648124362%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
-        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="-b-l-o-c-k-e-d_-p-a-u-s-e-d.html">BLOCKED_PAUSED</a></div>
+          <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-b-l-o-c-k-e-d_-p-a-u-s-e-d.html"><span><span>BLOCKED_PAUSED</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1648124362%2FProperties%2F1607690379"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><a data-name="1648124362%2FProperties%2F1607690379" anchor-label="BLOCKED_PAUSED" id="1648124362%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-b-l-o-c-k-e-d_-p-a-u-s-e-d.html">BLOCKED_PAUSED</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="1648124362%2FProperties%2F1607690379" anchor-label="BLOCKED_PAUSED" id="1648124362%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>Download engine is paused.</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-b-l-o-c-k-e-d_-p-a-u-s-e-d.html">BLOCKED_PAUSED</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">2</span></div><div class="brief ">Download engine is paused.</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="-825698905%2FProperties%2F1607690379" anchor-label="BLOCKED_STORAGE" id="-825698905%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
-        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="-b-l-o-c-k-e-d_-s-t-o-r-a-g-e.html">BLOCKED_STORAGE</a></div>
+          <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-b-l-o-c-k-e-d_-s-t-o-r-a-g-e.html"><span><span>BLOCKED_STORAGE</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-825698905%2FProperties%2F1607690379"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><a data-name="-825698905%2FProperties%2F1607690379" anchor-label="BLOCKED_STORAGE" id="-825698905%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-b-l-o-c-k-e-d_-s-t-o-r-a-g-e.html">BLOCKED_STORAGE</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-825698905%2FProperties%2F1607690379" anchor-label="BLOCKED_STORAGE" id="-825698905%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>Download engine is blocked because there is no space on disk or the max storage setting has been met.</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-b-l-o-c-k-e-d_-s-t-o-r-a-g-e.html">BLOCKED_STORAGE</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">5</span></div><div class="brief ">Download engine is blocked because there is no space on disk or the max storage setting has been met.</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="1700597353%2FProperties%2F1607690379" anchor-label="DENIED_EXTERNAL_POLICY" id="1700597353%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
-        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="-d-e-n-i-e-d_-e-x-t-e-r-n-a-l_-p-o-l-i-c-y.html">DENIED_EXTERNAL_POLICY</a></div>
+          <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-d-e-n-i-e-d_-e-x-t-e-r-n-a-l_-p-o-l-i-c-y.html"><span><span>DENIED_EXTERNAL_POLICY</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1700597353%2FProperties%2F1607690379"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><a data-name="1700597353%2FProperties%2F1607690379" anchor-label="DENIED_EXTERNAL_POLICY" id="1700597353%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-d-e-n-i-e-d_-e-x-t-e-r-n-a-l_-p-o-l-i-c-y.html">DENIED_EXTERNAL_POLICY</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="1700597353%2FProperties%2F1607690379" anchor-label="DENIED_EXTERNAL_POLICY" id="1700597353%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>Current file cannot be downloaded without violating an external policy rule.</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-d-e-n-i-e-d_-e-x-t-e-r-n-a-l_-p-o-l-i-c-y.html">DENIED_EXTERNAL_POLICY</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">23</span></div><div class="brief ">Current file cannot be downloaded without violating an external policy rule.</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="189937102%2FProperties%2F1607690379" anchor-label="DENIED_MAX_DEVICE_DOWNLOADS" id="189937102%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
-        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="-d-e-n-i-e-d_-m-a-x_-d-e-v-i-c-e_-d-o-w-n-l-o-a-d-s.html">DENIED_MAX_DEVICE_DOWNLOADS</a></div>
+          <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-d-e-n-i-e-d_-m-a-x_-d-e-v-i-c-e_-d-o-w-n-l-o-a-d-s.html"><span><span>DENIED_MAX_DEVICE_DOWNLOADS</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="189937102%2FProperties%2F1607690379"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><a data-name="189937102%2FProperties%2F1607690379" anchor-label="DENIED_MAX_DEVICE_DOWNLOADS" id="189937102%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-d-e-n-i-e-d_-m-a-x_-d-e-v-i-c-e_-d-o-w-n-l-o-a-d-s.html">DENIED_MAX_DEVICE_DOWNLOADS</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="189937102%2FProperties%2F1607690379" anchor-label="DENIED_MAX_DEVICE_DOWNLOADS" id="189937102%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>Current file cannot be downloaded without violating the Max Permitted Downloads on Device Rule.</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-d-e-n-i-e-d_-m-a-x_-d-e-v-i-c-e_-d-o-w-n-l-o-a-d-s.html">DENIED_MAX_DEVICE_DOWNLOADS</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">19</span></div><div class="brief ">Current file cannot be downloaded without violating the Max Permitted Downloads on Device Rule.</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="1835910022%2FProperties%2F1607690379" anchor-label="ERROR_DOWNLOAD_DENIED_ACCOUNT" id="1835910022%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
-        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="-e-r-r-o-r_-d-o-w-n-l-o-a-d_-d-e-n-i-e-d_-a-c-c-o-u-n-t.html">ERROR_DOWNLOAD_DENIED_ACCOUNT</a></div>
+          <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-e-r-r-o-r_-d-o-w-n-l-o-a-d_-d-e-n-i-e-d_-a-c-c-o-u-n-t.html"><span><span>ERROR_DOWNLOAD_DENIED_ACCOUNT</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1835910022%2FProperties%2F1607690379"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><a data-name="1835910022%2FProperties%2F1607690379" anchor-label="ERROR_DOWNLOAD_DENIED_ACCOUNT" id="1835910022%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-e-r-r-o-r_-d-o-w-n-l-o-a-d_-d-e-n-i-e-d_-a-c-c-o-u-n-t.html">ERROR_DOWNLOAD_DENIED_ACCOUNT</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="1835910022%2FProperties%2F1607690379" anchor-label="ERROR_DOWNLOAD_DENIED_ACCOUNT" id="1835910022%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>Current File cannot be downloaded without violating the Max Downloads per Account Rule.</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-e-r-r-o-r_-d-o-w-n-l-o-a-d_-d-e-n-i-e-d_-a-c-c-o-u-n-t.html">ERROR_DOWNLOAD_DENIED_ACCOUNT</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">20</span></div><div class="brief ">Current File cannot be downloaded without violating the Max Downloads per Account Rule.</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="1413278116%2FProperties%2F1607690379" anchor-label="ERROR_DOWNLOAD_DENIED_ASSETS" id="1413278116%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
-        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="-e-r-r-o-r_-d-o-w-n-l-o-a-d_-d-e-n-i-e-d_-a-s-s-e-t-s.html">ERROR_DOWNLOAD_DENIED_ASSETS</a></div>
+          <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-e-r-r-o-r_-d-o-w-n-l-o-a-d_-d-e-n-i-e-d_-a-s-s-e-t-s.html"><span><span>ERROR_DOWNLOAD_DENIED_ASSETS</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1413278116%2FProperties%2F1607690379"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><a data-name="1413278116%2FProperties%2F1607690379" anchor-label="ERROR_DOWNLOAD_DENIED_ASSETS" id="1413278116%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-e-r-r-o-r_-d-o-w-n-l-o-a-d_-d-e-n-i-e-d_-a-s-s-e-t-s.html">ERROR_DOWNLOAD_DENIED_ASSETS</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="1413278116%2FProperties%2F1607690379" anchor-label="ERROR_DOWNLOAD_DENIED_ASSETS" id="1413278116%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>Current File cannot be downloaded without violating the Max Downloads per Asset Rule.</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-e-r-r-o-r_-d-o-w-n-l-o-a-d_-d-e-n-i-e-d_-a-s-s-e-t-s.html">ERROR_DOWNLOAD_DENIED_ASSETS</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">21</span></div><div class="brief ">Current File cannot be downloaded without violating the Max Downloads per Asset Rule.</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="-1855752159%2FProperties%2F1607690379" anchor-label="ERROR_EXPIRED" id="-1855752159%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
-        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="-e-r-r-o-r_-e-x-p-i-r-e-d.html">ERROR_EXPIRED</a></div>
+          <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-e-r-r-o-r_-e-x-p-i-r-e-d.html"><span><span>ERROR_EXPIRED</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1855752159%2FProperties%2F1607690379"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><a data-name="-1855752159%2FProperties%2F1607690379" anchor-label="ERROR_EXPIRED" id="-1855752159%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-e-r-r-o-r_-e-x-p-i-r-e-d.html">ERROR_EXPIRED</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-1855752159%2FProperties%2F1607690379" anchor-label="ERROR_EXPIRED" id="-1855752159%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>Download engine is in an error state: the current file download failed, an expired file was incorrectly sent to be downloaded.</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-e-r-r-o-r_-e-x-p-i-r-e-d.html">ERROR_EXPIRED</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">13</span></div><div class="brief ">Download engine is in an error state: the current file download failed, an expired file was incorrectly sent to be downloaded.</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="-1114321256%2FProperties%2F1607690379" anchor-label="ERROR_FILE" id="-1114321256%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
-        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="-e-r-r-o-r_-f-i-l-e.html">ERROR_FILE</a></div>
+          <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-e-r-r-o-r_-f-i-l-e.html"><span><span>ERROR_FILE</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1114321256%2FProperties%2F1607690379"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><a data-name="-1114321256%2FProperties%2F1607690379" anchor-label="ERROR_FILE" id="-1114321256%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-e-r-r-o-r_-f-i-l-e.html">ERROR_FILE</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-1114321256%2FProperties%2F1607690379" anchor-label="ERROR_FILE" id="-1114321256%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>Download engine is in an error state: The current file cannot be accessed on disk.</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-e-r-r-o-r_-f-i-l-e.html">ERROR_FILE</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">8</span></div><div class="brief ">Download engine is in an error state: The current file cannot be accessed on disk.</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="-250690481%2FProperties%2F1607690379" anchor-label="ERROR_FILE_EXPECTED_SIZE" id="-250690481%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
-        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="-e-r-r-o-r_-f-i-l-e_-e-x-p-e-c-t-e-d_-s-i-z-e.html">ERROR_FILE_EXPECTED_SIZE</a></div>
+          <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-e-r-r-o-r_-f-i-l-e_-e-x-p-e-c-t-e-d_-s-i-z-e.html"><span><span>ERROR_FILE_EXPECTED_SIZE</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-250690481%2FProperties%2F1607690379"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><a data-name="-250690481%2FProperties%2F1607690379" anchor-label="ERROR_FILE_EXPECTED_SIZE" id="-250690481%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-e-r-r-o-r_-f-i-l-e_-e-x-p-e-c-t-e-d_-s-i-z-e.html">ERROR_FILE_EXPECTED_SIZE</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-250690481%2FProperties%2F1607690379" anchor-label="ERROR_FILE_EXPECTED_SIZE" id="-250690481%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>Download engine is in an error state: the current file failed to download because the expected size and actual size of the file did not match.</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-e-r-r-o-r_-f-i-l-e_-e-x-p-e-c-t-e-d_-s-i-z-e.html">ERROR_FILE_EXPECTED_SIZE</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">10</span></div><div class="brief ">Download engine is in an error state: the current file failed to download because the expected size and actual size of the file did not match.</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="-756086606%2FProperties%2F1607690379" anchor-label="ERROR_FILE_MIME_TYPE" id="-756086606%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
-        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="-e-r-r-o-r_-f-i-l-e_-m-i-m-e_-t-y-p-e.html">ERROR_FILE_MIME_TYPE</a></div>
+          <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-e-r-r-o-r_-f-i-l-e_-m-i-m-e_-t-y-p-e.html"><span><span>ERROR_FILE_MIME_TYPE</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-756086606%2FProperties%2F1607690379"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><a data-name="-756086606%2FProperties%2F1607690379" anchor-label="ERROR_FILE_MIME_TYPE" id="-756086606%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-e-r-r-o-r_-f-i-l-e_-m-i-m-e_-t-y-p-e.html">ERROR_FILE_MIME_TYPE</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-756086606%2FProperties%2F1607690379" anchor-label="ERROR_FILE_MIME_TYPE" id="-756086606%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>Download engine is in an error state: The current file failed to be downloaded as the mime-type did not match.</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-e-r-r-o-r_-f-i-l-e_-m-i-m-e_-t-y-p-e.html">ERROR_FILE_MIME_TYPE</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">9</span></div><div class="brief ">Download engine is in an error state: The current file failed to be downloaded as the mime-type did not match.</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="1449839379%2FProperties%2F1607690379" anchor-label="ERROR_FILE_PERMISSIONS" id="1449839379%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
-        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="-e-r-r-o-r_-f-i-l-e_-p-e-r-m-i-s-s-i-o-n-s.html">ERROR_FILE_PERMISSIONS</a></div>
+          <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-e-r-r-o-r_-f-i-l-e_-p-e-r-m-i-s-s-i-o-n-s.html"><span><span>ERROR_FILE_PERMISSIONS</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1449839379%2FProperties%2F1607690379"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><a data-name="1449839379%2FProperties%2F1607690379" anchor-label="ERROR_FILE_PERMISSIONS" id="1449839379%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-e-r-r-o-r_-f-i-l-e_-p-e-r-m-i-s-s-i-o-n-s.html">ERROR_FILE_PERMISSIONS</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="1449839379%2FProperties%2F1607690379" anchor-label="ERROR_FILE_PERMISSIONS" id="1449839379%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>Download engine is in a blocked state: The current file is due to be saved on an external filesystem but the user has not granted the appropriate permissions.</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-e-r-r-o-r_-f-i-l-e_-p-e-r-m-i-s-s-i-o-n-s.html">ERROR_FILE_PERMISSIONS</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">26</span></div><div class="brief ">Download engine is in a blocked state: The current file is due to be saved on an external filesystem but the user has not granted the appropriate permissions.</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="1861365688%2FProperties%2F1607690379" anchor-label="ERROR_FILESYSTEM_UNAVAILABLE" id="1861365688%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
-        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="-e-r-r-o-r_-f-i-l-e-s-y-s-t-e-m_-u-n-a-v-a-i-l-a-b-l-e.html">ERROR_FILESYSTEM_UNAVAILABLE</a></div>
+          <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-e-r-r-o-r_-f-i-l-e-s-y-s-t-e-m_-u-n-a-v-a-i-l-a-b-l-e.html"><span><span>ERROR_FILESYSTEM_UNAVAILABLE</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1861365688%2FProperties%2F1607690379"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><a data-name="1861365688%2FProperties%2F1607690379" anchor-label="ERROR_FILESYSTEM_UNAVAILABLE" id="1861365688%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-e-r-r-o-r_-f-i-l-e-s-y-s-t-e-m_-u-n-a-v-a-i-l-a-b-l-e.html">ERROR_FILESYSTEM_UNAVAILABLE</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="1861365688%2FProperties%2F1607690379" anchor-label="ERROR_FILESYSTEM_UNAVAILABLE" id="1861365688%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>Download engine is in a blocked state: The current file is due to be saved on an external filesystem which is currently unavailable.</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-e-r-r-o-r_-f-i-l-e-s-y-s-t-e-m_-u-n-a-v-a-i-l-a-b-l-e.html">ERROR_FILESYSTEM_UNAVAILABLE</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">25</span></div><div class="brief ">Download engine is in a blocked state: The current file is due to be saved on an external filesystem which is currently unavailable.</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="1446844060%2FProperties%2F1607690379" anchor-label="ERROR_UNKNOWN" id="1446844060%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
-        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="-e-r-r-o-r_-u-n-k-n-o-w-n.html">ERROR_UNKNOWN</a></div>
+          <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-e-r-r-o-r_-u-n-k-n-o-w-n.html"><span><span>ERROR_UNKNOWN</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1446844060%2FProperties%2F1607690379"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><a data-name="1446844060%2FProperties%2F1607690379" anchor-label="ERROR_UNKNOWN" id="1446844060%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-e-r-r-o-r_-u-n-k-n-o-w-n.html">ERROR_UNKNOWN</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="1446844060%2FProperties%2F1607690379" anchor-label="ERROR_UNKNOWN" id="1446844060%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>Download engine is in an error state: the current file download failed, an unknown error occurred.</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-e-r-r-o-r_-u-n-k-n-o-w-n.html">ERROR_UNKNOWN</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">14</span></div><div class="brief ">Download engine is in an error state: the current file download failed, an unknown error occurred.</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="2009666812%2FProperties%2F1607690379" anchor-label="ERRORS_MAXED" id="2009666812%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
-        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="-e-r-r-o-r-s_-m-a-x-e-d.html">ERRORS_MAXED</a></div>
+          <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-e-r-r-o-r-s_-m-a-x-e-d.html"><span><span>ERRORS_MAXED</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2009666812%2FProperties%2F1607690379"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><a data-name="2009666812%2FProperties%2F1607690379" anchor-label="ERRORS_MAXED" id="2009666812%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-e-r-r-o-r-s_-m-a-x-e-d.html">ERRORS_MAXED</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="2009666812%2FProperties%2F1607690379" anchor-label="ERRORS_MAXED" id="2009666812%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>Download engine is in an error state: the current file download failed, an attempt was made to download the file 3 times before it failed.</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-e-r-r-o-r-s_-m-a-x-e-d.html">ERRORS_MAXED</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">12</span></div><div class="brief ">Download engine is in an error state: the current file download failed, an attempt was made to download the file 3 times before it failed.</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="-1351068631%2FProperties%2F1607690379" anchor-label="FILE_EXPIRED" id="-1351068631%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
-        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="-f-i-l-e_-e-x-p-i-r-e-d.html">FILE_EXPIRED</a></div>
+          <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-f-i-l-e_-e-x-p-i-r-e-d.html"><span><span>FILE_EXPIRED</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1351068631%2FProperties%2F1607690379"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><a data-name="-1351068631%2FProperties%2F1607690379" anchor-label="FILE_EXPIRED" id="-1351068631%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-f-i-l-e_-e-x-p-i-r-e-d.html">FILE_EXPIRED</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-1351068631%2FProperties%2F1607690379" anchor-label="FILE_EXPIRED" id="-1351068631%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>The current file was marked as expired during downloading.</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-f-i-l-e_-e-x-p-i-r-e-d.html">FILE_EXPIRED</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">17</span></div><div class="brief ">The current file was marked as expired during downloading.</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="-977130674%2FProperties%2F1607690379" anchor-label="FILE_REMOVED" id="-977130674%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
-        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="-f-i-l-e_-r-e-m-o-v-e-d.html">FILE_REMOVED</a></div>
+          <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-f-i-l-e_-r-e-m-o-v-e-d.html"><span><span>FILE_REMOVED</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-977130674%2FProperties%2F1607690379"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><a data-name="-977130674%2FProperties%2F1607690379" anchor-label="FILE_REMOVED" id="-977130674%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-f-i-l-e_-r-e-m-o-v-e-d.html">FILE_REMOVED</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-977130674%2FProperties%2F1607690379" anchor-label="FILE_REMOVED" id="-977130674%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>The current file was removed while it was downloading.</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-f-i-l-e_-r-e-m-o-v-e-d.html">FILE_REMOVED</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">16</span></div><div class="brief ">The current file was removed while it was downloading.</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="1430118785%2FProperties%2F1607690379" anchor-label="NO_ERROR" id="1430118785%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
-        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="-n-o_-e-r-r-o-r.html">NO_ERROR</a></div>
+          <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-n-o_-e-r-r-o-r.html"><span><span>NO_ERROR</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1430118785%2FProperties%2F1607690379"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><a data-name="1430118785%2FProperties%2F1607690379" anchor-label="NO_ERROR" id="1430118785%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-n-o_-e-r-r-o-r.html">NO_ERROR</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="1430118785%2FProperties%2F1607690379" anchor-label="NO_ERROR" id="1430118785%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>Download engine is unaware of any errors that will prevent it from downloading.</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-n-o_-e-r-r-o-r.html">NO_ERROR</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">0</span></div><div class="brief ">Download engine is unaware of any errors that will prevent it from downloading.</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="181379908%2FProperties%2F1607690379" anchor-label="PRIORITY_CHANGE" id="181379908%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
-        <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="-p-r-i-o-r-i-t-y_-c-h-a-n-g-e.html">PRIORITY_CHANGE</a></div>
+          <div class="table-row" data-filterable-current=":SDK:dokkaHtmlPartial/release" data-filterable-set=":SDK:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-p-r-i-o-r-i-t-y_-c-h-a-n-g-e.html"><span><span>PRIORITY_CHANGE</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="181379908%2FProperties%2F1607690379"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><a data-name="181379908%2FProperties%2F1607690379" anchor-label="PRIORITY_CHANGE" id="181379908%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-p-r-i-o-r-i-t-y_-c-h-a-n-g-e.html">PRIORITY_CHANGE</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="181379908%2FProperties%2F1607690379" anchor-label="PRIORITY_CHANGE" id="181379908%2FProperties%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>Current download is being replaced with a new one.</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-p-r-i-o-r-i-t-y_-c-h-a-n-g-e.html">PRIORITY_CHANGE</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">15</span></div><div class="brief ">Current download is being replaced with a new one.</div></div></div>
+                </div>
               </div>
             </div>
           </div>
@@ -461,10 +470,11 @@ if(savedDarkMode === true){
     </div>
   </div>
 </div>
-        <div class="footer"><span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2023 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
-        </div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2024 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
     </div>
 </div>
-
-</body></html>
+</body>
+</html>
 

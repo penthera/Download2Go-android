@@ -37,8 +37,8 @@ public class MainActivity extends AppCompatActivity {
 
     // DEMO Server details
     private static final String BACKPLANE_URL = "https://demo.penthera.com/";
-    private static final String BACKPLANE_PUBLIC_KEY = "a382d4a927dee20c21af4442a85adfc8366b99b485547d7364818839509ac7cb";
-    private static final String BACKPLANE_PRIVATE_KEY = "517ba3db3fb8127d33b342716b69bdbdb030425737a3ade7d2224b86fdf8bf19";
+    private static final String BACKPLANE_PUBLIC_KEY = ;
+    private static final String BACKPLANE_PRIVATE_KEY = ;
 
     // This is the test asset which will be downloaded
     // Important: Asset ID should be unique across your video catalog

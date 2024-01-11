@@ -1,0 +1,244 @@
+<!doctype html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>AssetCatalogLoader</title>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../";</script>    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/jetbrains-mono.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
+<body>
+<div class="navigation-wrapper" id="navigation-wrapper">
+    <div id="leftToggler"><span class="icon-toggler"></span></div>
+    <div class="library-name">
+<a href="../../../index.html">
+<span>TMP</span>            </a>    </div>
+    <div>
+    </div>
+    <div class="pull-right d-flex">
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":Automation:dokkaHtmlPartial/release">androidJvm</button>
+        </div>
+        <button id="theme-toggle-button"><span id="theme-toggle"></span></button>
+        <div id="searchBar"></div>
+    </div>
+</div>
+<div id="container">
+    <div id="leftColumn">
+        <div id="sideMenu"></div>
+    </div>
+    <div id="main">
+<div class="main-content" data-page-type="classlike" id="content" pageids="Automation::com.penthera.autotesting.model/AssetCatalogLoader///PointingToDeclaration//-1237008772">
+  <div class="breadcrumbs"><a href="../../index.html">Automation</a><span class="delimiter">/</span><a href="../index.html">com.penthera.autotesting.model</a><span class="delimiter">/</span><span class="current">AssetCatalogLoader</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Asset</span><wbr><span>Catalog</span><wbr><span><span>Loader</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":Automation:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">object </span><a href="index.html">AssetCatalogLoader</a></div></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,FUNCTION,PROPERTY">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="-1054520901%2FFunctions%2F-1237008772" anchor-label="downloadAsset" id="-1054520901%2FFunctions%2F-1237008772" data-filterable-set=":Automation:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-filterable-current=":Automation:dokkaHtmlPartial/release" data-filterable-set=":Automation:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="download-asset.html"><span>download</span><wbr><span><span>Asset</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1054520901%2FFunctions%2F-1237008772"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":Automation:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="download-asset.html"><span class="token function">downloadAsset</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">assetID<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">usesFastPlay<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">false</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../../SDK/com.penthera.virtuososdk.client.builders/-asset-params/index.html">AssetParams</a><span class="token operator">?</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1658242388%2FFunctions%2F-1237008772" anchor-label="findAsset" id="-1658242388%2FFunctions%2F-1237008772" data-filterable-set=":Automation:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-filterable-current=":Automation:dokkaHtmlPartial/release" data-filterable-set=":Automation:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="find-asset.html"><span>find</span><wbr><span><span>Asset</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1658242388%2FFunctions%2F-1237008772"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":Automation:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="find-asset.html"><span class="token function">findAsset</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">assetID<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">usesFastPlay<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-asset/index.html">Asset</a><span class="token operator">?</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1575001674%2FFunctions%2F-1237008772" anchor-label="listAllAsset" id="1575001674%2FFunctions%2F-1237008772" data-filterable-set=":Automation:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-filterable-current=":Automation:dokkaHtmlPartial/release" data-filterable-set=":Automation:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="list-all-asset.html"><span>list</span><wbr><span>All</span><wbr><span><span>Asset</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1575001674%2FFunctions%2F-1237008772"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":Automation:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="list-all-asset.html"><span class="token function">listAllAsset</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-array-list/index.html">ArrayList</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../-asset/index.html">Asset</a><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-96096728%2FFunctions%2F-1237008772" anchor-label="listAssetForDASHAutoParse" id="-96096728%2FFunctions%2F-1237008772" data-filterable-set=":Automation:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-filterable-current=":Automation:dokkaHtmlPartial/release" data-filterable-set=":Automation:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="list-asset-for-d-a-s-h-auto-parse.html"><span>list</span><wbr><span>Asset</span><wbr><span>For</span><wbr><span>DASHAuto</span><wbr><span><span>Parse</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-96096728%2FFunctions%2F-1237008772"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":Automation:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="list-asset-for-d-a-s-h-auto-parse.html"><span class="token function">listAssetForDASHAutoParse</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-array-list/index.html">ArrayList</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../-asset/index.html">Asset</a><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1580299893%2FFunctions%2F-1237008772" anchor-label="listAssetForHLSAutoParse" id="-1580299893%2FFunctions%2F-1237008772" data-filterable-set=":Automation:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-filterable-current=":Automation:dokkaHtmlPartial/release" data-filterable-set=":Automation:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="list-asset-for-h-l-s-auto-parse.html"><span>list</span><wbr><span>Asset</span><wbr><span>For</span><wbr><span>HLSAuto</span><wbr><span><span>Parse</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1580299893%2FFunctions%2F-1237008772"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":Automation:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="list-asset-for-h-l-s-auto-parse.html"><span class="token function">listAssetForHLSAutoParse</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-array-list/index.html">ArrayList</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../-asset/index.html">Asset</a><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1976511941%2FFunctions%2F-1237008772" anchor-label="listAssetForHLSFastPlay" id="-1976511941%2FFunctions%2F-1237008772" data-filterable-set=":Automation:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-filterable-current=":Automation:dokkaHtmlPartial/release" data-filterable-set=":Automation:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="list-asset-for-h-l-s-fast-play.html"><span>list</span><wbr><span>Asset</span><wbr><span>For</span><wbr><span>HLSFast</span><wbr><span><span>Play</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1976511941%2FFunctions%2F-1237008772"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":Automation:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="list-asset-for-h-l-s-fast-play.html"><span class="token function">listAssetForHLSFastPlay</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-array-list/index.html">ArrayList</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../-asset/index.html">Asset</a><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1888738089%2FFunctions%2F-1237008772" anchor-label="listAssetForMP4" id="1888738089%2FFunctions%2F-1237008772" data-filterable-set=":Automation:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-filterable-current=":Automation:dokkaHtmlPartial/release" data-filterable-set=":Automation:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="list-asset-for-m-p4.html"><span>list</span><wbr><span>Asset</span><wbr><span>For</span><wbr><span><span>MP4</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1888738089%2FFunctions%2F-1237008772"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":Automation:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="list-asset-for-m-p4.html"><span class="token function">listAssetForMP4</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-array-list/index.html">ArrayList</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../-asset/index.html">Asset</a><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1618095310%2FFunctions%2F-1237008772" anchor-label="loadAssets" id="1618095310%2FFunctions%2F-1237008772" data-filterable-set=":Automation:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-filterable-current=":Automation:dokkaHtmlPartial/release" data-filterable-set=":Automation:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="load-assets.html"><span>load</span><wbr><span><span>Assets</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1618095310%2FFunctions%2F-1237008772"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":Automation:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="load-assets.html"><span class="token function">loadAssets</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="PROPERTY">
+        <h2 class="">Properties</h2>
+        <div class="table"><a data-name="-815082535%2FProperties%2F-1237008772" anchor-label="allAssetTypes" id="-815082535%2FProperties%2F-1237008772" data-filterable-set=":Automation:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-filterable-current=":Automation:dokkaHtmlPartial/release" data-filterable-set=":Automation:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="all-asset-types.html"><span>all</span><wbr><span>Asset</span><wbr><span><span>Types</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-815082535%2FProperties%2F-1237008772"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":Automation:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">var </span><a href="all-asset-types.html">allAssetTypes</a><span class="token operator">: </span><a href="../-all-assets/index.html">AllAssets</a><span class="token operator">?</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1424615150%2FProperties%2F-1237008772" anchor-label="assetManifestObserver" id="1424615150%2FProperties%2F-1237008772" data-filterable-set=":Automation:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-filterable-current=":Automation:dokkaHtmlPartial/release" data-filterable-set=":Automation:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="asset-manifest-observer.html"><span>asset</span><wbr><span>Manifest</span><wbr><span><span>Observer</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1424615150%2FProperties%2F-1237008772"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":Automation:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="asset-manifest-observer.html">assetManifestObserver</a><span class="token operator">: </span><a href="../-asset-parse-observer/index.html">AssetParseObserver</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1389694855%2FProperties%2F-1237008772" anchor-label="assetType" id="-1389694855%2FProperties%2F-1237008772" data-filterable-set=":Automation:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-filterable-current=":Automation:dokkaHtmlPartial/release" data-filterable-set=":Automation:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="asset-type.html"><span>asset</span><wbr><span><span>Type</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1389694855%2FProperties%2F-1237008772"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":Automation:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">var </span><a href="asset-type.html">assetType</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator">?</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2024 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
+    </div>
+</div>
+</body>
+</html>
+

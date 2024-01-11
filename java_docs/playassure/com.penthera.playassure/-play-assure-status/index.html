@@ -3,12 +3,19 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
     <title>PlayAssureStatus</title>
-<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">
-    <script>var pathToRoot = "../../../";</script>    <script>const storage = localStorage.getItem("dokka-dark-mode")
-const savedDarkMode = storage ? JSON.parse(storage) : false
-if(savedDarkMode === true){
-    document.getElementsByTagName("html")[0].classList.add("theme-dark")
-}</script>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../";</script>    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
 <script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async></script>
 <link href="../../../styles/style.css" rel="Stylesheet">
 <link href="../../../styles/jetbrains-mono.css" rel="Stylesheet">
@@ -19,7 +26,8 @@ if(savedDarkMode === true){
 <script type="text/javascript" src="../../../scripts/navigation-loader.js" async></script>
 <script type="text/javascript" src="../../../scripts/platform-content-handler.js" async></script>
 <script type="text/javascript" src="../../../scripts/main.js" defer></script>
-<script type="text/javascript" src="../../../scripts/prism.js" async></script></head>
+<script type="text/javascript" src="../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
 <body>
 <div class="navigation-wrapper" id="navigation-wrapper">
     <div id="leftToggler"><span class="icon-toggler"></span></div>
@@ -29,6 +37,9 @@ if(savedDarkMode === true){
     <div>
     </div>
     <div class="pull-right d-flex">
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":playassure:dokkaHtmlPartial/main">PlayAssure SDK Library</button>
+        </div>
         <button id="theme-toggle-button"><span id="theme-toggle"></span></button>
         <div id="searchBar"></div>
     </div>
@@ -38,162 +49,164 @@ if(savedDarkMode === true){
         <div id="sideMenu"></div>
     </div>
     <div id="main">
-<div class="main-content" id="content" pageids="PlayAssure SDK Library::com.penthera.playassure/PlayAssureStatus///PointingToDeclaration//-292256866">
-  <div class="breadcrumbs"><a href="../../index.html">PlayAssure SDK Library</a><span class="delimiter">/</span><a href="../index.html">com.penthera.playassure</a><span class="delimiter">/</span><a href="index.html">PlayAssureStatus</a></div>
+<div class="main-content" data-page-type="classlike" id="content" pageids="PlayAssure SDK Library::com.penthera.playassure/PlayAssureStatus///PointingToDeclaration//-292256866">
+  <div class="breadcrumbs"><a href="../../index.html">PlayAssure SDK Library</a><span class="delimiter">/</span><a href="../index.html">com.penthera.playassure</a><span class="delimiter">/</span><span class="current">PlayAssureStatus</span></div>
   <div class="cover ">
     <h1 class="cover"><span>Play</span><wbr><span>Assure</span><wbr><span><span>Status</span></span></h1>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">interface </span><a href="index.html">PlayAssureStatus</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><p class="paragraph">Play Assured observer, used to notify progress state changes. Implement and register to receive updates.</p></div></div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">interface </span><a href="index.html">PlayAssureStatus</a></div><p class="paragraph">Play Assured observer, used to notify progress state changes. Implement and register to receive updates.</p></div></div>
   </div>
   <div class="tabbedcontent">
-    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="Functions">Functions</button></div>
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,FUNCTION,PROPERTY">Members</button></div>
     <div class="tabs-section-body">
-      <h2 class="">Functions</h2>
-      <div class="table" data-togglable="Functions"><a data-name="1845272641%2FFunctions%2F-292256866" anchor-label="bitrateChangeReported" id="1845272641%2FFunctions%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="bitrate-change-reported.html"><span>bitrate</span><wbr><span>Change</span><wbr><span><span>Reported</span></span></a></div>
+      <div data-togglable="FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="1845272641%2FFunctions%2F-292256866" anchor-label="bitrateChangeReported" id="1845272641%2FFunctions%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="bitrate-change-reported.html"><span>bitrate</span><wbr><span>Change</span><wbr><span><span>Reported</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1845272641%2FFunctions%2F-292256866"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="bitrate-change-reported.html"><span class="token function">bitrateChangeReported</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">statusInfo<span class="token operator">: </span><a href="../-play-assure-status-info/index.html">PlayAssureStatusInfo</a></span></span><span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">This method is invoked to report bitrate change and progress.</p></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="bitrate-change-reported.html"><span class="token function">bitrateChangeReported</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">statusInfo<span class="token operator">: </span><a href="../-play-assure-status-info/index.html">PlayAssureStatusInfo</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">This method is invoked to report bitrate change and progress.</p></div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="-89890394%2FFunctions%2F-292256866" anchor-label="initializationComplete" id="-89890394%2FFunctions%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="initialization-complete.html"><span>initialization</span><wbr><span><span>Complete</span></span></a></div>
+          <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="initialization-complete.html"><span>initialization</span><wbr><span><span>Complete</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-89890394%2FFunctions%2F-292256866"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="initialization-complete.html"><span class="token function">initializationComplete</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">result<span class="token operator">: </span><a href="../-initialization-result/index.html">InitializationResult</a></span></span><span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="initialization-complete.html"><span class="token function">initializationComplete</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">result<span class="token operator">: </span><a href="../-initialization-result/index.html">InitializationResult</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="-2038374549%2FFunctions%2F-292256866" anchor-label="networkReachabilityChanged" id="-2038374549%2FFunctions%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="network-reachability-changed.html"><span>network</span><wbr><span>Reachability</span><wbr><span><span>Changed</span></span></a></div>
+          <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="network-reachability-changed.html"><span>network</span><wbr><span>Reachability</span><wbr><span><span>Changed</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2038374549%2FFunctions%2F-292256866"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="network-reachability-changed.html"><span class="token function">networkReachabilityChanged</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">reachable<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></span></span><span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">This method is invoked to report network reachability changes.</p></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="network-reachability-changed.html"><span class="token function">networkReachabilityChanged</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">reachable<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">This method is invoked to report network reachability changes.</p></div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="1610830145%2FFunctions%2F-292256866" anchor-label="progressReported" id="1610830145%2FFunctions%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="progress-reported.html"><span>progress</span><wbr><span><span>Reported</span></span></a></div>
+          <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="progress-reported.html"><span>progress</span><wbr><span><span>Reported</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1610830145%2FFunctions%2F-292256866"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="progress-reported.html"><span class="token function">progressReported</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">statusInfo<span class="token operator">: </span><a href="../-play-assure-status-info/index.html">PlayAssureStatusInfo</a></span></span><span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">This method is invoked to report progress during operation.</p></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="progress-reported.html"><span class="token function">progressReported</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">statusInfo<span class="token operator">: </span><a href="../-play-assure-status-info/index.html">PlayAssureStatusInfo</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">This method is invoked to report progress during operation.</p></div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="-610160434%2FFunctions%2F-292256866" anchor-label="reportEngineStatusChanged" id="-610160434%2FFunctions%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="report-engine-status-changed.html"><span>report</span><wbr><span>Engine</span><wbr><span>Status</span><wbr><span><span>Changed</span></span></a></div>
+          <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="report-engine-status-changed.html"><span>report</span><wbr><span>Engine</span><wbr><span>Status</span><wbr><span><span>Changed</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-610160434%2FFunctions%2F-292256866"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="report-engine-status-changed.html"><span class="token function">reportEngineStatusChanged</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">newStatus<span class="token operator">: </span><a href="../-play-assure-engine-state/index.html">PlayAssureEngineState</a></span></span><span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Reports changes to the overall engine status. This indicates if the asset is not being processed because the SDK initialization or registration is incomplete.</p></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="report-engine-status-changed.html"><span class="token function">reportEngineStatusChanged</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">newStatus<span class="token operator">: </span><a href="../-play-assure-engine-state/index.html">PlayAssureEngineState</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Reports changes to the overall engine status. This indicates if the asset is not being processed because the SDK initialization or registration is incomplete.</p></div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="-1924906547%2FFunctions%2F-292256866" anchor-label="reportNetworkFail" id="-1924906547%2FFunctions%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="report-network-fail.html"><span>report</span><wbr><span>Network</span><wbr><span><span>Fail</span></span></a></div>
+          <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="report-network-fail.html"><span>report</span><wbr><span>Network</span><wbr><span><span>Fail</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1924906547%2FFunctions%2F-292256866"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="report-network-fail.html"><span class="token function">reportNetworkFail</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Report network failure during playback</p></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="report-network-fail.html"><span class="token function">reportNetworkFail</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Report network failure during playback</p></div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="-1771981464%2FFunctions%2F-292256866" anchor-label="reportParsingFail" id="-1771981464%2FFunctions%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="report-parsing-fail.html"><span>report</span><wbr><span>Parsing</span><wbr><span><span>Fail</span></span></a></div>
+          <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="report-parsing-fail.html"><span>report</span><wbr><span>Parsing</span><wbr><span><span>Fail</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1771981464%2FFunctions%2F-292256866"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="report-parsing-fail.html"><span class="token function">reportParsingFail</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">errorCode<span class="token operator">: </span><a href="../-play-assure-error/index.html">PlayAssureError</a><span class="token punctuation">, </span></span><span class="parameter ">error<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Report unrecoverable parsing failure during playback, with description of cause.</p></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="report-parsing-fail.html"><span class="token function">reportParsingFail</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">errorCode<span class="token operator">: </span><a href="../-play-assure-error/index.html">PlayAssureError</a><span class="token punctuation">, </span></span><span class="parameter ">error<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Report unrecoverable parsing failure during playback, with description of cause.</p></div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="562600814%2FFunctions%2F-292256866" anchor-label="reportParsingSuccess" id="562600814%2FFunctions%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="report-parsing-success.html"><span>report</span><wbr><span>Parsing</span><wbr><span><span>Success</span></span></a></div>
+          <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="report-parsing-success.html"><span>report</span><wbr><span>Parsing</span><wbr><span><span>Success</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="562600814%2FFunctions%2F-292256866"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="report-parsing-success.html"><span class="token function">reportParsingSuccess</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Report parsing succeeded.</p></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="report-parsing-success.html"><span class="token function">reportParsingSuccess</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Report parsing succeeded.</p></div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="678843275%2FFunctions%2F-292256866" anchor-label="reportPlaybackFail" id="678843275%2FFunctions%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="report-playback-fail.html"><span>report</span><wbr><span>Playback</span><wbr><span><span>Fail</span></span></a></div>
+          <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="report-playback-fail.html"><span>report</span><wbr><span>Playback</span><wbr><span><span>Fail</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="678843275%2FFunctions%2F-292256866"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="report-playback-fail.html"><span class="token function">reportPlaybackFail</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">errorCode<span class="token operator">: </span><a href="../-play-assure-error/index.html">PlayAssureError</a><span class="token punctuation">, </span></span><span class="parameter ">error<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">This indicates that PlayAssure is unable to conventionally stream because the current network connection is too slow. Customer code should terminate playback in response to this call as streaming will fail on the player.</p></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="report-playback-fail.html"><span class="token function">reportPlaybackFail</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">errorCode<span class="token operator">: </span><a href="../-play-assure-error/index.html">PlayAssureError</a><span class="token punctuation">, </span></span><span class="parameter ">error<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">This indicates that PlayAssure is unable to conventionally stream because the current network connection is too slow. Customer code should terminate playback in response to this call as streaming will fail on the player.</p></div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="-1321166401%2FFunctions%2F-292256866" anchor-label="reportPlaybackThrottled" id="-1321166401%2FFunctions%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="report-playback-throttled.html"><span>report</span><wbr><span>Playback</span><wbr><span><span>Throttled</span></span></a></div>
+          <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="report-playback-throttled.html"><span>report</span><wbr><span>Playback</span><wbr><span><span>Throttled</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1321166401%2FFunctions%2F-292256866"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="report-playback-throttled.html"><span class="token function">reportPlaybackThrottled</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">throttled<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></span></span><span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">This method is invoked anytime playback throttling state changes.</p></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="report-playback-throttled.html"><span class="token function">reportPlaybackThrottled</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">throttled<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">This method is invoked anytime playback throttling state changes.</p></div></div></div>
+                </div>
               </div>
             </div>
           </div>
@@ -202,10 +215,11 @@ if(savedDarkMode === true){
     </div>
   </div>
 </div>
-        <div class="footer"><span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2023 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
-        </div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2024 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
     </div>
 </div>
-
-</body></html>
+</body>
+</html>
 

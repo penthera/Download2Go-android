@@ -3,12 +3,19 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
     <title>ILicenseManager</title>
-<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">
-    <script>var pathToRoot = "../../../";</script>    <script>const storage = localStorage.getItem("dokka-dark-mode")
-const savedDarkMode = storage ? JSON.parse(storage) : false
-if(savedDarkMode === true){
-    document.getElementsByTagName("html")[0].classList.add("theme-dark")
-}</script>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../";</script>    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
 <script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async></script>
 <link href="../../../styles/style.css" rel="Stylesheet">
 <link href="../../../styles/jetbrains-mono.css" rel="Stylesheet">
@@ -19,7 +26,8 @@ if(savedDarkMode === true){
 <script type="text/javascript" src="../../../scripts/navigation-loader.js" async></script>
 <script type="text/javascript" src="../../../scripts/platform-content-handler.js" async></script>
 <script type="text/javascript" src="../../../scripts/main.js" defer></script>
-<script type="text/javascript" src="../../../scripts/prism.js" async></script></head>
+<script type="text/javascript" src="../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
 <body>
 <div class="navigation-wrapper" id="navigation-wrapper">
     <div id="leftToggler"><span class="icon-toggler"></span></div>
@@ -29,6 +37,9 @@ if(savedDarkMode === true){
     <div>
     </div>
     <div class="pull-right d-flex">
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":penthera-common:dokkaHtmlPartial/main">Penthera Common Library</button>
+        </div>
         <button id="theme-toggle-button"><span id="theme-toggle"></span></button>
         <div id="searchBar"></div>
     </div>
@@ -38,228 +49,228 @@ if(savedDarkMode === true){
         <div id="sideMenu"></div>
     </div>
     <div id="main">
-<div class="main-content" id="content" pageids="Penthera Common Library::com.penthera.virtuososdk.client.drm/ILicenseManager///PointingToDeclaration//-25591989">
-  <div class="breadcrumbs"><a href="../../index.html">Penthera Common Library</a><span class="delimiter">/</span><a href="../index.html">com.penthera.virtuososdk.client.drm</a><span class="delimiter">/</span><a href="index.html">ILicenseManager</a></div>
+<div class="main-content" data-page-type="classlike" id="content" pageids="Penthera Common Library::com.penthera.virtuososdk.client.drm/ILicenseManager///PointingToDeclaration//-25591989">
+  <div class="breadcrumbs"><a href="../../index.html">Penthera Common Library</a><span class="delimiter">/</span><a href="../index.html">com.penthera.virtuososdk.client.drm</a><span class="delimiter">/</span><span class="current">ILicenseManager</span></div>
   <div class="cover ">
     <h1 class="cover"><span>ILicense</span><wbr><span><span>Manager</span></span></h1>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":penthera-common:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">interface </span><a href="index.html">ILicenseManager</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><p class="paragraph">Interface to the License Manager. The License Manager is used to retrieve and store licenses so that Assets can be played back whilst offline. A default implementation is provided by LicenseManager. The LicenseManager class should be extended to override the getLicenseAcquistionUrlForAsset method.</p></div></div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":penthera-common:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">interface </span><a href="index.html">ILicenseManager</a></div><p class="paragraph">Interface to the License Manager. The License Manager is used to retrieve and store licenses so that Assets can be played back whilst offline. A default implementation is provided by LicenseManager. The LicenseManager class should be extended to override the getLicenseAcquistionUrlForAsset method.</p><h4 class="">See also</h4><div class="table"><div class="table-row" data-filterable-current=":penthera-common:dokkaHtmlPartial/main" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><span>License</span><wbr><span><span>Manager</span></span></div></span></div><div></div></div></div></div></div></div>
   </div>
   <div class="tabbedcontent">
-    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="Functions">Functions</button><button class="section-tab" data-togglable="Properties">Properties</button><button class="section-tab" data-togglable="See also">See also</button></div>
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,FUNCTION,PROPERTY">Members</button></div>
     <div class="tabs-section-body">
-      <h2 class="">See also</h2>
-      <div data-togglable="See also">
-        <div class="platform-hinted WithExtraAttributes" data-platform-hinted="data-platform-hinted" data-togglable="See also"><div class="content sourceset-depenent-content" data-active="" data-togglable=":penthera-common:dokkaHtmlPartial/main"><div data-togglable="See also"><div class="table" data-togglable="See also"><div class="table-row" data-filterable-current=":penthera-common:dokkaHtmlPartial/main" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex"><div><span>License</span><wbr><span><span>Manager</span></span></div></span></div><div><div class="title"><div data-togglable="See also"></div></div></div></div></div></div></div></div></div>
-      </div>
-      <h2 class="">Functions</h2>
-      <div class="table" data-togglable="Functions"><a data-name="351661274%2FFunctions%2F-25591989" anchor-label="executeKeyRequest" id="351661274%2FFunctions%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":penthera-common:dokkaHtmlPartial/main" data-filterable-set=":penthera-common:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="execute-key-request.html"><span>execute</span><wbr><span>Key</span><wbr><span><span>Request</span></span></a></div>
+      <div data-togglable="FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="351661274%2FFunctions%2F-25591989" anchor-label="executeKeyRequest" id="351661274%2FFunctions%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":penthera-common:dokkaHtmlPartial/main" data-filterable-set=":penthera-common:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="execute-key-request.html"><span>execute</span><wbr><span>Key</span><wbr><span><span>Request</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="351661274%2FFunctions%2F-25591989"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":penthera-common:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="execute-key-request.html"><span class="token function">executeKeyRequest</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">uuid<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/util/UUID.html">UUID</a><span class="token punctuation">, </span></span><span class="parameter ">request<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/android/media/MediaDrm.KeyRequest.html">MediaDrm.KeyRequest</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html">Array</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-byte/index.html">Byte</a><span class="token operator">&gt;</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Request the key from the licensing server.</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":penthera-common:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="execute-key-request.html"><span class="token function">executeKeyRequest</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">uuid<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/util/UUID.html">UUID</a><span class="token punctuation">, </span></span><span class="parameter ">request<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/android/media/MediaDrm.KeyRequest.html">MediaDrm.KeyRequest</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html">Array</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-byte/index.html">Byte</a><span class="token operator">&gt;</span></div><div class="brief ">Request the key from the licensing server.</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="-1097787194%2FFunctions%2F-25591989" anchor-label="executeProvisionRequest" id="-1097787194%2FFunctions%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":penthera-common:dokkaHtmlPartial/main" data-filterable-set=":penthera-common:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="execute-provision-request.html"><span>execute</span><wbr><span>Provision</span><wbr><span><span>Request</span></span></a></div>
+          <div class="table-row" data-filterable-current=":penthera-common:dokkaHtmlPartial/main" data-filterable-set=":penthera-common:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="execute-provision-request.html"><span>execute</span><wbr><span>Provision</span><wbr><span><span>Request</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1097787194%2FFunctions%2F-25591989"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":penthera-common:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="execute-provision-request.html"><span class="token function">executeProvisionRequest</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">uuid<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/util/UUID.html">UUID</a><span class="token punctuation">, </span></span><span class="parameter ">request<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/android/media/MediaDrm.ProvisionRequest.html">MediaDrm.ProvisionRequest</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html">Array</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-byte/index.html">Byte</a><span class="token operator">&gt;</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Executes a provisioning request.</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":penthera-common:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="execute-provision-request.html"><span class="token function">executeProvisionRequest</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">uuid<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/util/UUID.html">UUID</a><span class="token punctuation">, </span></span><span class="parameter ">request<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/android/media/MediaDrm.ProvisionRequest.html">MediaDrm.ProvisionRequest</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html">Array</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-byte/index.html">Byte</a><span class="token operator">&gt;</span></div><div class="brief ">Executes a provisioning request.</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="1244682771%2FFunctions%2F-25591989" anchor-label="getKey" id="1244682771%2FFunctions%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":penthera-common:dokkaHtmlPartial/main" data-filterable-set=":penthera-common:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="get-key.html"><span>get</span><wbr><span><span>Key</span></span></a></div>
+          <div class="table-row" data-filterable-current=":penthera-common:dokkaHtmlPartial/main" data-filterable-set=":penthera-common:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-key.html"><span>get</span><wbr><span><span>Key</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1244682771%2FFunctions%2F-25591989"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":penthera-common:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-key.html"><span class="token function">getKey</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">context<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/android/content/Context.html">Context</a><span class="token punctuation">, </span></span><span class="parameter ">cacheId<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html">Array</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-byte/index.html">Byte</a><span class="token operator">&gt;</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Retrieves the keysetId from the cache.</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":penthera-common:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-key.html"><span class="token function">getKey</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">context<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/android/content/Context.html">Context</a><span class="token punctuation">, </span></span><span class="parameter ">cacheId<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html">Array</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-byte/index.html">Byte</a><span class="token operator">&gt;</span></div><div class="brief ">Retrieves the keysetId from the cache.</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="-1340403432%2FFunctions%2F-25591989" anchor-label="getKeyRequestProperties" id="-1340403432%2FFunctions%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":penthera-common:dokkaHtmlPartial/main" data-filterable-set=":penthera-common:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="get-key-request-properties.html"><span>get</span><wbr><span>Key</span><wbr><span>Request</span><wbr><span><span>Properties</span></span></a></div>
+          <div class="table-row" data-filterable-current=":penthera-common:dokkaHtmlPartial/main" data-filterable-set=":penthera-common:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-key-request-properties.html"><span>get</span><wbr><span>Key</span><wbr><span>Request</span><wbr><span><span>Properties</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1340403432%2FFunctions%2F-25591989"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":penthera-common:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-key-request-properties.html"><span class="token function">getKeyRequestProperties</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/util/Map.html">Map</a><span class="token operator">&lt;</span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token punctuation">, </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token operator">&gt;</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Map of header properties that should be added to the request.</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":penthera-common:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-key-request-properties.html"><span class="token function">getKeyRequestProperties</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/util/Map.html">Map</a><span class="token operator">&lt;</span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token punctuation">, </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token operator">&gt;</span></div><div class="brief ">Map of header properties that should be added to the request.</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="1547785376%2FFunctions%2F-25591989" anchor-label="getKeys" id="1547785376%2FFunctions%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":penthera-common:dokkaHtmlPartial/main" data-filterable-set=":penthera-common:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="get-keys.html"><span>get</span><wbr><span><span>Keys</span></span></a></div>
+          <div class="table-row" data-filterable-current=":penthera-common:dokkaHtmlPartial/main" data-filterable-set=":penthera-common:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-keys.html"><span>get</span><wbr><span><span>Keys</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1547785376%2FFunctions%2F-25591989"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":penthera-common:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-keys.html"><span class="token function">getKeys</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">context<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/android/content/Context.html">Context</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/util/List.html">List</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html">Array</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-byte/index.html">Byte</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Get the keyset ids stored for a particular asset.</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":penthera-common:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-keys.html"><span class="token function">getKeys</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">context<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/android/content/Context.html">Context</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/util/List.html">List</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html">Array</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-byte/index.html">Byte</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span></div><div class="brief ">Get the keyset ids stored for a particular asset.</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="758215665%2FFunctions%2F-25591989" anchor-label="getLicenseAcquistionUrl" id="758215665%2FFunctions%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":penthera-common:dokkaHtmlPartial/main" data-filterable-set=":penthera-common:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="get-license-acquistion-url.html"><span>get</span><wbr><span>License</span><wbr><span>Acquistion</span><wbr><span><span>Url</span></span></a></div>
+          <div class="table-row" data-filterable-current=":penthera-common:dokkaHtmlPartial/main" data-filterable-set=":penthera-common:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-license-acquistion-url.html"><span>get</span><wbr><span>License</span><wbr><span>Acquistion</span><wbr><span><span>Url</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="758215665%2FFunctions%2F-25591989"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":penthera-common:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-license-acquistion-url.html"><span class="token function">getLicenseAcquistionUrl</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Retrieve the URL for requesting the assets license.</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":penthera-common:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-license-acquistion-url.html"><span class="token function">getLicenseAcquistionUrl</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a></div><div class="brief ">Retrieve the URL for requesting the assets license.</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="143929671%2FFunctions%2F-25591989" anchor-label="removeAllKeys" id="143929671%2FFunctions%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":penthera-common:dokkaHtmlPartial/main" data-filterable-set=":penthera-common:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="remove-all-keys.html"><span>remove</span><wbr><span>All</span><wbr><span><span>Keys</span></span></a></div>
+          <div class="table-row" data-filterable-current=":penthera-common:dokkaHtmlPartial/main" data-filterable-set=":penthera-common:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="remove-all-keys.html"><span>remove</span><wbr><span>All</span><wbr><span><span>Keys</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="143929671%2FFunctions%2F-25591989"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":penthera-common:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="remove-all-keys.html"><span class="token function">removeAllKeys</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">context<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/android/content/Context.html">Context</a></span></span><span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Delete all keys we have stored in the SDK.</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":penthera-common:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="remove-all-keys.html"><span class="token function">removeAllKeys</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">context<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/android/content/Context.html">Context</a></span></span><span class="token punctuation">)</span></div><div class="brief ">Delete all keys we have stored in the SDK.</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="1629949481%2FFunctions%2F-25591989" anchor-label="removeKey" id="1629949481%2FFunctions%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":penthera-common:dokkaHtmlPartial/main" data-filterable-set=":penthera-common:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="remove-key.html"><span>remove</span><wbr><span><span>Key</span></span></a></div>
+          <div class="table-row" data-filterable-current=":penthera-common:dokkaHtmlPartial/main" data-filterable-set=":penthera-common:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="remove-key.html"><span>remove</span><wbr><span><span>Key</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1629949481%2FFunctions%2F-25591989"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":penthera-common:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="remove-key.html"><span class="token function">removeKey</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">context<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/android/content/Context.html">Context</a><span class="token punctuation">, </span></span><span class="parameter ">cacheId<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a></span></span><span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Removes the key set Id from the keyset cache.</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":penthera-common:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="remove-key.html"><span class="token function">removeKey</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">context<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/android/content/Context.html">Context</a><span class="token punctuation">, </span></span><span class="parameter ">cacheId<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a></span></span><span class="token punctuation">)</span></div><div class="brief ">Removes the key set Id from the keyset cache.</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="870249654%2FFunctions%2F-25591989" anchor-label="removeKeys" id="870249654%2FFunctions%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":penthera-common:dokkaHtmlPartial/main" data-filterable-set=":penthera-common:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="remove-keys.html"><span>remove</span><wbr><span><span>Keys</span></span></a></div>
+          <div class="table-row" data-filterable-current=":penthera-common:dokkaHtmlPartial/main" data-filterable-set=":penthera-common:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="remove-keys.html"><span>remove</span><wbr><span><span>Keys</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="870249654%2FFunctions%2F-25591989"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":penthera-common:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="remove-keys.html"><span class="token function">removeKeys</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">context<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/android/content/Context.html">Context</a></span></span><span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Delete all keys for the asset that was set with <a href="with-asset.html">withAsset</a> or that was identified with <a href="with-asset-id.html">withAssetId</a>.</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":penthera-common:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="remove-keys.html"><span class="token function">removeKeys</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">context<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/android/content/Context.html">Context</a></span></span><span class="token punctuation">)</span></div><div class="brief ">Delete all keys for the asset that was set with <a href="with-asset.html">withAsset</a> or that was identified with <a href="with-asset-id.html">withAssetId</a>.</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="1631709299%2FFunctions%2F-25591989" anchor-label="saveKey" id="1631709299%2FFunctions%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":penthera-common:dokkaHtmlPartial/main" data-filterable-set=":penthera-common:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="save-key.html"><span>save</span><wbr><span><span>Key</span></span></a></div>
+          <div class="table-row" data-filterable-current=":penthera-common:dokkaHtmlPartial/main" data-filterable-set=":penthera-common:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="save-key.html"><span>save</span><wbr><span><span>Key</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1631709299%2FFunctions%2F-25591989"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":penthera-common:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="save-key.html"><span class="token function">saveKey</span></a><span class="token punctuation">(</span><span class="parameters wrapped"><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;context<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/android/content/Context.html">Context</a><span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;cacheId<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;keyset<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html">Array</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-byte/index.html">Byte</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Save the key set Id so license can be retrieved when offline.</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":penthera-common:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="save-key.html"><span class="token function">saveKey</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">context<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/android/content/Context.html">Context</a><span class="token punctuation">, </span></span><span class="parameter ">cacheId<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">keyset<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html">Array</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-byte/index.html">Byte</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief ">Save the key set Id so license can be retrieved when offline.</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="1840066781%2FFunctions%2F-25591989" anchor-label="supportedLicenseFlags" id="1840066781%2FFunctions%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":penthera-common:dokkaHtmlPartial/main" data-filterable-set=":penthera-common:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="supported-license-flags.html"><span>supported</span><wbr><span>License</span><wbr><span><span>Flags</span></span></a></div>
+          <div class="table-row" data-filterable-current=":penthera-common:dokkaHtmlPartial/main" data-filterable-set=":penthera-common:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="supported-license-flags.html"><span>supported</span><wbr><span>License</span><wbr><span><span>Flags</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1840066781%2FFunctions%2F-25591989"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":penthera-common:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="supported-license-flags.html"><span class="token function">supportedLicenseFlags</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Retrieve the flags of supported license schemes.</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":penthera-common:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="supported-license-flags.html"><span class="token function">supportedLicenseFlags</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></div><div class="brief ">Retrieve the flags of supported license schemes.</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="-2093910186%2FFunctions%2F-25591989" anchor-label="withAsset" id="-2093910186%2FFunctions%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":penthera-common:dokkaHtmlPartial/main" data-filterable-set=":penthera-common:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="with-asset.html"><span>with</span><wbr><span><span>Asset</span></span></a></div>
+          <div class="table-row" data-filterable-current=":penthera-common:dokkaHtmlPartial/main" data-filterable-set=":penthera-common:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="with-asset.html"><span>with</span><wbr><span><span>Asset</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2093910186%2FFunctions%2F-25591989"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":penthera-common:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="with-asset.html"><span class="token function">withAsset</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">asset<span class="token operator">: </span><a href="../../com.penthera.virtuososdk.client/-i-asset/index.html">IAsset</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">ILicenseManager</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Set the asset that requires a license.</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":penthera-common:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="with-asset.html"><span class="token function">withAsset</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">asset<span class="token operator">: </span><a href="../../com.penthera.virtuososdk.client/-i-asset/index.html">IAsset</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">ILicenseManager</a></div><div class="brief ">Set the asset that requires a license.</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="1738690311%2FFunctions%2F-25591989" anchor-label="withAssetId" id="1738690311%2FFunctions%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":penthera-common:dokkaHtmlPartial/main" data-filterable-set=":penthera-common:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="with-asset-id.html"><span>with</span><wbr><span>Asset</span><wbr><span><span>Id</span></span></a></div>
+          <div class="table-row" data-filterable-current=":penthera-common:dokkaHtmlPartial/main" data-filterable-set=":penthera-common:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="with-asset-id.html"><span>with</span><wbr><span>Asset</span><wbr><span><span>Id</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1738690311%2FFunctions%2F-25591989"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":penthera-common:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="with-asset-id.html"><span class="token function">withAssetId</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">assetId<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">ILicenseManager</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Set the remote id of the asset that requires a license.</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":penthera-common:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="with-asset-id.html"><span class="token function">withAssetId</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">assetId<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">ILicenseManager</a></div><div class="brief ">Set the remote id of the asset that requires a license.</div></div></div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <h2 class="">Properties</h2>
-      <div class="table" data-togglable="Properties"><a data-name="1342844325%2FProperties%2F-25591989" anchor-label="WIDEVINE_LICENSE_FLAG" id="1342844325%2FProperties%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":penthera-common:dokkaHtmlPartial/main" data-filterable-set=":penthera-common:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="-w-i-d-e-v-i-n-e_-l-i-c-e-n-s-e_-f-l-a-g.html">WIDEVINE_LICENSE_FLAG</a></div>
+      <div data-togglable="PROPERTY">
+        <h2 class="">Properties</h2>
+        <div class="table"><a data-name="1342844325%2FProperties%2F-25591989" anchor-label="WIDEVINE_LICENSE_FLAG" id="1342844325%2FProperties%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":penthera-common:dokkaHtmlPartial/main" data-filterable-set=":penthera-common:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-w-i-d-e-v-i-n-e_-l-i-c-e-n-s-e_-f-l-a-g.html"><span><span>WIDEVINE_LICENSE_FLAG</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1342844325%2FProperties%2F-25591989"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":penthera-common:dokkaHtmlPartial/main"><a data-name="1342844325%2FProperties%2F-25591989" anchor-label="WIDEVINE_LICENSE_FLAG" id="1342844325%2FProperties%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-w-i-d-e-v-i-n-e_-l-i-c-e-n-s-e_-f-l-a-g.html">WIDEVINE_LICENSE_FLAG</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="1342844325%2FProperties%2F-25591989" anchor-label="WIDEVINE_LICENSE_FLAG" id="1342844325%2FProperties%2F-25591989" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"></a>Integer used to specify the widevine license type.</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":penthera-common:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="-w-i-d-e-v-i-n-e_-l-i-c-e-n-s-e_-f-l-a-g.html">WIDEVINE_LICENSE_FLAG</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">1</span></div><div class="brief ">Integer used to specify the widevine license type.</div></div></div>
+                </div>
               </div>
             </div>
           </div>
@@ -268,10 +279,11 @@ if(savedDarkMode === true){
     </div>
   </div>
 </div>
-        <div class="footer"><span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2023 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
-        </div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2024 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
     </div>
 </div>
-
-</body></html>
+</body>
+</html>
 

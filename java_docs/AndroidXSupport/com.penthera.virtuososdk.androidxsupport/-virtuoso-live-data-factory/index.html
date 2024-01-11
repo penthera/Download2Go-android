@@ -3,12 +3,19 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
     <title>VirtuosoLiveDataFactory</title>
-<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">
-    <script>var pathToRoot = "../../../";</script>    <script>const storage = localStorage.getItem("dokka-dark-mode")
-const savedDarkMode = storage ? JSON.parse(storage) : false
-if(savedDarkMode === true){
-    document.getElementsByTagName("html")[0].classList.add("theme-dark")
-}</script>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../";</script>    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
 <script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async></script>
 <link href="../../../styles/style.css" rel="Stylesheet">
 <link href="../../../styles/jetbrains-mono.css" rel="Stylesheet">
@@ -19,7 +26,8 @@ if(savedDarkMode === true){
 <script type="text/javascript" src="../../../scripts/navigation-loader.js" async></script>
 <script type="text/javascript" src="../../../scripts/platform-content-handler.js" async></script>
 <script type="text/javascript" src="../../../scripts/main.js" defer></script>
-<script type="text/javascript" src="../../../scripts/prism.js" async></script></head>
+<script type="text/javascript" src="../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
 <body>
 <div class="navigation-wrapper" id="navigation-wrapper">
     <div id="leftToggler"><span class="icon-toggler"></span></div>
@@ -29,6 +37,9 @@ if(savedDarkMode === true){
     <div>
     </div>
     <div class="pull-right d-flex">
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":AndroidXSupport:dokkaHtmlPartial/main">Download2Go AndroidX Extension Support Library</button>
+        </div>
         <button id="theme-toggle-button"><span id="theme-toggle"></span></button>
         <div id="searchBar"></div>
     </div>
@@ -38,252 +49,273 @@ if(savedDarkMode === true){
         <div id="sideMenu"></div>
     </div>
     <div id="main">
-<div class="main-content" id="content" pageids="Download2Go AndroidX Extension Support Library::com.penthera.virtuososdk.androidxsupport/VirtuosoLiveDataFactory///PointingToDeclaration//1185444967">
-  <div class="breadcrumbs"><a href="../../index.html">Download2Go AndroidX Extension Support Library</a><span class="delimiter">/</span><a href="../index.html">com.penthera.virtuososdk.androidxsupport</a><span class="delimiter">/</span><a href="index.html">VirtuosoLiveDataFactory</a></div>
+<div class="main-content" data-page-type="classlike" id="content" pageids="Download2Go AndroidX Extension Support Library::com.penthera.virtuososdk.androidxsupport/VirtuosoLiveDataFactory///PointingToDeclaration//1185444967">
+  <div class="breadcrumbs"><a href="../../index.html">Download2Go AndroidX Extension Support Library</a><span class="delimiter">/</span><a href="../index.html">com.penthera.virtuososdk.androidxsupport</a><span class="delimiter">/</span><span class="current">VirtuosoLiveDataFactory</span></div>
   <div class="cover ">
     <h1 class="cover"><span>Virtuoso</span><wbr><span>Live</span><wbr><span>Data</span><wbr><span><span>Factory</span></span></h1>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":AndroidXSupport:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">class </span><a href="index.html">VirtuosoLiveDataFactory</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><p class="paragraph">The Penthera AndroidX support library provides lifecycle aware LiveData components that are designed to be used within the ViewModel of a modern android app, following the Application Architecture Components design.  The library consists of a series of independent LiveData wrappers for common SDK objects, each of which can be created through the VirtuosoLiveDataFactory: </p><ul><li><a href="../-segmented-asset-live-data/index.html">SegmentedAssetLiveData</a> provides a LiveData wrapper for a single asset, which will update inline with asset state changes and download progress which come from the downloader service</li><li><span data-unresolved-link="com.penthera.virtuososdk.androidxsupport.impl/AssetListLiveData///PointingToDeclaration/">AssetListLiveData</span> provides a LiveData representation of every asset currently managed by the SDK.</li><li> TODO: add queues/downloaded </li><li><a href="../-segmented-asset-live-data/index.html">SegmentedAssetLiveData</a> provides </li><li><a href="../-engine-status-live-data/index.html">EngineStatusLiveData</a> provides an observable indication of the current download engine state</li></ul> In order to create lifecycle aware components, a lifecycle owner must be provided in construction of the factory. This will be used throughout construction of the requested data. The factory contains a lifecycle observer, linked to the <a href="../../../penthera-common/com.penthera.virtuososdk.client/-virtuoso/index.html">Virtuoso</a> class which underpins the work of the factory. It is recommended to use a single <a href="../../../penthera-common/com.penthera.virtuososdk.client/-virtuoso/index.html">Virtuoso</a> instance within your application or activity. Either provide an instance to the factory upon construction, or construct the factory first and get the Virtuoso object from the factory for your other needs.  The lifecycle owner can be either an Activity/Fragment or a ProcessLifecycleOwner.  See <a href="https://developer.android.com/reference/android/arch/lifecycle/ViewModel.html">ViewModel reference documentation</a> and <a href="https://developer.android.com/reference/android/arch/lifecycle/LiveData.html">LiveData reference documentation</a></div></div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":AndroidXSupport:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">class </span><a href="index.html">VirtuosoLiveDataFactory</a></div><p class="paragraph">The Penthera AndroidX support library provides lifecycle aware LiveData components that are designed to be used within the ViewModel of a modern android app, following the Application Architecture Components design.  The library consists of a series of independent LiveData wrappers for common SDK objects, each of which can be created through the VirtuosoLiveDataFactory: </p><ul><li><a href="../-segmented-asset-live-data/index.html">SegmentedAssetLiveData</a> provides a LiveData wrapper for a single asset, which will update inline with asset state changes and download progress which come from the downloader service</li><li><span data-unresolved-link="com.penthera.virtuososdk.androidxsupport.impl/AssetListLiveData///PointingToDeclaration/">AssetListLiveData</span> provides a LiveData representation of every asset currently managed by the SDK.</li><li> TODO: add queues/downloaded </li><li><a href="../-segmented-asset-live-data/index.html">SegmentedAssetLiveData</a> provides </li><li><a href="../-engine-status-live-data/index.html">EngineStatusLiveData</a> provides an observable indication of the current download engine state</li></ul> In order to create lifecycle aware components, a lifecycle owner must be provided in construction of the factory. This will be used throughout construction of the requested data. The factory contains a lifecycle observer, linked to the <a href="../../../penthera-common/com.penthera.virtuososdk.client/-virtuoso/index.html">Virtuoso</a> class which underpins the work of the factory. It is recommended to use a single <a href="../../../penthera-common/com.penthera.virtuososdk.client/-virtuoso/index.html">Virtuoso</a> instance within your application or activity. Either provide an instance to the factory upon construction, or construct the factory first and get the Virtuoso object from the factory for your other needs.  The lifecycle owner can be either an Activity/Fragment or a ProcessLifecycleOwner.  See <a href="https://developer.android.com/reference/android/arch/lifecycle/ViewModel.html">ViewModel reference documentation</a> and <a href="https://developer.android.com/reference/android/arch/lifecycle/LiveData.html">LiveData reference documentation</a></div></div>
   </div>
   <div class="tabbedcontent">
-    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="Functions">Functions</button></div>
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,FUNCTION,PROPERTY">Members</button></div>
     <div class="tabs-section-body">
-      <h2 class="">Functions</h2>
-      <div class="table" data-togglable="Functions"><a data-name="1173815744%2FFunctions%2F1185444967" anchor-label="createLifecycleWithVirtuoso" id="1173815744%2FFunctions%2F1185444967" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":AndroidXSupport:dokkaHtmlPartial/main" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="create-lifecycle-with-virtuoso.html"><span>create</span><wbr><span>Lifecycle</span><wbr><span>With</span><wbr><span><span>Virtuoso</span></span></a></div>
+      <div data-togglable="CONSTRUCTOR">
+        <h2 class="">Constructors</h2>
+        <div class="table"><a data-name="419034588%2FConstructors%2F1185444967" anchor-label="VirtuosoLiveDataFactory" id="419034588%2FConstructors%2F1185444967" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-togglable="CONSTRUCTOR" data-filterable-current=":AndroidXSupport:dokkaHtmlPartial/main" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-virtuoso-live-data-factory.html"><span>Virtuoso</span><wbr><span>Live</span><wbr><span>Data</span><wbr><span><span>Factory</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="419034588%2FConstructors%2F1185444967"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":AndroidXSupport:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="1173815744%2FFunctions%2F1185444967" anchor-label="createLifecycleWithVirtuoso" id="1173815744%2FFunctions%2F1185444967" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":AndroidXSupport:dokkaHtmlPartial/main" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="create-lifecycle-with-virtuoso.html"><span>create</span><wbr><span>Lifecycle</span><wbr><span>With</span><wbr><span><span>Virtuoso</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1173815744%2FFunctions%2F1185444967"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":AndroidXSupport:dokkaHtmlPartial/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/MainThread.html"><span class="token annotation">MainThread</span></a></div></div><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="create-lifecycle-with-virtuoso.html"><span class="token function">createLifecycleWithVirtuoso</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span><span class="token annotation">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/NonNull.html"><span class="token annotation">NonNull</span></a>&nbsp;</span>lifecycleOwner<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/lifecycle/LifecycleOwner.html">LifecycleOwner</a><span class="token punctuation">, </span></span><span class="parameter "><span><span class="token annotation">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/NonNull.html"><span class="token annotation">NonNull</span></a>&nbsp;</span>virtuoso<span class="token operator">: </span><a href="../../../penthera-common/com.penthera.virtuososdk.client/-virtuoso/index.html">Virtuoso</a></span></span><span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Associate the factory with an existing instance of the Virtuoso SDK and with a LifecycleOwner.</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":AndroidXSupport:dokkaHtmlPartial/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/MainThread.html"><span class="token annotation builtin">MainThread</span></a></div></div><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="create-lifecycle-with-virtuoso.html"><span class="token function">createLifecycleWithVirtuoso</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/NonNull.html"><span class="token annotation builtin">NonNull</span></a>&nbsp;</span>lifecycleOwner<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/lifecycle/LifecycleOwner.html">LifecycleOwner</a><span class="token punctuation">, </span></span><span class="parameter "><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/NonNull.html"><span class="token annotation builtin">NonNull</span></a>&nbsp;</span>virtuoso<span class="token operator">: </span><a href="../../../penthera-common/com.penthera.virtuososdk.client/-virtuoso/index.html">Virtuoso</a></span></span><span class="token punctuation">)</span></div><div class="brief ">Associate the factory with an existing instance of the Virtuoso SDK and with a LifecycleOwner.</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="765902064%2FFunctions%2F1185444967" anchor-label="createVirtuosoWithLifecycle" id="765902064%2FFunctions%2F1185444967" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":AndroidXSupport:dokkaHtmlPartial/main" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="create-virtuoso-with-lifecycle.html"><span>create</span><wbr><span>Virtuoso</span><wbr><span>With</span><wbr><span><span>Lifecycle</span></span></a></div>
+          <div class="table-row" data-filterable-current=":AndroidXSupport:dokkaHtmlPartial/main" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="create-virtuoso-with-lifecycle.html"><span>create</span><wbr><span>Virtuoso</span><wbr><span>With</span><wbr><span><span>Lifecycle</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="765902064%2FFunctions%2F1185444967"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":AndroidXSupport:dokkaHtmlPartial/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/MainThread.html"><span class="token annotation">MainThread</span></a></div></div><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="create-virtuoso-with-lifecycle.html"><span class="token function">createVirtuosoWithLifecycle</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span><span class="token annotation">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/NonNull.html"><span class="token annotation">NonNull</span></a>&nbsp;</span>lifecycleOwner<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/lifecycle/LifecycleOwner.html">LifecycleOwner</a><span class="token punctuation">, </span></span><span class="parameter "><span><span class="token annotation">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/NonNull.html"><span class="token annotation">NonNull</span></a>&nbsp;</span>context<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/android/content/Context.html">Context</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../../penthera-common/com.penthera.virtuososdk.client/-virtuoso/index.html">Virtuoso</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Create the Virtuoso SDK interface to be used by the factory and associate it with a LifecycleOwner.</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":AndroidXSupport:dokkaHtmlPartial/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/MainThread.html"><span class="token annotation builtin">MainThread</span></a></div></div><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="create-virtuoso-with-lifecycle.html"><span class="token function">createVirtuosoWithLifecycle</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/NonNull.html"><span class="token annotation builtin">NonNull</span></a>&nbsp;</span>lifecycleOwner<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/lifecycle/LifecycleOwner.html">LifecycleOwner</a><span class="token punctuation">, </span></span><span class="parameter "><span><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/NonNull.html"><span class="token annotation builtin">NonNull</span></a>&nbsp;</span>context<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/android/content/Context.html">Context</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../../penthera-common/com.penthera.virtuososdk.client/-virtuoso/index.html">Virtuoso</a></div><div class="brief ">Create the Virtuoso SDK interface to be used by the factory and associate it with a LifecycleOwner.</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="1142029085%2FFunctions%2F1185444967" anchor-label="getAssetList" id="1142029085%2FFunctions%2F1185444967" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":AndroidXSupport:dokkaHtmlPartial/main" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="get-asset-list.html"><span>get</span><wbr><span>Asset</span><wbr><span><span>List</span></span></a></div>
+          <div class="table-row" data-filterable-current=":AndroidXSupport:dokkaHtmlPartial/main" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-asset-list.html"><span>get</span><wbr><span>Asset</span><wbr><span><span>List</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1142029085%2FFunctions%2F1185444967"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":AndroidXSupport:dokkaHtmlPartial/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/NonNull.html"><span class="token annotation">NonNull</span></a></div></div><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-asset-list.html"><span class="token function">getAssetList</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-all-assets-live-data/index.html">AllAssetsLiveData</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Fetch a custom LiveData object containing the list of all current assets within the SDK.</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":AndroidXSupport:dokkaHtmlPartial/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/NonNull.html"><span class="token annotation builtin">NonNull</span></a></div></div><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-asset-list.html"><span class="token function">getAssetList</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-all-assets-live-data/index.html">AllAssetsLiveData</a></div><div class="brief ">Fetch a custom LiveData object containing the list of all current assets within the SDK.</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="-1905827132%2FFunctions%2F1185444967" anchor-label="getAssetStatus" id="-1905827132%2FFunctions%2F1185444967" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":AndroidXSupport:dokkaHtmlPartial/main" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="get-asset-status.html"><span>get</span><wbr><span>Asset</span><wbr><span><span>Status</span></span></a></div>
+          <div class="table-row" data-filterable-current=":AndroidXSupport:dokkaHtmlPartial/main" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-asset-status.html"><span>get</span><wbr><span>Asset</span><wbr><span><span>Status</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1905827132%2FFunctions%2F1185444967"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":AndroidXSupport:dokkaHtmlPartial/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/NonNull.html"><span class="token annotation">NonNull</span></a></div></div><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-asset-status.html"><span class="token function">getAssetStatus</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">assetId<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-segmented-asset-live-data/index.html">SegmentedAssetLiveData</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Fetch a custom LiveData object containing the current status of a single asset, retrieved as an ISegmentedAsset instance.</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":AndroidXSupport:dokkaHtmlPartial/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/NonNull.html"><span class="token annotation builtin">NonNull</span></a></div></div><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-asset-status.html"><span class="token function">getAssetStatus</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">assetId<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-segmented-asset-live-data/index.html">SegmentedAssetLiveData</a></div><div class="brief ">Fetch a custom LiveData object containing the current status of a single asset, retrieved as an ISegmentedAsset instance.</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="-354650332%2FFunctions%2F1185444967" anchor-label="getDownloadedAssetList" id="-354650332%2FFunctions%2F1185444967" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":AndroidXSupport:dokkaHtmlPartial/main" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="get-downloaded-asset-list.html"><span>get</span><wbr><span>Downloaded</span><wbr><span>Asset</span><wbr><span><span>List</span></span></a></div>
+          <div class="table-row" data-filterable-current=":AndroidXSupport:dokkaHtmlPartial/main" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-downloaded-asset-list.html"><span>get</span><wbr><span>Downloaded</span><wbr><span>Asset</span><wbr><span><span>List</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-354650332%2FFunctions%2F1185444967"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":AndroidXSupport:dokkaHtmlPartial/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/NonNull.html"><span class="token annotation">NonNull</span></a></div></div><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-downloaded-asset-list.html"><span class="token function">getDownloadedAssetList</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-downloaded-assets-live-data/index.html">DownloadedAssetsLiveData</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Fetch a custom LiveData object containing the list of all downloaded assets within the SDK.</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":AndroidXSupport:dokkaHtmlPartial/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/NonNull.html"><span class="token annotation builtin">NonNull</span></a></div></div><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-downloaded-asset-list.html"><span class="token function">getDownloadedAssetList</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-downloaded-assets-live-data/index.html">DownloadedAssetsLiveData</a></div><div class="brief ">Fetch a custom LiveData object containing the list of all downloaded assets within the SDK.</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="-1818721445%2FFunctions%2F1185444967" anchor-label="getEngineStatus" id="-1818721445%2FFunctions%2F1185444967" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":AndroidXSupport:dokkaHtmlPartial/main" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="get-engine-status.html"><span>get</span><wbr><span>Engine</span><wbr><span><span>Status</span></span></a></div>
+          <div class="table-row" data-filterable-current=":AndroidXSupport:dokkaHtmlPartial/main" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-engine-status.html"><span>get</span><wbr><span>Engine</span><wbr><span><span>Status</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1818721445%2FFunctions%2F1185444967"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":AndroidXSupport:dokkaHtmlPartial/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/NonNull.html"><span class="token annotation">NonNull</span></a></div></div><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-engine-status.html"><span class="token function">getEngineStatus</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-engine-status-live-data/index.html">EngineStatusLiveData</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Fetch a custom LiveData object containing the current engine status.</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":AndroidXSupport:dokkaHtmlPartial/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/NonNull.html"><span class="token annotation builtin">NonNull</span></a></div></div><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-engine-status.html"><span class="token function">getEngineStatus</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-engine-status-live-data/index.html">EngineStatusLiveData</a></div><div class="brief ">Fetch a custom LiveData object containing the current engine status.</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="-1697993848%2FFunctions%2F1185444967" anchor-label="getExpiredList" id="-1697993848%2FFunctions%2F1185444967" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":AndroidXSupport:dokkaHtmlPartial/main" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="get-expired-list.html"><span>get</span><wbr><span>Expired</span><wbr><span><span>List</span></span></a></div>
+          <div class="table-row" data-filterable-current=":AndroidXSupport:dokkaHtmlPartial/main" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-expired-list.html"><span>get</span><wbr><span>Expired</span><wbr><span><span>List</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1697993848%2FFunctions%2F1185444967"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":AndroidXSupport:dokkaHtmlPartial/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/NonNull.html"><span class="token annotation">NonNull</span></a></div></div><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-expired-list.html"><span class="token function">getExpiredList</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-expired-assets-live-data/index.html">ExpiredAssetsLiveData</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Fetch a custom LiveData object containing the list of all assets that have expired.</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":AndroidXSupport:dokkaHtmlPartial/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/NonNull.html"><span class="token annotation builtin">NonNull</span></a></div></div><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-expired-list.html"><span class="token function">getExpiredList</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-expired-assets-live-data/index.html">ExpiredAssetsLiveData</a></div><div class="brief ">Fetch a custom LiveData object containing the list of all assets that have expired.</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="-799490118%2FFunctions%2F1185444967" anchor-label="getInstance" id="-799490118%2FFunctions%2F1185444967" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":AndroidXSupport:dokkaHtmlPartial/main" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="get-instance.html"><span>get</span><wbr><span><span>Instance</span></span></a></div>
+          <div class="table-row" data-filterable-current=":AndroidXSupport:dokkaHtmlPartial/main" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-instance.html"><span>get</span><wbr><span><span>Instance</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-799490118%2FFunctions%2F1185444967"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":AndroidXSupport:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-instance.html"><span class="token function">getInstance</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">VirtuosoLiveDataFactory</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Get the singleton instance of the Virtuoso Factory for creating LiveData objects accessing the SDK state.</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":AndroidXSupport:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-instance.html"><span class="token function">getInstance</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">VirtuosoLiveDataFactory</a></div><div class="brief ">Get the singleton instance of the Virtuoso Factory for creating LiveData objects accessing the SDK state.</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="1767919719%2FFunctions%2F1185444967" anchor-label="getNonPendingList" id="1767919719%2FFunctions%2F1185444967" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":AndroidXSupport:dokkaHtmlPartial/main" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="get-non-pending-list.html"><span>get</span><wbr><span>Non</span><wbr><span>Pending</span><wbr><span><span>List</span></span></a></div>
+          <div class="table-row" data-filterable-current=":AndroidXSupport:dokkaHtmlPartial/main" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-non-pending-list.html"><span>get</span><wbr><span>Non</span><wbr><span>Pending</span><wbr><span><span>List</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1767919719%2FFunctions%2F1185444967"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":AndroidXSupport:dokkaHtmlPartial/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/NonNull.html"><span class="token annotation">NonNull</span></a></div></div><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-non-pending-list.html"><span class="token function">getNonPendingList</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-non-pending-assets-live-data/index.html">NonPendingAssetsLiveData</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Fetch a custom LiveData object containing the list of all assets that are not pending manifest parsing or download.</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":AndroidXSupport:dokkaHtmlPartial/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/NonNull.html"><span class="token annotation builtin">NonNull</span></a></div></div><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-non-pending-list.html"><span class="token function">getNonPendingList</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-non-pending-assets-live-data/index.html">NonPendingAssetsLiveData</a></div><div class="brief ">Fetch a custom LiveData object containing the list of all assets that are not pending manifest parsing or download.</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="466250395%2FFunctions%2F1185444967" anchor-label="getParserQueueList" id="466250395%2FFunctions%2F1185444967" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":AndroidXSupport:dokkaHtmlPartial/main" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="get-parser-queue-list.html"><span>get</span><wbr><span>Parser</span><wbr><span>Queue</span><wbr><span><span>List</span></span></a></div>
+          <div class="table-row" data-filterable-current=":AndroidXSupport:dokkaHtmlPartial/main" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-parser-queue-list.html"><span>get</span><wbr><span>Parser</span><wbr><span>Queue</span><wbr><span><span>List</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="466250395%2FFunctions%2F1185444967"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":AndroidXSupport:dokkaHtmlPartial/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/NonNull.html"><span class="token annotation">NonNull</span></a></div></div><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-parser-queue-list.html"><span class="token function">getParserQueueList</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-parser-queue-assets-live-data/index.html">ParserQueueAssetsLiveData</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Fetch a custom LiveData object containing the list of all assets being processed or awaiting processing by the manifest parser.</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":AndroidXSupport:dokkaHtmlPartial/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/NonNull.html"><span class="token annotation builtin">NonNull</span></a></div></div><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-parser-queue-list.html"><span class="token function">getParserQueueList</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-parser-queue-assets-live-data/index.html">ParserQueueAssetsLiveData</a></div><div class="brief ">Fetch a custom LiveData object containing the list of all assets being processed or awaiting processing by the manifest parser.</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="-914228537%2FFunctions%2F1185444967" anchor-label="getPauseHelper" id="-914228537%2FFunctions%2F1185444967" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":AndroidXSupport:dokkaHtmlPartial/main" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="get-pause-helper.html"><span>get</span><wbr><span>Pause</span><wbr><span><span>Helper</span></span></a></div>
+          <div class="table-row" data-filterable-current=":AndroidXSupport:dokkaHtmlPartial/main" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-pause-helper.html"><span>get</span><wbr><span>Pause</span><wbr><span><span>Helper</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-914228537%2FFunctions%2F1185444967"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":AndroidXSupport:dokkaHtmlPartial/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/NonNull.html"><span class="token annotation">NonNull</span></a></div></div><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-pause-helper.html"><span class="token function">getPauseHelper</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-engine-pause-helper/index.html">EnginePauseHelper</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Fetch a custom LiveData object containing a value for the current paused state of the download engine.</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":AndroidXSupport:dokkaHtmlPartial/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/NonNull.html"><span class="token annotation builtin">NonNull</span></a></div></div><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-pause-helper.html"><span class="token function">getPauseHelper</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-engine-pause-helper/index.html">EnginePauseHelper</a></div><div class="brief ">Fetch a custom LiveData object containing a value for the current paused state of the download engine.</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="14072783%2FFunctions%2F1185444967" anchor-label="getPlaylist" id="14072783%2FFunctions%2F1185444967" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":AndroidXSupport:dokkaHtmlPartial/main" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="get-playlist.html"><span>get</span><wbr><span><span>Playlist</span></span></a></div>
+          <div class="table-row" data-filterable-current=":AndroidXSupport:dokkaHtmlPartial/main" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-playlist.html"><span>get</span><wbr><span><span>Playlist</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="14072783%2FFunctions%2F1185444967"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":AndroidXSupport:dokkaHtmlPartial/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/NonNull.html"><span class="token annotation">NonNull</span></a></div></div><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-playlist.html"><span class="token function">getPlaylist</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">playlist<span class="token operator">: </span><a href="../../../SDK/com.penthera.virtuososdk.client.autodownload/-i-playlist/index.html">IPlaylist</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-playlist-items-live-data/index.html">PlaylistItemsLiveData</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Fetch a custom LiveData object containing a single Playlist from the SDK.</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":AndroidXSupport:dokkaHtmlPartial/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/NonNull.html"><span class="token annotation builtin">NonNull</span></a></div></div><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-playlist.html"><span class="token function">getPlaylist</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">playlist<span class="token operator">: </span><a href="../../../SDK/com.penthera.virtuososdk.client.autodownload/-i-playlist/index.html">IPlaylist</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-playlist-items-live-data/index.html">PlaylistItemsLiveData</a></div><div class="brief ">Fetch a custom LiveData object containing a single Playlist from the SDK.</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="-2129617377%2FFunctions%2F1185444967" anchor-label="getPlaylistList" id="-2129617377%2FFunctions%2F1185444967" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":AndroidXSupport:dokkaHtmlPartial/main" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="get-playlist-list.html"><span>get</span><wbr><span>Playlist</span><wbr><span><span>List</span></span></a></div>
+          <div class="table-row" data-filterable-current=":AndroidXSupport:dokkaHtmlPartial/main" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-playlist-list.html"><span>get</span><wbr><span>Playlist</span><wbr><span><span>List</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2129617377%2FFunctions%2F1185444967"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":AndroidXSupport:dokkaHtmlPartial/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/NonNull.html"><span class="token annotation">NonNull</span></a></div></div><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-playlist-list.html"><span class="token function">getPlaylistList</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-playlist-live-data/index.html">PlaylistLiveData</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Fetch a custom LiveData object containing the current Playlist items within the SDK.</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":AndroidXSupport:dokkaHtmlPartial/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/NonNull.html"><span class="token annotation builtin">NonNull</span></a></div></div><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-playlist-list.html"><span class="token function">getPlaylistList</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-playlist-live-data/index.html">PlaylistLiveData</a></div><div class="brief ">Fetch a custom LiveData object containing the current Playlist items within the SDK.</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="-477582180%2FFunctions%2F1185444967" anchor-label="getQueueList" id="-477582180%2FFunctions%2F1185444967" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":AndroidXSupport:dokkaHtmlPartial/main" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="get-queue-list.html"><span>get</span><wbr><span>Queue</span><wbr><span><span>List</span></span></a></div>
+          <div class="table-row" data-filterable-current=":AndroidXSupport:dokkaHtmlPartial/main" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-queue-list.html"><span>get</span><wbr><span>Queue</span><wbr><span><span>List</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-477582180%2FFunctions%2F1185444967"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":AndroidXSupport:dokkaHtmlPartial/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/NonNull.html"><span class="token annotation">NonNull</span></a></div></div><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-queue-list.html"><span class="token function">getQueueList</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-queue-assets-live-data/index.html">QueueAssetsLiveData</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Fetch a custom LiveData object containing the list of all queued assets within the SDK.</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":AndroidXSupport:dokkaHtmlPartial/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/NonNull.html"><span class="token annotation builtin">NonNull</span></a></div></div><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-queue-list.html"><span class="token function">getQueueList</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-queue-assets-live-data/index.html">QueueAssetsLiveData</a></div><div class="brief ">Fetch a custom LiveData object containing the list of all queued assets within the SDK.</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="-674075835%2FFunctions%2F1185444967" anchor-label="getThroughput" id="-674075835%2FFunctions%2F1185444967" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":AndroidXSupport:dokkaHtmlPartial/main" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="get-throughput.html"><span>get</span><wbr><span><span>Throughput</span></span></a></div>
+          <div class="table-row" data-filterable-current=":AndroidXSupport:dokkaHtmlPartial/main" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-throughput.html"><span>get</span><wbr><span><span>Throughput</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-674075835%2FFunctions%2F1185444967"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":AndroidXSupport:dokkaHtmlPartial/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/NonNull.html"><span class="token annotation">NonNull</span></a></div></div><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-throughput.html"><span class="token function">getThroughput</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-throughput-live-data/index.html">ThroughputLiveData</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Fetch a custom LiveData object containing values for the current download speed of the download service within the SDK.</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":AndroidXSupport:dokkaHtmlPartial/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/NonNull.html"><span class="token annotation builtin">NonNull</span></a></div></div><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-throughput.html"><span class="token function">getThroughput</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-throughput-live-data/index.html">ThroughputLiveData</a></div><div class="brief ">Fetch a custom LiveData object containing values for the current download speed of the download service within the SDK.</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="1225814244%2FFunctions%2F1185444967" anchor-label="getVirtuoso" id="1225814244%2FFunctions%2F1185444967" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":AndroidXSupport:dokkaHtmlPartial/main" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="get-virtuoso.html"><span>get</span><wbr><span><span>Virtuoso</span></span></a></div>
+          <div class="table-row" data-filterable-current=":AndroidXSupport:dokkaHtmlPartial/main" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-virtuoso.html"><span>get</span><wbr><span><span>Virtuoso</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1225814244%2FFunctions%2F1185444967"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":AndroidXSupport:dokkaHtmlPartial/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/NonNull.html"><span class="token annotation">NonNull</span></a></div></div><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-virtuoso.html"><span class="token function">getVirtuoso</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../../penthera-common/com.penthera.virtuososdk.client/-virtuoso/index.html">Virtuoso</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Return the current Virtuoso instance being used by the factory.</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":AndroidXSupport:dokkaHtmlPartial/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/NonNull.html"><span class="token annotation builtin">NonNull</span></a></div></div><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-virtuoso.html"><span class="token function">getVirtuoso</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../../penthera-common/com.penthera.virtuososdk.client/-virtuoso/index.html">Virtuoso</a></div><div class="brief ">Return the current Virtuoso instance being used by the factory.</div></div></div>
+                </div>
               </div>
             </div>
           </div>
@@ -292,10 +324,11 @@ if(savedDarkMode === true){
     </div>
   </div>
 </div>
-        <div class="footer"><span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2023 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
-        </div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2024 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
     </div>
 </div>
-
-</body></html>
+</body>
+</html>
 

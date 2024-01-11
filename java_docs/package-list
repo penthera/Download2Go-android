@@ -1,8 +1,261 @@
 $dokka.format:html-v1
 $dokka.linkExtension:html
-
+$dokka.location:com.penthera.autotesting.player/TrackSelectionDialog.Companion///PointingToDeclaration/Automation/com.penthera.autotesting.player/[android-jvm]-track-selection-dialog/-companion/index.html
+$dokka.location:com.penthera.autotesting.player/TrackSelectionDialog.Companion/createForTrackSelector/#com.google.android.exoplayer2.trackselection.DefaultTrackSelector#android.content.DialogInterface.OnDismissListener/PointingToDeclaration/Automation/com.penthera.autotesting.player/[android-jvm]-track-selection-dialog/-companion/create-for-track-selector.html
+$dokka.location:com.penthera.autotesting.player/TrackSelectionDialog.Companion/willHaveContent/#com.google.android.exoplayer2.trackselection.DefaultTrackSelector/PointingToDeclaration/Automation/com.penthera.autotesting.player/[android-jvm]-track-selection-dialog/-companion/will-have-content.html
+$dokka.location:com.penthera.autotesting.player/TrackSelectionDialog.Companion/willHaveContent/#com.google.android.exoplayer2.trackselection.MappingTrackSelector.MappedTrackInfo/PointingToDeclaration/Automation/com.penthera.autotesting.player/[android-jvm]-track-selection-dialog/-companion/will-have-content.html
+$dokka.location:com.penthera.autotesting.player/TrackSelectionDialog.TrackSelectionViewFragment///PointingToDeclaration/Automation/com.penthera.autotesting.player/[android-jvm]-track-selection-dialog/-track-selection-view-fragment/index.html
+$dokka.location:com.penthera.autotesting.player/TrackSelectionDialog.TrackSelectionViewFragment/TrackSelectionViewFragment/#/PointingToDeclaration/Automation/com.penthera.autotesting.player/[android-jvm]-track-selection-dialog/-track-selection-view-fragment/-track-selection-view-fragment.html
+$dokka.location:com.penthera.autotesting.player/TrackSelectionDialog.TrackSelectionViewFragment/init/#com.google.android.exoplayer2.trackselection.MappingTrackSelector.MappedTrackInfo?#kotlin.Int#kotlin.Boolean#com.google.android.exoplayer2.trackselection.DefaultTrackSelector.SelectionOverride?#kotlin.Boolean#kotlin.Boolean/PointingToDeclaration/Automation/com.penthera.autotesting.player/[android-jvm]-track-selection-dialog/-track-selection-view-fragment/init.html
+$dokka.location:com.penthera.autotesting.player/TrackSelectionDialog.TrackSelectionViewFragment/isDisabled/#/PointingToDeclaration/Automation/com.penthera.autotesting.player/[android-jvm]-track-selection-dialog/-track-selection-view-fragment/is-disabled.html
+$dokka.location:com.penthera.autotesting.player/TrackSelectionDialog.TrackSelectionViewFragment/onCreateView/#android.view.LayoutInflater#android.view.ViewGroup?#android.os.Bundle?/PointingToDeclaration/Automation/com.penthera.autotesting.player/[android-jvm]-track-selection-dialog/-track-selection-view-fragment/on-create-view.html
+$dokka.location:com.penthera.autotesting.player/TrackSelectionDialog.TrackSelectionViewFragment/onTrackSelectionChanged/#kotlin.Boolean#kotlin.collections.List[com.google.android.exoplayer2.trackselection.DefaultTrackSelector.SelectionOverride]/PointingToDeclaration/Automation/com.penthera.autotesting.player/[android-jvm]-track-selection-dialog/-track-selection-view-fragment/on-track-selection-changed.html
+$dokka.location:com.penthera.autotesting.player/TrackSelectionDialog.TrackSelectionViewFragment/overrides/#/PointingToDeclaration/Automation/com.penthera.autotesting.player/[android-jvm]-track-selection-dialog/-track-selection-view-fragment/overrides.html
+$dokka.location:com.penthera.autotesting.player/TrackSelectionDialog///PointingToDeclaration/Automation/com.penthera.autotesting.player/[android-jvm]-track-selection-dialog/index.html
+$dokka.location:com.penthera.autotesting.player/TrackSelectionDialog/TrackSelectionDialog/#/PointingToDeclaration/Automation/com.penthera.autotesting.player/[android-jvm]-track-selection-dialog/-track-selection-dialog.html
+$dokka.location:com.penthera.autotesting.player/TrackSelectionDialog/getIsDisabled/#kotlin.Int/PointingToDeclaration/Automation/com.penthera.autotesting.player/[android-jvm]-track-selection-dialog/get-is-disabled.html
+$dokka.location:com.penthera.autotesting.player/TrackSelectionDialog/getOverrides/#kotlin.Int/PointingToDeclaration/Automation/com.penthera.autotesting.player/[android-jvm]-track-selection-dialog/get-overrides.html
+$dokka.location:com.penthera.autotesting.player/TrackSelectionDialog/onCreateDialog/#android.os.Bundle?/PointingToDeclaration/Automation/com.penthera.autotesting.player/[android-jvm]-track-selection-dialog/on-create-dialog.html
+$dokka.location:com.penthera.autotesting.player/TrackSelectionDialog/onCreateView/#android.view.LayoutInflater#android.view.ViewGroup?#android.os.Bundle?/PointingToDeclaration/Automation/com.penthera.autotesting.player/[android-jvm]-track-selection-dialog/on-create-view.html
+$dokka.location:com.penthera.autotesting.player/TrackSelectionDialog/onDismiss/#android.content.DialogInterface/PointingToDeclaration/Automation/com.penthera.autotesting.player/[android-jvm]-track-selection-dialog/on-dismiss.html
+$dokka.location:com.penthera.autotesting.player/VideoPlayerActivity.Companion///PointingToDeclaration/Automation/com.penthera.autotesting.player/[android-jvm]-video-player-activity/-companion/index.html
+$dokka.location:com.penthera.autotesting.player/VideoPlayerActivity.Companion/MAX_PARSING_WAIT_TIME/#/PointingToDeclaration/Automation/com.penthera.autotesting.player/[android-jvm]-video-player-activity/-companion/-m-a-x_-p-a-r-s-i-n-g_-w-a-i-t_-t-i-m-e.html
+$dokka.location:com.penthera.autotesting.player/VideoPlayerActivity.Companion/MAX_PLAYBACK_STARTED_WAIT_TIME/#/PointingToDeclaration/Automation/com.penthera.autotesting.player/[android-jvm]-video-player-activity/-companion/-m-a-x_-p-l-a-y-b-a-c-k_-s-t-a-r-t-e-d_-w-a-i-t_-t-i-m-e.html
+$dokka.location:com.penthera.autotesting.player/VideoPlayerActivity.Companion/assetID/#/PointingToDeclaration/Automation/com.penthera.autotesting.player/[android-jvm]-video-player-activity/-companion/asset-i-d.html
+$dokka.location:com.penthera.autotesting.player/VideoPlayerActivity.Companion/playAssurePlay/#kotlin.String?#kotlin.Long#android.content.Context#com.penthera.autotesting.player.VideoPlayerActivity.PlayAssurePlaybackListener/PointingToDeclaration/Automation/com.penthera.autotesting.player/[android-jvm]-video-player-activity/-companion/play-assure-play.html
+$dokka.location:com.penthera.autotesting.player/VideoPlayerActivity.Companion/playVideoDownload/#com.penthera.virtuososdk.client.IAsset#android.content.Context#kotlin.Long/PointingToDeclaration/Automation/com.penthera.autotesting.player/[android-jvm]-video-player-activity/-companion/play-video-download.html
+$dokka.location:com.penthera.autotesting.player/VideoPlayerActivity.Companion/streamPlay/#kotlin.String#android.content.Context/PointingToDeclaration/Automation/com.penthera.autotesting.player/[android-jvm]-video-player-activity/-companion/stream-play.html
+$dokka.location:com.penthera.autotesting.player/VideoPlayerActivity.PlayAssurePlaybackListener.PlaybackFinishedReason.DOWNLOAD_COMPLETED///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}Automation/com.penthera.autotesting.player/[android-jvm]-video-player-activity/-play-assure-playback-listener/-playback-finished-reason/-d-o-w-n-l-o-a-d_-c-o-m-p-l-e-t-e-d/index.html
+$dokka.location:com.penthera.autotesting.player/VideoPlayerActivity.PlayAssurePlaybackListener.PlaybackFinishedReason.DOWNLOAD_TIMEOUT///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}Automation/com.penthera.autotesting.player/[android-jvm]-video-player-activity/-play-assure-playback-listener/-playback-finished-reason/-d-o-w-n-l-o-a-d_-t-i-m-e-o-u-t/index.html
+$dokka.location:com.penthera.autotesting.player/VideoPlayerActivity.PlayAssurePlaybackListener.PlaybackFinishedReason.PARSING_TIMEOUT///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}Automation/com.penthera.autotesting.player/[android-jvm]-video-player-activity/-play-assure-playback-listener/-playback-finished-reason/-p-a-r-s-i-n-g_-t-i-m-e-o-u-t/index.html
+$dokka.location:com.penthera.autotesting.player/VideoPlayerActivity.PlayAssurePlaybackListener.PlaybackFinishedReason.PLAYBACK_STARTED_TIMEOUT///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}Automation/com.penthera.autotesting.player/[android-jvm]-video-player-activity/-play-assure-playback-listener/-playback-finished-reason/-p-l-a-y-b-a-c-k_-s-t-a-r-t-e-d_-t-i-m-e-o-u-t/index.html
+$dokka.location:com.penthera.autotesting.player/VideoPlayerActivity.PlayAssurePlaybackListener.PlaybackFinishedReason.PLAYER_ERROR///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}Automation/com.penthera.autotesting.player/[android-jvm]-video-player-activity/-play-assure-playback-listener/-playback-finished-reason/-p-l-a-y-e-r_-e-r-r-o-r/index.html
+$dokka.location:com.penthera.autotesting.player/VideoPlayerActivity.PlayAssurePlaybackListener.PlaybackFinishedReason///PointingToDeclaration/Automation/com.penthera.autotesting.player/[android-jvm]-video-player-activity/-play-assure-playback-listener/-playback-finished-reason/index.html
+$dokka.location:com.penthera.autotesting.player/VideoPlayerActivity.PlayAssurePlaybackListener.PlaybackFinishedReason/valueOf/#kotlin.String/PointingToDeclaration/Automation/com.penthera.autotesting.player/[android-jvm]-video-player-activity/-play-assure-playback-listener/-playback-finished-reason/value-of.html
+$dokka.location:com.penthera.autotesting.player/VideoPlayerActivity.PlayAssurePlaybackListener.PlaybackFinishedReason/values/#/PointingToDeclaration/Automation/com.penthera.autotesting.player/[android-jvm]-video-player-activity/-play-assure-playback-listener/-playback-finished-reason/values.html
+$dokka.location:com.penthera.autotesting.player/VideoPlayerActivity.PlayAssurePlaybackListener///PointingToDeclaration/Automation/com.penthera.autotesting.player/[android-jvm]-video-player-activity/-play-assure-playback-listener/index.html
+$dokka.location:com.penthera.autotesting.player/VideoPlayerActivity.PlayAssurePlaybackListener/onParsingCompleted/#kotlin.Boolean#kotlin.String?/PointingToDeclaration/Automation/com.penthera.autotesting.player/[android-jvm]-video-player-activity/-play-assure-playback-listener/on-parsing-completed.html
+$dokka.location:com.penthera.autotesting.player/VideoPlayerActivity.PlayAssurePlaybackListener/onPlayAssureStatusChanged/#com.penthera.playassure.PlayAssureStatusInfo/PointingToDeclaration/Automation/com.penthera.autotesting.player/[android-jvm]-video-player-activity/-play-assure-playback-listener/on-play-assure-status-changed.html
+$dokka.location:com.penthera.autotesting.player/VideoPlayerActivity.PlayAssurePlaybackListener/onPlaybackFailure/#kotlin.String/PointingToDeclaration/Automation/com.penthera.autotesting.player/[android-jvm]-video-player-activity/-play-assure-playback-listener/on-playback-failure.html
+$dokka.location:com.penthera.autotesting.player/VideoPlayerActivity.PlayAssurePlaybackListener/onPlaybackFinished/#com.penthera.autotesting.player.VideoPlayerActivity.PlayAssurePlaybackListener.PlaybackFinishedReason/PointingToDeclaration/Automation/com.penthera.autotesting.player/[android-jvm]-video-player-activity/-play-assure-playback-listener/on-playback-finished.html
+$dokka.location:com.penthera.autotesting.player/VideoPlayerActivity.PlayAssurePlaybackListener/onPlaybackStarted/#/PointingToDeclaration/Automation/com.penthera.autotesting.player/[android-jvm]-video-player-activity/-play-assure-playback-listener/on-playback-started.html
+$dokka.location:com.penthera.autotesting.player/VideoPlayerActivity///PointingToDeclaration/Automation/com.penthera.autotesting.player/[android-jvm]-video-player-activity/index.html
+$dokka.location:com.penthera.autotesting.player/VideoPlayerActivity/VideoPlayerActivity/#/PointingToDeclaration/Automation/com.penthera.autotesting.player/[android-jvm]-video-player-activity/-video-player-activity.html
+$dokka.location:com.penthera.autotesting.player/VideoPlayerActivity/bitrateChangeReported/#com.penthera.playassure.PlayAssureStatusInfo/PointingToDeclaration/Automation/com.penthera.autotesting.player/[android-jvm]-video-player-activity/bitrate-change-reported.html
+$dokka.location:com.penthera.autotesting.player/VideoPlayerActivity/dispatchKeyEvent/#android.view.KeyEvent/PointingToDeclaration/Automation/com.penthera.autotesting.player/[android-jvm]-video-player-activity/dispatch-key-event.html
+$dokka.location:com.penthera.autotesting.player/VideoPlayerActivity/handleDrmLicenseNotAvailable/#kotlin.String/PointingToDeclaration/Automation/com.penthera.autotesting.player/[android-jvm]-video-player-activity/handle-drm-license-not-available.html
+$dokka.location:com.penthera.autotesting.player/VideoPlayerActivity/initializationComplete/#com.penthera.playassure.InitializationResult/PointingToDeclaration/Automation/com.penthera.autotesting.player/[android-jvm]-video-player-activity/initialization-complete.html
+$dokka.location:com.penthera.autotesting.player/VideoPlayerActivity/networkReachabilityChanged/#kotlin.Boolean/PointingToDeclaration/Automation/com.penthera.autotesting.player/[android-jvm]-video-player-activity/network-reachability-changed.html
+$dokka.location:com.penthera.autotesting.player/VideoPlayerActivity/onClick/#android.view.View/PointingToDeclaration/Automation/com.penthera.autotesting.player/[android-jvm]-video-player-activity/on-click.html
+$dokka.location:com.penthera.autotesting.player/VideoPlayerActivity/onCreate/#android.os.Bundle?/PointingToDeclaration/Automation/com.penthera.autotesting.player/[android-jvm]-video-player-activity/on-create.html
+$dokka.location:com.penthera.autotesting.player/VideoPlayerActivity/onDestroy/#/PointingToDeclaration/Automation/com.penthera.autotesting.player/[android-jvm]-video-player-activity/on-destroy.html
+$dokka.location:com.penthera.autotesting.player/VideoPlayerActivity/onNewIntent/#android.content.Intent/PointingToDeclaration/Automation/com.penthera.autotesting.player/[android-jvm]-video-player-activity/on-new-intent.html
+$dokka.location:com.penthera.autotesting.player/VideoPlayerActivity/onRequestPermissionsResult/#kotlin.Int#kotlin.Array[kotlin.String]#kotlin.IntArray/PointingToDeclaration/Automation/com.penthera.autotesting.player/[android-jvm]-video-player-activity/on-request-permissions-result.html
+$dokka.location:com.penthera.autotesting.player/VideoPlayerActivity/onStart/#/PointingToDeclaration/Automation/com.penthera.autotesting.player/[android-jvm]-video-player-activity/on-start.html
+$dokka.location:com.penthera.autotesting.player/VideoPlayerActivity/onStop/#/PointingToDeclaration/Automation/com.penthera.autotesting.player/[android-jvm]-video-player-activity/on-stop.html
+$dokka.location:com.penthera.autotesting.player/VideoPlayerActivity/onVisibilityChange/#kotlin.Int/PointingToDeclaration/Automation/com.penthera.autotesting.player/[android-jvm]-video-player-activity/on-visibility-change.html
+$dokka.location:com.penthera.autotesting.player/VideoPlayerActivity/progressReported/#com.penthera.playassure.PlayAssureStatusInfo/PointingToDeclaration/Automation/com.penthera.autotesting.player/[android-jvm]-video-player-activity/progress-reported.html
+$dokka.location:com.penthera.autotesting.player/VideoPlayerActivity/reportEngineStatusChanged/#com.penthera.playassure.PlayAssureEngineState/PointingToDeclaration/Automation/com.penthera.autotesting.player/[android-jvm]-video-player-activity/report-engine-status-changed.html
+$dokka.location:com.penthera.autotesting.player/VideoPlayerActivity/reportNetworkFail/#/PointingToDeclaration/Automation/com.penthera.autotesting.player/[android-jvm]-video-player-activity/report-network-fail.html
+$dokka.location:com.penthera.autotesting.player/VideoPlayerActivity/reportParsingFail/#com.penthera.playassure.PlayAssureError#kotlin.String/PointingToDeclaration/Automation/com.penthera.autotesting.player/[android-jvm]-video-player-activity/report-parsing-fail.html
+$dokka.location:com.penthera.autotesting.player/VideoPlayerActivity/reportParsingSuccess/#/PointingToDeclaration/Automation/com.penthera.autotesting.player/[android-jvm]-video-player-activity/report-parsing-success.html
+$dokka.location:com.penthera.autotesting.player/VideoPlayerActivity/reportPlaybackFail/#com.penthera.playassure.PlayAssureError#kotlin.String/PointingToDeclaration/Automation/com.penthera.autotesting.player/[android-jvm]-video-player-activity/report-playback-fail.html
+$dokka.location:com.penthera.autotesting.player/VideoPlayerActivity/reportPlaybackThrottled/#kotlin.Boolean/PointingToDeclaration/Automation/com.penthera.autotesting.player/[android-jvm]-video-player-activity/report-playback-throttled.html
+$dokka.location:com.penthera.autotesting.player/VideoPlayerActivity/savePlayerError/#kotlin.String/PointingToDeclaration/Automation/com.penthera.autotesting.player/[android-jvm]-video-player-activity/save-player-error.html
+$dokka.location:com.penthera.harness.player/PlaybackTypeSelectionDialog.PlaybackTypeSelectionCallback///PointingToDeclaration/Harness/com.penthera.harness.player/[android-jvm]-playback-type-selection-dialog/-playback-type-selection-callback/index.html
+$dokka.location:com.penthera.harness.player/PlaybackTypeSelectionDialog.PlaybackTypeSelectionCallback/getAssetManager/#/PointingToDeclaration/Harness/com.penthera.harness.player/[android-jvm]-playback-type-selection-dialog/-playback-type-selection-callback/get-asset-manager.html
+$dokka.location:com.penthera.harness.player/PlaybackTypeSelectionDialog.PlaybackTypeSelectionCallback/getConfig/#/PointingToDeclaration/Harness/com.penthera.harness.player/[android-jvm]-playback-type-selection-dialog/-playback-type-selection-callback/get-config.html
+$dokka.location:com.penthera.harness.player/PlaybackTypeSelectionDialog.PlaybackTypeSelectionCallback/playbackTypeSelectionComplete/#/PointingToDeclaration/Harness/com.penthera.harness.player/[android-jvm]-playback-type-selection-dialog/-playback-type-selection-callback/playback-type-selection-complete.html
+$dokka.location:com.penthera.harness.player/PlaybackTypeSelectionDialog///PointingToDeclaration/Harness/com.penthera.harness.player/[android-jvm]-playback-type-selection-dialog/index.html
+$dokka.location:com.penthera.harness.player/PlaybackTypeSelectionDialog/PlaybackTypeSelectionDialog/#/PointingToDeclaration/Harness/com.penthera.harness.player/[android-jvm]-playback-type-selection-dialog/-playback-type-selection-dialog.html
+$dokka.location:com.penthera.harness.player/PlaybackTypeSelectionDialog/onAttach/#android.content.Context/PointingToDeclaration/Harness/com.penthera.harness.player/[android-jvm]-playback-type-selection-dialog/on-attach.html
+$dokka.location:com.penthera.harness.player/PlaybackTypeSelectionDialog/onCreate/#android.os.Bundle/PointingToDeclaration/Harness/com.penthera.harness.player/[android-jvm]-playback-type-selection-dialog/on-create.html
+$dokka.location:com.penthera.harness.player/PlaybackTypeSelectionDialog/onCreateView/#android.view.LayoutInflater#android.view.ViewGroup#android.os.Bundle/PointingToDeclaration/Harness/com.penthera.harness.player/[android-jvm]-playback-type-selection-dialog/on-create-view.html
+$dokka.location:com.penthera.harness.player/PlaybackTypeSelectionDialog/onDetach/#/PointingToDeclaration/Harness/com.penthera.harness.player/[android-jvm]-playback-type-selection-dialog/on-detach.html
+$dokka.location:com.penthera.harness.player/PlayerActivity.Companion///PointingToDeclaration/Harness/com.penthera.harness.player/[android-jvm]-player-activity/-companion/index.html
+$dokka.location:com.penthera.harness.player/PlayerActivity.Companion/ACTION_VIEW/#/PointingToDeclaration/Harness/com.penthera.harness.player/[android-jvm]-player-activity/-companion/-a-c-t-i-o-n_-v-i-e-w.html
+$dokka.location:com.penthera.harness.player/PlayerActivity.Companion/FASTPLAY_TYPE/#/PointingToDeclaration/Harness/com.penthera.harness.player/[android-jvm]-player-activity/-companion/-f-a-s-t-p-l-a-y_-t-y-p-e.html
+$dokka.location:com.penthera.harness.player/PlayerActivity.Companion/STREAM_DRM_URL/#/PointingToDeclaration/Harness/com.penthera.harness.player/[android-jvm]-player-activity/-companion/-s-t-r-e-a-m_-d-r-m_-u-r-l.html
+$dokka.location:com.penthera.harness.player/PlayerActivity.Companion/STREAM_DRM_UUID/#/PointingToDeclaration/Harness/com.penthera.harness.player/[android-jvm]-player-activity/-companion/-s-t-r-e-a-m_-d-r-m_-u-u-i-d.html
+$dokka.location:com.penthera.harness.player/PlayerActivity.Companion/VIRTUOSO_ASSET/#/PointingToDeclaration/Harness/com.penthera.harness.player/[android-jvm]-player-activity/-companion/-v-i-r-t-u-o-s-o_-a-s-s-e-t.html
+$dokka.location:com.penthera.harness.player/PlayerActivity///PointingToDeclaration/Harness/com.penthera.harness.player/[android-jvm]-player-activity/index.html
+$dokka.location:com.penthera.harness.player/PlayerActivity/PlayerActivity/#/PointingToDeclaration/Harness/com.penthera.harness.player/[android-jvm]-player-activity/-player-activity.html
+$dokka.location:com.penthera.harness.player/PlayerActivity/onCreate/#android.os.Bundle?/PointingToDeclaration/Harness/com.penthera.harness.player/[android-jvm]-player-activity/on-create.html
+$dokka.location:com.penthera.harness.player/PlayerActivity/onDestroy/#/PointingToDeclaration/Harness/com.penthera.harness.player/[android-jvm]-player-activity/on-destroy.html
+$dokka.location:com.penthera.harness.player/PlayerActivity/onNewIntent/#android.content.Intent/PointingToDeclaration/Harness/com.penthera.harness.player/[android-jvm]-player-activity/on-new-intent.html
+$dokka.location:com.penthera.harness.player/PlayerActivity/onPause/#/PointingToDeclaration/Harness/com.penthera.harness.player/[android-jvm]-player-activity/on-pause.html
+$dokka.location:com.penthera.harness.player/PlayerActivity/onResume/#/PointingToDeclaration/Harness/com.penthera.harness.player/[android-jvm]-player-activity/on-resume.html
+$dokka.location:com.penthera.harness.player/PlayerActivity/onStart/#/PointingToDeclaration/Harness/com.penthera.harness.player/[android-jvm]-player-activity/on-start.html
+$dokka.location:com.penthera.harness.player/PlayerActivity/onStop/#/PointingToDeclaration/Harness/com.penthera.harness.player/[android-jvm]-player-activity/on-stop.html
+$dokka.location:com.penthera.harness.player/TrackSelectionDialog.TrackSelectionViewFragment///PointingToDeclaration/Harness/com.penthera.harness.player/[android-jvm]-track-selection-dialog/-track-selection-view-fragment/index.html
+$dokka.location:com.penthera.harness.player/TrackSelectionDialog.TrackSelectionViewFragment/TrackSelectionViewFragment/#/PointingToDeclaration/Harness/com.penthera.harness.player/[android-jvm]-track-selection-dialog/-track-selection-view-fragment/-track-selection-view-fragment.html
+$dokka.location:com.penthera.harness.player/TrackSelectionDialog.TrackSelectionViewFragment/init/#com.google.android.exoplayer2.trackselection.MappingTrackSelector.MappedTrackInfo#int#boolean#com.google.android.exoplayer2.trackselection.DefaultTrackSelector.SelectionOverride#boolean#boolean/PointingToDeclaration/Harness/com.penthera.harness.player/[android-jvm]-track-selection-dialog/-track-selection-view-fragment/init.html
+$dokka.location:com.penthera.harness.player/TrackSelectionDialog.TrackSelectionViewFragment/onCreateView/#android.view.LayoutInflater#android.view.ViewGroup#android.os.Bundle/PointingToDeclaration/Harness/com.penthera.harness.player/[android-jvm]-track-selection-dialog/-track-selection-view-fragment/on-create-view.html
+$dokka.location:com.penthera.harness.player/TrackSelectionDialog.TrackSelectionViewFragment/onTrackSelectionChanged/#boolean#java.util.List<com.google.android.exoplayer2.trackselection.DefaultTrackSelector.SelectionOverride>/PointingToDeclaration/Harness/com.penthera.harness.player/[android-jvm]-track-selection-dialog/-track-selection-view-fragment/on-track-selection-changed.html
+$dokka.location:com.penthera.harness.player/TrackSelectionDialog///PointingToDeclaration/Harness/com.penthera.harness.player/[android-jvm]-track-selection-dialog/index.html
+$dokka.location:com.penthera.harness.player/TrackSelectionDialog/TrackSelectionDialog/#/PointingToDeclaration/Harness/com.penthera.harness.player/[android-jvm]-track-selection-dialog/-track-selection-dialog.html
+$dokka.location:com.penthera.harness.player/TrackSelectionDialog/createForMappedTrackInfoAndParameters/#int#com.google.android.exoplayer2.trackselection.MappingTrackSelector.MappedTrackInfo#com.google.android.exoplayer2.trackselection.DefaultTrackSelector.Parameters#boolean#boolean#android.content.DialogInterface.OnClickListener#android.content.DialogInterface.OnDismissListener/PointingToDeclaration/Harness/com.penthera.harness.player/[android-jvm]-track-selection-dialog/create-for-mapped-track-info-and-parameters.html
+$dokka.location:com.penthera.harness.player/TrackSelectionDialog/createForTrackSelector/#com.google.android.exoplayer2.trackselection.DefaultTrackSelector#android.content.DialogInterface.OnDismissListener/PointingToDeclaration/Harness/com.penthera.harness.player/[android-jvm]-track-selection-dialog/create-for-track-selector.html
+$dokka.location:com.penthera.harness.player/TrackSelectionDialog/getIsDisabled/#int/PointingToDeclaration/Harness/com.penthera.harness.player/[android-jvm]-track-selection-dialog/get-is-disabled.html
+$dokka.location:com.penthera.harness.player/TrackSelectionDialog/getOverrides/#int/PointingToDeclaration/Harness/com.penthera.harness.player/[android-jvm]-track-selection-dialog/get-overrides.html
+$dokka.location:com.penthera.harness.player/TrackSelectionDialog/onCreateDialog/#android.os.Bundle/PointingToDeclaration/Harness/com.penthera.harness.player/[android-jvm]-track-selection-dialog/on-create-dialog.html
+$dokka.location:com.penthera.harness.player/TrackSelectionDialog/onCreateView/#android.view.LayoutInflater#android.view.ViewGroup#android.os.Bundle/PointingToDeclaration/Harness/com.penthera.harness.player/[android-jvm]-track-selection-dialog/on-create-view.html
+$dokka.location:com.penthera.harness.player/TrackSelectionDialog/onDismiss/#android.content.DialogInterface/PointingToDeclaration/Harness/com.penthera.harness.player/[android-jvm]-track-selection-dialog/on-dismiss.html
+$dokka.location:com.penthera.harness.player/TrackSelectionDialog/willHaveContent/#com.google.android.exoplayer2.trackselection.DefaultTrackSelector/PointingToDeclaration/Harness/com.penthera.harness.player/[android-jvm]-track-selection-dialog/will-have-content.html
+$dokka.location:com.penthera.harness.player/TrackSelectionDialog/willHaveContent/#com.google.android.exoplayer2.trackselection.MappingTrackSelector.MappedTrackInfo/PointingToDeclaration/Harness/com.penthera.harness.player/[android-jvm]-track-selection-dialog/will-have-content.html
+$dokka.location:com.penthera.harnessx.player/PlaybackTypeSelectionDialog.PlaybackTypeSelectionCallback///PointingToDeclaration/harnessx/com.penthera.harnessx.player/[android-jvm]-playback-type-selection-dialog/-playback-type-selection-callback/index.html
+$dokka.location:com.penthera.harnessx.player/PlaybackTypeSelectionDialog.PlaybackTypeSelectionCallback/getAssetManager/#/PointingToDeclaration/harnessx/com.penthera.harnessx.player/[android-jvm]-playback-type-selection-dialog/-playback-type-selection-callback/get-asset-manager.html
+$dokka.location:com.penthera.harnessx.player/PlaybackTypeSelectionDialog.PlaybackTypeSelectionCallback/getConfig/#/PointingToDeclaration/harnessx/com.penthera.harnessx.player/[android-jvm]-playback-type-selection-dialog/-playback-type-selection-callback/get-config.html
+$dokka.location:com.penthera.harnessx.player/PlaybackTypeSelectionDialog.PlaybackTypeSelectionCallback/playbackTypeSelectionComplete/#/PointingToDeclaration/harnessx/com.penthera.harnessx.player/[android-jvm]-playback-type-selection-dialog/-playback-type-selection-callback/playback-type-selection-complete.html
+$dokka.location:com.penthera.harnessx.player/PlaybackTypeSelectionDialog///PointingToDeclaration/harnessx/com.penthera.harnessx.player/[android-jvm]-playback-type-selection-dialog/index.html
+$dokka.location:com.penthera.harnessx.player/PlaybackTypeSelectionDialog/PlaybackTypeSelectionDialog/#/PointingToDeclaration/harnessx/com.penthera.harnessx.player/[android-jvm]-playback-type-selection-dialog/-playback-type-selection-dialog.html
+$dokka.location:com.penthera.harnessx.player/PlaybackTypeSelectionDialog/onAttach/#android.content.Context/PointingToDeclaration/harnessx/com.penthera.harnessx.player/[android-jvm]-playback-type-selection-dialog/on-attach.html
+$dokka.location:com.penthera.harnessx.player/PlaybackTypeSelectionDialog/onCreate/#android.os.Bundle/PointingToDeclaration/harnessx/com.penthera.harnessx.player/[android-jvm]-playback-type-selection-dialog/on-create.html
+$dokka.location:com.penthera.harnessx.player/PlaybackTypeSelectionDialog/onCreateView/#android.view.LayoutInflater#android.view.ViewGroup#android.os.Bundle/PointingToDeclaration/harnessx/com.penthera.harnessx.player/[android-jvm]-playback-type-selection-dialog/on-create-view.html
+$dokka.location:com.penthera.harnessx.player/PlaybackTypeSelectionDialog/onDetach/#/PointingToDeclaration/harnessx/com.penthera.harnessx.player/[android-jvm]-playback-type-selection-dialog/on-detach.html
+$dokka.location:com.penthera.harnessx.player/PlayerActivity.Companion///PointingToDeclaration/harnessx/com.penthera.harnessx.player/[android-jvm]-player-activity/-companion/index.html
+$dokka.location:com.penthera.harnessx.player/PlayerActivity.Companion/ACTION_VIEW/#/PointingToDeclaration/harnessx/com.penthera.harnessx.player/[android-jvm]-player-activity/-companion/-a-c-t-i-o-n_-v-i-e-w.html
+$dokka.location:com.penthera.harnessx.player/PlayerActivity.Companion/FASTPLAY_TYPE/#/PointingToDeclaration/harnessx/com.penthera.harnessx.player/[android-jvm]-player-activity/-companion/-f-a-s-t-p-l-a-y_-t-y-p-e.html
+$dokka.location:com.penthera.harnessx.player/PlayerActivity.Companion/STREAM_DRM_URL/#/PointingToDeclaration/harnessx/com.penthera.harnessx.player/[android-jvm]-player-activity/-companion/-s-t-r-e-a-m_-d-r-m_-u-r-l.html
+$dokka.location:com.penthera.harnessx.player/PlayerActivity.Companion/STREAM_DRM_UUID/#/PointingToDeclaration/harnessx/com.penthera.harnessx.player/[android-jvm]-player-activity/-companion/-s-t-r-e-a-m_-d-r-m_-u-u-i-d.html
+$dokka.location:com.penthera.harnessx.player/PlayerActivity.Companion/VIRTUOSO_ASSET/#/PointingToDeclaration/harnessx/com.penthera.harnessx.player/[android-jvm]-player-activity/-companion/-v-i-r-t-u-o-s-o_-a-s-s-e-t.html
+$dokka.location:com.penthera.harnessx.player/PlayerActivity.Companion/VIRTUOSO_ASSET_CLIENT_ADS/#/PointingToDeclaration/harnessx/com.penthera.harnessx.player/[android-jvm]-player-activity/-companion/-v-i-r-t-u-o-s-o_-a-s-s-e-t_-c-l-i-e-n-t_-a-d-s.html
+$dokka.location:com.penthera.harnessx.player/PlayerActivity.Companion/VIRTUOSO_CONTENT_TYPE/#/PointingToDeclaration/harnessx/com.penthera.harnessx.player/[android-jvm]-player-activity/-companion/-v-i-r-t-u-o-s-o_-c-o-n-t-e-n-t_-t-y-p-e.html
+$dokka.location:com.penthera.harnessx.player/PlayerActivity///PointingToDeclaration/harnessx/com.penthera.harnessx.player/[android-jvm]-player-activity/index.html
+$dokka.location:com.penthera.harnessx.player/PlayerActivity/PlayerActivity/#/PointingToDeclaration/harnessx/com.penthera.harnessx.player/[android-jvm]-player-activity/-player-activity.html
+$dokka.location:com.penthera.harnessx.player/PlayerActivity/handleDrmLicenseNotAvailable/#/PointingToDeclaration/harnessx/com.penthera.harnessx.player/[android-jvm]-player-activity/handle-drm-license-not-available.html
+$dokka.location:com.penthera.harnessx.player/PlayerActivity/onCreate/#android.os.Bundle?/PointingToDeclaration/harnessx/com.penthera.harnessx.player/[android-jvm]-player-activity/on-create.html
+$dokka.location:com.penthera.harnessx.player/PlayerActivity/onDestroy/#/PointingToDeclaration/harnessx/com.penthera.harnessx.player/[android-jvm]-player-activity/on-destroy.html
+$dokka.location:com.penthera.harnessx.player/PlayerActivity/onNewIntent/#android.content.Intent/PointingToDeclaration/harnessx/com.penthera.harnessx.player/[android-jvm]-player-activity/on-new-intent.html
+$dokka.location:com.penthera.harnessx.player/PlayerActivity/onPause/#/PointingToDeclaration/harnessx/com.penthera.harnessx.player/[android-jvm]-player-activity/on-pause.html
+$dokka.location:com.penthera.harnessx.player/PlayerActivity/onResume/#/PointingToDeclaration/harnessx/com.penthera.harnessx.player/[android-jvm]-player-activity/on-resume.html
+$dokka.location:com.penthera.harnessx.player/PlayerActivity/onStart/#/PointingToDeclaration/harnessx/com.penthera.harnessx.player/[android-jvm]-player-activity/on-start.html
+$dokka.location:com.penthera.harnessx.player/PlayerActivity/onStop/#/PointingToDeclaration/harnessx/com.penthera.harnessx.player/[android-jvm]-player-activity/on-stop.html
+$dokka.location:com.penthera.harnessx.player/TrackSelectionDialog.TrackSelectionListener///PointingToDeclaration/harnessx/com.penthera.harnessx.player/[android-jvm]-track-selection-dialog/-track-selection-listener/index.html
+$dokka.location:com.penthera.harnessx.player/TrackSelectionDialog.TrackSelectionListener/onTracksSelected/#com.google.android.exoplayer2.trackselection.TrackSelectionParameters/PointingToDeclaration/harnessx/com.penthera.harnessx.player/[android-jvm]-track-selection-dialog/-track-selection-listener/on-tracks-selected.html
+$dokka.location:com.penthera.harnessx.player/TrackSelectionDialog.TrackSelectionViewFragment///PointingToDeclaration/harnessx/com.penthera.harnessx.player/[android-jvm]-track-selection-dialog/-track-selection-view-fragment/index.html
+$dokka.location:com.penthera.harnessx.player/TrackSelectionDialog.TrackSelectionViewFragment/TrackSelectionViewFragment/#/PointingToDeclaration/harnessx/com.penthera.harnessx.player/[android-jvm]-track-selection-dialog/-track-selection-view-fragment/-track-selection-view-fragment.html
+$dokka.location:com.penthera.harnessx.player/TrackSelectionDialog.TrackSelectionViewFragment/init/#java.util.List<com.google.android.exoplayer2.Tracks.Group>#boolean#java.util.Map<com.google.android.exoplayer2.source.TrackGroup,com.google.android.exoplayer2.trackselection.TrackSelectionOverride>#boolean#boolean/PointingToDeclaration/harnessx/com.penthera.harnessx.player/[android-jvm]-track-selection-dialog/-track-selection-view-fragment/init.html
+$dokka.location:com.penthera.harnessx.player/TrackSelectionDialog.TrackSelectionViewFragment/onCreateView/#android.view.LayoutInflater#android.view.ViewGroup#android.os.Bundle/PointingToDeclaration/harnessx/com.penthera.harnessx.player/[android-jvm]-track-selection-dialog/-track-selection-view-fragment/on-create-view.html
+$dokka.location:com.penthera.harnessx.player/TrackSelectionDialog.TrackSelectionViewFragment/onTrackSelectionChanged/#boolean#java.util.Map<com.google.android.exoplayer2.source.TrackGroup,com.google.android.exoplayer2.trackselection.TrackSelectionOverride>/PointingToDeclaration/harnessx/com.penthera.harnessx.player/[android-jvm]-track-selection-dialog/-track-selection-view-fragment/on-track-selection-changed.html
+$dokka.location:com.penthera.harnessx.player/TrackSelectionDialog///PointingToDeclaration/harnessx/com.penthera.harnessx.player/[android-jvm]-track-selection-dialog/index.html
+$dokka.location:com.penthera.harnessx.player/TrackSelectionDialog/SUPPORTED_TRACK_TYPES/#/PointingToDeclaration/harnessx/com.penthera.harnessx.player/[android-jvm]-track-selection-dialog/-s-u-p-p-o-r-t-e-d_-t-r-a-c-k_-t-y-p-e-s.html
+$dokka.location:com.penthera.harnessx.player/TrackSelectionDialog/TrackSelectionDialog/#/PointingToDeclaration/harnessx/com.penthera.harnessx.player/[android-jvm]-track-selection-dialog/-track-selection-dialog.html
+$dokka.location:com.penthera.harnessx.player/TrackSelectionDialog/createForPlayer/#com.google.android.exoplayer2.Player#android.content.DialogInterface.OnDismissListener/PointingToDeclaration/harnessx/com.penthera.harnessx.player/[android-jvm]-track-selection-dialog/create-for-player.html
+$dokka.location:com.penthera.harnessx.player/TrackSelectionDialog/createForTracksAndParameters/#int#com.google.android.exoplayer2.Tracks#com.google.android.exoplayer2.trackselection.TrackSelectionParameters#boolean#boolean#com.penthera.harnessx.player.TrackSelectionDialog.TrackSelectionListener#android.content.DialogInterface.OnDismissListener/PointingToDeclaration/harnessx/com.penthera.harnessx.player/[android-jvm]-track-selection-dialog/create-for-tracks-and-parameters.html
+$dokka.location:com.penthera.harnessx.player/TrackSelectionDialog/getIsDisabled/#int/PointingToDeclaration/harnessx/com.penthera.harnessx.player/[android-jvm]-track-selection-dialog/get-is-disabled.html
+$dokka.location:com.penthera.harnessx.player/TrackSelectionDialog/getOverrides/#int/PointingToDeclaration/harnessx/com.penthera.harnessx.player/[android-jvm]-track-selection-dialog/get-overrides.html
+$dokka.location:com.penthera.harnessx.player/TrackSelectionDialog/onCreateDialog/#android.os.Bundle/PointingToDeclaration/harnessx/com.penthera.harnessx.player/[android-jvm]-track-selection-dialog/on-create-dialog.html
+$dokka.location:com.penthera.harnessx.player/TrackSelectionDialog/onCreateView/#android.view.LayoutInflater#android.view.ViewGroup#android.os.Bundle/PointingToDeclaration/harnessx/com.penthera.harnessx.player/[android-jvm]-track-selection-dialog/on-create-view.html
+$dokka.location:com.penthera.harnessx.player/TrackSelectionDialog/onDismiss/#android.content.DialogInterface/PointingToDeclaration/harnessx/com.penthera.harnessx.player/[android-jvm]-track-selection-dialog/on-dismiss.html
+$dokka.location:com.penthera.harnessx.player/TrackSelectionDialog/willHaveContent/#com.google.android.exoplayer2.Player/PointingToDeclaration/harnessx/com.penthera.harnessx.player/[android-jvm]-track-selection-dialog/will-have-content.html
+$dokka.location:com.penthera.harnessx.player/TrackSelectionDialog/willHaveContent/#com.google.android.exoplayer2.Tracks/PointingToDeclaration/harnessx/com.penthera.harnessx.player/[android-jvm]-track-selection-dialog/will-have-content.html
+$dokka.location:com.penthera.harnessx.player/VideoPlayerActivity2.Companion///PointingToDeclaration/harnessx/com.penthera.harnessx.player/[android-jvm]-video-player-activity2/-companion/index.html
+$dokka.location:com.penthera.harnessx.player/VideoPlayerActivity2.Companion/playStream/#kotlin.String#android.content.Context/PointingToDeclaration/harnessx/com.penthera.harnessx.player/[android-jvm]-video-player-activity2/-companion/play-stream.html
+$dokka.location:com.penthera.harnessx.player/VideoPlayerActivity2.Companion/playVideoDownload/#kotlin.String#android.content.Context/PointingToDeclaration/harnessx/com.penthera.harnessx.player/[android-jvm]-video-player-activity2/-companion/play-video-download.html
+$dokka.location:com.penthera.harnessx.player/VideoPlayerActivity2///PointingToDeclaration/harnessx/com.penthera.harnessx.player/[android-jvm]-video-player-activity2/index.html
+$dokka.location:com.penthera.harnessx.player/VideoPlayerActivity2/VideoPlayerActivity2/#/PointingToDeclaration/harnessx/com.penthera.harnessx.player/[android-jvm]-video-player-activity2/-video-player-activity2.html
+$dokka.location:com.penthera.harnessx.player/VideoPlayerActivity2/bitrateChangeReported/#com.penthera.playassure.PlayAssureStatusInfo/PointingToDeclaration/harnessx/com.penthera.harnessx.player/[android-jvm]-video-player-activity2/bitrate-change-reported.html
+$dokka.location:com.penthera.harnessx.player/VideoPlayerActivity2/initializationComplete/#com.penthera.playassure.InitializationResult/PointingToDeclaration/harnessx/com.penthera.harnessx.player/[android-jvm]-video-player-activity2/initialization-complete.html
+$dokka.location:com.penthera.harnessx.player/VideoPlayerActivity2/networkReachabilityChanged/#kotlin.Boolean/PointingToDeclaration/harnessx/com.penthera.harnessx.player/[android-jvm]-video-player-activity2/network-reachability-changed.html
+$dokka.location:com.penthera.harnessx.player/VideoPlayerActivity2/onCreate/#android.os.Bundle?/PointingToDeclaration/harnessx/com.penthera.harnessx.player/[android-jvm]-video-player-activity2/on-create.html
+$dokka.location:com.penthera.harnessx.player/VideoPlayerActivity2/onDestroy/#/PointingToDeclaration/harnessx/com.penthera.harnessx.player/[android-jvm]-video-player-activity2/on-destroy.html
+$dokka.location:com.penthera.harnessx.player/VideoPlayerActivity2/onNewIntent/#android.content.Intent/PointingToDeclaration/harnessx/com.penthera.harnessx.player/[android-jvm]-video-player-activity2/on-new-intent.html
+$dokka.location:com.penthera.harnessx.player/VideoPlayerActivity2/onPause/#/PointingToDeclaration/harnessx/com.penthera.harnessx.player/[android-jvm]-video-player-activity2/on-pause.html
+$dokka.location:com.penthera.harnessx.player/VideoPlayerActivity2/onRequestPermissionsResult/#kotlin.Int#kotlin.Array[kotlin.String]#kotlin.IntArray/PointingToDeclaration/harnessx/com.penthera.harnessx.player/[android-jvm]-video-player-activity2/on-request-permissions-result.html
+$dokka.location:com.penthera.harnessx.player/VideoPlayerActivity2/onStart/#/PointingToDeclaration/harnessx/com.penthera.harnessx.player/[android-jvm]-video-player-activity2/on-start.html
+$dokka.location:com.penthera.harnessx.player/VideoPlayerActivity2/onStop/#/PointingToDeclaration/harnessx/com.penthera.harnessx.player/[android-jvm]-video-player-activity2/on-stop.html
+$dokka.location:com.penthera.harnessx.player/VideoPlayerActivity2/progressReported/#com.penthera.playassure.PlayAssureStatusInfo/PointingToDeclaration/harnessx/com.penthera.harnessx.player/[android-jvm]-video-player-activity2/progress-reported.html
+$dokka.location:com.penthera.harnessx.player/VideoPlayerActivity2/reportEngineStatusChanged/#com.penthera.playassure.PlayAssureEngineState/PointingToDeclaration/harnessx/com.penthera.harnessx.player/[android-jvm]-video-player-activity2/report-engine-status-changed.html
+$dokka.location:com.penthera.harnessx.player/VideoPlayerActivity2/reportNetworkFail/#/PointingToDeclaration/harnessx/com.penthera.harnessx.player/[android-jvm]-video-player-activity2/report-network-fail.html
+$dokka.location:com.penthera.harnessx.player/VideoPlayerActivity2/reportParsingFail/#com.penthera.playassure.PlayAssureError#kotlin.String/PointingToDeclaration/harnessx/com.penthera.harnessx.player/[android-jvm]-video-player-activity2/report-parsing-fail.html
+$dokka.location:com.penthera.harnessx.player/VideoPlayerActivity2/reportParsingSuccess/#/PointingToDeclaration/harnessx/com.penthera.harnessx.player/[android-jvm]-video-player-activity2/report-parsing-success.html
+$dokka.location:com.penthera.harnessx.player/VideoPlayerActivity2/reportPlaybackFail/#com.penthera.playassure.PlayAssureError#kotlin.String/PointingToDeclaration/harnessx/com.penthera.harnessx.player/[android-jvm]-video-player-activity2/report-playback-fail.html
+$dokka.location:com.penthera.harnessx.player/VideoPlayerActivity2/reportPlaybackThrottled/#kotlin.Boolean/PointingToDeclaration/harnessx/com.penthera.harnessx.player/[android-jvm]-video-player-activity2/report-playback-throttled.html
+$dokka.location:com.penthera.playassureharness.player/TrackSelectionDialog.Companion///PointingToDeclaration/playassureharness/com.penthera.playassureharness.player/[android-jvm]-track-selection-dialog/-companion/index.html
+$dokka.location:com.penthera.playassureharness.player/TrackSelectionDialog.Companion/createForTrackSelector/#com.google.android.exoplayer2.trackselection.DefaultTrackSelector#android.content.DialogInterface.OnDismissListener/PointingToDeclaration/playassureharness/com.penthera.playassureharness.player/[android-jvm]-track-selection-dialog/-companion/create-for-track-selector.html
+$dokka.location:com.penthera.playassureharness.player/TrackSelectionDialog.Companion/willHaveContent/#com.google.android.exoplayer2.trackselection.DefaultTrackSelector/PointingToDeclaration/playassureharness/com.penthera.playassureharness.player/[android-jvm]-track-selection-dialog/-companion/will-have-content.html
+$dokka.location:com.penthera.playassureharness.player/TrackSelectionDialog.Companion/willHaveContent/#com.google.android.exoplayer2.trackselection.MappingTrackSelector.MappedTrackInfo/PointingToDeclaration/playassureharness/com.penthera.playassureharness.player/[android-jvm]-track-selection-dialog/-companion/will-have-content.html
+$dokka.location:com.penthera.playassureharness.player/TrackSelectionDialog.TrackSelectionViewFragment///PointingToDeclaration/playassureharness/com.penthera.playassureharness.player/[android-jvm]-track-selection-dialog/-track-selection-view-fragment/index.html
+$dokka.location:com.penthera.playassureharness.player/TrackSelectionDialog.TrackSelectionViewFragment/TrackSelectionViewFragment/#/PointingToDeclaration/playassureharness/com.penthera.playassureharness.player/[android-jvm]-track-selection-dialog/-track-selection-view-fragment/-track-selection-view-fragment.html
+$dokka.location:com.penthera.playassureharness.player/TrackSelectionDialog.TrackSelectionViewFragment/init/#com.google.android.exoplayer2.trackselection.MappingTrackSelector.MappedTrackInfo?#kotlin.Int#kotlin.Boolean#com.google.android.exoplayer2.trackselection.DefaultTrackSelector.SelectionOverride?#kotlin.Boolean#kotlin.Boolean/PointingToDeclaration/playassureharness/com.penthera.playassureharness.player/[android-jvm]-track-selection-dialog/-track-selection-view-fragment/init.html
+$dokka.location:com.penthera.playassureharness.player/TrackSelectionDialog.TrackSelectionViewFragment/isDisabled/#/PointingToDeclaration/playassureharness/com.penthera.playassureharness.player/[android-jvm]-track-selection-dialog/-track-selection-view-fragment/is-disabled.html
+$dokka.location:com.penthera.playassureharness.player/TrackSelectionDialog.TrackSelectionViewFragment/onCreateView/#android.view.LayoutInflater#android.view.ViewGroup?#android.os.Bundle?/PointingToDeclaration/playassureharness/com.penthera.playassureharness.player/[android-jvm]-track-selection-dialog/-track-selection-view-fragment/on-create-view.html
+$dokka.location:com.penthera.playassureharness.player/TrackSelectionDialog.TrackSelectionViewFragment/onTrackSelectionChanged/#kotlin.Boolean#kotlin.collections.List[com.google.android.exoplayer2.trackselection.DefaultTrackSelector.SelectionOverride]/PointingToDeclaration/playassureharness/com.penthera.playassureharness.player/[android-jvm]-track-selection-dialog/-track-selection-view-fragment/on-track-selection-changed.html
+$dokka.location:com.penthera.playassureharness.player/TrackSelectionDialog.TrackSelectionViewFragment/overrides/#/PointingToDeclaration/playassureharness/com.penthera.playassureharness.player/[android-jvm]-track-selection-dialog/-track-selection-view-fragment/overrides.html
+$dokka.location:com.penthera.playassureharness.player/TrackSelectionDialog///PointingToDeclaration/playassureharness/com.penthera.playassureharness.player/[android-jvm]-track-selection-dialog/index.html
+$dokka.location:com.penthera.playassureharness.player/TrackSelectionDialog/TrackSelectionDialog/#/PointingToDeclaration/playassureharness/com.penthera.playassureharness.player/[android-jvm]-track-selection-dialog/-track-selection-dialog.html
+$dokka.location:com.penthera.playassureharness.player/TrackSelectionDialog/getIsDisabled/#kotlin.Int/PointingToDeclaration/playassureharness/com.penthera.playassureharness.player/[android-jvm]-track-selection-dialog/get-is-disabled.html
+$dokka.location:com.penthera.playassureharness.player/TrackSelectionDialog/getOverrides/#kotlin.Int/PointingToDeclaration/playassureharness/com.penthera.playassureharness.player/[android-jvm]-track-selection-dialog/get-overrides.html
+$dokka.location:com.penthera.playassureharness.player/TrackSelectionDialog/onCreateDialog/#android.os.Bundle?/PointingToDeclaration/playassureharness/com.penthera.playassureharness.player/[android-jvm]-track-selection-dialog/on-create-dialog.html
+$dokka.location:com.penthera.playassureharness.player/TrackSelectionDialog/onCreateView/#android.view.LayoutInflater#android.view.ViewGroup?#android.os.Bundle?/PointingToDeclaration/playassureharness/com.penthera.playassureharness.player/[android-jvm]-track-selection-dialog/on-create-view.html
+$dokka.location:com.penthera.playassureharness.player/TrackSelectionDialog/onDismiss/#android.content.DialogInterface/PointingToDeclaration/playassureharness/com.penthera.playassureharness.player/[android-jvm]-track-selection-dialog/on-dismiss.html
+$dokka.location:com.penthera.playassureharness.player/VideoPlayerActivity.Companion///PointingToDeclaration/playassureharness/com.penthera.playassureharness.player/[android-jvm]-video-player-activity/-companion/index.html
+$dokka.location:com.penthera.playassureharness.player/VideoPlayerActivity.Companion/playVideoDownload/#kotlin.String#android.content.Context/PointingToDeclaration/playassureharness/com.penthera.playassureharness.player/[android-jvm]-video-player-activity/-companion/play-video-download.html
+$dokka.location:com.penthera.playassureharness.player/VideoPlayerActivity///PointingToDeclaration/playassureharness/com.penthera.playassureharness.player/[android-jvm]-video-player-activity/index.html
+$dokka.location:com.penthera.playassureharness.player/VideoPlayerActivity/VideoPlayerActivity/#/PointingToDeclaration/playassureharness/com.penthera.playassureharness.player/[android-jvm]-video-player-activity/-video-player-activity.html
+$dokka.location:com.penthera.playassureharness.player/VideoPlayerActivity/dispatchKeyEvent/#android.view.KeyEvent/PointingToDeclaration/playassureharness/com.penthera.playassureharness.player/[android-jvm]-video-player-activity/dispatch-key-event.html
+$dokka.location:com.penthera.playassureharness.player/VideoPlayerActivity/onClick/#android.view.View/PointingToDeclaration/playassureharness/com.penthera.playassureharness.player/[android-jvm]-video-player-activity/on-click.html
+$dokka.location:com.penthera.playassureharness.player/VideoPlayerActivity/onCreate/#android.os.Bundle?/PointingToDeclaration/playassureharness/com.penthera.playassureharness.player/[android-jvm]-video-player-activity/on-create.html
+$dokka.location:com.penthera.playassureharness.player/VideoPlayerActivity/onNewIntent/#android.content.Intent/PointingToDeclaration/playassureharness/com.penthera.playassureharness.player/[android-jvm]-video-player-activity/on-new-intent.html
+$dokka.location:com.penthera.playassureharness.player/VideoPlayerActivity/onPause/#/PointingToDeclaration/playassureharness/com.penthera.playassureharness.player/[android-jvm]-video-player-activity/on-pause.html
+$dokka.location:com.penthera.playassureharness.player/VideoPlayerActivity/onRequestPermissionsResult/#kotlin.Int#kotlin.Array[kotlin.String]#kotlin.IntArray/PointingToDeclaration/playassureharness/com.penthera.playassureharness.player/[android-jvm]-video-player-activity/on-request-permissions-result.html
+$dokka.location:com.penthera.playassureharness.player/VideoPlayerActivity/onResume/#/PointingToDeclaration/playassureharness/com.penthera.playassureharness.player/[android-jvm]-video-player-activity/on-resume.html
+$dokka.location:com.penthera.playassureharness.player/VideoPlayerActivity/onStart/#/PointingToDeclaration/playassureharness/com.penthera.playassureharness.player/[android-jvm]-video-player-activity/on-start.html
+$dokka.location:com.penthera.playassureharness.player/VideoPlayerActivity/onStop/#/PointingToDeclaration/playassureharness/com.penthera.playassureharness.player/[android-jvm]-video-player-activity/on-stop.html
+$dokka.location:com.penthera.playassureharness.player/VideoPlayerActivity/onVisibilityChange/#kotlin.Int/PointingToDeclaration/playassureharness/com.penthera.playassureharness.player/[android-jvm]-video-player-activity/on-visibility-change.html
+$dokka.location:com.penthera.playassureharness.player/VideoPlayerActivity2.Companion///PointingToDeclaration/playassureharness/com.penthera.playassureharness.player/[android-jvm]-video-player-activity2/-companion/index.html
+$dokka.location:com.penthera.playassureharness.player/VideoPlayerActivity2.Companion/playStream/#kotlin.String#android.content.Context/PointingToDeclaration/playassureharness/com.penthera.playassureharness.player/[android-jvm]-video-player-activity2/-companion/play-stream.html
+$dokka.location:com.penthera.playassureharness.player/VideoPlayerActivity2.Companion/playVideoDownload/#kotlin.String#android.content.Context/PointingToDeclaration/playassureharness/com.penthera.playassureharness.player/[android-jvm]-video-player-activity2/-companion/play-video-download.html
+$dokka.location:com.penthera.playassureharness.player/VideoPlayerActivity2///PointingToDeclaration/playassureharness/com.penthera.playassureharness.player/[android-jvm]-video-player-activity2/index.html
+$dokka.location:com.penthera.playassureharness.player/VideoPlayerActivity2/VideoPlayerActivity2/#/PointingToDeclaration/playassureharness/com.penthera.playassureharness.player/[android-jvm]-video-player-activity2/-video-player-activity2.html
+$dokka.location:com.penthera.playassureharness.player/VideoPlayerActivity2/bitrateChangeReported/#com.penthera.playassure.PlayAssureStatusInfo/PointingToDeclaration/playassureharness/com.penthera.playassureharness.player/[android-jvm]-video-player-activity2/bitrate-change-reported.html
+$dokka.location:com.penthera.playassureharness.player/VideoPlayerActivity2/dispatchKeyEvent/#android.view.KeyEvent/PointingToDeclaration/playassureharness/com.penthera.playassureharness.player/[android-jvm]-video-player-activity2/dispatch-key-event.html
+$dokka.location:com.penthera.playassureharness.player/VideoPlayerActivity2/initializationComplete/#com.penthera.playassure.InitializationResult/PointingToDeclaration/playassureharness/com.penthera.playassureharness.player/[android-jvm]-video-player-activity2/initialization-complete.html
+$dokka.location:com.penthera.playassureharness.player/VideoPlayerActivity2/networkReachabilityChanged/#kotlin.Boolean/PointingToDeclaration/playassureharness/com.penthera.playassureharness.player/[android-jvm]-video-player-activity2/network-reachability-changed.html
+$dokka.location:com.penthera.playassureharness.player/VideoPlayerActivity2/onClick/#android.view.View/PointingToDeclaration/playassureharness/com.penthera.playassureharness.player/[android-jvm]-video-player-activity2/on-click.html
+$dokka.location:com.penthera.playassureharness.player/VideoPlayerActivity2/onCreate/#android.os.Bundle?/PointingToDeclaration/playassureharness/com.penthera.playassureharness.player/[android-jvm]-video-player-activity2/on-create.html
+$dokka.location:com.penthera.playassureharness.player/VideoPlayerActivity2/onDestroy/#/PointingToDeclaration/playassureharness/com.penthera.playassureharness.player/[android-jvm]-video-player-activity2/on-destroy.html
+$dokka.location:com.penthera.playassureharness.player/VideoPlayerActivity2/onNewIntent/#android.content.Intent/PointingToDeclaration/playassureharness/com.penthera.playassureharness.player/[android-jvm]-video-player-activity2/on-new-intent.html
+$dokka.location:com.penthera.playassureharness.player/VideoPlayerActivity2/onRequestPermissionsResult/#kotlin.Int#kotlin.Array[kotlin.String]#kotlin.IntArray/PointingToDeclaration/playassureharness/com.penthera.playassureharness.player/[android-jvm]-video-player-activity2/on-request-permissions-result.html
+$dokka.location:com.penthera.playassureharness.player/VideoPlayerActivity2/onStart/#/PointingToDeclaration/playassureharness/com.penthera.playassureharness.player/[android-jvm]-video-player-activity2/on-start.html
+$dokka.location:com.penthera.playassureharness.player/VideoPlayerActivity2/onStop/#/PointingToDeclaration/playassureharness/com.penthera.playassureharness.player/[android-jvm]-video-player-activity2/on-stop.html
+$dokka.location:com.penthera.playassureharness.player/VideoPlayerActivity2/onVisibilityChange/#kotlin.Int/PointingToDeclaration/playassureharness/com.penthera.playassureharness.player/[android-jvm]-video-player-activity2/on-visibility-change.html
+$dokka.location:com.penthera.playassureharness.player/VideoPlayerActivity2/progressReported/#com.penthera.playassure.PlayAssureStatusInfo/PointingToDeclaration/playassureharness/com.penthera.playassureharness.player/[android-jvm]-video-player-activity2/progress-reported.html
+$dokka.location:com.penthera.playassureharness.player/VideoPlayerActivity2/reportEngineStatusChanged/#com.penthera.playassure.PlayAssureEngineState/PointingToDeclaration/playassureharness/com.penthera.playassureharness.player/[android-jvm]-video-player-activity2/report-engine-status-changed.html
+$dokka.location:com.penthera.playassureharness.player/VideoPlayerActivity2/reportNetworkFail/#/PointingToDeclaration/playassureharness/com.penthera.playassureharness.player/[android-jvm]-video-player-activity2/report-network-fail.html
+$dokka.location:com.penthera.playassureharness.player/VideoPlayerActivity2/reportParsingFail/#com.penthera.playassure.PlayAssureError#kotlin.String/PointingToDeclaration/playassureharness/com.penthera.playassureharness.player/[android-jvm]-video-player-activity2/report-parsing-fail.html
+$dokka.location:com.penthera.playassureharness.player/VideoPlayerActivity2/reportParsingSuccess/#/PointingToDeclaration/playassureharness/com.penthera.playassureharness.player/[android-jvm]-video-player-activity2/report-parsing-success.html
+$dokka.location:com.penthera.playassureharness.player/VideoPlayerActivity2/reportPlaybackFail/#com.penthera.playassure.PlayAssureError#kotlin.String/PointingToDeclaration/playassureharness/com.penthera.playassureharness.player/[android-jvm]-video-player-activity2/report-playback-fail.html
+$dokka.location:com.penthera.playassureharness.player/VideoPlayerActivity2/reportPlaybackThrottled/#kotlin.Boolean/PointingToDeclaration/playassureharness/com.penthera.playassureharness.player/[android-jvm]-video-player-activity2/report-playback-throttled.html
 module:Download2Go AndroidX Extension Support Library
 com.penthera.virtuososdk.androidxsupport
+module:Automation
+com.penthera.autotesting
+com.penthera.autotesting.activities
+com.penthera.autotesting.constants
+com.penthera.autotesting.data
+com.penthera.autotesting.data.testreport
+com.penthera.autotesting.dummydevicerequests
+com.penthera.autotesting.dummydevicerequests.payload
+com.penthera.autotesting.fragments
+com.penthera.autotesting.helper
+com.penthera.autotesting.model
+com.penthera.autotesting.model.testcases
+com.penthera.autotesting.model.testcases.downloaderrorcases
+com.penthera.autotesting.model.testcases.downloadlimit
+com.penthera.autotesting.model.testcases.downloadstatus
+com.penthera.autotesting.model.testcases.drmcases
+com.penthera.autotesting.model.testcases.manifesterrors
+com.penthera.autotesting.model.teststeps
+com.penthera.autotesting.model.teststeps.validator
+com.penthera.autotesting.modelview.model
+com.penthera.autotesting.observers
+com.penthera.autotesting.player
+com.penthera.autotesting.recyclerview
+module:Backgrounder
+com.penthera.backgrounder
+com.penthera.backgrounder.model
 module:Download2Go Media3 ExoPlayer 1.1.* Support Library
 com.penthera.virtuososdk.support.androidx.media311
 com.penthera.virtuososdk.support.androidx.media311.drm
@@ -27,14 +280,48 @@ com.penthera.virtuososdk.support.exoplayer218.drm
 module:Download2Go Android ExoPlayer 2.19.* Support Library
 com.penthera.virtuososdk.support.exoplayer219
 com.penthera.virtuososdk.support.exoplayer219.drm
+module:Harness
+com.penthera.harness
+com.penthera.harness.catalog
+com.penthera.harness.dialog
+com.penthera.harness.drm
+com.penthera.harness.livedata
+com.penthera.harness.notification
+com.penthera.harness.player
+module:harnessx
+com.penthera.harnessx
+com.penthera.harnessx.backgroundprocessing
+com.penthera.harnessx.basecomponents
+com.penthera.harnessx.catalog
+com.penthera.harnessx.drm
+com.penthera.harnessx.notification
+com.penthera.harnessx.playassure.catalog
+com.penthera.harnessx.player
+com.penthera.harnessx.push
+com.penthera.harnessx.ui
+com.penthera.harnessx.ui.activity
+com.penthera.harnessx.ui.adapter
+com.penthera.harnessx.ui.dialog
+com.penthera.harnessx.ui.fragment
+com.penthera.harnessx.ui.playassurecatalog
+com.penthera.harnessx.ui.playassuresettings
+com.penthera.harnessx.ui.viewmodel
+com.penthera.harnessx.utility
 module:Penthera Common Library
-com.penthera
 com.penthera.common
 com.penthera.virtuososdk.client
 com.penthera.virtuososdk.client.ads
 com.penthera.virtuososdk.client.drm
 module:PlayAssure SDK Library
 com.penthera.playassure
+module:playassureharness
+com.penthera.playassureharness
+com.penthera.playassureharness.catalog
+com.penthera.playassureharness.player
+com.penthera.playassureharness.ui.catalog
+com.penthera.playassureharness.ui.register
+com.penthera.playassureharness.ui.settings
+com.penthera.playassureharness.utility
 module:Download2Go Android SDK
 com.penthera
 com.penthera.virtuososdk
@@ -45,3 +332,5 @@ com.penthera.virtuososdk.client.drm
 com.penthera.virtuososdk.client.drm.castlabs
 com.penthera.virtuososdk.client.push
 com.penthera.virtuososdk.service
+module:TestHarness
+com.penthera.testharness

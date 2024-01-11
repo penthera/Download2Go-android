@@ -3,12 +3,19 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
     <title>Download2Go Android SDK</title>
-<link href="../images/logo-icon.svg" rel="icon" type="image/svg">
-    <script>var pathToRoot = "../";</script>    <script>const storage = localStorage.getItem("dokka-dark-mode")
-const savedDarkMode = storage ? JSON.parse(storage) : false
-if(savedDarkMode === true){
-    document.getElementsByTagName("html")[0].classList.add("theme-dark")
-}</script>
+<link href="../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../";</script>    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
 <script type="text/javascript" src="../scripts/sourceset_dependencies.js" async></script>
 <link href="../styles/style.css" rel="Stylesheet">
 <link href="../styles/jetbrains-mono.css" rel="Stylesheet">
@@ -19,7 +26,8 @@ if(savedDarkMode === true){
 <script type="text/javascript" src="../scripts/navigation-loader.js" async></script>
 <script type="text/javascript" src="../scripts/platform-content-handler.js" async></script>
 <script type="text/javascript" src="../scripts/main.js" defer></script>
-<script type="text/javascript" src="../scripts/prism.js" async></script></head>
+<script type="text/javascript" src="../scripts/prism.js" async></script>
+<script type="text/javascript" src="../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
 <body>
 <div class="navigation-wrapper" id="navigation-wrapper">
     <div id="leftToggler"><span class="icon-toggler"></span></div>
@@ -29,6 +37,9 @@ if(savedDarkMode === true){
     <div>
     </div>
     <div class="pull-right d-flex">
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":SDK:dokkaHtmlPartial/release">androidJvm</button>
+        </div>
         <button id="theme-toggle-button"><span id="theme-toggle"></span></button>
         <div id="searchBar"></div>
     </div>
@@ -42,7 +53,7 @@ if(savedDarkMode === true){
   <div class="breadcrumbs"></div>
   <div class="cover ">
     <h1 class="cover"><span><span>Download2Go</span></span> <span><span>Android</span></span> <span><span>SDK</span></span></h1>
-    <div class="platform-hinted UnderCoverText" data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><p class="paragraph">The Penthera Download SDK, providing functionality for download, fastplay, and playlists.</p></div></div>
+    <div class="platform-hinted UnderCoverText" data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":SDK:dokkaHtmlPartial/release"><p class="paragraph">The Penthera Download SDK, providing functionality for download, fastplay, and playlists.</p></div></div>
   </div>
   <h2 class="">Packages</h2>
   <div class="table"><a data-name="-1793720682%2FPackages%2F1607690379" anchor-label="com.penthera" id="-1793720682%2FPackages%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
@@ -54,7 +65,11 @@ if(savedDarkMode === true){
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1793720682%2FPackages%2F1607690379"></span>
                 <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
               </span></span></div>
-          <div class="pull-right"></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag jvm-like">androidJvm</div>
+            </div>
+          </div>
         </div>
         <div><span class="brief-comment"><a data-name="-1793720682%2FPackages%2F1607690379" anchor-label="com.penthera" id="-1793720682%2FPackages%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
             <p class="paragraph">Penthera top level package containing only a utility class which reports the build version details for the SDK.</p>
@@ -70,7 +85,11 @@ if(savedDarkMode === true){
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1236572311%2FPackages%2F1607690379"></span>
                 <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
               </span></span></div>
-          <div class="pull-right"></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag jvm-like">androidJvm</div>
+            </div>
+          </div>
         </div>
         <div><span class="brief-comment"><a data-name="1236572311%2FPackages%2F1607690379" anchor-label="com.penthera.virtuososdk" id="1236572311%2FPackages%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
             <p class="paragraph">Download SDK top level package, containing a class which defines constants for the SDK.</p>
@@ -86,7 +105,11 @@ if(savedDarkMode === true){
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1878636486%2FPackages%2F1607690379"></span>
                 <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
               </span></span></div>
-          <div class="pull-right"></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag jvm-like">androidJvm</div>
+            </div>
+          </div>
         </div>
         <div><span class="brief-comment"><a data-name="1878636486%2FPackages%2F1607690379" anchor-label="com.penthera.virtuososdk.client" id="1878636486%2FPackages%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
             <p class="paragraph">The client package within the Download SDK contains all of the key client APIs for working with the SDK. The top level package contains all the key interfaces, while sub-packages contain specific extensions such as for DRM or push notification support.</p>
@@ -102,7 +125,11 @@ if(savedDarkMode === true){
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1124047523%2FPackages%2F1607690379"></span>
                 <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
               </span></span></div>
-          <div class="pull-right"></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag jvm-like">androidJvm</div>
+            </div>
+          </div>
         </div>
         <div><span class="brief-comment"><a data-name="1124047523%2FPackages%2F1607690379" anchor-label="com.penthera.virtuososdk.client.autodownload" id="1124047523%2FPackages%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
             <p class="paragraph">Interfaces relating to the autodownload, or playlist, features of the SDK. These enable the definition of playlists and rules that will download the next item in the playlist when the previous item is deleted.</p>
@@ -118,7 +145,11 @@ if(savedDarkMode === true){
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1805458788%2FPackages%2F1607690379"></span>
                 <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
               </span></span></div>
-          <div class="pull-right"></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag jvm-like">androidJvm</div>
+            </div>
+          </div>
         </div>
         <div><span class="brief-comment"><a data-name="1805458788%2FPackages%2F1607690379" anchor-label="com.penthera.virtuososdk.client.builders" id="1805458788%2FPackages%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
             <p class="paragraph">A collection of builders for the parameters required to specify an asset for download. Use these builders to create the asset parameters and then pass them to the create methods in the IAssetManager to queue assets for download or fastplay.</p>
@@ -134,7 +165,11 @@ if(savedDarkMode === true){
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1302145335%2FPackages%2F1607690379"></span>
                 <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
               </span></span></div>
-          <div class="pull-right"></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag jvm-like">androidJvm</div>
+            </div>
+          </div>
         </div>
         <div><span class="brief-comment"><a data-name="1302145335%2FPackages%2F1607690379" anchor-label="com.penthera.virtuososdk.client.drm" id="1302145335%2FPackages%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
             <p class="paragraph">Contains the default LicenseManager implementation for Widevine DRM, this should be extended to implement at a minimum the method providing the URL for license requests.</p>
@@ -150,7 +185,11 @@ if(savedDarkMode === true){
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="691463392%2FPackages%2F1607690379"></span>
                 <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
               </span></span></div>
-          <div class="pull-right"></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag jvm-like">androidJvm</div>
+            </div>
+          </div>
         </div>
         <div><span class="brief-comment"><a data-name="691463392%2FPackages%2F1607690379" anchor-label="com.penthera.virtuososdk.client.drm.castlabs" id="691463392%2FPackages%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
             <p class="paragraph">A license manager implementation for castlabs DRM request and response formats.</p>
@@ -166,7 +205,11 @@ if(savedDarkMode === true){
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-814561594%2FPackages%2F1607690379"></span>
                 <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
               </span></span></div>
-          <div class="pull-right"></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag jvm-like">androidJvm</div>
+            </div>
+          </div>
         </div>
         <div><span class="brief-comment"><a data-name="-814561594%2FPackages%2F1607690379" anchor-label="com.penthera.virtuososdk.client.push" id="-814561594%2FPackages%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
             <p class="paragraph">Classes for support Firebase or Amazon push messaging services with the SDK.</p>
@@ -182,7 +225,11 @@ if(savedDarkMode === true){
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1126592414%2FPackages%2F1607690379"></span>
                 <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
               </span></span></div>
-          <div class="pull-right"></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag jvm-like">androidJvm</div>
+            </div>
+          </div>
         </div>
         <div><span class="brief-comment"><a data-name="1126592414%2FPackages%2F1607690379" anchor-label="com.penthera.virtuososdk.service" id="1126592414%2FPackages%2F1607690379" data-filterable-set=":SDK:dokkaHtmlPartial/release"></a>
             <p class="paragraph">This package contains the service starter classes which much be derived when integrating with the download SDK in order to ensure the download service can be started or restarted upon OS level events.</p>
@@ -191,10 +238,11 @@ if(savedDarkMode === true){
     </div>
   </div>
 </div>
-        <div class="footer"><span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2023 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
-        </div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2024 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
     </div>
 </div>
-
-</body></html>
+</body>
+</html>
 

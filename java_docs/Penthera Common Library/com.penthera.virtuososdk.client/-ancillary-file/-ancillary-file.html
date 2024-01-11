@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>AncillaryFile</title>
+<!--[+]cmd:{"@class":"org.jetbrains.dokka.base.templating.PathToRootSubstitutionCommand","pattern":"###","default":"../../"}-->    <link href="###images/logo-icon.svg" rel="icon" type="image/svg">
+<!--[-]cmd--><!--[+]cmd:{"@class":"org.jetbrains.dokka.base.templating.PathToRootSubstitutionCommand","pattern":"###","default":"../../"}-->    <script>var pathToRoot = "###";</script>
+<!--[-]cmd-->    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<!--[+]cmd:{"@class":"org.jetbrains.dokka.base.templating.PathToRootSubstitutionCommand","pattern":"###","default":"../../"}--><script type="text/javascript" src="###scripts/sourceset_dependencies.js" async="async"></script>
+<link href="###styles/style.css" rel="Stylesheet">
+<link href="###styles/jetbrains-mono.css" rel="Stylesheet">
+<link href="###styles/main.css" rel="Stylesheet">
+<link href="###styles/prism.css" rel="Stylesheet">
+<link href="###styles/logo-styles.css" rel="Stylesheet">
+<script type="text/javascript" src="###scripts/clipboard.js" async="async"></script>
+<script type="text/javascript" src="###scripts/navigation-loader.js" async="async"></script>
+<script type="text/javascript" src="###scripts/platform-content-handler.js" async="async"></script>
+<script type="text/javascript" src="###scripts/main.js" defer="defer"></script>
+<script type="text/javascript" src="###scripts/prism.js" async="async"></script>
+<script type="text/javascript" src="###scripts/symbol-parameters-wrapper_deferred.js" defer="defer"></script>
+<!--[-]cmd--></head>
+<body>
+<div class="navigation-wrapper" id="navigation-wrapper">
+    <div id="leftToggler"><span class="icon-toggler"></span></div>
+    <div class="library-name">
+<!--[+]cmd:{"@class":"org.jetbrains.dokka.base.templating.PathToRootSubstitutionCommand","pattern":"###","default":"../../"}-->            <a href="###index.html">
+<!--[+]cmd:{"@class":"org.jetbrains.dokka.base.templating.ProjectNameSubstitutionCommand","pattern":"###","default":"Penthera Common Library"}-->                    <span>###</span>
+<!--[-]cmd-->            </a>
+<!--[-]cmd-->    </div>
+    <div>
+<dokka-template-command data="{&quot;@class&quot;:&quot;org.jetbrains.dokka.base.templating.ReplaceVersionsCommand&quot;,&quot;location&quot;:&quot;com.penthera.virtuososdk.client/-ancillary-file/-ancillary-file.html&quot;}"></dokka-template-command>    </div>
+    <div class="pull-right d-flex">
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":penthera-common:dokkaHtmlPartial/main">Penthera Common Library</button>
+        </div>
+        <button id="theme-toggle-button"><span id="theme-toggle"></span></button>
+        <div id="searchBar"></div>
+    </div>
+</div>
+<div id="container">
+    <div id="leftColumn">
+        <div id="sideMenu"></div>
+    </div>
+    <div id="main">
+<div class="main-content" data-page-type="member" id="content" pageIds="Penthera Common Library::com.penthera.virtuososdk.client/AncillaryFile/AncillaryFile/#java.net.URL#java.lang.String#java.lang.String[]/PointingToDeclaration//-25591989">
+  <div class="breadcrumbs"><a href="../../index.html">Penthera Common Library</a><span class="delimiter">/</span><a href="../index.html">com.penthera.virtuososdk.client</a><span class="delimiter">/</span><a href="index.html">AncillaryFile</a><span class="delimiter">/</span><span class="current">AncillaryFile</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Ancillary</span><wbr></wbr><span><span>File</span></span></h1>
+  </div>
+  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":penthera-common:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">src<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/net/URL.html">URL</a><span class="token punctuation">, </span></span><span class="parameter ">description<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">tags<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html">Array</a><span class="token operator">&lt;</span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span></div><p class="paragraph">Constructor taking the source URL, a description, and any String tags which can be used for management of the files. Files created using this constructor will be stored within a folder within the same location as the segment files.</p><h4 class="">Parameters</h4><div class="table"><div class="table-row" data-filterable-current=":penthera-common:dokkaHtmlPartial/main" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span><span>src</span></span></u></div></span></div><div><div class="title"><p class="paragraph">The source URL.</p></div></div></div></div><div class="table-row" data-filterable-current=":penthera-common:dokkaHtmlPartial/main" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span><span>description</span></span></u></div></span></div><div><div class="title"><p class="paragraph">A description.</p></div></div></div></div><div class="table-row" data-filterable-current=":penthera-common:dokkaHtmlPartial/main" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span><span>tags</span></span></u></div></span></div><div><div class="title"><p class="paragraph">A string array containing tags for the file.</p></div></div></div></div></div><hr><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">src<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/net/URL.html">URL</a><span class="token punctuation">, </span></span><span class="parameter ">description<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">tags<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html">Array</a><span class="token operator">&lt;</span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">path<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span><span class="token annotation builtin">@</span><a href="https://docs.oracle.com/javase/8/docs/api/javax/annotation/Nullable.html"><span class="token annotation builtin">Nullable</span></a> </span>playbackUrl<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/net/URL.html">URL</a></span></span><span class="token punctuation">)</span></div><p class="paragraph">Constructor taking the source URL, a description, any tags used for management of the files, and also a local path for where the additional files should be stored and the playback url. This constructor is used by the SDK to create objects returned to the client.</p><h4 class="">Parameters</h4><div class="table"><div class="table-row" data-filterable-current=":penthera-common:dokkaHtmlPartial/main" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span><span>src</span></span></u></div></span></div><div><div class="title"><p class="paragraph">The source URL.</p></div></div></div></div><div class="table-row" data-filterable-current=":penthera-common:dokkaHtmlPartial/main" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span><span>description</span></span></u></div></span></div><div><div class="title"><p class="paragraph">A description.</p></div></div></div></div><div class="table-row" data-filterable-current=":penthera-common:dokkaHtmlPartial/main" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span><span>tags</span></span></u></div></span></div><div><div class="title"><p class="paragraph">A string array containing tags for the file.</p></div></div></div></div><div class="table-row" data-filterable-current=":penthera-common:dokkaHtmlPartial/main" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span><span>path</span></span></u></div></span></div><div><div class="title"><p class="paragraph">The local path for where the file should be saved. Must be a valid local path.</p></div></div></div></div><div class="table-row" data-filterable-current=":penthera-common:dokkaHtmlPartial/main" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>playback</span><wbr></wbr><span><span>Url</span></span></u></div></span></div><div><div class="title"><p class="paragraph">The playback URL for playback via the local proxy</p></div></div></div></div></div></div></div>
+</div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2024 Copyright</span><span
+                class="pull-right"><span>Generated by </span><a
+                href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
+    </div>
+</div>
+</body>
+</html>

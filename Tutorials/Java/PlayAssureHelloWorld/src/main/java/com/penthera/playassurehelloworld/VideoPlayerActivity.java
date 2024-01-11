@@ -245,7 +245,7 @@ public class VideoPlayerActivity extends AppCompatActivity implements PlayAssure
             }
             player.setPlayWhenReady(true);
 
-            ExoplayerUtils.setupPlayerAnalytics(this, player, playerUrl, assetUrl, playAssurePlayback);
+            ExoplayerUtils.setupPlayerAnalytics(this, player, null, playerUrl, assetUrl, playAssurePlayback);
 
             player.prepare();
         }

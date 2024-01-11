@@ -3,12 +3,19 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
     <title>Builder</title>
-<link href="../../../../../images/logo-icon.svg" rel="icon" type="image/svg">
-    <script>var pathToRoot = "../../../../../";</script>    <script>const storage = localStorage.getItem("dokka-dark-mode")
-const savedDarkMode = storage ? JSON.parse(storage) : false
-if(savedDarkMode === true){
-    document.getElementsByTagName("html")[0].classList.add("theme-dark")
-}</script>
+<link href="../../../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../../../";</script>    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
 <script type="text/javascript" src="../../../../../scripts/sourceset_dependencies.js" async></script>
 <link href="../../../../../styles/style.css" rel="Stylesheet">
 <link href="../../../../../styles/jetbrains-mono.css" rel="Stylesheet">
@@ -19,7 +26,8 @@ if(savedDarkMode === true){
 <script type="text/javascript" src="../../../../../scripts/navigation-loader.js" async></script>
 <script type="text/javascript" src="../../../../../scripts/platform-content-handler.js" async></script>
 <script type="text/javascript" src="../../../../../scripts/main.js" defer></script>
-<script type="text/javascript" src="../../../../../scripts/prism.js" async></script></head>
+<script type="text/javascript" src="../../../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
 <body>
 <div class="navigation-wrapper" id="navigation-wrapper">
     <div id="leftToggler"><span class="icon-toggler"></span></div>
@@ -29,6 +37,9 @@ if(savedDarkMode === true){
     <div>
     </div>
     <div class="pull-right d-flex">
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release">androidJvm</button>
+        </div>
         <button id="theme-toggle-button"><span id="theme-toggle"></span></button>
         <div id="searchBar"></div>
     </div>
@@ -38,256 +49,262 @@ if(savedDarkMode === true){
         <div id="sideMenu"></div>
     </div>
     <div id="main">
-<div class="main-content" id="content" pageids="Download2Go Android ExoPlayer 2.17.* Support Library::com.penthera.virtuososdk.support.exoplayer217/ExoplayerUtils.PlayerConfigOptions.Builder///PointingToDeclaration//-717321575">
-  <div class="breadcrumbs"><a href="../../../../index.html">Download2Go Android ExoPlayer 2.17.* Support Library</a><span class="delimiter">/</span><a href="../../../index.html">com.penthera.virtuososdk.support.exoplayer217</a><span class="delimiter">/</span><a href="../../index.html">ExoplayerUtils</a><span class="delimiter">/</span><a href="../index.html">PlayerConfigOptions</a><span class="delimiter">/</span><a href="index.html">Builder</a></div>
+<div class="main-content" data-page-type="classlike" id="content" pageids="Download2Go Android ExoPlayer 2.17.* Support Library::com.penthera.virtuososdk.support.exoplayer217/ExoplayerUtils.PlayerConfigOptions.Builder///PointingToDeclaration//-717321575">
+  <div class="breadcrumbs"><a href="../../../../index.html">Download2Go Android ExoPlayer 2.17.* Support Library</a><span class="delimiter">/</span><a href="../../../index.html">com.penthera.virtuososdk.support.exoplayer217</a><span class="delimiter">/</span><a href="../../index.html">ExoplayerUtils</a><span class="delimiter">/</span><a href="../index.html">PlayerConfigOptions</a><span class="delimiter">/</span><span class="current">Builder</span></div>
   <div class="cover ">
     <h1 class="cover"><span><span>Builder</span></span></h1>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">class </span><a href="index.html">Builder</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><p class="paragraph">Class used to assemble a <a href="../index.html">PlayerConfigOptions</a> instance</p></div></div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">class </span><a href="index.html">Builder</a></div><p class="paragraph">Class used to assemble a <a href="../index.html">PlayerConfigOptions</a> instance</p></div></div>
   </div>
   <div class="tabbedcontent">
-    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="Types">Types</button><button class="section-tab" data-togglable="Constructors">Constructors</button><button class="section-tab" data-togglable="Functions">Functions</button></div>
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,FUNCTION,PROPERTY">Members</button></div>
     <div class="tabs-section-body">
-      <h2 class="tabbedcontent">Constructors</h2>
-      <div class="table" data-togglable="Constructors"><a data-name="-1200212480%2FConstructors%2F-717321575" anchor-label="Builder" id="-1200212480%2FConstructors%2F-717321575" data-filterable-set=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release"></a>
-        <div class="table-row" data-filterable-current=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release" data-filterable-set=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release">
-          <div class="main-subrow keyValue TabbedContent">
-            <div class=""><span class="inline-flex">
-                <div><a href="-builder.html"><span><span>Builder</span></span></a></div>
+      <div data-togglable="CONSTRUCTOR">
+        <h2 class="">Constructors</h2>
+        <div class="table"><a data-name="-1200212480%2FConstructors%2F-717321575" anchor-label="Builder" id="-1200212480%2FConstructors%2F-717321575" data-filterable-set=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-togglable="CONSTRUCTOR" data-filterable-current=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release" data-filterable-set=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-builder.html"><span><span>Builder</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1200212480%2FConstructors%2F-717321575"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="-builder.html"><span class="token function">Builder</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">context<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/android/content/Context.html">Context</a></span></span><span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Construct a <a href="index.html">Builder</a> object.</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">context<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/android/content/Context.html">Context</a></span></span><span class="token punctuation">)</span></div><div class="brief ">Construct a <a href="index.html">Builder</a> object.</div></div></div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <h2 class="">Types</h2>
-      <div class="table" data-togglable="Types"><a data-name="-450324050%2FClasslikes%2F-717321575" anchor-label="DrmOptions" id="-450324050%2FClasslikes%2F-717321575" data-filterable-set=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release"></a>
-        <div class="table-row" data-filterable-current=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release" data-filterable-set=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="-drm-options/index.html"><span>Drm</span><wbr><span><span>Options</span></span></a></div>
+      <div data-togglable="TYPE">
+        <h2 class="">Types</h2>
+        <div class="table"><a data-name="-450324050%2FClasslikes%2F-717321575" anchor-label="DrmOptions" id="-450324050%2FClasslikes%2F-717321575" data-filterable-set=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-filterable-current=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release" data-filterable-set=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-drm-options/index.html"><span>Drm</span><wbr><span><span>Options</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-450324050%2FClasslikes%2F-717321575"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">class </span><a href="-drm-options/index.html">DrmOptions</a> : <a href="../../-i-drm-session-manager-options/index.html">ExoplayerUtils.IDrmSessionManagerOptions</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Class used to hold the app specified options for DRM configuration</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">class </span><a href="-drm-options/index.html">DrmOptions</a> : <a href="../../-i-drm-session-manager-options/index.html">ExoplayerUtils.IDrmSessionManagerOptions</a></div><div class="brief ">Class used to hold the app specified options for DRM configuration</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="1161888046%2FClasslikes%2F-717321575" anchor-label="MediaSourceOptions" id="1161888046%2FClasslikes%2F-717321575" data-filterable-set=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release"></a>
-        <div class="table-row" data-filterable-current=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release" data-filterable-set=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="-media-source-options/index.html"><span>Media</span><wbr><span>Source</span><wbr><span><span>Options</span></span></a></div>
+          <div class="table-row" data-filterable-current=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release" data-filterable-set=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-media-source-options/index.html"><span>Media</span><wbr><span>Source</span><wbr><span><span>Options</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1161888046%2FClasslikes%2F-717321575"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">class </span><a href="-media-source-options/index.html">MediaSourceOptions</a> : <a href="../../-i-media-source-factory-options/index.html">ExoplayerUtils.IMediaSourceFactoryOptions</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Class used to hold the app specified options for media source factory creation</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">class </span><a href="-media-source-options/index.html">MediaSourceOptions</a> : <a href="../../-i-media-source-factory-options/index.html">ExoplayerUtils.IMediaSourceFactoryOptions</a></div><div class="brief ">Class used to hold the app specified options for media source factory creation</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="743322831%2FClasslikes%2F-717321575" anchor-label="SeekOptions" id="743322831%2FClasslikes%2F-717321575" data-filterable-set=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release"></a>
-        <div class="table-row" data-filterable-current=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release" data-filterable-set=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="-seek-options/index.html"><span>Seek</span><wbr><span><span>Options</span></span></a></div>
+          <div class="table-row" data-filterable-current=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release" data-filterable-set=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-seek-options/index.html"><span>Seek</span><wbr><span><span>Options</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="743322831%2FClasslikes%2F-717321575"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">class </span><a href="-seek-options/index.html">SeekOptions</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">class </span><a href="-seek-options/index.html">SeekOptions</a></div></div></div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <h2 class="">Functions</h2>
-      <div class="table" data-togglable="Functions"><a data-name="160264468%2FFunctions%2F-717321575" anchor-label="build" id="160264468%2FFunctions%2F-717321575" data-filterable-set=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release"></a>
-        <div class="table-row" data-filterable-current=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release" data-filterable-set=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="build.html"><span><span>build</span></span></a></div>
+      <div data-togglable="FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="160264468%2FFunctions%2F-717321575" anchor-label="build" id="160264468%2FFunctions%2F-717321575" data-filterable-set=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-filterable-current=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release" data-filterable-set=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="build.html"><span><span>build</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="160264468%2FFunctions%2F-717321575"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="build.html"><span class="token function">build</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../index.html">ExoplayerUtils.PlayerConfigOptions</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Returns the PlayerConfigOptions object with the specified properties</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="build.html"><span class="token function">build</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../index.html">ExoplayerUtils.PlayerConfigOptions</a></div><div class="brief ">Returns the PlayerConfigOptions object with the specified properties</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="1684871097%2FFunctions%2F-717321575" anchor-label="drmOptions" id="1684871097%2FFunctions%2F-717321575" data-filterable-set=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release"></a>
-        <div class="table-row" data-filterable-current=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release" data-filterable-set=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="drm-options.html"><span>drm</span><wbr><span><span>Options</span></span></a></div>
+          <div class="table-row" data-filterable-current=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release" data-filterable-set=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="drm-options.html"><span>drm</span><wbr><span><span>Options</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1684871097%2FFunctions%2F-717321575"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="drm-options.html"><span class="token function">drmOptions</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-drm-options/index.html">ExoplayerUtils.PlayerConfigOptions.Builder.DrmOptions</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Get the DrmOptions object to configure DRM.</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="drm-options.html"><span class="token function">drmOptions</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-drm-options/index.html">ExoplayerUtils.PlayerConfigOptions.Builder.DrmOptions</a></div><div class="brief ">Get the DrmOptions object to configure DRM.</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="-532115399%2FFunctions%2F-717321575" anchor-label="mediaSourceOptions" id="-532115399%2FFunctions%2F-717321575" data-filterable-set=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release"></a>
-        <div class="table-row" data-filterable-current=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release" data-filterable-set=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="media-source-options.html"><span>media</span><wbr><span>Source</span><wbr><span><span>Options</span></span></a></div>
+          <div class="table-row" data-filterable-current=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release" data-filterable-set=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="media-source-options.html"><span>media</span><wbr><span>Source</span><wbr><span><span>Options</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-532115399%2FFunctions%2F-717321575"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="media-source-options.html"><span class="token function">mediaSourceOptions</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-media-source-options/index.html">ExoplayerUtils.PlayerConfigOptions.Builder.MediaSourceOptions</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Get the MediaSourceOptions object to configure media source factory options.</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="media-source-options.html"><span class="token function">mediaSourceOptions</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-media-source-options/index.html">ExoplayerUtils.PlayerConfigOptions.Builder.MediaSourceOptions</a></div><div class="brief ">Get the MediaSourceOptions object to configure media source factory options.</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="-564903731%2FFunctions%2F-717321575" anchor-label="playWhenReady" id="-564903731%2FFunctions%2F-717321575" data-filterable-set=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release"></a>
-        <div class="table-row" data-filterable-current=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release" data-filterable-set=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="play-when-ready.html"><span>play</span><wbr><span>When</span><wbr><span><span>Ready</span></span></a></div>
+          <div class="table-row" data-filterable-current=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release" data-filterable-set=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="play-when-ready.html"><span>play</span><wbr><span>When</span><wbr><span><span>Ready</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-564903731%2FFunctions%2F-717321575"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="play-when-ready.html"><span class="token function">playWhenReady</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">playWhenReady<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">ExoplayerUtils.PlayerConfigOptions.Builder</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Set the value of <span data-unresolved-link="com.google.android.exoplayer2/Player/setPlayWhenReady/#boolean/PointingToDeclaration/">setPlayWhenReady</span> .</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="play-when-ready.html"><span class="token function">playWhenReady</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">playWhenReady<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">ExoplayerUtils.PlayerConfigOptions.Builder</a></div><div class="brief ">Set the value of <span data-unresolved-link="com.google.android.exoplayer2/Player/setPlayWhenReady/#boolean/PointingToDeclaration/">setPlayWhenReady</span> .</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="1568107687%2FFunctions%2F-717321575" anchor-label="userRenderersFactory" id="1568107687%2FFunctions%2F-717321575" data-filterable-set=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release"></a>
-        <div class="table-row" data-filterable-current=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release" data-filterable-set=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="user-renderers-factory.html"><span>user</span><wbr><span>Renderers</span><wbr><span><span>Factory</span></span></a></div>
+          <div class="table-row" data-filterable-current=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release" data-filterable-set=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="user-renderers-factory.html"><span>user</span><wbr><span>Renderers</span><wbr><span><span>Factory</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1568107687%2FFunctions%2F-717321575"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="user-renderers-factory.html"><span class="token function">userRenderersFactory</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">renderersFactory<span class="token operator">: </span><span data-unresolved-link="com.google.android.exoplayer2/RenderersFactory///PointingToDeclaration/">RenderersFactory</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">ExoplayerUtils.PlayerConfigOptions.Builder</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Provide a <span data-unresolved-link="com.google.android.exoplayer2/RenderersFactory///PointingToDeclaration/">RenderersFactory</span> to be used in constructing a <span data-unresolved-link="com.google.android.exoplayer2/ExoPlayer.Builder///PointingToDeclaration/">ExoPlayer.Builder</span> .</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="user-renderers-factory.html"><span class="token function">userRenderersFactory</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">renderersFactory<span class="token operator">: </span><span data-unresolved-link="com.google.android.exoplayer2/RenderersFactory///PointingToDeclaration/">RenderersFactory</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">ExoplayerUtils.PlayerConfigOptions.Builder</a></div><div class="brief ">Provide a <span data-unresolved-link="com.google.android.exoplayer2/RenderersFactory///PointingToDeclaration/">RenderersFactory</span> to be used in constructing a <span data-unresolved-link="com.google.android.exoplayer2/ExoPlayer.Builder///PointingToDeclaration/">ExoPlayer.Builder</span> .</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="2086319818%2FFunctions%2F-717321575" anchor-label="withAnalyticsCollector" id="2086319818%2FFunctions%2F-717321575" data-filterable-set=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release"></a>
-        <div class="table-row" data-filterable-current=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release" data-filterable-set=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="with-analytics-collector.html"><span>with</span><wbr><span>Analytics</span><wbr><span><span>Collector</span></span></a></div>
+          <div class="table-row" data-filterable-current=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release" data-filterable-set=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="with-analytics-collector.html"><span>with</span><wbr><span>Analytics</span><wbr><span><span>Collector</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2086319818%2FFunctions%2F-717321575"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="with-analytics-collector.html"><span class="token function">withAnalyticsCollector</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">collector<span class="token operator">: </span><span data-unresolved-link="com.google.android.exoplayer2.analytics/AnalyticsCollector///PointingToDeclaration/">AnalyticsCollector</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">ExoplayerUtils.PlayerConfigOptions.Builder</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Provide an <span data-unresolved-link="com.google.android.exoplayer2.analytics/AnalyticsCollector///PointingToDeclaration/">AnalyticsCollector</span> instance to be passed to <span data-unresolved-link="com.google.android.exoplayer2/ExoPlayer.Builder/setAnalyticsCollector/#com.google.android.exoplayer2.analytics.AnalyticsCollector/PointingToDeclaration/">setAnalyticsCollector</span>.</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="with-analytics-collector.html"><span class="token function">withAnalyticsCollector</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">collector<span class="token operator">: </span><span data-unresolved-link="com.google.android.exoplayer2.analytics/AnalyticsCollector///PointingToDeclaration/">AnalyticsCollector</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">ExoplayerUtils.PlayerConfigOptions.Builder</a></div><div class="brief ">Provide an <span data-unresolved-link="com.google.android.exoplayer2.analytics/AnalyticsCollector///PointingToDeclaration/">AnalyticsCollector</span> instance to be passed to <span data-unresolved-link="com.google.android.exoplayer2/ExoPlayer.Builder/setAnalyticsCollector/#com.google.android.exoplayer2.analytics.AnalyticsCollector/PointingToDeclaration/">setAnalyticsCollector</span>.</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="1816598900%2FFunctions%2F-717321575" anchor-label="withAnalyticsListener" id="1816598900%2FFunctions%2F-717321575" data-filterable-set=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release"></a>
-        <div class="table-row" data-filterable-current=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release" data-filterable-set=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="with-analytics-listener.html"><span>with</span><wbr><span>Analytics</span><wbr><span><span>Listener</span></span></a></div>
+          <div class="table-row" data-filterable-current=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release" data-filterable-set=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="with-analytics-listener.html"><span>with</span><wbr><span>Analytics</span><wbr><span><span>Listener</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1816598900%2FFunctions%2F-717321575"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="with-analytics-listener.html"><span class="token function">withAnalyticsListener</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">analyticsListener<span class="token operator">: </span><span data-unresolved-link="com.google.android.exoplayer2.analytics/AnalyticsListener///PointingToDeclaration/">AnalyticsListener</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">ExoplayerUtils.PlayerConfigOptions.Builder</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Provide an <span data-unresolved-link="com.google.android.exoplayer2.analytics/AnalyticsListener///PointingToDeclaration/">AnalyticsListener</span> to be passed to <span data-unresolved-link="com.google.android.exoplayer2/ExoPlayer/addAnalyticsListener/#com.google.android.exoplayer2.analytics.AnalyticsListener/PointingToDeclaration/">addAnalyticsListener</span>.</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="with-analytics-listener.html"><span class="token function">withAnalyticsListener</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">analyticsListener<span class="token operator">: </span><span data-unresolved-link="com.google.android.exoplayer2.analytics/AnalyticsListener///PointingToDeclaration/">AnalyticsListener</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">ExoplayerUtils.PlayerConfigOptions.Builder</a></div><div class="brief ">Provide an <span data-unresolved-link="com.google.android.exoplayer2.analytics/AnalyticsListener///PointingToDeclaration/">AnalyticsListener</span> to be passed to <span data-unresolved-link="com.google.android.exoplayer2/ExoPlayer/addAnalyticsListener/#com.google.android.exoplayer2.analytics.AnalyticsListener/PointingToDeclaration/">addAnalyticsListener</span>.</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="259542895%2FFunctions%2F-717321575" anchor-label="withBandwidthMeter" id="259542895%2FFunctions%2F-717321575" data-filterable-set=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release"></a>
-        <div class="table-row" data-filterable-current=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release" data-filterable-set=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="with-bandwidth-meter.html"><span>with</span><wbr><span>Bandwidth</span><wbr><span><span>Meter</span></span></a></div>
+          <div class="table-row" data-filterable-current=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release" data-filterable-set=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="with-bandwidth-meter.html"><span>with</span><wbr><span>Bandwidth</span><wbr><span><span>Meter</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="259542895%2FFunctions%2F-717321575"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="with-bandwidth-meter.html"><span class="token function">withBandwidthMeter</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">bandwidthMeter<span class="token operator">: </span><span data-unresolved-link="com.google.android.exoplayer2.upstream/BandwidthMeter///PointingToDeclaration/">BandwidthMeter</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">ExoplayerUtils.PlayerConfigOptions.Builder</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Provide a <span data-unresolved-link="com.google.android.exoplayer2.upstream/BandwidthMeter///PointingToDeclaration/">BandwidthMeter</span> to be passed to <span data-unresolved-link="com.google.android.exoplayer2/ExoPlayer.Builder/setBandwidthMeter/#com.google.android.exoplayer2.upstream.BandwidthMeter/PointingToDeclaration/">setBandwidthMeter</span>.</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="with-bandwidth-meter.html"><span class="token function">withBandwidthMeter</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">bandwidthMeter<span class="token operator">: </span><span data-unresolved-link="com.google.android.exoplayer2.upstream/BandwidthMeter///PointingToDeclaration/">BandwidthMeter</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">ExoplayerUtils.PlayerConfigOptions.Builder</a></div><div class="brief ">Provide a <span data-unresolved-link="com.google.android.exoplayer2.upstream/BandwidthMeter///PointingToDeclaration/">BandwidthMeter</span> to be passed to <span data-unresolved-link="com.google.android.exoplayer2/ExoPlayer.Builder/setBandwidthMeter/#com.google.android.exoplayer2.upstream.BandwidthMeter/PointingToDeclaration/">setBandwidthMeter</span>.</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="-351309332%2FFunctions%2F-717321575" anchor-label="withLoadControl" id="-351309332%2FFunctions%2F-717321575" data-filterable-set=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release"></a>
-        <div class="table-row" data-filterable-current=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release" data-filterable-set=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="with-load-control.html"><span>with</span><wbr><span>Load</span><wbr><span><span>Control</span></span></a></div>
+          <div class="table-row" data-filterable-current=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release" data-filterable-set=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="with-load-control.html"><span>with</span><wbr><span>Load</span><wbr><span><span>Control</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-351309332%2FFunctions%2F-717321575"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="with-load-control.html"><span class="token function">withLoadControl</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">loadControl<span class="token operator">: </span><span data-unresolved-link="com.google.android.exoplayer2/LoadControl///PointingToDeclaration/">LoadControl</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">ExoplayerUtils.PlayerConfigOptions.Builder</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Provide a <span data-unresolved-link="com.google.android.exoplayer2/LoadControl///PointingToDeclaration/">LoadControl</span> instance to be passed to <span data-unresolved-link="com.google.android.exoplayer2/ExoPlayer.Builder/setLoadControl/#com.google.android.exoplayer2.LoadControl/PointingToDeclaration/">setLoadControl</span> This parameter is optional</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="with-load-control.html"><span class="token function">withLoadControl</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">loadControl<span class="token operator">: </span><span data-unresolved-link="com.google.android.exoplayer2/LoadControl///PointingToDeclaration/">LoadControl</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">ExoplayerUtils.PlayerConfigOptions.Builder</a></div><div class="brief ">Provide a <span data-unresolved-link="com.google.android.exoplayer2/LoadControl///PointingToDeclaration/">LoadControl</span> instance to be passed to <span data-unresolved-link="com.google.android.exoplayer2/ExoPlayer.Builder/setLoadControl/#com.google.android.exoplayer2.LoadControl/PointingToDeclaration/">setLoadControl</span> This parameter is optional</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="-1790022634%2FFunctions%2F-717321575" anchor-label="withPlayerListener" id="-1790022634%2FFunctions%2F-717321575" data-filterable-set=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release"></a>
-        <div class="table-row" data-filterable-current=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release" data-filterable-set=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="with-player-listener.html"><span>with</span><wbr><span>Player</span><wbr><span><span>Listener</span></span></a></div>
+          <div class="table-row" data-filterable-current=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release" data-filterable-set=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="with-player-listener.html"><span>with</span><wbr><span>Player</span><wbr><span><span>Listener</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1790022634%2FFunctions%2F-717321575"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="with-player-listener.html"><span class="token function">withPlayerListener</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">playerListener<span class="token operator">: </span><span data-unresolved-link="com.google.android.exoplayer2/Player.Listener///PointingToDeclaration/">Player.Listener</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">ExoplayerUtils.PlayerConfigOptions.Builder</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Provide a <span data-unresolved-link="com.google.android.exoplayer2/Player.Listener///PointingToDeclaration/">Player.Listener</span> instance to be passed to <span data-unresolved-link="com.google.android.exoplayer2/Player/addListener/#com.google.android.exoplayer2.Player.Listener/PointingToDeclaration/">addListener</span> This method can be called multiple times to register additional <span data-unresolved-link="com.google.android.exoplayer2/Player.Listener///PointingToDeclaration/">Player.Listener</span> instances.</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="with-player-listener.html"><span class="token function">withPlayerListener</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">playerListener<span class="token operator">: </span><span data-unresolved-link="com.google.android.exoplayer2/Player.Listener///PointingToDeclaration/">Player.Listener</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">ExoplayerUtils.PlayerConfigOptions.Builder</a></div><div class="brief ">Provide a <span data-unresolved-link="com.google.android.exoplayer2/Player.Listener///PointingToDeclaration/">Player.Listener</span> instance to be passed to <span data-unresolved-link="com.google.android.exoplayer2/Player/addListener/#com.google.android.exoplayer2.Player.Listener/PointingToDeclaration/">addListener</span> This method can be called multiple times to register additional <span data-unresolved-link="com.google.android.exoplayer2/Player.Listener///PointingToDeclaration/">Player.Listener</span> instances.</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="2086198470%2FFunctions%2F-717321575" anchor-label="withSeekToPosition" id="2086198470%2FFunctions%2F-717321575" data-filterable-set=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release"></a>
-        <div class="table-row" data-filterable-current=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release" data-filterable-set=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="with-seek-to-position.html"><span>with</span><wbr><span>Seek</span><wbr><span>To</span><wbr><span><span>Position</span></span></a></div>
+          <div class="table-row" data-filterable-current=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release" data-filterable-set=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="with-seek-to-position.html"><span>with</span><wbr><span>Seek</span><wbr><span>To</span><wbr><span><span>Position</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2086198470%2FFunctions%2F-717321575"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="with-seek-to-position.html"><span class="token function">withSeekToPosition</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">window<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter ">position<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">ExoplayerUtils.PlayerConfigOptions.Builder</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Specify the seek to position used by <span data-unresolved-link="com.google.android.exoplayer2/Player/seekTo/#int#long/PointingToDeclaration/">seekTo</span> or <span data-unresolved-link="com.google.android.exoplayer2/Player/seekTo/#long/PointingToDeclaration/">seekTo</span></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="with-seek-to-position.html"><span class="token function">withSeekToPosition</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">window<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter ">position<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">ExoplayerUtils.PlayerConfigOptions.Builder</a></div><div class="brief ">Specify the seek to position used by <span data-unresolved-link="com.google.android.exoplayer2/Player/seekTo/#int#long/PointingToDeclaration/">seekTo</span> or <span data-unresolved-link="com.google.android.exoplayer2/Player/seekTo/#long/PointingToDeclaration/">seekTo</span></div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="860207759%2FFunctions%2F-717321575" anchor-label="withTrackSelector" id="860207759%2FFunctions%2F-717321575" data-filterable-set=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release"></a>
-        <div class="table-row" data-filterable-current=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release" data-filterable-set=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="with-track-selector.html"><span>with</span><wbr><span>Track</span><wbr><span><span>Selector</span></span></a></div>
+          <div class="table-row" data-filterable-current=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release" data-filterable-set=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="with-track-selector.html"><span>with</span><wbr><span>Track</span><wbr><span><span>Selector</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="860207759%2FFunctions%2F-717321575"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="with-track-selector.html"><span class="token function">withTrackSelector</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">trackSelector<span class="token operator">: </span><span data-unresolved-link="com.google.android.exoplayer2.trackselection/TrackSelector///PointingToDeclaration/">TrackSelector</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">ExoplayerUtils.PlayerConfigOptions.Builder</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Provide a <span data-unresolved-link="com.google.android.exoplayer2.trackselection/TrackSelector///PointingToDeclaration/">TrackSelector</span> to be passed to <span data-unresolved-link="com.google.android.exoplayer2/ExoPlayer.Builder/setTrackSelector/#com.google.android.exoplayer2.trackselection.TrackSelector/PointingToDeclaration/">setTrackSelector</span>.</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":cnc-exoplayer-2_17-support:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="with-track-selector.html"><span class="token function">withTrackSelector</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">trackSelector<span class="token operator">: </span><span data-unresolved-link="com.google.android.exoplayer2.trackselection/TrackSelector///PointingToDeclaration/">TrackSelector</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">ExoplayerUtils.PlayerConfigOptions.Builder</a></div><div class="brief ">Provide a <span data-unresolved-link="com.google.android.exoplayer2.trackselection/TrackSelector///PointingToDeclaration/">TrackSelector</span> to be passed to <span data-unresolved-link="com.google.android.exoplayer2/ExoPlayer.Builder/setTrackSelector/#com.google.android.exoplayer2.trackselection.TrackSelector/PointingToDeclaration/">setTrackSelector</span>.</div></div></div>
+                </div>
               </div>
             </div>
           </div>
@@ -296,10 +313,11 @@ if(savedDarkMode === true){
     </div>
   </div>
 </div>
-        <div class="footer"><span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2023 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
-        </div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2024 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
     </div>
 </div>
-
-</body></html>
+</body>
+</html>
 

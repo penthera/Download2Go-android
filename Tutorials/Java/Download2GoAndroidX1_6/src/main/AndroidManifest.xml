@@ -20,7 +20,16 @@
 		<!-- Foreground Notification Provider declaration -->
 		<meta-data android:name="com.penthera.virtuososdk.notification.provider.impl" 
 			android:value="com.penthera.download2goX1_6.ServiceForegroundNotificationProvider" />
-		
+
+        <!-- The below two meta data values will be provided by penthera. Add these to the manifest rather than the code -->
+        <meta-data
+            android:name="PENTHERA_PUBLIC_KEY"
+            android:value="" />
+
+        <meta-data
+            android:name="PENTHERA_SERVER_URL"
+            android:value="" />
+
         <activity android:name=".ui.MainActivity"
             android:exported="true" >
             <intent-filter>

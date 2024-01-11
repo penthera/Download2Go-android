@@ -6,10 +6,18 @@
     <link href="images/logo-icon.svg" rel="icon" type="image/svg">
     <script>var pathToRoot = "";</script>
     <script>const storage = localStorage.getItem("dokka-dark-mode")
-const savedDarkMode = storage ? JSON.parse(storage) : false
-if(savedDarkMode === true){
-    document.getElementsByTagName("html")[0].classList.add("theme-dark")
-}</script>
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
 <script type="text/javascript" src="scripts/sourceset_dependencies.js" async="async"></script>
 <link href="styles/style.css" rel="Stylesheet">
 <link href="styles/jetbrains-mono.css" rel="Stylesheet">
@@ -21,6 +29,7 @@ if(savedDarkMode === true){
 <script type="text/javascript" src="scripts/platform-content-handler.js" async="async"></script>
 <script type="text/javascript" src="scripts/main.js" defer="defer"></script>
 <script type="text/javascript" src="scripts/prism.js" async="async"></script>
+<script type="text/javascript" src="scripts/symbol-parameters-wrapper_deferred.js" defer="defer"></script>
 </head>
 <body>
 <div class="navigation-wrapper" id="navigation-wrapper">
@@ -46,7 +55,29 @@ if(savedDarkMode === true){
   <div class="breadcrumbs"></div>
   <div class="cover ">
     <h2 class="">All modules:</h2>
-    <div class="table"><a data-name="-1309633041%2FMain%2F0" anchor-label="Download2Go Android ExoPlayer 2.13.* Support Library" id="-1309633041%2FMain%2F0" data-filterable-set=""></a>
+    <div class="table"><a data-name="1883885566%2FMain%2F0" anchor-label="Automation" id="1883885566%2FMain%2F0" data-filterable-set=""></a>
+      <div class="table-row">
+        <div class="main-subrow ">
+          <div class="w-100"><span class="inline-flex">
+              <div><a href="Automation/index.html">Automation</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1883885566%2FMain%2F0"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div><span class="brief-comment"></span></div>
+        </div>
+      </div>
+<a data-name="572561978%2FMain%2F0" anchor-label="Backgrounder" id="572561978%2FMain%2F0" data-filterable-set=""></a>
+      <div class="table-row">
+        <div class="main-subrow ">
+          <div class="w-100"><span class="inline-flex">
+              <div><a href="Backgrounder/index.html">Backgrounder</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="572561978%2FMain%2F0"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div><span class="brief-comment"></span></div>
+        </div>
+      </div>
+<a data-name="-1309633041%2FMain%2F0" anchor-label="Download2Go Android ExoPlayer 2.13.* Support Library" id="-1309633041%2FMain%2F0" data-filterable-set=""></a>
       <div class="table-row">
         <div class="main-subrow ">
           <div class="w-100"><span class="inline-flex">
@@ -132,7 +163,9 @@ if(savedDarkMode === true){
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1132138025%2FMain%2F0"></span>
                 <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
               </span></span></div>
-          <div><span class="brief-comment"></span></div>
+          <div><span class="brief-comment">
+              <p class="paragraph">Support library to simplify using the Penthera SDK with Exoplayer v2.19.</p>
+            </span></div>
         </div>
       </div>
 <a data-name="-31742158%2FMain%2F0" anchor-label="Download2Go Android SDK" id="-31742158%2FMain%2F0" data-filterable-set=""></a>
@@ -172,6 +205,17 @@ if(savedDarkMode === true){
           <div><span class="brief-comment"></span></div>
         </div>
       </div>
+<a data-name="1998525245%2FMain%2F0" anchor-label="Harness" id="1998525245%2FMain%2F0" data-filterable-set=""></a>
+      <div class="table-row">
+        <div class="main-subrow ">
+          <div class="w-100"><span class="inline-flex">
+              <div><a href="Harness/index.html">Harness</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1998525245%2FMain%2F0"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div><span class="brief-comment"></span></div>
+        </div>
+      </div>
 <a data-name="-1830450514%2FMain%2F0" anchor-label="Penthera Common Library" id="-1830450514%2FMain%2F0" data-filterable-set=""></a>
       <div class="table-row">
         <div class="main-subrow ">
@@ -198,13 +242,47 @@ if(savedDarkMode === true){
             </span></div>
         </div>
       </div>
+<a data-name="-738298385%2FMain%2F0" anchor-label="TestHarness" id="-738298385%2FMain%2F0" data-filterable-set=""></a>
+      <div class="table-row">
+        <div class="main-subrow ">
+          <div class="w-100"><span class="inline-flex">
+              <div><a href="TestHarness/index.html">TestHarness</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-738298385%2FMain%2F0"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div><span class="brief-comment"></span></div>
+        </div>
+      </div>
+<a data-name="740536653%2FMain%2F0" anchor-label="harnessx" id="740536653%2FMain%2F0" data-filterable-set=""></a>
+      <div class="table-row">
+        <div class="main-subrow ">
+          <div class="w-100"><span class="inline-flex">
+              <div><a href="harnessx/index.html">harnessx</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="740536653%2FMain%2F0"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div><span class="brief-comment"></span></div>
+        </div>
+      </div>
+<a data-name="-1558191208%2FMain%2F0" anchor-label="playassureharness" id="-1558191208%2FMain%2F0" data-filterable-set=""></a>
+      <div class="table-row">
+        <div class="main-subrow ">
+          <div class="w-100"><span class="inline-flex">
+              <div><a href="playassureharness/index.html">playassureharness</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1558191208%2FMain%2F0"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div><span class="brief-comment"></span></div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
-        <div class="footer"><span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2023 Copyright</span><span
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2024 Copyright</span><span
                 class="pull-right"><span>Generated by </span><a
                 href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
-        </div>
+      </div>
     </div>
 </div>
 </body>

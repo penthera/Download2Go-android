@@ -186,7 +186,7 @@ class VideoPlayerActivity : AppCompatActivity() , PlayAssureStatus {
                 playWhenReady = true
 
                 ExoplayerUtils.setupPlayerAnalytics(
-                    this@VideoPlayerActivity, this,
+                    this@VideoPlayerActivity, this, null,
                     playerUrl, assetUrl, action == ACTION_VIEW
                 )
 

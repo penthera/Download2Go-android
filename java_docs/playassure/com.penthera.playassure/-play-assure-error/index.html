@@ -3,12 +3,19 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
     <title>PlayAssureError</title>
-<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">
-    <script>var pathToRoot = "../../../";</script>    <script>const storage = localStorage.getItem("dokka-dark-mode")
-const savedDarkMode = storage ? JSON.parse(storage) : false
-if(savedDarkMode === true){
-    document.getElementsByTagName("html")[0].classList.add("theme-dark")
-}</script>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../";</script>    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
 <script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async></script>
 <link href="../../../styles/style.css" rel="Stylesheet">
 <link href="../../../styles/jetbrains-mono.css" rel="Stylesheet">
@@ -19,7 +26,8 @@ if(savedDarkMode === true){
 <script type="text/javascript" src="../../../scripts/navigation-loader.js" async></script>
 <script type="text/javascript" src="../../../scripts/platform-content-handler.js" async></script>
 <script type="text/javascript" src="../../../scripts/main.js" defer></script>
-<script type="text/javascript" src="../../../scripts/prism.js" async></script></head>
+<script type="text/javascript" src="../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
 <body>
 <div class="navigation-wrapper" id="navigation-wrapper">
     <div id="leftToggler"><span class="icon-toggler"></span></div>
@@ -29,6 +37,9 @@ if(savedDarkMode === true){
     <div>
     </div>
     <div class="pull-right d-flex">
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":playassure:dokkaHtmlPartial/main">PlayAssure SDK Library</button>
+        </div>
         <button id="theme-toggle-button"><span id="theme-toggle"></span></button>
         <div id="searchBar"></div>
     </div>
@@ -38,117 +49,153 @@ if(savedDarkMode === true){
         <div id="sideMenu"></div>
     </div>
     <div id="main">
-<div class="main-content" id="content" pageids="PlayAssure SDK Library::com.penthera.playassure/PlayAssureError///PointingToDeclaration//-292256866">
-  <div class="breadcrumbs"><a href="../../index.html">PlayAssure SDK Library</a><span class="delimiter">/</span><a href="../index.html">com.penthera.playassure</a><span class="delimiter">/</span><a href="index.html">PlayAssureError</a></div>
+<div class="main-content" data-page-type="classlike" id="content" pageids="PlayAssure SDK Library::com.penthera.playassure/PlayAssureError///PointingToDeclaration//-292256866">
+  <div class="breadcrumbs"><a href="../../index.html">PlayAssure SDK Library</a><span class="delimiter">/</span><a href="../index.html">com.penthera.playassure</a><span class="delimiter">/</span><span class="current">PlayAssureError</span></div>
   <div class="cover ">
     <h1 class="cover"><span>Play</span><wbr><span>Assure</span><wbr><span><span>Error</span></span></h1>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">enum </span><a href="index.html">PlayAssureError</a> : <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-enum/index.html">Enum</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="index.html">PlayAssureError</a><span class="token operator">&gt; </span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><p class="paragraph">Top level error codes returned in exceptions from PlayAssure</p></div></div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">enum </span><a href="index.html">PlayAssureError</a> : <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-enum/index.html">Enum</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="index.html">PlayAssureError</a><span class="token operator">&gt; </span></div><p class="paragraph">Top level error codes returned in exceptions from PlayAssure</p></div></div>
   </div>
   <div class="tabbedcontent">
-    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="Entries">Entries</button></div>
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,FUNCTION,PROPERTY">Members</button><button class="section-tab" data-togglable="ENTRY">Entries</button></div>
     <div class="tabs-section-body">
-      <h2 class="tabbedcontent">Entries</h2>
-      <div class="table" data-togglable="Entries"><a data-name="-612914136%2FClasslikes%2F-292256866" anchor-label="PlaybackFailureError" id="-612914136%2FClasslikes%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="-playback-failure-error/index.html">PlaybackFailureError</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-612914136%2FClasslikes%2F-292256866"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><div class="block"><a href="-playback-failure-error/index.html">PlaybackFailureError</a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Playback failure error</p></div></div></div>
-              </div>
-            </div>
-          </div>
-        </div>
-<a data-name="-1033944251%2FClasslikes%2F-292256866" anchor-label="NotAuthenticatedError" id="-1033944251%2FClasslikes%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="-not-authenticated-error/index.html">NotAuthenticatedError</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1033944251%2FClasslikes%2F-292256866"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><div class="block"><a href="-not-authenticated-error/index.html">NotAuthenticatedError</a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Not authenticated</p></div></div></div>
-              </div>
-            </div>
-          </div>
-        </div>
-<a data-name="-456894482%2FClasslikes%2F-292256866" anchor-label="SubManifestParsingFailureError" id="-456894482%2FClasslikes%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="-sub-manifest-parsing-failure-error/index.html">SubManifestParsingFailureError</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-456894482%2FClasslikes%2F-292256866"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><div class="block"><a href="-sub-manifest-parsing-failure-error/index.html">SubManifestParsingFailureError</a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Sub-Manifest parsing failed (HLS)</p></div></div></div>
-              </div>
-            </div>
-          </div>
-        </div>
-<a data-name="889747384%2FClasslikes%2F-292256866" anchor-label="ManifestParsingFailureError" id="889747384%2FClasslikes%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="-manifest-parsing-failure-error/index.html">ManifestParsingFailureError</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="889747384%2FClasslikes%2F-292256866"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><div class="block"><a href="-manifest-parsing-failure-error/index.html">ManifestParsingFailureError</a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Manifest parsing failed</p></div></div></div>
-              </div>
-            </div>
-          </div>
-        </div>
-<a data-name="1440255649%2FClasslikes%2F-292256866" anchor-label="ProxyStartFailureError" id="1440255649%2FClasslikes%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="-proxy-start-failure-error/index.html">ProxyStartFailureError</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1440255649%2FClasslikes%2F-292256866"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><div class="block"><a href="-proxy-start-failure-error/index.html">ProxyStartFailureError</a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Proxy startup failed, cannot stream</p></div></div></div>
-              </div>
-            </div>
-          </div>
-        </div>
-<a data-name="-1244107410%2FClasslikes%2F-292256866" anchor-label="ParameterError" id="-1244107410%2FClasslikes%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="-parameter-error/index.html">ParameterError</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1244107410%2FClasslikes%2F-292256866"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><div class="block"><a href="-parameter-error/index.html">ParameterError</a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Invalid parameter error</p></div></div></div>
-              </div>
-            </div>
-          </div>
-        </div>
-<a data-name="-100589687%2FClasslikes%2F-292256866" anchor-label="NetworkError" id="-100589687%2FClasslikes%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="-network-error/index.html">NetworkError</a></div>
+      <div data-togglable="ENTRY">
+        <h2 class="">Entries</h2>
+        <div class="table"><a data-name="-100589687%2FClasslikes%2F-292256866" anchor-label="NetworkError" id="-100589687%2FClasslikes%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-network-error/index.html">NetworkError</a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-100589687%2FClasslikes%2F-292256866"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><div class="block"><a href="-network-error/index.html">NetworkError</a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Network error</p></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><div class="block"><a href="-network-error/index.html">NetworkError</a></div></div><div class="brief "><p class="paragraph">Network error</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1244107410%2FClasslikes%2F-292256866" anchor-label="ParameterError" id="-1244107410%2FClasslikes%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-parameter-error/index.html">ParameterError</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1244107410%2FClasslikes%2F-292256866"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><div class="block"><a href="-parameter-error/index.html">ParameterError</a></div></div><div class="brief "><p class="paragraph">Invalid parameter error</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1440255649%2FClasslikes%2F-292256866" anchor-label="ProxyStartFailureError" id="1440255649%2FClasslikes%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-proxy-start-failure-error/index.html">ProxyStartFailureError</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1440255649%2FClasslikes%2F-292256866"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><div class="block"><a href="-proxy-start-failure-error/index.html">ProxyStartFailureError</a></div></div><div class="brief "><p class="paragraph">Proxy startup failed, cannot stream</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="889747384%2FClasslikes%2F-292256866" anchor-label="ManifestParsingFailureError" id="889747384%2FClasslikes%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-manifest-parsing-failure-error/index.html">ManifestParsingFailureError</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="889747384%2FClasslikes%2F-292256866"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><div class="block"><a href="-manifest-parsing-failure-error/index.html">ManifestParsingFailureError</a></div></div><div class="brief "><p class="paragraph">Manifest parsing failed</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-456894482%2FClasslikes%2F-292256866" anchor-label="SubManifestParsingFailureError" id="-456894482%2FClasslikes%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-sub-manifest-parsing-failure-error/index.html">SubManifestParsingFailureError</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-456894482%2FClasslikes%2F-292256866"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><div class="block"><a href="-sub-manifest-parsing-failure-error/index.html">SubManifestParsingFailureError</a></div></div><div class="brief "><p class="paragraph">Sub-Manifest parsing failed (HLS)</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1033944251%2FClasslikes%2F-292256866" anchor-label="NotAuthenticatedError" id="-1033944251%2FClasslikes%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-not-authenticated-error/index.html">NotAuthenticatedError</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1033944251%2FClasslikes%2F-292256866"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><div class="block"><a href="-not-authenticated-error/index.html">NotAuthenticatedError</a></div></div><div class="brief "><p class="paragraph">Not authenticated</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-612914136%2FClasslikes%2F-292256866" anchor-label="PlaybackFailureError" id="-612914136%2FClasslikes%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-togglable="ENTRY" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-playback-failure-error/index.html">PlaybackFailureError</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-612914136%2FClasslikes%2F-292256866"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><div class="block"><a href="-playback-failure-error/index.html">PlaybackFailureError</a></div></div><div class="brief "><p class="paragraph">Playback failure error</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="-620983181%2FFunctions%2F-292256866" anchor-label="valueOf" id="-620983181%2FFunctions%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="value-of.html"><span>value</span><wbr><span><span>Of</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-620983181%2FFunctions%2F-292256866"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="value-of.html"><span class="token function">valueOf</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">PlayAssureError</a></div><div class="brief "><p class="paragraph">Returns the enum constant of this type with the specified name. The string must match exactly an identifier used to declare an enum constant in this type. (Extraneous whitespace characters are not permitted.)</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-468398401%2FFunctions%2F-292256866" anchor-label="values" id="-468398401%2FFunctions%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="values.html"><span><span>values</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-468398401%2FFunctions%2F-292256866"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="values.html"><span class="token function">values</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html">Array</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="index.html">PlayAssureError</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Returns an array containing the constants of this enum type, in the order they're declared.</p></div></div></div>
+                </div>
               </div>
             </div>
           </div>
@@ -157,10 +204,11 @@ if(savedDarkMode === true){
     </div>
   </div>
 </div>
-        <div class="footer"><span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2023 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
-        </div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2024 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
     </div>
 </div>
-
-</body></html>
+</body>
+</html>
 

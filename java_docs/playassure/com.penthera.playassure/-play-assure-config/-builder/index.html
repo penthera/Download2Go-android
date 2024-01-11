@@ -3,12 +3,19 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
     <title>Builder</title>
-<link href="../../../../images/logo-icon.svg" rel="icon" type="image/svg">
-    <script>var pathToRoot = "../../../../";</script>    <script>const storage = localStorage.getItem("dokka-dark-mode")
-const savedDarkMode = storage ? JSON.parse(storage) : false
-if(savedDarkMode === true){
-    document.getElementsByTagName("html")[0].classList.add("theme-dark")
-}</script>
+<link href="../../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../../";</script>    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
 <script type="text/javascript" src="../../../../scripts/sourceset_dependencies.js" async></script>
 <link href="../../../../styles/style.css" rel="Stylesheet">
 <link href="../../../../styles/jetbrains-mono.css" rel="Stylesheet">
@@ -19,7 +26,8 @@ if(savedDarkMode === true){
 <script type="text/javascript" src="../../../../scripts/navigation-loader.js" async></script>
 <script type="text/javascript" src="../../../../scripts/platform-content-handler.js" async></script>
 <script type="text/javascript" src="../../../../scripts/main.js" defer></script>
-<script type="text/javascript" src="../../../../scripts/prism.js" async></script></head>
+<script type="text/javascript" src="../../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
 <body>
 <div class="navigation-wrapper" id="navigation-wrapper">
     <div id="leftToggler"><span class="icon-toggler"></span></div>
@@ -29,6 +37,9 @@ if(savedDarkMode === true){
     <div>
     </div>
     <div class="pull-right d-flex">
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":playassure:dokkaHtmlPartial/main">PlayAssure SDK Library</button>
+        </div>
         <button id="theme-toggle-button"><span id="theme-toggle"></span></button>
         <div id="searchBar"></div>
     </div>
@@ -38,481 +49,487 @@ if(savedDarkMode === true){
         <div id="sideMenu"></div>
     </div>
     <div id="main">
-<div class="main-content" id="content" pageids="PlayAssure SDK Library::com.penthera.playassure/PlayAssureConfig.Builder///PointingToDeclaration//-292256866">
-  <div class="breadcrumbs"><a href="../../../index.html">PlayAssure SDK Library</a><span class="delimiter">/</span><a href="../../index.html">com.penthera.playassure</a><span class="delimiter">/</span><a href="../index.html">PlayAssureConfig</a><span class="delimiter">/</span><a href="index.html">Builder</a></div>
+<div class="main-content" data-page-type="classlike" id="content" pageids="PlayAssure SDK Library::com.penthera.playassure/PlayAssureConfig.Builder///PointingToDeclaration//-292256866">
+  <div class="breadcrumbs"><a href="../../../index.html">PlayAssure SDK Library</a><span class="delimiter">/</span><a href="../../index.html">com.penthera.playassure</a><span class="delimiter">/</span><a href="../index.html">PlayAssureConfig</a><span class="delimiter">/</span><span class="current">Builder</span></div>
   <div class="cover ">
     <h1 class="cover"><span><span>Builder</span></span></h1>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">class </span><a href="index.html">Builder</a>&nbsp;<span><span class="token annotation">@</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-overloads/index.html"><span class="token annotation">JvmOverloads</span></a>&nbsp;</span><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="parameters wrapped"><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span class="token keyword">val </span>context<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/android/content/Context.html">Context</a><span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span class="token keyword">var </span>playAssureObserver<span class="token operator">: </span><a href="../../-play-assure-status/index.html">PlayAssureStatus</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span class="token keyword">var </span>processingMode<span class="token operator">: </span><a href="../../-play-assure-processing-mode/index.html">PlayAssureProcessingMode</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span class="token keyword">var </span>targetBitrate<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a><span class="token operator"> = </span>-1<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span class="token keyword">var </span>lookAheadSegmentCount<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">5000</span><span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span class="token keyword">var </span>minimumStartingIndex<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">10</span><span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span class="token keyword">var </span>lookAheadMaximumVideoSegmentDownloadCount<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span class="token keyword">var </span>lookAheadBackupVideoLevel<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span class="token keyword">var </span>playerBackupVideoLevel<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span class="token keyword">var </span>lookAheadBehindPlayer<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">false</span><span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span class="token keyword">var </span>requiredCacheMbps<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html">Double</a><span class="token operator"> = </span>-1.0<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span class="token keyword">var </span>minimumActiveRequestThreshold<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">2</span><span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span class="token keyword">var </span>minimumWebServerIdleThreshold<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">1</span><span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span class="token keyword">var </span>headroom<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">1024</span><span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span class="token keyword">var </span>cacheHigherPlayerRequests<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">false</span></span></span><span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">class </span><a href="index.html">Builder</a>&nbsp;<span><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-overloads/index.html"><span class="token annotation builtin">JvmOverloads</span></a>&nbsp;</span><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>context<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/android/content/Context.html">Context</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">var </span>playAssureObserver<span class="token operator">: </span><a href="../../-play-assure-status/index.html">PlayAssureStatus</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">var </span>processingMode<span class="token operator">: </span><a href="../../-play-assure-processing-mode/index.html">PlayAssureProcessingMode</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">var </span>targetBitrate<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a><span class="token operator"> = </span>-1<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">var </span>lookAheadSegmentCount<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">5000</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">var </span>minimumStartingIndex<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">10</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">var </span>lookAheadMaximumVideoSegmentDownloadCount<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">var </span>lookAheadBackupVideoLevel<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">var </span>playerBackupVideoLevel<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">var </span>lookAheadBehindPlayer<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">false</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">var </span>requiredCacheMbps<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html">Double</a><span class="token operator"> = </span>-1.0<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">var </span>minimumActiveRequestThreshold<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">2</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">var </span>minimumWebServerIdleThreshold<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">1</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">var </span>headroom<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">1024</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">var </span>cacheHigherPlayerRequests<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">false</span></span></span><span class="token punctuation">)</span></div></div></div>
   </div>
   <div class="tabbedcontent">
-    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="Constructors">Constructors</button><button class="section-tab" data-togglable="Functions">Functions</button><button class="section-tab" data-togglable="Properties">Properties</button></div>
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,FUNCTION,PROPERTY">Members</button></div>
     <div class="tabs-section-body">
-      <h2 class="tabbedcontent">Constructors</h2>
-      <div class="table" data-togglable="Constructors"><a data-name="-937282734%2FConstructors%2F-292256866" anchor-label="Builder" id="-937282734%2FConstructors%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue TabbedContent">
-            <div class=""><span class="inline-flex">
-                <div><a href="-builder.html"><span><span>Builder</span></span></a></div>
+      <div data-togglable="CONSTRUCTOR">
+        <h2 class="">Constructors</h2>
+        <div class="table"><a data-name="-937282734%2FConstructors%2F-292256866" anchor-label="Builder" id="-937282734%2FConstructors%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-togglable="CONSTRUCTOR" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-builder.html"><span><span>Builder</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-937282734%2FConstructors%2F-292256866"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation">@</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-overloads/index.html"><span class="token annotation">JvmOverloads</span></a></div></div><span class="token keyword"></span><span class="token keyword">fun </span><a href="-builder.html"><span class="token function">Builder</span></a><span class="token punctuation">(</span><span class="parameters wrapped"><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;context<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/android/content/Context.html">Context</a><span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;playAssureObserver<span class="token operator">: </span><a href="../../-play-assure-status/index.html">PlayAssureStatus</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;processingMode<span class="token operator">: </span><a href="../../-play-assure-processing-mode/index.html">PlayAssureProcessingMode</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;targetBitrate<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a><span class="token operator"> = </span>-1<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;lookAheadSegmentCount<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">5000</span><span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;minimumStartingIndex<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">10</span><span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;lookAheadMaximumVideoSegmentDownloadCount<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;lookAheadBackupVideoLevel<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;playerBackupVideoLevel<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;lookAheadBehindPlayer<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">false</span><span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;requiredCacheMbps<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html">Double</a><span class="token operator"> = </span>-1.0<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;minimumActiveRequestThreshold<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">2</span><span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;minimumWebServerIdleThreshold<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">1</span><span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;headroom<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">1024</span><span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;cacheHigherPlayerRequests<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">false</span></span></span><span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-overloads/index.html"><span class="token annotation builtin">JvmOverloads</span></a></div></div><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">context<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/android/content/Context.html">Context</a><span class="token punctuation">, </span></span><span class="parameter ">playAssureObserver<span class="token operator">: </span><a href="../../-play-assure-status/index.html">PlayAssureStatus</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">processingMode<span class="token operator">: </span><a href="../../-play-assure-processing-mode/index.html">PlayAssureProcessingMode</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">targetBitrate<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a><span class="token operator"> = </span>-1<span class="token punctuation">, </span></span><span class="parameter ">lookAheadSegmentCount<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">5000</span><span class="token punctuation">, </span></span><span class="parameter ">minimumStartingIndex<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">10</span><span class="token punctuation">, </span></span><span class="parameter ">lookAheadMaximumVideoSegmentDownloadCount<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">lookAheadBackupVideoLevel<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">playerBackupVideoLevel<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">lookAheadBehindPlayer<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">false</span><span class="token punctuation">, </span></span><span class="parameter ">requiredCacheMbps<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html">Double</a><span class="token operator"> = </span>-1.0<span class="token punctuation">, </span></span><span class="parameter ">minimumActiveRequestThreshold<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">2</span><span class="token punctuation">, </span></span><span class="parameter ">minimumWebServerIdleThreshold<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">1</span><span class="token punctuation">, </span></span><span class="parameter ">headroom<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">1024</span><span class="token punctuation">, </span></span><span class="parameter ">cacheHigherPlayerRequests<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">false</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <h2 class="">Functions</h2>
-      <div class="table" data-togglable="Functions"><a data-name="-535585478%2FFunctions%2F-292256866" anchor-label="build" id="-535585478%2FFunctions%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="build.html"><span><span>build</span></span></a></div>
+      <div data-togglable="FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="-535585478%2FFunctions%2F-292256866" anchor-label="build" id="-535585478%2FFunctions%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="build.html"><span><span>build</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-535585478%2FFunctions%2F-292256866"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="build.html"><span class="token function">build</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../index.html">PlayAssureConfig</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="build.html"><span class="token function">build</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../index.html">PlayAssureConfig</a></div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="-1994297129%2FFunctions%2F-292256866" anchor-label="cacheHigherPlayerRequests" id="-1994297129%2FFunctions%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="cache-higher-player-requests.html"><span>cache</span><wbr><span>Higher</span><wbr><span>Player</span><wbr><span><span>Requests</span></span></a></div>
+          <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="cache-higher-player-requests.html"><span>cache</span><wbr><span>Higher</span><wbr><span>Player</span><wbr><span><span>Requests</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1994297129%2FFunctions%2F-292256866"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="cache-higher-player-requests.html"><span class="token function">cacheHigherPlayerRequests</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">cacheHigherPlayerRequests<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">PlayAssureConfig.Builder</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="cache-higher-player-requests.html"><span class="token function">cacheHigherPlayerRequests</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">cacheHigherPlayerRequests<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">PlayAssureConfig.Builder</a></div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="1204124213%2FFunctions%2F-292256866" anchor-label="headroom" id="1204124213%2FFunctions%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="headroom.html"><span><span>headroom</span></span></a></div>
+          <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="headroom.html"><span><span>headroom</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1204124213%2FFunctions%2F-292256866"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="headroom.html"><span class="token function">headroom</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">headroom<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">PlayAssureConfig.Builder</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="headroom.html"><span class="token function">headroom</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">headroom<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">PlayAssureConfig.Builder</a></div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="-1677034695%2FFunctions%2F-292256866" anchor-label="lookAheadBackupVideoLevel" id="-1677034695%2FFunctions%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="look-ahead-backup-video-level.html"><span>look</span><wbr><span>Ahead</span><wbr><span>Backup</span><wbr><span>Video</span><wbr><span><span>Level</span></span></a></div>
+          <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="look-ahead-backup-video-level.html"><span>look</span><wbr><span>Ahead</span><wbr><span>Backup</span><wbr><span>Video</span><wbr><span><span>Level</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1677034695%2FFunctions%2F-292256866"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="look-ahead-backup-video-level.html"><span class="token function">lookAheadBackupVideoLevel</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">level<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">PlayAssureConfig.Builder</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="look-ahead-backup-video-level.html"><span class="token function">lookAheadBackupVideoLevel</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">level<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">PlayAssureConfig.Builder</a></div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="253275216%2FFunctions%2F-292256866" anchor-label="lookAheadBehindPlayer" id="253275216%2FFunctions%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="look-ahead-behind-player.html"><span>look</span><wbr><span>Ahead</span><wbr><span>Behind</span><wbr><span><span>Player</span></span></a></div>
+          <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="look-ahead-behind-player.html"><span>look</span><wbr><span>Ahead</span><wbr><span>Behind</span><wbr><span><span>Player</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="253275216%2FFunctions%2F-292256866"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="look-ahead-behind-player.html"><span class="token function">lookAheadBehindPlayer</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">lookAhead<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">PlayAssureConfig.Builder</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="look-ahead-behind-player.html"><span class="token function">lookAheadBehindPlayer</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">lookAhead<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">PlayAssureConfig.Builder</a></div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="492635669%2FFunctions%2F-292256866" anchor-label="lookAheadMaximumVideoSegmentDownloadCount" id="492635669%2FFunctions%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="look-ahead-maximum-video-segment-download-count.html"><span>look</span><wbr><span>Ahead</span><wbr><span>Maximum</span><wbr><span>Video</span><wbr><span>Segment</span><wbr><span>Download</span><wbr><span><span>Count</span></span></a></div>
+          <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="look-ahead-maximum-video-segment-download-count.html"><span>look</span><wbr><span>Ahead</span><wbr><span>Maximum</span><wbr><span>Video</span><wbr><span>Segment</span><wbr><span>Download</span><wbr><span><span>Count</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="492635669%2FFunctions%2F-292256866"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="look-ahead-maximum-video-segment-download-count.html"><span class="token function">lookAheadMaximumVideoSegmentDownloadCount</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">segmentDownloadCount<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">PlayAssureConfig.Builder</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="look-ahead-maximum-video-segment-download-count.html"><span class="token function">lookAheadMaximumVideoSegmentDownloadCount</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">segmentDownloadCount<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">PlayAssureConfig.Builder</a></div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="-1481374808%2FFunctions%2F-292256866" anchor-label="lookAheadSegmentCount" id="-1481374808%2FFunctions%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="look-ahead-segment-count.html"><span>look</span><wbr><span>Ahead</span><wbr><span>Segment</span><wbr><span><span>Count</span></span></a></div>
+          <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="look-ahead-segment-count.html"><span>look</span><wbr><span>Ahead</span><wbr><span>Segment</span><wbr><span><span>Count</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1481374808%2FFunctions%2F-292256866"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="look-ahead-segment-count.html"><span class="token function">lookAheadSegmentCount</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">segmentCount<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">PlayAssureConfig.Builder</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="look-ahead-segment-count.html"><span class="token function">lookAheadSegmentCount</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">segmentCount<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">PlayAssureConfig.Builder</a></div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="1944945942%2FFunctions%2F-292256866" anchor-label="minimumActiveRequestThreshold" id="1944945942%2FFunctions%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="minimum-active-request-threshold.html"><span>minimum</span><wbr><span>Active</span><wbr><span>Request</span><wbr><span><span>Threshold</span></span></a></div>
+          <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="minimum-active-request-threshold.html"><span>minimum</span><wbr><span>Active</span><wbr><span>Request</span><wbr><span><span>Threshold</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1944945942%2FFunctions%2F-292256866"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="minimum-active-request-threshold.html"><span class="token function">minimumActiveRequestThreshold</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">threshold<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">PlayAssureConfig.Builder</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="minimum-active-request-threshold.html"><span class="token function">minimumActiveRequestThreshold</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">threshold<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">PlayAssureConfig.Builder</a></div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="1406918092%2FFunctions%2F-292256866" anchor-label="minimumStartingIndex" id="1406918092%2FFunctions%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="minimum-starting-index.html"><span>minimum</span><wbr><span>Starting</span><wbr><span><span>Index</span></span></a></div>
+          <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="minimum-starting-index.html"><span>minimum</span><wbr><span>Starting</span><wbr><span><span>Index</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1406918092%2FFunctions%2F-292256866"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="minimum-starting-index.html"><span class="token function">minimumStartingIndex</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">index<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">PlayAssureConfig.Builder</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="minimum-starting-index.html"><span class="token function">minimumStartingIndex</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">index<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">PlayAssureConfig.Builder</a></div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="1996335512%2FFunctions%2F-292256866" anchor-label="minimumWebServerIdleThreshold" id="1996335512%2FFunctions%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="minimum-web-server-idle-threshold.html"><span>minimum</span><wbr><span>Web</span><wbr><span>Server</span><wbr><span>Idle</span><wbr><span><span>Threshold</span></span></a></div>
+          <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="minimum-web-server-idle-threshold.html"><span>minimum</span><wbr><span>Web</span><wbr><span>Server</span><wbr><span>Idle</span><wbr><span><span>Threshold</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1996335512%2FFunctions%2F-292256866"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="minimum-web-server-idle-threshold.html"><span class="token function">minimumWebServerIdleThreshold</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">threshold<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">PlayAssureConfig.Builder</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="minimum-web-server-idle-threshold.html"><span class="token function">minimumWebServerIdleThreshold</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">threshold<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">PlayAssureConfig.Builder</a></div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="-432775461%2FFunctions%2F-292256866" anchor-label="playAssureObserver" id="-432775461%2FFunctions%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="play-assure-observer.html"><span>play</span><wbr><span>Assure</span><wbr><span><span>Observer</span></span></a></div>
+          <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="play-assure-observer.html"><span>play</span><wbr><span>Assure</span><wbr><span><span>Observer</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-432775461%2FFunctions%2F-292256866"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="play-assure-observer.html"><span class="token function">playAssureObserver</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">observer<span class="token operator">: </span><a href="../../-play-assure-status/index.html">PlayAssureStatus</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">PlayAssureConfig.Builder</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="play-assure-observer.html"><span class="token function">playAssureObserver</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">observer<span class="token operator">: </span><a href="../../-play-assure-status/index.html">PlayAssureStatus</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">PlayAssureConfig.Builder</a></div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="-587478428%2FFunctions%2F-292256866" anchor-label="playerBackupVideoLevel" id="-587478428%2FFunctions%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="player-backup-video-level.html"><span>player</span><wbr><span>Backup</span><wbr><span>Video</span><wbr><span><span>Level</span></span></a></div>
+          <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="player-backup-video-level.html"><span>player</span><wbr><span>Backup</span><wbr><span>Video</span><wbr><span><span>Level</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-587478428%2FFunctions%2F-292256866"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="player-backup-video-level.html"><span class="token function">playerBackupVideoLevel</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">level<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">PlayAssureConfig.Builder</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="player-backup-video-level.html"><span class="token function">playerBackupVideoLevel</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">level<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">PlayAssureConfig.Builder</a></div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="-1646837934%2FFunctions%2F-292256866" anchor-label="processingMode" id="-1646837934%2FFunctions%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="processing-mode.html"><span>processing</span><wbr><span><span>Mode</span></span></a></div>
+          <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="processing-mode.html"><span>processing</span><wbr><span><span>Mode</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1646837934%2FFunctions%2F-292256866"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="processing-mode.html"><span class="token function">processingMode</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">processingMode<span class="token operator">: </span><a href="../../-play-assure-processing-mode/index.html">PlayAssureProcessingMode</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">PlayAssureConfig.Builder</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="processing-mode.html"><span class="token function">processingMode</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">processingMode<span class="token operator">: </span><a href="../../-play-assure-processing-mode/index.html">PlayAssureProcessingMode</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">PlayAssureConfig.Builder</a></div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="-1912354121%2FFunctions%2F-292256866" anchor-label="requiredCacheMbps" id="-1912354121%2FFunctions%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="required-cache-mbps.html"><span>required</span><wbr><span>Cache</span><wbr><span><span>Mbps</span></span></a></div>
+          <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="required-cache-mbps.html"><span>required</span><wbr><span>Cache</span><wbr><span><span>Mbps</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1912354121%2FFunctions%2F-292256866"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="required-cache-mbps.html"><span class="token function">requiredCacheMbps</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">bitrate<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html">Double</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">PlayAssureConfig.Builder</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="required-cache-mbps.html"><span class="token function">requiredCacheMbps</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">bitrate<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html">Double</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">PlayAssureConfig.Builder</a></div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="1083144173%2FFunctions%2F-292256866" anchor-label="targetBitrate" id="1083144173%2FFunctions%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="target-bitrate.html"><span>target</span><wbr><span><span>Bitrate</span></span></a></div>
+          <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="target-bitrate.html"><span>target</span><wbr><span><span>Bitrate</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1083144173%2FFunctions%2F-292256866"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="target-bitrate.html"><span class="token function">targetBitrate</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">bitrate<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">PlayAssureConfig.Builder</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="target-bitrate.html"><span class="token function">targetBitrate</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">bitrate<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">PlayAssureConfig.Builder</a></div></div></div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <h2 class="">Properties</h2>
-      <div class="table" data-togglable="Properties"><a data-name="-976629486%2FProperties%2F-292256866" anchor-label="cacheHigherPlayerRequests" id="-976629486%2FProperties%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="cache-higher-player-requests.html">cacheHigherPlayerRequests</a></div>
+      <div data-togglable="PROPERTY">
+        <h2 class="">Properties</h2>
+        <div class="table"><a data-name="-976629486%2FProperties%2F-292256866" anchor-label="cacheHigherPlayerRequests" id="-976629486%2FProperties%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="cache-higher-player-requests.html"><span>cache</span><wbr><span>Higher</span><wbr><span>Player</span><wbr><span><span>Requests</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-976629486%2FProperties%2F-292256866"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><a data-name="-976629486%2FProperties%2F-292256866" anchor-label="cacheHigherPlayerRequests" id="-976629486%2FProperties%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">var </span><a href="cache-higher-player-requests.html">cacheHigherPlayerRequests</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">false</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">var </span><a href="cache-higher-player-requests.html">cacheHigherPlayerRequests</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="1054853721%2FProperties%2F-292256866" anchor-label="context" id="1054853721%2FProperties%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="context.html">context</a></div>
+          <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="context.html"><span><span>context</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1054853721%2FProperties%2F-292256866"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><a data-name="1054853721%2FProperties%2F-292256866" anchor-label="context" id="1054853721%2FProperties%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="context.html">context</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/android/content/Context.html">Context</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="context.html">context</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/android/content/Context.html">Context</a></div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="2067005783%2FProperties%2F-292256866" anchor-label="headroom" id="2067005783%2FProperties%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="headroom.html">headroom</a></div>
+          <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="headroom.html"><span><span>headroom</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2067005783%2FProperties%2F-292256866"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><a data-name="2067005783%2FProperties%2F-292256866" anchor-label="headroom" id="2067005783%2FProperties%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">var </span><a href="headroom.html">headroom</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">1024</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">var </span><a href="headroom.html">headroom</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="-720259237%2FProperties%2F-292256866" anchor-label="lookAheadBackupVideoLevel" id="-720259237%2FProperties%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="look-ahead-backup-video-level.html">lookAheadBackupVideoLevel</a></div>
+          <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="look-ahead-backup-video-level.html"><span>look</span><wbr><span>Ahead</span><wbr><span>Backup</span><wbr><span>Video</span><wbr><span><span>Level</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-720259237%2FProperties%2F-292256866"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><a data-name="-720259237%2FProperties%2F-292256866" anchor-label="lookAheadBackupVideoLevel" id="-720259237%2FProperties%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">var </span><a href="look-ahead-backup-video-level.html">lookAheadBackupVideoLevel</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">var </span><a href="look-ahead-backup-video-level.html">lookAheadBackupVideoLevel</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator">?</span></div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="1695786059%2FProperties%2F-292256866" anchor-label="lookAheadBehindPlayer" id="1695786059%2FProperties%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="look-ahead-behind-player.html">lookAheadBehindPlayer</a></div>
+          <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="look-ahead-behind-player.html"><span>look</span><wbr><span>Ahead</span><wbr><span>Behind</span><wbr><span><span>Player</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1695786059%2FProperties%2F-292256866"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><a data-name="1695786059%2FProperties%2F-292256866" anchor-label="lookAheadBehindPlayer" id="1695786059%2FProperties%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">var </span><a href="look-ahead-behind-player.html">lookAheadBehindPlayer</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">false</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">var </span><a href="look-ahead-behind-player.html">lookAheadBehindPlayer</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="-827398857%2FProperties%2F-292256866" anchor-label="lookAheadMaximumVideoSegmentDownloadCount" id="-827398857%2FProperties%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="look-ahead-maximum-video-segment-download-count.html">lookAheadMaximumVideoSegmentDownloadCount</a></div>
+          <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="look-ahead-maximum-video-segment-download-count.html"><span>look</span><wbr><span>Ahead</span><wbr><span>Maximum</span><wbr><span>Video</span><wbr><span>Segment</span><wbr><span>Download</span><wbr><span><span>Count</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-827398857%2FProperties%2F-292256866"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><a data-name="-827398857%2FProperties%2F-292256866" anchor-label="lookAheadMaximumVideoSegmentDownloadCount" id="-827398857%2FProperties%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">var </span><a href="look-ahead-maximum-video-segment-download-count.html">lookAheadMaximumVideoSegmentDownloadCount</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">var </span><a href="look-ahead-maximum-video-segment-download-count.html">lookAheadMaximumVideoSegmentDownloadCount</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator">?</span></div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="-2115555702%2FProperties%2F-292256866" anchor-label="lookAheadSegmentCount" id="-2115555702%2FProperties%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="look-ahead-segment-count.html">lookAheadSegmentCount</a></div>
+          <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="look-ahead-segment-count.html"><span>look</span><wbr><span>Ahead</span><wbr><span>Segment</span><wbr><span><span>Count</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2115555702%2FProperties%2F-292256866"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><a data-name="-2115555702%2FProperties%2F-292256866" anchor-label="lookAheadSegmentCount" id="-2115555702%2FProperties%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">var </span><a href="look-ahead-segment-count.html">lookAheadSegmentCount</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">5000</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">var </span><a href="look-ahead-segment-count.html">lookAheadSegmentCount</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="2048983416%2FProperties%2F-292256866" anchor-label="minimumActiveRequestThreshold" id="2048983416%2FProperties%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="minimum-active-request-threshold.html">minimumActiveRequestThreshold</a></div>
+          <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="minimum-active-request-threshold.html"><span>minimum</span><wbr><span>Active</span><wbr><span>Request</span><wbr><span><span>Threshold</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2048983416%2FProperties%2F-292256866"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><a data-name="2048983416%2FProperties%2F-292256866" anchor-label="minimumActiveRequestThreshold" id="2048983416%2FProperties%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">var </span><a href="minimum-active-request-threshold.html">minimumActiveRequestThreshold</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">2</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">var </span><a href="minimum-active-request-threshold.html">minimumActiveRequestThreshold</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="-1819368018%2FProperties%2F-292256866" anchor-label="minimumStartingIndex" id="-1819368018%2FProperties%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="minimum-starting-index.html">minimumStartingIndex</a></div>
+          <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="minimum-starting-index.html"><span>minimum</span><wbr><span>Starting</span><wbr><span><span>Index</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1819368018%2FProperties%2F-292256866"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><a data-name="-1819368018%2FProperties%2F-292256866" anchor-label="minimumStartingIndex" id="-1819368018%2FProperties%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">var </span><a href="minimum-starting-index.html">minimumStartingIndex</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">10</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">var </span><a href="minimum-starting-index.html">minimumStartingIndex</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="435847290%2FProperties%2F-292256866" anchor-label="minimumWebServerIdleThreshold" id="435847290%2FProperties%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="minimum-web-server-idle-threshold.html">minimumWebServerIdleThreshold</a></div>
+          <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="minimum-web-server-idle-threshold.html"><span>minimum</span><wbr><span>Web</span><wbr><span>Server</span><wbr><span>Idle</span><wbr><span><span>Threshold</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="435847290%2FProperties%2F-292256866"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><a data-name="435847290%2FProperties%2F-292256866" anchor-label="minimumWebServerIdleThreshold" id="435847290%2FProperties%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">var </span><a href="minimum-web-server-idle-threshold.html">minimumWebServerIdleThreshold</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">1</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">var </span><a href="minimum-web-server-idle-threshold.html">minimumWebServerIdleThreshold</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="-13970687%2FProperties%2F-292256866" anchor-label="playAssureObserver" id="-13970687%2FProperties%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="play-assure-observer.html">playAssureObserver</a></div>
+          <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="play-assure-observer.html"><span>play</span><wbr><span>Assure</span><wbr><span><span>Observer</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-13970687%2FProperties%2F-292256866"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><a data-name="-13970687%2FProperties%2F-292256866" anchor-label="playAssureObserver" id="-13970687%2FProperties%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">var </span><a href="play-assure-observer.html">playAssureObserver</a><span class="token operator">: </span><a href="../../-play-assure-status/index.html">PlayAssureStatus</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">var </span><a href="play-assure-observer.html">playAssureObserver</a><span class="token operator">: </span><a href="../../-play-assure-status/index.html">PlayAssureStatus</a><span class="token operator">?</span></div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="-977735610%2FProperties%2F-292256866" anchor-label="playerBackupVideoLevel" id="-977735610%2FProperties%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="player-backup-video-level.html">playerBackupVideoLevel</a></div>
+          <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="player-backup-video-level.html"><span>player</span><wbr><span>Backup</span><wbr><span>Video</span><wbr><span><span>Level</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-977735610%2FProperties%2F-292256866"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><a data-name="-977735610%2FProperties%2F-292256866" anchor-label="playerBackupVideoLevel" id="-977735610%2FProperties%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">var </span><a href="player-backup-video-level.html">playerBackupVideoLevel</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">var </span><a href="player-backup-video-level.html">playerBackupVideoLevel</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator">?</span></div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="504270172%2FProperties%2F-292256866" anchor-label="processingMode" id="504270172%2FProperties%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="processing-mode.html">processingMode</a></div>
+          <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="processing-mode.html"><span>processing</span><wbr><span><span>Mode</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="504270172%2FProperties%2F-292256866"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><a data-name="504270172%2FProperties%2F-292256866" anchor-label="processingMode" id="504270172%2FProperties%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">var </span><a href="processing-mode.html">processingMode</a><span class="token operator">: </span><a href="../../-play-assure-processing-mode/index.html">PlayAssureProcessingMode</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">var </span><a href="processing-mode.html">processingMode</a><span class="token operator">: </span><a href="../../-play-assure-processing-mode/index.html">PlayAssureProcessingMode</a><span class="token operator">?</span></div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="246092717%2FProperties%2F-292256866" anchor-label="requiredCacheMbps" id="246092717%2FProperties%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="required-cache-mbps.html">requiredCacheMbps</a></div>
+          <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="required-cache-mbps.html"><span>required</span><wbr><span>Cache</span><wbr><span><span>Mbps</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="246092717%2FProperties%2F-292256866"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><a data-name="246092717%2FProperties%2F-292256866" anchor-label="requiredCacheMbps" id="246092717%2FProperties%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">var </span><a href="required-cache-mbps.html">requiredCacheMbps</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html">Double</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">var </span><a href="required-cache-mbps.html">requiredCacheMbps</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html">Double</a></div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="1718537164%2FProperties%2F-292256866" anchor-label="targetBitrate" id="1718537164%2FProperties%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="target-bitrate.html">targetBitrate</a></div>
+          <div class="table-row" data-filterable-current=":playassure:dokkaHtmlPartial/main" data-filterable-set=":playassure:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="target-bitrate.html"><span>target</span><wbr><span><span>Bitrate</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1718537164%2FProperties%2F-292256866"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><a data-name="1718537164%2FProperties%2F-292256866" anchor-label="targetBitrate" id="1718537164%2FProperties%2F-292256866" data-filterable-set=":playassure:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">var </span><a href="target-bitrate.html">targetBitrate</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":playassure:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">var </span><a href="target-bitrate.html">targetBitrate</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a></div></div></div>
+                </div>
               </div>
             </div>
           </div>
@@ -521,10 +538,11 @@ if(savedDarkMode === true){
     </div>
   </div>
 </div>
-        <div class="footer"><span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2023 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
-        </div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2024 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
     </div>
 </div>
-
-</body></html>
+</body>
+</html>
 

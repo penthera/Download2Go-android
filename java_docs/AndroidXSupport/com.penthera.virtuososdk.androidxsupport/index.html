@@ -3,12 +3,19 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
     <title>com.penthera.virtuososdk.androidxsupport</title>
-<link href="../../images/logo-icon.svg" rel="icon" type="image/svg">
-    <script>var pathToRoot = "../../";</script>    <script>const storage = localStorage.getItem("dokka-dark-mode")
-const savedDarkMode = storage ? JSON.parse(storage) : false
-if(savedDarkMode === true){
-    document.getElementsByTagName("html")[0].classList.add("theme-dark")
-}</script>
+<link href="../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../";</script>    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
 <script type="text/javascript" src="../../scripts/sourceset_dependencies.js" async></script>
 <link href="../../styles/style.css" rel="Stylesheet">
 <link href="../../styles/jetbrains-mono.css" rel="Stylesheet">
@@ -19,7 +26,8 @@ if(savedDarkMode === true){
 <script type="text/javascript" src="../../scripts/navigation-loader.js" async></script>
 <script type="text/javascript" src="../../scripts/platform-content-handler.js" async></script>
 <script type="text/javascript" src="../../scripts/main.js" defer></script>
-<script type="text/javascript" src="../../scripts/prism.js" async></script></head>
+<script type="text/javascript" src="../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
 <body>
 <div class="navigation-wrapper" id="navigation-wrapper">
     <div id="leftToggler"><span class="icon-toggler"></span></div>
@@ -29,6 +37,9 @@ if(savedDarkMode === true){
     <div>
     </div>
     <div class="pull-right d-flex">
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":AndroidXSupport:dokkaHtmlPartial/main">Download2Go AndroidX Extension Support Library</button>
+        </div>
         <button id="theme-toggle-button"><span id="theme-toggle"></span></button>
         <div id="searchBar"></div>
     </div>
@@ -38,222 +49,224 @@ if(savedDarkMode === true){
         <div id="sideMenu"></div>
     </div>
     <div id="main">
-<div class="main-content" id="content" pageids="Download2Go AndroidX Extension Support Library::com.penthera.virtuososdk.androidxsupport////PointingToDeclaration//1185444967">
-  <div class="breadcrumbs"><a href="../index.html">Download2Go AndroidX Extension Support Library</a><span class="delimiter">/</span><a href="index.html">com.penthera.virtuososdk.androidxsupport</a></div>
+<div class="main-content" data-page-type="package" id="content" pageids="Download2Go AndroidX Extension Support Library::com.penthera.virtuososdk.androidxsupport////PointingToDeclaration//1185444967">
+  <div class="breadcrumbs"><a href="../index.html">Download2Go AndroidX Extension Support Library</a><span class="delimiter">/</span><span class="current">com.penthera.virtuososdk.androidxsupport</span></div>
   <div class="cover ">
-    <h1 class="cover"><span><span>Package</span></span> <span>com.</span><wbr><span>penthera.</span><wbr><span>virtuososdk.</span><wbr><span><span>androidxsupport</span></span></h1>
-    <div class="platform-hinted UnderCoverText" data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":AndroidXSupport:dokkaHtmlPartial/main"><p class="paragraph">The core package in this support library, providing LiveData classes for each of the main SDK concepts. The VirtuosoLiveDataFactory is the first point of entry for this extension SDK. Once this class has been  instantiated with a LifeCycleOwner then it can be used to fetch LiveData classes which will be managed with the associated lifecycle.</p></div></div>
+    <h1 class="cover"><span><span>Package-level</span></span> <span><span>declarations</span></span></h1>
+    <div class="platform-hinted UnderCoverText" data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":AndroidXSupport:dokkaHtmlPartial/main"><p class="paragraph">The core package in this support library, providing LiveData classes for each of the main SDK concepts. The VirtuosoLiveDataFactory is the first point of entry for this extension SDK. Once this class has been  instantiated with a LifeCycleOwner then it can be used to fetch LiveData classes which will be managed with the associated lifecycle.</p></div></div>
   </div>
   <div class="tabbedcontent">
-    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="Types">Types</button></div>
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="TYPE">Types</button></div>
     <div class="tabs-section-body">
-      <h2 class="">Types</h2>
-      <div class="table" data-togglable="Types"><a data-name="-1518240839%2FClasslikes%2F1185444967" anchor-label="AllAssetsLiveData" id="-1518240839%2FClasslikes%2F1185444967" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":AndroidXSupport:dokkaHtmlPartial/main" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="-all-assets-live-data/index.html"><span>All</span><wbr><span>Assets</span><wbr><span>Live</span><wbr><span><span>Data</span></span></a></div>
+      <div data-togglable="TYPE">
+        <h2 class="">Types</h2>
+        <div class="table"><a data-name="-1518240839%2FClasslikes%2F1185444967" anchor-label="AllAssetsLiveData" id="-1518240839%2FClasslikes%2F1185444967" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":AndroidXSupport:dokkaHtmlPartial/main" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-all-assets-live-data/index.html"><span>All</span><wbr><span>Assets</span><wbr><span>Live</span><wbr><span><span>Data</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1518240839%2FClasslikes%2F1185444967"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":AndroidXSupport:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">class </span><a href="-all-assets-live-data/index.html">AllAssetsLiveData</a> : <span data-unresolved-link="com.penthera.virtuososdk.androidxsupport.impl/AssetListLiveData///PointingToDeclaration/">AssetListLiveData</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">AllAssetsLiveData provides a LiveData object containing a list of ISegmentedAssets for all current assets in the SDK, regardless of the asset status.</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":AndroidXSupport:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">class </span><a href="-all-assets-live-data/index.html">AllAssetsLiveData</a> : <span data-unresolved-link="com.penthera.virtuososdk.androidxsupport.impl/AssetListLiveData///PointingToDeclaration/">AssetListLiveData</span></div><div class="brief ">AllAssetsLiveData provides a LiveData object containing a list of ISegmentedAssets for all current assets in the SDK, regardless of the asset status.</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="1234963951%2FClasslikes%2F1185444967" anchor-label="DownloadedAssetsLiveData" id="1234963951%2FClasslikes%2F1185444967" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":AndroidXSupport:dokkaHtmlPartial/main" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="-downloaded-assets-live-data/index.html"><span>Downloaded</span><wbr><span>Assets</span><wbr><span>Live</span><wbr><span><span>Data</span></span></a></div>
+          <div class="table-row" data-filterable-current=":AndroidXSupport:dokkaHtmlPartial/main" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-downloaded-assets-live-data/index.html"><span>Downloaded</span><wbr><span>Assets</span><wbr><span>Live</span><wbr><span><span>Data</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1234963951%2FClasslikes%2F1185444967"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":AndroidXSupport:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">class </span><a href="-downloaded-assets-live-data/index.html">DownloadedAssetsLiveData</a> : <span data-unresolved-link="com.penthera.virtuososdk.androidxsupport.impl/AssetListLiveData///PointingToDeclaration/">AssetListLiveData</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">DownloadedAssetsLiveData provides a LiveData object containing a list of ISegmentedAssets for all fully downloaded assets in the SDK.</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":AndroidXSupport:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">class </span><a href="-downloaded-assets-live-data/index.html">DownloadedAssetsLiveData</a> : <span data-unresolved-link="com.penthera.virtuososdk.androidxsupport.impl/AssetListLiveData///PointingToDeclaration/">AssetListLiveData</span></div><div class="brief ">DownloadedAssetsLiveData provides a LiveData object containing a list of ISegmentedAssets for all fully downloaded assets in the SDK.</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="-2083981711%2FClasslikes%2F1185444967" anchor-label="EnginePauseHelper" id="-2083981711%2FClasslikes%2F1185444967" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":AndroidXSupport:dokkaHtmlPartial/main" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="-engine-pause-helper/index.html"><span>Engine</span><wbr><span>Pause</span><wbr><span><span>Helper</span></span></a></div>
+          <div class="table-row" data-filterable-current=":AndroidXSupport:dokkaHtmlPartial/main" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-engine-pause-helper/index.html"><span>Engine</span><wbr><span>Pause</span><wbr><span><span>Helper</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2083981711%2FClasslikes%2F1185444967"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":AndroidXSupport:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">class </span><a href="-engine-pause-helper/index.html">EnginePauseHelper</a> : <a href="https://developer.android.com/reference/kotlin/androidx/lifecycle/LiveData.html">LiveData</a><span class="token operator">&lt;</span><a href="https://developer.android.com/reference/kotlin/androidx/lifecycle/LiveData.html">T</a><span class="token operator">&gt; </span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">A helper class describing the current engine paused state and providing methods to pause and resume downloads on the engine.</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":AndroidXSupport:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">class </span><a href="-engine-pause-helper/index.html">EnginePauseHelper</a> : <a href="https://developer.android.com/reference/kotlin/androidx/lifecycle/LiveData.html">LiveData</a><span class="token operator">&lt;</span><a href="https://developer.android.com/reference/kotlin/androidx/lifecycle/LiveData.html">T</a><span class="token operator">&gt; </span></div><div class="brief ">A helper class describing the current engine paused state and providing methods to pause and resume downloads on the engine.</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="-1089643803%2FClasslikes%2F1185444967" anchor-label="EngineStatusLiveData" id="-1089643803%2FClasslikes%2F1185444967" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":AndroidXSupport:dokkaHtmlPartial/main" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="-engine-status-live-data/index.html"><span>Engine</span><wbr><span>Status</span><wbr><span>Live</span><wbr><span><span>Data</span></span></a></div>
+          <div class="table-row" data-filterable-current=":AndroidXSupport:dokkaHtmlPartial/main" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-engine-status-live-data/index.html"><span>Engine</span><wbr><span>Status</span><wbr><span>Live</span><wbr><span><span>Data</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1089643803%2FClasslikes%2F1185444967"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":AndroidXSupport:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">class </span><a href="-engine-status-live-data/index.html">EngineStatusLiveData</a> : <a href="https://developer.android.com/reference/kotlin/androidx/lifecycle/LiveData.html">LiveData</a><span class="token operator">&lt;</span><a href="https://developer.android.com/reference/kotlin/androidx/lifecycle/LiveData.html">T</a><span class="token operator">&gt; </span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">A LiveData object containing the current engine status as an integer value from the set defined in <a href="../../SDK/com.penthera.virtuososdk/-common/-engine-status/index.html">com.penthera.virtuososdk.Common.EngineStatus</a></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":AndroidXSupport:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">class </span><a href="-engine-status-live-data/index.html">EngineStatusLiveData</a> : <a href="https://developer.android.com/reference/kotlin/androidx/lifecycle/LiveData.html">LiveData</a><span class="token operator">&lt;</span><a href="https://developer.android.com/reference/kotlin/androidx/lifecycle/LiveData.html">T</a><span class="token operator">&gt; </span></div><div class="brief ">A LiveData object containing the current engine status as an integer value from the set defined in <a href="../../SDK/com.penthera.virtuososdk/-common/-engine-status/index.html">com.penthera.virtuososdk.Common.EngineStatus</a></div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="34067907%2FClasslikes%2F1185444967" anchor-label="EngineThroughput" id="34067907%2FClasslikes%2F1185444967" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":AndroidXSupport:dokkaHtmlPartial/main" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="-engine-throughput/index.html"><span>Engine</span><wbr><span><span>Throughput</span></span></a></div>
+          <div class="table-row" data-filterable-current=":AndroidXSupport:dokkaHtmlPartial/main" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-engine-throughput/index.html"><span>Engine</span><wbr><span><span>Throughput</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="34067907%2FClasslikes%2F1185444967"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":AndroidXSupport:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">class </span><a href="-engine-throughput/index.html">EngineThroughput</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">A wrapper for the throughput values reported by the Service, designed to be used with LiveData.</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":AndroidXSupport:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">class </span><a href="-engine-throughput/index.html">EngineThroughput</a></div><div class="brief ">A wrapper for the throughput values reported by the Service, designed to be used with LiveData.</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="-190627659%2FClasslikes%2F1185444967" anchor-label="ExpiredAssetsLiveData" id="-190627659%2FClasslikes%2F1185444967" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":AndroidXSupport:dokkaHtmlPartial/main" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="-expired-assets-live-data/index.html"><span>Expired</span><wbr><span>Assets</span><wbr><span>Live</span><wbr><span><span>Data</span></span></a></div>
+          <div class="table-row" data-filterable-current=":AndroidXSupport:dokkaHtmlPartial/main" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-expired-assets-live-data/index.html"><span>Expired</span><wbr><span>Assets</span><wbr><span>Live</span><wbr><span><span>Data</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-190627659%2FClasslikes%2F1185444967"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":AndroidXSupport:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">class </span><a href="-expired-assets-live-data/index.html">ExpiredAssetsLiveData</a> : <span data-unresolved-link="com.penthera.virtuososdk.androidxsupport.impl/AssetListLiveData///PointingToDeclaration/">AssetListLiveData</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">ExpiredAssetsLiveData provides a LiveData object containing a list of ISegmentedAssets for all expired assets in the SDK.</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":AndroidXSupport:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">class </span><a href="-expired-assets-live-data/index.html">ExpiredAssetsLiveData</a> : <span data-unresolved-link="com.penthera.virtuososdk.androidxsupport.impl/AssetListLiveData///PointingToDeclaration/">AssetListLiveData</span></div><div class="brief ">ExpiredAssetsLiveData provides a LiveData object containing a list of ISegmentedAssets for all expired assets in the SDK.</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="907415980%2FClasslikes%2F1185444967" anchor-label="NonPendingAssetsLiveData" id="907415980%2FClasslikes%2F1185444967" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":AndroidXSupport:dokkaHtmlPartial/main" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="-non-pending-assets-live-data/index.html"><span>Non</span><wbr><span>Pending</span><wbr><span>Assets</span><wbr><span>Live</span><wbr><span><span>Data</span></span></a></div>
+          <div class="table-row" data-filterable-current=":AndroidXSupport:dokkaHtmlPartial/main" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-non-pending-assets-live-data/index.html"><span>Non</span><wbr><span>Pending</span><wbr><span>Assets</span><wbr><span>Live</span><wbr><span><span>Data</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="907415980%2FClasslikes%2F1185444967"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":AndroidXSupport:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">class </span><a href="-non-pending-assets-live-data/index.html">NonPendingAssetsLiveData</a> : <span data-unresolved-link="com.penthera.virtuososdk.androidxsupport.impl/AssetListLiveData///PointingToDeclaration/">AssetListLiveData</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">NonPendingAssetsLiveData provides a LiveData object containing a list of ISegmentedAssets for all assets in the SDK that are not in a queued, downloaded or expired state.</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":AndroidXSupport:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">class </span><a href="-non-pending-assets-live-data/index.html">NonPendingAssetsLiveData</a> : <span data-unresolved-link="com.penthera.virtuososdk.androidxsupport.impl/AssetListLiveData///PointingToDeclaration/">AssetListLiveData</span></div><div class="brief ">NonPendingAssetsLiveData provides a LiveData object containing a list of ISegmentedAssets for all assets in the SDK that are not in a queued, downloaded or expired state.</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="1626028552%2FClasslikes%2F1185444967" anchor-label="ParserQueueAssetsLiveData" id="1626028552%2FClasslikes%2F1185444967" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":AndroidXSupport:dokkaHtmlPartial/main" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="-parser-queue-assets-live-data/index.html"><span>Parser</span><wbr><span>Queue</span><wbr><span>Assets</span><wbr><span>Live</span><wbr><span><span>Data</span></span></a></div>
+          <div class="table-row" data-filterable-current=":AndroidXSupport:dokkaHtmlPartial/main" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-parser-queue-assets-live-data/index.html"><span>Parser</span><wbr><span>Queue</span><wbr><span>Assets</span><wbr><span>Live</span><wbr><span><span>Data</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1626028552%2FClasslikes%2F1185444967"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":AndroidXSupport:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">class </span><a href="-parser-queue-assets-live-data/index.html">ParserQueueAssetsLiveData</a> : <span data-unresolved-link="com.penthera.virtuososdk.androidxsupport.impl/AssetListLiveData///PointingToDeclaration/">AssetListLiveData</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">ParserQueueAssetsLiveData provides a LiveData object containing a list of ISegmentedAssets for assets awaiting manifest parsing or currently being parsed in the SDK.</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":AndroidXSupport:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">class </span><a href="-parser-queue-assets-live-data/index.html">ParserQueueAssetsLiveData</a> : <span data-unresolved-link="com.penthera.virtuososdk.androidxsupport.impl/AssetListLiveData///PointingToDeclaration/">AssetListLiveData</span></div><div class="brief ">ParserQueueAssetsLiveData provides a LiveData object containing a list of ISegmentedAssets for assets awaiting manifest parsing or currently being parsed in the SDK.</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="230336367%2FClasslikes%2F1185444967" anchor-label="PlaylistItemsLiveData" id="230336367%2FClasslikes%2F1185444967" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":AndroidXSupport:dokkaHtmlPartial/main" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="-playlist-items-live-data/index.html"><span>Playlist</span><wbr><span>Items</span><wbr><span>Live</span><wbr><span><span>Data</span></span></a></div>
+          <div class="table-row" data-filterable-current=":AndroidXSupport:dokkaHtmlPartial/main" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-playlist-items-live-data/index.html"><span>Playlist</span><wbr><span>Items</span><wbr><span>Live</span><wbr><span><span>Data</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="230336367%2FClasslikes%2F1185444967"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":AndroidXSupport:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">class </span><a href="-playlist-items-live-data/index.html">PlaylistItemsLiveData</a> : <a href="https://developer.android.com/reference/kotlin/androidx/lifecycle/LiveData.html">LiveData</a><span class="token operator">&lt;</span><a href="https://developer.android.com/reference/kotlin/androidx/lifecycle/LiveData.html">T</a><span class="token operator">&gt; </span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">PlaylistItemsLiveData provides a LiveData object containing the details of a single playlist in which an observer will be notified of all updates to the items within the playlist.</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":AndroidXSupport:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">class </span><a href="-playlist-items-live-data/index.html">PlaylistItemsLiveData</a> : <a href="https://developer.android.com/reference/kotlin/androidx/lifecycle/LiveData.html">LiveData</a><span class="token operator">&lt;</span><a href="https://developer.android.com/reference/kotlin/androidx/lifecycle/LiveData.html">T</a><span class="token operator">&gt; </span></div><div class="brief ">PlaylistItemsLiveData provides a LiveData object containing the details of a single playlist in which an observer will be notified of all updates to the items within the playlist.</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="-1514820441%2FClasslikes%2F1185444967" anchor-label="PlaylistLiveData" id="-1514820441%2FClasslikes%2F1185444967" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":AndroidXSupport:dokkaHtmlPartial/main" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="-playlist-live-data/index.html"><span>Playlist</span><wbr><span>Live</span><wbr><span><span>Data</span></span></a></div>
+          <div class="table-row" data-filterable-current=":AndroidXSupport:dokkaHtmlPartial/main" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-playlist-live-data/index.html"><span>Playlist</span><wbr><span>Live</span><wbr><span><span>Data</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1514820441%2FClasslikes%2F1185444967"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":AndroidXSupport:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">class </span><a href="-playlist-live-data/index.html">PlaylistLiveData</a> : <a href="https://developer.android.com/reference/kotlin/androidx/lifecycle/LiveData.html">LiveData</a><span class="token operator">&lt;</span><a href="https://developer.android.com/reference/kotlin/androidx/lifecycle/LiveData.html">T</a><span class="token operator">&gt; </span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">PlaylistLiveData provides a LiveData object containing a list of IPlaylist items for all playlists created in the SDK.</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":AndroidXSupport:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">class </span><a href="-playlist-live-data/index.html">PlaylistLiveData</a> : <a href="https://developer.android.com/reference/kotlin/androidx/lifecycle/LiveData.html">LiveData</a><span class="token operator">&lt;</span><a href="https://developer.android.com/reference/kotlin/androidx/lifecycle/LiveData.html">T</a><span class="token operator">&gt; </span></div><div class="brief ">PlaylistLiveData provides a LiveData object containing a list of IPlaylist items for all playlists created in the SDK.</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="-1972044343%2FClasslikes%2F1185444967" anchor-label="QueueAssetsLiveData" id="-1972044343%2FClasslikes%2F1185444967" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":AndroidXSupport:dokkaHtmlPartial/main" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="-queue-assets-live-data/index.html"><span>Queue</span><wbr><span>Assets</span><wbr><span>Live</span><wbr><span><span>Data</span></span></a></div>
+          <div class="table-row" data-filterable-current=":AndroidXSupport:dokkaHtmlPartial/main" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-queue-assets-live-data/index.html"><span>Queue</span><wbr><span>Assets</span><wbr><span>Live</span><wbr><span><span>Data</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1972044343%2FClasslikes%2F1185444967"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":AndroidXSupport:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">class </span><a href="-queue-assets-live-data/index.html">QueueAssetsLiveData</a> : <span data-unresolved-link="com.penthera.virtuososdk.androidxsupport.impl/AssetListLiveData///PointingToDeclaration/">AssetListLiveData</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">QueueAssetsLiveData provides a LiveData object containing a list of ISegmentedAssets for all assets in the SDK which are downloading or pending download.</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":AndroidXSupport:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">class </span><a href="-queue-assets-live-data/index.html">QueueAssetsLiveData</a> : <span data-unresolved-link="com.penthera.virtuososdk.androidxsupport.impl/AssetListLiveData///PointingToDeclaration/">AssetListLiveData</span></div><div class="brief ">QueueAssetsLiveData provides a LiveData object containing a list of ISegmentedAssets for all assets in the SDK which are downloading or pending download.</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="722897531%2FClasslikes%2F1185444967" anchor-label="SegmentedAssetLiveData" id="722897531%2FClasslikes%2F1185444967" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":AndroidXSupport:dokkaHtmlPartial/main" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="-segmented-asset-live-data/index.html"><span>Segmented</span><wbr><span>Asset</span><wbr><span>Live</span><wbr><span><span>Data</span></span></a></div>
+          <div class="table-row" data-filterable-current=":AndroidXSupport:dokkaHtmlPartial/main" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-segmented-asset-live-data/index.html"><span>Segmented</span><wbr><span>Asset</span><wbr><span>Live</span><wbr><span><span>Data</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="722897531%2FClasslikes%2F1185444967"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":AndroidXSupport:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">class </span><a href="-segmented-asset-live-data/index.html">SegmentedAssetLiveData</a> : <a href="https://developer.android.com/reference/kotlin/androidx/lifecycle/LiveData.html">LiveData</a><span class="token operator">&lt;</span><a href="https://developer.android.com/reference/kotlin/androidx/lifecycle/LiveData.html">T</a><span class="token operator">&gt; </span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">A LiveData object encapsulating the state of a single asset.</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":AndroidXSupport:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">class </span><a href="-segmented-asset-live-data/index.html">SegmentedAssetLiveData</a> : <a href="https://developer.android.com/reference/kotlin/androidx/lifecycle/LiveData.html">LiveData</a><span class="token operator">&lt;</span><a href="https://developer.android.com/reference/kotlin/androidx/lifecycle/LiveData.html">T</a><span class="token operator">&gt; </span></div><div class="brief ">A LiveData object encapsulating the state of a single asset.</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="-2046422065%2FClasslikes%2F1185444967" anchor-label="ThroughputLiveData" id="-2046422065%2FClasslikes%2F1185444967" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":AndroidXSupport:dokkaHtmlPartial/main" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="-throughput-live-data/index.html"><span>Throughput</span><wbr><span>Live</span><wbr><span><span>Data</span></span></a></div>
+          <div class="table-row" data-filterable-current=":AndroidXSupport:dokkaHtmlPartial/main" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-throughput-live-data/index.html"><span>Throughput</span><wbr><span>Live</span><wbr><span><span>Data</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2046422065%2FClasslikes%2F1185444967"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":AndroidXSupport:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">class </span><a href="-throughput-live-data/index.html">ThroughputLiveData</a> : <a href="https://developer.android.com/reference/kotlin/androidx/lifecycle/LiveData.html">LiveData</a><span class="token operator">&lt;</span><a href="https://developer.android.com/reference/kotlin/androidx/lifecycle/LiveData.html">T</a><span class="token operator">&gt; </span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">A LiveData wrapper that can provide download speed figured from the service, as exposed via the <a href="../../penthera-common/com.penthera.virtuososdk.client/-i-service/index.html">IService</a> interface.</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":AndroidXSupport:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">class </span><a href="-throughput-live-data/index.html">ThroughputLiveData</a> : <a href="https://developer.android.com/reference/kotlin/androidx/lifecycle/LiveData.html">LiveData</a><span class="token operator">&lt;</span><a href="https://developer.android.com/reference/kotlin/androidx/lifecycle/LiveData.html">T</a><span class="token operator">&gt; </span></div><div class="brief ">A LiveData wrapper that can provide download speed figured from the service, as exposed via the <a href="../../penthera-common/com.penthera.virtuososdk.client/-i-service/index.html">IService</a> interface.</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="809863850%2FClasslikes%2F1185444967" anchor-label="VirtuosoLiveDataFactory" id="809863850%2FClasslikes%2F1185444967" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main"></a>
-        <div class="table-row" data-filterable-current=":AndroidXSupport:dokkaHtmlPartial/main" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="-virtuoso-live-data-factory/index.html"><span>Virtuoso</span><wbr><span>Live</span><wbr><span>Data</span><wbr><span><span>Factory</span></span></a></div>
+          <div class="table-row" data-filterable-current=":AndroidXSupport:dokkaHtmlPartial/main" data-filterable-set=":AndroidXSupport:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-virtuoso-live-data-factory/index.html"><span>Virtuoso</span><wbr><span>Live</span><wbr><span>Data</span><wbr><span><span>Factory</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="809863850%2FClasslikes%2F1185444967"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":AndroidXSupport:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">class </span><a href="-virtuoso-live-data-factory/index.html">VirtuosoLiveDataFactory</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">The Penthera AndroidX support library provides lifecycle aware LiveData components that are designed to be used within the ViewModel of a modern android app, following the Application Architecture Components design.</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":AndroidXSupport:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">class </span><a href="-virtuoso-live-data-factory/index.html">VirtuosoLiveDataFactory</a></div><div class="brief ">The Penthera AndroidX support library provides lifecycle aware LiveData components that are designed to be used within the ViewModel of a modern android app, following the Application Architecture Components design.</div></div></div>
+                </div>
               </div>
             </div>
           </div>
@@ -262,10 +275,11 @@ if(savedDarkMode === true){
     </div>
   </div>
 </div>
-        <div class="footer"><span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2023 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
-        </div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2024 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
     </div>
 </div>
-
-</body></html>
+</body>
+</html>
 

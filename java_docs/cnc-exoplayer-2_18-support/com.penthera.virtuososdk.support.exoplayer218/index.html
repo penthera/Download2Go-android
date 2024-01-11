@@ -3,12 +3,19 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
     <title>com.penthera.virtuososdk.support.exoplayer218</title>
-<link href="../../images/logo-icon.svg" rel="icon" type="image/svg">
-    <script>var pathToRoot = "../../";</script>    <script>const storage = localStorage.getItem("dokka-dark-mode")
-const savedDarkMode = storage ? JSON.parse(storage) : false
-if(savedDarkMode === true){
-    document.getElementsByTagName("html")[0].classList.add("theme-dark")
-}</script>
+<link href="../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../";</script>    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
 <script type="text/javascript" src="../../scripts/sourceset_dependencies.js" async></script>
 <link href="../../styles/style.css" rel="Stylesheet">
 <link href="../../styles/jetbrains-mono.css" rel="Stylesheet">
@@ -19,7 +26,8 @@ if(savedDarkMode === true){
 <script type="text/javascript" src="../../scripts/navigation-loader.js" async></script>
 <script type="text/javascript" src="../../scripts/platform-content-handler.js" async></script>
 <script type="text/javascript" src="../../scripts/main.js" defer></script>
-<script type="text/javascript" src="../../scripts/prism.js" async></script></head>
+<script type="text/javascript" src="../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
 <body>
 <div class="navigation-wrapper" id="navigation-wrapper">
     <div id="leftToggler"><span class="icon-toggler"></span></div>
@@ -29,6 +37,9 @@ if(savedDarkMode === true){
     <div>
     </div>
     <div class="pull-right d-flex">
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":cnc-exoplayer-2_18-support:dokkaHtmlPartial/release">androidJvm</button>
+        </div>
         <button id="theme-toggle-button"><span id="theme-toggle"></span></button>
         <div id="searchBar"></div>
     </div>
@@ -38,42 +49,44 @@ if(savedDarkMode === true){
         <div id="sideMenu"></div>
     </div>
     <div id="main">
-<div class="main-content" id="content" pageids="Download2Go Android ExoPlayer 2.18.* Support Library::com.penthera.virtuososdk.support.exoplayer218////PointingToDeclaration//1907132152">
-  <div class="breadcrumbs"><a href="../index.html">Download2Go Android ExoPlayer 2.18.* Support Library</a><span class="delimiter">/</span><a href="index.html">com.penthera.virtuososdk.support.exoplayer218</a></div>
+<div class="main-content" data-page-type="package" id="content" pageids="Download2Go Android ExoPlayer 2.18.* Support Library::com.penthera.virtuososdk.support.exoplayer218////PointingToDeclaration//1907132152">
+  <div class="breadcrumbs"><a href="../index.html">Download2Go Android ExoPlayer 2.18.* Support Library</a><span class="delimiter">/</span><span class="current">com.penthera.virtuososdk.support.exoplayer218</span></div>
   <div class="cover ">
-    <h1 class="cover"><span><span>Package</span></span> <span>com.</span><wbr><span>penthera.</span><wbr><span>virtuososdk.</span><wbr><span>support.</span><wbr><span><span>exoplayer218</span></span></h1>
-    <div class="platform-hinted UnderCoverText" data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":cnc-exoplayer-2_18-support:dokkaHtmlPartial/release"><p class="paragraph">Support package containing utilities to simplify integration between the SDK and exoplayer.</p></div></div>
+    <h1 class="cover"><span><span>Package-level</span></span> <span><span>declarations</span></span></h1>
+    <div class="platform-hinted UnderCoverText" data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":cnc-exoplayer-2_18-support:dokkaHtmlPartial/release"><p class="paragraph">Support package containing utilities to simplify integration between the SDK and exoplayer.</p></div></div>
   </div>
   <div class="tabbedcontent">
-    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="Types">Types</button></div>
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="TYPE">Types</button></div>
     <div class="tabs-section-body">
-      <h2 class="">Types</h2>
-      <div class="table" data-togglable="Types"><a data-name="1229371298%2FClasslikes%2F1907132152" anchor-label="ExoplayerUtils" id="1229371298%2FClasslikes%2F1907132152" data-filterable-set=":cnc-exoplayer-2_18-support:dokkaHtmlPartial/release"></a>
-        <div class="table-row" data-filterable-current=":cnc-exoplayer-2_18-support:dokkaHtmlPartial/release" data-filterable-set=":cnc-exoplayer-2_18-support:dokkaHtmlPartial/release">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="-exoplayer-utils/index.html"><span>Exoplayer</span><wbr><span><span>Utils</span></span></a></div>
+      <div data-togglable="TYPE">
+        <h2 class="">Types</h2>
+        <div class="table"><a data-name="1229371298%2FClasslikes%2F1907132152" anchor-label="ExoplayerUtils" id="1229371298%2FClasslikes%2F1907132152" data-filterable-set=":cnc-exoplayer-2_18-support:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-filterable-current=":cnc-exoplayer-2_18-support:dokkaHtmlPartial/release" data-filterable-set=":cnc-exoplayer-2_18-support:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-exoplayer-utils/index.html"><span>Exoplayer</span><wbr><span><span>Utils</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1229371298%2FClasslikes%2F1907132152"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":cnc-exoplayer-2_18-support:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">class </span><a href="-exoplayer-utils/index.html">ExoplayerUtils</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Utility class that provides functionality to more easily link the Virtuoso SDK to Exoplayer version 2.15.</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":cnc-exoplayer-2_18-support:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">class </span><a href="-exoplayer-utils/index.html">ExoplayerUtils</a></div><div class="brief ">Utility class that provides functionality to more easily link the Virtuoso SDK to Exoplayer version 2.15.</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="1526389264%2FClasslikes%2F1907132152" anchor-label="VirtuosoDrmSessionManagerProvider" id="1526389264%2FClasslikes%2F1907132152" data-filterable-set=":cnc-exoplayer-2_18-support:dokkaHtmlPartial/release"></a>
-        <div class="table-row" data-filterable-current=":cnc-exoplayer-2_18-support:dokkaHtmlPartial/release" data-filterable-set=":cnc-exoplayer-2_18-support:dokkaHtmlPartial/release">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="-virtuoso-drm-session-manager-provider/index.html"><span>Virtuoso</span><wbr><span>Drm</span><wbr><span>Session</span><wbr><span>Manager</span><wbr><span><span>Provider</span></span></a></div>
+          <div class="table-row" data-filterable-current=":cnc-exoplayer-2_18-support:dokkaHtmlPartial/release" data-filterable-set=":cnc-exoplayer-2_18-support:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-virtuoso-drm-session-manager-provider/index.html"><span>Virtuoso</span><wbr><span>Drm</span><wbr><span>Session</span><wbr><span>Manager</span><wbr><span><span>Provider</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1526389264%2FClasslikes%2F1907132152"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":cnc-exoplayer-2_18-support:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">class </span><a href="-virtuoso-drm-session-manager-provider/index.html">VirtuosoDrmSessionManagerProvider</a> : <span data-unresolved-link="com.google.android.exoplayer2.drm/DrmSessionManagerProvider///PointingToDeclaration/">DrmSessionManagerProvider</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">A custom implementation of the exoplayer <span data-unresolved-link="com.google.android.exoplayer2.drm/DrmSessionManagerProvider///PointingToDeclaration/">DrmSessionManagerProvider</span> interface that delivers a DRMSessionManager which is aware of offline DRM licenses managed by the SDK.</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":cnc-exoplayer-2_18-support:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">class </span><a href="-virtuoso-drm-session-manager-provider/index.html">VirtuosoDrmSessionManagerProvider</a> : <span data-unresolved-link="com.google.android.exoplayer2.drm/DrmSessionManagerProvider///PointingToDeclaration/">DrmSessionManagerProvider</span></div><div class="brief ">A custom implementation of the exoplayer <span data-unresolved-link="com.google.android.exoplayer2.drm/DrmSessionManagerProvider///PointingToDeclaration/">DrmSessionManagerProvider</span> interface that delivers a DRMSessionManager which is aware of offline DRM licenses managed by the SDK.</div></div></div>
+                </div>
               </div>
             </div>
           </div>
@@ -82,10 +95,11 @@ if(savedDarkMode === true){
     </div>
   </div>
 </div>
-        <div class="footer"><span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2023 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
-        </div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2024 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
     </div>
 </div>
-
-</body></html>
+</body>
+</html>
 

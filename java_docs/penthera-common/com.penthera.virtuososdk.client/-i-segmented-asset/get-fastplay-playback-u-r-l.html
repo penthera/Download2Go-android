@@ -3,12 +3,19 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
     <title>getFastplayPlaybackURL</title>
-<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">
-    <script>var pathToRoot = "../../../";</script>    <script>const storage = localStorage.getItem("dokka-dark-mode")
-const savedDarkMode = storage ? JSON.parse(storage) : false
-if(savedDarkMode === true){
-    document.getElementsByTagName("html")[0].classList.add("theme-dark")
-}</script>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../";</script>    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
 <script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async></script>
 <link href="../../../styles/style.css" rel="Stylesheet">
 <link href="../../../styles/jetbrains-mono.css" rel="Stylesheet">
@@ -19,7 +26,8 @@ if(savedDarkMode === true){
 <script type="text/javascript" src="../../../scripts/navigation-loader.js" async></script>
 <script type="text/javascript" src="../../../scripts/platform-content-handler.js" async></script>
 <script type="text/javascript" src="../../../scripts/main.js" defer></script>
-<script type="text/javascript" src="../../../scripts/prism.js" async></script></head>
+<script type="text/javascript" src="../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
 <body>
 <div class="navigation-wrapper" id="navigation-wrapper">
     <div id="leftToggler"><span class="icon-toggler"></span></div>
@@ -29,6 +37,9 @@ if(savedDarkMode === true){
     <div>
     </div>
     <div class="pull-right d-flex">
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":penthera-common:dokkaHtmlPartial/main">Penthera Common Library</button>
+        </div>
         <button id="theme-toggle-button"><span id="theme-toggle"></span></button>
         <div id="searchBar"></div>
     </div>
@@ -38,12 +49,12 @@ if(savedDarkMode === true){
         <div id="sideMenu"></div>
     </div>
     <div id="main">
-<div class="main-content" id="content" pageids="Penthera Common Library::com.penthera.virtuososdk.client/ISegmentedAsset/getFastplayPlaybackURL/#/PointingToDeclaration//-25591989">
-  <div class="breadcrumbs"><a href="../../index.html">Penthera Common Library</a><span class="delimiter">/</span><a href="../index.html">com.penthera.virtuososdk.client</a><span class="delimiter">/</span><a href="index.html">ISegmentedAsset</a><span class="delimiter">/</span><a href="get-fastplay-playback-u-r-l.html">getFastplayPlaybackURL</a></div>
+<div class="main-content" data-page-type="member" id="content" pageids="Penthera Common Library::com.penthera.virtuososdk.client/ISegmentedAsset/getFastplayPlaybackURL/#/PointingToDeclaration//-25591989">
+  <div class="breadcrumbs"><a href="../../index.html">Penthera Common Library</a><span class="delimiter">/</span><a href="../index.html">com.penthera.virtuososdk.client</a><span class="delimiter">/</span><a href="index.html">ISegmentedAsset</a><span class="delimiter">/</span><span class="current">getFastplayPlaybackURL</span></div>
   <div class="cover ">
     <h1 class="cover"><span>get</span><wbr><span>Fastplay</span><wbr><span>Playback</span><wbr><span><span>URL</span></span></h1>
   </div>
-  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":penthera-common:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-fastplay-playback-u-r-l.html"><span class="token function">getFastplayPlaybackURL</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/net/URL.html">URL</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><p class="paragraph">URL for a fastplay manifest suitable for sending to the player. The returned playback URL will point at the <code class="lang-kotlin">VirtuosoClientHTTPService</code>, which will deliver the modified manifest and the initial video segments. The service must be running for the player to use it.  To ensure the service is running, be sure to include the service and metadata declarations in the Android Manifest: </p><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">
+  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":penthera-common:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-fastplay-playback-u-r-l.html"><span class="token function">getFastplayPlaybackURL</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/java/net/URL.html">URL</a></div><p class="paragraph">URL for a fastplay manifest suitable for sending to the player. The returned playback URL will point at the <code class="lang-kotlin">VirtuosoClientHTTPService</code>, which will deliver the modified manifest and the initial video segments. The service must be running for the player to use it.  To ensure the service is running, be sure to include the service and metadata declarations in the Android Manifest: </p><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">
 &lt;meta-data android:name="com.penthera.virtuososdk.clienthttpservice.enabled" android:value="true" /&gt;
 
 &lt;service android:name="com.penthera.virtuososdk.service.VirtuosoClientHTTPService"
@@ -55,12 +66,13 @@ if(savedDarkMode === true){
    &lt;/intent-filter&gt;
 &lt;/service&gt;
 
-</code></pre><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><h4 class="">Return</h4><p class="paragraph">URL of the fastplay playback manifest, or null if outside of the availability window, the asset does not support fastplay or is not ready to play.</p><h2 class="">Throws</h2><div class="table"><div class="table-row" data-filterable-current=":penthera-common:dokkaHtmlPartial/main" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="https://developer.android.com/reference/kotlin/java/net/MalformedURLException.html"><span>java.</span><wbr><span>net.</span><wbr><span>Malformed</span><wbr><span><span>URLException</span></span></a></div></span></div><div><div class="title"><p class="paragraph">If the generated url cannot be parsed by <a href="https://developer.android.com/reference/kotlin/java/net/URL.html">java.net.URL</a></p></div></div></div></div></div></div></div>
+</code></pre><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><span class="kdoc-tag"><h4 class="">Return</h4><p class="paragraph">URL of the fastplay playback manifest, or null if outside of the availability window, the asset does not support fastplay or is not ready to play.</p></span><h4 class="">Throws</h4><div class="table"><div class="table-row" data-filterable-current=":penthera-common:dokkaHtmlPartial/main" data-filterable-set=":penthera-common:dokkaHtmlPartial/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="https://developer.android.com/reference/kotlin/java/net/MalformedURLException.html"><span>Malformed</span><wbr><span><span>URLException</span></span></a></div></span></div><div><div class="title"><p class="paragraph">If the generated url cannot be parsed by <a href="https://developer.android.com/reference/kotlin/java/net/URL.html">java.net.URL</a></p></div></div></div></div></div></div></div>
 </div>
-        <div class="footer"><span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2023 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
-        </div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2024 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
     </div>
 </div>
-
-</body></html>
+</body>
+</html>
 
