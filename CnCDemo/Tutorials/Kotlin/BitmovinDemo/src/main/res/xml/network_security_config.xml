@@ -1,9 +1,0 @@
-<network-security-config>
-    <base-config cleartextTrafficPermitted="true">
-        <!-- Trust user added CAs in release -->
-        <trust-anchors>
-            <certificates src="user" />
-            <certificates src="system" />
-        </trust-anchors>
-    </base-config>
-</network-security-config>
