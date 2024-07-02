@@ -1,0 +1,46 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'org.jetbrains.kotlin.android'
+    id 'com.penthera.virtuoso-sdk-configuration' version '1.0.0'
+}
+
+apply from: "$rootDir/constants.gradle"
+
+
+android {
+    compileSdkVersion project.ext.compileSdkVersion
+    buildToolsVersion project.ext.buildToolsVersion
+    defaultConfig {
+        applicationId "com.penthera.download2go1_9"
+        minSdkVersion project.ext.minSdkVersion
+        targetSdkVersion project.ext.targetSdkVersion
+        versionCode project.ext.releaseVersionCode
+        versionName project.ext.releaseVersion
+    }
+    buildFeatures {
+        viewBinding true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:"+"$project.ext.kotlinVersion"
+    implementation 'androidx.appcompat:appcompat:'+"$project.ext.appcompatVersion"
+    implementation 'androidx.core:core-ktx:'+"$project.ext.ktxVersion"
+    implementation 'androidx.constraintlayout:constraintlayout:'+"$project.ext.constraintLayoutVersion"
+
+    // Dependency to latest Download2Go SDK version
+    implementation 'com.penthera:cnc-android-sdk-debug:'+"$project.ext.pentheraSdkVersion"
+    implementation "com.penthera:cnc-androidx-media3-1_1-support-debug:$project.ext.pentheraSdkVersion"
+
+    // Player
+    implementation "androidx.media3:media3-exoplayer:$project.ext.exoPlayerVersion"
+    implementation "androidx.media3:media3-exoplayer-dash:$project.ext.exoPlayerVersion"
+    implementation "androidx.media3:media3-ui:$project.ext.exoPlayerVersion"
+}
