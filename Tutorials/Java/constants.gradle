@@ -1,5 +1,5 @@
 project.ext {
-    pentheraSdkVersion = '5.4.6'
+    pentheraSdkVersion = '5.4.7'
 
     releaseVersion = '1.0'
     releaseVersionCode = 1
