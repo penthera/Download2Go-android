@@ -259,6 +259,9 @@ com.penthera.backgrounder.model
 module:Download2Go Media3 ExoPlayer 1.1.* Support Library
 com.penthera.virtuososdk.support.androidx.media311
 com.penthera.virtuososdk.support.androidx.media311.drm
+module:Download2Go Media3 ExoPlayer 1.4.* Support Library
+com.penthera.virtuososdk.support.androidx.media314
+com.penthera.virtuososdk.support.androidx.media314.drm
 module:Download2Go Android ExoPlayer 2.13.* Support Library
 com.penthera.virtuososdk.support.exoplayer213
 com.penthera.virtuososdk.support.exoplayer213.drm
